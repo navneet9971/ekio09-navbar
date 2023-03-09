@@ -9,7 +9,7 @@ const ClientDashboard = () => {
   const handleTabClick = (tabName, path) => {
     setActiveTab(tabName);
     if (tabName === "start") {
-      history.push("/navbar");
+      history.push("/navbar/firstpage");
     }
   };
 
