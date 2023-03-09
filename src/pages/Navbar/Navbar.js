@@ -64,9 +64,6 @@ const Navbar = () => {
               <div className="right"></div>
             </div>
             
-            <li className="nav-item active">
-            </li>
-
             <li className="nav-item">
               <NavLink className="nav-link" to="/navbar/firstpage" >
                 <i 
