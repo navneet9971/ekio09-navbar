@@ -68,7 +68,7 @@ const Navbar = () => {
             </li>
 
             <li className="nav-item">
-              <NavLink className="nav-link" to="/navbar/firstpage" exact>
+              <NavLink className="nav-link" to="/firstpage" exact>
                 <i 
                 className="far fa-address-book">
                 </i>Start New Application
