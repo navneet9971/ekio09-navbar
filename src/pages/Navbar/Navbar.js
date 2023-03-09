@@ -68,7 +68,7 @@ const Navbar = () => {
             </li>
 
             <li className="nav-item">
-              <NavLink className="nav-link" to="/navbar/firstpage" exact>
+              <NavLink className="nav-link" to="/navbar/firstpage" >
                 <i 
                 className="far fa-address-book">
                 </i>Start New Application
@@ -76,7 +76,7 @@ const Navbar = () => {
             </li>
 
             <li className="nav-item">
-              <NavLink className="nav-link" to="/navbar/review" exact>
+              <NavLink className="nav-link" to="/navbar/review" >
                 <i 
                 className="far fa-clone">
                 </i>Review Application
@@ -84,7 +84,7 @@ const Navbar = () => {
             </li>
 
             <li className="nav-item">
-              <NavLink className="nav-link" to="/navbar/myaccount" exact>
+              <NavLink className="nav-link" to="/navbar/myaccount">
                 <i 
                 className="far fa-clone">
                 </i>My Account
@@ -92,7 +92,7 @@ const Navbar = () => {
             </li>
 
             <li className="nav-item">
-              <NavLink className="nav-link" to="/navbar/check" exact>
+              <NavLink className="nav-link" to="/navbar/check">
                 <i 
                 className="far fa-clone">
                 </i>Check List Of GST
@@ -100,7 +100,7 @@ const Navbar = () => {
             </li>
 
             <li className="nav-item">
-              <NavLink className="nav-link" to="/navbar/add" exact>
+              <NavLink className="nav-link" to="/navbar/add">
                 <i 
                 className="far fa-clone">
                 </i>Add Users
@@ -108,7 +108,7 @@ const Navbar = () => {
             </li>
 
             <li className="nav-item">
-              <NavLink className="nav-link" to="/navbar/download" exact>
+              <NavLink className="nav-link" to="/navbar/download">
                 <i 
                 className="far fa-clone">
                 </i>Download Form
@@ -116,7 +116,7 @@ const Navbar = () => {
             </li>
 
             <li className="nav-item">
-              <NavLink className="nav-link" to="/navbar/view" exact>
+              <NavLink className="nav-link" to="/navbar/view">
                 <i 
                 className="far fa-clone">
                 </i>View Reports
