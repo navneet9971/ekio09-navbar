@@ -127,8 +127,6 @@ const Navbar = () => {
       <Router>
         <Switch>
           <Route exact path= "/navbar" component={ClientDashboard} />
-          <Route exact path= "/navbar/firstpage" component={Firstpage} />
-          <Route exact path= "/navbar/download" component={Download} />
         </Switch>
       </Router>
       <button99 onClick={handleLogout}><span99>Logout</span99></button99>

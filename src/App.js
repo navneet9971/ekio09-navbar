@@ -30,10 +30,10 @@ const App = () => {
 
         <Route path="/navbar">
          <Navbar />
-        <Switch>
-        <Route path="/clientdashboard">
+         <Route path="/clientdashboard">
           <ClientDashboard />
         </Route>
+        <Switch>
         <Route path="/navbar/firstpage">
           <Firstpage />
         </Route>
