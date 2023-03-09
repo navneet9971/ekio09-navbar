@@ -35,7 +35,7 @@ function Login() {
   };
 
   if (user) {
-    history.push('/navbar');
+    history.push('/navbar/clientdashboard');
   }
 
   return (

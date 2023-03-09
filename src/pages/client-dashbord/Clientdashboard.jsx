@@ -8,23 +8,20 @@ const ClientDashboard = () => {
 
   const handleTabClick = (tabName, path) => {
     setActiveTab(tabName);
-    if (tabName === "start") {
-      history.push("/navbar/firstpage");
-    }
-    
+    history.push(path);
   };
 
   return (
     <div className="dashboard-client34">
-      <h11>Welcome, !</h11>
+      <h1>Welcome, !</h1>
       <div className="dashboard-clientbox34">
         <ul>
           <Link
             to="/navbar/firstpage"
             className={activeTab === "start" ? "active" : ""}
-            onClick={() => handleTabClick("start")}
+            onClick={() => handleTabClick("start", "/navbar/firstpage")}
           >
-           <st> Start Application</st>
+            <st>Start Application</st>
           </Link>
 
           <Link
@@ -33,54 +30,44 @@ const ClientDashboard = () => {
             onClick={() => handleTabClick("review", "/navbar/review")}
           >
             <re>Review Application</re>
-           
           </Link>
 
           <Link
-            to="/navbar/account"
+            to="/navbar/myaccount"
             className={activeTab === "account" ? "active" : ""}
-            onClick={() => handleTabClick("account", "/navbar/account")}
+            onClick={() => handleTabClick("account", "/navbar/myaccount")}
           >
             <my>My Account</my>
           </Link>
 
           <Link
-            to="/navbar/checklist"
+            to="/navbar/check"
             className={activeTab === "checklist" ? "active" : ""}
-            onClick={() =>
-              handleTabClick("checklist", "/navbar/checklist")
-            }
+            onClick={() => handleTabClick("checklist", "/navbar/check")}
           >
             <chec>Checklist of Compliance</chec>
           </Link>
 
           <Link
-            to="/navbar/add-users"
+            to="/navbar/add"
             className={activeTab === "add-users" ? "active" : ""}
-            onClick={() =>
-              handleTabClick("add-users", "/navbar/add-users")
-            }
+            onClick={() => handleTabClick("add-users", "/navbar/add")}
           >
-      
-            <addus>Add Users</addus>
+           <adus>Add Users</adus>
           </Link>
 
           <Link
             to="/navbar/download"
             className={activeTab === "download" ? "active" : ""}
-            onClick={() =>
-              handleTabClick("download", "/navbar/download")
-            }
+            onClick={() => handleTabClick("download", "/navbar/download")}
           >
-            <do>Download Forms</do>
+           <do>Download Forms</do>
           </Link>
 
           <Link
-            to="/navbar/reports"
+            to="/navbar/view"
             className={activeTab === "reports" ? "active" : ""}
-            onClick={() =>
-              handleTabClick("reports", "/navbar/reports")
-            }
+            onClick={() => handleTabClick("reports", "/navbar/view")}
           >
             <vi>View Reports</vi>
           </Link>

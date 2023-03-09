@@ -2,13 +2,9 @@ import React, { useEffect } from "react";
 import "./Navbar.css";
 import {
   NavLink,
-  BrowserRouter as Router,
-  Route,
-  Switch,
   useHistory,
 } from "react-router-dom";
 import $ from "jquery";
-import ClientDashboard from "../client-dashbord/Clientdashboard";
 
 const Navbar = () => {
   const history = useHistory(); // initialize useHistory hook
@@ -66,7 +62,7 @@ const Navbar = () => {
           </div>
 
           <li>
-            <NavLink to="/navbar" className="nav-link">
+            <NavLink to="/navbar/clientdashboard" className="nav-link">
               Home
             </NavLink>
           </li>
@@ -127,11 +123,7 @@ const Navbar = () => {
 
       
       
-      <Router>
-        <Switch>
-          <Route exact path= "/navbar" component={ClientDashboard} />
-        </Switch>
-      </Router>
+     
       <button99 onClick={handleLogout}><span99>Logout</span99></button99>
   </nav>
   
