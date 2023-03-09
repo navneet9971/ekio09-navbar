@@ -20,7 +20,7 @@ const ClientDashboard = () => {
         <ul>
           <Link
             className={activeTab === "start" ? "active" : ""}
-            onClick={() => handleTabClick("start")}
+            onClick={() => handleTabClick("start", "/navbar/firstpage")}
           >
            <st> Start Application</st>
           </Link>
