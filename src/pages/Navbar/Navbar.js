@@ -64,12 +64,9 @@ const Navbar = () => {
               <div className="right"></div>
             </div>
 
- 
-            <li className="nav-item">
-            </li>
   
          <li className="nav-item">
-              <NavLink className="nav-link" to="/navbar/firstpage" >
+              <NavLink exact={true} className="nav-link" to="/navbar/firstpage" >
                 <i 
                 className="far fa-address-book">
                 </i>Start New Application
@@ -125,11 +122,16 @@ const Navbar = () => {
             </li>
         </ul>
       </div>
-      <Router>
-        <Switch>
-          <Route exact path= "/navbar" component={ClientDashboard} />
-        </Switch>
-      </Router>
+      <Switch>
+  <Route exact path="/navbar" component={ClientDashboard} />
+  <Route exact path="/navbar/firstpage" component={FirstPage} />
+  <Route exact path="/navbar/review" component={Review} />
+  <Route exact path="/navbar/myaccount" component={MyAccount} />
+  <Route exact path="/navbar/check" component={CheckList} />
+  <Route exact path="/navbar/add" component={AddUsers} />
+  <Route exact path="/navbar/download" component={DownloadForm} />
+  <Route exact path="/navbar/view" component={ViewReports} />
+</Switch>
       <button99 onClick={handleLogout}><span99>Logout</span99></button99>
   </nav>
   
