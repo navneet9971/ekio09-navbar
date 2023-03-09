@@ -10,7 +10,6 @@ import Myaccount from "./component/pages/Myaccount";
 import Download from "./component/pages/Download";
 import Check from "./component/pages/Check";
 import SignUP from "./component/auth/SignUP";
-import Start from "./component/pages/Start";
 import Firstpage from "./pages/Firstpage";
 import Secondpage from "./pages/Secondpage";
 import Thirdpage from "./pages/Thirdpage";
@@ -45,8 +44,8 @@ const App = () => {
           <Thirdpage />
         </Route>
 
-        <Route path="/navbar/start">
-              <Start />
+        <Route path="/navbar/firstpage">
+              <Firstpage />
             </Route>
             <Route path="/navbar/add">
               <Add />

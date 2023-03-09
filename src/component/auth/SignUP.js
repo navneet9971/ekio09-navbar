@@ -34,9 +34,6 @@ function SignUP() {
         <div class="form-wrapper12">
           <input type="text" placeholder="Password" class="form-control" />
         </div>
-        <div class="form-wrapper12">
-          <input type="text" placeholder="choose Your Package" class="form-control" />
-        </div>
         <button onClick={submitData} className="button">REGISTER NOW</button>
       </div>
       <div class="small">
