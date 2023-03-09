@@ -63,8 +63,12 @@ const Navbar = () => {
               <div className="left"></div>
               <div className="right"></div>
             </div>
-            
+
+ 
             <li className="nav-item">
+            </li>
+  
+         <li className="nav-item">
               <NavLink className="nav-link" to="/navbar/firstpage" >
                 <i 
                 className="far fa-address-book">
