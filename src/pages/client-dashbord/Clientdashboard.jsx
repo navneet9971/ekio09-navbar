@@ -9,7 +9,7 @@ const ClientDashboard = () => {
   const handleTabClick = (tabName, path) => {
     setActiveTab(tabName);
     if (tabName === "start") {
-      history.push("/navbar/firstpage");
+      history.push("/navbar");
     }
   };
 
@@ -21,7 +21,7 @@ const ClientDashboard = () => {
           <Link
             to="/navbar/firstpage"
             className={activeTab === "start" ? "active" : ""}
-            onClick={() => handleTabClick("start")}
+            onClick={() => handleTabClick("start", "/navbar/firstpage")}
           >
            <st> Start Application</st>
           </Link>
