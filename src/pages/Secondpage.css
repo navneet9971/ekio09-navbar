@@ -1,0 +1,112 @@
+ 
+.table-container {
+  margin: 20px;
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 25px;
+}
+
+h1:hover{
+  color: lightgreen;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+thead {
+  background-color: #343a40;
+  color: white;
+}
+
+th,
+td {
+  text-align: center;
+  padding: 8px;
+}
+
+th:first-child,
+td:first-child {
+  text-align: center;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #e6e6e6;
+}
+
+tbody tr:hover {
+  background-color: #caf0f5;
+  cursor: pointer;
+}
+
+a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 80px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+
+.play-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.play-button:hover{
+  background-color: rgb(248, 204, 204);
+}
+
+.play-button svg {
+  fill: #343a40;
+  width: 40px;
+  height: 40px;
+}
+
+
+button1,
+button2,
+button3 {
+  flex-direction: row;
+  gap: 10px;
+}
+
+button1,
+button2,
+button3 {
+  padding: 2px 5px;
+  border-radius: 5px;
+  border: none;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+button1,
+button2,
+button3:hover {
+  background-color: #3e8e41;
+}

@@ -1,0 +1,137 @@
+/* default styles */
+
+h11{
+  font-size: 40px;
+  font-weight: 500;
+  color: lightgreen;
+}
+
+.dashboard-clientbox34 {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 30px;
+  margin-top: 30px;
+}
+
+st{
+  font-size: 18px;
+  color: black;
+  font-weight: 700;
+  margin-top: 20px;
+  margin-left: -690px;
+}
+st:hover{
+  color: rgb(88, 151, 172);
+}
+
+re {
+  font-size: 18px;
+  color: black;
+  font-weight: 700;
+  margin-top: -22px;
+  margin-left: 60px;
+}
+re:hover{
+  color: rgb(88, 151, 172);
+}
+
+my {
+  font-size: 18px;
+  color: black;
+  font-weight: 700;
+  margin-top: -21px;
+  margin-left: 800px;
+}
+my:hover{
+  color: rgb(88, 151, 172);
+}
+
+chec {
+  font-size: 18px;
+  color: black;
+  font-weight: 700;
+  margin-top: 175px;
+  margin-left: -659px;
+}
+chec:hover{
+  color: rgb(88, 151, 172);
+}
+
+addus {
+  font-size: 18px;
+  color: black;
+  font-weight: 700;
+  margin-top: -21px;
+  margin-left: 60px;
+}
+addus:hover{
+  color: rgb(88, 151, 172);
+}
+
+svg#svg{
+  margin-top: -21px;
+  margin-left: 60px;
+}
+
+do {
+  font-size: 18px;
+  color: black;
+  font-weight: 700;
+  margin-top: -20px;
+  margin-left: 820px;
+}
+do:hover{
+  color: rgb(88, 151, 172);
+}
+
+vi {
+  font-size: 18px;
+  color: black;
+  font-weight: 700;
+  margin-right: 677px;
+  margin-top: 153px;
+}
+vi:hover{
+  color: rgb(88, 151, 172);
+}
+
+/* Media queries */
+@media (max-width: 1200px) {
+  st {
+    margin-left: -300px;
+  }
+  re {
+    margin-left: 20px;
+  }
+  my {
+    margin-left: 410px;
+  }
+  chec {
+    margin-left: -200px;
+  }
+  addus {
+    margin-left: 20px;
+  }
+  do {
+    margin-left: 470px;
+  }
+  vi {
+    margin-right: 350px;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-clientbox34 {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  st, re, my, chec, addus, do, vi {
+    margin: 10px;
+  }
+}

@@ -1,0 +1,53 @@
+h5{
+  font-size: 2em;
+  margin-bottom: 2.5em;
+}
+
+.view{
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 15%;
+  margin-right: 80vh;
+}
+
+.table h2{
+  position: absolute;
+  font-size: 4vh;
+  top: 0em;
+  padding: 1em 1em 10em 44em;
+  color: #0e76e9;
+}
+
+.table {
+  width: 115vh;
+}
+
+
+.Review 
+td{
+  padding: .50em .10em;
+  text-align: center;
+}
+
+td,th{
+  background-color: #eee;
+}
+
+th{
+  background-color: #eeac1b;
+  color: black;
+  text-align: center;
+  padding: .4em .7em ;
+  font-size: 20px;
+  font-weight: bold;
+  width: 35em;
+  cursor: pointer;
+}
+
+.Review{
+  border-collapse: separate;
+  border-spacing: .7em 1em;
+  width: 200vh;
+  height: 30vh;
+}
+
