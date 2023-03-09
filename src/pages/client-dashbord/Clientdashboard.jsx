@@ -24,7 +24,6 @@ const ClientDashboard = () => {
           </Link>
 
           <Link
-            to="/navbar/review"
             className={activeTab === "review" ? "active" : ""}
             onClick={() => handleTabClick("review", "/navbar/review")}
           >
@@ -32,7 +31,6 @@ const ClientDashboard = () => {
           </Link>
 
           <Link
-            to="/navbar/myaccount"
             className={activeTab === "account" ? "active" : ""}
             onClick={() => handleTabClick("account", "/navbar/myaccount")}
           >
@@ -40,7 +38,6 @@ const ClientDashboard = () => {
           </Link>
 
           <Link
-            to="/navbar/check"
             className={activeTab === "checklist" ? "active" : ""}
             onClick={() => handleTabClick("checklist", "/navbar/check")}
           >
@@ -48,7 +45,6 @@ const ClientDashboard = () => {
           </Link>
 
           <Link
-            to="/navbar/add"
             className={activeTab === "add-users" ? "active" : ""}
             onClick={() => handleTabClick("add-users", "/navbar/add")}
           >
@@ -56,7 +52,6 @@ const ClientDashboard = () => {
           </Link>
 
           <Link
-            to="/navbar/download"
             className={activeTab === "download" ? "active" : ""}
             onClick={() => handleTabClick("download", "/navbar/download")}
           >
@@ -64,7 +59,6 @@ const ClientDashboard = () => {
           </Link>
 
           <Link
-            to="/navbar/view"
             className={activeTab === "reports" ? "active" : ""}
             onClick={() => handleTabClick("reports", "/navbar/view")}
           >
