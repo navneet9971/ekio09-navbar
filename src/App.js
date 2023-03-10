@@ -27,12 +27,7 @@ const App = () => {
         <Route path="/signup">
           <SignUP />
         </Route>
-        <Route path="/navbar/secondpage">
-          <Secondpage />
-        </Route>
-        <Route path="/navbar/compliance/:id">
-          <Thirdpage />
-        </Route>
+        
 
         <Route path="/navbar">
          <Navbar /> 
