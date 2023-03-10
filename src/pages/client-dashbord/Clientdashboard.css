@@ -83,12 +83,7 @@ vi:hover{
 }
 
 /* icons css */
-img{
-  margin: auto;
-  position: absolute;
-  top: -1em; left: -31em; bottom: 0; right: 0; 
-  max-width: 7%;
-}
+
 
 /* Media queries */
 @media (max-width: 1200px) {
