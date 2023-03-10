@@ -29,21 +29,17 @@ const App = () => {
         </Route>
 
         <Route path="/navbar">
-         <Navbar />
+         <Navbar /> 
         <Switch>
         <Route path="/navbar/clientdashboard">
           <ClientDashboard />
-        </Route>
-        <Route path="/navbar/firstpage">
-          <Firstpage />
-        </Route>
-        <Route path="/navbar/secondpage">
+        </Route><Route path="/navbar/secondpage">
           <Secondpage />
         </Route>
         <Route path="/navbar/compliance/:id">
           <Thirdpage />
         </Route>
-        
+      
         <Route path="/navbar/firstpage">
               <Firstpage />
             </Route>

@@ -19,85 +19,75 @@ h11{
 }
 
 st{
-  font-size: 18px;
-  color: black;
-  font-weight: 700;
-  margin-top: 20px;
-  margin-left: -690px;
+  margin: auto;
+  position: absolute;
+  top: 4em; left: 10em; bottom: 0; right: 0;
 }
 st:hover{
-  color: rgb(88, 151, 172);
+  color: rgb(250, 218, 38);
 }
 
 re {
-  font-size: 18px;
-  color: black;
-  font-weight: 700;
-  margin-top: -22px;
-  margin-left: 60px;
+  margin: auto;
+  position: absolute;
+  top: 4em; left: 30em; bottom: 0; right: 0;
 }
 re:hover{
-  color: rgb(88, 151, 172);
+  color: rgb(250, 218, 38);
 }
 
 my {
-  font-size: 18px;
-  color: black;
-  font-weight: 700;
-  margin-top: -21px;
-  margin-left: 800px;
+  margin: auto;
+  position: absolute;
+  top: 4em; left: 51em; bottom: 0; right: 0;
 }
 my:hover{
-  color: rgb(88, 151, 172);
+  color: rgb(250, 218, 38);
 }
 
 chec {
-  font-size: 18px;
-  color: black;
-  font-weight: 700;
-  margin-top: 175px;
-  margin-left: -659px;
+  margin: auto;
+  position: absolute;
+  top: 13em; left: 9em; bottom: 0; right: 0;
 }
 chec:hover{
-  color: rgb(88, 151, 172);
+  color:rgb(250, 218, 38);
 }
 
 adus {
-  font-size: 18px;
-  color: black;
-  font-weight: 700;
-  margin-top: -21px;
-  margin-left: 60px;
+  margin: auto;
+  position: absolute;
+  top: 13em; left: 32em; bottom: 0; right: 0;
 }
 adus:hover{
-  color: rgb(88, 151, 172);
-}
-
-svg#svg{
-  margin-top: -21px;
-  margin-left: 60px;
+  color: rgb(250, 218, 38);
 }
 
 do {
-  font-size: 18px;
-  color: black;
-  font-weight: 700;
-  margin-top: -20px;
-  margin-left: 820px;
+  margin: auto;
+  position: absolute;
+  top: 13em; left: 50em; bottom: 0; right: 0;
 }
 do:hover{
-  color: rgb(88, 151, 172);
+  color: rgb(250, 218, 38);
 }
 
 vi {
-  font-size: 18px;
-  color: black;
-  font-weight: 700;
-  margin-right: 677px;
-  margin-top: 153px;
+  margin: auto;
+  position: absolute;
+  top: 20em; left: 11em; bottom: 0; right: 0;
 }
+
 vi:hover{
-  color: rgb(88, 151, 172);
+  color: rgb(250, 218, 38);
+}
+
+/* icons css */
+img{
+  margin: auto;
+  position: absolute;
+  top: -1em; left: -31em; bottom: 0; right: 0; 
+  max-width: 7%;
 }
 
 /* Media queries */

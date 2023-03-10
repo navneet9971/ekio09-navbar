@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import "./Clientdashboard.css";
+import dsico from './ds_Icons/4.png';
 
 const ClientDashboard = () => {
   const [activeTab, setActiveTab] = useState("start");
@@ -13,13 +14,14 @@ const ClientDashboard = () => {
 
   return (
     <div className="dashboard-client34">
-      <h1>Welcome, !</h1>
+      <h11>Welcome </h11>
       <div className="dashboard-clientbox34">
         <ul>
           <Link
+          
             className={activeTab === "start" ? "active" : ""}
             onClick={() => handleTabClick("start", "/navbar/firstpage")}
-          >
+          ><img src={dsico} alt="start"/>
             <st>Start Application</st>
           </Link>
 

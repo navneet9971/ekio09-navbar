@@ -7,8 +7,24 @@
     outline: dashed 1px black;
 }
 
+h30{
+  font-size: 17px;
+  font-weight: 600;
+  position: absolute;
+  top: 8.9em;
+  left: 23em;
+}
+h31{
+  font-size: 14px;
+  font-weight: 600;
+  position: absolute;
+  top: 12.6em;
+  left: 28em;
+}
+
   .form-group22{
     font-weight: bold;
+    margin-top: 31px;
     margin-bottom: 15px;
     text-align: center;
   }
@@ -27,6 +43,10 @@
   font-weight: bold;
   padding-left: center;
   text-align: center;
+  padding: 40px;
+    width: calc(100% - 100px);
+    height: 23px;
+    margin: -33px 0 0 -1px;
 }
 
 select#region-select22{
@@ -41,14 +61,14 @@ select#region-select22
 {
 
   background-color: #fff;
-  padding: 5px;
+  padding: 2px;
   border-radius: 25px;
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
 /* CSS for button */
 button {
-  background-color: rgb(43, 236, 85);
+  background-color: #552700;
   border-radius: 8px;
   border-style: none;
   box-sizing: border-box;

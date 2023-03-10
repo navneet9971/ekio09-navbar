@@ -32,6 +32,9 @@ const Firstpage = () => {
 
   return (
     <div className="first-container22">
+      <h30>Please Enter the following details to Start a new application:-</h30>
+      <h31>You need to fill at-least 1 data point to see the list of compliance</h31>
+
       <div className="form-group22">
         <label htmlFor="category-input">Enter Category:</label>
         <input type="text" id="category-input" value={category} onChange={handleCategoryChange} />

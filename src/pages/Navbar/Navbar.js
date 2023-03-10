@@ -91,7 +91,7 @@ const Navbar = () => {
               <NavLink className="nav-link" to="/navbar/check">
                 <i 
                 className="far fa-clone">
-                </i>Check List Of GST
+                </i>Checklist of Compliance
               </NavLink>
             </li>
 
