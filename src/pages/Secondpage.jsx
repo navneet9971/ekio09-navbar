@@ -47,7 +47,7 @@ const Secondpage = () => {
   const handleClick = (id) => {
     history.push(`/navbar/compliance/${id}`);
   };
- 
+
   return (
     <div className="table-container">
       <h1>List of Compliance</h1>
