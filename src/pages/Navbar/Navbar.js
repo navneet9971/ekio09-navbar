@@ -120,10 +120,6 @@ const Navbar = () => {
             </li>
         </ul>
       </div>
-
-      
-      
-     
       <button99 onClick={handleLogout}><span99>Logout</span99></button99>
   </nav>
   
