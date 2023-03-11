@@ -16,11 +16,8 @@
     font-family: arial;
     font-size: 24px;
     position: absolute;
-    width: 820px;
-    height: 602px;
-    outline: dashed 1px rgb(238, 233, 233);
     left: 39.5%;
-    transform: translate(-40%, 2%);
+    transform: translate(-100%, 20%);
   }
   
   .right-section55 {
@@ -85,10 +82,92 @@ a:hover{
     font-size: 14px;
     color: #f8e9e9;
   }
+
+  /* popup lines set css */
+  h90{
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  h32{
+    font-size: 22px;
+    font-weight: 600;position: absolute;
+    top: 3px;
+    left: 10px;
+  }
+
+  h98{
+    position: absolute;
+    left: 60px;
+    top: 70px;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  h94{
+    font-size: 18px;
+    font-weight: 600;
+    position: absolute;
+    top: 70px;
+    left: 337px;
+  }
+
+  /*popup on upload button */
+  select{
+    background-color: #fff;
+    padding: 2px;
+    border-radius: 25px;
+    margin-top: 10px;
+    width: 189px;
+    height: 32px;
+    left: -224px;
+    top: 40px;
+    font-weight: 700;
+    width: 230px;
+    text-align: center;
+  }
+
+  input#file-input12 {
+  position: absolute;
+    top: 105px;
+    left: 340px;
+  }
+    input#file-input12::file-selector-button {
+      margin-right: 20px;
+      border: none;
+      background: #084cdf;
+      padding: 10px 20px;
+      border-radius: 10px;
+      color: #fff;
+      cursor: pointer;
+      transition: background .2s ease-in-out;
+    }
+    input#file-input12::file-selector-button:hover {
+      background: #0d45a5;
+    }
+
+  /* popup button css */
+button8, button8:focus {
+      font-size: 17px;
+      padding: 5px 14px;
+      margin-left: 15px;
+      border-radius: 0.7rem;
+      background-image: linear-gradient(rgb(214, 202, 254), rgb(158, 129, 254));
+      border: 2px solid rgb(50, 50, 50);
+      border-bottom: 5px solid rgb(50, 50, 50);
+      box-shadow: 0px 1px 6px 0px rgb(158, 129, 254);
+      transform: translate(0, -3px);
+      transition: 0.2s;
+      transition-timing-function: linear;
+    }
+    
+    button8:active {
+      transform: translate(0, 0);
+      border-bottom: 2px solid rgb(50, 50, 50);
+    }
   
   /* CSS */
   button5,
-  button6,
   button7{
     align-items: center;
     appearance: none;
@@ -122,20 +201,17 @@ a:hover{
   }
   
   button5:focus,
-  button6:focus,
   button7:focus {
     box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
   }
   
   button5:hover,
-  button6:hover,
   button7:hover {
     box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
     transform: translateY(-2px);
   }
 
   button5:active,
-  button6:active,
   button7:active  {
     box-shadow: #3c4fe0 0 3px 7px inset;
     transform: translateY(2px);
