@@ -3,16 +3,16 @@ import "./Table.css";
 
 function Download() {
   return (
-    <div className="table">
+    <div className="table-container">
         <h5>Download Forms & Upload</h5>
 
-      <table class="Review">
+      <table>
         <thead>
           <tr>
             <th class="header">S.NO</th>
             <th class="header">Compliance Type</th>
             <th class="header">Application Name</th>
-            <th class="header">Form</th>
+            <th class="header">Date</th>
             <th class="header">Action</th>
           </tr>
         </thead>

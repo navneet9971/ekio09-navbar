@@ -15,6 +15,7 @@ import Secondpage from "./pages/Secondpage";
 import Thirdpage from "./pages/Thirdpage";
 import ClientDashboard from "./pages/client-dashbord/Clientdashboard";
 import Navbar from "./pages/Navbar/Navbar";
+import Edit from "./component/pages/Edit";
 
 
 
@@ -28,7 +29,7 @@ const App = () => {
         <Route path="/signup">
           <SignUP />
         </Route>
-        
+      
 
         <Route path="/navbar">
          <Navbar /> 
@@ -42,7 +43,7 @@ const App = () => {
         <Route path="/navbar/compliance/:id">
           <Thirdpage />
         </Route>
-      
+              
         <Route path="/navbar/firstpage">
               <Firstpage />
             </Route>
@@ -51,6 +52,9 @@ const App = () => {
             </Route>
             <Route path="/navbar/review">
               <Review />
+            </Route>
+            <Route path="/navbar/edit/:id">
+              <Edit />
             </Route>
             <Route path="/navbar/check">
               <Check />

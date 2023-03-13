@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Add.css";
+import "./Table.css";
 
 function Add({ selected, setSelected }) {
   const [firstName, setFirstName] = useState(null);

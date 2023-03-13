@@ -3,11 +3,11 @@ import "./Table.css";
 
 function View() {
   return (
-    <div className="table">
+    <div className="table-container">
       <div className="view">View Reports</div>
       
 
-      <table class="Review">
+      <table>
         <thead>
           <tr>
             <th class="header">S.NO</th>
