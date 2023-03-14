@@ -1,0 +1,567 @@
+/*--------------First Pages-------------*/
+
+.first-container22{
+    background-color: rgb(235, 239, 243);
+    border: 1px solid yellow;
+    margin: 75px 0px 0px 380px;
+    width: 450px;
+    padding: 52px 60px 50px 30px;
+    outline: dashed 1px black;
+}
+
+h30{
+  font-size: 17px;
+  font-weight: 600;
+  position: absolute;
+  top: 8.9em;
+  left: 23em;
+}
+h31{
+  font-size: 14px;
+  font-weight: 600;
+  position: absolute;
+  top: 12.6em;
+  left: 28em;
+}
+
+  .form-group22{
+    font-weight: bold;
+    margin-top: 31px;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  input[type=text] {
+    width: calc(100% - 100px);
+    height: 30px;
+    margin: 4px 0 0 -1px;
+    border-radius: 0 5px 5px 0;
+    border: solid 1px #cbc9c9; 
+    box-shadow: 1px 2px 5px rgba(0,0,0,.09); 
+    background: #fff; 
+    }
+
+.region-group22{
+  font-weight: bold;
+  padding-left: center;
+  text-align: center;
+  padding: 40px;
+    width: calc(100% - 100px);
+    height: 23px;
+    margin: -33px 0 0 -1px;
+}
+
+select#region-select22{
+    font-weight: 700;
+    width: 230px;
+    text-align: center;
+    top: 2px;
+    left: 15px;
+}
+
+select#region-select22
+{
+  background-color: #fff;
+  padding: 2px;
+  border-radius: 25px;
+  margin-top: 10px;
+}
+
+            /*----FirstPage CSS for button--------*/
+
+button {
+  background-color: #552700;
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  height: 40px;
+  line-height: 20px;
+  list-style: none;
+  margin: 1px 0px 0px 200px;
+  outline: none;
+  padding: 10px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: color 100ms;
+  vertical-align: baseline;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+button:hover,
+button:focus {
+  background-color: rgb(6, 117, 6);
+}
+
+
+/*---------------Second Page CSS ---------------- */
+.table-container {
+    margin: 20px;
+  }
+  
+  h1 {
+    font-size: 32px;
+    margin-bottom: 25px;
+    color: #fff;
+  }
+  
+  h1:hover{
+    color: lightgreen;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  thead {
+    background-color: #343a40;
+    color: white;
+  }
+  
+  th,
+  td {
+    text-align: center;
+    padding: 8px;
+  }
+  
+  th:first-child,
+  td:first-child {
+    text-align: center;
+  }
+  
+  tbody tr:nth-child(odd) {
+    background-color: #f2f2f2;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #e6e6e6;
+  }
+  
+  tbody tr:hover {
+    background-color: #caf0f5;
+    cursor: pointer;
+  }
+  
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .video-banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 80px;
+    background-color: #f2f2f2;
+    margin-left: 107px;
+    margin-top: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  
+  .play-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .play-button:hover{
+    background-color: rgb(248, 204, 204);
+  }
+  
+  .play-button svg {
+    fill: #343a40;
+    width: 40px;
+    height: 40px;
+  }
+  
+  
+  button1,
+  button2,
+  button3 {
+    flex-direction: row;
+    gap: 10px;
+  }
+  
+  button1,
+  button2,
+  button3 {
+    padding: 2px 5px;
+    border-radius: 5px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  
+  button1,
+  button2,
+  button3:hover {
+    background-color: #3e8e41;
+  }
+
+
+  /*--------Third Page CSS-----------*/
+  .app55 {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  
+  .left-section55 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+  }
+
+  .center-section55{
+    font-family: arial;
+    font-size: 24px;
+    position: absolute;
+    left: 39.5%;
+    transform: translate(-100%, 20%);
+  }
+  
+  .right-section55 {
+    flex-basis: 25%;
+  }
+  
+  .flex-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .flex-item {
+    margin: 10px;
+    text-align: center;
+  }
+
+  .vl {
+    border-left: 1px solid white;
+    height: 617px;
+    position: absolute;
+    right: 85%;
+  }
+
+  img55{
+    margin-top: 5%;
+    margin-left: 10px;
+    margin-bottom: 30px;
+    max-width: 50%;
+  }
+
+  a{
+    display: block;
+    margin-left: 7px;
+    margin-top: 10px;
+    font-weight: 500;
+    color: white;
+    font-size: 20px;
+}
+
+a:hover{
+  color: skyblue;
+}
+ 
+  .lab-testing-box,
+  .status-box,
+  .document-box {
+    margin-left: 65%;
+    margin-bottom: 20px;
+    border: 2px solid #ccc;
+    text-align: center;
+    box-shadow: 2px 2px 5px rgba(238, 230, 230, 0.3);
+  }
+  
+  .lab-testing-box p,
+  .document-box p,
+  .status-box p {
+    margin: 15px 40px;
+    font-size: 14px;
+    color: #f8e9e9;
+  }
+
+  /* ----------ThirdPage popup lines set css---------- */
+  h90{
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  h32{
+    font-size: 22px;
+    font-weight: 600;position: absolute;
+    top: 3px;
+    left: 10px;
+  }
+
+  h98{
+    position: absolute;
+    left: 60px;
+    top: 70px;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  h94{
+    font-size: 18px;
+    font-weight: 600;
+    position: absolute;
+    top: 70px;
+    left: 337px;
+  }
+
+  /*---------Thirdpage popup on upload button---------------*/
+  select{
+    background-color: #fff;
+    padding: 2px;
+    border-radius: 25px;
+    margin-top: 10px;
+    width: 189px;
+    height: 32px;
+    left: -224px;
+    top: 40px;
+    font-weight: 700;
+    width: 230px;
+    text-align: center;
+  }
+
+  input#file-input12 {
+  position: absolute;
+    top: 105px;
+    left: 340px;
+  }
+    input#file-input12::file-selector-button {
+      margin-right: 20px;
+      border: none;
+      background: #084cdf;
+      padding: 10px 20px;
+      border-radius: 10px;
+      color: #fff;
+      cursor: pointer;
+      transition: background .2s ease-in-out;
+    }
+    input#file-input12::file-selector-button:hover {
+      background: #0d45a5;
+    }
+
+  /*------------ ThirdPage popup button css ---------------*/
+button8, button8:focus {
+      font-size: 17px;
+      padding: 5px 14px;
+      margin-left: 15px;
+      border-radius: 0.7rem;
+      background-image: linear-gradient(rgb(214, 202, 254), rgb(158, 129, 254));
+      border: 2px solid rgb(50, 50, 50);
+      border-bottom: 5px solid rgb(50, 50, 50);
+      box-shadow: 0px 1px 6px 0px rgb(158, 129, 254);
+      transform: translate(0, -3px);
+      transition: 0.2s;
+      transition-timing-function: linear;
+    }
+    
+    button8:active {
+      transform: translate(0, 0);
+      border-bottom: 2px solid rgb(50, 50, 50);
+    }
+  
+  /*-------------ThirdPage Butoon CSS--------------*/
+  button5,
+  button7{
+    align-items: center;
+    appearance: none;
+    background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
+    border: 0;
+    border-radius: 6px;
+    box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: "JetBrains Mono",monospace;
+    height: 48px;
+    margin: 10px;
+    justify-content: center;
+    line-height: 1;
+    list-style: none;
+    overflow: hidden;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    transition: box-shadow .15s,transform .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow,transform;
+    font-size: 14px;
+  }
+  
+  button5:focus,
+  button7:focus {
+    box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+  }
+  
+  button5:hover,
+  button7:hover {
+    box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+    transform: translateY(-2px);
+  }
+
+  button5:active,
+  button7:active  {
+    box-shadow: #3c4fe0 0 3px 7px inset;
+    transform: translateY(2px);
+  }
+
+   video {
+    position: absolute;
+    top: 62%;
+    left: 76%;
+}
+  /*
+  .video-content55 {
+    position: absolute;
+    top: 90%;
+    font-size: 20px;
+    left: 76%;
+    font-weight: 600;
+  } */
+
+
+/*----- First Page Responsive------------*/
+
+@media screen and (max-width: 576px) {
+  /* Styles for screens smaller than 576px */
+  .first-container22 {
+  margin: 30px auto;
+  width: 90%;
+  padding: 20px;
+  }
+  
+  select#region-select22 {
+  width: 100%;
+  margin-left: 0;
+  margin-top: 10px;
+  }
+  
+  button {
+  margin: 20px auto;
+  }
+  
+  input[type=text] {
+  width: 100%;
+  margin: 4px 0 10px 0;
+  border-radius: 5px;
+  }
+  
+  .form-group {
+  font-size: 16px;
+  margin-bottom: 10px;
+  }
+  
+  .region-group22 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  }
+  
+  button {
+  font-size: 16px;
+  height: 35px;
+  padding: 8px 12px;
+  }
+  }
+  
+  @media screen and (min-width: 577px) and (max-width: 768px) {
+  /* Styles for screens between 577px and 768px */
+  .first-container22 {
+  margin: 50px auto;
+  width: 90%;
+  padding: 30px;
+  }
+  
+  select#region-select22 {
+  width: 100%;
+  margin-left: 0;
+  margin-top: 10px;
+  }
+  
+  button {
+  margin: 20px auto;
+  }
+  
+  input[type=text] {
+  width: 100%;
+  margin: 4px 0 10px 0;
+  border-radius: 5px;
+  }
+  
+  .form-group22 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  }
+  
+  .region-group22 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  }
+  }
+
+
+
+  /*------ThirdPage Responsive-----------*/
+
+  @media only screen and (max-width: 768px) {
+    .video-box {
+      width: 100%;
+      margin: 16px 0 3px;
+    }
+  
+    .video-box video {
+      width: 100%;
+      height: auto;
+    }
+  
+    .video-content {
+      padding: 5px;
+    }
+  
+    .video-content h2 {
+      font-size: 24px;
+      margin: 0 10px 2px;
+    }
+  
+    .video-content p {
+      font-size: 16px;
+      margin: 0 10px;
+    }
+  }
+  
+
+
+
+

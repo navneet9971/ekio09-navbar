@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import "./Thirdpage.css";
+import "./Pages.css";
 import Popup from "./popup/Popup";
 import ico from '../component/assets/icons/eikomp_logo.png';
 

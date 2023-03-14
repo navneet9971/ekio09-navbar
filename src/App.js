@@ -29,7 +29,7 @@ const App = () => {
         <Route path="/signup">
           <SignUP />
         </Route>
-      
+        
         <Route path="/navbar">
          <Navbar /> 
         <Switch>

@@ -1,4 +1,4 @@
-/* ADD PAGE CSS */
+/* -----------ADD PAGE CSS ---------------*/
 .user{
   font-size: 2.5em;
   font-weight: bold;
@@ -175,7 +175,7 @@ input#email:focus,
   }
 }
 
-/*TABLE PAGES CSS */
+/*----------------TABLE PAGES CSS---------------- */
 h5{
   font-size: 2em;
   margin-bottom: 2.5em;
@@ -192,7 +192,7 @@ th{
   cursor: pointer;
 }
 
-/* Review pages css */
+/*------------- Review pages css----------------- */
 .action-select{
   background-color: #eee;
   top: -1px;
