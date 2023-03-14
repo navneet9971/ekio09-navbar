@@ -216,7 +216,12 @@ input[type="option"] {
    font-weight: 600;
 }
 
-
+input[type="date"] {
+  position: absolute;
+  top: 73px;
+  right: 238px;
+  background-color: #eeac1b;
+}
 
 /* styles for devices with a screen width of 768px or less */
 @media (max-width: 768px) {

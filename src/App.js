@@ -29,8 +29,17 @@ const App = () => {
         <Route path="/signup">
           <SignUP />
         </Route>
-      
 
+        <Route path="/navbar/secondpage">
+          <Secondpage />
+        </Route>
+        <Route path="/navbar/compliance/:id">
+          <Thirdpage />
+        </Route>
+        <Route path="/navbar/edit/:id">
+              <Edit />
+            </Route>
+      
         <Route path="/navbar">
          <Navbar /> 
         <Switch>
@@ -42,8 +51,7 @@ const App = () => {
         </Route>
         <Route path="/navbar/compliance/:id">
           <Thirdpage />
-        </Route>
-              
+        </Route>       
         <Route path="/navbar/firstpage">
               <Firstpage />
             </Route>
