@@ -73,7 +73,7 @@ textarea, select
 	width: 31.5em;
 	background: #fff;
   margin-top: -2em;
-	margin-bottom: 10em;
+  margin-bottom: 1em;
 	border: 1px solid #ccc;
 	padding: 1em;
 	color: #555;
@@ -88,10 +88,33 @@ input#email:focus,
 	border: 1px solid #43D1AF;
  }
 
+ input#industry,
+textarea, select 
+{
+	outline: none;
+	box-sizing: border-box;
+	width: 31.5em;
+	background: #fff;
+  margin-bottom: 3.8em;
+	border: 1px solid #ccc;
+	padding: 1em;
+	color: #555;
+	font: 95% Arial, Helvetica, sans-serif;
+}
+
+input#industry:focus,
+ textarea:focus,
+ select:focus {
+  box-shadow: 0 0 5px #43D1AF;
+	padding: 1em;
+	border: 1px solid #43D1AF;
+ }
+
  .rights {
+  position: absolute;
   width: 30em;
   user-select: none;
-  top: -8.5em;
+  top: -3em;
   position: relative;
  }
 
@@ -101,14 +124,12 @@ input#email:focus,
   font-weight: bold;
   border: 1px solid #ccc;
   color: #333;
-  display: flex;
   align-items: center;
   cursor: pointer;
   justify-content: space-between;
  }
 
 .rights .dropdown-content {
-  position: absolute;
   top: 110%;
   left: 0;
   padding: 10px;
@@ -125,7 +146,7 @@ input#email:focus,
 }
 
 .rights .dropdown-content .dropdown-item:hover {
-  background: #f4f4f4;
+  background: #f4f4f4;  
 }
 
 .rights:focus
@@ -134,9 +155,6 @@ input#email:focus,
 	padding: 1em;
 	border: 1px solid #43D1AF;
  }
-
-
-
 
 .btn {
   background-color: #083f81;

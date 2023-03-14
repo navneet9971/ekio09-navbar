@@ -5,6 +5,7 @@ function Add({ selected, setSelected }) {
   const [firstName, setFirstName] = useState(null);
   const [lastName, setLastName] = useState(null);
   const [email, setEmail] = useState(null);
+  const [industry, setIndustry] = useState(null);
   const [password, setPassword] = useState(null);
   const [confirmPassword, setConfirmPassword] = useState(null);
   const [isActive, setIsActive] = useState(false);
@@ -21,6 +22,9 @@ function Add({ selected, setSelected }) {
     }
     if (id === "email") {
       setEmail(value);
+    }
+    if (id === "industry") {
+      setIndustry(value);
     }
     if (id === "password") {
       setPassword(value);
@@ -74,6 +78,19 @@ function Add({ selected, setSelected }) {
             onChange={(e) => handleInputChange(e)}
             placeholder="Email"
           />
+          </div>
+
+<div className="inds_add">
+          <label className="form__label" for="industry"></label>
+          <input
+            type="industry"
+            id="industry"
+            className="form__input"
+            value={industry}
+            onChange={(e) => handleInputChange(e)}
+            placeholder="Industry"
+          />
+          
         </div>
         <div className="rights">
           <div className="dropdown-btn" onClick={(e) =>
