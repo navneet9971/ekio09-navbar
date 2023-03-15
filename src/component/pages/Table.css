@@ -238,7 +238,7 @@ input[type="date"] {
 /* Transaction Type Date Css*/
 input.date{
   position: absolute;
-  top: 3.8em;
+  top: 73px;
   right: 90px;
   background-color: #eeac1b;
 }
@@ -253,7 +253,7 @@ select.type-select{
 
 select.type-select1{
   position: absolute;
-  top: 73px;
+  top: 3.8em;
   left: -32em;
   width: 20px;
 }
