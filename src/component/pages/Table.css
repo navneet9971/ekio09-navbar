@@ -238,7 +238,7 @@ input[type="date"] {
 /* Transaction Type Date Css*/
 input.date{
   position: absolute;
-  top: 21px;
+  top: 3.8em;
   right: 90px;
   background-color: #eeac1b;
 }
@@ -253,7 +253,7 @@ select.type-select{
 
 select.type-select1{
   position: absolute;
-  top: 0.4em;
+  top: 73px;
   left: -32em;
   width: 20px;
 }
@@ -264,7 +264,7 @@ select.type-select1:focus{
 /*payment history page css */
 input.date2 {
   position: absolute;
-  top: 63px;
+  top: 114px;
   right: 57px;
   background-color: #eeac1b;
 }
