@@ -33,8 +33,7 @@ textarea, select
 }
 
 .username input[type="text"]:focus,
- textarea:focus,
- select:focus {
+ textarea:focus {
   box-shadow: 0 0 5px #43D1AF;
 	padding: 1em;
 	border: 1px solid #43D1AF;
@@ -57,13 +56,11 @@ textarea, select
 }
 
 .lastname input[type="text"]:focus,
- textarea:focus,
- select:focus {
+ textarea:focus {
   box-shadow: 0 0 5px #43D1AF;
 	padding: 1em;
 	border: 1px solid #43D1AF;
  }
-
 
 input#email,
 textarea, select 
@@ -81,8 +78,7 @@ textarea, select
 }
 
 input#email:focus,
- textarea:focus,
- select:focus {
+ textarea:focus {
   box-shadow: 0 0 5px #43D1AF;
 	padding: 1em;
 	border: 1px solid #43D1AF;
@@ -94,7 +90,6 @@ textarea, select
 	outline: none;
 	box-sizing: border-box;
 	width: 31.5em;
-	background: #fff;
   margin-bottom: 3.8em;
 	border: 1px solid #ccc;
 	padding: 1em;
@@ -103,8 +98,7 @@ textarea, select
 }
 
 input#industry:focus,
- textarea:focus,
- select:focus {
+ textarea:focus {
   box-shadow: 0 0 5px #43D1AF;
 	padding: 1em;
 	border: 1px solid #43D1AF;
@@ -238,6 +232,40 @@ input[type="date"] {
   position: absolute;
   top: 73px;
   right: 238px;
+  background-color: #eeac1b;
+}
+
+/* Transaction Type Date Css*/
+input.date{
+  position: absolute;
+  top: 21px;
+  right: 90px;
+  background-color: #eeac1b;
+}
+
+select.type-select{
+  position: absolute;
+    top: 0.4em;
+    left: -32em;
+    width: 20px;
+    height: 30px;
+}
+
+select.type-select1{
+  position: absolute;
+  top: 0.4em;
+  left: -32em;
+  width: 20px;
+}
+select.type-select1:focus{
+  padding: 1px;
+}
+
+/*payment history page css */
+input.date2 {
+  position: absolute;
+  top: 63px;
+  right: 57px;
   background-color: #eeac1b;
 }
 

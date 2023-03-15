@@ -16,8 +16,13 @@ import Thirdpage from "./pages/Thirdpage";
 import ClientDashboard from "./pages/client-dashbord/Clientdashboard";
 import Navbar from "./pages/Navbar/Navbar";
 import Edit from "./component/pages/Edit";
-
-
+import Bookmarks from "./component/pages/account-pages/Bookmarks";
+import Editprofile from "./component/pages/account-pages/Editprofile";
+import Notification from "./component/pages/account-pages/Notification";
+import Package from "./component/pages/account-pages/Package";
+import Payment from "./component/pages/account-pages/Payment";
+import Track from "./component/pages/account-pages/Track";
+import Transaction from "./component/pages/account-pages/Transaction";
 
 const App = () => {
   const router = (
@@ -29,6 +34,7 @@ const App = () => {
         <Route path="/signup">
           <SignUP />
         </Route>
+
         
         <Route path="/navbar">
          <Navbar /> 
@@ -67,6 +73,31 @@ const App = () => {
               <View />
             </Route>
             
+{/*--------------------------My account pages Path inside of navbar-----------------------------------*/}
+
+            <Route path="/navbar/transaction">
+            <Transaction />
+          </Route>
+          <Route path="/navbar/package">
+            <Package />
+          </Route>
+          <Route path="/navbar/payment">
+            <Payment />
+          </Route>
+          <Route path="/navbar/track">
+            <Track />
+          </Route>
+          <Route path="/navbar/notification">
+            <Notification />
+          </Route>
+          <Route path="/navbar/bookmarks">
+            <Bookmarks />
+          </Route>
+          <Route path="/navbar/edit-profile">
+            <Editprofile />
+          </Route>
+
+
         </Switch>
         </Route>
 

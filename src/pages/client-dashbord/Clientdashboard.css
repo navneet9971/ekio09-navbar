@@ -66,7 +66,7 @@ adus:hover{
 do {
   margin: auto;
   position: absolute;
-  top: 13em; left: 50em; bottom: 0; right: 0;
+  top: 13em; left: 51em; bottom: 0; right: 0;
 }
 do:hover{
   color: rgb(250, 218, 38);
@@ -75,13 +75,32 @@ do:hover{
 vi {
   margin: auto;
   position: absolute;
-  top: 20em; left: 11em; bottom: 0; right: 0;
+  top: 20em; left: 10em; bottom: 0; right: 0;
 }
 
 vi:hover{
   color: rgb(250, 218, 38);
 }
 
+bo {
+  margin: auto;
+  position: absolute;
+  top: 20em; left: 30.2em; bottom: 0; right: 0;
+}
+
+bo:hover{
+  color: rgb(250, 218, 38);
+}
+
+ep {
+  margin: auto;
+  position: absolute;
+  top: 20em; left: 51em; bottom: 0; right: 0;
+}
+
+ep:hover{
+  color: rgb(250, 218, 38);
+}
 /* icons css */
 
 
