@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import Popup from "../pagesscrn4/popup/Popup";
 import "./Table.css";
 
 function Download() {
-  const [data, setData] = useState([
+  const [data] = useState([
     {
       id: 1,
       complianceType: "TEC",
@@ -38,10 +37,10 @@ function Download() {
   ]);
 
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedOption, setSelectedOption] = useState('');
+  const [setSelectedOption] = useState('');
   const [filterDate, setFilterDate] = useState("");
   const [showPopup, setShowPopup] = useState(false);
-  const history = useHistory();
+ 
 
   const handleFilterDateChange = (event) => {
     const selectedDate = event.target.value;
