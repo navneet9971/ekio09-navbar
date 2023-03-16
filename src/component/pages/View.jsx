@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import Popup from "../pagesscrn4/popup/Popup";
 import "./Table.css";
 
 function View() {
@@ -18,6 +19,7 @@ function View() {
 
   const [searchQuery, setSearchQuery] = useState("");
   const [filterDate, setFilterDate] = useState("");
+  const [showPopup, setShowPopup] = useState(false);
   const history = useHistory();
 
   const handleActionChange = (index, event) => {
@@ -31,13 +33,18 @@ function View() {
   };
 
   const handleFilterDateChange = (event) => {
-    setFilterDate(event.target.value);
+    const selectedDate = event.target.value;
+    setFilterDate(selectedDate);
+
+    const hasMatch = data.some((item) => item.date === selectedDate);
+    setFilterDate(hasMatch ? selectedDate : "");
+    setShowPopup(!hasMatch);
   };
 
 
 
   return (
-    <div className="table-container">
+    <div className="table">
       <h5>View Reports</h5>
 
       <div className="search-bar">
@@ -56,7 +63,14 @@ function View() {
         />
       </div>
 
-      <table>
+      {showPopup && (
+        <Popup trigger={showPopup} setTrigger={setShowPopup}>
+          <h3>Choose date not Found!</h3>
+        </Popup>
+      )}
+
+      <div className="table-wrapper">
+      <table class="Review">
         <thead>
           <tr>
             <th className="header">S.NO</th>
@@ -103,6 +117,7 @@ function View() {
             ))}
         </tbody>
       </table>
+      </div>
     </div>
   );
 }

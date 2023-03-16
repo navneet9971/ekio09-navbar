@@ -51,9 +51,10 @@ const Secondpage = () => {
   };
 
   return (
-    <div className="table-container">
+    <div className="table">
       <h1>List of Compliance</h1>
-      <table>
+      <div className="table-wrapper">
+      <table class="Review">
         <thead>
           <tr>
             <th>S.no</th>
@@ -93,6 +94,7 @@ const Secondpage = () => {
           ))}
         </tbody>
       </table>
+      </div>
     </div>
   );
 };

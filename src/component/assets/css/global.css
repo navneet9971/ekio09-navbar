@@ -1,331 +1,226 @@
 * {
-    margin: 0;
-    padding: 0;
-  }
-  
-  body {
-    background-image: url('../bg_1.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-
-  p1{
-    color: Black;
-    font-weight: 600;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .login12 {
-    display: flex;
-    height: 550px;
-    max-width: 400px;
-    min-width: 200px;
-    margin: auto;
-    margin-top: 50px;
-    background-color: white;
-    border-radius: 10px;
-    background-repeat: no-repeat;
-  }
-  
-  .form12 {
-    height: 50%;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-  }
-  
-  .form12 p {
-    color: white;
-  }
-  
-  .form12 h2 {
-    font-size: 3rem;
-    font-family: cursive;
-    margin: 45px;
-    color: white;
-  }
-  
-  .form12 h3 {
-    font-size: 25px;
-    margin: 25px;
-    color: rgb(5, 173, 27);
-    font-family: sans-serif;
-  }
-  
-  .box {
-    border: none;
-  outline: none;
-  border-radius: 15px;
-  padding: 1em 3em;
-  background-color: #ccc;
-  box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
-  transition: 300ms ease-in-out;
-  }
-
-  .box:focus {
-    background-color: #2c84af;
-    transform: scale(1.05);
-    box-shadow: 13px 13px 100px #969696,
-               -13px -13px 100px #ffffff;  
-   }
-
-
-  button#signup{
-  --primary-color: #645bff;
-  --secondary-color: #fff;
-  --hover-color: #111;
-  --arrow-width: 10px;
-  --arrow-stroke: 2px;
-  box-sizing: border-box;
-  right: 100px;
-  border: 0;
-  border-radius: 20px;
-  color: var(--secondary-color);
-  padding: 1em 1.2em;
-  background: var(--primary-color);
-  display: flex;
-  transition: 0.2s background;
-  align-items: center;
-  gap: 0.6em;
-  font-weight: bold;
-  }
-  
-  button#signup .arrow-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  button#signup .arrow {
-    margin-top: 1px;
-    width: var(--arrow-width);
-    background: var(--primary-color);
-    height: var(--arrow-stroke);
-    position: relative;
-    transition: 0.2s;
-  }
-  
-  button#signup .arrow::before {
-    content: "";
-    box-sizing: border-box;
-    position: absolute;
-    border: solid var(--secondary-color);
-    border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
-    display: inline-block;
-    top: -3px;
-    right: 3px;
-    transition: 0.2s;
-    padding: 3px;
-    transform: rotate(-45deg);
-  }
-  
-  button#signup:hover {
-    background-color: var(--hover-color);
-  }
-  
-  button#signup:hover .arrow {
-    background: var(--secondary-color);
-  }
-  
-  button#signup:hover .arrow:before {
-    right: 0;
-  }
-
-
-  .boxx{
-    border: none;
-  outline: none;
-  border-radius: 15px;
-  padding: 1em 3em;
-  margin-top: 18px;
-  background-color: #ccc;
-  box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
-  transition: 300ms ease-in-out;
-  }
-
-  .boxx:focus {
-    background-color: #2c84af;
-  transform: scale(1.05);
-  box-shadow: 13px 13px 100px #969696,
-             -13px -13px 100px #ffffff;
-   }
-     
-  
-  input#submit {
-    --clr-font-main: hsla(0 0% 20% / 100);
-  --btn-bg-1: hsla(194 100% 69% / 1);
-  --btn-bg-2: hsla(217 100% 56% / 1);
-  --btn-bg-color: hsla(360 100% 100% / 1);
-  --radii: 0.5em;
-  cursor: pointer;
-  padding: 0.9em 1.4em;
-  margin-top: 35px;
-  min-width: 120px;
-  min-height: 44px;
-  font-size: var(--size, 1rem);
-  font-family: "Segoe UI", system-ui, sans-serif;
-  font-weight: 500;
-  transition: 0.8s;
-  background-size: 280% auto;
-  background-image: linear-gradient(325deg, var(--btn-bg-2) 0%, var(--btn-bg-1) 55%, var(--btn-bg-2) 90%);
-  border: none;
-  border-radius: var(--radii);
-  color: var(--btn-bg-color);
-  box-shadow: 0px 0px 20px rgba(71, 184, 255, 0.5), 0px 5px 5px -1px rgba(58, 125, 233, 0.25), inset 4px 4px 8px rgba(175, 230, 255, 0.5), inset -4px -4px 8px rgba(19, 95, 216, 0.35);
-  }
-
-  input#submit:hover {
-    background-position: right top;
-  }
-  
-  input#submit:is(:focus, :focus-within,:active) {
-    outline: none;
-    box-shadow: 0 0 0 3px var(--btn-bg-color), 0 0 0 6px var(--btn-bg-2);
-  }
-  
-  @media (prefers-reduced-motion: reduce) {
-    input#submit-donate {
-      transition: linear;
-    }
-  }
-
-
-
-  
-  .form12 a {
-    text-decoration: none;
-    color: black;
-    margin-top: 20px;
-  }
-  .efficient {
-      position: relative;
-      bottom: 59px;
-      left: 100px;
-      font-size: 14px;
-    }
-  
-  .container_signup12 {
-      display: flex;
-      height: 480px;
-      width: 720px;
-      margin: auto;
-      margin-top: 50px;
-      margin-bottom: 51px;
-      border-radius: 20px;
-  
-  }
-  
-  .form_signup12 {
-      
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      background-color: white;
-     margin-top: 50px;
-     margin-bottom: -50px;
-     border-top-left-radius: 10px;
-     border-bottom-left-radius: 10px;
-  }
-  
-  
-  
-  .small h2 {
-      font-size: 3rem;
-      font-family: cursive;
-      margin-top : 202px;
-      margin-left: 50px;
-      color: white;
-  
-  }  
-  
-  .form12 a {
-      text-decoration: none;
-      color: black;
-      margin-top: 20px;
-  
-  }
-  .small {
-      height: 481px;
-      width: 500px;
-      margin: auto;
-      margin-top: 50px;
-      background-color: #fff;
-      border-top-right-radius: 10px;
-      border-bottom-right-radius: 10px;
-  }
-   
-  .form-group12{
-      display: flex;
-      margin-top: 10px;
-      margin-left: 20px;
-  }
-  .form-group12 input{
-      width: 50%;
-  }
-  .form-group12 input:first-child{
-      margin-right: 25px;
-  }
-
-
-  .form-wrapper12{
-      position: relative;
-      margin-top: 10px;
-      margin-left: 20px;
-  
-  }
-  .form-control{
-      border: 1px solid #333;
-      border: none;
-      border-bottom: 1px solid #333;
-  display: block;
-  width: 75%;
-  height: 30px;
+  margin: 0;
   padding: 0;
-  margin-bottom: -12px;
-  margin-top: 30px;
-  margin-right: 60px;
-  margin-left: 40px;
-  
-  }
-  .button10{
-      border: none;
-      width: 154px;
-      height: 45px;
-      margin: auto;
-      margin-top: 28px;
-      cursor: pointer;
-      align-items: center;
-      justify-content: center;
-      padding-left: 0;
-      background: #1b297a;
-      font-size: 15px;
-      color: white;
-      border-radius: 30px;
-  }
-  .p_signup{margin-top: -3%;
-      margin-left: 105px;
-      color: white;
-  }
+}
 
-  .eikomp_logo{
-    margin-top: 26px;
+body {
+  background-image: url("../bg_1.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
+.auth-box {
+  background-image: url("../bg_1.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.form p {
+  color: white;
+}
+
+.form h2 {
+  font-size: 3rem;
+  font-family: cursive;
+  margin: 45px;
+  color: white;
+}
+
+.form h3 {
+  font-size: 25px;
+  /* margin: 25px; */
+  margin-top: 35px;
+  font-family: sans-serif;
+}
+
+#submit {
+  padding: 8px 20px;
+  width: 25%;
+  margin-top: 35px;
+  background-color: #1d709a;
+  color: white;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+}
+
+.form a {
+  text-decoration: none;
+  color: black;
+  margin-top: 20px;
+}
+.efficient {
+  position: relative;
+  bottom: 59px;
+  left: 100px;
+  font-size: 14px;
+}
+
+
+.form a {
+  text-decoration: none;
+  color: black;
+  margin-top: 20px;
+}
+.p_signup {
+  margin-top: -3%;
+  margin-left: 105px;
+  color: white;
+}
+
+
+/*------------ LOGIN PAGE CSS -------------- */
+.login {
+  display: flex;
+  width: 450px;
+  max-width: 95%;
+  margin: 0 auto;
+  background-color: white;
+  overflow: hidden;
+  border-radius: 10px;
+  padding-bottom: 60px;
+}
+
+.login .top-sec {
+  background: #fff;
+  width: 100%;
+  padding: 2px 0 15px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.login .top-sec p {
+  margin: 40px 0 20px;
+  font-size: 18px;
+  color: black;
+}
+
+.login .top-sec button1 {
+  padding: 4px 15px;
+  background-color: #006091;
+  font-weight: 500;
+  font-size: 17px;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+}
+
+.login .input-box {
+  position: relative;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 20px;
+  background: #006091;
+  color: #fff;
+}
+.login .input-box svg {
+  position: absolute;
+  left: 15px;
+}
+.login .input-box input {
+  color: #fff;
+  font-size: 15px;
+  border: none;
+  background: transparent;
+  padding: 10px 50px;
+  text-align: center;
+  outline-color: #fff;
+}
+
+.login .input-box input::placeholder {
+  color: #fff;
+}
+
+.login button1 {
+  background: #006091;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 300;
+  padding: 6px 25px;
+  border-radius: 20px;
+  border: none;
+  text-transform: uppercase;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+
+/*------------SINGUP PAGE CSS ------------*/
+.signup {
+  position: relative;
+  display: flex;
+  width: 950px;
+  max-width: 95%;
+  margin: 0 auto;
+  background-color: white;
+  overflow: hidden;
+  border-radius: 10px;
+  flex-direction: row;
+}
+.signup .left-box {
+  width: 55%;
+  padding: 70px 50px 30px;
+}
+.signup .left-box label {
+  display: block;
+  color: #737373;
+}
+.signup .left-box input {
+  width: 100%;
+  padding: 10px 0 15px;
+  margin-bottom: 30px;
+  border: none;
+  font-weight: 600;
+  border-bottom: 1px solid #9dabae;
+}
+.signup .left-box button {
+  background: #006091;
+  display: block;
+  margin: 20px auto;
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  font-size: 22px;
+  padding: 8px 25px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.signup .right-box {
+  width: 45%;
+  background: #fff;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  border-bottom-left-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+  .signup .left-box {
+    width: 100%;
+    padding: 50px 20px 30px;
   }
-
-  .eikomp_logo_signup {
-    margin-top: 50%;
-    margin-left: 30px;
+  .signup .right-box {
+    display: none;
   }
-
-  button.button{
-    margin-top: 40px;
-    margin-left: 20px;
-    padding: 5px 10px;
-    font-weight: 900;
-
-  }
-
- 
+}

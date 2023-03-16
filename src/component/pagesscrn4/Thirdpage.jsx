@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import "./Pages.css";
 import Popup from "./popup/Popup";
-import ico from '../component/assets/icons/eikomp_logo.png';
 
 function MiddleSection() {
   return (
@@ -213,7 +212,6 @@ function Thirdpage() {
         <MiddleSection/>
       </div>
       <div className="right-section55">
-      <img55 src={ico} />
         <Link to="/introduction">Introduction</Link>
         <Link to="/required-document">Required Document</Link>
         <Link to="/registration-process">Registration Process</Link>

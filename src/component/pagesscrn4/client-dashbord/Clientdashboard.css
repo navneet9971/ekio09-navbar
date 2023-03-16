@@ -1,0 +1,80 @@
+.welcome {
+  padding: 30px;
+}
+.welcome .nav-box {
+  margin: 20px 0 40px;
+  font-weight: 600;
+  font-size: 40px;
+  color: #fff;
+}
+.welcome .welcome-options {
+  width: 90%;
+  margin: 0 auto;
+  background: #f3f8fe;
+  padding: 50px 0 40px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+.welcome .welcome-options .option-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  margin-bottom: 50px;
+}
+.welcome .welcome-options .option-box * {
+  transition: 0.3s all;
+}
+.welcome .welcome-options .option-box h4 {
+  font-size: 20px;
+  width: 200px;
+  max-width: 100%;
+  margin-top: 20px;
+  color: #898989;
+}
+.welcome .welcome-options .option-box:hover * {
+  color: #006193;
+  fill: #006193;
+}
+
+.welcome .welcome-options .view-report {
+  display: block;
+  margin: 0 auto;
+  background: #e2e7ed;
+  border: none;
+  font-size: 20px;
+  color: #4e5255;
+  font-weight: 600;
+  padding: 12px 35px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s all;
+}
+.welcome .welcome-options .view-report:hover {
+  background: #caced3;
+}
+
+@media (max-width: 991px) {
+  .welcome {
+    padding: 20px;
+  }
+  .welcome .nav-box {
+    font-size: 30px;
+  }
+  .welcome .welcome-options {
+    width: 100%;
+    padding: 30px 0 20px;
+  }
+}
+
+@media (max-width: 763px) {
+  .welcome .welcome-options .option-box {
+    margin-bottom: 40px;
+    font-size: 20px;
+  }
+  .welcome .welcome-options .option-box h4 {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+}
