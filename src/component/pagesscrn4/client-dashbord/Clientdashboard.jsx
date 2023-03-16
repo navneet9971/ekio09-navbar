@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { Row, Col } from "antd";
-import { Link, useHistory } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { ReactComponent as Thumb1 } from "../../assets/images/welcome/1.svg";
 import { ReactComponent as Thumb2 } from "../../assets/images/welcome/2.svg";
 import { ReactComponent as Thumb3 } from "../../assets/images/welcome/3.svg";
@@ -10,8 +10,6 @@ import Thumb6png from "../../assets/images/welcome/6.png";
 import "./Clientdashboard.css";
 
 const ClientDashboard = () => {
-  const [activeTab, setActiveTab] = useState("start");
-  const history = useHistory();
 
   const WELCOME_OPTIONS = [
     {
@@ -45,10 +43,7 @@ const ClientDashboard = () => {
       route: "/navbar/download",
     },
   ];
-  const handleTabClick = (tabName, path) => {
-    setActiveTab(tabName);
-    history.push(path);
-  };
+ 
 
   return (
     <div className="welcome">
