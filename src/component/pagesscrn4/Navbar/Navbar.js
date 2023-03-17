@@ -4,7 +4,6 @@ import { NavLink, useHistory, useLocation } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import $ from "jquery";
 
-
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const history = useHistory(); // initialize useHistory hook
