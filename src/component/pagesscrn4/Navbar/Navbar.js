@@ -4,6 +4,7 @@ import { NavLink, useHistory, useLocation } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import $ from "jquery";
 
+
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const history = useHistory(); // initialize useHistory hook
@@ -170,6 +171,7 @@ const Navbar = () => {
             </NavLink>
           </li>
         </ul>
+
       </div>
       <button99 onClick={handleLogout}>
         <span99>Logout</span99>

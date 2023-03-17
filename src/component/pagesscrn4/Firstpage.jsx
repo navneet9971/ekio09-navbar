@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
 import './Pages.css';
 
-
 const Firstpage = () => {
   const [category, setCategory] = useState(''); // state for category input
   const [product, setProduct] = useState(''); // state for product input

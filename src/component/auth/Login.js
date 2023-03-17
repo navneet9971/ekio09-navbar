@@ -71,7 +71,7 @@ function Login() {
             />
           </div>
           <button1 onClick={onSubmitData}>Login</button1>
-          <Link to="#">Forget your Password?</Link>
+          <Link to="#">Forgot Password?</Link>
         </div>
       </div>
     </div>

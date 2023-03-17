@@ -28,7 +28,7 @@ const ClientDashboard = () => {
       route: "/navbar/myaccount",
     },
     {
-      title: "Check GST of Compliance",
+      title: "Checklist of Compliance",
       thumb: <Thumb4 />,
       route: "/navbar/check",
     },
@@ -60,7 +60,7 @@ const ClientDashboard = () => {
             </Col>
           ))}
         </Row>
-        <Link to="/dashboard/view">
+        <Link to="/navbar/view">
           <button className="view-report">View Reports</button>
         </Link>
       </div>
