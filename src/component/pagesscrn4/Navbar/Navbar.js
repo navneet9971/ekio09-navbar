@@ -21,8 +21,8 @@ const Navbar = () => {
     var itemPosNewAnimTop = activeItemNewAnim.position();
     var itemPosNewAnimLeft = activeItemNewAnim.position();
     $(".hori-selector").css({
-      top: itemPosNewAnimTop.top + "px",
-      left: itemPosNewAnimLeft.left + "px",
+      top: itemPosNewAnimTop?.top + "px",
+      left: itemPosNewAnimLeft?.left + "px",
       height: activeWidthNewAnimHeight + "px",
       width: activeWidthNewAnimWidth + "px",
     });
@@ -34,8 +34,8 @@ const Navbar = () => {
       var itemPosNewAnimTop = $(this).position();
       var itemPosNewAnimLeft = $(this).position();
       $(".hori-selector").css({
-        top: itemPosNewAnimTop.top + "px",
-        left: itemPosNewAnimLeft.left + "px",
+        top: itemPosNewAnimTop?.top + "px",
+        left: itemPosNewAnimLeft?.left + "px",
         height: activeWidthNewAnimHeight + "px",
         width: activeWidthNewAnimWidth + "px",
       });
@@ -58,6 +58,10 @@ const Navbar = () => {
     // perform any necessary actions for logging out the user
     history.push("/#"); // redirect to login page after logout
   }
+  const isStartApplicationActive =
+  pathname === "/navbar/firstpage" ||
+  pathname === "/navbar/secondpage" ||
+  pathname.includes("navbar/compliance");
 
   return (
     <nav className="navbar navbar-expand-lg navbar-mainbg">
@@ -81,7 +85,7 @@ const Navbar = () => {
 
           <li
             className={
-              pathname === "/navbar/firstpage" ? "active nav-item" : "nav-item"
+              isStartApplicationActive ? "active nav-item" : "nav-item"
             }>
             <NavLink
               className="nav-link"
@@ -170,7 +174,6 @@ const Navbar = () => {
             </NavLink>
           </li>
         </ul>
-
       </div>
       <button99 onClick={handleLogout}>
         <span99>Logout</span99>

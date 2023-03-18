@@ -41,8 +41,6 @@ function View() {
     setShowPopup(!hasMatch);
   };
 
-
-
   return (
     <div className="table">
       <h5>View Reports</h5>
