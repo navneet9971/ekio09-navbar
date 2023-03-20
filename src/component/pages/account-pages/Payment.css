@@ -1,0 +1,71 @@
+h5{
+    color: white;
+    font-size: 50px;
+    font-weight: 600;
+}
+
+button69 {
+    background-color: #552700;
+    border-radius: 8px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    /* font-weight: 500; */
+    height: 40px;
+    width: 10em;
+    /* line-height: 20px; */
+    list-style: none;
+    margin: 15px 35px;
+    display: block;
+    outline: none;
+    padding: 9px 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: manipulation;
+}
+ button69:hover,
+ button69:focus {
+    background-color: rgb(6, 117, 6);
+  }
+
+  button70 {
+    background-color: #552700;
+    border-radius: 8px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    /* font-weight: 500; */
+    top: -55px;
+    left: 221px;
+    height: 40px;
+    width: 10em;
+    /* line-height: 20px; */
+    list-style: none;
+    /* margin: 5px 35px; */
+    display: block;
+    outline: none;
+    padding: 9px 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: manipulation;
+}
+button70:hover,
+ button70:focus {
+    background-color: rgb(6, 117, 6);
+  }

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import "./Payment.css";
 
 function Payment() {
 const [data] = useState([
@@ -46,8 +47,8 @@ return (
   </div>
 
   <div className="table-buttons">
-    <button>Balance in Wallet</button>
-    <button onClick={handleDownload}>Download</button>
+    <button69>Balance in Wallet</button69>
+    <button70 onClick={handleDownload}>Download</button70>
   </div>
 
   <table>

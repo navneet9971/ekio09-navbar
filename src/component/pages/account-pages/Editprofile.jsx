@@ -1,79 +1,100 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import "./Edit.css";
 
-const UserProfile = () => {
-  const [user, setUser] = useState({ email: '', password: '' });
-  const [newUser, setNewUser] = useState({ email: '', password: '' });
-  const [editing, setEditing] = useState(false);
-  const [isVerified, setIsVerified] = useState(false);
+function PasswordForm() {
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [hasValidPassword, setHasValidPassword] = useState(false);
+  const [showAddUser, setShowAddUser] = useState(false);
 
-  useEffect(() => {
-    // Fetch user data from login dataset
-    fetch('/api/user')
-      .then(res => res.json())
-      .then(data => setUser(data))
-      .catch(error => console.error(error));
-  }, []);
-
-  const handleInputChange = e => {
-    const { name, value } = e.target;
-    setNewUser({ ...newUser, [name]: value });
-  };
-
-  const handleEdit = () => {
-    setEditing(true);
-  };
-
-  const handleSave = () => {
-    if (isVerified) {
-      // Update user data with the new data
-      fetch('/api/user', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newUser)
-      })
-        .then(res => res.json())
-        .then(data => {
-          setUser(data);
-          setNewUser({ email: '', password: '' });
-          setEditing(false);
-          setIsVerified(false);
-        })
-        .catch(error => console.error(error));
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (currentPassword === 'Abc@123') { // replace with actual password validation logic
+      setHasValidPassword(true);
     } else {
-      alert('Please verify before submitting!');
+      alert('Invalid password. Please try again.');
     }
-  };
+  }
 
-  const handleVerification = () => {
-    // Perform verification
-    setIsVerified(true);
-  };
+  const handleAddUserSubmit = (event) => {
+    event.preventDefault();
+    // add code to handle adding new user here
+    alert('New user added successfully!');
+  }
+
+  const handleEditUserSubmit = (event) => {
+    event.preventDefault();
+    // add code to handle editing user here
+    alert('User edited successfully!');
+  }
+
+  if (!hasValidPassword) {
+    return (
+      <div className="form-box">
+        <h18>Enter Your Current Password</h18>
+        <div className="scroll-text">
+  <span>Default Password: Abc@123</span>
+       </div>
+        <form onSubmit={handleSubmit}>
+          <label11>
+            <input
+              type="password1"
+              value={currentPassword}
+              onChange={(e) => setCurrentPassword(e.target.value)}
+              required
+              placeholder='Current Password'
+            />
+          </label11>
+          <br />
+          <button26 type="submit">Submit</button26>
+       
+        </form>
+      </div>
+    );
+  }
 
   return (
     <div>
-      <h1>User Profile</h1>
-      <p>Email: {editing ? <input type="text" name="email" value={newUser.email} onChange={handleInputChange} /> : user.email}</p>
-      <p>Password: {editing ? <input type="text" name="password" value={newUser.password} onChange={handleInputChange} /> : user.password}</p>
-      {editing ?
-        <div>
-          <button onClick={handleSave}>Save</button>
-          <button onClick={() => setEditing(false)}>Cancel</button>
+      <button25 onClick={() => setShowAddUser(true)}>Add User</button25>
+
+      <div className="form-box">
+          <h2>Edit User:</h2>
+          <form onSubmit={handleEditUserSubmit}>
+          <label>
+               User Name:
+                 <input type="text1" required />
+                   </label>
+                   <br />
+                <label>
+                  New Password:
+                    <input type="password1" required />
+                   </label>
+                      <br />
+                     <button26 type="submit">Save</button26>
+          </form>
         </div>
-        :
-        <button onClick={handleEdit}>Edit</button>
+
+      <br />
+
+      {showAddUser &&
+        <div className="form-box">
+          <h2>Add User:</h2>
+          <form onSubmit={handleAddUserSubmit}>
+            <label>
+              Name:
+              <input type="text1" required />
+            </label>
+            <br />
+            <label>
+              Email:
+              <input type="email1" required />
+            </label>
+            <br />
+            <button26 type="submit">Add User</button26>
+          </form>
+        </div>
       }
-      <h2>Add User</h2>
-      <form>
-        <label>Email:</label>
-        <input type="text" name="email" value={newUser.email} onChange={handleInputChange} />
-        <label>Password:</label>
-        <input type="text" name="password" value={newUser.password} onChange={handleInputChange} />
-        <button type="button" onClick={handleVerification}>Verify</button>
-        <button type="button" onClick={handleSave}>Submit</button>
-      </form>
     </div>
   );
-};
+}
 
-export default UserProfile;
+export default PasswordForm;
