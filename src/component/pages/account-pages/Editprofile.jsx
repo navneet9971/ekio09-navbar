@@ -45,7 +45,7 @@ function PasswordForm() {
             />
           </label11>
           <br />
-          <button26 type="submit">Submit</button26>
+          <button type="submit">Submit</button>
        
         </form>
       </div>
@@ -69,7 +69,7 @@ function PasswordForm() {
                     <input type="password1" required />
                    </label>
                       <br />
-                     <button26 type="submit">Save</button26>
+                     <button type="submit">Save</button>
           </form>
         </div>
 
@@ -89,7 +89,7 @@ function PasswordForm() {
               <input type="email1" required />
             </label>
             <br />
-            <button26 type="submit">Add User</button26>
+            <button type="submit">Add User</button>
           </form>
         </div>
       }
