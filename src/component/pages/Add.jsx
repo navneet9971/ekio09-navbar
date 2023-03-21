@@ -102,7 +102,7 @@ function Add({ selected, setSelected }) {
               />
             </div>
           </Col>
-          <Col xs={24}>
+          <Col xs={24} md={22}>
             <div className="rights">
               <div
                 className="dropdown-btn"

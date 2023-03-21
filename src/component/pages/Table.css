@@ -47,7 +47,7 @@ select:focus {
 textarea,
 select {
   position: relative;
-  right: 18em;
+  right: 19em;
   top: -2.3em;
   outline: none;
   box-sizing: border-box;
@@ -76,7 +76,7 @@ select {
   top: -2.3em;
   outline: none;
   box-sizing: border-box;
-  width: 100%;
+  width: 98%;
   background: #fff;
   border: 1px solid #ccc;
   padding: 1em;
@@ -101,7 +101,7 @@ select{
   top: -2.3em;
   outline: none;
   box-sizing: border-box;
-  width: 100%;
+  width: 98%;
   background: #fff;
   border: 1px solid #ccc;
   padding: 1em;
