@@ -18,7 +18,7 @@ import Navbar from "./component/pagesscrn4/Navbar/Navbar";
 import Edit from "./component/pages/Edit";
 import Bookmarks from "./component/pages/account-pages/Bookmarks";
 import Editprofile from "./component/pages/account-pages/Editprofile";
-import Notification from "./component/pages/account-pages/Notification";
+import Notifaction from "./component/pages/account-pages/Notifaction";
 import Package from "./component/pages/account-pages/Package";
 import Payment from "./component/pages/account-pages/Payment";
 import Track from "./component/pages/account-pages/Track";
@@ -86,8 +86,8 @@ const App = () => {
           <Route path="/navbar/track">
             <Track />
           </Route>
-          <Route path="/navbar/notification">
-            <Notification />
+          <Route path="/navbar/notifaction">
+            <Notifaction />
           </Route>
           <Route path="/navbar/bookmarks">
             <Bookmarks />
