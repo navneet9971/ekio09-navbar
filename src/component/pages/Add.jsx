@@ -45,16 +45,18 @@ function Add({ selected, setSelected }) {
       <div className="form-box">
         <Row className="form-body" gutter={[16, 0]}>
           <Col xs={24} md={12}>
-            <div className="username">
-              <label className="form__label" for="firstName"></label>
-
+            <div className="firstname">
+              <label className="form__label" for="firstName">
+              {" "}
+              </label>
               <input
-                className="form__input"
                 type="text"
+                name=""
+                id="firstname"
+                className="form__input"
                 value={firstName}
                 onChange={(e) => handleInputChange(e)}
-                id="firstName"
-                placeholder="First Name"
+                placeholder="FirstName"
               />
             </div>
           </Col>

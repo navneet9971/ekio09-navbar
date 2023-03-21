@@ -32,6 +32,7 @@
   height: 30px;
   margin: 4px 0 0 -1px;
   border-radius: 0 5px 5px 0;
+  padding: 2px 7px;
   border: solid 1px #cbc9c9;
   box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.09);
   background: #fff;
@@ -49,8 +50,8 @@
   font-weight: 700;
   width: 230px;
   text-align: center;
-  top: 2px;
-  left: 15px;
+  top: 1px;
+  left: -100px;
 }
 .first-container22 select#region-select22 {
   background-color: #fff;
@@ -394,11 +395,11 @@ a:hover{
     background-color: #fff;
     padding: 2px;
     border-radius: 25px;
-    margin-top: 10px;
+    margin-top: 99px;
     width: 189px;
-    height: 32px;
-    left: -224px;
-    top: 40px;
+    height: 31px;
+    left: -153px;
+    top: -65px;
     font-weight: 700;
     width: 230px;
     text-align: center;
