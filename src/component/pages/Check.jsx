@@ -44,7 +44,7 @@ const Checklist = () => {
   };
 
   const handleClick = (id) => {
-    history.push(`/navbar/compliance/${id}`);
+    history.push(`/navbar/compliance1/${id}`);
   };
 
   return (
@@ -61,20 +61,20 @@ const Checklist = () => {
           </tr>
         </thead>
         <tbody>
-          {complianceData.map((compliance) => (
-            <tr key={compliance.id}>
-              <td>{compliance.sno}</td>
+          {complianceData.map((compliance1) => (
+            <tr key={compliance1.id}>
+              <td>{compliance1.sno}</td>
               <td
                 className="clickable"
-                onClick={() => handleClick(compliance.id)}
+                onClick={() => handleClick(compliance1.id)}
               >
-                {compliance.name}
+                {compliance1.name}
               </td>
-              <td>{compliance.description}</td>
+              <td>{compliance1.description}</td>
               <td>
                 <a
-                  href={compliance.video}
-                  onClick={(e) => handleVideoClick(e, compliance.video)}
+                  href={compliance1.video}
+                  onClick={(e) => handleVideoClick(e, compliance1.video)}
                 >
                   <div className="video-banner">
                     <div className="play-button">

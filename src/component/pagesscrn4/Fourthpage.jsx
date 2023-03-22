@@ -1,0 +1,79 @@
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import "./Pages.css";
+
+function MiddleSection() {
+  return (
+    <div className="middle-section">
+      <h3>Middle Section</h3>
+      <p>Description of Middle Section</p>
+    </div>
+  );
+}
+
+
+function Fourth() {
+  const [videoUrl, setVideoUrl] = useState('');
+  const [isWishlisted, setIsWishlisted] = useState(false);
+
+  useEffect(() => {
+    fetch('https://example.com/video')
+      .then(response => response.json())
+      .then(data => {
+        setVideoUrl(data.url);
+      })
+      .catch(error => console.error(error));
+  }, []);
+
+
+  const handleWishlistClick = () => {
+    if (!isWishlisted) {
+      // Add the video to the wishlist
+      const wishlist = JSON.parse(localStorage.getItem('bookmarkItem') || '[]');
+      wishlist.push({ name: 'Video 1', url: videoUrl });
+      localStorage.setItem('bookmarkItem', JSON.stringify(wishlist));
+      setIsWishlisted(true);
+    } else {
+      // Remove the video from the wishlist
+      const wishlist = JSON.parse(localStorage.getItem('bookmarkItem') || '[]');
+      const index = wishlist.findIndex(item => item.url === videoUrl);
+      if (index > -1) {
+        wishlist.splice(index, 1);
+        localStorage.setItem('bookmarkItem', JSON.stringify(wishlist));
+        setIsWishlisted(false);
+      }
+    }
+  };
+
+
+
+  return (
+    <div className="app55">
+      <div className="left-section55">
+      </div>
+      <div>
+        <button className = "wishlist1" 
+        onClick={handleWishlistClick}>
+          {isWishlisted ? 'Remove from Wishlist' : 'Add to Wishlist'}
+        </button>
+      </div>
+      <div className="video-box55">
+        <video className='videoBox' controls>
+          <source src={videoUrl} type="video/mp4" />
+        </video>
+      </div>
+      <div className="center-section55">
+        <MiddleSection/>
+      </div>
+      <div className="right-section55">
+        <Link to="/introduction">Introduction</Link>
+        <Link to="/required-document">Required Document</Link>
+        <Link to="/registration-process">Registration Process</Link>
+      </div> 
+      <div1 class="vl"></div1>  
+    </div>
+
+  );
+}
+
+export default Fourth;

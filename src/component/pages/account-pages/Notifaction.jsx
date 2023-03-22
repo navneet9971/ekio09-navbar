@@ -3,8 +3,8 @@ import "../Table.css";
 
 function Notifaction() {
   const [data] = useState([
-    { id: 1, notifaction: "TEC", type: "Telecom Products", date: "2022-03-14", action: "", },
-    { id: 2, notifaction: "BIS", type: "Battery12", date: "2022-03-15", action: "",  },
+    { id: 1, notifaction: "TEC", date: "2022-03-14", action: "", },
+    { id: 2, notifaction: "BIS", date: "2022-03-15", action: "",  },
   ]);
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -43,9 +43,9 @@ function Notifaction() {
         <thead>
           <tr>
             <th className="header">S.NO</th>
-            <th className="header">Notifaction</th>
-            <th className="header">Type</th>
+            <th className="header">Notifaction Name</th>
             <th className="header">Date</th>
+            <th className="header">Linked Notifaction</th>
           </tr>
         </thead>
 
@@ -59,8 +59,8 @@ function Notifaction() {
       <tr key={item.id}>
         <td>{index + 1}</td>
         <td>{item.notifaction}</td>
-        <td>{item.type}</td>
-                  <td>{item.date}</td>
+        <td>{item.date}</td>
+                  <td>{item.linked}</td>
               </tr>
             ))}
         </tbody>

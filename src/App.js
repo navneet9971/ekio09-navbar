@@ -13,6 +13,7 @@ import SignUP from "./component/auth/SignUP";
 import Firstpage from "./component/pagesscrn4/Firstpage";
 import Secondpage from "./component/pagesscrn4/Secondpage";
 import Thirdpage from "./component/pagesscrn4/Thirdpage";
+import Fourthpage from "./component/pagesscrn4/Fourthpage";
 import ClientDashboard from "./component/pagesscrn4/client-dashbord/Clientdashboard";
 import Navbar from "./component/pagesscrn4/Navbar/Navbar";
 import Edit from "./component/pages/Edit";
@@ -46,7 +47,10 @@ const App = () => {
         </Route>
         <Route path="/navbar/compliance/:id">
           <Thirdpage />
-        </Route>       
+        </Route> 
+        <Route path="/navbar/compliance1/:id">
+          <Fourthpage />
+        </Route>             
         <Route path="/navbar/firstpage">
               <Firstpage />
             </Route>

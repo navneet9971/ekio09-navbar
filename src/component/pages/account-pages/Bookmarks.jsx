@@ -58,7 +58,6 @@ function Bookmark() {
       <h5>BookMark</h5>
 
       <div className="search-bar">
-        <i className="fas fa-search"></i>
         <input
           type="option"
           placeholder="Search Bookmark Item"
@@ -92,53 +91,58 @@ function Bookmark() {
         </thead>
 
         <tbody>
-  {data
-    .filter((item) =>
-      item.bookmarkItem.toLowerCase().includes(searchQuery.toLowerCase())
-    )
-    .filter((item) => (filterDate ? item.date === filterDate : true))
-    .map((item, index) => (
-      <tr key={item.id}>
-        <td>{index + 1}</td>
-        <td>{item.bookmarkItem}</td>
-                <td> <select
-                    className={`action-select`}
-                    value={item.type || ""}
-                    onChange={(event) => handleActionChange(index, event)}
-                  >
-                    <option value="">Select Action</option>
-                  <option
-                    value="pdf"
-                    onClick={() => {
-                         handleDownload();
-                        // Redirect to edit page
-                        window.location.href = `/navbar/bookmarkItem/${item.id}`;
-                      }}
-                    >PDF</option>
-                    <option value="download">Video</option>
-                    <option value="into">Into Graphic</option>
-                  </select></td>
-                  <td>{item.date}</td>
-           <td>
-                  <select
-                    className={`action-select`}
-                    value={item.action || ""}
-                    onChange={(event) => handleActionChange(index, event)}
-                  >
-                    <option value="">Select Action</option>
-                    <option value="view">
-                    <td>
-          <button onClick={() => alert(`Bookmark type: ${item.type}`)}>
-            View
-          </button>
-        </td></option>
-                    <option value="share">Share</option>
-                    <option value="unbook">Unbook</option>
-                  </select>
-                </td>
-              </tr>
-            ))}
-        </tbody>
+      {data
+        .filter((item) =>
+          item.bookmarkItem.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+        .filter((item) => (filterDate ? item.date === filterDate : true))
+        .map((item, index) => (
+          <tr key={item.id}>
+            <td>{index + 1}</td>
+            <td>{item.bookmarkItem}</td>
+            <td>
+              <select
+                className={`action-select`}
+                value={item.type || ""}
+                onChange={(event) => handleActionChange(index, event)}
+              >
+                <option value="">Select Action</option>
+                <option
+                  value="pdf"
+                  onClick={() => {
+                    handleDownload();
+                    // Redirect to edit page
+                    window.location.href = `/navbar/bookmarkItem/${item.id}`;
+                  }}
+                >
+                  PDF
+                </option>
+                <option value="download">Video</option>
+                <option value="into">Into Graphic</option>
+              </select>
+            </td>
+
+
+            <td>{item.date}</td>
+            <td>
+              <select
+                className={`action-select`}
+                value={item.action || ""}
+                onChange={(event) => handleActionChange(index, event)}
+              >
+                <option value="">Select Action</option>
+                <option
+                  value="view"
+                  onClick={() => alert(`Bookmark type: ${item.type}`)}
+                >View
+                </option>
+                <option value="share">Share</option>
+                <option value="unbook">Unbook</option>
+              </select>
+            </td>
+          </tr>
+        ))}
+    </tbody>
       </table>
       </div>
     </div>

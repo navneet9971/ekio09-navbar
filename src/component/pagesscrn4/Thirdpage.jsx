@@ -185,8 +185,11 @@ function DocumentBox() {
 }
 
 
+
 function Thirdpage() {
   const [videoUrl, setVideoUrl] = useState('');
+  const [isWishlisted, setIsWishlisted] = useState(false);
+  const [buttonPopup2, setButtonPopup2] = useState(false);
 
   useEffect(() => {
     fetch('https://example.com/video')
@@ -197,11 +200,44 @@ function Thirdpage() {
       .catch(error => console.error(error));
   }, []);
 
+
+  const handleWishlistClick = () => {
+    if (!isWishlisted) {
+      // Add the video to the wishlist
+      const wishlist = JSON.parse(localStorage.getItem('bookmarkItem') || '[]');
+      wishlist.push({ name: 'Video 1', url: videoUrl });
+      localStorage.setItem('bookmarkItem', JSON.stringify(wishlist));
+      setIsWishlisted(true);
+    } else {
+      // Remove the video from the wishlist
+      const wishlist = JSON.parse(localStorage.getItem('bookmarkItem') || '[]');
+      const index = wishlist.findIndex(item => item.url === videoUrl);
+      if (index > -1) {
+        wishlist.splice(index, 1);
+        localStorage.setItem('bookmarkItem', JSON.stringify(wishlist));
+        setIsWishlisted(false);
+      }
+    }
+  };
+
+  const notifyData = [
+    { "s.no": '1', notifaction: 'Mobile', Date: '2022-02-01', linked: 'In Progress' },
+    { "s.no": '2', notifaction: 'Screen', Date: '2022-02-02', linked: 'Completed' },
+    { "s.no": '3', notifaction: 'Chipset', Date: '2022-02-03', linked: 'Pending' },
+  ];
+
+
   return (
     <div className="app55">
       <div className="left-section55">
         <LabTestingBox />
         <DocumentBox />
+      </div>
+      <div>
+        <button className = "wishlist" 
+        onClick={handleWishlistClick}>
+          {isWishlisted ? 'Remove from Wishlist' : 'Add to Wishlist'}
+        </button>
       </div>
       <div className="video-box55">
         <video controls>
@@ -211,13 +247,46 @@ function Thirdpage() {
       <div className="center-section55">
         <MiddleSection/>
       </div>
-      <div className="right-section55">
+      <div className="right-section66">
         <Link to="/introduction">Introduction</Link>
         <Link to="/required-document">Required Document</Link>
         <Link to="/registration-process">Registration Process</Link>
       </div> 
+
+{/*------------------Notify Section -----------------------*/}
+      <div className= "notify" >
+      <div className="right-section66">
+      <Link className='notify' onClick={() => setButtonPopup2(true)}>Notifaction</Link>
+      </div>
+      <Popup trigger={buttonPopup2} setTrigger={setButtonPopup2}>
+        <div>
+          <h32>Notifaction</h32>
+          <table>
+            <thead>
+              <tr>
+                <th>S.No</th>
+                <th>Notifaction</th>
+                <th>Date</th>
+                <th>Linked Notifaction</th>
+              </tr>
+            </thead>
+            <tbody>
+              {notifyData.map((data, index) => (
+                <tr key={index}>
+                  <td>{data["s.no"]}</td>
+                  <td>{data.notifaction}</td>
+                  <td>{data.Date}</td>
+                  <td>{data.linked}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Popup>
+      </div>
       <div1 class="vl"></div1>  
     </div>
+
   );
 }
 

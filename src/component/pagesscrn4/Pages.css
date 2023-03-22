@@ -288,6 +288,7 @@
     justify-content: center;
     align-items: center;
     margin-top: 10px;
+    margin-left: 11em;
   }
 
   .center-section55{
@@ -361,7 +362,28 @@ a:hover{
     color: #f8e9e9;
   }
 
-  /* ----------ThirdPage popup lines set css---------- */
+  /*------------WishList Button CSS-------------------*/
+  button.wishlist {
+    position: absolute;
+    top: 27em;
+    left: 88em;
+}
+
+/*----------------Fourth Page CSS------------------*/
+
+button.wishlist1 {
+  position: absolute;
+  top: 19em;
+  left: 88em;
+}
+
+a.notify {
+  position: absolute;
+  top: 8.2em;
+  left: 0.2em;
+}
+
+/* ----------ThirdPage popup lines set css---------- */
   h90{
     font-size: 18px;
     font-weight: 600;
@@ -499,6 +521,10 @@ button8, button8:focus {
     position: absolute;
     top: 62%;
     left: 76%;
+}
+video.videoBox {
+  position: absolute;
+  top: 6em;
 }
   /*
   .video-content55 {

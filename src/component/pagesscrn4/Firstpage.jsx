@@ -21,7 +21,7 @@ const Firstpage = () => {
   };
 
   const handleGoClick = () => {
-    if (!category || !product || !region) {
+    if (!category || !region) {
       alert('Please fill in all fields!');
       return;
     }
