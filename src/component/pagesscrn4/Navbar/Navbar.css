@@ -76,7 +76,7 @@ button99:active {
 }
 #navbarSupportedContent > ul > li.active > a,
 #navbarSupportedContent > ul > li > a.active {
-  color: #3268ca;
+  color: #4cdb0a;
   background-color: transparent;
   transition: all 0.7s;
 }

@@ -5,6 +5,7 @@ import jsPDF from "jspdf";
 import "jspdf-autotable";
 import "../Table.css";
 
+
 function Bookmark() {
   const [data, setData] = useState([
     { id: 1, bookmarkItem: "TEC", type: "Telecom Products", date: "2022-03-14", action: "", },
