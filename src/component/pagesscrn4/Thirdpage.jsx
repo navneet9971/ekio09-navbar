@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import "./Pages.css";
 import Popup from "./popup/Popup";
+import Multiselect from 'multiselect-react-dropdown';
+import { Row, Col } from "antd";
 
 function MiddleSection() {
   return (
@@ -15,19 +17,148 @@ function MiddleSection() {
 function LabTestingBox() {
   const [buttonPopup, setButtonPopup] = useState(false);
   const [buttonPopup1, setButtonPopup1] = useState(false);
-
+  const [streetAddress, setstreetAddress] = useState(null);
+  const [postalCode, setpostalCode] = useState(null);
+  const [city, setcity] = useState(null);
+  const [firstName, setfirstName] = useState(null);
+  const [mobileNumber, setmobileNumber] = useState(null);
+ 
   const statusData = [
     { "s.no": '1', category: 'Mobile', onDate: '2022-02-01', currentStatus: 'In Progress' },
     { "s.no": '2', category: 'Screen', onDate: '2022-02-02', currentStatus: 'Completed' },
     { "s.no": '3', category: 'Chipset', onDate: '2022-02-03', currentStatus: 'Pending' },
   ];
 
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    if (id === "streetAddress") {
+      setstreetAddress(value);
+    }
+    if (id === "postalCode") {
+      setpostalCode(value);
+    }
+    if (id === "city") {
+      setcity(value);
+  };
+  if (id === "firstName") {
+    setfirstName(value);
+};
+if (id === "mobileNumber") {
+  setmobileNumber(value);
+};
+  };
+
+
+
+const handleSubmit = () => {
+  console.log(streetAddress, postalCode, city, firstName);
+};
+
+
+
   return (
     <div className="lab-testing-box">
-      <p>Description of Lab Testing</p>
+      <p>Want lab testing services?</p>
       <button7 onClick={() => setButtonPopup(true)}>Request Testing</button7>
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-        <h3>A request has been sent to our team. They will contact you within 48 working hours.</h3>
+      <h51 className="title">Where Does the Sample need to be Collected</h51>
+        <Row className="form-body" gutter={[16, 0]}>
+          <Col xs={24} md={12}>
+            <div className="firstname">
+              <label className="form__label" for="firstName">
+              {" "}
+              </label>
+              <input
+                type="text"
+                name=""
+                id="streetAddress"
+                className="form__input"
+                value={streetAddress}
+                required
+                onChange={(e) => handleInputChange(e)}
+                placeholder="Street Address"
+              />
+            </div>
+          </Col>
+          <Col xs={20} md={10}>
+            <div className="lastname">
+              <label className="form__label" for="lastName">
+                {" "}
+              </label>
+              <input
+                type="text"
+                name=""
+                id="postalCode"
+                value={postalCode}
+                required
+                className="form__input"
+                onChange={(e) => handleInputChange(e)}
+                placeholder="Postal Code"
+              />
+            </div>
+          </Col>
+          <Col xs={24}>
+          <div className="lastname">
+              <label className="form__label" for="lastName">
+                {" "}
+              </label>
+              <input
+                type="text"
+                name=""
+                id="city"
+                value={city}
+                required
+                className="form__input"
+                onChange={(e) => handleInputChange(e)}
+                placeholder="City"
+              />
+            </div>
+
+            <div className='titlecontact'>
+              <h999>Contact Details Person:</h999>
+            </div>
+
+            <Col xs={20} md={10}>
+            <div className="lastname">
+              <label className="form__label" for="firstName">
+                {" "}
+              </label>
+              <input
+                type="text"
+                name=""
+                id="contactName"
+                value={firstName}
+                required
+                className="form__input"
+                onChange={(e) => handleInputChange(e)}
+                placeholder="First Name"
+              />
+            </div>
+          </Col>
+
+          
+            <div className="lastname">
+              <label className="form__label" for="firstName">
+                {" "}
+              </label>
+              <input
+                type="text"
+                name=""
+                id="contactNumber"
+                value={mobileNumber}
+                required
+                className="form__input"
+                onChange={(e) => handleInputChange(e)}
+                placeholder="Mobile Number"
+              />
+            </div>
+        
+           
+            <button onClick={() => handleSubmit()} type="submit">
+            Submit
+          </button>
+          </Col>
+          </Row>
       </Popup>
 
       <button7 onClick={() => setButtonPopup1(true)}>Status</button7>
@@ -64,12 +195,9 @@ function LabTestingBox() {
 function DocumentBox() {
   const [buttonPopup, setButtonPopup] = useState(false);
   const [buttonPopup1, setButtonPopup1] = useState(false);
-  const [selectedOption, setSelectedOption] = useState('');
+  const [selectedOption] = useState('');
   const [selectedFile, setSelectedFile] = useState(null);
-
-  function handleOptionChange(event) {
-    setSelectedOption(event.target.value);
-  }
+  const [options] = useState(['Signatory Authorization', 'OEM Authorization', 'MOU','Shareholding Pattern','Annexure', 'BOM', 'Non Applicability', 'Proforma Seeking Exemption' ]);
 
   function handleFileChange(event) {
     setSelectedFile(event.target.files[0]);
@@ -132,17 +260,14 @@ function DocumentBox() {
           <input id="file-input12" type="file" accept="application/pdf" onChange={handleFileChange} />
           <label>
             <h98>Select an Option:</h98>
-            <select value={selectedOption} onChange={handleOptionChange}>
-              <option value=''>------Select------</option>
-              <option value="Option 1">Signatory Authorization</option>
-              <option value="Option 2">OEM Authorization</option>
-              <option value="Option 3">MOU</option>
-              <option value="Option 3">Shareholding Pattern</option>
-              <option value="Option 3">Annexure</option>
-              <option value="Option 3">BOM</option>
-              <option value="Option 3">Non Applicability</option>
-              <option value="Option 3">Proforma Seeking Exemption</option>
-            </select>
+            <Multiselect 
+             isObject={false}
+            options={ options }
+            onRemove={(event)=> { console.log(event) }}
+            onSelect={ (event)=> { console.log(event) }}
+            showCheckbox
+            />
+          
           </label>
           <div>
             <button8 onClick={() => setButtonPopup(false)}>Cancel</button8>
@@ -161,17 +286,13 @@ function DocumentBox() {
           <h3>Download a File</h3>
           <label>
             <h98>Select a file to download:</h98>
-            <select value={selectedOption} onChange={handleOptionChange}>
-              <option value="">------ Select ------</option>
-              <option value="Option 1">Signatory Authorization</option>
-              <option value="Option 2">OEM Authorization</option>
-              <option value="Option 3">MOU</option>
-              <option value="Option 4">Shareholding Pattern</option>
-              <option value="Option 5">Annexure</option>
-              <option value="Option 6">BOM</option>
-              <option value="Option 7">Non Applicability</option>
-              <option value="Option 8">Proforma Seeking Exemption</option>
-            </select>
+            <Multiselect
+            isObject={false}
+            options={ options }
+            onRemove={(event)=> { console.log(event) }}
+            onSelect={ (event)=> { console.log(event) }}
+            showCheckbox
+             />
           </label>
           <div>
             <button8 type="submit">Download</button8>
@@ -230,6 +351,7 @@ function Thirdpage() {
   return (
     <div className="app55">
       <div className="left-section55">
+        <button10 onClick={""}> Start New Application </button10>
         <LabTestingBox />
         <DocumentBox />
       </div>
@@ -256,18 +378,18 @@ function Thirdpage() {
 {/*------------------Notify Section -----------------------*/}
       <div className= "notify" >
       <div className="right-section66">
-      <Link className='notify' onClick={() => setButtonPopup2(true)}>Notifaction</Link>
+      <Link className='notify' onClick={() => setButtonPopup2(true)}>Notification</Link>
       </div>
       <Popup trigger={buttonPopup2} setTrigger={setButtonPopup2}>
         <div>
-          <h32>Notifaction</h32>
+          <h32>Notification</h32>
           <table>
             <thead>
               <tr>
                 <th>S.No</th>
-                <th>Notifaction</th>
+                <th>Notification</th>
                 <th>Date</th>
-                <th>Linked Notifaction</th>
+                <th>Linked Notification</th>
               </tr>
             </thead>
             <tbody>
@@ -284,6 +406,9 @@ function Thirdpage() {
         </div>
       </Popup>
       </div>
+
+      {/*---------ChatBot Code Here---------*/}
+
       <div1 class="vl"></div1>  
     </div>
 

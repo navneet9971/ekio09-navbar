@@ -1,42 +1,136 @@
-import React from "react";
+import React, { useState } from "react";
 import { Col, Row } from "antd";
 import { useHistory } from "react-router-dom";
 import "../assets/css/global.css";
 
 function SignUP() {
   const history = useHistory();
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    companyName: "",
+    email: "",
+    mobileNumber: "",
+    username: "",
+    password: "",
+    confirmPassword: "",
+  });
 
-  const submitData = (data) => {
-    history.push("/navbar/clientdashboard");
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
   };
+
+  const submitData = (event) => {
+    event.preventDefault();
+    if (
+      formData.firstName &&
+      formData.lastName &&
+      formData.companyName &&
+      formData.email &&
+      formData.mobileNumber &&
+      formData.username &&
+      formData.password &&
+      formData.confirmPassword
+    ) {
+      history.push("/#");
+    } else {
+      alert("Please fill in all the required fields");
+    }
+  };
+
   return (
     <div className="auth-box">
       <div className="signup">
         <div class="left-box">
           <Row gutter={[24, 0]}>
             <Col xs={24} md={12}>
-              <label>First Name</label>
-              <input type="text" placeholder="" />
+              <label1>First Name</label1>
+              <input
+                type="text"
+                placeholder=""
+                name="firstName"
+                value={formData.firstName}
+                onChange={handleInputChange}
+                required
+              />
             </Col>
             <Col xs={24} md={12}>
-              <label>Second Name</label>
-              <input type="text" placeholder="" />
+              <label1>Last Name</label1>
+              <input
+                type="text"
+                placeholder=""
+                name="lastName"
+                value={formData.lastName}
+                onChange={handleInputChange}
+                required
+              />
             </Col>
             <Col xs={24} md={24}>
-              <label>Username</label>
-              <input type="text" placeholder="" />
+              <label1>Company Name</label1>
+              <input
+                type="text"
+                placeholder=""
+                name="companyName"
+                value={formData.companyName}
+                onChange={handleInputChange}
+                required
+              />
             </Col>
             <Col xs={24} md={24}>
-              <label>Email</label>
-              <input type="email" placeholder="" />
+              <label1>Email ID</label1>
+              <input
+                type="email"
+                placeholder=""
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                required
+              />
             </Col>
             <Col xs={24} md={24}>
-              <label>Phone number</label>
-              <input type="tel" placeholder="" />
+              <label1>Mobile Number</label1>
+              <input
+                type="tel"
+                placeholder=""
+                name="mobileNumber"
+                value={formData.mobileNumber}
+                onChange={handleInputChange}
+                required
+              />
             </Col>
             <Col xs={24} md={24}>
-              <label>Choose your package</label>
-              <input type="text" placeholder="" />
+              <label1>UserName</label1>
+              <input
+                type="text"
+                placeholder=""
+                name="username"
+                value={formData.username}
+                onChange={handleInputChange}
+                required
+              />
+            </Col>
+            <Col xs={24} md={24}>
+              <label1>Password</label1>
+              <input
+                type="password"
+                placeholder=""
+                name="password"
+                value={formData.password}
+                onChange={handleInputChange}
+                required
+              />
+            </Col>
+            <Col xs={24} md={24}>
+              <label1>Confirm Password</label1>
+              <input
+                type="password"
+                placeholder=""
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleInputChange}
+                required
+              />
             </Col>
           </Row>
           <button onClick={submitData} className="button">
@@ -49,7 +143,7 @@ function SignUP() {
           <img
             src={require(`../assets/icons/eikomp_logo.png`)}
             width={230}
-            height={150}
+            height={200}
             alt="logo"
           />
         </div>

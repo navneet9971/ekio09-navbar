@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import "./Pages.css";
 
 function MiddleSection() {
@@ -15,6 +15,7 @@ function MiddleSection() {
 function Fourth() {
   const [videoUrl, setVideoUrl] = useState('');
   const [isWishlisted, setIsWishlisted] = useState(false);
+  const history = useHistory();
 
   useEffect(() => {
     fetch('https://example.com/video')
@@ -46,6 +47,9 @@ function Fourth() {
   };
 
 
+  const handleGoClick = () => {
+    history.push('/navbar/firstpage');
+  };
 
   return (
     <div className="app55">
@@ -57,6 +61,10 @@ function Fourth() {
           {isWishlisted ? 'Remove from Wishlist' : 'Add to Wishlist'}
         </button>
       </div>
+
+      <button10 className='rdrcbtn' onClick={handleGoClick}> Start New Application </button10>
+
+
       <div className="video-box55">
         <video className='videoBox' controls>
           <source src={videoUrl} type="video/mp4" />

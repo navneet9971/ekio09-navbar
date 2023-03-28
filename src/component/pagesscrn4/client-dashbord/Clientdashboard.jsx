@@ -13,12 +13,12 @@ const ClientDashboard = () => {
 
   const WELCOME_OPTIONS = [
     {
-      title: "Start new Application",
+      title: "Start New Project",
       thumb: <Thumb1 />,
       route: "/navbar/firstpage",
     },
     {
-      title: "Review Application",
+      title: "Track Application",
       thumb: <Thumb2 />,
       route: "/navbar/review",
     },

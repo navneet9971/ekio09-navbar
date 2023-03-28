@@ -5,9 +5,9 @@ import "./Payment.css";
 
 function Payment() {
 const [data] = useState([
-{ id: 1, entryDetails: "Telecom Products", date: "2022-03-14", debit: "250" },
-{ id: 2, entryDetails: "Battery12", date: "2022-03-15", debit: "250" },
-{ id: 3, entryDetails: "Mobile Phone", date: "2022-03-16", debit: "250" },
+{ id: 1, entryDetails: "Telecom Products", date: "2022-03-14", debit: "250", status: "Pending" },
+{ id: 2, entryDetails: "Battery12", date: "2022-03-15", debit: "250", status:"Paid" },
+{ id: 3, entryDetails: "Mobile Phone", date: "2022-03-16", debit: "250", status: "Pending" },
 ]);
 
 const [filterDate, setFilterDate] = useState("");
@@ -21,8 +21,8 @@ const handleDownload = () => {
 const doc = new jsPDF();
 
 // set the table headers and rows using the data array
-const headers = ["S.NO", "Entry Details", "Date", "Debit/Credit"];
-const rows = data.map((item, index) => [  index + 1,  item.entryDetails,  item.date,  item.debit,]);
+const headers = ["S.NO", "Entry Details", "Date", "Debit/Credit", "Status"];
+const rows = data.map((item, index) => [  index + 1,  item.entryDetails,  item.date,  item.debit, item.status]);
 
 // add the table to the PDF document
 doc.autoTable({
@@ -58,6 +58,7 @@ return (
         <th className="header">Entry Details</th>
         <th className="header">Date</th>
         <th className="header">Debit/Credit</th>
+        <th className="header">Status</th>
       </tr>
     </thead>
 
@@ -70,6 +71,7 @@ return (
             <td>{item.entryDetails}</td>
             <td>{item.date}</td>
             <td>{item.debit}</td>
+            <td>{item.status}</td>
           </tr>
         ))}
     </tbody>

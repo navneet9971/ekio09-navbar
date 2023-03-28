@@ -208,6 +208,7 @@ select:focus {
 }
 
 
+
 /*----------------TABLE PAGES CSS---------------- */
 .table {
   padding: 30px;
@@ -290,10 +291,22 @@ input[type="option"] {
 input[type="date"] {
   position: absolute;
   top: 72px;
-  right: 288px;
+  right: 398px;
   width: 17px;
   background-color: #eeac1b;
 }
+
+/* Dropdown status css*/
+select.dropon {
+  position: absolute;
+  top: 12.6em;
+  left: 95em;
+  width: 0px;
+  height: 1px;
+  padding: 10px;
+  background-color: #eeac1b;
+}
+
 
 /* Transaction Type Date Css*/
 input.date{

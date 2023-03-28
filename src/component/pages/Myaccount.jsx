@@ -1,8 +1,6 @@
 import React from "react";
 import { Row, Col } from "antd";
 import { Link } from "react-router-dom";
-import { ReactComponent as Thumb1 } from "../../component/assets/myaccount-icons/1.svg";
-import { ReactComponent as Thumb2 } from "../../component/assets/myaccount-icons/2.svg";
 import { ReactComponent as Thumb3 } from "../../component/assets/myaccount-icons/3.svg";
 import { ReactComponent as Thumb4 } from "../../component/assets/myaccount-icons/4.svg";
 import { ReactComponent as Thumb5 } from "../../component/assets/myaccount-icons/5.svg";
@@ -16,16 +14,6 @@ const ClientDashboard = () => {
   
 
   const WELCOME_OPTIONS = [
-    {
-      title: "Transaction",
-      thumb: <Thumb1 />,
-      route: "/navbar/transaction",
-    },
-    {
-      title: "Application",
-      thumb: <Thumb2 />,
-      route: "/navbar/review",
-    },
     {
       title: "Package",
       thumb: <Thumb3 />,
@@ -47,7 +35,7 @@ const ClientDashboard = () => {
       route: "/navbar/view",
     },
     {
-      title: "Notifaction",
+      title: "Notification",
       thumb: <Thumb7 />,
       route: "/navbar/notifaction",
     },
@@ -61,6 +49,16 @@ const ClientDashboard = () => {
       thumb: <Thumb9 />,
       route: "/navbar/edit-profile",
     },
+    {/*{
+      title: "Transaction",
+      thumb: <Thumb1 />,
+      route: "/navbar/transaction",
+    },
+    {
+      title: "Application",
+      thumb: <Thumb2 />,
+      route: "/navbar/review",
+    }, */},
   ];
 
 

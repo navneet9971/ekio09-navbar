@@ -92,7 +92,7 @@ const Navbar = () => {
               to="/navbar/firstpage"
               // onClick={handleToggle}
             >
-              <i className="far fa-address-book"></i>Start New Application
+              <i className="far fa-address-book"></i>Start New Project
             </NavLink>
           </li>
 
@@ -105,7 +105,7 @@ const Navbar = () => {
               to="/navbar/review"
               // onClick={handleToggle}
             >
-              <i className="far fa-clone"></i>Review Application
+              <i className="far fa-clone"></i>Track Application
             </NavLink>
           </li>
 
@@ -148,31 +148,6 @@ const Navbar = () => {
             </NavLink>
           </li>
 
-          <li
-            className={
-              pathname === "/navbar/download" ? "active nav-item" : "nav-item"
-            }>
-            <NavLink
-              className="nav-link"
-              to="/navbar/download"
-              // onClick={handleToggle}
-            >
-              <i className="far fa-clone"></i>Download Form
-            </NavLink>
-          </li>
-
-          <li
-            className={
-              pathname === "/navbar/view" ? "active nav-item" : "nav-item"
-            }>
-            <NavLink
-              className="nav-link"
-              to="/navbar/view"
-              // onClick={handleToggle}
-            >
-              <i className="far fa-clone"></i>View Reports
-            </NavLink>
-          </li>
         </ul>
       </div>
       <button99 onClick={handleLogout}>
