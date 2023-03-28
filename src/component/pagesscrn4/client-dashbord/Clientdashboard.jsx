@@ -6,7 +6,6 @@ import { ReactComponent as Thumb2 } from "../../assets/images/welcome/2.svg";
 import { ReactComponent as Thumb3 } from "../../assets/images/welcome/3.svg";
 import { ReactComponent as Thumb4 } from "../../assets/images/welcome/4.svg";
 import Thumb5png from "../../assets/images/welcome/5.png";
-import Thumb6png from "../../assets/images/welcome/6.png";
 import "./Clientdashboard.css";
 
 const ClientDashboard = () => {
@@ -37,11 +36,6 @@ const ClientDashboard = () => {
       thumb: <img src={Thumb5png} alt="" />,
       route: "/navbar/add",
     },
-    {
-      title: "Download Forum",
-      thumb: <img src={Thumb6png} alt="" />,
-      route: "/navbar/download",
-    },
   ];
  
 
@@ -60,9 +54,6 @@ const ClientDashboard = () => {
             </Col>
           ))}
         </Row>
-        <Link to="/navbar/view">
-          <button className="view-report">View Reports</button>
-        </Link>
       </div>
     </div>
   );
