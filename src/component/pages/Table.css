@@ -22,8 +22,7 @@
 textarea,
 select {
   position: relative;
-  right: 18em;
-  top: -2.3em; 
+  
   outline: none;
   box-sizing: border-box;
   width: 100%;
@@ -47,8 +46,7 @@ select:focus {
 textarea,
 select {
   position: relative;
-  right: 19em;
-  top: -2.3em;
+ 
   outline: none;
   box-sizing: border-box;
   width: 100%;
@@ -72,8 +70,7 @@ input#email,
 textarea,
 select {
   position: relative;
-  right: 18em;
-  top: -2.3em;
+  
   outline: none;
   box-sizing: border-box;
   width: 98%;
@@ -97,8 +94,7 @@ input#industry,
 textarea,
 select{
   position: relative;
-  right: 18em;
-  top: -2.3em;
+
   outline: none;
   box-sizing: border-box;
   width: 98%;
@@ -119,14 +115,14 @@ select:focus {
 }
 
 .rights {
-  margin-left: 13px;
-  margin-bottom: 50px;
   width: 100%;
   user-select: none;
   position: relative;
+  padding-top: 30px;
 }
 
 .rights .dropdown-btn {
+  width: 98%;
   padding: 15px 20px;
   background: #fff;
   font-weight: bold;
@@ -139,6 +135,7 @@ select:focus {
 }
 
 .rights .dropdown-content {
+  z-index: 999;
   position: absolute;
   top: 110%;
   left: 0;
@@ -150,6 +147,7 @@ select:focus {
 }
 
 .rights .dropdown-content .dropdown-item {
+  width: 100%;
   padding: 10px;
   cursor: pointer;
   transition: all 0.2s;
@@ -182,7 +180,6 @@ select:focus {
   min-height: 40px;
   width: 100%;
   margin-top: 45px;
-  padding: 16px 10px;
   position: relative;
   text-align: center;
   touch-action: manipulation;

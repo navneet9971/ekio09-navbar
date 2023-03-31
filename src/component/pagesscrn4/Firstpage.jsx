@@ -31,8 +31,8 @@ const Firstpage = () => {
 
   return (
     <div className="first-container22">
-      <h30>Please Enter the following details to Start a new application:-</h30>
-      <h31>You need to fill at-least 1 data point to see the list of compliance</h31>
+      <h3>Please Enter the following details to Start a new application :</h3>
+      <h4 className="red-warning">You need to fill atleast 1 data point to see the list of compliance.</h4>
 
       <div className="form-group22">
         <label htmlFor="category-input">Enter Category:</label>
@@ -46,16 +46,19 @@ const Firstpage = () => {
 
       <div className="region-group22">
         <label htmlFor="region-select22">Region:</label>
-        <select id="region-select22" value={region} onChange={handleRegionChange}>
-          <option value="">-- Select a region --</option>
-          <option value="north">Europe</option>
-        <option value="south">Africa</option>
-        <option value="east">Asia</option>
-        <option value="west">Americas</option>
-        </select>
+        <div className="centerdiv"> 
+          <select id="region-select22" value={region} onChange={handleRegionChange}>
+            <option value="">-- Select a region --</option>
+            <option value="north">Europe</option>
+          <option value="south">Africa</option>
+          <option value="east">Asia</option>
+          <option value="west">Americas</option>
+          </select>
+        </div>
       </div>
 
-      <button onClick={handleGoClick}>GO</button>
+      <div className="gobutton22"> <button onClick={handleGoClick}>GO</button></div>
+     
     </div>
   );
 };

@@ -15,7 +15,7 @@ const Navbar = () => {
 
   function animation() {
     var tabsNewAnim = $("#navbarSupportedContent");
-    var activeItemNewAnim = tabsNewAnim.find(".active");
+    var activeItemNewAnim = tabsNewAnim.find(".active ");
     var activeWidthNewAnimHeight = activeItemNewAnim.innerHeight();
     var activeWidthNewAnimWidth = activeItemNewAnim.innerWidth();
     var itemPosNewAnimTop = activeItemNewAnim.position();
@@ -92,7 +92,7 @@ const Navbar = () => {
               to="/navbar/firstpage"
               // onClick={handleToggle}
             >
-              <i className="far fa-address-book"></i>Start New Project
+              Start New Project
             </NavLink>
           </li>
 
@@ -105,7 +105,7 @@ const Navbar = () => {
               to="/navbar/review"
               // onClick={handleToggle}
             >
-              <i className="far fa-clone"></i>Track Application
+             Track Application
             </NavLink>
           </li>
 
@@ -118,7 +118,7 @@ const Navbar = () => {
               to="/navbar/myaccount"
               // onClick={handleToggle}
             >
-              <i className="far fa-clone"></i>My Account
+             My Account
             </NavLink>
           </li>
 
@@ -131,7 +131,7 @@ const Navbar = () => {
               to="/navbar/check"
               // onClick={handleToggle}
             >
-              <i className="far fa-clone"></i>Checklist of Compliance
+              Checklist of Compliance
             </NavLink>
           </li>
 
@@ -144,18 +144,19 @@ const Navbar = () => {
               to="/navbar/add"
               // onClick={handleToggle}
             >
-              <i className="far fa-clone"></i>Add Users
+             Add Users
             </NavLink>
           </li>
 
         </ul>
       </div>
-      <button99 onClick={handleLogout}>
-        <span99>Logout</span99>
-      </button99>
+      
       <button className="nav-btn" onClick={handleToggle}>
         <FaBars />
       </button>
+      <button99 onClick={handleLogout}>
+        <span99>Logout</span99>
+      </button99>
       {open && <div className="nav-layer" onClick={handleToggle} />}
     </nav>
   );

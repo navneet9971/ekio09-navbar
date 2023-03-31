@@ -41,10 +41,7 @@
   font-weight: bold;
   padding-left: center;
   text-align: center;
-  padding: 40px;
-  width: calc(100% - 100px);
   height: 23px;
-  margin: -33px 0 0 -1px;
 }
 .first-container22 select#region-select22 {
   font-weight: 700;
@@ -56,7 +53,6 @@
 .first-container22 select#region-select22 {
   background-color: #fff;
   padding: 2px;
-  border-radius: 25px;
   margin-top: 10px;
 }
 
@@ -468,35 +464,28 @@ button8, button8:focus {
     /*------Third page request popup form CSS----------  */
 
     input#streetAddress {
-      left: -248px;
-      width: 45em;
+      
   }
  
   input#postalCode {
-    right: 252px;
-    top: 38px;
-}
+  }
 
 input#city {
-  right: 309px;
-  width: 20em;
+ 
 }
   
 input#contactName {
-  right: 257px;
-  width: 20em;
-  top: -14px;
+  
 }
 
 input#contactNumber {
-  left: 23px;
-  top: -85px;
-  width: 20em;
+ 
 }
   /*-------------ThirdPage Butoon CSS--------------*/
   button5,
   button7,
   button10{
+    z-index:1;
     align-items: center;
     appearance: none;
     background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
@@ -679,6 +668,68 @@ video.videoBox {
   }
   
 
+/*------Firstpage fixes Responsive-----------*/
 
+.red-warning {
+  color: red;
+}
+.centerdiv {
+  text-align: center;
+  padding-bottom: 40px;;
+  overflow: hidden;
+}
+.first-container22 select#region-select22 {
+  -webkit-appearance: none;
+  left: 0;
+  width: calc(100% - 100px);
+  height:45px;
+  width: calc(100% - 100px);
+}
+.first-container22 select#region-select22 option {
+  width: 345px!important;
+}
+.gobutton22{
+  margin-top: 70px;
+}
 
+.nav-item{
+  text-align: center;
+  
+}
+.hori-selector .right, .hori-selector .left {
+  bottom: 0;
+}
+#navbarSupportedContent li {
+  text-align: center;;
+  width: 14.28%;
+}
+.nav-btn{
+  z-index:999;
+}
+@media (max-width: 991px) {
+  .nav-btn {
+    margin: 20px auto;
+    margin-left: 20px;
+}
+#navbarSupportedContent li {
+  text-align: center;;
+  width: 100%;
+}
+}
+@media screen and (min-width: 577px) and (max-width: 768px){
+  .first-container22 select#region-select22 {
+    width:100%;
+  }
+  .rights .dropdown-btn {
+    width: auto;
+  }
+}
 
+@media screen and (max-width: 576px){
+  .first-container22 select#region-select22 {
+    width:100%;
+  }
+  .rights .dropdown-btn {
+    width: auto;
+  }
+}

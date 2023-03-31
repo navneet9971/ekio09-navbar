@@ -82,7 +82,7 @@ const handleSubmit = () => {
           </Col>
           <Col xs={20} md={10}>
             <div className="lastname">
-              <label className="form__label" for="lastName">
+              <label className="form__label" for="postalCode">
                 {" "}
               </label>
               <input
@@ -99,7 +99,7 @@ const handleSubmit = () => {
           </Col>
           <Col xs={24}>
           <div className="lastname">
-              <label className="form__label" for="lastName">
+              <label className="form__label" for="city">
                 {" "}
               </label>
               <input
@@ -118,9 +118,9 @@ const handleSubmit = () => {
               <h999>Contact Details Person:</h999>
             </div>
 
-            <Col xs={20} md={10}>
+            <Col>
             <div className="lastname">
-              <label className="form__label" for="firstName">
+              <label className="form__label" for="contactName">
                 {" "}
               </label>
               <input
@@ -131,14 +131,14 @@ const handleSubmit = () => {
                 required
                 className="form__input"
                 onChange={(e) => handleInputChange(e)}
-                placeholder="First Name"
+                placeholder="Full Name"
               />
             </div>
           </Col>
-
+          
           
             <div className="lastname">
-              <label className="form__label" for="firstName">
+              <label className="form__label" for="contactNumber">
                 {" "}
               </label>
               <input
