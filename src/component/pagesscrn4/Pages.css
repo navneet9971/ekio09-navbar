@@ -272,6 +272,11 @@
 
 
   /*--------Third Page CSS-----------*/
+  h398 {
+    position: absolute;
+    right: 10em;
+}
+
   .app55 {
     display: flex;
     flex-direction: row-reverse;
@@ -358,6 +363,68 @@ a:hover{
     color: #f8e9e9;
   }
 
+
+  /*---THird page Start application popup css------- */
+h801{
+  text-align: center;
+  font-size: 30px;
+}
+
+h802{
+  font-size: 25px;
+  font-weight: 600;
+  margin: 7em;
+}
+
+label.st8012 {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+label.st8012 > span.st805 {
+  margin-right: 10px;
+}
+
+label.st8012 > input.stup806 {
+  flex: 1;
+}
+
+label.st8012 {
+  border: 1px solid black;
+  padding: 5px;
+  margin: 0px;
+}
+
+input.st805 {
+  margin-left: auto;
+  width: 20em;
+  height: 15px;
+  padding: 2px;
+}
+
+input[type="file"] {
+  margin: 3px;
+  margin-left: auto;
+}
+
+button.btn808 {
+  width: 120px;
+  margin-top: 9px;
+  margin-left: 12em;
+  height: 30px;
+  background-color: skyblue;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+button.btn808:hover{
+  background-color: green;
+}
+
   /*------------WishList Button CSS-------------------*/
   button.wishlist {
     position: absolute;
@@ -375,8 +442,7 @@ button.wishlist1 {
 
 a.notify {
   position: absolute;
-  top: 8.2em;
-  left: 0.2em;
+  top: 9em;
 }
 
 button10.rdrcbtn {

@@ -1,8 +1,47 @@
+h1.type {
+  text-align: inherit;
+  color: black;
+  font-size: 25px;
+  font-weight: 600;
+  margin-top: -1em;
+}
+
+h1.appli {
+  text-align: end;
+  color: black;
+  font-size: 25px;
+  margin-top: -2.2em;
+}
+
+p.stdate{
+  text-align: inherit;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+p.enddate{
+  text-align: end;
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: -1.2em;
+}
+
+h1.ongo {
+  font-size: 30px;
+  color: black;
+  margin-top: -30px;
+  margin-bottom: 40px;
+}
+
+button.clidown {
+  margin-left: 34em;
+}
+
 .circle {
   width: 29px;
   height: 29px;
   line-height: 25px;
-  background-color: green;
+  background-color: blue;
   color: white;
   border-radius: 50%;
   text-align: center;
@@ -13,13 +52,44 @@
   background-clip: padding-box;
 }
 
+.row {
+  display: inline-flex;
+  justify-content: center;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.circle12 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgb(85, 214, 85);
+  margin-bottom: 10px;
+  margin-left: 4em;
+}
+
+.tc, .wp, .be, .bi, .ep, .legal, .isi, .management {
+  margin-left: 4em;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+
+
 .stepWrapper {
   display: flex;
   margin-bottom: 20px;
 }
 
 .stepBlock .circleWrapper {
-  padding: 14px 92px;
+  padding: 18px 78px;
   position: relative;
 }
 .selected .circle {
@@ -28,8 +98,8 @@
   border-color: green;
 }
 
-span999 {
-  margin-left: 80px;
+h4.ste {
+  text-align: center;
 }
 
 button120.btn {
@@ -59,7 +129,6 @@ button120.btn {
   bottom: 0px;
   background-color: green;
   margin: auto;
-  z-index: -1;
 }
 
 .stepBlock:not(:last-child) > .circleWrapper::after {

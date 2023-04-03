@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,  useHistory } from 'react-router-dom';
 import "./Pages.css";
 import Popup from "./popup/Popup";
+import { TiTick } from "react-icons/ti";
 import Multiselect from 'multiselect-react-dropdown';
 import { Row, Col } from "antd";
 
 function MiddleSection() {
   return (
     <div className="middle-section">
-      <h3>Middle Section</h3>
-      <p>Description of Middle Section</p>
+      <h398>Middle Section</h398>
     </div>
   );
 }
@@ -22,6 +22,8 @@ function LabTestingBox() {
   const [city, setcity] = useState(null);
   const [firstName, setfirstName] = useState(null);
   const [mobileNumber, setmobileNumber] = useState(null);
+  const [submitPopup, setSubmitPopup] = useState(false);
+
  
   const statusData = [
     { "s.no": '1', category: 'Mobile', onDate: '2022-02-01', currentStatus: 'In Progress' },
@@ -48,13 +50,11 @@ if (id === "mobileNumber") {
 };
   };
 
-
-
-const handleSubmit = () => {
-  console.log(streetAddress, postalCode, city, firstName);
-};
-
-
+  const handleSubmit = () => {
+    console.log(streetAddress, postalCode, city, firstName);
+    setSubmitPopup(true);
+    setButtonPopup(false);
+  };
 
   return (
     <div className="lab-testing-box">
@@ -160,6 +160,11 @@ const handleSubmit = () => {
           </Col>
           </Row>
       </Popup>
+      {submitPopup && (
+  <Popup>
+    <div>Hello everyone</div>
+  </Popup>
+)}
 
       <button7 onClick={() => setButtonPopup1(true)}>Status</button7>
       <Popup trigger={buttonPopup1} setTrigger={setButtonPopup1}>
@@ -196,12 +201,14 @@ function DocumentBox() {
   const [buttonPopup, setButtonPopup] = useState(false);
   const [buttonPopup1, setButtonPopup1] = useState(false);
   const [selectedOption] = useState('');
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [options] = useState(['Signatory Authorization', 'OEM Authorization', 'MOU','Shareholding Pattern','Annexure', 'BOM', 'Non Applicability', 'Proforma Seeking Exemption' ]);
+  const [selectedFile] = useState(null);
+  const [files, setFiles] = useState([]);
+  const history = useHistory();
+  const [options] = useState(['TEC', 'WPS', 'BEE','BIS','EPR', 'Legal Metrology', 'Mandatory ISI', 'Management System' ]);
 
-  function handleFileChange(event) {
-    setSelectedFile(event.target.files[0]);
-    event.preventDefault();
+  const handleFileChange = (event) => {
+    const newFiles = Array.from(event.target.files);
+    setFiles([...files, ...newFiles]);
 
     // Set the URL of the file to be downloaded based on the selected option
     let fileUrl;
@@ -237,6 +244,12 @@ function DocumentBox() {
     console.log('Submitting form with file:', selectedFile);
     console.log('Selected option:', selectedOption);
     // Code to handle uploading the file and selected option
+  
+    // Show success message and navigate to success page
+    const uploadedFileName = selectedFile ? selectedFile.name : files[files.length - 1].name;
+    const successUrl = `/success/${encodeURIComponent(uploadedFileName)}`;
+    history.push(successUrl);
+  
     setButtonPopup(false);
   }
 
@@ -250,14 +263,22 @@ function DocumentBox() {
   return (
     <div className="document-box">
       <h3>Documents</h3>
-      <p>Description of Documents</p>
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
         <form onSubmit={handleSubmit}>
           <h3>Upload a File</h3>
           <label htmlFor="file-input">
             <h94>Choose File:</h94>
           </label>
-          <input id="file-input12" type="file" accept="application/pdf" onChange={handleFileChange} />
+          <input className="file-input12" type="file" accept="application/pdf"  multiple onChange={handleFileChange} />
+          {files.length > 0 && (
+              <div>
+                <ul>
+                  {files.map((file, index) => (
+                    <li key={index}>{file.name} <TiTick size={24} /></li>
+                  ))}
+                </ul>
+              </div>
+            )}
           <label>
             <h98>Select an Option:</h98>
             <Multiselect 
@@ -270,7 +291,10 @@ function DocumentBox() {
           
           </label>
           <div>
-            <button8 onClick={() => setButtonPopup(false)}>Cancel</button8>
+          <button8 onClick={() => {
+                  setButtonPopup(false);
+                    setFiles([]);
+                    }}>Cancel</button8>
             <button8 type="submit">Upload</button8>
           </div>
         </form>
@@ -311,6 +335,7 @@ function Thirdpage() {
   const [videoUrl, setVideoUrl] = useState('');
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [buttonPopup2, setButtonPopup2] = useState(false);
+ 
 
   useEffect(() => {
     fetch('https://example.com/video')
@@ -351,7 +376,7 @@ function Thirdpage() {
   return (
     <div className="app55">
       <div className="left-section55">
-        <button10 onClick={""}> Start New Application </button10>
+        <Startapp />
         <LabTestingBox />
         <DocumentBox />
       </div>
@@ -382,7 +407,7 @@ function Thirdpage() {
       </div>
       <Popup trigger={buttonPopup2} setTrigger={setButtonPopup2}>
         <div>
-          <h32>Notification</h32>
+          <h3 className='notif'>Notification</h3>
           <table>
             <thead>
               <tr>
@@ -406,13 +431,277 @@ function Thirdpage() {
         </div>
       </Popup>
       </div>
-
-      {/*---------ChatBot Code Here---------*/}
-
       <div1 class="vl"></div1>  
     </div>
-
   );
-}
+ };
+
+    // Start Applicatioon Form
+
+function Startapp() {
+  // state variables to store form data
+  const [applicantCompanyName, setApplicantCompanyName] = useState("");
+  const [applicantCompanyAddress, setApplicantCompanyAddress] = useState("");
+  const [applicantDirectorName, setApplicantDirectorName] = useState("");
+  const [applicantContactNumber, setApplicantContactNumber] = useState("");
+  const [applicantEmailID, setApplicantEmailID] = useState("");
+  const [applicantAuthorisedSignatoryName, setApplicantAuthorisedSignatoryName] = useState("");
+  const [applicantAuthorisedSignatoryDesignation, setApplicantAuthorisedSignatoryDesignation] = useState("");
+  const [applicantContactNumber1, setApplicantContactNumber1] = useState("");
+  const [applicantEmailID1, setApplicantEmailID1] = useState("");
+  const [applicantNameofmanufacturingfactory, setApplicantNameofmanufacturingfactory] = useState("");
+  const [applicantAddressoffactory, setApplicantAddressoffactory] = useState("");
+  const [foreignCompanyName, setForeignCompanyName] = useState("");
+  const [foreignCompanyAddress, setForeignCompanyAddress] = useState("");
+  const [foreignAuthorizedSignatoryName, setForeignAuthorizedSignatoryName] = useState("");
+  const [foreignAuthorizedSignatoryDesignation, setForeignAuthorizedSignatoryDesignation] = useState("");
+  const [foreignContactNumber, setForeignContactNumber] = useState("");
+  const [foreignEmailID, setForeignEmailID ] = useState("");
+  const [buttonPopup5, setButtonPopup5] = useState(false);
+
+  // function to handle file uploads
+  const handleFileUpload = (event) => {
+    // TODO: handle file upload logic
+  };
+
+  // function to handle form submission
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // TODO: handle form submission logic
+  
+    // Generate a random 4-digit number
+    const uniqueCode = Math.floor(Math.random() * 10000);
+  
+    // Display the unique code to the user
+    alert(`Your Project code is ${uniqueCode}.`);
+  
+    setButtonPopup5(false);
+  };
+
+
+
+  return (
+    <div>
+      <button10 onClick={() => setButtonPopup5(true)}>Start New Application</button10>
+      <Popup trigger={buttonPopup5} setTrigger={setButtonPopup5}>
+        <div style={{ height: "500px", overflow: "scroll" }}>
+          <h801>Indian OEM/Foreign Manufacture</h801>
+          <form onSubmit={handleSubmit}>
+            <h802>Applicant Company:</h802>
+            <label className="st8012">
+              Company Name:
+              <input
+                className="st805"
+                type="text"
+                value={applicantCompanyName}
+                onChange={(event) => setApplicantCompanyName(event.target.value)}
+                required
+              />
+            </label>
+            <label className="st8012">
+              Company Address:
+              <input
+              className="st805"
+                type="text"
+                value={applicantCompanyAddress}
+                onChange={(event) => setApplicantCompanyAddress(event.target.value)}
+                required
+              />
+            </label>
+            <label className="st8012">
+              Director Name:
+              <input
+              className="st805"
+                type="text"
+                value={applicantDirectorName}
+                onChange={(event) => setApplicantDirectorName(event.target.value)}
+                required
+              />
+            </label>
+            <label className="st8012">
+              Contact Number:
+              <input
+              className="st805"
+                type="number"
+                value={applicantContactNumber}
+                onChange={(event) => setApplicantContactNumber(event.target.value)}
+                required
+              />
+              </label>
+               <label className="st8012">
+              Email ID:
+              <input
+              className="st805"
+                type="text"
+                value={applicantEmailID}
+                onChange={(event) => setApplicantEmailID(event.target.value)}
+                required
+              />
+            </label>
+            <label className="st8012">
+              Authorised Signatory Name:
+              <input
+              className="st805"
+                type="text"
+                value={applicantAuthorisedSignatoryName}
+                onChange={(event) => setApplicantAuthorisedSignatoryName(event.target.value)}
+                required
+              />
+              </label>
+              <label className="st8012">
+              Authorised Signatory Designation:
+              <input
+              className="st805"
+                type="text"
+                value={applicantAuthorisedSignatoryDesignation}
+                onChange={(event) => setApplicantAuthorisedSignatoryDesignation(event.target.value)}
+                required
+              />
+              </label>
+              <label className="st8012">
+              Contact Number:
+              <input
+              className="st805"
+                type="number"
+                value={applicantContactNumber1}
+                onChange={(event) => setApplicantContactNumber1(event.target.value)}
+                required
+              />
+              </label>
+              <label className="st8012">
+              Email ID:
+              <input
+              className="st805"
+                type="text"
+                value={applicantEmailID1}
+                onChange={(event) => setApplicantEmailID1(event.target.value)}
+                required
+              />
+              </label>
+              <label className="st8012">
+              Name of manufacturing factory:
+              <input
+              className="st805"
+                type="text"
+                value={applicantNameofmanufacturingfactory}
+                onChange={(event) => setApplicantNameofmanufacturingfactory(event.target.value)}
+                required
+              />
+              </label>
+              <label className="st8012">
+              Address of factory:
+              <input
+              className="st805"
+                type="text"
+                value={applicantAddressoffactory}
+                onChange={(event) => setApplicantAddressoffactory(event.target.value)}
+                required
+              />
+              </label>
+
+
+            <h802>Foreign Manufacture:</h802>
+            <label className="st8012">
+              Company Name:
+              <input
+              className="st805"
+                type="text"
+                value={foreignCompanyName}
+                onChange={(event) => setForeignCompanyName(event.target.value)}
+                required
+              />
+            </label>
+            <label className="st8012">
+              Company Address:
+              <input
+              className="st805"
+                type="text"
+                value={foreignCompanyAddress}
+                onChange={(event) => setForeignCompanyAddress(event.target.value)}
+                required
+              />
+            </label>
+            <label className="st8012">
+              Authorized Signatory Name:
+              <input
+              className="st805"
+                type="text"
+                value={foreignAuthorizedSignatoryName}
+                onChange={(event) => setForeignAuthorizedSignatoryName(event.target.value)}
+                required
+              />
+            </label>
+            <label className="st8012">
+              Authorized Signatory Designation:
+              <input
+              className="st805"
+                type="text"
+                value={foreignAuthorizedSignatoryDesignation}
+                onChange={(event) => setForeignAuthorizedSignatoryDesignation(event.target.value)}
+                required
+              />
+            </label>
+            <label className="st8012">
+              Contact Number:
+              <input
+              className="st805"
+                type="number"
+                value={foreignContactNumber}
+                onChange={(event) => setForeignContactNumber(event.target.value)}
+                required
+              />
+            </label>
+            <label className="st8012">
+              Email ID:
+              <input
+              className="st805"
+                type="text"
+                value={foreignEmailID}
+                onChange={(event) => setForeignEmailID(event.target.value)}
+                required
+              />
+            </label>
+
+
+            <h802>Document Required:</h802>
+            <label className="st8012">
+              COI of Applicant Company:
+              <input  classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
+            </label>
+            <label className="st8012">
+              PAN Card of Applicant Company:
+              <input classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
+            </label>
+            <label className="st8012">
+              MOA:
+              <input classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
+            </label>
+            <label className="st8012">
+              AOA:
+              <input classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
+            </label>
+            <label className="st8012">
+              Shareholding Pattern:
+              <input classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
+            </label>
+            <label className="st8012">
+              Authorization letter:
+              <input classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
+            </label>
+            <label className="st8012">
+              MOU between Applicant & OEM:
+              <input classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
+            </label>
+            <label className="st8012">
+              AIR Authorization Letter for Appliicant:
+              <input classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
+            </label>
+            <button className='btn808' type="submit">Submit</button>
+          </form>
+        </div>
+      </Popup>
+    </div>
+  );
+  };  
 
 export default Thirdpage;

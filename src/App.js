@@ -50,7 +50,10 @@ const App = () => {
         </Route> 
         <Route path="/navbar/compliance1/:id">
           <Fourthpage />
-        </Route>             
+        </Route>  
+
+        <Route path="/navbar/success/:fileName" component={Thirdpage} />  
+ 
         <Route path="/navbar/firstpage">
               <Firstpage />
             </Route>
