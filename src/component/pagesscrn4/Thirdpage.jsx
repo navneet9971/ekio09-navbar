@@ -253,13 +253,9 @@ function DocumentBox() {
       <p>Description of Documents</p>
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
         <form onSubmit={handleSubmit}>
-          <h3>Upload a File</h3>
-          <label htmlFor="file-input">
-            <h94>Choose File:</h94>
-          </label>
+          <div><h3 className="upload-files">Upload a File</h3>
           <input id="file-input12" type="file" accept="application/pdf" onChange={handleFileChange} />
-          <label>
-            <h98>Select an Option:</h98>
+          <div className="file-change-button"><label >
             <Multiselect 
              isObject={false}
             options={ options }
@@ -267,9 +263,10 @@ function DocumentBox() {
             onSelect={ (event)=> { console.log(event) }}
             showCheckbox
             />
-          
           </label>
-          <div>
+          </div>
+          </div>
+          <div className="popup-buttons-bottom">
             <button8 onClick={() => setButtonPopup(false)}>Cancel</button8>
             <button8 type="submit">Upload</button8>
           </div>
@@ -283,9 +280,11 @@ function DocumentBox() {
        <button7 onClick={() => setButtonPopup1(true)}>Download</button7>
       <Popup trigger={buttonPopup1} setTrigger={setButtonPopup1}>
         <form onSubmit={handleSubmit}>
-          <h3>Download a File</h3>
+        <div>
+          <h3 className="upload-files">Download a File</h3>
+        <div className="file-change-button">
           <label>
-            <h98>Select a file to download:</h98>
+            <h98 >Select a file to download:</h98>
             <Multiselect
             isObject={false}
             options={ options }
@@ -293,9 +292,10 @@ function DocumentBox() {
             onSelect={ (event)=> { console.log(event) }}
             showCheckbox
              />
-          </label>
-          <div>
+          </label></div>
+          <div class="popup-buttons-bottom">
             <button8 type="submit">Download</button8>
+          </div>
           </div>
         </form>
       </Popup>
@@ -349,36 +349,11 @@ function Thirdpage() {
 
 
   return (
-    <div className="app55">
-      <div className="left-section55">
-        <button10 onClick={""}> Start New Application </button10>
-        <LabTestingBox />
-        <DocumentBox />
-      </div>
-      <div>
-        <button className = "wishlist" 
-        onClick={handleWishlistClick}>
-          {isWishlisted ? 'Remove from Wishlist' : 'Add to Wishlist'}
-        </button>
-      </div>
-      <div className="video-box55">
-        <video controls>
-          <source src={videoUrl} type="video/mp4" />
-        </video>
-      </div>
-      <div className="center-section55">
-        <MiddleSection/>
-      </div>
+    <div className="app55 thirdpagefix">
+          {/*------------------Notify Section -----------------------*/}
+<div className= "notify" >
       <div className="right-section66">
-        <Link to="/introduction">Introduction</Link>
-        <Link to="/required-document">Required Document</Link>
-        <Link to="/registration-process">Registration Process</Link>
-      </div> 
-
-{/*------------------Notify Section -----------------------*/}
-      <div className= "notify" >
-      <div className="right-section66">
-      <Link className='notify' onClick={() => setButtonPopup2(true)}>Notification</Link>
+      
       </div>
       <Popup trigger={buttonPopup2} setTrigger={setButtonPopup2}>
         <div>
@@ -407,9 +382,41 @@ function Thirdpage() {
       </Popup>
       </div>
 
+      <div className="row thirdpagefix2">
+      <div className="right-section66">
+          <Link className="right-section66-links" to="/introduction">Introduction</Link>
+          <Link className="right-section66-links" to="/required-document">Required Document</Link>
+          <Link className="right-section66-links" to="/registration-process">Registration Process</Link>
+          <Link className="right-section66-links" onClick={() => setButtonPopup2(true)}>Notification</Link>
+        </div>
+        <div className="vl"></div>
+        <div className="main-container">
+          <MiddleSection/>
+          <div className="middle-section2">
+            <LabTestingBox />
+            <DocumentBox />
+          <div className="video-box55">
+            <video controls>
+              <source src={videoUrl} type="video/mp4" />
+            </video>
+          </div>
+          </div>
+        </div>
+        </div>
+       
+      {/*-----<div>
+       <button className = "wishlist" 
+        onClick={handleWishlistClick}>
+          {isWishlisted ? 'Remove from Wishlist' : 'Add to Wishlist'}
+        </button>
+      </div> -----*/}
+      
+      
+  
+
       {/*---------ChatBot Code Here---------*/}
 
-      <div1 class="vl"></div1>  
+      
     </div>
 
   );

@@ -8,6 +8,16 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 100vh;
+  background-attachment: fixed;
+}
+#root{
+  position: sticky;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
 }
 .auth-box {
   background-image: url("../bg_1.png");

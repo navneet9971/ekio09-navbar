@@ -1,5 +1,5 @@
 import React from 'react';
-import './Popup.css';
+import './Popup.css?22';
 import { AiFillCloseCircle } from 'react-icons/ai';
 
 function Popup(props) {
