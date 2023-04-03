@@ -55,12 +55,6 @@ function Fourth() {
     <div className="app55">
       <div className="left-section55">
       </div>
-      <div>
-        <button className = "wishlist1" 
-        onClick={handleWishlistClick}>
-          {isWishlisted ? 'Remove from Wishlist' : 'Add to Wishlist'}
-        </button>
-      </div>
 
       <button10 className='rdrcbtn' onClick={handleGoClick}> Start New Application </button10>
 

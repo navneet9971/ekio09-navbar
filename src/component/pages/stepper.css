@@ -1,0 +1,86 @@
+.circle {
+  width: 29px;
+  height: 29px;
+  line-height: 25px;
+  background-color: green;
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  border: 0px solid transparent;
+  cursor: pointer;
+  -moz-background-clip: padding-box;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+
+.stepWrapper {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.stepBlock .circleWrapper {
+  padding: 14px 92px;
+  position: relative;
+}
+.selected .circle {
+  color: black;
+  background-color: white;
+  border-color: green;
+}
+
+span999 {
+  margin-left: 80px;
+}
+
+button120.btn {
+  background-color: #083f81;
+  border: 0;
+  box-shadow: rgba(1, 60, 136, 0.5) 0 -1px 3px 0 inset, rgba(0, 44, 97, 0.1) 0 3px 6px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inherit;
+  font-family: "Space Grotesk";
+  font-size: 18px;
+  min-height: 21px;
+  width: 10%;
+  margin-top: 45px;
+  position: relative;
+  text-align: center;
+  touch-action: manipulation;
+}
+
+.stepBlock:not(:last-child) > .circleWrapper::after {
+  content: '';
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  background-color: green;
+  margin: auto;
+  z-index: -1;
+}
+
+.stepBlock:not(:last-child) > .circleWrapper::after {
+  height: 3px;
+}
+
+.stepBlock:not(:last-child).selected > .circleWrapper::after, .stepBlock:not(:last-child).selected ~ .stepBlock:not(:last-child) > .circleWrapper::after {
+  height: 2px;
+  opacity: 0.6;
+}
+
+.primaryButton {
+  padding: 10px 25px;
+  background-color: green;
+  border: none;
+  margin: 10px;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.primaryButton:disabled {
+  opacity: 0.5;
+}

@@ -16,7 +16,7 @@ import Thirdpage from "./component/pagesscrn4/Thirdpage";
 import Fourthpage from "./component/pagesscrn4/Fourthpage";
 import ClientDashboard from "./component/pagesscrn4/client-dashbord/Clientdashboard";
 import Navbar from "./component/pagesscrn4/Navbar/Navbar";
-import Edit from "./component/pages/Edit";
+import Edit from "./component/pages/ComplianceTypePage";
 import Bookmarks from "./component/pages/account-pages/Bookmarks";
 import Editprofile from "./component/pages/account-pages/Editprofile";
 import Notifaction from "./component/pages/account-pages/Notifaction";
@@ -60,7 +60,7 @@ const App = () => {
             <Route path="/navbar/review">
               <Review />
             </Route>
-            <Route path="/navbar/edit/:id">
+            <Route path="/navbar/ComplianceTypePage/:id">
               <Edit />
             </Route>
             <Route path="/navbar/check">
