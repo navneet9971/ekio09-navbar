@@ -12,6 +12,7 @@ i {
 }
 /*----------bootstrap-navbar--button---css------------*/
 button99 {
+  margin-right:60px;
   position: absolute;
   transform: translate(20%, -120%);
   margin-left: 86%;
@@ -213,6 +214,7 @@ button99:active {
     position: unset !important;
     transform: none !important;
     margin: 0;
+    margin-right: 20px;
     right: 0;
     font-size: 10px;
     padding: 5px 10px;

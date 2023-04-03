@@ -14,7 +14,7 @@ function MiddleSection() {
 
 function Fourth() {
   const [videoUrl, setVideoUrl] = useState('');
-  const [isWishlisted, setIsWishlisted] = useState(false);
+  //const [isWishlisted, setIsWishlisted] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
@@ -27,26 +27,6 @@ function Fourth() {
   }, []);
 
 
-  const handleWishlistClick = () => {
-    if (!isWishlisted) {
-      // Add the video to the wishlist
-      const wishlist = JSON.parse(localStorage.getItem('bookmarkItem') || '[]');
-      wishlist.push({ name: 'Video 1', url: videoUrl });
-      localStorage.setItem('bookmarkItem', JSON.stringify(wishlist));
-      setIsWishlisted(true);
-    } else {
-      // Remove the video from the wishlist
-      const wishlist = JSON.parse(localStorage.getItem('bookmarkItem') || '[]');
-      const index = wishlist.findIndex(item => item.url === videoUrl);
-      if (index > -1) {
-        wishlist.splice(index, 1);
-        localStorage.setItem('bookmarkItem', JSON.stringify(wishlist));
-        setIsWishlisted(false);
-      }
-    }
-  };
-
-
   const handleGoClick = () => {
     history.push('/navbar/firstpage');
   };
@@ -54,12 +34,6 @@ function Fourth() {
   return (
     <div className="app55">
       <div className="left-section55">
-      </div>
-      <div>
-        <button className = "wishlist1" 
-        onClick={handleWishlistClick}>
-          {isWishlisted ? 'Remove from Wishlist' : 'Add to Wishlist'}
-        </button>
       </div>
 
       <button10 className='rdrcbtn' onClick={handleGoClick}> Start New Application </button10>
