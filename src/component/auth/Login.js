@@ -28,9 +28,7 @@ function Login() {
       });
       result = await result.json()
       console.warn("result", result)
-      history.push("/navbar/clientdashboard");
-      
-    
+      history.push("/navbar/clientdashboard"); 
   };
 
   
@@ -59,6 +57,7 @@ function Login() {
               placeholder="Username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
+              required
             />
           </div>
           <div className="input-box">
@@ -68,6 +67,7 @@ function Login() {
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
           </div>
           <button1 onClick={onSubmitData}>Login</button1>
