@@ -55,10 +55,10 @@ function Stepper() {
               } `}
             >
               <div
-                className="circleWrapper"
+                className="rightWrapper"
                 onClick={() => updateCurrentStep(i + 1)}
               >
-                <div className="circle">
+                <div className="arrow-right">
                   {i + 1 < current || complete ? (
                     <TiTick size={24} />
                   ) : (

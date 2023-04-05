@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { FaUserAlt, FaLock } from "react-icons/fa";
@@ -28,7 +29,11 @@ function Login() {
       result = await result.json()
       console.warn("result", result)
       history.push("/navbar/clientdashboard");
+      
+    
   };
+
+  
 
   return (
     <div className="auth-box">
@@ -51,7 +56,7 @@ function Login() {
           <div className="input-box">
             <FaUserAlt />
             <input
-              placeholder="Email"
+              placeholder="Username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />

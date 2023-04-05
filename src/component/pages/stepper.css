@@ -37,19 +37,12 @@ button.clidown {
   margin-left: 34em;
 }
 
-.circle {
-  width: 29px;
-  height: 29px;
-  line-height: 25px;
-  background-color: blue;
-  color: white;
-  border-radius: 50%;
-  text-align: center;
-  border: 0px solid transparent;
-  cursor: pointer;
-  -moz-background-clip: padding-box;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
+.arrow-right {
+ border: solid green;
+ border-width: 0 3px 3px 0;
+ display: inline-block;
+  padding: 3px;
+  transform: rotate(-45deg);
 }
 
 .row {

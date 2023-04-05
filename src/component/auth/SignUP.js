@@ -29,7 +29,7 @@ function SignUP() {
       });
       result = await result.json()
       console.warn("result", result)
-      history.push('/Login')
+      history.push('/#')
     }
 
   return (
