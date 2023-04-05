@@ -27,11 +27,14 @@ function Login() {
       });
       result = await result.json()
       console.warn("result", result)
-      history.push("/navbar/clientdashboard");    
+      history.push("/navbar/clientdashboard");
+      
     
   };
 
-return (
+  
+
+  return (
     <div className="auth-box">
       <div className="login">
         <div className="form">

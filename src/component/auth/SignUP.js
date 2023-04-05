@@ -13,7 +13,7 @@ function SignUP() {
   const [username,set_username]=useState("")
   const [password,set_password]=useState("")
   const [password2, set_password2] = useState("")
-
+   
   async function submitData(){
 
     let item={username,password,password2,email,first_name,last_name,organization_name,mobile}
@@ -35,7 +35,7 @@ function SignUP() {
   return (
     <div className="auth-box">
       <div className="signup">
-        <div class="left-box">
+        <div className="left-box">
           <Row gutter={[24, 0]}>
             <Col xs={24} md={12}>
               <label1>First Name</label1>
@@ -44,7 +44,7 @@ function SignUP() {
                 placeholder=""
                 name="first_name"
                 value={first_name}
-                onChange={(e) => set_first_name(e.target.value)}
+                onChange={(e)=>set_first_name(e.target.value)}
                 required
               />
             </Col>
@@ -93,7 +93,7 @@ function SignUP() {
               />
             </Col>
             <Col xs={24} md={24}>
-              <label1>UserName</label1>
+              <label1>Username</label1>
               <input
                 type="text"
                 placeholder=""
@@ -130,7 +130,7 @@ function SignUP() {
             REGISTER NOW
           </button>
         </div>
-        <div class="right-box">
+        <div className="right-box">
           {/* <h2>ElKOMP</h2>
         <p className="p_signup">Efficient Compliances.</p> */}
           <img
@@ -146,3 +146,4 @@ function SignUP() {
 }
 
 export default SignUP;
+
