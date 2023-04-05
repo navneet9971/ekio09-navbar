@@ -8,7 +8,6 @@ import Add from "./component/pages/Add";
 import Review from "./component/pages/Review";
 import Myaccount from "./component/pages/Myaccount";
 import Download from "./component/pages/Download";
-import Check from "./component/pages/Check";
 import SignUP from "./component/auth/SignUP";
 import Firstpage from "./component/pagesscrn4/Firstpage";
 import Secondpage from "./component/pagesscrn4/Secondpage";
@@ -17,6 +16,7 @@ import Fourthpage from "./component/pagesscrn4/Fourthpage";
 import ClientDashboard from "./component/pagesscrn4/client-dashbord/Clientdashboard";
 import Navbar from "./component/pagesscrn4/Navbar/Navbar";
 import Edit from "./component/pages/ComplianceTypePage";
+import CompletedComplince from "./component/pages/Completedcompliancetype";
 import Bookmarks from "./component/pages/account-pages/Bookmarks";
 import Editprofile from "./component/pages/account-pages/Editprofile";
 import Notifaction from "./component/pages/account-pages/Notifaction";
@@ -66,9 +66,12 @@ const App = () => {
             <Route path="/navbar/ComplianceTypePage/:id">
               <Edit />
             </Route>
-            <Route path="/navbar/check">
-              <Check />
+
+            <Route path="/navbar/Completedcompliancetype/:id">
+              <CompletedComplince />
             </Route>
+
+
             <Route path="/navbar/download">
               <Download />
             </Route>

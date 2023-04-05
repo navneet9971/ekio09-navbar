@@ -124,19 +124,6 @@ const Navbar = () => {
 
           <li
             className={
-              pathname === "/navbar/check" ? "active nav-item" : "nav-item"
-            }>
-            <NavLink
-              className="nav-link"
-              to="/navbar/check"
-              // onClick={handleToggle}
-            >
-              Checklist of Compliance
-            </NavLink>
-          </li>
-
-          <li
-            className={
               pathname === "/navbar/add" ? "active nav-item" : "nav-item"
             }>
             <NavLink

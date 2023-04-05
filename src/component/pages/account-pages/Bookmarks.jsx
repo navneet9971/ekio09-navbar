@@ -80,7 +80,7 @@ function Bookmark() {
       )}
 
       <div className="table-wrapper">
-      <table class="Review">
+      <table className="Review">
         <thead>
           <tr>
             <th className="header">S.NO</th>
@@ -151,4 +151,3 @@ function Bookmark() {
 }
 
 export default Bookmark;
-

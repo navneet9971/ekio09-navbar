@@ -376,6 +376,12 @@ h802{
   margin: 7em;
 }
 
+h805 {
+  font-size: 25px;
+  font-weight: 600;
+  margin: 3em;
+}
+
 label.st8012 {
   display: flex;
   flex-direction: row;
@@ -422,6 +428,19 @@ button.btn808 {
 }
 
 button.btn808:hover{
+  background-color: green;
+}
+
+button.btn809 {
+  width: 120px;
+  margin-top: 9px;
+  height: 30px;
+  background-color: skyblue;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+button.btn809:hover{
   background-color: green;
 }
 
@@ -527,26 +546,6 @@ button8, button8:focus {
       border-bottom: 2px solid rgb(50, 50, 50);
     }
 
-    /*------Third page request popup form CSS----------  */
-
-    input#streetAddress {
-      
-  }
- 
-  input#postalCode {
-  }
-
-input#city {
- 
-}
-  
-input#contactName {
-  
-}
-
-input#contactNumber {
- 
-}
   /*-------------ThirdPage Butoon CSS--------------*/
   button5,
   button7,
@@ -609,8 +608,8 @@ input#contactNumber {
 
    video {
     position: absolute;
-    top: 72%;
-    left: 76%;
+    top: 102%;
+    left: 76.4%;
 }
 video.videoBox {
   position: absolute;

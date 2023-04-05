@@ -28,7 +28,6 @@ const Firstpage = () => {
     history.push('/navbar/secondpage');
   };
 
-
   return (
     <div className="first-container22">
       <h3>Please Enter the following details to Start a new application :</h3>
@@ -57,8 +56,7 @@ const Firstpage = () => {
         </div>
       </div>
 
-      <div className="gobutton22"> <button onClick={handleGoClick}>GO</button></div>
-     
+      <div className="gobutton22"> <button onClick={handleGoClick}>GO</button></div>     
     </div>
   );
 };

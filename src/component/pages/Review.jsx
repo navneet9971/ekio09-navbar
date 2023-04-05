@@ -21,21 +21,30 @@ function Review() {
   const [filterStatus, setFilterStatus] = useState("");
   const history = useHistory();
 
-  const handleClick = (id, projectCode) => {
+
+  const handleClick = (id, projectCode, complianceType) => {
     const selectedItem = data.find((item) => item.id === id);
-    history.push(`/navbar/ComplianceTypePage/${selectedItem.complianceType}?name=${selectedItem.complianceType}&projectCode=${selectedItem.projectCode}`);
+    const selectedStatus = selectedItem.status === "on-going" ? "on-going" : "completed";
+    history.push(`/navbar/${selectedStatus === "on-going" ? "ComplianceTypePage" : "Completedcompliancetype"}/${selectedItem.complianceType}?name=${selectedItem.complianceType}&projectCode=${selectedItem.projectCode}`);
   };
   
-
-  <select
-  value={filterStatus}
-  onChange={(event) => setFilterStatus(event.target.value)}
->
-  <option value="">All</option>
-  <option value="on-going">On-going</option>
-  <option value="completed">Completed</option>
-</select>
-
+  const handleFilterStatusChange = (event) => {
+    const selectedStatus = event.target.value;
+    setFilterStatus(selectedStatus);
+  
+    if (selectedStatus === "all") {
+      history.push("/navbar");
+    } else {
+      history.push(`/navbar/${selectedStatus}`);
+    }
+  };
+  
+  <select value={filterStatus} onChange={handleFilterStatusChange}>
+    <option value="all">All</option>
+    <option value="on-going">On-going</option>
+    <option value="completed">Completed</option>
+  </select>
+  
 
   const handleFilterDateChange = (event) => {
     const selectedDate = event.target.value;

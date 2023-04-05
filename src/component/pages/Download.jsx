@@ -89,7 +89,7 @@ function Download() {
       )}
 
       <div className="table-wrapper">
-        <table class="Review">
+        <table classNamee="Review">
           <thead>
             <tr>
               <th className="header">S.NO</th>
