@@ -13,27 +13,27 @@ function Login() {
     history.push("/signup");
   };
 
-  const onSubmitData = () => {
-    if (validateUsername(username) && validatePassword(password)) {
-      setUser(true);
-    } else {
-      alert("Invalid username or password.");
-    }
+  async function onSubmitData(){
+    let item={username,password}
+    
+    console.warn(item)    
+   
+      let result = await fetch("https://eikomp.pythonanywhere.com/login",{
+      method:'POST',
+      headers: {
+        "Content-Type" : 'application/json',
+        "Accept" : 'application/json'
+      },
+      body:JSON.stringify(item),
+      });
+      result = await result.json()
+      console.warn("result", result)
+      history.push("/navbar/clientdashboard");
+      
+    
   };
 
-  const validateUsername = (username) => {
-    return /^[\w.%+-]+@[\w.-]+\.[a-zA-Z]{2,}$/.test(username);
-  };
-
-  const validatePassword = (password) => {
-    return /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{6,12}$/.test(
-      password
-    );
-  };
-
-  if (user) {
-    history.push("/navbar/clientdashboard");
-  }
+  
 
   return (
     <div className="auth-box">

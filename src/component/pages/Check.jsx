@@ -51,7 +51,7 @@ const Checklist = () => {
     <div className="table">
       <h1>List of Compliance</h1>
       <div className="table-wrapper">
-      <table class="Review">
+      <table className="Review">
         <thead>
           <tr>
             <th>S.no</th>

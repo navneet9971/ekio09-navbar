@@ -52,7 +52,7 @@ function Fourth() {
         <Link to="/required-document">Required Document</Link>
         <Link to="/registration-process">Registration Process</Link>
       </div> 
-      <div1 class="vl"></div1>  
+      <div1 className="vl"></div1>  
     </div>
 
   );
