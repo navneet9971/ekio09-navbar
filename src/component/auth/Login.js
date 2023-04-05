@@ -28,11 +28,7 @@ function Login() {
       result = await result.json()
       console.warn("result", result)
       history.push("/navbar/clientdashboard");
-      
-    
   };
-
-  
 
   return (
     <div className="auth-box">
@@ -55,7 +51,7 @@ function Login() {
           <div className="input-box">
             <FaUserAlt />
             <input
-              placeholder="Username"
+              placeholder="Email"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
