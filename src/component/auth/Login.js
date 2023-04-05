@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { FaUserAlt, FaLock } from "react-icons/fa";
@@ -8,30 +7,30 @@ function Login() {
   const history = useHistory();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const submitData = () => {
     history.push("/signup");
   };
 
-  async function onSubmitData(){
-    let item={username,password}
-    
-    console.warn(item)    
-   
-      let result = await fetch("https://eikomp.pythonanywhere.com/login",{
-      method:'POST',
-      headers: {
-        "Content-Type" : 'application/json',
-        "Accept" : 'application/json'
-      },
-      body:JSON.stringify(item),
-      });
-      result = await result.json()
-      console.warn("result", result)
-      history.push("/navbar/clientdashboard"); 
-  };
+  async function onSubmitData() {
+    let item = { username, password };
 
-  
+    let result = await fetch("https://eikomp.pythonanywhere.com/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(item),
+    });
+    result = await result.json();
+    if (result.message === "Login failed") {
+      setError("Invalid username or password");
+    } else {
+      history.push("/navbar/clientdashboard");
+    }
+  }
 
   return (
     <div className="auth-box">
@@ -54,7 +53,7 @@ function Login() {
           <div className="input-box">
             <FaUserAlt />
             <input
-              placeholder="Username"
+              placeholder="Email"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
@@ -70,6 +69,7 @@ function Login() {
               required
             />
           </div>
+          {error && <p className="error">{error}</p>}
           <button1 onClick={onSubmitData}>Login</button1>
           <Link to="#">Forgot Password?</Link>
         </div>
