@@ -3,8 +3,6 @@ import { Col, Row } from "antd";
 import { useHistory } from "react-router-dom";
 import "../assets/css/global.css";
 
-
-
 function SignUP() {
   const [first_name,set_first_name]=useState("")
   const [last_name,set_last_name]=useState("")

@@ -55,8 +55,9 @@ const Navbar = () => {
   }, [pathname]);
 
   function handleLogout() {
+    localStorage.removeItem("user-info");
     // perform any necessary actions for logging out the user
-    history.push("/#"); // redirect to login page after logout
+    history.push("#"); // redirect to login page after logout
   }
   const isStartApplicationActive =
   pathname === "/navbar/firstpage" ||
