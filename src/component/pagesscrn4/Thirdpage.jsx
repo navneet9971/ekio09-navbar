@@ -542,7 +542,7 @@ function DocumentBox() {
             showCheckbox
              />
           </label>
-          <div>
+          <div className="popup-buttons-bottom">
             <button8 type="submit">Download</button8>
           </div>
         </form>

@@ -1,36 +1,44 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 import "../assets/css/global.css";
 
+
 function Login() {
-  const history = useHistory();
+  const [user, setUser] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const history = useHistory();
+  useEffect( () => {
+  if (localStorage.getItem('user-info')){
+    history.push("/navbar/clientdashboard")
+  }
+}, [])
 
   const submitData = () => {
-    history.push("/signup");
+    history.push("/navbar/clientdashboard");
   };
 
-  async function onSubmitData() {
-    let item = { username, password };
-
-    let result = await fetch("https://eikomp.pythonanywhere.com/login", {
-      method: "POST",
+  async function onSubmitData(){
+    let item={username,password}
+    
+    console.warn(item)    
+   
+      let result = await fetch("https://eikomp.pythonanywhere.com/login",{
+      method:'POST',
       headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
+        "Content-Type" : 'application/json',
+        "Accept" : 'application/json'
       },
-      body: JSON.stringify(item),
-    });
-    result = await result.json();
-    if (result.message === "Login failed") {
-      setError("Invalid username or password");
-    } else {
-      history.push("/navbar/clientdashboard");
-    }
-  }
+      body:JSON.stringify(item),
+      });
+      result = await result.json()
+      console.warn("result", result)
+      history.push("/navbar/clientdashboard")
+      localStorage.setItem("user-info", JSON.stringify(result))
+  };
+
+  
 
   return (
     <div className="auth-box">
@@ -53,10 +61,9 @@ function Login() {
           <div className="input-box">
             <FaUserAlt />
             <input
-              placeholder="Email"
+              placeholder="Username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              required
             />
           </div>
           <div className="input-box">
@@ -66,10 +73,8 @@ function Login() {
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              required
             />
           </div>
-          {error && <p className="error">{error}</p>}
           <button1 onClick={onSubmitData}>Login</button1>
           <Link to="#">Forgot Password?</Link>
         </div>

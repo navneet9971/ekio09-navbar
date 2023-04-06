@@ -3,8 +3,9 @@ import { Col, Row } from "antd";
 import { useHistory } from "react-router-dom";
 import "../assets/css/global.css";
 
+
+
 function SignUP() {
-  const history = useHistory();
   const [first_name,set_first_name]=useState("")
   const [last_name,set_last_name]=useState("")
   const [organization_name,set_organization_name]=useState("")
@@ -13,6 +14,7 @@ function SignUP() {
   const [username,set_username]=useState("")
   const [password,set_password]=useState("")
   const [password2, set_password2] = useState("")
+  const history = useHistory();
    
   async function submitData(){
 
@@ -29,7 +31,8 @@ function SignUP() {
       });
       result = await result.json()
       console.warn("result", result)
-      history.push('/#')
+      history.push('login')
+      localStorage.setItem("user-info".JSON.stringify(result))
     }
 
   return (
