@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link,  useHistory } from 'react-router-dom';
-import "./Pages.css";
-import Popup from "./popup/Popup";
+import "../Pages.css";
+import Popup from "../popup/Popup";
 import { TiTick } from "react-icons/ti";
 import Multiselect from 'multiselect-react-dropdown';
 

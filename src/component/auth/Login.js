@@ -1,36 +1,48 @@
-import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { FaUserAlt, FaLock } from "react-icons/fa";
+import React, {useState} from "react";
+import { Link, useHistory} from "react-router-dom";
+import { FaUserAlt, FaLock} from "react-icons/fa";
 import "../assets/css/global.css";
+import axiosInstance from "../../interceptors/axios";
+
 
 function Login() {
   const history = useHistory();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const initialFormData = Object.freeze({
+    username: '',
+    password: '',
+  });
+  const  [formData, updateFormData] = useState(initialFormData);
 
-  const submitData = () => {
-    history.push("/signup");
+  const handleChange = (e) => {
+    updateFormData({
+      ...formData,
+      [e.target.name]: e.target.value.trim(),
+    });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+
+    axiosInstance
+    .post(`login/`,{
+      username: formData.username,
+      password: formData.password,
+    })
+    .then((res) => {
+      localStorage.setItem('access_token', res.data.access);
+      localStorage.setItem('refresh_token', res.data.refresh);
+      localStorage.setItem('user_id', res.data.profile.username);
+      axiosInstance.defaults.headers['Authorization'] = 
+      'JWT ' + localStorage.getItem('access_token');
+      history.push('navbar/clientdashboard');
+      //console.log(res);
+      //console.log(res.data); 
+    });
   };
 
-  async function onSubmitData() {
-    let item = { username, password };
-
-    let result = await fetch("https://eikomp.pythonanywhere.com/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(item),
-    });
-    result = await result.json();
-    if (result.message === "Login failed") {
-      setError("Invalid username or password");
-    } else {
-      history.push("/navbar/clientdashboard");
-    }
-  }
+  const signUpButton = () => {
+    history.push("/signup");
+  };
 
   return (
     <div className="auth-box">
@@ -45,7 +57,7 @@ function Login() {
               alt="logo"
             />
             <p>Don't have an account?</p>
-            <button1 onClick={submitData} style={{ cursor: "pointer" }}>
+            <button1 onClick={signUpButton} style={{ cursor: "pointer" }}>
               Sign up
             </button1>
             <h3 style={{ padding: 0 }}>WELCOME</h3>
@@ -53,24 +65,21 @@ function Login() {
           <div className="input-box">
             <FaUserAlt />
             <input
-              placeholder="Email"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
+              name="username"
+              placeholder="Username"
+              onChange={handleChange}
+              />
           </div>
           <div className="input-box">
             <FaLock />
             <input
+              name="password"
               type="password"
               placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
+              onChange={handleChange}
             />
           </div>
-          {error && <p className="error">{error}</p>}
-          <button1 onClick={onSubmitData}>Login</button1>
+          <button1 onClick={handleSubmit}>Login</button1>
           <Link to="#">Forgot Password?</Link>
         </div>
       </div>

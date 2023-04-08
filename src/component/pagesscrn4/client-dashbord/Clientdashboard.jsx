@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Row, Col } from "antd";
 import { Link} from "react-router-dom";
 import { ReactComponent as Thumb1 } from "../../assets/images/welcome/1.svg";
@@ -7,8 +7,25 @@ import { ReactComponent as Thumb3 } from "../../assets/images/welcome/3.svg";
 import { ReactComponent as Thumb4 } from "../../assets/images/welcome/4.svg";
 import Thumb5png from "../../assets/images/welcome/5.png";
 import "./Clientdashboard.css";
+import axiosInstance from "../../../interceptors/axios";
 
 const ClientDashboard = () => {
+  const [first_name, setFirstName] = useState("");
+  const [last_name, setLastName] = useState("");
+  axiosInstance
+			.get(`user/${localStorage.getItem('user_id')}/`, {
+				headers: {          
+          Authorization: localStorage.getItem('access_token')
+          ? 'JWT ' + localStorage.getItem('access_token')
+          : null,
+          'Content-Type': 'application/json',
+          accept: 'application/json',
+        }
+			})
+			.then((res) => {
+        setFirstName(res.data.first_name);
+        setLastName(res.data.last_name);
+			});
 
   const WELCOME_OPTIONS = [
     {
@@ -41,7 +58,7 @@ const ClientDashboard = () => {
 
   return (
     <div className="welcome">
-      <div className="nav-box">Welcome</div>
+      <div className="nav-box">Welcome { first_name} {last_name}</div>
       <div className="welcome-options">
         <Row>
           {WELCOME_OPTIONS.map((item, index) => (

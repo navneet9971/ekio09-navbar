@@ -38,11 +38,88 @@ button.clidown {
 }
 
 .arrow-right {
- border: solid green;
- border-width: 0 3px 3px 0;
- display: inline-block;
-  padding: 3px;
-  transform: rotate(-45deg);
+  background: linear-gradient(90deg, rgba(28,73,7,1) 0%, rgba(29,193,29,0.9836309523809523) 50%, rgba(25,159,25,1) 100%);
+  clip-path: polygon(50% 0%, 90% 51%, 50% 100%, 3% 100%, 32% 50%, 0% 0%);
+  width: 149px;
+  height: 95px;
+  margin-top: 10em;
+}
+
+.circle23 {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  background-color: green;
+  /* float: left; */
+  margin-left: 1.1em;
+  top: 25em;
+}
+
+.circle24 {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  background-color: green;
+  /* float: left; */
+  margin-left: 1.1em;
+  top: 28em;
+}
+
+.line {
+  margin-top: 106px;
+  margin-left: -49px;
+  width: 159px;
+  height: 2px;
+  background-color: green;
+  float: left;
+  transform: rotateZ(90deg);
+}
+
+.trck1 {
+  width: 99px;
+  height: 120px;
+  margin-left: 22px;
+  margin-top: -10px;
+}
+
+.clickedColor {
+  background-color: red;
+}
+
+
+img.pdfico1 {
+  /* position: absolute; */
+  width: 51px;
+  margin-top: -16.5px;
+  margin-left: 49.8px;
+}
+
+
+.tc, .wp, .be, .bi, .ep, .legal, .isi, .management {
+  margin-left: 39px;
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 62px;
+  margin-top: 16px;
+}
+
+.pdf-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tick-mark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.container {
+  text-align: center;
 }
 
 .row {
@@ -54,26 +131,21 @@ button.clidown {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 26px;
 }
 
 .circle12 {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   background-color: rgb(85, 214, 85);
-  margin-bottom: 10px;
-  margin-left: 4em;
+  margin-top: -17px;
+  margin-left: 5.7em;
 }
-
-.tc, .wp, .be, .bi, .ep, .legal, .isi, .management {
-  margin-left: 4em;
-  font-size: 16px;
-  margin-bottom: 20px;
-}
-
 
 
 .stepWrapper {
@@ -92,7 +164,7 @@ button.clidown {
 }
 
 h4.ste {
-  text-align: center;
+  margin-top: 60px;
 }
 
 button120.btn {

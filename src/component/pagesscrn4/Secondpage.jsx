@@ -6,25 +6,25 @@ const Secondpage = () => {
   const history = useHistory();
   const [complianceData, setComplianceData] = useState([
     {
-      id: 1,
+      id: "TEC",
       sno: 1,
-      name: "Compliance 1",
+      name: "TEC",
       status: "Status 1",
       description: "Description 1",
       video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
     },
     {
-      id: 2,
+      id: "WPS",
       sno: 2,
-      name: "Compliance 2",
+      name: "WPS",
       status: "Status 2",
       description: "Description 2",
       video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
     },
     {
-      id: 3,
+      id: "BIS",
       sno: 3,
-      name: "Compliance 3",
+      name: "BIS",
       status: "Status 3",
       description: "Description 3",
       video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
@@ -45,10 +45,20 @@ const Secondpage = () => {
     e.preventDefault();
     window.open(videoUrl, "Compliance Video", "width=800,height=600");
   };
+ 
 
-  const handleClick = (id) => {
-    history.push(`/navbar/compliance/${id}`);
+  const handleClick = (complianceName) => {
+    if (complianceName === "TEC") {
+      history.push(`/navbar/compliance/TEC`);
+    } else if (complianceName === "WPS") {
+      history.push(`/navbar/compliance/WPS`);
+    } else if (complianceName === "BIS") {
+      history.push(`/navbar/compliance/BIS`);
+    } else {
+      // handle other compliance names
+    }
   };
+  
 
   return (
     <div className="table">
@@ -69,11 +79,12 @@ const Secondpage = () => {
             <tr key={compliance.id}>
               <td>{compliance.sno}</td>
               <td
-                className="clickable"
-                onClick={() => handleClick(compliance.id)}
-              >
-                {compliance.name}
-              </td>
+  className="clickable"
+  onClick={() => handleClick(compliance.name)}
+>
+  {compliance.name}
+</td>
+
               <td>{compliance.status}</td>
               <td>{compliance.description}</td>
               <td>

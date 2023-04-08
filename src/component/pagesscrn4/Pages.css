@@ -412,6 +412,65 @@ input.st805 {
   padding: 2px;
 }
 
+label.st8017 {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.name-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+.names {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.manufacunit, .manufacunit1 {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.designations {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-left: 41px;
+}
+
+.st8012 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-bottom: 10px;
+}
+
+.st805 {
+  margin-left: 5px;
+}
+
+h3.Contctprson,
+h3.topmang,
+h3.techni {
+  color: red;
+}
+
+
 input[type="file"] {
   margin: 3px;
   margin-left: auto;

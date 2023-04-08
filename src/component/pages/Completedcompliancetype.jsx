@@ -3,6 +3,19 @@ import { useLocation } from "react-router-dom";
 import { TiTick } from "react-icons/ti";
 import jsPDF from 'jspdf';
 import "./stepper.css";
+import Thum1png from "../../component/assets/track-icon/Icons01.png";
+import Thum2png from "../../component/assets/track-icon/Icons02.png";
+import Thum3png from "../../component/assets/track-icon/Icons03.png";
+import Thum4png from "../../component/assets/track-icon/Icons04.png";
+import Thum5png from "../../component/assets/track-icon/Icons05.png";
+import file1png from "../../component/assets/pdficon/Green01.png";
+import file2png from "../../component/assets/pdficon/Green02.png";
+import file3png from "../../component/assets/pdficon/Green03.png";
+import file4png from "../../component/assets/pdficon/Green04.png";
+import file5png from "../../component/assets/pdficon/Red01.png";
+import file6png from "../../component/assets/pdficon/Red02.png";
+import file7png from "../../component/assets/pdficon/Red03.png";
+import file8png from "../../component/assets/pdficon/Red04.png";
 
 
 function Compdownload() {
@@ -11,13 +24,23 @@ function Compdownload() {
     const name = searchParams.get("name");
     const projectCode = searchParams.get("projectCode");
     const steps = ["Form Submitted", "Lab Testing", "Sample Completed", "End"];
-    const [currentStep, updateCurrentStep] = useState(1);
+    const [currentStep] = useState(1);
     const [current, setCurrentStep] = useState(1);
     const [complete, setComplete] = useState(false);
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
+    const [clickedColor, setClickedColor] = useState(false);
+    const [setClickedNext] = useState(false); // add state variable for tracking button click
+    const newSteps = ["Application Submitted", "Sample sent for testing", "Test report generated", "Documents pending with authorities", "Final report generated"];
   
     
+    const handleUpdateCurrentStep = (step) => {
+      setCurrentStep(step);
+      setClickedNext(true);
+      setClickedColor(true);
+    };
+
+
     const calculateEndDate = () => {
       const currentDate = new Date();
       const endDate = new Date(currentDate.setDate(currentDate.getDate() + 45));
@@ -58,85 +81,125 @@ function Compdownload() {
         <h1 className="appli">Application Number: {projectCode}</h1>
         <button className="clidown" onClick={handleDownload}>Download</button>
   
-          <div className="stepWrapper">
-            {steps?.map((step, i) => (
-              <div
-                key={i}
-                className={`stepBlock ${currentStep === i + 1 && "active"} ${
-                  (i + 1 < currentStep || complete) && "complete"
-                } `}
-              >
-                <div
-                  className="circleWrapper"
-                  onClick={() => updateCurrentStep(i + 1)}
-                >
-                  <div className="circle">
-                    {i + 1 < current || complete ? (
-                      <TiTick size={24} />
-                    ) : (
-                      i + 1
-                    )}
-                  </div>
-                </div>
-                <h4 className="ste">{step}</h4>
-              </div>
-            ))}
-          </div>
-          
-            <div>
-            {!complete && (
-      <div class="row">
-        <div className="col">
-          <div>
-            <div className="circle12">
-              {current >= 2 ? <TiTick size={24} /> : null}
-            </div>
-            <h3 className="tc">Signatory Authorization</h3>
-            <div className="circle12">
-              {current >= 2 ? <TiTick size={24} /> : null}
-            </div>
-            <h3 className="wp">OEM Authorization</h3>
-          </div>
+         
+        <div className="stepWrapper">
+  {newSteps.map((step, i) => (
+    <div
+      key={i}
+      className={`stepBlock ${currentStep === i + 1 && "active"} ${
+        (i + 1 < currentStep || complete) && "complete"
+      } `}
+    >
+      <h4 className="ste">{step}</h4>
+      <div className="circle24"></div> 
+      <div className="line"></div> 
+      <div className="rightWrapper" onClick={() => handleUpdateCurrentStep(i + 1)}>
+        <div
+          className={`arrow-right ${ clickedColor && "clicked"} ${
+            i === 0 ? "arrow1" : ""
+          } ${i === 1 ? "arrow2" : ""} ${i === 2 ? "arrow3" : ""} ${
+            i === 3 ? "arrow4" : ""
+          } ${i === 4 ? "arrow5" : ""}`}
+        >
+          {i === 0 && <img src={Thum1png} alt="" className="trck1" />}
+          {i === 1 && <img src={Thum2png} alt="" className="trck1" />}
+          {i === 2 && <img src={Thum3png} alt="" className="trck1" />}
+          {i === 3 && <img src={Thum4png} alt="" className="trck1" />}
+          {i === 4 && <img src={Thum5png} alt="" className="trck1" />}
         </div>
-        
-  
-             <div className="col">
-          <div>
-            <div className="circle12">
-            {current >= 2 ? <TiTick size={24} /> : null}
-            </div>
-            <h3 className="be">MOU</h3>
-            <div className="circle12">
-            {current >= 2 ? <TiTick size={24} /> : null}
-            </div>
-            <h3 className="bi">Shareholding Pattern</h3>
-          </div>
       </div>
-  
-  
+    </div>
+  ))}
+</div>
+          
+<div>
+  <div className="row">
     <div className="col">
+     
       <div className="circle12">
-      {current >= 2 ? <TiTick size={24} /> : null}
+        {current >= 2 ? <TiTick size={24} /> : null}
       </div>
-      <h3 className="ep">Annexure</h3>
-      <div className="circle12">
-      {current >= 2 ? <TiTick size={24} /> : null}
+      <div>  
+        <img src={file1png} alt="" className="pdfico1" />
       </div>
-      <h3 className="legal">BOM</h3>
-      </div>
+      <h3 className="tc">Signatory Authorization</h3>
+      
       <div className="col">
       <div className="circle12">
-      {current >= 2 ? <TiTick size={24} /> : null}
+        {current >= 2 ? <TiTick size={24} /> : null}
       </div>
-      <h3 className="isi">NON Applicability Proforma</h3>
+      <div>  
+        <img src={file2png} alt="" className="pdfico1" />
+      </div>
+      <h3 className="wp">OEM Authorization</h3> 
+    </div>
+    </div>
+
+    
+    <div className="col">
+    
       <div className="circle12">
-      {current >= 2 ? <TiTick size={24} /> : null}
+        {current >= 2 ? <TiTick size={24} /> : null}
+      </div>
+      <div>  
+        <img src={file3png} alt="" className="pdfico1" />
+      </div>
+      <h3 className="be">MOU</h3>
+      
+      <div className="col">
+      <div className="circle12">
+        {current >= 2 ? <TiTick size={24} /> : null}   
+      </div>
+      <div>  
+        <img src={file4png} alt="" className="pdfico1" />
+      </div>
+      <h3 className="bi">Shareholding Pattern</h3>
+    </div>
+    </div>
+
+
+    <div className="col">
+      <div className="circle12">
+        {current >= 2 ? <TiTick size={24} /> : null} 
+      </div>
+      <div>  
+        <img src={file5png} alt="" className="pdfico1" />
+      </div>
+      <h3 className="ep">Annexure 1</h3>
+      
+      <div className="col">
+      <div className="circle12">
+        {current >= 2 ? <TiTick size={24} /> : null}
+      </div>
+      <div>  
+        <img src={file6png} alt="" className="pdfico1" />
+      </div>
+      <h3 className="legal">BOM</h3>
+    </div>
+    </div>
+
+    <div className="col">
+      <div className="circle12">
+        {current >= 2 ? <TiTick size={24} /> : null}
+      </div>
+      <div>  
+        <img src={file7png} alt="" className="pdfico1" />
+      </div>
+      <h3 className="isi">Non Applicability Proforma</h3>
+      
+      <div className="col">
+      <div className="circle12">
+        {current >= 2 ? <TiTick size={24} /> : null}
+      </div>
+      <div>  
+        <img src={file8png} alt="" className="pdfico1" />
       </div>
       <h3 className="management">Proforma Seeking Exemption</h3>
-      </div>
-      </div>
-      )}
-      </div>
+    </div>
+    </div>
+
+  </div>
+</div>
       
       
    {startDate && endDate && (

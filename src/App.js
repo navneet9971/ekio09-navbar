@@ -11,7 +11,8 @@ import Download from "./component/pages/Download";
 import SignUP from "./component/auth/SignUP";
 import Firstpage from "./component/pagesscrn4/Firstpage";
 import Secondpage from "./component/pagesscrn4/Secondpage";
-import Thirdpage from "./component/pagesscrn4/Thirdpage";
+import TECForms from "./component/pagesscrn4/ComplianceForms/TECForms";
+import BISForms from "./component/pagesscrn4/ComplianceForms/BISForms";
 import Fourthpage from "./component/pagesscrn4/Fourthpage";
 import ClientDashboard from "./component/pagesscrn4/client-dashbord/Clientdashboard";
 import Navbar from "./component/pagesscrn4/Navbar/Navbar";
@@ -27,7 +28,7 @@ import Transaction from "./component/pages/account-pages/Transaction";
 
 const App = () => {
   const router = (
-    <BrowserRouter>
+    <BrowserRouter forceRefresh={true}>
       <Switch>
         <Route path="/" exact>
           <Login />
@@ -45,14 +46,18 @@ const App = () => {
         <Route path="/navbar/secondpage">
           <Secondpage />
         </Route>
-        <Route path="/navbar/compliance/:id">
-          <Thirdpage />
+        <Route path="/navbar/compliance/TEC">
+          <TECForms />
         </Route> 
-        <Route path="/navbar/compliance1/:id">
+        <Route path="/navbar/compliance/BIS">
+          <BISForms />
+        </Route> 
+        <Route path="/navbar/compliance1/WPS">
           <Fourthpage />
         </Route>  
 
-        <Route path="/navbar/success/:fileName" component={Thirdpage} />  
+        <Route path="/navbar/success/:fileName" component={TECForms} />  
+        <Route path="/navbar/success/:fileName" component={BISForms} /> 
  
         <Route path="/navbar/firstpage">
               <Firstpage />

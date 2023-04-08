@@ -1,36 +1,52 @@
 import React, { useState } from "react";
+import axiosInstance from '../../interceptors/axios';
 import { Col, Row } from "antd";
 import { useHistory } from "react-router-dom";
 import "../assets/css/global.css";
 
 function SignUP() {
   const history = useHistory();
-  const [first_name,set_first_name]=useState("")
-  const [last_name,set_last_name]=useState("")
-  const [organization_name,set_organization_name]=useState("")
-  const [email,set_email]=useState("")
-  const [mobile,set_mobile]=useState("")
-  const [username,set_username]=useState("")
-  const [password,set_password]=useState("")
-  const [password2, set_password2] = useState("")
+
+  const initialFormData = Object.freeze({
+    username: '',
+    password2: '',
+    email: '',
+    first_name: '',
+    last_name: '',
+    organization_name: '',
+    mobile: '',
+	});
+  const [formData, updateFormData] = useState(initialFormData);
+  const handleChange = (e) => {
+		updateFormData({
+			...formData,
+			// Trimming any whitespace
+			[e.target.name]: e.target.value.trim(),
+		});
+	};
    
-  async function submitData(){
+  const handleSubmit = (e) => {
+		e.preventDefault();
+		console.log(formData);
 
-    let item={username,password,password2,email,first_name,last_name,organization_name,mobile}
+		axiosInstance
+			.post(`register`, {
+        first_name: formData.first_name,
+        last_name: formData.last_name,
+				email: formData.email,
+				username: formData.username,
+				password: formData.password,
+        password2: formData.password2,
+        organization_name: formData.organization_name,
+        mobile: formData.mobile,
 
-    console.warn(item)
-      let result = await fetch("https://eikomp.pythonanywhere.com/register",{
-      method:'POST',
-      headers: {
-        "Content-Type" : 'application/json',
-        "Accept" : 'application/json'
-      },
-      body:JSON.stringify(item),
-      });
-      result = await result.json()
-      console.warn("result", result)
-      history.push('/#')
-    }
+			})
+			.then((res) => {
+				history.push('/login');
+				console.log(res);
+				console.log(res.data);
+			});
+	};
 
   return (
     <div className="auth-box">
@@ -43,8 +59,7 @@ function SignUP() {
                 type="text"
                 placeholder=""
                 name="first_name"
-                value={first_name}
-                onChange={(e)=>set_first_name(e.target.value)}
+                onChange={handleChange}
                 required
               />
             </Col>
@@ -54,8 +69,7 @@ function SignUP() {
                 type="text"
                 placeholder=""
                 name="last_name"
-                value={last_name}
-                onChange={(e)=>set_last_name(e.target.value)}
+                onChange={handleChange}
                 required
               />
             </Col>
@@ -65,8 +79,7 @@ function SignUP() {
                 type="text"
                 placeholder=""
                 name="organisation_name"
-                value={organization_name}
-                onChange={(e)=>set_organization_name(e.target.value)}
+                onChange={handleChange}
                 required
               />
             </Col>
@@ -76,8 +89,7 @@ function SignUP() {
                 type="email"
                 placeholder=""
                 name="email"
-                value={email}
-                onChange={(e)=>set_email(e.target.value)}
+                onChange={handleChange}
                 required
               />
             </Col>
@@ -87,8 +99,7 @@ function SignUP() {
                 type="tel"
                 placeholder=""
                 name="mobile"
-                value={mobile}
-                onChange={(e)=>set_mobile(e.target.value)}
+                onChange={handleChange}
                 required
               />
             </Col>
@@ -98,8 +109,7 @@ function SignUP() {
                 type="text"
                 placeholder=""
                 name="username"
-                value={username}
-                onChange={(e)=>set_username(e.target.value)}
+                onChange={handleChange}
                 required
               />
             </Col>
@@ -109,8 +119,7 @@ function SignUP() {
                 type="password"
                 placeholder=""
                 name="password"
-                value={password}
-                onChange={(e)=>set_password(e.target.value)}
+                onChange={handleChange}
                 required
               />
             </Col>
@@ -120,13 +129,12 @@ function SignUP() {
                 type="password"
                 placeholder=""
                 name="password2"
-                value={password2}
-                onChange={(e)=>set_password2(e.target.value)}
+                onChange={handleChange}
                 required
               />
             </Col>
           </Row>
-          <button onClick={submitData} className="button">
+          <button onClick={handleSubmit} className="button">
             REGISTER NOW
           </button>
         </div>
