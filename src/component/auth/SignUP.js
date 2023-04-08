@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axiosInstance from '../../interceptors/axios';
 import { Col, Row } from "antd";
-import { Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "../assets/css/global.css";
 
 function SignUP() {
