@@ -803,7 +803,6 @@ video.videoBox {
   overflow: hidden;
 }
 .first-container22 select#region-select22 {
-  -webkit-appearance: none;
   left: 0;
   width: calc(100% - 100px);
   height:45px;

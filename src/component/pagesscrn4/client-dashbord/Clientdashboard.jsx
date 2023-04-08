@@ -58,7 +58,7 @@ const ClientDashboard = () => {
 
   return (
     <div className="welcome">
-      <div className="nav-box">Welcome { first_name} {last_name}</div>
+      <div className="nav-box">Welcome {first_name} {last_name}</div>
       <div className="welcome-options">
         <Row>
           {WELCOME_OPTIONS.map((item, index) => (
