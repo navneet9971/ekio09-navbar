@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axiosInstance from '../../interceptors/axios';
+import axios from 'axios';
 import { Col, Row } from "antd";
 import { useHistory } from "react-router-dom";
 import "../assets/css/global.css";
@@ -29,8 +29,8 @@ function SignUP() {
 		e.preventDefault();
 		console.log(formData);
 
-		axiosInstance
-			.post(`register`, {
+		axios
+			.post(`https://eikomp.pythonanywhere.com/register`, {
         first_name: formData.first_name,
         last_name: formData.last_name,
 				email: formData.email,
@@ -42,7 +42,7 @@ function SignUP() {
 
 			})
 			.then((res) => {
-				history.push('/#');
+				history.push('/');
 				console.log(res);
 				console.log(res.data);
 			});
