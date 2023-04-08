@@ -30,7 +30,7 @@ const App = () => {
   const router = (
     <BrowserRouter>
       <Switch>
-        <Route path="/login">
+        <Route path="/" exact>
           <Login />
         </Route>
         <Route path="/signup">

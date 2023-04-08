@@ -43,7 +43,7 @@ function SignUP() {
 
 			})
 			.then((res) => {
-				history.push('/login');
+				history.push('/');
 				console.log(res);
 				console.log(res.data);
 			});
