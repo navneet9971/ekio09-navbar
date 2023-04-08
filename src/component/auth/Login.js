@@ -23,6 +23,26 @@ function Login() {
     e.preventDefault();
     console.log(formData);
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+		axiosInstance.post(`login`, {
+				username: formData.username,
+				password: formData.password,
+			}, { withCredentials: true })
+			.then((res) => {
+				localStorage.setItem('access_token', res.data.access);
+				localStorage.setItem('refresh_token', res.data.refresh);
+        localStorage.setItem('user_id', res.data.profile.id);
+				axiosInstance.defaults.headers['Authorization'] =
+					'Bearer ' + localStorage.getItem('access_token');
+				history.push('navbar/clientdashboard');
+				//console.log(res);
+				//console.log(res.data);
+			});
+	};
+=======
+>>>>>>> Stashed changes
     axiosInstance
     .post(`login/`,{
       username: formData.username,
@@ -39,6 +59,10 @@ function Login() {
       //console.log(res.data); 
     });
   };
+<<<<<<< Updated upstream
+=======
+>>>>>>> 601a11a46540426b1c427dbbeeff9b02ce10209b
+>>>>>>> Stashed changes
 
   const signUpButton = () => {
     history.push("/signup");
