@@ -3,6 +3,7 @@ import "./Navbar.css";
 import { NavLink, useHistory, useLocation } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import $ from "jquery";
+import axiosInstance from 'axios';
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -55,9 +56,10 @@ const Navbar = () => {
   }, [pathname]);
 
   function handleLogout() {
-    localStorage.removeItem("user-info");
-    // perform any necessary actions for logging out the user
-    history.push("#"); // redirect to login page after logout
+		localStorage.removeItem('access_token');
+		localStorage.removeItem('refresh_token');
+		axiosInstance.defaults.headers['Authorization'] = null;
+		history.push('/');
   }
   const isStartApplicationActive =
   pathname === "/navbar/firstpage" ||
