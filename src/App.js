@@ -28,7 +28,7 @@ import Transaction from "./component/pages/account-pages/Transaction";
 
 const App = () => {
   const router = (
-    <BrowserRouter>
+    <BrowserRouter forceRefresh={true}>
       <Switch>
         <Route path="/" exact>
           <Login />

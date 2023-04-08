@@ -14,8 +14,10 @@ const ClientDashboard = () => {
   const [last_name, setLastName] = useState("");
   axiosInstance
 			.get(`user/${localStorage.getItem('user_id')}/`, {
-				headers: {
-          Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+				headers: {          
+          Authorization: localStorage.getItem('access_token')
+          ? 'JWT ' + localStorage.getItem('access_token')
+          : null,
           'Content-Type': 'application/json',
           accept: 'application/json',
         }
