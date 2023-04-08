@@ -127,8 +127,8 @@ function Add({ selected, setSelected }) {
             </div>
           </Col>
         </Row>
-        <div class="footer">
-          <button onClick={() => handleSubmit()} type="submit" class="btn">
+        <div className="footer">
+          <button onClick={() => handleSubmit()} type="submit" className="btn">
             CONFIRM
           </button>
         </div>
