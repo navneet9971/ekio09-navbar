@@ -10,44 +10,49 @@ function SignUP() {
  const [serverErrors, setServerErrors] = useState([])
   const initialFormData = Object.freeze({
     username: '',
+    password: '',
     password2: '',
     email: '',
     first_name: '',
     last_name: '',
     organization_name: '',
     mobile: '',
-	});
-  const [formData, updateFormData] = useState(initialFormData);
-  const handleChange = (e) => {
-		updateFormData({
-			...formData,
-			// Trimming any whitespace
-			[e.target.name]: e.target.value.trim(),
-		});
-	};
-   
-  const handleSubmit = (e) => {
-		e.preventDefault();
-		console.log(formData);
+  });
 
-		axios
-			.post(`https://eikomp.pythonanywhere.com/register`, {
+  const [formData, updateFormData] = useState(initialFormData);
+
+  const handleChange = (e) => {
+    updateFormData({
+      ...formData,
+      // Trimming any whitespace
+      [e.target.name]: e.target.value.trim(),
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+
+    axios
+      .post(`https://eikomp.pythonanywhere.com/register`, {
         first_name: formData.first_name,
         last_name: formData.last_name,
-				email: formData.email,
-				username: formData.username,
-				password: formData.password,
+        email: formData.email,
+        username: formData.username,
+        password: formData.password,
         password2: formData.password2,
         organization_name: formData.organization_name,
         mobile: formData.mobile,
-
-			})
-			.then((res) => {
-				history.push('/login');
-				console.log(res);
-				console.log(res.data);
-			});
-	};
+      })
+      .then((res) => {
+        history.push('/#');
+        console.log(res);
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div className="auth-box">
@@ -55,7 +60,7 @@ function SignUP() {
         <div className="left-box">
           <Row gutter={[24, 0]}>
             <Col xs={24} md={12}>
-              <label1>First Name</label1>
+              <label>First Name</label>
               <input
                 type="text"
                 placeholder=""
@@ -65,7 +70,7 @@ function SignUP() {
               />
             </Col>
             <Col xs={24} md={12}>
-              <label1>Last Name</label1>
+              <label>Last Name</label>
               <input
                 type="text"
                 placeholder=""
@@ -75,17 +80,17 @@ function SignUP() {
               />
             </Col>
             <Col xs={24} md={24}>
-              <label1>Company Name</label1>
+              <label>Company Name</label>
               <input
                 type="text"
                 placeholder=""
-                name="organisation_name"
+                name="organization_name"
                 onChange={handleChange}
                 required
               />
             </Col>
             <Col xs={24} md={24}>
-              <label1>Email ID</label1>
+              <label>Email ID</label>
               <input
                 type="email"
                 placeholder=""
@@ -95,7 +100,7 @@ function SignUP() {
               />
             </Col>
             <Col xs={24} md={24}>
-              <label1>Mobile Number</label1>
+              <label>Mobile Number</label>
               <input
                 type="tel"
                 placeholder=""
@@ -105,7 +110,7 @@ function SignUP() {
               />
             </Col>
             <Col xs={24} md={24}>
-              <label1>Username</label1>
+              <label>Username</label>
               <input
                 type="text"
                 placeholder=""
@@ -115,7 +120,7 @@ function SignUP() {
               />
             </Col>
             <Col xs={24} md={24}>
-              <label1>Password</label1>
+              <label>Password</label>
               <input
                 type="password"
                 placeholder=""
