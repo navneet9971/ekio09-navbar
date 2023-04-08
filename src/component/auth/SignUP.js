@@ -6,7 +6,8 @@ import "../assets/css/global.css";
 
 function SignUP() {
   const history = useHistory();
-
+ const [isServerSideError, setIsServerSideError] = useState(false)
+ const [serverErrors, setServerErrors] = useState([])
   const initialFormData = Object.freeze({
     username: '',
     password2: '',
@@ -42,7 +43,7 @@ function SignUP() {
 
 			})
 			.then((res) => {
-				history.push('/');
+				history.push('/login');
 				console.log(res);
 				console.log(res.data);
 			});
