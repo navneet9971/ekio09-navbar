@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 import './Pages.css';
+import axiosInstance from '../../interceptors/axios';
 
 const Firstpage = () => {
   const [category, setCategory] = useState(''); // state for category input
@@ -21,17 +22,32 @@ const Firstpage = () => {
   };
 
   const handleGoClick = () => {
-    if (!category || !region) {
-      alert('Please fill in all fields!');
+    if (!category && !product && !region) {
+      alert('Please fill in at least one field!');
       return;
     }
-    history.push('/navbar/secondpage');
+
+    // send the input data to the backend API using axios POST request
+    axiosInstance.post(`https://eikomp.pythonanywhere.com/compliance/`, {
+      category: category,
+      product: product,
+      region: region,
+    })
+    .then((response) => {
+      console.log(response.data);
+      // redirect the user to the second page
+      history.push('/navbar/secondpage');
+    })
+    .catch((error) => {
+      console.error(error);
+      alert('Something went wrong. Please try again later.');
+    });
   };
 
   return (
     <div className="first-container22">
       <h3>Please Enter the following details to Start a new application :</h3>
-      <h4 className="red-warning">You need to fill atleast 1 data point to see the list of compliance.</h4>
+      <h4 className="red-warning">You need to fill at least 1 data point to see the list of compliance.</h4>
 
       <div className="form-group22">
         <label htmlFor="category-input">Enter Category:</label>
@@ -49,14 +65,16 @@ const Firstpage = () => {
           <select id="region-select22" value={region} onChange={handleRegionChange}>
             <option value="">-- Select a region --</option>
             <option value="north">Europe</option>
-          <option value="south">Africa</option>
-          <option value="east">Asia</option>
-          <option value="west">Americas</option>
+            <option value="south">Africa</option>
+            <option value="east">Asia</option>
+            <option value="west">Americas</option>
           </select>
         </div>
       </div>
 
-      <div className="gobutton22"> <button onClick={handleGoClick}>GO</button></div>     
+      <div className="gobutton22"> 
+        <button onClick={handleGoClick}>GO</button>
+      </div>     
     </div>
   );
 };
