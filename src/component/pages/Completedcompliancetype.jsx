@@ -92,10 +92,10 @@ function Compdownload() {
     >
       <h4 className="ste">{step}</h4>
       <div className="circle24"></div> 
-      <div className="line"></div> 
+      <div className="line1"></div> 
       <div className="rightWrapper" onClick={() => handleUpdateCurrentStep(i + 1)}>
         <div
-          className={`arrow-right ${ clickedColor && "clicked"} ${
+          className={`arrow-right1 ${ clickedColor && "clicked"} ${
             i === 0 ? "arrow1" : ""
           } ${i === 1 ? "arrow2" : ""} ${i === 2 ? "arrow3" : ""} ${
             i === 3 ? "arrow4" : ""
