@@ -27,23 +27,32 @@ const Firstpage = () => {
       return;
     }
 
-    // send the input data to the backend API using axios POST request
-    axiosInstance.post(`https://eikomp.pythonanywhere.com/compliance/`, {
-      category: category,
-      product: product,
-      region: region,
-    })
-    .then((response) => {
-      console.log(response.data);
-      // redirect the user to the second page
-      history.push('/navbar/secondpage');
-    })
-    .catch((error) => {
-      console.error(error);
-      alert('Something went wrong. Please try again later.');
-    });
-  };
-
+   // send the input data to the backend API using axios GET request
+axiosInstance.get('compliance', {
+  params: {
+    category: category,
+    product: product,
+    region: region,
+  },
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
+  },
+})
+.then((response) => {
+  console.log(response.data);
+  // redirect the user to the second page with the compliance data
+  history.push({
+    pathname: '/navbar/secondpage',
+    state: { complianceData: response.data },
+  });
+})
+.catch((error) => {
+  console.error(error);
+  alert('Something went wrong. Please try again later.');
+});
+};
   return (
     <div className="first-container22">
       <h3>Please Enter the following details to Start a new application :</h3>
