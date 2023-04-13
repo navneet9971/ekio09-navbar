@@ -18,6 +18,8 @@ import ClientDashboard from "./component/pagesscrn4/client-dashbord/Clientdashbo
 import Navbar from "./component/pagesscrn4/Navbar/Navbar";
 import Edit from "./component/pages/ComplianceTypePage";
 import CompletedComplince from "./component/pages/Completedcompliancetype";
+import TECOnGoing from "./component/pages//Tectrackpage/TECOngoing";
+import TECcompleted from "./component/pages/Tectrackpage/TECcompleted";
 import Bookmarks from "./component/pages/account-pages/Bookmarks";
 import Editprofile from "./component/pages/account-pages/Editprofile";
 import Notifaction from "./component/pages/account-pages/Notifaction";
@@ -74,6 +76,14 @@ const App = () => {
 
             <Route path="/navbar/Completedcompliancetype/:id">
               <CompletedComplince />
+            </Route>
+
+            <Route path="/navbar/TECOngoing/:id">
+              <TECOnGoing />
+            </Route>
+
+            <Route path="/navbar/TECcompleted/:id">
+              <TECcompleted />
             </Route>
 
 

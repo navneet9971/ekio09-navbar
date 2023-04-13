@@ -8,11 +8,7 @@ function Review() {
     { id: 1, complianceType: "TEC", applicationName: "Telecom Products", startDate: "2023-03-25", projectCode:101, status: "on-going" },
     { id: 2, complianceType: "BIS", applicationName: "Battery12", startDate: "2023-03-28", projectCode:102, status: "completed" }, 
     { id: 5, complianceType: "TEC", applicationName: "Telecom Products", startDate: "2022-03-18", projectCode:103,status: "on-going"  },
-    { id: 6, complianceType: "BIS", applicationName: "Battery12", startDate: "2022-03-19", projectCode:104, status: "completed" },
-    { id: 7, complianceType: "BEE", applicationName: "Mobile Phone", startDate: "2022-03-20",projectCode:105, status: "on-going"  },
-    { id: 8, complianceType: "WPC", applicationName: "Wireless - Radioactive", startDate: "2022-03-21",projectCode:106, status: "completed"  },
-    { id: 9, complianceType: "TEC", applicationName: "Telecom Products", startDate: "2022-03-22",projectCode:107, status: "on-going"  },
-    { id: 10, complianceType: "BEE", applicationName: "Mobile Phone", startDate: "2022-03-23", projectCode:108, status: "completed"  },
+
   ]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filterDate, setFilterDate] = useState("");
@@ -25,7 +21,11 @@ function Review() {
   const handleClick = (id, projectCode, complianceType) => {
     const selectedItem = data.find((item) => item.id === id);
     const selectedStatus = selectedItem.status === "on-going" ? "on-going" : "completed";
-    history.push(`/navbar/${selectedStatus === "on-going" ? "ComplianceTypePage" : "Completedcompliancetype"}/${selectedItem.complianceType}?name=${selectedItem.complianceType}&projectCode=${selectedItem.projectCode}`);
+    if (complianceType === "BIS") {
+      history.push(`/navbar/${selectedStatus === "on-going" ? "ComplianceTypePage" : "Completedcompliancetype"}/:id?complianceType=${selectedItem.complianceType}&projectCode=${selectedItem.projectCode}`);
+    } else if (complianceType === "TEC") {
+      history.push(`/navbar/TEC/${selectedStatus === "on-going" ? "TECOnGoing" : "TECcompleted"}?complianceType=${selectedItem.complianceType}&projectCode=${selectedItem.projectCode}`);
+    }
   };
   
   const handleFilterStatusChange = (event) => {

@@ -8,28 +8,14 @@ const Secondpage = () => {
   const [complianceData, setComplianceData] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axiosInstance.get(`/compliance/`, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-            'Content-Type': 'application/json',
-            accept: 'application/json',
-          },
-        });
-        if (Array.isArray(response.data)) {
-          const complianceData = response.data.map((compliance) => ({
-            id: compliance.sno,
-            product_name: compliance.name,
-            details: compliance.description,
-          }));
-          setComplianceData(complianceData);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
+    axiosInstance.get(`/compliance/`)
+    .then(res => {
+      console.log(res.data)
+      setComplianceData(res?.data?.data)
+    })
+    .catch(err => {
+      alert('Something went wrong.')
+    })
   }, []);
   
   
@@ -67,16 +53,16 @@ const Secondpage = () => {
             </tr>
           </thead>
           <tbody>
-            {complianceData.map((compliance) => (
-              <tr key={compliance.sno}>
-                <td>{compliance.sno}</td>
-                <td
-                  className="clickable"
-                  onClick={() => handleClick(compliance.name)}
-                >
-                  {compliance.name}
-                </td>
-                <td>{compliance.description}</td>
+  {complianceData.map((compliance, index) => (
+    <tr key={index}>
+       <td>{compliance.id}</td>
+      <td
+        className="clickable"
+        onClick={() => handleClick(compliance.name)}
+      >
+        {compliance.product_name}
+      </td>
+                <td>{compliance.details}</td>
                 <td>
                   {/* display compliance video */}
                   <a
