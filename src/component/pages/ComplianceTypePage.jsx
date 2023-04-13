@@ -27,7 +27,9 @@ function Stepper() {
   const [complete, setComplete] = useState(false);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-  const [clickedColor, setClickedColor] = useState(false);
+  const [setClickedColor] = useState(false);
+  const [ setActiveArrows] = useState([false, false, false, false, false]);
+  const [showTooltip, setShowTooltip] = useState(false); // declare showTooltip state
   const [setClickedNext] = useState(false); // add state variable for tracking button click
   const newSteps = ["Application Submitted", "Sample sent for testing", "Test report generated", "Documents pending with authorities", "Final report generated"];
 
@@ -35,6 +37,14 @@ function Stepper() {
     setCurrentStep(step);
     setClickedNext(true);
     setClickedColor(true);
+    setActiveArrows((prev) =>
+      prev.map((_, i) => {
+        if (i === step - 1) {
+          return !prev[i];
+        }
+        return prev[i];
+      })
+    );
   };
 
 
@@ -81,20 +91,29 @@ function Stepper() {
       <div className="circle23"></div> 
       <div className="line"></div> 
       <div className="rightWrapper" onClick={() => handleUpdateCurrentStep(i + 1)}>
-        <div
-          className={`arrow-right ${ clickedColor && "clicked"} ${
-            i === 0 ? "arrow1" : ""
-          } ${i === 1 ? "arrow2" : ""} ${i === 2 ? "arrow3" : ""} ${
-            i === 3 ? "arrow4" : ""
-          } ${i === 4 ? "arrow5" : ""}`}
-        >
-          {i === 0 && <img src={Thum1png} alt="" className="trck1" />}
-          {i === 1 && <img src={Thum2png} alt="" className="trck1" />}
-          {i === 2 && <img src={Thum3png} alt="" className="trck1" />}
-          {i === 3 && <img src={Thum4png} alt="" className="trck1" />}
-          {i === 4 && <img src={Thum5png} alt="" className="trck1" />}
-        </div>
-      </div>
+  <div
+    className={`arrow-right ${ " " } ${
+      i === 0 ? "arrow1" : ""
+    } ${i === 1 ? "arrow2" : ""} ${i === 2 ? "arrow3" : ""} ${
+      i === 3 ? "arrow4" : ""
+    } ${i === 4 ? "arrow5" : ""}`}
+    onMouseOver={() => setShowTooltip(true)}
+    onMouseOut={() => setShowTooltip(false)}
+  >
+    {i === 0 && <img src={Thum1png} alt="" className="trck1" />}
+    {i === 1 && <img src={Thum2png} alt="" className="trck1" />}
+    {i === 2 && <img src={Thum3png} alt="" className="trck1" />}
+    {i === 3 && <img src={Thum4png} alt="" className="trck1" />}
+    {i === 4 && <img src={Thum5png} alt="" className="trck1" />}
+  </div>
+  {showTooltip && (
+    <div className="tooltip">
+      <p>Date: 12/04/2023</p>
+      <p>Time left: 3 days</p>
+    </div>
+  )}
+</div>
+
     </div>
   ))}
 </div>

@@ -38,7 +38,16 @@ button.clidown {
 }
 
 .arrow-right {
-  background: linear-gradient(90deg, rgba(28,73,7,1) 0%, rgba(29,193,29,0.9836309523809523) 50%, rgba(25,159,25,1) 100%);
+  background: linear-gradient(90deg, #f12400 0%, #f72d0a 50%, #f52e0a 100%);
+  clip-path: polygon(50% 0%, 90% 51%, 50% 100%, 3% 100%, 32% 50%, 0% 0%);
+  width: 149px;
+  height: 95px;
+  margin-top: 10em;
+}
+
+/*-------Completed Track page */
+.arrow-right1 {
+  background: linear-gradient(90deg, #117c07 0%, #197207 50%, #2b7c0b 100%);
   clip-path: polygon(50% 0%, 90% 51%, 50% 100%, 3% 100%, 32% 50%, 0% 0%);
   width: 149px;
   height: 95px;
@@ -50,7 +59,7 @@ button.clidown {
   width: 25px;
   height: 25px;
   border-radius: 100%;
-  background-color: green;
+  background-color: red;
   /* float: left; */
   margin-left: 1.1em;
   top: 25em;
@@ -67,7 +76,20 @@ button.clidown {
   top: 28em;
 }
 
+/*-------ARROWS ACTIVE COLOR CHANGE--------------*/
+
+
 .line {
+  margin-top: 106px;
+  margin-left: -49px;
+  width: 159px;
+  height: 2px;
+  background-color: red;
+  float: left;
+  transform: rotateZ(90deg);
+}
+
+.line1 {
   margin-top: 106px;
   margin-left: -49px;
   width: 159px;
