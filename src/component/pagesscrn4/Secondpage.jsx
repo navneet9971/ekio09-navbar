@@ -8,28 +8,14 @@ const Secondpage = () => {
   const [complianceData, setComplianceData] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axiosInstance.get(`/compliance/`, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-            'Content-Type': 'application/json',
-            accept: 'application/json',
-          },
-        });
-        if (Array.isArray(response.data)) {
-          const complianceData = response.data.map((compliance) => ({
-            id: compliance.sno,
-            product_name: compliance.name,
-            details: compliance.description,
-          }));
-          setComplianceData(complianceData);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
+    axiosInstance.get(`/compliance/`)
+    .then(res => {
+      console.log(res.data)
+      setComplianceData(res?.data?.data)
+    })
+    .catch(err => {
+      alert('Something went wrong.')
+    })
   }, []);
   
   
@@ -67,33 +53,38 @@ const Secondpage = () => {
             </tr>
           </thead>
           <tbody>
-            {complianceData.map((compliance) => (
-              <tr key={compliance.sno}>
-                <td>{compliance.sno}</td>
-                <td
-                  className="clickable"
-                  onClick={() => handleClick(compliance.name)}
-                >
-                  {compliance.name}
-                </td>
-                <td>{compliance.description}</td>
-                <td>
-                  {/* display compliance video */}
-                  <a
-                    href={compliance.video}
-                    onClick={(e) => handleVideoClick(e, compliance.video)}
-                  >
-                    <div className="video-banner">
-                      <div className="play-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                          <path d="M8 5v14l11-7z" />
-                        </svg>
+            {
+            complianceData.length > 0 &&
+            complianceData.map((item, index) => {
+              return(
+                <tr>
+                  <td>{item.id}</td>
+                  
+                  <td  className="clickable" onClick={() => handleClick(item.product_name)} >
+                    {item.product_name}
+                  </td>
+                  
+                  <td>{item.details}</td>
+
+                  <td>
+                    <a
+                      href={item.video}
+                      onClick={(e) => handleVideoClick(e, item.video)}
+                    >
+                      <div className="video-banner">
+                        <div className="play-button">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z" />
+                          </svg>
+                        </div>
                       </div>
-                    </div>
-                  </a>
-                </td>
-              </tr>
-            ))}
+                    </a>
+                  </td>
+                </tr>
+              )
+            })
+          }
+            
           </tbody>
         </table>
       </div>
