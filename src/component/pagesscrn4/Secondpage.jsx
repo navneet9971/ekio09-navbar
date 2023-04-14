@@ -55,7 +55,7 @@ const Secondpage = () => {
           <tbody>
   {complianceData.map((compliance, index) => (
     <tr key={index}>
-       <td>{compliance.id}</td>
+      {/* <td>{compliance.id}</td> */}
       <td
         className="clickable"
         onClick={() => handleClick(compliance.product_name)}
