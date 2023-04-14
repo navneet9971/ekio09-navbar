@@ -7,10 +7,10 @@ const Secondpage = () => {
   const history = useHistory();
   const [complianceData, setComplianceData] = useState([]);
 
+
   useEffect(() => {
-    axiosInstance.get(`/compliance/`)
+    axiosInstance.get(`/compliance/?cateogry=${localStorage.getItem("category")}&product=${localStorage.getItem("product")}&region=${localStorage.getItem("region")}`)
     .then(res => {
-      console.log(res.data)
       setComplianceData(res?.data?.data)
     })
     .catch(err => {

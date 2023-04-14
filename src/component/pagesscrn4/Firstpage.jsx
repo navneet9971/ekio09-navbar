@@ -26,11 +26,16 @@ const Firstpage = () => {
       alert('Please fill in at least one field!');
       return;
     }
-
+    localStorage.setItem('category', category);
+    localStorage.setItem('product', product);
+    localStorage.setItem('region', region);
    // send the input data to the backend API using axios GET request
-axiosInstance.post('application/form/', {
-    category: category,
-    product: product, 
+axiosInstance.get(`/compliance/?cateogry=${category}&product=${product}&region=${region}`, {
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+    'Content-Type': 'application/json',
+    accept: 'application/json',
+  }
   })
 .then((response) => {
   console.log(response.data);
