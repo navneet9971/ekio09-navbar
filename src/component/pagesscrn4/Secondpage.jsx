@@ -46,7 +46,7 @@ const Secondpage = () => {
         <table className="Review">
           <thead>
             <tr>
-              <th>S.no</th>
+         {/*     <th>S.no</th> */}
               <th>Compliance Name</th>
               <th>Description</th>
               <th>Video</th>
