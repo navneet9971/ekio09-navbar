@@ -4,11 +4,77 @@ import "../Pages.css";
 import Popup from "../popup/Popup";
 import { TiTick } from "react-icons/ti";
 import Multiselect from 'multiselect-react-dropdown';
+import axiosInstance from '../../../interceptors/axios';
 
 function MiddleSection() {
+  // State variables
+  const [activeSection, setActiveSection] = useState("introduction");
+  const [sections, setSections] = useState({
+    introduction: null,
+    registrationProcess: null,
+    requiredDocument: null,
+  });
+
+  // Effect hook to load data from local storage or API
+  useEffect(() => {
+    const localStorageSections = JSON.parse(
+      localStorage.getItem("middleSectionSections")
+    );
+    if (localStorageSections) {
+      setSections(localStorageSections);
+    } else {
+      axiosInstance
+        .get("compliance/")
+        .then((response) => {
+          const sectionsData = response.data.reduce((acc, curr) => {
+            return { ...acc, [curr.slug]: curr };
+          }, {});
+          setSections(sectionsData);
+          localStorage.setItem(
+            "middleSectionSections",
+            JSON.stringify(sectionsData)
+          );
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, []);
+
+  // Function to handle section click
+  const handleSectionClick = (section) => {
+    setActiveSection(section);
+  };
+
+  // Rendered components
   return (
-    <div className="middle-section">
-      <h398>Middle Section</h398>
+    <div>
+      {/* Middle section component */}
+      <div className="middle-section">
+        <h398>Middle Section</h398>
+        {sections[activeSection] ? (
+          <div>
+            <h398>{sections[activeSection].title}</h398>
+            <p className="middle-sc">{sections[activeSection].content}</p>
+          </div>
+        ) : (
+          <div>
+            <h399>No content to display.</h399>
+          </div>
+        )}
+      </div>
+      {/* Right section component */}
+      <div className="right-section">
+        <Link onClick={() => handleSectionClick("introduction")}>
+          Introduction
+        </Link>
+        <Link onClick={() => handleSectionClick("registrationProcess")}>
+          Registration Process
+        </Link>
+        <Link onClick={() => handleSectionClick("requiredDocument")}>
+          Required Document
+        </Link>
+      </div>
     </div>
   );
 }
@@ -615,14 +681,8 @@ function Thirdpage() {
           <source src={videoUrl} type="video/mp4" />
         </video>
       </div>
-      <div className="center-section55">
         <MiddleSection/>
-      </div>
-      <div className="right-section66">
-        <Link to="/introduction">Introduction</Link>
-        <Link to="/required-document">Required Document</Link>
-        <Link to="/registration-process">Registration Process</Link>
-      </div> 
+
 
 {/*------------------Notify Section -----------------------*/}
       <div className= "notify" >

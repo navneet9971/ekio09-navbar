@@ -274,7 +274,18 @@
   /*--------Third Page CSS-----------*/
   h398 {
     position: absolute;
-    right: 10em;
+    right: 63em;
+    top: 5em;
+}
+
+h399 {
+  display: flex;
+  align-items: initial;
+  position: absolute;
+  /* justify-content: center; */
+  right: 46em;
+  top: 6em;
+  font-size: 20px;
 }
 
   .app55 {
@@ -283,12 +294,12 @@
   }
   
   .left-section55 {
-    flex: 1;
+    flex: 1 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 10px;
+    margin-top: 35px;
     margin-left: 11em;
   }
 
@@ -303,6 +314,32 @@
   .right-section55 {
     flex-basis: 25%;
   }
+
+  .right-section66 {
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+p.middlesc {
+  flex: 1 1;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  margin-top: 8px;
+  /* margin-left: -44em; */
+}
+
+.middle-section {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.right-section66 {
+  justify-content: center;
+}
+
   
   .flex-container {
     display: flex;
