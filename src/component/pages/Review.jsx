@@ -7,7 +7,15 @@ function Review() {
   const [data] = useState([
     { id: 1, complianceType: "TEC", applicationName: "Telecom Products", startDate: "2023-03-25", projectCode:101, status: "on-going" },
     { id: 2, complianceType: "BIS", applicationName: "Battery12", startDate: "2023-03-28", projectCode:102, status: "completed" }, 
-    { id: 5, complianceType: "TEC", applicationName: "Telecom Products", startDate: "2022-03-18", projectCode:103,status: "on-going"  },
+    { id: 3, complianceType: "TEC", applicationName: "Telecom Products", startDate: "2022-03-18", projectCode:103,status: "on-going"  },
+    { id: 4, complianceType: "BIS", applicationName: "Telecom Products", startDate: "2022-03-18", projectCode:104,status: "completed"  },
+    { id: 5, complianceType: "WPS", applicationName: "Telecom Products", startDate: "2022-03-18", projectCode:105,status: "completed"  },
+    { id: 6, complianceType: "TEC", applicationName: "Telecom Products", startDate: "2022-03-18", projectCode:106,status: "on-going"  },
+    { id: 7, complianceType: "BIS", applicationName: "Telecom Products", startDate: "2022-03-18", projectCode:107,status: "completed"  },
+    { id: 8, complianceType: "WPS", applicationName: "Telecom Products", startDate: "2022-03-18", projectCode:108,status: "on-going"  },
+    { id: 9, complianceType: "BIS", applicationName: "Telecom Products", startDate: "2022-03-18", projectCode:109,status: "completed"  },
+    { id: 10, complianceType: "TEC", applicationName: "Telecom Products", startDate: "2022-03-18", projectCode:110,status: "completed"  },
+    { id: 11, complianceType: "BIS", applicationName: "Telecom Products", startDate: "2022-03-18", projectCode:111,status: "on-going"  },
 
   ]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -17,16 +25,33 @@ function Review() {
   const [filterStatus, setFilterStatus] = useState("");
   const history = useHistory();
 
-
   const handleClick = (id, projectCode, complianceType) => {
     const selectedItem = data.find((item) => item.id === id);
-    const selectedStatus = selectedItem.status === "on-going" ? "on-going" : "completed";
-    if (complianceType === "BIS") {
-      history.push(`/navbar/${selectedStatus === "on-going" ? "ComplianceTypePage" : "Completedcompliancetype"}/:id?complianceType=${selectedItem.complianceType}&projectCode=${selectedItem.projectCode}`);
-    } else if (complianceType === "TEC") {
-      history.push(`/navbar/TEC/${selectedStatus === "on-going" ? "TECOnGoing" : "TECcompleted"}?complianceType=${selectedItem.complianceType}&projectCode=${selectedItem.projectCode}`);
+    const selectedStatus =
+      selectedItem.status === "on-going" ? "on-going" : "completed";
+    if (selectedItem.complianceType === "BIS") {
+      history.push(
+        `/navbar/${
+          selectedStatus === "on-going"
+            ? "ComplianceTypePage"
+            : "Completedcompliancetype"
+        }/complianceType=${selectedItem.complianceType}&projectCode=${
+          selectedItem.projectCode
+        }`
+      );
+    } else if (selectedItem.complianceType === "TEC") {
+      history.push(
+        `/navbar/${
+          selectedStatus === "on-going" ? "TECOngoing" : "TECcompleted"
+        }/complianceType=${selectedItem.complianceType}&projectCode=${
+          selectedItem.projectCode
+        }`
+      );
     }
   };
+
+  
+  
   
   const handleFilterStatusChange = (event) => {
     const selectedStatus = event.target.value;
