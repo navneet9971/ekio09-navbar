@@ -87,41 +87,20 @@ function LabTestingBox() {
   const [submitPopup] = useState(false);
 
     // state variables to store form data
-    const [testingApplicantName, setTestingApplicantName] = useState("");
-    const [testingAddress, setTestingAddress] = useState("");
-    const [testingOEMName, setTestingOEMName] = useState("");
-    const [testingOEMAddress, setTestingOEMAddress] = useState("");
-    const [testingProductName, setTestingProductName] = useState("");
-    const [testingModelNo, setTestingModelNo] = useState("");
-    const [testingAssociated, setTestingAssociated] = useState("");
-    const [testingHardwareNumber, setTestingHardwareNumber] = useState("");
-    const [testingSoftwareNumber, setTestingSoftwareNumber] = useState("");
-    const [testingBrand, setTestingBrand] = useState("");
-    const [testingSr, setTestingSr] = useState("");
-    const [testingElectrical, setTestingElectrical] = useState("");
-    const [testingProductType, setTestingProductType] = useState("");
-    const [testingProductUse, setTestingProductUse] = useState("");
-    const [testingSoftware, setTestingSoftware] = useState("");
-    const [testingTechnicalsupportName, setTestingTechnicalsupportName] = useState("");
-    const [testingTechnicalsuppoertNumber, setTestingTechnicalsuppoertNumber] = useState("");
-    const [manufacturingProductName, setManufacturingProductName ] = useState("");
-    const [manufacturingModelNo, setManufacturingModelNo ] = useState("");
-    const [manufacturingAssociatedModels, setManufacturingAssociatedModels] = useState("");
-    const [manufacturingManufacturingName, setManufacturingManufacturingName ] = useState("");
-    const [manufacturingManufacturingAddress, setManufacturingManufacturingAddress ] = useState("");
-    const [manufacturingManufacturingCountry, setManufacturingManufacturingCountry] = useState("");
-    const [manufacturingContactName, setManufacturingContactName] = useState ("");
-    const [manufacturingContactNumber, setManufacturingContactNumber] = useState ("");
-    const [manufacturingContactEmail, setManufacturingContactEmail] = useState ("");
-    const [manufacturingOrigin, setManufacturingOrigin] = useState ("");
-    const [manufacturingContract, setManufacturingContract] = useState ("");
+    const [testingManufacturernameaddress, setTestingManufacturernameaddress] = useState("");
+    const [testingTestitemdescription, setTestingTestitemdescription] = useState("");
+    const [testingTradeMark, setTestingTradeMark] = useState("");
+    const [testingModelTypereference, setTestingModelTypereference] = useState("");
+    const [testingRatedcurrentRatedvoltage, setTestingRatedcurrentRatedvoltage] = useState("");
+    const [testingOverallsize, setTestingOverallsize] = useState("");
+    const [testingMassoftheequipment, setTestingMassoftheequipment] = useState("");
+    const [testingSeriesModel, setTestingSeriesModel] = useState("");
+    const [testingSimilarities, setTestingSimilarities] = useState("");
+    const [testingDifferences, setTestingDifferences] = useState("");
+    const [testingWorstCase, setTestingWorstCase] = useState("");
+    const [testingMaxAccessoriesused, setTestingMaxAccessoriesused] = useState("");
+    const [testingModelsamplesubmittedfortesting, setTestingModelsamplesubmittedfortesting] = useState("");
     
-
-
-    // function to handle file uploads
-  const handleFileUpload = (event) => {
-    // TODO: handle file upload logic
-  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -135,6 +114,7 @@ function LabTestingBox() {
   ];
 
 
+// TESTING BUTTON CODE HERE !!!!!!!!!!!
 
   return (
     <div className="lab-testing-box">
@@ -142,311 +122,141 @@ function LabTestingBox() {
       <button7 onClick={() => setButtonPopup(true)}>Request Testing</button7>
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
       <div style={{ height: "500px", overflow: "scroll" }}>
-          <h801>BIS FORMS</h801>
+          <h801>Testing Details</h801>
           <form onSubmit={handleSubmit}>
             <label className="st8012">
-              Applicant Name:
+            Manufacturer’s name & Address:
               <input
                 className="st805"
                 type="text"
-                value={testingApplicantName}
-                onChange={(event) => setTestingApplicantName(event.target.value)}
+                value={testingManufacturernameaddress}
+                onChange={(event) => setTestingManufacturernameaddress(event.target.value)}
                 required
               />
             </label>
             <label className="st8012">
-              Address:
+            Test item description:
               <input
               className="st805"
                 type="text"
-                value={testingAddress}
-                onChange={(event) => setTestingAddress(event.target.value)}
+                value={testingTestitemdescription}
+                onChange={(event) => setTestingTestitemdescription(event.target.value)}
                 required
               />
             </label>
             <label className="st8012">
-              OEM Name:
+            Trade Mark:
               <input
               className="st805"
                 type="text"
-                value={testingOEMName}
-                onChange={(event) => setTestingOEMName(event.target.value)}
+                value={testingTradeMark}
+                onChange={(event) => setTestingTradeMark(event.target.value)}
                 required
               />
             </label>
             <label className="st8012">
-              OEM Address:
+            Model/Type reference:
               <input
               className="st805"
                 type="text"
-                value={testingOEMAddress}
-                onChange={(event) => setTestingOEMAddress(event.target.value)}
+                value={testingModelTypereference}
+                onChange={(event) => setTestingModelTypereference(event.target.value)}
                 required
               />
               </label>
                <label className="st8012">
-              Product Name:
+               Rated current (A) / Rated voltage (V):
               <input
               className="st805"
                 type="text"
-                value={testingProductName}
-                onChange={(event) => setTestingProductName(event.target.value)}
+                value={testingRatedcurrentRatedvoltage}
+                onChange={(event) => setTestingRatedcurrentRatedvoltage(event.target.value)}
                 required
               />
             </label>
             <label className="st8012">
-              Model No:
+            Overall size of the equipment :
               <input
               className="st805"
                 type="text"
-                value={testingModelNo}
-                onChange={(event) => setTestingModelNo(event.target.value)}
+                value={testingOverallsize}
+                onChange={(event) => setTestingOverallsize(event.target.value)}
                 required
               />
               </label>
               <label className="st8012">
-              Associated Models (if any):
+              Mass of the equipment (kg):
               <input
               className="st805"
                 type="text"
-                value={testingAssociated}
-                onChange={(event) => setTestingAssociated(event.target.value)}
+                value={testingMassoftheequipment}
+                onChange={(event) => setTestingMassoftheequipment(event.target.value)}
                 required
               />
               </label>
               <label className="st8012">
-              Hardware Number:
+              Series  Model:
               <input
               className="st805"
                 type="text"
-                value={testingHardwareNumber}
-                onChange={(event) => setTestingHardwareNumber(event.target.value)}
-                required
-              />
-              </label>
-              <label className="st8012">
-              Software Number	:
-              <input
-              className="st805"
-                type="text"
-                value={testingSoftwareNumber}
-                onChange={(event) => setTestingSoftwareNumber(event.target.value)}
-                required
-              />
-              </label>
-              <label className="st8012">
-              Brand:
-              <input
-              className="st805"
-                type="text"
-                value={testingBrand}
-                onChange={(event) => setTestingBrand(event.target.value)}
-                required
-              />
-              </label>
-              <label className="st8012">
-              Sr. No:
-              <input
-              className="st805"
-                type="text"
-                value={testingSr}
-                onChange={(event) => setTestingSr(event.target.value)}
-                required
-              />
-              </label>
-              <label className="st8012">
-              Electrical Rating:
-              <input
-              className="st805"
-                type="text"
-                value={testingElectrical}
-                onChange={(event) => setTestingElectrical(event.target.value)}
-                required
-              />
-              </label>
-              <label className="st8012">
-              Product Type (Fixed/Industrial/Portable/other):
-              <input
-              className="st805"
-                type="text"
-                value={testingProductType}
-                onChange={(event) => setTestingProductType(event.target.value)}
-                required
-              />
-              </label>
-              <label className="st8012">
-              Product Use (Indoor/Outdoor/other):
-              <input
-              className="st805"
-                type="text"
-                value={testingProductUse}
-                onChange={(event) => setTestingProductUse(event.target.value)}
-                required
-              />
-              </label>
-              <label className="st8012">
-              Filled CDF/CCl (Format attached):
-              <input  classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
-            </label>
-            <label className="st8012">
-              Complete USer Manual:
-              <input classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
-            </label>
-            <label className="st8012">
-              Circuit Diagram:
-              <input classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
-            </label>
-            <label className="st8012">
-              PCB Layout:
-              <input classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
-            </label>
-            <label className="st8012">
-              Software used (if any):
-              <input classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
-            </label>
-              <label className="st8012">
-              Software used (if any)	If yes, please upload:
-              <input
-              className="st805"
-                type="text"
-                value={testingSoftware}
-                onChange={(event) => setTestingSoftware(event.target.value)}
-                required
-              />
-              </label>
-              <label className="st8012">
-              Technical support person name:
-              <input
-              className="st805"
-                type="text"
-                value={testingTechnicalsupportName}
-                onChange={(event) => setTestingTechnicalsupportName(event.target.value)}
-                required
-              />
-              </label>
-              <label className="st8012">
-              Technical support person contact number:
-              <input
-              className="st805"
-                type="text"
-                value={testingTechnicalsuppoertNumber}
-                onChange={(event) => setTestingTechnicalsuppoertNumber(event.target.value)}
+                value={testingSeriesModel}
+                onChange={(event) => setTestingSeriesModel(event.target.value)}
                 required
               />
               </label>
 
-
-            <h805>Manufacturing Location Information:</h805>
-            <label className="st8012">
-              Product Name:
+              <h3 className='model'>Models included in this series</h3>
+              <label className="st8012">
+              Similarities:
               <input
               className="st805"
                 type="text"
-                value={manufacturingProductName}
-                onChange={(event) => setManufacturingProductName(event.target.value)}
+                value={testingSimilarities}
+                onChange={(event) => setTestingSimilarities(event.target.value)}
                 required
               />
-            </label>
-            <label className="st8012">
-              Model No:
+              </label>
+              <label className="st8012">
+              Differences:
               <input
               className="st805"
                 type="text"
-                value={manufacturingModelNo}
-                onChange={(event) => setManufacturingModelNo(event.target.value)}
+                value={testingDifferences}
+                onChange={(event) => setTestingDifferences(event.target.value)}
                 required
               />
-            </label>
-            <label className="st8012">
-              Associated Models:
+              </label>
+              <label className="st8012">
+              Worst Case:
               <input
               className="st805"
                 type="text"
-                value={manufacturingAssociatedModels}
-                onChange={(event) => setManufacturingAssociatedModels(event.target.value)}
+                value={testingWorstCase}
+                onChange={(event) => setTestingWorstCase(event.target.value)}
                 required
               />
-            </label>
-            <label className="st8012">
-              Manufacturer Name:
+              </label>
+              <label className="st8012">
+              Max.  Accessories used:
               <input
               className="st805"
                 type="text"
-                value={manufacturingManufacturingName}
-                onChange={(event) => setManufacturingManufacturingName(event.target.value)}
+                value={testingMaxAccessoriesused}
+                onChange={(event) => setTestingMaxAccessoriesused(event.target.value)}
                 required
               />
-            </label>
-            <label className="st8012">
-              Manufacturer Address:
+              </label>
+              <label className="st8012">
+              Model / sample submitted for testing:
               <input
               className="st805"
                 type="text"
-                value={manufacturingManufacturingAddress}
-                onChange={(event) => setManufacturingManufacturingAddress(event.target.value)}
+                value={testingModelsamplesubmittedfortesting}
+                onChange={(event) => setTestingModelsamplesubmittedfortesting(event.target.value)}
                 required
               />
-            </label>
-            <label className="st8012">
-              Manufacturing Country:
-              <input
-              className="st805"
-                type="text"
-                value={manufacturingManufacturingCountry}
-                onChange={(event) => setManufacturingManufacturingCountry(event.target.value)}
-                required
-              />
-            </label>
-            <label className="st8012">
-              Contact Person Name:
-              <input
-              className="st805"
-                type="text"
-                value={manufacturingContactName}
-                onChange={(event) => setManufacturingContactName(event.target.value)}
-                required
-              />
-            </label>
-            <label className="st8012">
-              Contact Person's Number:
-              <input
-              className="st805"
-                type="text"
-                value={manufacturingContactNumber}
-                onChange={(event) => setManufacturingContactNumber(event.target.value)}
-                required
-              />
-            </label>
-            <label className="st8012">
-              Contact Person's Email Id:
-              <input
-              className="st805"
-                type="text"
-                value={manufacturingContactEmail}
-                onChange={(event) => setManufacturingContactEmail(event.target.value)}
-                required
-              />
-            </label>
-            <label className="st8012">
-              Country of Origin:
-              <input
-              className="st805"
-                type="text"
-                value={manufacturingOrigin}
-                onChange={(event) => setManufacturingOrigin(event.target.value)}
-                required
-              />
-            </label>
-            <label className="st8012">
-              Contract Manufacturing(Yes/No):
-              <input
-              className="st805"
-                type="text"
-                value={manufacturingContract}
-                onChange={(event) => setManufacturingContract(event.target.value)}
-                required
-              />
-            </label>
+              </label>
+             
            
             <button className='btn809' type="submit">Submit</button>
           </form>
