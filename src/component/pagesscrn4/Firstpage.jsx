@@ -29,27 +29,31 @@ const Firstpage = () => {
     localStorage.setItem('category', category);
     localStorage.setItem('product', product);
     localStorage.setItem('region', region);
-   // send the input data to the backend API using axios GET request
-axiosInstance.get(`/compliance/?category=${category}&product=${product}&region=${region}`, {
-  headers: {
-    Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-    'Content-Type': 'application/json',
-    accept: 'application/json',
-  }
-  })
-  .then((response) => {
-    if (response.data.error) {
-    alert(response.data.error);
-    } else {
-    console.log(response.data);
-    history.push('/navbar/secondpage');
-    }
+    
+    // send the input data to the backend API using axios GET request
+    axiosInstance.get(`/compliance/?category=${category}&product=${product}&region=${region}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+        'Content-Type': 'application/json',
+        accept: 'application/json',
+      }
     })
-.catch((error) => {
-  console.error(error);
-  alert('Something went wrong. Please try again later.');
-});
-};
+    .then((response) => {
+      console.log(response.data);
+    
+      // redirect the user to the second page with the compliance data
+      history.push('/navbar/secondpage');
+    })
+    .catch((error) => {
+      console.error(error);
+      if (error.response && error.response.status === 404) {
+        alert(`Sorry, the product "${product}" in category "${category}" was not found.`);
+      } else {
+        alert('Something went wrong. Please try again later.');
+      }
+    });
+  };
+  
 
   return (
     <div className="first-container22">
