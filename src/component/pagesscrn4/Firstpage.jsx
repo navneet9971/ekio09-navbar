@@ -22,33 +22,31 @@ const Firstpage = () => {
   };
 
   const handleGoClick = () => {
-  if (!category && !product && !region) {
-    alert('Please fill in at least one field!');
-    return;
-  }
-  axiosInstance.get(`/compliance/?category=${category}&product=${product}&region=${region}`, {
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-      'Content-Type': 'application/json',
-      accept: 'application/json',
-    }
-  })
-  .then((response) => {
-    console.log(response.data);
-    if (response.data.length === 0) {
-      alert('No matching data found. Please update your search criteria.');
+    if (!category && !product && !region) {
+      alert('Please fill in at least one field!');
       return;
     }
     localStorage.setItem('category', category);
     localStorage.setItem('product', product);
     localStorage.setItem('region', region);
-    // redirect the user to the second page with the compliance data
-    history.push('/navbar/secondpage');
+   // send the input data to the backend API using axios GET request
+axiosInstance.get(`/compliance/?category=${category}&product=${product}&region=${region}`, {
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+    'Content-Type': 'application/json',
+    accept: 'application/json',
+  }
   })
-  .catch((error) => {
-    console.error(error);
-    alert('Something went wrong. Please try again later.');
-  });
+.then((response) => {
+  console.log(response.data);
+  
+  // redirect the user to the second page with the compliance data
+  history.push('/navbar/secondpage');
+})
+.catch((error) => {
+  console.error(error);
+  alert('Something went wrong. Please try again later.');
+});
 };
 
   return (
@@ -70,10 +68,10 @@ const Firstpage = () => {
         <div className="centerdiv"> 
           <select id="region-select22" value={region} onChange={handleRegionChange}>
             <option value="">-- Select a region --</option>
-            <option value="north">Europe</option>
-            <option value="south">Africa</option>
-            <option value="east">Asia</option>
-            <option value="west">Americas</option>
+            <option value={region}>Europe</option>
+            <option value={region}>Africa</option>
+            <option value={region}>Asia</option>
+            <option value={region}>Americas</option>
           </select>
         </div>
       </div>
