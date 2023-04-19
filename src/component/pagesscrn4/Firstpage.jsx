@@ -22,7 +22,7 @@ const Firstpage = () => {
   };
 
   const handleGoClick = () => {
-    if (!category || !product || !region) {
+    if (!category && !product && !region) {
       alert('Please fill in at least one field!');
       return;
     }
