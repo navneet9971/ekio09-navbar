@@ -22,31 +22,33 @@ const Firstpage = () => {
   };
 
   const handleGoClick = () => {
-    if (!category && !product && !region) {
-      alert('Please fill in at least one field!');
+  if (!category && !product && !region) {
+    alert('Please fill in at least one field!');
+    return;
+  }
+  axiosInstance.get(`/compliance/?category=${category}&product=${product}&region=${region}`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+      'Content-Type': 'application/json',
+      accept: 'application/json',
+    }
+  })
+  .then((response) => {
+    console.log(response.data);
+    if (response.data.length === 0) {
+      alert('No matching data found. Please update your search criteria.');
       return;
     }
     localStorage.setItem('category', category);
     localStorage.setItem('product', product);
     localStorage.setItem('region', region);
-   // send the input data to the backend API using axios GET request
-axiosInstance.get(`/compliance/?cateogry=${category}&product=${product}&region=${region}`, {
-  headers: {
-    Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-    'Content-Type': 'application/json',
-    accept: 'application/json',
-  }
+    // redirect the user to the second page with the compliance data
+    history.push('/navbar/secondpage');
   })
-.then((response) => {
-  console.log(response.data);
-  
-  // redirect the user to the second page with the compliance data
-  history.push('/navbar/secondpage');
-})
-.catch((error) => {
-  console.error(error);
-  alert('Something went wrong. Please try again later.');
-});
+  .catch((error) => {
+    console.error(error);
+    alert('Something went wrong. Please try again later.');
+  });
 };
 
   return (
