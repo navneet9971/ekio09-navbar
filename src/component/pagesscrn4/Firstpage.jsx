@@ -58,7 +58,6 @@ axiosInstance.get(`/compliance/?cateogry=${category}&product=${product}&region=$
         <label htmlFor="category-input">Enter Category:</label>
         <input type="text" id="category-input" value={category} onChange={handleCategoryChange} />
       </div>
-
       <div className="form-group22">
         <label htmlFor="product-input">Enter Name of Product:</label>
         <input type="text" id="product-input" value={product} onChange={handleProductChange} />
