@@ -28,6 +28,7 @@ import Payment from "./component/pages/account-pages/Payment";
 import Track from "./component/pages/account-pages/Track";
 import Transaction from "./component/pages/account-pages/Transaction";
 import MainPage from "./component/MainPages";
+import MainPage2 from "./component/MainPage2";
 
 const App = () => {
   const router = (
@@ -45,6 +46,9 @@ const App = () => {
         <Switch>
         <Route path="/navbar/mainpage">
           <MainPage />
+        </Route>
+        <Route path="/navbar/mainpage2">
+          <MainPage2 />
         </Route>
         <Route path="/navbar/clientdashboard">
           <ClientDashboard />

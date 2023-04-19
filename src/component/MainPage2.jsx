@@ -4,7 +4,7 @@ import axiosInstance from "../interceptors/axios";
 
 import { useHistory } from "react-router-dom";
 
-const MainPage = () => {
+const MainPage2 = () => {
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
   const history = useHistory();
@@ -28,29 +28,17 @@ const MainPage = () => {
     history.push("/navbar/firstpage");
   };
 
-  const handleContinue = () => {
-    history.push("/navbar/mainpage2");
-  };
-
   return (
     <div className="welcome">
       <div className="nav-box">Welcome {first_name} {last_name}</div>
       <div className="welcome-note">
-        <p className="welcome-lines">
-          Eikomp helps enterprises, in adopting a strategic approach to compliance,
-          to drastically crunch market-access timelines. Our global market access 
-          platform helps clients with one-stop solutions to navigate the complexities 
-          of global regulatory compliance.
-        </p>
-        <p className="btn-title">
-        Enter the world of hassle-free compliances 
+        <p className="welcome-lines">         
+           You can easily track the status of your application by going to the Track Application Page.
+           Click the Application you want to track and see the details. 
         </p>
         <div className="button-container">
           <button onClick={handleSkip} className="skip-button">
-            Skip
-          </button>
-          <button onClick={handleContinue} className="continue-button">
-            Continue
+            START
           </button>
         </div>
       </div>
@@ -58,4 +46,4 @@ const MainPage = () => {
   );
 };
 
-export default MainPage;
+export default MainPage2;
