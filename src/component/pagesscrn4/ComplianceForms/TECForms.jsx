@@ -24,16 +24,12 @@ function MiddleSection() {
       setSections(localStorageSections);
     } else {
       axiosInstance
-        .get("compliance/")
+        .get(`compliance/${localStorage.getItem("compliance_id")}`)
         .then((response) => {
-          const sectionsData = response.data.reduce((acc, curr) => {
-            return { ...acc, [curr.slug]: curr };
-          }, {});
-          setSections(sectionsData);
-          localStorage.setItem(
-            "middleSectionSections",
-            JSON.stringify(sectionsData)
-          );
+          console.log(response);
+          localStorage.setItem("sectionsData",response.data);
+          
+         
         })
         .catch((error) => {
           console.log(error);
@@ -52,7 +48,8 @@ function MiddleSection() {
       {/* Middle section component */}
       <div className="middle-section">
         <h398>Middle Section</h398>
-        {sections[activeSection] ? (
+        {
+        sections[activeSection] ? (
           <div>
             <h398>{sections[activeSection].title}</h398>
             <p className="middle-sc">{sections[activeSection].content}</p>
