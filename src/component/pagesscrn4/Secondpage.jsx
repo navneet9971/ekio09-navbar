@@ -27,7 +27,8 @@ const Secondpage = () => {
   };
 
   // navigate to compliance page based on compliance name
-  const handleClick = (complianceName) => {
+  const handleClick = (complianceName, complianceId) => {
+    localStorage.setItem("compliance_id", complianceId);
     if (complianceName === "TEC") {
       history.push(`/navbar/compliance/TEC`);
     } else if (complianceName === "WPS") {
@@ -54,12 +55,13 @@ const Secondpage = () => {
           </thead>
           <tbody>
   {complianceData.map((compliance, index) => (
+    
     <tr key={index}>
       {/* <td>{compliance.id}</td> */}
       <td
         className="clickable"
-        onClick={() => handleClick(compliance.product_name)}
-      >
+        onClick={() => handleClick(compliance.product_name, compliance.id)}
+      > 
         {compliance.product_name}
       </td>
                 <td>{compliance.details}</td>

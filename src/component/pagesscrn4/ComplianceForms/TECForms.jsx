@@ -9,7 +9,8 @@ import axiosInstance from '../../../interceptors/axios';
 function MiddleSection() {
   // State variables
   const [activeSection, setActiveSection] = useState("introduction");
-  const [sections, setSections] = useState({
+  const [middleData, setMiddleData] = useState("");
+  const [sections] = useState({
     introduction: null,
     registrationProcess: null,
     requiredDocument: null,
@@ -17,28 +18,16 @@ function MiddleSection() {
 
   // Effect hook to load data from local storage or API
   useEffect(() => {
-    const localStorageSections = JSON.parse(
-      localStorage.getItem("middleSectionSections")
-    );
-    if (localStorageSections) {
-      setSections(localStorageSections);
-    } else {
-      axiosInstance
-        .get("compliance/")
+    axiosInstance
+    .get(`compliance/${localStorage.getItem("compliance_id")}`)
         .then((response) => {
-          const sectionsData = response.data.reduce((acc, curr) => {
-            return { ...acc, [curr.slug]: curr };
-          }, {});
-          setSections(sectionsData);
-          localStorage.setItem(
-            "middleSectionSections",
-            JSON.stringify(sectionsData)
-          );
+          setMiddleData(response.data.data);
+          
+         // localStorage.setItem('compliance_content', res.data.data);         
         })
         .catch((error) => {
           console.log(error);
         });
-    }
   }, []);
 
   // Function to handle section click
@@ -51,8 +40,35 @@ function MiddleSection() {
     <div>
       {/* Middle section component */}
       <div className="middle-section">
-        <h398>Middle Section</h398>
-        {sections[activeSection] ? (
+    <div>
+      {(() => {
+        if (activeSection==="introduction") {
+          return (
+            <div>
+              <h1 className='cont'>{middleData.product_name} - Introduction</h1>
+              <h1 className='content'>{middleData.content}</h1>
+            </div>
+          )
+        } else if (activeSection==="registrationProcess") {
+          return (
+            <div>
+              <h398>{middleData.product_name} - Registraion Process</h398>
+              <img alt="flowchart1"src={'https://eikomp.pythonanywhere.com'+middleData.flowchart}/>
+            </div>
+          )
+        } else if (activeSection==="requiredDocument") {
+          return (
+            <div>
+              <h398>{middleData.product_name} - Required Documents</h398>
+              <img alt="faq1" src={'https://eikomp.pythonanywhere.com'+middleData.faq}/>
+          </div>
+          )
+        }
+      })()}
+    </div>
+
+        {
+        sections[activeSection] ? (
           <div>
             <h398>{sections[activeSection].title}</h398>
             <p className="middle-sc">{sections[activeSection].content}</p>
@@ -622,20 +638,10 @@ function DocumentBox() {
 
 
 function Thirdpage() {
-  const [videoUrl, setVideoUrl] = useState('');
+  const [videoUrl] = useState('');
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [buttonPopup2, setButtonPopup2] = useState(false);
  
-
-  useEffect(() => {
-    fetch('https://example.com/video')
-      .then(response => response.json())
-      .then(data => {
-        setVideoUrl(data.url);
-      })
-      .catch(error => console.error(error));
-  }, []);
-
 
   const handleWishlistClick = () => {
     if (!isWishlisted) {
@@ -724,23 +730,23 @@ function Thirdpage() {
 
 function Startapp() {
   // state variables to store form data
-  const [applicantCompanyName, setApplicantCompanyName] = useState("");
-  const [applicantCompanyAddress, setApplicantCompanyAddress] = useState("");
-  const [applicantDirectorName, setApplicantDirectorName] = useState("");
-  const [applicantContactNumber, setApplicantContactNumber] = useState("");
-  const [applicantEmailID, setApplicantEmailID] = useState("");
-  const [applicantAuthorisedSignatoryName, setApplicantAuthorisedSignatoryName] = useState("");
-  const [applicantAuthorisedSignatoryDesignation, setApplicantAuthorisedSignatoryDesignation] = useState("");
-  const [applicantContactNumber1, setApplicantContactNumber1] = useState("");
-  const [applicantEmailID1, setApplicantEmailID1] = useState("");
-  const [applicantNameofmanufacturingfactory, setApplicantNameofmanufacturingfactory] = useState("");
-  const [applicantAddressoffactory, setApplicantAddressoffactory] = useState("");
-  const [foreignCompanyName, setForeignCompanyName] = useState("");
-  const [foreignCompanyAddress, setForeignCompanyAddress] = useState("");
-  const [foreignAuthorizedSignatoryName, setForeignAuthorizedSignatoryName] = useState("");
-  const [foreignAuthorizedSignatoryDesignation, setForeignAuthorizedSignatoryDesignation] = useState("");
-  const [foreignContactNumber, setForeignContactNumber] = useState("");
-  const [foreignEmailID, setForeignEmailID ] = useState("");
+  const [applicant_company_name, setApplicant_company_name] = useState("");
+  const [applicant_company_address, setApplicant_company_address] = useState("");
+  const [applicant_director_name, setApplicant_director_name] = useState("");
+  const [applicant_contact_number, setApplicant_contact_number] = useState("");
+  const [applicant_emailid, setApplicant_emailid] = useState("");
+  const [authorised_signatory_name, setAuthorised_signatory_name] = useState("");
+  const [authorised_signatory_designation, setAuthorised_signatory_designation] = useState("");
+  const [authorised_signatory_number, setAuthorised_signatory_number] = useState("");
+  const [authorised_signatory_emailid, setAuthorised_signatory_emailid] = useState("");
+  const [Authorised_name_of_manufacturing_factory, setAuthorised_name_of_manufacturing_factory] = useState("");
+  const [Authorised_address_of_factory, setAuthorised_address_of_factory] = useState("");
+  const [foreign_manufacturer_company_name, setForeign_manufacturer_company_name] = useState("");
+  const [foreign_manufacturer_company_address, setForeign_manufacturer_company_address] = useState("");
+  const [foreign_manufacturer_authorised_signatory_name, setForeign_manufacturer_authorised_signatory_name] = useState("");
+  const [foreign_manufacturer_authorised_signatory_designation, setForeign_manufacturer_authorised_signatory_designation] = useState("");
+  const [foreign_manufacturer_contact_number, setForeign_manufacturer_contact_number] = useState("");
+  const [foreign_manufacturer_emailid, setForeign_manufacturer_emailid ] = useState("");
   const [buttonPopup5, setButtonPopup5] = useState(false);
 
   // function to handle file uploads
@@ -777,8 +783,8 @@ function Startapp() {
               <input
                 className="st805"
                 type="text"
-                value={applicantCompanyName}
-                onChange={(event) => setApplicantCompanyName(event.target.value)}
+                value={applicant_company_name}
+                onChange={(event) => setApplicant_company_name(event.target.value)}
                 required
               />
             </label>
@@ -787,8 +793,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={applicantCompanyAddress}
-                onChange={(event) => setApplicantCompanyAddress(event.target.value)}
+                value={applicant_company_address}
+                onChange={(event) => setApplicant_company_address(event.target.value)}
                 required
               />
             </label>
@@ -797,8 +803,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={applicantDirectorName}
-                onChange={(event) => setApplicantDirectorName(event.target.value)}
+                value={applicant_director_name}
+                onChange={(event) => setApplicant_director_name(event.target.value)}
                 required
               />
             </label>
@@ -807,8 +813,8 @@ function Startapp() {
               <input
               className="st805"
                 type="number"
-                value={applicantContactNumber}
-                onChange={(event) => setApplicantContactNumber(event.target.value)}
+                value={applicant_contact_number}
+                onChange={(event) => setApplicant_contact_number(event.target.value)}
                 required
               />
               </label>
@@ -817,8 +823,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={applicantEmailID}
-                onChange={(event) => setApplicantEmailID(event.target.value)}
+                value={applicant_emailid}
+                onChange={(event) => setApplicant_emailid(event.target.value)}
                 required
               />
             </label>
@@ -827,8 +833,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={applicantAuthorisedSignatoryName}
-                onChange={(event) => setApplicantAuthorisedSignatoryName(event.target.value)}
+                value={authorised_signatory_name}
+                onChange={(event) => setAuthorised_signatory_name(event.target.value)}
                 required
               />
               </label>
@@ -837,8 +843,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={applicantAuthorisedSignatoryDesignation}
-                onChange={(event) => setApplicantAuthorisedSignatoryDesignation(event.target.value)}
+                value={authorised_signatory_designation}
+                onChange={(event) => setAuthorised_signatory_designation(event.target.value)}
                 required
               />
               </label>
@@ -847,8 +853,8 @@ function Startapp() {
               <input
               className="st805"
                 type="number"
-                value={applicantContactNumber1}
-                onChange={(event) => setApplicantContactNumber1(event.target.value)}
+                value={authorised_signatory_number}
+                onChange={(event) => setAuthorised_signatory_number(event.target.value)}
                 required
               />
               </label>
@@ -857,8 +863,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={applicantEmailID1}
-                onChange={(event) => setApplicantEmailID1(event.target.value)}
+                value={authorised_signatory_emailid}
+                onChange={(event) => setAuthorised_signatory_emailid(event.target.value)}
                 required
               />
               </label>
@@ -867,8 +873,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={applicantNameofmanufacturingfactory}
-                onChange={(event) => setApplicantNameofmanufacturingfactory(event.target.value)}
+                value={Authorised_name_of_manufacturing_factory}
+                onChange={(event) => setAuthorised_name_of_manufacturing_factory(event.target.value)}
                 required
               />
               </label>
@@ -877,8 +883,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={applicantAddressoffactory}
-                onChange={(event) => setApplicantAddressoffactory(event.target.value)}
+                value={Authorised_address_of_factory}
+                onChange={(event) => setAuthorised_address_of_factory(event.target.value)}
                 required
               />
               </label>
@@ -890,9 +896,9 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={foreignCompanyName}
-                onChange={(event) => setForeignCompanyName(event.target.value)}
-                required
+                value={foreign_manufacturer_company_name}
+                onChange={(event) => setForeign_manufacturer_company_name(event.target.value)}
+                
               />
             </label>
             <label className="st8012">
@@ -900,9 +906,9 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={foreignCompanyAddress}
-                onChange={(event) => setForeignCompanyAddress(event.target.value)}
-                required
+                value={foreign_manufacturer_company_address}
+                onChange={(event) => setForeign_manufacturer_company_address(event.target.value)}
+        
               />
             </label>
             <label className="st8012">
@@ -910,9 +916,9 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={foreignAuthorizedSignatoryName}
-                onChange={(event) => setForeignAuthorizedSignatoryName(event.target.value)}
-                required
+                value={foreign_manufacturer_authorised_signatory_name}
+                onChange={(event) => setForeign_manufacturer_authorised_signatory_name(event.target.value)}
+          
               />
             </label>
             <label className="st8012">
@@ -920,9 +926,9 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={foreignAuthorizedSignatoryDesignation}
-                onChange={(event) => setForeignAuthorizedSignatoryDesignation(event.target.value)}
-                required
+                value={foreign_manufacturer_authorised_signatory_designation}
+                onChange={(event) => setForeign_manufacturer_authorised_signatory_designation(event.target.value)}
+          
               />
             </label>
             <label className="st8012">
@@ -930,9 +936,9 @@ function Startapp() {
               <input
               className="st805"
                 type="number"
-                value={foreignContactNumber}
-                onChange={(event) => setForeignContactNumber(event.target.value)}
-                required
+                value={foreign_manufacturer_contact_number}
+                onChange={(event) => setForeign_manufacturer_contact_number(event.target.value)}
+            
               />
             </label>
             <label className="st8012">
@@ -940,9 +946,9 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={foreignEmailID}
-                onChange={(event) => setForeignEmailID(event.target.value)}
-                required
+                value={foreign_manufacturer_emailid}
+                onChange={(event) => setForeign_manufacturer_emailid (event.target.value)}
+           
               />
             </label>
 

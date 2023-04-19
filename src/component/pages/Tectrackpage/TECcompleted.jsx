@@ -19,10 +19,10 @@ import file8png from "../../assets/pdficon/Red04.png";
 
 
 function TECcompleted() {
-    const location = useLocation();
-    const searchParams = new URLSearchParams(location.search);
-    const name = searchParams.get("name");
-    const projectCode = searchParams.get("projectCode");
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const name = queryParams.get("name");
+  const projectCode = queryParams.get("projectCode");
     const steps = ["Form Submitted", "Lab Testing", "Sample Completed", "End"];
     const [currentStep] = useState(1);
     const [current, setCurrentStep] = useState(1);

@@ -4,9 +4,9 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Login from "./component/auth/Login";
 import ErrorPage from "./component/errorPage";
 import View from "./component/pages/View";
-import Add from "./component/pages/Add";
+//import Add from "./component/pages/Add";
 import Review from "./component/pages/Review";
-import Myaccount from "./component/pages/Myaccount";
+// import Myaccount from "./component/pages/Myaccount";
 import Download from "./component/pages/Download";
 import SignUP from "./component/auth/SignUP";
 import Firstpage from "./component/pagesscrn4/Firstpage";
@@ -27,6 +27,7 @@ import Package from "./component/pages/account-pages/Package";
 import Payment from "./component/pages/account-pages/Payment";
 import Track from "./component/pages/account-pages/Track";
 import Transaction from "./component/pages/account-pages/Transaction";
+import MainPage from "./component/MainPages";
 
 const App = () => {
   const router = (
@@ -42,6 +43,9 @@ const App = () => {
         <Route path="/navbar">
          <Navbar /> 
         <Switch>
+        <Route path="/navbar/mainpage">
+          <MainPage />
+        </Route>
         <Route path="/navbar/clientdashboard">
           <ClientDashboard />
         </Route>
@@ -64,9 +68,16 @@ const App = () => {
         <Route path="/navbar/firstpage">
               <Firstpage />
             </Route>
-            <Route path="/navbar/add">
+
+         {/*  <Route path="/navbar/add">
               <Add />
+  </Route> 
+  
+   <Route path="/navbar/myaccount">
+              <Myaccount />
             </Route>
+            */}
+
             <Route path="/navbar/review">
               <Review />
             </Route>
@@ -89,9 +100,6 @@ const App = () => {
 
             <Route path="/navbar/download">
               <Download />
-            </Route>
-            <Route path="/navbar/myaccount">
-              <Myaccount />
             </Route>
             <Route path="/navbar/view">
               <View />

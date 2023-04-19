@@ -9,7 +9,8 @@ import axiosInstance from '../../../interceptors/axios';
 function MiddleSection() {
   // State variables
   const [activeSection, setActiveSection] = useState("introduction");
-  const [sections, setSections] = useState({
+  const [middleData, setMiddleData] = useState("");
+  const [sections] = useState({
     introduction: null,
     registrationProcess: null,
     requiredDocument: null,
@@ -17,28 +18,16 @@ function MiddleSection() {
 
   // Effect hook to load data from local storage or API
   useEffect(() => {
-    const localStorageSections = JSON.parse(
-      localStorage.getItem("middleSectionSections")
-    );
-    if (localStorageSections) {
-      setSections(localStorageSections);
-    } else {
-      axiosInstance
-        .get("compliance/")
+    axiosInstance
+    .get(`compliance/${localStorage.getItem("compliance_id")}`)
         .then((response) => {
-          const sectionsData = response.data.reduce((acc, curr) => {
-            return { ...acc, [curr.slug]: curr };
-          }, {});
-          setSections(sectionsData);
-          localStorage.setItem(
-            "middleSectionSections",
-            JSON.stringify(sectionsData)
-          );
+          setMiddleData(response.data.data);
+          
+         // localStorage.setItem('compliance_content', res.data.data);         
         })
         .catch((error) => {
           console.log(error);
         });
-    }
   }, []);
 
   // Function to handle section click
@@ -52,7 +41,37 @@ function MiddleSection() {
       {/* Middle section component */}
       <div className="middle-section">
         <h398>Middle Section</h398>
-        {sections[activeSection] ? (
+
+        <div>
+  {(() => {
+    if (activeSection==="introduction") {
+      return (
+        <div>
+              <h1 className='cont'>{middleData.product_name} - Introduction</h1>
+              <h1 className='content'>{middleData.content}</h1>
+            </div>
+      )
+    } else if (activeSection==="registrationProcess") {
+      return (
+        <div>
+          <h398>{middleData.product_name} - Registraion Process</h398>
+          <img alt="flowchart" src={'https://eikomp.pythonanywhere.com'+middleData.flowchart}/>
+        </div>
+      )
+    } else if (activeSection==="requiredDocument") {
+      return (
+        <div>
+          <h398>{middleData.product_name} - Required Documents</h398>
+          <img  alt="faq" src={'https://eikomp.pythonanywhere.com'+middleData.faq} />
+        </div>
+      )
+    }
+  })()}
+</div>
+
+
+        {
+        sections[activeSection] ? (
           <div>
             <h398>{sections[activeSection].title}</h398>
             <p className="middle-sc">{sections[activeSection].content}</p>
@@ -78,6 +97,8 @@ function MiddleSection() {
     </div>
   );
 }
+
+
 
 // -------------Lab Testing Box Codes Here-------------------------------
 
@@ -538,57 +559,57 @@ function Thirdpage() {
 
 function Startapp() {
   // state variables to store form data
-  const [portalEmail, setPortalEmail] = useState("");
-  const [portalContactperson, setPortalContactperson] = useState("");
-  const [portalDesignation, setPortalDesignation] = useState("");
-  const [portalMobileNo, setPortalMobileNo] = useState("");
-  const [portalManufacturingName, setPortalManufacturingName] = useState("");
-  const [portalAddress, setPortalAddress] = useState("");
-  const [portalCountry, setPortalCountry] = useState("");
-  const [portalState, setPortalState] = useState("");
-  const [portalZipcode, setPortalZipcode] = useState("");
-  const [portalContactNo, setPortalContactNo] = useState("");
-  const [form1Name1, setForm1Name1] = useState("");
-  const [form1Name2, setForm1Name2] = useState("");
-  const [form1Name3, setForm1Name3] = useState("");
-  const [form1NameDesignation1, setForm1NameDesignation1] = useState("");
-  const [form1NameDesignation2, setForm1NameDesignation2] = useState("");
-  const [form1NameDesignation3, setForm1NameDesignation3] = useState("");
-  const [form1TechnicalName1, setForm1TechnicalName1] = useState("");
-  const [form1TechnicalName2, setForm1TechnicalName2] = useState("");
-  const [form1TechnicalName3, setForm1TechnicalName3] = useState("");
-  const [form1TechnicalNameDesignation1, setForm1TechnicalNameDesignation1] = useState("");
-  const [form1TechnicalNameDesignation2, setForm1TechnicalNameDesignation2] = useState("");
-  const [form1TechnicalNameDesignation3, setForm1TechnicalNameDesignation3] = useState("");
-  const [form1ContactPersonName1, setForm1ContactPersonName1] = useState("");
-  const [form1ContactPersonName2, setForm1ContactPersonName2] = useState("");
-  const [form1ContactPersonName3, setForm1ContactPersonName3] = useState("");
-  const[form1ContactPersonDesignation1, setForm1ContactPersonDesignation1] =useState("");
-  const[form1ContactPersonDesignation2, setForm1ContactPersonDesignation2] =useState("");
-  const[form1ContactPersonDesignation3, setForm1ContactPersonDesignation3] =useState("");
-  const [form1AIRNameCompany, setForm1AIRNameCompany] = useState("");
-  const [form1AIRAddressCompany, setForm1AIRAddressCompany] = useState("");
-  const [form1AuthorizedName, setForm1AuthorizedName ] = useState("");
-  const [form1Designation, setForm1Designation ] = useState("");
-  const [form1PhoneNumber, setForm1PhoneNumber ] = useState("");
-  const [form1EmailID, setForm1EmailID ] = useState("");
-  const [nominationSigningAuth, setNominationSigningAuth ] = useState("");
-  const [nominationDesignation, setNominationDesignation ] = useState("");
-  const [nominationFactoryName, setNominationFactoryName ] = useState("");
-  const [nominationAddress, setNominationAddress ] = useState("");
-  const [nominationContactNo, setNominationContactNo ] = useState("");
-  const [nominationEmail, setNominationEmail ] = useState("");
-  const [nominationAIRCompanyName, setNominationAIRCompanyName ] = useState("");
-  const [nominationAddress1, setNominationAddress1 ] = useState("");
-  const [nominationContactNo1, setNominationContactNo1 ] = useState("");
-  const [nominationEmail1, setNominationEmail1 ] = useState("");
-  const [brandBrandOwnwerName, setBrandBrandOwnwerName ] = useState("");
-  const [brandManufactureNameandAddress, setBrandManufactureNameandAddress ] = useState("");
-  const [brandProduct, setBrandProduct ] = useState("");
-  const [brandBrandName, setBrandBrandName ] = useState("");
-  const [brandModelsProduct, setBrandModelsProduct ] = useState("");
-  const [brandBrandOwnerSigning, setBrandBrandOwnerSigning ] = useState("");
-  const [brandDesignation, setBrandDesignation ] = useState("");
+  const [company_email, setCompany_email] = useState("");
+  const [company_name_of_contact_person, setCompany_name_of_contact_person] = useState("");
+  const [company_designation, setCompany_designation] = useState("");
+  const [company_mobile_number, setCompany_mobile_number] = useState("");
+  const [company_manufacturing_unit_name, setCompany_manufacturing_unit_name] = useState("");
+  const [company_address, setCompany_address] = useState("");
+  const [company_country, setCompany_country] = useState("");
+  const [company_state, setCompany_state] = useState("");
+  const [company_zipcode, setCompany_zipcode] = useState("");
+  const [company_contact_number, setCompany_contact_number] = useState("");
+  const [top_management_of_the_manufacturing_unit_name_1, setTop_management_of_the_manufacturing_unit_name_1] = useState("");
+  const [top_management_of_the_manufacturing_unit_name_2, setTop_management_of_the_manufacturing_unit_name_2] = useState("");
+  const [top_management_of_the_manufacturing_unit_name_3, setTop_management_of_the_manufacturing_unit_name_3] = useState("");
+  const [top_management_of_the_manufacturing_unit_designation_1, setTop_management_of_the_manufacturing_unit_designation_1] = useState("");
+  const [top_management_of_the_manufacturing_unit_designation_2, setTop_management_of_the_manufacturing_unit_designation_2] = useState("");
+  const [top_management_of_the_manufacturing_unit_designation_3, setTop_management_of_the_manufacturing_unit_designation_3] = useState("");
+  const [technical_management_of_the_manufacturing_unit_name_1, setTechnical_management_of_the_manufacturing_unit_name_1] = useState("");
+  const [technical_management_of_the_manufacturing_unit_name_2, setTechnical_management_of_the_manufacturing_unit_name_2] = useState("");
+  const [technical_management_of_the_manufacturing_unit_name_3, setTechnical_management_of_the_manufacturing_unit_name_3] = useState("");
+  const [technical_management_of_the_manufacturing_unit_designation_1, setTechnical_management_of_the_manufacturing_unit_designation_1] = useState("");
+  const [technical_management_of_the_manufacturing_unit_designation_2, setTechnical_management_of_the_manufacturing_unit_designation_2] = useState("");
+  const [technical_management_of_the_manufacturing_unit_designation_3, setTechnical_management_of_the_manufacturing_unit_designation_3] = useState("");
+  const [contact_person_of_the_manufacturing_unit_name_1, setContact_person_of_the_manufacturing_unit_name_1] = useState("");
+  const [contact_person_of_the_manufacturing_unit_name_2, setContact_person_of_the_manufacturing_unit_name_2] = useState("");
+  const [contact_person_of_the_manufacturing_unit_name_3, setContact_person_of_the_manufacturing_unit_name_3] = useState("");
+  const[contact_person_of_the_manufacturing_unit_designation_1, setContact_person_of_the_manufacturing_unit_designation_1] =useState("");
+  const[contact_person_of_the_manufacturing_unit_designation_2, setContact_person_of_the_manufacturing_unit_designation_2] =useState("");
+  const[contact_person_of_the_manufacturing_unit_designation_3, setContact_person_of_the_manufacturing_unit_designation_3] =useState("");
+  const [name_of_the_AIR_company, setName_of_the_AIR_company] = useState("");
+  const [address_of_the_AIR_company, setAddress_of_the_AIR_company] = useState("");
+  const [authorized_signatory_name, setAuthorized_signatory_name ] = useState("");
+  const [aIR_Designation, setAIR_Designation ] = useState("");
+  const [aIR_Phone_number, setAIR_Phone_number ] = useState("");
+  const [aIR_Emailid, setAIR_Emailid ] = useState("");
+  const [nomination_signing_auth_name, setNomination_signing_auth_name ] = useState("");
+  const [nomination_designation, setNomination_designation ] = useState("");
+  const [nomination_factory_name, setNomination_factory_name ] = useState("");
+  const [nomination_address, setNomination_address ] = useState("");
+  const [nomination_contact_number, setNomination_contact_number ] = useState("");
+  const [nomination_email, setNomination_email ] = useState("");
+  const [nomination_AIR_company_name, setNomination_AIR_company_name ] = useState("");
+  const [nomination_AIR_company_address, setNomination_AIR_company_address ] = useState("");
+  const [nomination_AIR_company_contact_number, setNomination_AIR_company_contact_number ] = useState("");
+  const [nomination_AIR_company_email, setNomination_AIR_company_email ] = useState("");
+  const [brand_owner_company_name_and_address, setBrand_owner_company_name_and_address ] = useState("");
+  const [manufacture_name_and_address, setManufacture_name_and_address ] = useState("");
+  const [brand_Product, setBrand_Product ] = useState("");
+  const [brand_name, setBrand_name ] = useState("");
+  const [models_for_the_Product, setModels_for_the_Product ] = useState("");
+  const [brand_auth_owner_signing_person_name, setBrand_auth_owner_signing_person_name ] = useState("");
+  const [brand_auth_designation, setBrand_auth_designation ] = useState("");
   const [buttonPopup5, setButtonPopup5] = useState(false);
 
   
@@ -621,8 +642,8 @@ function Startapp() {
               <input
                 className="st805"
                 type="text"
-                value={portalEmail}
-                onChange={(event) => setPortalEmail(event.target.value)}
+                value={company_email}
+                onChange={(event) => setCompany_email(event.target.value)}
                 required
               />
             </label>
@@ -631,8 +652,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={portalContactperson}
-                onChange={(event) => setPortalContactperson(event.target.value)}
+                value={company_name_of_contact_person}
+                onChange={(event) => setCompany_name_of_contact_person(event.target.value)}
                 required
               />
             </label>
@@ -641,8 +662,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={portalDesignation}
-                onChange={(event) => setPortalDesignation(event.target.value)}
+                value={company_designation}
+                onChange={(event) => setCompany_designation(event.target.value)}
                 required
               />
             </label>
@@ -651,8 +672,8 @@ function Startapp() {
               <input
               className="st805"
                 type="number"
-                value={portalMobileNo}
-                onChange={(event) => setPortalMobileNo(event.target.value)}
+                value={company_mobile_number}
+                onChange={(event) => setCompany_mobile_number(event.target.value)}
                 required
               />
               </label>
@@ -661,8 +682,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={portalManufacturingName}
-                onChange={(event) => setPortalManufacturingName(event.target.value)}
+                value={company_manufacturing_unit_name}
+                onChange={(event) => setCompany_manufacturing_unit_name(event.target.value)}
                 required
               />
             </label>
@@ -671,8 +692,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={portalAddress}
-                onChange={(event) => setPortalAddress(event.target.value)}
+                value={company_address}
+                onChange={(event) => setCompany_address(event.target.value)}
                 required
               />
               </label>
@@ -681,8 +702,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={portalCountry}
-                onChange={(event) => setPortalCountry(event.target.value)}
+                value={company_country}
+                onChange={(event) => setCompany_country(event.target.value)}
                 required
               />
               </label>
@@ -691,8 +712,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={portalState}
-                onChange={(event) => setPortalState(event.target.value)}
+                value={company_state}
+                onChange={(event) => setCompany_state(event.target.value)}
                 required
               />
               </label>
@@ -701,8 +722,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={portalZipcode}
-                onChange={(event) => setPortalZipcode(event.target.value)}
+                value={company_zipcode}
+                onChange={(event) => setCompany_zipcode(event.target.value)}
                 required
               />
               </label>
@@ -711,8 +732,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={portalContactNo}
-                onChange={(event) => setPortalContactNo(event.target.value)}
+                value={company_contact_number}
+                onChange={(event) => setCompany_contact_number(event.target.value)}
                 required
               />
               </label>
@@ -726,27 +747,45 @@ function Startapp() {
       <h3 className="manufacunit">Name</h3>
       <label className="st8012">
         1
-        <input className="st805" type="text" value={form1Name1} onChange={(event) => setForm1Name1(event.target.value)} required />
+        <input className="st805" type="text" 
+        value={top_management_of_the_manufacturing_unit_name_1} 
+        onChange={(event) => setTop_management_of_the_manufacturing_unit_name_1(event.target.value)} 
+        required />
       </label>
       <label className="st8012">
         2
-        <input className="st805" type="text" value={form1Name2} onChange={(event) => setForm1Name2(event.target.value)} required />
+        <input className="st805" type="text"
+         value={top_management_of_the_manufacturing_unit_name_2} 
+         onChange={(event) => setTop_management_of_the_manufacturing_unit_name_2(event.target.value)} 
+         required />
       </label>
       <label className="st8012">
         3
-        <input className="st805" type="text" value={form1Name3} onChange={(event) => setForm1Name3(event.target.value)} required />
+        <input className="st805" type="text" 
+        value={top_management_of_the_manufacturing_unit_name_3} 
+        onChange={(event) => setTop_management_of_the_manufacturing_unit_name_3(event.target.value)} 
+        required />
       </label>
     </div>
     <div className="designations">
       <h3 className="manufacunit1">Designation</h3>
       <label className="st8012">
-        <input className="st805" type="text" value={form1NameDesignation1} onChange={(event) => setForm1NameDesignation1(event.target.value)} required />
+        <input className="st805" type="text" 
+        value={top_management_of_the_manufacturing_unit_designation_1} 
+        onChange={(event) => setTop_management_of_the_manufacturing_unit_designation_1(event.target.value)} 
+        required />
       </label>
       <label className="st8012">
-        <input className="st805" type="text" value={form1NameDesignation2} onChange={(event) => setForm1NameDesignation2(event.target.value)} required />
+        <input className="st805" type="text" 
+        value={top_management_of_the_manufacturing_unit_designation_2} 
+        onChange={(event) => setTop_management_of_the_manufacturing_unit_designation_2(event.target.value)} 
+        required />
       </label>
       <label className="st8012">
-        <input className="st805" type="text" value={form1NameDesignation3} onChange={(event) => setForm1NameDesignation3(event.target.value)} required />
+        <input className="st805" type="text" 
+        value={top_management_of_the_manufacturing_unit_designation_3} 
+        onChange={(event) => setTop_management_of_the_manufacturing_unit_designation_3(event.target.value)} 
+        required />
       </label>
     </div>
   </div>
@@ -759,27 +798,45 @@ function Startapp() {
       <h3 className="manufacunit">Name</h3>
       <label className="st8012">
         1
-        <input className="st805" type="text" value={form1TechnicalName1} onChange={(event) => setForm1TechnicalName1(event.target.value)} required />
+        <input className="st805" type="text" 
+        value={technical_management_of_the_manufacturing_unit_name_1} 
+        onChange={(event) => setTechnical_management_of_the_manufacturing_unit_name_1(event.target.value)} 
+        required />
       </label>
       <label className="st8012">
         2
-        <input className="st805" type="text" value={form1TechnicalName2} onChange={(event) => setForm1TechnicalName2(event.target.value)} required />
+        <input className="st805" type="text" 
+        value={technical_management_of_the_manufacturing_unit_name_2} 
+        onChange={(event) => setTechnical_management_of_the_manufacturing_unit_name_2(event.target.value)} 
+        required />
       </label>
       <label className="st8012">
         3
-        <input className="st805" type="text" value={form1TechnicalName3} onChange={(event) => setForm1TechnicalName3(event.target.value)} required />
+        <input className="st805" type="text" 
+        value={technical_management_of_the_manufacturing_unit_name_3}
+        onChange={(event) => setTechnical_management_of_the_manufacturing_unit_name_3(event.target.value)} 
+        required />
       </label>
     </div>
     <div className="designations">
       <h3 className="manufacunit1">Designation</h3>
       <label className="st8012">
-        <input className="st805" type="text" value={form1TechnicalNameDesignation1} onChange={(event) => setForm1TechnicalNameDesignation1(event.target.value)} required />
+        <input className="st805" type="text" 
+        value={technical_management_of_the_manufacturing_unit_designation_1} 
+        onChange={(event) => setTechnical_management_of_the_manufacturing_unit_designation_1(event.target.value)} 
+        required />
       </label>
       <label className="st8012">
-        <input className="st805" type="text" value={form1TechnicalNameDesignation2} onChange={(event) => setForm1TechnicalNameDesignation2(event.target.value)} required />
+        <input className="st805" type="text" 
+        value={technical_management_of_the_manufacturing_unit_designation_2} 
+        onChange={(event) => setTechnical_management_of_the_manufacturing_unit_designation_2(event.target.value)} 
+        required />
       </label>
       <label className="st8012">
-        <input className="st805" type="text" value={form1TechnicalNameDesignation3} onChange={(event) => setForm1TechnicalNameDesignation3(event.target.value)} required />
+        <input className="st805" type="text" 
+        value={technical_management_of_the_manufacturing_unit_designation_3} 
+        onChange={(event) => setTechnical_management_of_the_manufacturing_unit_designation_3(event.target.value)} 
+        required />
       </label>
     </div>
   </div>
@@ -792,27 +849,45 @@ function Startapp() {
       <h3 className="manufacunit">Name</h3>
       <label className="st8012">
         1
-        <input className="st805" type="text" value={form1ContactPersonName1} onChange={(event) => setForm1ContactPersonName1(event.target.value)} required />
+        <input className="st805" type="text" 
+        value={contact_person_of_the_manufacturing_unit_name_1} 
+        onChange={(event) => setContact_person_of_the_manufacturing_unit_name_1(event.target.value)} 
+        required />
       </label>
       <label className="st8012">
         2
-        <input className="st805" type="text" value={form1ContactPersonName2} onChange={(event) => setForm1ContactPersonName2(event.target.value)} required />
+        <input className="st805" type="text" 
+        value={contact_person_of_the_manufacturing_unit_name_2} 
+        onChange={(event) => setContact_person_of_the_manufacturing_unit_name_2(event.target.value)} 
+        required />
       </label>
       <label className="st8012">
         3
-        <input className="st805" type="text" value={form1ContactPersonName3} onChange={(event) => setForm1ContactPersonName3(event.target.value)} required />
+        <input className="st805" type="text" 
+        value={contact_person_of_the_manufacturing_unit_name_3}
+         onChange={(event) => setContact_person_of_the_manufacturing_unit_name_3(event.target.value)} 
+         required />
       </label>
     </div>
     <div className="designations">
       <h3 className="manufacunit1">Designation</h3>
       <label className="st8012">
-        <input className="st805" type="text" value={form1ContactPersonDesignation1} onChange={(event) => setForm1ContactPersonDesignation1(event.target.value)} required />
+        <input className="st805" type="text" 
+        value={contact_person_of_the_manufacturing_unit_designation_1} 
+        onChange={(event) => setContact_person_of_the_manufacturing_unit_designation_1(event.target.value)} 
+        required />
       </label>
       <label className="st8012">
-        <input className="st805" type="text" value={form1ContactPersonDesignation2} onChange={(event) => setForm1ContactPersonDesignation2(event.target.value)} required />
+        <input className="st805" type="text" 
+        value={contact_person_of_the_manufacturing_unit_designation_2} 
+        onChange={(event) => setContact_person_of_the_manufacturing_unit_designation_2(event.target.value)} 
+        required />
       </label>
       <label className="st8012">
-        <input className="st805" type="text" value={form1ContactPersonDesignation3} onChange={(event) => setForm1ContactPersonDesignation3(event.target.value)} required />
+        <input className="st805" type="text" 
+        value={contact_person_of_the_manufacturing_unit_designation_3} 
+        onChange={(event) => setContact_person_of_the_manufacturing_unit_designation_3(event.target.value)} 
+        required />
       </label>
     </div>
   </div>
@@ -825,8 +900,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={form1AIRNameCompany}
-                onChange={(event) => setForm1AIRNameCompany(event.target.value)}
+                value={name_of_the_AIR_company}
+                onChange={(event) => setName_of_the_AIR_company(event.target.value)}
                 required
               />
             </label>
@@ -835,8 +910,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={form1AIRAddressCompany}
-                onChange={(event) => setForm1AIRAddressCompany(event.target.value)}
+                value={address_of_the_AIR_company}
+                onChange={(event) => setAddress_of_the_AIR_company(event.target.value)}
                 required
               />
             </label>
@@ -845,8 +920,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={form1AuthorizedName}
-                onChange={(event) => setForm1AuthorizedName(event.target.value)}
+                value={authorized_signatory_name}
+                onChange={(event) => setAuthorized_signatory_name (event.target.value)}
                 required
               />
             </label>
@@ -855,8 +930,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={form1Designation}
-                onChange={(event) => setForm1Designation(event.target.value)}
+                value={aIR_Designation}
+                onChange={(event) => setAIR_Designation (event.target.value)}
                 required
               />
             </label>
@@ -865,8 +940,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={form1PhoneNumber}
-                onChange={(event) => setForm1PhoneNumber(event.target.value)}
+                value={aIR_Phone_number}
+                onChange={(event) => setAIR_Phone_number (event.target.value)}
                 required
               />
             </label>
@@ -875,8 +950,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={form1EmailID}
-                onChange={(event) => setForm1EmailID(event.target.value)}
+                value={aIR_Emailid}
+                onChange={(event) => setAIR_Emailid (event.target.value)}
                 required
               />
             </label>
@@ -888,8 +963,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={nominationSigningAuth}
-                onChange={(event) => setNominationSigningAuth(event.target.value)}
+                value={nomination_signing_auth_name}
+                onChange={(event) => setNomination_signing_auth_name (event.target.value)}
                 required
               />
             </label>
@@ -898,8 +973,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={nominationDesignation}
-                onChange={(event) => setNominationDesignation(event.target.value)}
+                value={nomination_designation}
+                onChange={(event) => setNomination_designation (event.target.value)}
                 required
               />
             </label>
@@ -908,8 +983,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={nominationFactoryName}
-                onChange={(event) => setNominationFactoryName(event.target.value)}
+                value={nomination_factory_name}
+                onChange={(event) => setNomination_factory_name (event.target.value)}
                 required
               />
             </label>
@@ -918,8 +993,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={nominationAddress}
-                onChange={(event) => setNominationAddress(event.target.value)}
+                value={nomination_address}
+                onChange={(event) => setNomination_address (event.target.value)}
                 required
               />
             </label>
@@ -928,8 +1003,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={nominationContactNo}
-                onChange={(event) => setNominationContactNo(event.target.value)}
+                value={nomination_contact_number}
+                onChange={(event) => setNomination_contact_number (event.target.value)}
                 required
               />
             </label>
@@ -938,8 +1013,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={nominationEmail}
-                onChange={(event) => setNominationEmail(event.target.value)}
+                value={nomination_email}
+                onChange={(event) => setNomination_email (event.target.value)}
                 required
               />
             </label>
@@ -948,8 +1023,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={nominationAIRCompanyName}
-                onChange={(event) => setNominationAIRCompanyName (event.target.value)}
+                value={nomination_AIR_company_name}
+                onChange={(event) => setNomination_AIR_company_name  (event.target.value)}
                 required
               />
             </label>
@@ -958,8 +1033,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={nominationAddress1}
-                onChange={(event) => setNominationAddress1(event.target.value)}
+                value={nomination_AIR_company_address}
+                onChange={(event) => setNomination_AIR_company_address (event.target.value)}
                 required
               />
             </label>
@@ -968,8 +1043,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={nominationContactNo1}
-                onChange={(event) => setNominationContactNo1(event.target.value)}
+                value={nomination_AIR_company_contact_number}
+                onChange={(event) => setNomination_AIR_company_contact_number (event.target.value)}
                 required
               />
             </label>
@@ -978,8 +1053,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={nominationEmail1}
-                onChange={(event) => setNominationEmail1(event.target.value)}
+                value={nomination_AIR_company_email}
+                onChange={(event) => setNomination_AIR_company_email (event.target.value)}
                 required
               />
             </label>
@@ -991,8 +1066,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={brandBrandOwnwerName}
-                onChange={(event) => setBrandBrandOwnwerName(event.target.value)}
+                value={brand_owner_company_name_and_address}
+                onChange={(event) => setBrand_owner_company_name_and_address (event.target.value)}
                 required
               />
             </label>
@@ -1001,8 +1076,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={brandManufactureNameandAddress}
-                onChange={(event) => setBrandManufactureNameandAddress(event.target.value)}
+                value={manufacture_name_and_address}
+                onChange={(event) => setManufacture_name_and_address (event.target.value)}
                 required
               />
             </label>
@@ -1011,8 +1086,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={brandProduct}
-                onChange={(event) => setBrandProduct(event.target.value)}
+                value={brand_Product}
+                onChange={(event) => setBrand_Product (event.target.value)}
                 required
               />
             </label>
@@ -1021,8 +1096,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={brandBrandName}
-                onChange={(event) => setBrandBrandName(event.target.value)}
+                value={brand_name}
+                onChange={(event) => setBrand_name (event.target.value)}
                 required
               />
             </label>
@@ -1031,8 +1106,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={brandModelsProduct}
-                onChange={(event) => setBrandModelsProduct (event.target.value)}
+                value={models_for_the_Product}
+                onChange={(event) => setModels_for_the_Product  (event.target.value)}
                 required
               />
             </label>
@@ -1041,8 +1116,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={brandBrandOwnerSigning}
-                onChange={(event) => setBrandBrandOwnerSigning(event.target.value)}
+                value={brand_auth_owner_signing_person_name}
+                onChange={(event) => setBrand_auth_owner_signing_person_name (event.target.value)}
                 required
               />
             </label>
@@ -1051,8 +1126,8 @@ function Startapp() {
               <input
               className="st805"
                 type="text"
-                value={brandDesignation}
-                onChange={(event) => setBrandDesignation(event.target.value)}
+                value={brand_auth_designation}
+                onChange={(event) => setBrand_auth_designation (event.target.value)}
                 required
               />
             </label>
