@@ -68,10 +68,10 @@ axiosInstance.get(`/compliance/?category=${category}&product=${product}&region=$
         <div className="centerdiv"> 
           <select id="region-select22" value={region} onChange={handleRegionChange}>
             <option value="">-- Select a region --</option>
-            <option value={region}>Europe</option>
-            <option value={region}>Africa</option>
-            <option value={region}>Asia</option>
-            <option value={region}>Americas</option>
+            <option>Europe</option>
+            <option>Africa</option>
+            <option>Asia</option>
+            <option>Americas</option>
           </select>
         </div>
       </div>
