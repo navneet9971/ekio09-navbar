@@ -22,10 +22,7 @@ const Firstpage = () => {
   };
 
   const handleGoClick = () => {
-    if (!category && !product && !region) {
-      alert('Please fill in at least one field!');
-      return;
-    }
+    
     localStorage.setItem('category', category);
     localStorage.setItem('product', product);
     localStorage.setItem('region', region);
