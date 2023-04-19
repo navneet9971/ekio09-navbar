@@ -37,12 +37,14 @@ axiosInstance.get(`/compliance/?category=${category}&product=${product}&region=$
     accept: 'application/json',
   }
   })
-.then((response) => {
-  console.log(response.data);
-  
-  // redirect the user to the second page with the compliance data
-  history.push('/navbar/secondpage');
-})
+  .then((response) => {
+    if (response.data.error) {
+    alert(response.data.error);
+    } else {
+    console.log(response.data);
+    history.push('/navbar/secondpage');
+    }
+    })
 .catch((error) => {
   console.error(error);
   alert('Something went wrong. Please try again later.');
