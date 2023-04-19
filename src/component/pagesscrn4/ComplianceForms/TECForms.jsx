@@ -9,6 +9,7 @@ import axiosInstance from '../../../interceptors/axios';
 function MiddleSection() {
   // State variables
   const [activeSection, setActiveSection] = useState("introduction");
+  const [middleData, setMiddleData] = useState("");
   const [sections, setSections] = useState({
     introduction: null,
     registrationProcess: null,
@@ -17,24 +18,16 @@ function MiddleSection() {
 
   // Effect hook to load data from local storage or API
   useEffect(() => {
-    const localStorageSections = JSON.parse(
-      localStorage.getItem("middleSectionSections")
-    );
-    if (localStorageSections) {
-      setSections(localStorageSections);
-    } else {
-      axiosInstance
-        .get(`compliance/${localStorage.getItem("compliance_id")}`)
+    axiosInstance
+    .get(`compliance/${localStorage.getItem("compliance_id")}`)
         .then((response) => {
-          console.log(response);
-          localStorage.setItem("sectionsData",response.data);
+          setMiddleData(response.data.data);
           
-         
+         // localStorage.setItem('compliance_content', res.data.data);         
         })
         .catch((error) => {
           console.log(error);
         });
-    }
   }, []);
 
   // Function to handle section click
@@ -48,6 +41,35 @@ function MiddleSection() {
       {/* Middle section component */}
       <div className="middle-section">
         <h398>Middle Section</h398>
+
+    <div>
+      {(() => {
+        if (activeSection==="introduction") {
+          return (
+            <div>
+              <h1>{middleData.product_name} - Introduction</h1>
+              <p>{middleData.content}</p>
+              
+            </div>
+          )
+        } else if (activeSection==="registrationProcess") {
+          return (
+            <div>
+              <h1>{middleData.product_name} - Registraion Process</h1>
+              <img alt="flowchart image"src={'https://eikomp.pythonanywhere.com'+middleData.flowchart}/>
+            </div>
+          )
+        } else if (activeSection==="requiredDocument") {
+          return (
+            <div>
+              <h1>{middleData.product_name} - Required Documents</h1>
+              <img alt="faq image" src={'https://eikomp.pythonanywhere.com'+middleData.faq}/>
+          </div>
+          )
+        }
+      })()}
+    </div>
+
         {
         sections[activeSection] ? (
           <div>
