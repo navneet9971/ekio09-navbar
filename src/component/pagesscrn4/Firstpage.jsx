@@ -22,12 +22,14 @@ const Firstpage = () => {
   };
 
   const handleGoClick = () => {
-    
+    if (!category && !product && !region) {
+      alert('Please fill in at least one field!');
+      return;
+    }
     localStorage.setItem('category', category);
     localStorage.setItem('product', product);
     localStorage.setItem('region', region);
-    
-    // send the input data to the backend API using axios GET request
+  
     axiosInstance.get(`/compliance/?category=${category}&product=${product}&region=${region}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('access_token')}`,
@@ -37,19 +39,28 @@ const Firstpage = () => {
     })
     .then((response) => {
       console.log(response.data);
-    
+  
       // redirect the user to the second page with the compliance data
       history.push('/navbar/secondpage');
     })
     .catch((error) => {
       console.error(error);
-      if (error.response && error.response.status === 404) {
-        alert(`Sorry, the product "${product}" in category "${category}" was not found.`);
+      if (error.response) {
+        if (error.response.status === 404) {
+          alert(`Sorry, the product "${product}" in category "${category}" was not found.`);
+        } else if (error.response.status === 401) {
+          alert('Unauthorized access. Please log in again.');
+        } else if (error.response.status === 500) {
+          alert('Internal server error. Please try again later.');
+        } else {
+          alert('Something went wrong. Please try again later.');
+        }
       } else {
-        alert('Something went wrong. Please try again later.');
+        alert('Network error. Please check your internet connection and try again.');
       }
     });
   };
+  
   
 
   return (
