@@ -9,7 +9,7 @@ const Secondpage = () => {
 
 
   useEffect(() => {
-    axiosInstance.get(`/compliance/?cateogry=${localStorage.getItem("category")}&product=${localStorage.getItem("product")}&region=${localStorage.getItem("region")}`)
+    axiosInstance.get(`/compliance/?category=${localStorage.getItem("category")}&product=${localStorage.getItem("product")}&region=${localStorage.getItem("region")}`)
     .then(res => {
       setComplianceData(res?.data?.data)
     })

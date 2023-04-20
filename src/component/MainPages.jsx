@@ -1,7 +1,13 @@
 import React, {useState ,useEffect} from "react";
 import "../component/pagesscrn4/client-dashbord/Clientdashboard.css";
 import axiosInstance from "../interceptors/axios";
-
+import { ReactComponent as Steps1 } from "../component/assets/main-page-svg/1.svg";
+import { ReactComponent as Steps2 } from "../component/assets/main-page-svg/2.svg";
+import { ReactComponent as Steps3 } from "../component/assets/main-page-svg/3.svg";
+import { ReactComponent as Steps4 } from "../component/assets/main-page-svg/4.svg";
+import { ReactComponent as Steps5 } from "../component/assets/main-page-svg/5.svg";
+import { ReactComponent as Steps6 } from "../component/assets/main-page-svg/6.svg";
+import { ReactComponent as Steps7 } from "../component/assets/main-page-svg/7.svg";
 import { useHistory } from "react-router-dom";
 
 const MainPage = () => {
@@ -24,37 +30,28 @@ const MainPage = () => {
       });
   }, []); // run only once on mount
 
-  const handleSkip = () => {
-    history.push("/navbar/firstpage");
-  };
-
   const handleContinue = () => {
-    history.push("/navbar/mainpage2");
+    history.push("/navbar/firstpage");
   };
 
   return (
     <div className="welcome">
       <div className="nav-box">Welcome {first_name} {last_name}</div>
-      <div className="welcome-note">
-        <p className="welcome-lines">
-          Eikomp helps enterprises, in adopting a strategic approach to compliance,
-          to drastically crunch market-access timelines. Our global market access 
-          platform helps clients with one-stop solutions to navigate the complexities 
-          of global regulatory compliance.
-        </p>
-        <p className="btn-title">
-        Enter the world of hassle-free compliances 
-        </p>
+
+  <Steps1 className="mainsvg1"/>
+  <Steps2 className="mainsvg1"/>
+  <Steps3 className="mainsvg1"/>
+  <Steps4 className="mainsvg1"/>
+  <Steps5 className="mainsvg1"/>
+  <Steps6 className="mainsvg1"/>
+  <Steps7 className="mainsvg2"/>
+
         <div className="button-container">
-          <button onClick={handleSkip} className="skip-button">
-            Skip
-          </button>
           <button onClick={handleContinue} className="continue-button">
             Continue
           </button>
         </div>
       </div>
-    </div>
   );
 };
 

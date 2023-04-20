@@ -5,7 +5,7 @@
   margin: 20px 0 40px;
   font-weight: 600;
   font-size: 40px;
-  color: #fff;
+  color: black;
 }
 .welcome .welcome-options {
   width: 90%;
@@ -82,6 +82,10 @@
 
 
 /*-----------------------------------MAIN PAGE CSS ------------------*/
+body {
+  background: rgb(255, 255, 255);
+}
+
 .welcome-note {
   border: 1px solid black;
   height: 24em;
@@ -119,19 +123,31 @@ p.btn-title {
   margin: 0 10px; /* Add 10px margin between the buttons */
 }
 
-button.skip-button,
-button.continue-button  {
-  padding: 12px 29px;
+button.continue-button {
+  padding: 13px 31px;
   border-radius: 20px;
   border: none;
-  background-color: #4CAF50;
+  background-color: #082a71;
   color: white;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 26px;
   font-weight: 600;
+  margin-left: -3em;
 }
 
 button.skip-button:hover,
 button.continue-button:hover{
-  background-color: #3e8e41;
+  background-color: #55b700;
+}
+
+/* ---------- MAINPAGE SVG AND TEXT CSS-------*/
+svg.mainsvg1 {
+  width: 25em;
+  height: 10em;
+}
+
+svg.mainsvg2 {
+  width: 20em;
+  height: 10em;
+  margin: 0 27.5em;
 }
