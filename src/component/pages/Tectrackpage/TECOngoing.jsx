@@ -22,7 +22,7 @@ function Stepper() {
   const name = queryParams.get("name");
   const projectCode = queryParams.get("projectCode");
   const steps = ["Application Submitted", "Sample sent for testing", "Test report generated", "Document pending with authorities", "Final report generated"];
-  const [currentStep] = useState(1);
+  const [currentStep] = useState(3);
   const [current, setCurrentStep] = useState(1);
   const [complete, setComplete] = useState(false);
   const [startDate, setStartDate] = useState(null);
@@ -74,11 +74,16 @@ function Stepper() {
   
 
   return (
-    <div className="first-container22">
+    <div className="ongoing-applications">
       <h1 className="ongo">TEC On Going Application:-</h1>
-      <h1 className="type">Compliance Type: {name}</h1>
-      <h1 className="appli">Application Number: {projectCode}</h1>
-              
+      <div>
+        <h1 className="type">Compliance Type: {name}</h1>
+        <h1 className="appli">Application Number: {projectCode}</h1>
+      </div>
+      
+      <div className="steps_container">
+        
+          
       <div className="stepWrapper">
   {newSteps.map((step, i) => (
     <div
@@ -119,34 +124,32 @@ function Stepper() {
     </div>
   ))}
 </div>
+</div> 
 
         
-<div>
+<div className="documents">
   <div className="row">
-    <div className="col">
-     
+    <div className="col doc-col">
       <div className="circle12">
         {current >= 2 ? <TiTick size={24} /> : null}
       </div>
       <div>  
         <img src={file1png} alt="" className="pdfico1" />
       </div>
-      <h3 className="tc">Signatory Authorization</h3>
-      
-      <div className="col">
+      <h3 className="be">Signatory Authorization</h3>
+    </div>
+    <div className="col doc-col">
       <div className="circle12">
         {current >= 2 ? <TiTick size={24} /> : null}
       </div>
       <div>  
         <img src={file2png} alt="" className="pdfico1" />
       </div>
-      <h3 className="wp">OEM Authorization</h3> 
-    </div>
+      <h3 className="be">OEM Authorization</h3> 
     </div>
 
     
-    <div className="col">
-    
+    <div className="col doc-col">
       <div className="circle12">
         {current >= 2 ? <TiTick size={24} /> : null}
       </div>
@@ -154,57 +157,54 @@ function Stepper() {
         <img src={file3png} alt="" className="pdfico1" />
       </div>
       <h3 className="be">MOU</h3>
-      
-      <div className="col">
+    </div>
+    <div className="col doc-col">
       <div className="circle12">
         {current >= 2 ? <TiTick size={24} /> : null}   
       </div>
       <div>  
         <img src={file4png} alt="" className="pdfico1" />
       </div>
-      <h3 className="bi">Shareholding Pattern</h3>
-    </div>
+      <h3 className="be">Shareholding Pattern</h3>
     </div>
 
 
-    <div className="col">
+    <div className="col doc-col">
       <div className="circle12">
         {current >= 2 ? <TiTick size={24} /> : null} 
       </div>
       <div>  
         <img src={file5png} alt="" className="pdfico1" />
       </div>
-      <h3 className="ep">Annexure 1</h3>
-      
-      <div className="col">
+      <h3 className="be">Annexure 1</h3>
+    </div>
+    <div className="col doc-col">
       <div className="circle12">
         {current >= 2 ? <TiTick size={24} /> : null}
       </div>
       <div>  
         <img src={file6png} alt="" className="pdfico1" />
       </div>
-      <h3 className="legal">BOM</h3>
-    </div>
+      <h3 className="be">BOM</h3>
     </div>
 
-    <div className="col">
+    <div className="col doc-col">
       <div className="circle12">
         {current >= 2 ? <TiTick size={24} /> : null}
       </div>
       <div>  
         <img src={file7png} alt="" className="pdfico1" />
       </div>
-      <h3 className="isi">Non Applicability Proforma</h3>
-      
-      <div className="col">
+      <h3 className="be">Non Applicability Proforma</h3>
+    </div>
+    <div className="col doc-col">
       <div className="circle12">
         {current >= 2 ? <TiTick size={24} /> : null}
       </div>
       <div>  
         <img src={file8png} alt="" className="pdfico1" />
       </div>
-      <h3 className="management">Proforma Seeking Exemption</h3>
-    </div>
+      <h3 className="be">Proforma Seeking Exemption</h3>
     </div>
 
   </div>

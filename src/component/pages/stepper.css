@@ -1,16 +1,19 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
 h1.type {
-  text-align: inherit;
+  float: left;
   color: black;
   font-size: 25px;
   font-weight: 600;
-  margin-top: -1em;
 }
 
 h1.appli {
-  text-align: end;
+  float: right;
   color: black;
   font-size: 25px;
-  margin-top: -2.2em;
+  padding-right: 30px;
 }
 
 p.stdate{
@@ -55,14 +58,12 @@ button.clidown {
 }
 
 .circle23 {
-  position: absolute;
   width: 25px;
   height: 25px;
   border-radius: 100%;
   background-color: red;
   /* float: left; */
   margin-left: 1.1em;
-  top: 25em;
 }
 
 .circle24 {
@@ -80,9 +81,9 @@ button.clidown {
 
 
 .line {
-  margin-top: 106px;
-  margin-left: -49px;
-  width: 159px;
+  margin-top: 75px;
+  margin-left: -58px;
+  width: 179px;
   height: 2px;
   background-color: red;
   float: left;
@@ -145,12 +146,12 @@ img.pdfico1 {
 }
 
 .row {
-  display: inline-flex;
+  display: inline-block;
   justify-content: center;
 }
 
 .col {
-  display: flex;
+  display: inline-block;
   flex-direction: column;
   align-items: center;
   margin-top: 26px;
@@ -171,8 +172,12 @@ img.pdfico1 {
 
 
 .stepWrapper {
-  display: flex;
+  overflow-y: hidden;
+  overflow-x: auto;
+  width:85%;
+  display: inline-flex;
   margin-bottom: 20px;
+  height:100%;
 }
 
 .stepBlock .circleWrapper {
@@ -186,7 +191,9 @@ img.pdfico1 {
 }
 
 h4.ste {
-  margin-top: 60px;
+  height:30px;
+  margin-top: 40px;
+  padding:10px;
 }
 
 button120.btn {
@@ -239,4 +246,34 @@ button120.btn {
 
 .primaryButton:disabled {
   opacity: 0.5;
+}
+
+
+.ongoing-applications{
+  width: 100%;
+  background-color: #fff;
+  padding:30px;
+  padding-top:60px;
+}
+.stepBlock{
+  width:160px;
+}
+.documents{
+  text-align: center;
+}
+.steps_container{
+  padding-bottom: 40px;
+  text-align: center;
+}
+
+.complete .circle23, .complete .line, .complete .rightWrapper .arrow-right{
+  background: rgb(85, 214, 85);
+}
+.doc-col{
+  width:150px;
+  height:150px;
+}
+.doc-col .be{
+  height:30px;
+
 }
