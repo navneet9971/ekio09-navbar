@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link,  useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import "../Pages.css";
 import Popup from "../popup/Popup";
 import { TiTick } from "react-icons/ti";
@@ -7,104 +7,45 @@ import Multiselect from 'multiselect-react-dropdown';
 import axiosInstance from '../../../interceptors/axios';
 
 function MiddleSection() {
-  // State variables
-  const [activeSection, setActiveSection] = useState("introduction");
+  // State variable
   const [middleData, setMiddleData] = useState("");
-  const [sections] = useState({
-    introduction: null,
-    registrationProcess: null,
-    requiredDocument: null,
-  });
 
   // Effect hook to load data from local storage or API
   useEffect(() => {
     axiosInstance
-    .get(`compliance/${localStorage.getItem("compliance_id")}`)
-        .then((response) => {
-          setMiddleData(response.data.data);
-          
-         // localStorage.setItem('compliance_content', res.data.data);         
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      .get(`compliance/${localStorage.getItem("compliance_id")}`)
+      .then((response) => {
+        setMiddleData(response.data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
-
-  // Function to handle section click
-  const handleSectionClick = (section) => {
-    setActiveSection(section);
-  };
 
   // Rendered components
   return (
-    <div>
+    <div className="ftch data">
       {/* Middle section component */}
-      <div className="middle-section">
-        <h398>Middle Section</h398>
-
-        <div>
-  {(() => {
-    if (activeSection==="introduction") {
-      return (
-        <div>
-              <h1 className='cont'>{middleData.product_name} - Introduction</h1>
-              <h1 className='content'>{middleData.content}</h1>
+        {middleData && (
+          <>
+            <div className="introdu">
+              <h398 className="cont">{middleData.product_name} - Introduction</h398>
+              <h2 className="content">{middleData.content}</h2>
             </div>
-      )
-    } else if (activeSection==="registrationProcess") {
-      return (
-        <div>
-          <h398>{middleData.product_name} - Registraion Process</h398>
-          <img alt="flowchart" src={'https://eikomp.pythonanywhere.com'+middleData.flowchart}/>
-        </div>
-      )
-    } else if (activeSection==="requiredDocument") {
-      return (
-        <div>
-          <h398>{middleData.product_name} - Required Documents</h398>
-          <img  alt="faq" src={'https://eikomp.pythonanywhere.com'+middleData.faq} />
-        </div>
-      )
-    }
-  })()}
-</div>
 
-
-        {
-        sections[activeSection] ? (
-          <div>
-            <h398>{sections[activeSection].title}</h398>
-            <p className="middle-sc">{sections[activeSection].content}</p>
-          </div>
-        ) : (
-          <div>
-            <h399>No content to display.</h399>
-          </div>
+            <h398 className= "regpro">{middleData.product_name} - Registration Process</h398>
+              <img className="imgback" alt="flowchart" src={"https://eikomp.pythonanywhere.com" + middleData.flowchart} />
+          </>
         )}
       </div>
-      {/* Right section component */}
-      <div className="right-section">
-        <Link onClick={() => handleSectionClick("introduction")}>
-          Introduction
-        </Link>
-        <Link onClick={() => handleSectionClick("registrationProcess")}>
-          Registration Process
-        </Link>
-        <Link onClick={() => handleSectionClick("requiredDocument")}>
-          Required Document
-        </Link>
-      </div>
-    </div>
-  );
-}
-
-
+  )
+        };
 
 // -------------Lab Testing Box Codes Here-------------------------------
 
 function LabTestingBox() {
   const [buttonPopup, setButtonPopup] = useState(false);
-  const [buttonPopup1, setButtonPopup1] = useState(false);
+  //const [buttonPopup1, setButtonPopup1] = useState(false);
   const [submitPopup] = useState(false);
 
     // state variables to store form data
@@ -128,19 +69,15 @@ function LabTestingBox() {
     // TODO: handle form submission logic
   };
  
-  const statusData = [
-    { "s.no": '1', category: 'Mobile', onDate: '2022-02-01', currentStatus: 'In Progress' },
-    { "s.no": '2', category: 'Screen', onDate: '2022-02-02', currentStatus: 'Completed' },
-    { "s.no": '3', category: 'Chipset', onDate: '2022-02-03', currentStatus: 'Pending' },
-  ];
-
-
+// -------------Lab Testing Box Codes Here-------------------------------
 // TESTING BUTTON CODE HERE !!!!!!!!!!!
 
   return (
     <div className="lab-testing-box">
-      <p>Want lab testing services?</p>
+            <div className="header-btn">
       <button7 onClick={() => setButtonPopup(true)}>Request Testing</button7>
+      </div>
+
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
       <div style={{ height: "500px", overflow: "scroll" }}>
           <h801>Testing Details</h801>
@@ -288,8 +225,9 @@ function LabTestingBox() {
     <div>Hello everyone</div>
   </Popup>
 )}
-
+     {/* <div className="header-btn">
       <button7 onClick={() => setButtonPopup1(true)}>Status</button7>
+      </div>
       <Popup trigger={buttonPopup1} setTrigger={setButtonPopup1}>
         <div>
           <h32>My Order</h32>
@@ -314,8 +252,8 @@ function LabTestingBox() {
             </tbody>
           </table>
         </div>
-      </Popup>
-    </div>
+      </Popup>*/}
+              </div>
   );
 }
  
@@ -378,16 +316,11 @@ function DocumentBox() {
     setButtonPopup(false);
   }
 
-  function viewDocument() {
-    // Code to open a new tab and display the file
-    console.log("Viewing file...");
-    const viewUrl = 'https://example.com/document.pdf';
-    window.open(viewUrl, '_blank');
-  }
 
+
+ // -------------------------------Document Box Codes here---------------------------------------------------
   return (
     <div className="document-box">
-      <h3>Documents</h3>
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
         <form onSubmit={handleSubmit}>
           <h3>Upload a File</h3>
@@ -424,12 +357,16 @@ function DocumentBox() {
           </div>
         </form>
       </Popup>
-       <button7 onClick={() => setButtonPopup(true)}>Upload</button7>
+      <div className="header-btn">
+      <button7 onClick={() => setButtonPopup(true)}>Upload</button7>
+      </div>
+       
 
                {/*DOWNLOAD BUTTON POPUP SECTION */}
 
-
+               <div className="header-btn1">
        <button7 onClick={() => setButtonPopup1(true)}>Download</button7>
+       </div>
       <Popup trigger={buttonPopup1} setTrigger={setButtonPopup1}>
         <form onSubmit={handleSubmit}>
           <h3>Download a File</h3>
@@ -448,8 +385,11 @@ function DocumentBox() {
           </div>
         </form>
       </Popup>
-
+{/*
+      <div className="header-btn">
       <button7 onClick={viewDocument}>View</button7>
+                  </div> */}
+
     </div>
   );
 }
@@ -457,39 +397,10 @@ function DocumentBox() {
 // Video Section Codes Here----------------------------------------
 
 function Thirdpage() {
-  const [videoUrl, setVideoUrl] = useState('');
-  const [isWishlisted, setIsWishlisted] = useState(false);
+ // const [videoUrl, setVideoUrl] = useState('');
+ // const [isWishlisted, setIsWishlisted] = useState(false);
   const [buttonPopup2, setButtonPopup2] = useState(false);
  
-
-  useEffect(() => {
-    fetch('https://example.com/video')
-      .then(response => response.json())
-      .then(data => {
-        setVideoUrl(data.url);
-      })
-      .catch(error => console.error(error));
-  }, []);
-
-
-  const handleWishlistClick = () => {
-    if (!isWishlisted) {
-      // Add the video to the wishlist
-      const wishlist = JSON.parse(localStorage.getItem('bookmarkItem') || '[]');
-      wishlist.push({ name: 'Video 1', url: videoUrl });
-      localStorage.setItem('bookmarkItem', JSON.stringify(wishlist));
-      setIsWishlisted(true);
-    } else {
-      // Remove the video from the wishlist
-      const wishlist = JSON.parse(localStorage.getItem('bookmarkItem') || '[]');
-      const index = wishlist.findIndex(item => item.url === videoUrl);
-      if (index > -1) {
-        wishlist.splice(index, 1);
-        localStorage.setItem('bookmarkItem', JSON.stringify(wishlist));
-        setIsWishlisted(false);
-      }
-    }
-  };
 
   const notifyData = [
     { "s.no": '1', notifaction: 'Mobile', Date: '2022-02-01', linked: 'In Progress' },
@@ -497,15 +408,13 @@ function Thirdpage() {
     { "s.no": '3', notifaction: 'Chipset', Date: '2022-02-03', linked: 'Pending' },
   ];
 
-
+// Video Section Codes Here---or Section-----
   return (
-    <div className="app55">
-      <div className="left-section55">
+    <div className="app55"> 
         <Startapp />
         <LabTestingBox />
         <DocumentBox />
-      </div>
-      <div>
+    {/*  <div>
         <button className = "wishlist" 
         onClick={handleWishlistClick}>
           {isWishlisted ? 'Remove from Wishlist' : 'Add to Wishlist'}
@@ -515,14 +424,13 @@ function Thirdpage() {
         <video controls>
           <source src={videoUrl} type="video/mp4" />
         </video>
-      </div>
+  </div> */}
         <MiddleSection/>
-
 
 {/*------------------Notify Section -----------------------*/}
       <div className= "notify" >
-      <div className="right-section66">
-      <Link className='notify' onClick={() => setButtonPopup2(true)}>Notification</Link>
+      <div className="notify-btnn1">
+      <button7  onClick={() => setButtonPopup2(true)}>Notification</button7>
       </div>
       <Popup trigger={buttonPopup2} setTrigger={setButtonPopup2}>
         <div>
@@ -628,10 +536,13 @@ function Startapp() {
   };
 
 
-
+// Start Applicatioon Form----------------------------------------------------
   return (
     <div>
+      <div className="header-btn">
       <button10 onClick={() => setButtonPopup5(true)}>Start New Application</button10>
+      </div>
+
       <Popup trigger={buttonPopup5} setTrigger={setButtonPopup5}>
         <div style={{ height: "500px", overflow: "scroll" }}>
           <h801>BIS FORMS</h801>

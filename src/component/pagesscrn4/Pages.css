@@ -58,17 +58,14 @@
 
 /* CSS for button */
 .first-container22 button {
-  background-color: #552700;
+  background-color: #082a71;
   border-radius: 8px;
   border-style: none;
   box-sizing: border-box;
   color: #ffffff;
   cursor: pointer;
   display: inline-block;
-  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial,
-    sans-serif;
   font-size: 18px;
-  font-weight: 500;
   height: 40px;
   line-height: 20px;
   list-style: none;
@@ -85,7 +82,7 @@
 }
 .first-container22 button:hover,
 .first-container22 button:focus {
-  background-color: rgb(6, 117, 6);
+  background-color: #55b700;
 }
 
 @media screen and (max-width: 576px) {
@@ -272,12 +269,6 @@
 
 
   /*--------Third Page CSS-----------*/
-  h398 {
-    text-align: center;
-    margin: 30px;
-    font-size: 21px;
-    font-weight: 600;
-}
 
 h1.content {
   font-size: 14px;
@@ -290,89 +281,6 @@ h1.cont {
   transform: translateX(112px);
 }
 
-h399 {
-  display: flex;
-  align-items: initial;
-  position: absolute;
-  /* justify-content: center; */
-  right: 46em;
-  top: 6em;
-  font-size: 20px;
-}
-
-  .app55 {
-    display: flex;
-    flex-direction: row-reverse;
-  }
-  
-  .left-section55 {
-    flex: 1 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 35px;
-    margin-left: 11em;
-  }
-
-  .center-section55{
-    font-family: arial;
-    font-size: 24px;
-    position: absolute;
-    left: 39.5%;
-    transform: translate(-100%, 20%);
-  }
-  
-  .right-section55 {
-    flex-basis: 25%;
-  }
-
-  .right-section66 {
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-}
-
-p.middlesc {
-  flex: 1 1;
-  display: flex;
-  flex-direction: column;
-  /* justify-content: center; */
-  align-items: center;
-  margin-top: 8px;
-  /* margin-left: -44em; */
-}
-
-.middle-section {
-  width: 80%;
-  margin: 0 auto;
-}
-
-.right-section66 {
-  justify-content: center;
-}
-
-  
-  .flex-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-  }
-  
-  .flex-item {
-    margin: 10px;
-    text-align: center;
-  }
-
-  .vl {
-    border-left: 1px solid white;
-    height: 617px;
-    position: absolute;
-    right: 85%;
-  }
 
   img55{
     margin-top: 5%;
@@ -381,39 +289,13 @@ p.middlesc {
     max-width: 50%;
   }
 
-  a{
-    display: block;
-    margin-left: 7px;
-    margin-top: 10px;
-    font-weight: 500;
-    color: white;
-    font-size: 20px;
-}
 
-a:hover{
-  color: skyblue;
-}
  
-  .lab-testing-box,
-  .status-box,
-  .document-box {
-    margin-left: 65%;
-    margin-bottom: 20px;
-    border: 2px solid #ccc;
-    text-align: center;
-    box-shadow: 2px 2px 5px rgba(238, 230, 230, 0.3);
-  }
   
-  .lab-testing-box p,
-  .document-box p,
-  .status-box p {
-    margin: 15px 40px;
-    font-size: 14px;
-    color: #f8e9e9;
-  }
 
 
   /*---THird page Start application popup css------- */
+
 h801{
   text-align: center;
   font-size: 30px;
@@ -656,64 +538,89 @@ button8, button8:focus {
     }
 
   /*-------------ThirdPage Butoon CSS--------------*/
-  button5,
-  button7,
-  button10{
-    z-index:1;
+  button5, button7, button10 {
     align-items: center;
-    appearance: none;
-    background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
-    border: 0;
-    border-radius: 6px;
-    box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
+    border-radius: 14px;
+    background-color: #082a71;
     box-sizing: border-box;
-    color: #fff;
+    color: #efe3e3;
     cursor: pointer;
     display: inline-flex;
-    font-family: "JetBrains Mono",monospace;
     height: 48px;
     margin: 10px;
     justify-content: center;
-    line-height: 1;
-    list-style: none;
     overflow: hidden;
     padding-left: 15px;
     padding-right: 15px;
     position: relative;
-    text-align: left;
-    text-decoration: none;
-    transition: box-shadow .15s,transform .15s;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    white-space: nowrap;
-    will-change: box-shadow,transform;
-    font-size: 14px;
-  }
-  
-  button5:focus,
-  button7:focus,
-  button10:focus {
-    box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
-  }
+    font-family: Avenir
+}
   
   button5:hover,
   button7:hover,
   button10:hover {
-    box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
-    transform: translateY(-2px);
+    background-color: #55b700;
   }
 
-  button5:active,
-  button7:active,
-  button10:active  {
-    box-shadow: #3c4fe0 0 3px 7px inset;
-    transform: translateY(2px);
-  }
-
-  button10 {
-    left: 23em;
+/* button css styling is here of Forms Page  */
+button10 {
+    left: 1em;
 }
+
+.lab-testing-box {
+  margin-left: 18em;
+  margin-top: -4.3em;
+}
+
+.document-box {
+  margin-left: 32em;
+  margin-top: -4.3em;
+}
+
+.header-btn1 {
+  margin-top: -4.3em;
+  margin-left: 10em;
+}
+
+.notify-btnn1 {
+  margin-top: -108em;
+  margin-left: 54em;
+}
+
+.header-btn {
+  display: contents;
+}
+
+/*------- APIS comeing data css ------*/
+h2.content {
+  margin: 14px;
+  font-size: 20px;
+}
+
+h398.cont {
+  font-size: 25px;
+  margin: 407px;
+  font-weight: 600;
+}
+
+h398.regpro {
+  margin: 372px;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+h398.reqdoc {
+  font-size: 21px;
+  font-weight: 600;
+  /* margin-top: 151px; */
+  margin: 20px auto;
+}
+
+.ftch.data {
+  text-align: center;
+  margin-top: 30px;
+}
+
 
    video {
     position: absolute;

@@ -1,14 +1,16 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: Avenir;
 }
 
 body {
   background-image: url("../bg_1.png");
   background-repeat: no-repeat;
   background-size: cover;
-  min-height: 100vh;
+ /* min-height: 100vh; */
   background-attachment: fixed;
+  font-family: Avenir;
 }
 #root{
   position: sticky;
@@ -44,7 +46,7 @@ body {
 
 .form h2 {
   font-size: 3rem;
-  font-family: cursive;
+  font-family: Avenir;
   margin: 45px;
   color: white;
 }
@@ -53,7 +55,7 @@ body {
   font-size: 25px;
   /* margin: 25px; */
   margin-top: 35px;
-  font-family: sans-serif;
+  font-family: Avenir;
 }
 
 #submit {
