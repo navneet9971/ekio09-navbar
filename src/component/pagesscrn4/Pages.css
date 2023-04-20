@@ -264,8 +264,8 @@
     font-size: 12px;
   }
   
-  button1,
-  button2,
+  button1:hover,
+  button2:hover,
   button3:hover {
     background-color: #3e8e41;
   }
@@ -273,9 +273,21 @@
 
   /*--------Third Page CSS-----------*/
   h398 {
-    position: absolute;
-    right: 63em;
-    top: 5em;
+    text-align: center;
+    margin: 30px;
+    font-size: 21px;
+    font-weight: 600;
+}
+
+h1.content {
+  font-size: 14px;
+  text-align: center;
+  transform: translateX(112px);
+}
+h1.cont {
+  font-size: 24px;
+  text-align: center;
+  transform: translateX(112px);
 }
 
 h399 {

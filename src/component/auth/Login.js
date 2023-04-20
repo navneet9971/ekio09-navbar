@@ -33,9 +33,15 @@ function Login() {
       localStorage.setItem('user_id', res.data.profile.id);
       axiosInstance.defaults.headers['Authorization'] =
         'Bearer ' + localStorage.getItem('access_token');
-      history.push('navbar/clientdashboard');
+      history.push('/navbar/mainpage');
       //console.log(res);
       //console.log(res.data);
+    })
+    .catch((error) => {
+      // handle error during login
+      console.error(error);
+      // show error message to user
+      alert("Incorrect username or password. Please try again.");
     });
 };
 

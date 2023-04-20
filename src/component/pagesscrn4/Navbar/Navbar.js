@@ -112,7 +112,7 @@ const Navbar = () => {
             </NavLink>
           </li>
 
-          <li
+       {/*   <li
             className={
               pathname === "/navbar/myaccount" ? "active nav-item" : "nav-item"
             }>
@@ -136,7 +136,7 @@ const Navbar = () => {
             >
              Add Users
             </NavLink>
-          </li>
+          </li> */}
 
         </ul>
       </div>

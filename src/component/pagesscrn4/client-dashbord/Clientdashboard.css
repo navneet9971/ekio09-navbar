@@ -78,3 +78,60 @@
     margin-top: 10px;
   }
 }
+
+
+
+/*-----------------------------------MAIN PAGE CSS ------------------*/
+.welcome-note {
+  border: 1px solid black;
+  height: 24em;
+  width: 70em;
+  background-color: white;
+  border-radius: 10px;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  border-radius: 20px;
+  transform: translate(-50%, 30%);
+}
+
+p.welcome-lines {
+  text-align: center;
+  margin: 30px;
+  font-size: 21px;
+  font-weight: 600;
+}
+
+p.btn-title {
+  text-align: center;
+  margin: 20px;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.button-container {
+  margin: 50px auto; /* Center the container and add 50px margin at the top and bottom */
+  display: flex; /* Use flexbox layout */
+  justify-content: center; /* Center the buttons horizontally */
+}
+
+.button-container button {
+  margin: 0 10px; /* Add 10px margin between the buttons */
+}
+
+button.skip-button,
+button.continue-button  {
+  padding: 12px 29px;
+  border-radius: 20px;
+  border: none;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+button.skip-button:hover,
+button.continue-button:hover{
+  background-color: #3e8e41;
+}

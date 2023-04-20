@@ -39,7 +39,6 @@ axiosInstance.get(`/compliance/?category=${category}&product=${product}&region=$
   })
 .then((response) => {
   console.log(response.data);
-
   // redirect the user to the second page with the compliance data
   history.push('/navbar/secondpage');
 })

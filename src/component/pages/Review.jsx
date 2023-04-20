@@ -35,7 +35,7 @@ function Review() {
           selectedStatus === "on-going"
             ? "ComplianceTypePage"
             : "Completedcompliancetype"
-        }/complianceType=${selectedItem.complianceType}&projectCode=${
+        }/${selectedItem.complianceType}?name=${selectedItem.complianceType}&projectCode=${
           selectedItem.projectCode
         }`
       );
@@ -43,15 +43,13 @@ function Review() {
       history.push(
         `/navbar/${
           selectedStatus === "on-going" ? "TECOngoing" : "TECcompleted"
-        }/complianceType=${selectedItem.complianceType}&projectCode=${
+        }/${selectedItem.complianceType}?name=${selectedItem.complianceType}&projectCode=${
           selectedItem.projectCode
         }`
       );
     }
   };
 
-  
-  
   
   const handleFilterStatusChange = (event) => {
     const selectedStatus = event.target.value;

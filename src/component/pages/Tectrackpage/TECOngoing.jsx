@@ -18,9 +18,9 @@ import file8png from "../../assets/pdficon/Red04.png";
 
 function Stepper() {
   const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const name = searchParams.get("name");
-  const projectCode = searchParams.get("projectCode");
+  const queryParams = new URLSearchParams(location.search);
+  const name = queryParams.get("name");
+  const projectCode = queryParams.get("projectCode");
   const steps = ["Application Submitted", "Sample sent for testing", "Test report generated", "Document pending with authorities", "Final report generated"];
   const [currentStep] = useState(1);
   const [current, setCurrentStep] = useState(1);
@@ -32,6 +32,7 @@ function Stepper() {
   const [showTooltip, setShowTooltip] = useState(false); // declare showTooltip state
   const [setClickedNext] = useState(false); // add state variable for tracking button click
   const newSteps = ["Portal Registration", "Initation of testing", "AIR Regis", "Foreign OEM Registration", "BOM Submission", "Application Payment", "Final Submission", "Issuance of Cartification"];
+
 
   const handleUpdateCurrentStep = (step) => {
     setCurrentStep(step);
@@ -46,7 +47,6 @@ function Stepper() {
       })
     );
   };
-
 
   const calculateEndDate = () => {
     const currentDate = new Date();
@@ -96,7 +96,9 @@ function Stepper() {
       i === 0 ? "arrow1" : ""
     } ${i === 1 ? "arrow2" : ""} ${i === 2 ? "arrow3" : ""} ${
       i === 3 ? "arrow4" : ""
-    } ${i === 4 ? "arrow5" : ""}`}
+    } ${i === 4 ? "arrow5" : ""}  ${i === 5 ? "arrow6" : ""} ${i > 5 ? "arrow-break" : ""} 
+    ${i === 6 ? "arrow7" : ""}
+    ${i === 7 ? "arrow8" : ""}  ${i === 8 ? "arrow9" : ""} `}
     onMouseOver={() => setShowTooltip(true)}
     onMouseOut={() => setShowTooltip(false)}
   >
