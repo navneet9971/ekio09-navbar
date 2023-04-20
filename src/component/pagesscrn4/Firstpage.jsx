@@ -30,7 +30,7 @@ const Firstpage = () => {
     localStorage.setItem('product', product);
     localStorage.setItem('region', region);
    // send the input data to the backend API using axios GET request
-axiosInstance.get(`/compliance/?cateogry=${category}&product=${product}&region=${region}`, {
+axiosInstance.get(`/compliance/?category=${category}&product=${product}&region=${region}`, {
   headers: {
     Authorization: `Bearer ${localStorage.getItem('access_token')}`,
     'Content-Type': 'application/json',
@@ -69,10 +69,10 @@ axiosInstance.get(`/compliance/?cateogry=${category}&product=${product}&region=$
         <div className="centerdiv"> 
           <select id="region-select22" value={region} onChange={handleRegionChange}>
             <option value="">-- Select a region --</option>
-            <option value="north">Europe</option>
-            <option value="south">Africa</option>
-            <option value="east">Asia</option>
-            <option value="west">Americas</option>
+            <option value="Europe">Europe</option>
+            <option value="Africa">Africa</option>
+            <option value="Asia">Asia</option>
+            <option value="Americas">Americas</option>
           </select>
         </div>
       </div>
