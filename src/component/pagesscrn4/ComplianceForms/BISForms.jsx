@@ -24,37 +24,22 @@ function MiddleSection() {
 
   // Rendered components
   return (
-    <div>
+    <div className="ftch data">
       {/* Middle section component */}
-      <div className="middle-section">
-        <h398>Introduction</h398>
-
         {middleData && (
           <>
-            <div>
+            <div className="introdu">
               <h398 className="cont">{middleData.product_name} - Introduction</h398>
-              <h1 className="content">{middleData.content}</h1>
+              <h2 className="content">{middleData.content}</h2>
             </div>
 
-            <div>
-              <h398>{middleData.product_name} - Registration Process</h398>
-              <img alt="flowchart" src={"https://eikomp.pythonanywhere.com" + middleData.flowchart} />
-            </div>
-
-            <div>
-              <h398>{middleData.product_name} - Required Documents</h398>
-              <img alt="faq" src={"https://eikomp.pythonanywhere.com" + middleData.faq} />
-            </div>
+            <h398 className= "regpro">{middleData.product_name} - Registration Process</h398>
+              <img className="imgback" alt="flowchart" src={"https://eikomp.pythonanywhere.com" + middleData.flowchart} />
           </>
         )}
       </div>
-    </div>
-  );
-}
-
-
-
-
+  )
+        };
 
 // -------------Lab Testing Box Codes Here-------------------------------
 
@@ -332,6 +317,7 @@ function DocumentBox() {
   }
 
 
+
  // -------------------------------Document Box Codes here---------------------------------------------------
   return (
     <div className="document-box">
@@ -443,7 +429,7 @@ function Thirdpage() {
 
 {/*------------------Notify Section -----------------------*/}
       <div className= "notify" >
-      <div className="notify-btnn">
+      <div className="notify-btnn1">
       <button7  onClick={() => setButtonPopup2(true)}>Notification</button7>
       </div>
       <Popup trigger={buttonPopup2} setTrigger={setButtonPopup2}>
