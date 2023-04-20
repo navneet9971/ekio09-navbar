@@ -29,39 +29,24 @@ const Firstpage = () => {
     localStorage.setItem('category', category);
     localStorage.setItem('product', product);
     localStorage.setItem('region', region);
-  
-    axiosInstance.get(`/compliance/?category=${category}&product=${product}&region=${region}`, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-        'Content-Type': 'application/json',
-        accept: 'application/json',
-      }
-    })
-    .then((response) => {
-      console.log(response.data);
-  
-      // redirect the user to the second page with the compliance data
-      history.push('/navbar/secondpage');
-    })
-    .catch((error) => {
-      console.error(error);
-      if (error.response) {
-        if (error.response.status === 404) {
-          alert(`Sorry, the product "${product}" in category "${category}" was not found.`);
-        } else if (error.response.status === 401) {
-          alert('Unauthorized access. Please log in again.');
-        } else if (error.response.status === 500) {
-          alert('Internal server error. Please try again later.');
-        } else {
-          alert('Something went wrong. Please try again later.');
-        }
-      } else {
-        alert('Network error. Please check your internet connection and try again.');
-      }
-    });
-  };
-  
-  
+   // send the input data to the backend API using axios GET request
+axiosInstance.get(`/compliance/?cateogry=${category}&product=${product}&region=${region}`, {
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+    'Content-Type': 'application/json',
+    accept: 'application/json',
+  }
+  })
+.then((response) => {
+  console.log(response.data);
+  // redirect the user to the second page with the compliance data
+  history.push('/navbar/secondpage');
+})
+.catch((error) => {
+  console.error(error);
+  alert('Something went wrong. Please try again later.');
+});
+};
 
   return (
     <div className="first-container22">
@@ -72,6 +57,7 @@ const Firstpage = () => {
         <label htmlFor="category-input">Enter Category:</label>
         <input type="text" id="category-input" value={category} onChange={handleCategoryChange} />
       </div>
+
       <div className="form-group22">
         <label htmlFor="product-input">Enter Name of Product:</label>
         <input type="text" id="product-input" value={product} onChange={handleProductChange} />
@@ -82,10 +68,10 @@ const Firstpage = () => {
         <div className="centerdiv"> 
           <select id="region-select22" value={region} onChange={handleRegionChange}>
             <option value="">-- Select a region --</option>
-            <option>Europe</option>
-            <option>Africa</option>
-            <option>Asia</option>
-            <option>Americas</option>
+            <option value="north">Europe</option>
+            <option value="south">Africa</option>
+            <option value="east">Asia</option>
+            <option value="west">Americas</option>
           </select>
         </div>
       </div>
