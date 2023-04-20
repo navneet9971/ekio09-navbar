@@ -30,7 +30,7 @@ const Firstpage = () => {
     localStorage.setItem('product', product);
     localStorage.setItem('region', region);
    // send the input data to the backend API using axios GET request
-axiosInstance.get(`/compliance/?cateogry=${category}&product=${product}&region=${region}`, {
+axiosInstance.get(`/compliance/?category=${category}&product=${product}&region=${region}`, {
   headers: {
     Authorization: `Bearer ${localStorage.getItem('access_token')}`,
     'Content-Type': 'application/json',
