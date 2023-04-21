@@ -410,6 +410,12 @@ svg.mainsvg2 {
   /* display: inline-block; */
 }
 
+svg.mainsvg9 {
+  width: 25em;
+  height: 10em;
+  margin: 0 25em;
+}
+
 .tecon {
   margin: 100px 144px;
   text-align: center;
