@@ -3,11 +3,11 @@ import { useLocation } from "react-router-dom";
 import { TiTick } from "react-icons/ti";
 import jsPDF from 'jspdf';
 import "./stepper.css";
-import Thum1png from "../../component/assets/track-icon/Icons01.png";
-import Thum2png from "../../component/assets/track-icon/Icons02.png";
-import Thum3png from "../../component/assets/track-icon/Icons03.png";
-import Thum4png from "../../component/assets/track-icon/Icons04.png";
-import Thum5png from "../../component/assets/track-icon/Icons05.png";
+import { ReactComponent as Thum1png } from ".././assets/bis-track-icons/application.svg";
+import { ReactComponent as Thum2png } from ".././assets/bis-track-icons/testing.svg";
+import { ReactComponent as Thum3png } from ".././assets/bis-track-icons/approval.svg";
+import { ReactComponent as Thum4png } from ".././assets/bis-track-icons/documentation.svg";
+import { ReactComponent as Thum5png } from ".././assets/bis-track-icons/certificate.svg";
 import file1png from "../../component/assets/pdficon/Green01.png";
 import file2png from "../../component/assets/pdficon/Green02.png";
 import file3png from "../../component/assets/pdficon/Green03.png";
@@ -101,11 +101,11 @@ function Compdownload() {
             i === 3 ? "arrow4" : ""
           } ${i === 4 ? "arrow5" : ""}`}
         >
-          {i === 0 && <img src={Thum1png} alt="" className="trck1" />}
-          {i === 1 && <img src={Thum2png} alt="" className="trck1" />}
-          {i === 2 && <img src={Thum3png} alt="" className="trck1" />}
-          {i === 3 && <img src={Thum4png} alt="" className="trck1" />}
-          {i === 4 && <img src={Thum5png} alt="" className="trck1" />}
+ { i === 0 && <Thum1png className="trck1"/> }
+    {i === 1 && <Thum2png className="trck1"/>}
+    {i === 2 && <Thum3png className="trck1"/>}
+    {i === 3 && <Thum4png className="trck1"/>}
+    {i === 4 && <Thum5png className="trck1"/>}
         </div>
       </div>
     </div>

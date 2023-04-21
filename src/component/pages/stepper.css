@@ -40,13 +40,13 @@ button.clidown {
   margin-left: 34em;
 }
 
-.arrow-right {
+/*.arrow-right {
   background: linear-gradient(90deg, #f12400 0%, #f72d0a 50%, #f52e0a 100%);
   clip-path: polygon(50% 0%, 90% 51%, 50% 100%, 3% 100%, 32% 50%, 0% 0%);
   width: 149px;
   height: 95px;
   margin-top: 10em;
-}
+} */
 
 /*-------Completed Track page */
 .arrow-right1 {
@@ -57,15 +57,14 @@ button.clidown {
   margin-top: 10em;
 }
 
-.circle23 {
+/*.circle23 {
   margin-top: 25px;
   width: 25px;
   height: 25px;
   border-radius: 100%;
-  background-color: red;
-  /* float: left; */
+  background-color: red
   margin-left: 4.1em;
-}
+} */
 
 .circle24 {
   position: absolute;
@@ -81,7 +80,7 @@ button.clidown {
 /*-------ARROWS ACTIVE COLOR CHANGE--------------*/
 
 
-.line {
+/*.line {
   margin-top: 75px;
   margin-left: -13px;
   width: 179px;
@@ -89,9 +88,9 @@ button.clidown {
   background-color: red;
   float: left;
   transform: rotateZ(90deg);
-}
+} 
 
-.line1 {
+ .line1 {
   margin-top: 106px;
   margin-left: -49px;
   width: 159px;
@@ -99,13 +98,34 @@ button.clidown {
   background-color: green;
   float: left;
   transform: rotateZ(90deg);
-}
+} */
 
 .trck1 {
-  width: 99px;
+  width: 96px;
   height: 120px;
-  margin-left: 22px;
-  margin-top: -10px;
+  margin-left: 14px;
+  margin-top: 14px;
+}
+
+.ryt {
+    width: 21px;
+    height: 50px; /* adjust as needed */
+    position: absolute;
+    margin-top: 28px; /* half of the height */
+    margin-left: -32px; /* half of the width */
+    padding: 0;
+}
+
+.pdfico {
+  position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin-top: -17px;
+    margin-left: 5.7em;
 }
 
 .clickedColor {
@@ -117,16 +137,15 @@ img.pdfico1 {
   /* position: absolute; */
   width: 51px;
   margin-top: -16.5px;
-  margin-left: 49.8px;
+  margin-left: 115.8px;
 }
 
-
 .tc, .wp, .be, .bi, .ep, .legal, .isi, .management {
-  margin-left: 39px;
   text-align: center;
   font-size: 16px;
   margin-bottom: 62px;
   margin-top: 16px;
+  margin-left: 7em;
 }
 
 .pdf-container {
@@ -147,7 +166,7 @@ img.pdfico1 {
 }
 
 .row {
-  display: inline-block;
+  display: inline-flex;
   justify-content: center;
 }
 
@@ -175,7 +194,7 @@ img.pdfico1 {
 .stepWrapper {
   overflow-y: hidden;
   overflow-x: auto;
-  width:90%;
+  /* width:90%; */
   display: inline-flex;
   margin-bottom: 20px;
   height:100%;
@@ -191,11 +210,43 @@ img.pdfico1 {
   border-color: green;
 }
 
-h4.ste {
+.ste {
   height:30px;
   margin-top: 40px;
   padding:10px;
 }
+
+/* --------------Thumbnail/ name/datetime css-----------------  */
+/*svg.trck-aplicat {
+  position: absolute;
+  width: 9em;
+  margin-top: -18em;
+  margin-left: -27em;
+}
+
+svg.ryt1 {
+  width: 2em;
+  position: absolute;
+  padding: 0;
+  margin-left: -22em;
+  margin-top: -20em;
+}
+
+svg.trck-testing {
+  width: 10em;
+  position: absolute;
+  margin-top: -12em;
+  margin-left: -7em;
+}
+
+svg.ryt2 {
+  width: 2em;
+  position: absolute;
+  padding: 0;
+  margin-left: -22em;
+  margin-top: -20em;
+} */
+
 
 button120.btn {
   background-color: #083f81;
@@ -267,13 +318,152 @@ button120.btn {
   text-align: center;
 }
 
-.complete .circle23, .complete .line, .complete .rightWrapper .arrow-right{
+/*.complete .circle23, .complete .line, .complete .rightWrapper .arrow-right{
   background: rgb(85, 214, 85);
-}
+} */
+
 .doc-col{
   width:150px;
   height:150px;
 }
 .doc-col .be{
   height:30px;
+}
+
+
+svg.thumb.trck1 {
+  margin-left: -51em;
+  margin-top: 4.2em;
+  width: 7em;
+}
+
+svg.thumb.trck2 {
+  margin-left: -17em;
+  margin-top: -25.9em;
+  width: 7em;
+}
+
+svg.thumb.track3 {
+  display: flex;
+  margin-left: 35em;
+  margin-top: -44.5em;
+  width: 8em;
+}
+
+svg.thumb.track4 {
+  /* display: flex; */
+  margin-left: 26em;
+  margin-top: -50.5em;
+  width: 9em;
+}
+
+svg.thumb.track5 {
+  margin-left: -57em;
+  margin-top: -32.8em;
+  width: 7em;
+}
+
+svg.thumb.track6 {
+  margin-left: -17em;
+  margin-top: -48.8em;
+  width: 7em;
+}
+
+svg.thumb.track7 {
+  margin-left: 17em;
+  margin-top: -52.8em;
+  width: 10em;
+}
+
+svg.thumb.track8 {
+  /* display: flex; */
+  margin-left: 46em;
+  margin-top: -83.8em;
+  width: 9em;
+}
+
+.mee-container,
+.mee-container1 {
+  display: flex;
+  justify-content: center; /* optional: center the container horizontally */
+  gap: 20px; /* add some space between the child elements */
+}
+
+.mee1 {
+  width: 9em;
+  height: 11em;
+}
+
+svg.mainsvg2 {
+  width: 19em;
+  height: 10em;
+  margin: 2em -2.2em;
+}
+
+.mainsvg3 {
+  position: absolute;
+  width: 2.5%;
+  height: auto;
+  margin-left: -45px;
+  margin-top: 55px;
+  /* margin-right: 32px; */
+  /* display: inline-block; */
+}
+
+.tecon {
+  margin: 100px 144px;
+  text-align: center;
+}
+
+p.dt1 {
+  position: absolute;
+  margin-top: -2em;
+  font-weight: bold;
+  margin-left: 5em;
+}
+p.dt2 {
+  position: absolute;
+  margin-left: 20em;
+  margin-top: -2em;
+  font-weight: bold;
+}
+p.dt3 {
+  position: absolute;
+  margin-left: 35em;
+  margin-top: -2em;
+  font-weight: bold;
+}
+p.dt4 {
+  position: absolute;
+  margin-left: 50em;
+  margin-top: -2em;
+  font-weight: bold;
+}
+p.dt5 {
+  position: absolute;
+  margin-top: -2em;
+  font-weight: bold;
+  margin-left: 5em;
+}
+p.dt6 {
+  position: absolute;
+  margin-left: 20em;
+  margin-top: -2em;
+  font-weight: bold;
+}
+p.dt7 {
+  position: absolute;
+  margin-left: 35em;
+  margin-top: -2em;
+  font-weight: bold;
+}
+p.dt8 {
+  position: absolute;
+  margin-left: 50em;
+  margin-top: -2em;
+  font-weight: bold;
+}
+
+.pdfico1{
+  width: 3em;
 }

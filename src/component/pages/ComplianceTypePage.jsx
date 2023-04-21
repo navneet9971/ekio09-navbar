@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { TiTick } from "react-icons/ti";
 import "./stepper.css";
-import Thum1png from "../../component/assets/track-icon/Icons01.png";
-import Thum2png from "../../component/assets/track-icon/Icons02.png";
-import Thum3png from "../../component/assets/track-icon/Icons03.png";
-import Thum4png from "../../component/assets/track-icon/Icons04.png";
-import Thum5png from "../../component/assets/track-icon/Icons05.png";
+import { ReactComponent as Thum1png } from ".././assets/bis-track-icons/application.svg";
+import { ReactComponent as Thum2png } from ".././assets/bis-track-icons/testing.svg";
+import { ReactComponent as Thum3png } from ".././assets/bis-track-icons/approval.svg";
+import { ReactComponent as Thum4png } from ".././assets/bis-track-icons/documentation.svg";
+import { ReactComponent as Thum5png } from ".././assets/bis-track-icons/certificate.svg";
+import { ReactComponent as Wrong } from ".././assets/trckpg-rb/wrong.svg";
+import { ReactComponent as Right } from ".././assets/trckpg-rb/right.svg";
 import file1png from "../../component/assets/pdficon/Green01.png";
 import file2png from "../../component/assets/pdficon/Green02.png";
 import file3png from "../../component/assets/pdficon/Green03.png";
 import file4png from "../../component/assets/pdficon/Green04.png";
 import file5png from "../../component/assets/pdficon/Red01.png";
 import file6png from "../../component/assets/pdficon/Red02.png";
-import file7png from "../../component/assets/pdficon/Red03.png";
-import file8png from "../../component/assets/pdficon/Red04.png";
+
 
 function Stepper() {
   const location = useLocation();
@@ -22,30 +22,16 @@ function Stepper() {
   const name = queryParams.get("name");
   const projectCode = queryParams.get("projectCode");
   const steps = ["Application Submitted", "Sample sent for testing", "Test report generated", "Document pending with authorities", "Final report generated"];
-  const [currentStep] = useState(1);
+ // const [currentStep] = useState(1);
   const [current, setCurrentStep] = useState(1);
-  const [complete, setComplete] = useState(false);
+  const [ setComplete] = useState(false);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-  const [setClickedColor] = useState(false);
-  const [ setActiveArrows] = useState([false, false, false, false, false]);
-  const [showTooltip, setShowTooltip] = useState(false); // declare showTooltip state
-  const [setClickedNext] = useState(false); // add state variable for tracking button click
-  const newSteps = ["Application Submitted", "Sample sent for testing", "Test report generated", "Documents pending with authorities", "Final report generated"];
-
-  const handleUpdateCurrentStep = (step) => {
-    setCurrentStep(step);
-    setClickedNext(true);
-    setClickedColor(true);
-    setActiveArrows((prev) =>
-      prev.map((_, i) => {
-        if (i === step - 1) {
-          return !prev[i];
-        }
-        return prev[i];
-      })
-    );
-  };
+  //const [setClickedColor] = useState(false);
+ // const [ setActiveArrows] = useState([false, false, false, false, false]);
+ // const [showTooltip, setShowTooltip] = useState(false); // declare showTooltip state
+ // const [setClickedNext] = useState(false); // add state variable for tracking button click
+ // const newSteps = ["Application Submitted", "Sample sent for testing", "Test report generated", "Documents pending with authorities", "Final report generated"];
 
 
   const calculateEndDate = () => {
@@ -74,135 +60,91 @@ function Stepper() {
   
 
   return (
-    <div className="first-container22">
-      <h1 className="ongo">On Going Application:-</h1>
+    <div className="ongoing-applications">
+      <h1 className="ongo">BIS On Going Application:-</h1>
       <h1 className="type">Compliance Type: {name}</h1>
       <h1 className="appli">Application Number: {projectCode}</h1>
               
-      <div className="stepWrapper">
-  {newSteps.map((step, i) => (
-    <div
-      key={i}
-      className={`stepBlock ${currentStep === i + 1 && "active"} ${
-        (i + 1 < currentStep || complete) && "complete"
-      } `}
-    >
-      <h4 className="ste">{step}</h4>
-      <div className="circle23"></div> 
-      <div className="line"></div> 
-      <div className="rightWrapper" onClick={() => handleUpdateCurrentStep(i + 1)}>
-  <div
-    className={`arrow-right ${ " " } ${
-      i === 0 ? "arrow1" : ""
-    } ${i === 1 ? "arrow2" : ""} ${i === 2 ? "arrow3" : ""} ${
-      i === 3 ? "arrow4" : ""
-    } ${i === 4 ? "arrow5" : ""}`}
-    onMouseOver={() => setShowTooltip(true)}
-    onMouseOut={() => setShowTooltip(false)}
-  >
-    {i === 0 && <img src={Thum1png} alt="" className="trck1" />}
-    {i === 1 && <img src={Thum2png} alt="" className="trck1" />}
-    {i === 2 && <img src={Thum3png} alt="" className="trck1" />}
-    {i === 3 && <img src={Thum4png} alt="" className="trck1" />}
-    {i === 4 && <img src={Thum5png} alt="" className="trck1" />}
+      <div className="tecon">
+  <Thum1png className="mainsvg2"/>   
+  <Right  className="mainsvg3"/>
+  <p className="dt1">Date: 12/04/2023</p>
+  <Thum2png className="mainsvg2"/>
+  <Right  className="mainsvg3"/>
+  <p className="dt2">Date: 12/04/2023</p>
+  <Thum3png className="mainsvg2"/>
+  <Right className="mainsvg3"/>
+  <p className="dt3">Date: 12/04/2023</p>
+  <Thum4png className="mainsvg2"/>
+  <Wrong className="mainsvg3"/>
+  <p className="dt4">Date: 12/04/2023</p>
+  <Thum5png className="mainsvg2"/>
+  <Wrong className="mainsvg3"/>
+  <p className="dt5">Date: 12/04/2023</p>
   </div>
-  {showTooltip && (
-    <div className="tooltip">
-      <p>Date: 12/04/2023</p>
-      <p>Time left: 3 days</p>
-    </div>
-  )}
-</div>
-
-    </div>
-  ))}
-</div>
 
         
-<div>
+  <div>
   <div className="row">
-    <div className="col">
-     
-      <div className="circle12">
-        {current >= 2 ? <TiTick size={24} /> : null}
-      </div>
+    <div className="col doc-col">
+        {current >= 2 ? <Wrong size={24} className="pdfico" /> : null}
       <div>  
         <img src={file1png} alt="" className="pdfico1" />
       </div>
-      <h3 className="tc">Signatory Authorization</h3>
-      
-      <div className="col">
-      <div className="circle12">
-        {current >= 2 ? <TiTick size={24} /> : null}
-      </div>
+      <h3 className="be">Manufacture authorization letter</h3>
+    </div>
+    <div className="col doc-col">
+     
+        {current >= 2 ? <Wrong size={24} className="pdfico"/> : null}
+     
       <div>  
         <img src={file2png} alt="" className="pdfico1" />
       </div>
-      <h3 className="wp">OEM Authorization</h3> 
-    </div>
+      <h3 className="be">Manufacture nomination form
+</h3> 
     </div>
 
     
-    <div className="col">
-    
-      <div className="circle12">
-        {current >= 2 ? <TiTick size={24} /> : null}
-      </div>
+    <div className="col doc-col">
+     
+        {current >= 2 ? <Right size={24} className="pdfico"/> : null}
+      
       <div>  
         <img src={file3png} alt="" className="pdfico1" />
       </div>
-      <h3 className="be">MOU</h3>
+      <h3 className="be">AIR Affidavit Brand office
+</h3>
+    </div>
+    <div className="col doc-col">
       
-      <div className="col">
-      <div className="circle12">
-        {current >= 2 ? <TiTick size={24} /> : null}   
-      </div>
+        {current >= 2 ? <Right size={24} className="pdfico" /> : null}   
+      
       <div>  
         <img src={file4png} alt="" className="pdfico1" />
       </div>
-      <h3 className="bi">Shareholding Pattern</h3>
-    </div>
+      <h3 className="be">AIR Afidavit Mfg branch office
+</h3>
     </div>
 
 
-    <div className="col">
-      <div className="circle12">
-        {current >= 2 ? <TiTick size={24} /> : null} 
-      </div>
+    <div className="col doc-col">
+      
+        {current >= 2 ? <Wrong size={24} className="pdfico"/> : null} 
+      
       <div>  
         <img src={file5png} alt="" className="pdfico1" />
       </div>
-      <h3 className="ep">Annexure 1</h3>
+      <h3 className="be">AIR authorization letter
+</h3>
+    </div>
+    <div className="col doc-col">
       
-      <div className="col">
-      <div className="circle12">
-        {current >= 2 ? <TiTick size={24} /> : null}
-      </div>
+        {current >= 2 ? <Right size={24} className="pdfico"/> : null}
+    
       <div>  
         <img src={file6png} alt="" className="pdfico1" />
       </div>
-      <h3 className="legal">BOM</h3>
-    </div>
-    </div>
-
-    <div className="col">
-      <div className="circle12">
-        {current >= 2 ? <TiTick size={24} /> : null}
-      </div>
-      <div>  
-        <img src={file7png} alt="" className="pdfico1" />
-      </div>
-      <h3 className="isi">Non Applicability Proforma</h3>
-      
-      <div className="col">
-      <div className="circle12">
-        {current >= 2 ? <TiTick size={24} /> : null}
-      </div>
-      <div>  
-        <img src={file8png} alt="" className="pdfico1" />
-      </div>
-      <h3 className="management">Proforma Seeking Exemption</h3>
-    </div>
+      <h3 className="be">brand authorization letter</h3>
     </div>
 
   </div>
@@ -221,7 +163,6 @@ function Stepper() {
     )}
   </div>
 )}
-
 <button
     className="btn"
     onClick={() => {
