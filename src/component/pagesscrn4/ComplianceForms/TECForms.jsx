@@ -325,12 +325,17 @@ function DocumentBox() {
     <div className="document-box">
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
         <form onSubmit={handleSubmit}>
-          <h3>Upload a File</h3>
-          <label htmlFor="file-input">
-            <h94>Choose File:</h94>
-          </label>
-          <input className="file-input12" type="file" accept="application/pdf"  multiple onChange={handleFileChange} />
-          {files.length > 0 && (
+        <h3>Upload a File</h3>
+          <div className='upload-form1'>
+            <label htmlFor="file-input">
+              <h4>Choose File:</h4>
+            </label>
+            <input className="upload-file-input" type="file" accept="application/pdf"  multiple onChange={handleFileChange} />
+          </div>
+          
+          
+            <div className='upload-form2'>
+            {files.length > 0 && (
               <div>
                 <ul>
                   {files.map((file, index) => (
@@ -339,24 +344,30 @@ function DocumentBox() {
                 </ul>
               </div>
             )}
-          <label>
-            <h98>Select an Option:</h98>
-            <Multiselect 
-             isObject={false}
-            options={ options }
-            onRemove={(event)=> { console.log(event) }}
-            onSelect={ (event)=> { console.log(event) }}
-            showCheckbox
-            />
+              <label>
+              <h4>Select an Option:</h4>
+              <div className='upload-form3'>
+                <Multiselect 
+                isObject={false}
+                options={ options }
+                onRemove={(event)=> { console.log(event) }}
+                onSelect={ (event)=> { console.log(event) }}
+                showCheckbox
+                />
+              </div>
+              
+            
+            </label>
+            <div className='upload-buttons'>
+              <button8 onClick={() => {
+                    setButtonPopup(false);
+                      setFiles([]);
+                      }}>Cancel</button8>
+              <button8 type="submit">Upload</button8>
+            </div>
+            
+            </div>
           
-          </label>
-          <div>
-          <button8 onClick={() => {
-                  setButtonPopup(false);
-                    setFiles([]);
-                    }}>Cancel</button8>
-            <button8 type="submit">Upload</button8>
-          </div>
         </form>
       </Popup>
       <div className="header-btn">
@@ -367,20 +378,22 @@ function DocumentBox() {
                {/*DOWNLOAD BUTTON POPUP SECTION */}
 
                <div className="header-btn1">
-       <button7 onClick={() => setButtonPopup1(true)}>Download</button7>
-       </div>
+                    <button7 onClick={() => setButtonPopup1(true)}>Download</button7>
+                </div>
       <Popup trigger={buttonPopup1} setTrigger={setButtonPopup1}>
         <form onSubmit={handleSubmit}>
           <h3>Download a File</h3>
           <label>
-            <h98>Select a file to download:</h98>
-            <Multiselect
-            isObject={false}
-            options={ options }
-            onRemove={(event)=> { console.log(event) }}
-            onSelect={ (event)=> { console.log(event) }}
-            showCheckbox
-             />
+            <h4>Select a file to download:</h4>
+            <div className='download-form1'>
+              <Multiselect
+              isObject={false}
+              options={ options }
+              onRemove={(event)=> { console.log(event) }}
+              onSelect={ (event)=> { console.log(event) }}
+              showCheckbox
+              />
+            </div>
           </label>
           <div>
             <button8 type="submit">Download</button8>
