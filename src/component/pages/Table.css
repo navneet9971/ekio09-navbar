@@ -287,21 +287,30 @@ input[type="option"] {
 
 input[type="date"] {
   position: absolute;
-  top: 72px;
-  right: 398px;
-  width: 17px;
-  background-color: #eeac1b;
+  top: 55px;
+  right: 507px;
+  width: 20px;
+  height: 2em;
+  background-color: #082a77;
+}
+
+input[type="date"]:hover{
+  background-color: #55b700;
 }
 
 /* Dropdown status css*/
 select.dropon {
   position: absolute;
-  top: 12.6em;
-  left: 95em;
-  width: 0px;
+  top: 11.6em;
+  left: 96em;
+  width: 12px;
   height: 1px;
   padding: 10px;
-  background-color: #eeac1b;
+  background-color: #082a77;
+}
+
+select.dropon:hover {
+background-color: #55b700;
 }
 
 

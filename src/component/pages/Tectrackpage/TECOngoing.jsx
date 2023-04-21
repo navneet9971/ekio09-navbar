@@ -26,8 +26,9 @@ function Stepper() {
   const name = queryParams.get("name");
   const projectCode = queryParams.get("projectCode");
  // const [currentStep] = useState(3);
-  const [current] = useState(1);
- // const [complete, setComplete] = useState(false);
+  const [current, setCurrentStep] = useState(1);
+  const steps = ["Application Submitted", "Sample sent for testing", "Test report generated", "Document pending with authorities", "Final report generated"];
+ const [setComplete] = useState(false);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   //const [setClickedColor] = useState(false);
@@ -35,7 +36,6 @@ function Stepper() {
  // const [showTooltip, setShowTooltip] = useState(false); // declare showTooltip state
  // const [setClickedNext] = useState(false); // add state variable for tracking button click
  // const newSteps = ["Portal Registration", "Initation of testing", "AIR Regis", "Foreign OEM Registration", "BOM Submission", "Application Payment", "Final Submission", "Issuance of Cartification"];
-
 
 
 
@@ -202,6 +202,9 @@ function Stepper() {
 <button
     className="btn"
     onClick={() => {
+      current === steps.length
+      ? setComplete(true)
+      : setCurrentStep((prev) => prev + 1);
       calculateEndDate();
       setStartDate(new Date());
     }}

@@ -80,7 +80,7 @@ function Stepper() {
   <p className="dt4">Date: 12/04/2023</p>
   <Thum5png className="mainsvg2"/>
   <Wrong className="mainsvg3"/>
-  <p className="dt5">Date: 12/04/2023</p>
+  <p className="dt10">Date: 12/04/2023</p>
   </div>
 
         

@@ -464,6 +464,26 @@ p.dt8 {
   font-weight: bold;
 }
 
+p.dt10 {
+  position: absolute;
+  margin-left: 28.5em;
+  margin-top: -2em;
+  font-weight: bold;
+}
+
+/*-----Download button Css of Forms---*/
+button.clidown {
+  margin-left: 86em;
+  padding: 10px 20px;
+  background-color: #082a77;
+  color: #fff;
+  font-weight: bold;
+}
+
+button.clidown:hover{
+  background-color: #55b700;
+}
+
 .pdfico1{
   width: 3em;
 }

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { TiTick } from "react-icons/ti";
 import jsPDF from 'jspdf';
 import "./stepper.css";
 import { ReactComponent as Thum1png } from ".././assets/bis-track-icons/application.svg";
@@ -8,14 +7,14 @@ import { ReactComponent as Thum2png } from ".././assets/bis-track-icons/testing.
 import { ReactComponent as Thum3png } from ".././assets/bis-track-icons/approval.svg";
 import { ReactComponent as Thum4png } from ".././assets/bis-track-icons/documentation.svg";
 import { ReactComponent as Thum5png } from ".././assets/bis-track-icons/certificate.svg";
+import { ReactComponent as Wrong } from ".././assets/trckpg-rb/wrong.svg";
+import { ReactComponent as Right } from ".././assets/trckpg-rb/right.svg";
 import file1png from "../../component/assets/pdficon/Green01.png";
 import file2png from "../../component/assets/pdficon/Green02.png";
 import file3png from "../../component/assets/pdficon/Green03.png";
 import file4png from "../../component/assets/pdficon/Green04.png";
 import file5png from "../../component/assets/pdficon/Red01.png";
 import file6png from "../../component/assets/pdficon/Red02.png";
-import file7png from "../../component/assets/pdficon/Red03.png";
-import file8png from "../../component/assets/pdficon/Red04.png";
 
 
 function Compdownload() {
@@ -24,22 +23,15 @@ function Compdownload() {
   const name = queryParams.get("name");
   const projectCode = queryParams.get("projectCode");
     const steps = ["Form Submitted", "Lab Testing", "Sample Completed", "End"];
-    const [currentStep] = useState(1);
+    //const [currentStep] = useState(1);
     const [current, setCurrentStep] = useState(1);
-    const [complete, setComplete] = useState(false);
+    const [setComplete] = useState(false);
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
-    const [clickedColor, setClickedColor] = useState(false);
-    const [setClickedNext] = useState(false); // add state variable for tracking button click
-    const newSteps = ["Application Submitted", "Sample sent for testing", "Test report generated", "Documents pending with authorities", "Final report generated"];
+    //const [clickedColor, setClickedColor] = useState(false);
+    //const [setClickedNext] = useState(false); // add state variable for tracking button click
+    //const newSteps = ["Application Submitted", "Sample sent for testing", "Test report generated", "Documents pending with authorities", "Final report generated"];
   
-    
-    const handleUpdateCurrentStep = (step) => {
-      setCurrentStep(step);
-      setClickedNext(true);
-      setClickedColor(true);
-    };
-
 
     const calculateEndDate = () => {
       const currentDate = new Date();
@@ -75,132 +67,97 @@ function Compdownload() {
     
   
     return (
-      <div className="first-container22">
-        <h1 className="ongo">Completed Application:-</h1>
+      <div className="ongoing-applications">
+        <h1 className="ongo">BIS Completed Application:-</h1>
         <h1 className="type">Compliance Type: {name}</h1>
         <h1 className="appli">Application Number: {projectCode}</h1>
         <button className="clidown" onClick={handleDownload}>Download</button>
+                
+        <div className="tecon">
+    <Thum1png className="mainsvg2"/>   
+    <Right  className="mainsvg3"/>
+    <p className="dt1">Date: 12/04/2023</p>
+    <Thum2png className="mainsvg2"/>
+    <Right  className="mainsvg3"/>
+    <p className="dt2">Date: 12/04/2023</p>
+    <Thum3png className="mainsvg2"/>
+    <Right className="mainsvg3"/>
+    <p className="dt3">Date: 12/04/2023</p>
+    <Thum4png className="mainsvg2"/>
+    <Right className="mainsvg3"/>
+    <p className="dt4">Date: 12/04/2023</p>
+    <Thum5png className="mainsvg2"/>
+    <Right className="mainsvg3"/>
+    <p className="dt5">Date: 12/04/2023</p>
+    </div>
   
-         
-        <div className="stepWrapper">
-  {newSteps.map((step, i) => (
-    <div
-      key={i}
-      className={`stepBlock ${currentStep === i + 1 && "active"} ${
-        (i + 1 < currentStep || complete) && "complete"
-      } `}
-    >
-      <h4 className="ste">{step}</h4>
-      <div className="circle24"></div> 
-      <div className="line1"></div> 
-      <div className="rightWrapper" onClick={() => handleUpdateCurrentStep(i + 1)}>
-        <div
-          className={`arrow-right1 ${ clickedColor && "clicked"} ${
-            i === 0 ? "arrow1" : ""
-          } ${i === 1 ? "arrow2" : ""} ${i === 2 ? "arrow3" : ""} ${
-            i === 3 ? "arrow4" : ""
-          } ${i === 4 ? "arrow5" : ""}`}
-        >
- { i === 0 && <Thum1png className="trck1"/> }
-    {i === 1 && <Thum2png className="trck1"/>}
-    {i === 2 && <Thum3png className="trck1"/>}
-    {i === 3 && <Thum4png className="trck1"/>}
-    {i === 4 && <Thum5png className="trck1"/>}
-        </div>
-      </div>
-    </div>
-  ))}
-</div>
           
-<div>
-  <div className="row">
-    <div className="col">
-     
-      <div className="circle12">
-        {current >= 2 ? <TiTick size={24} /> : null}
+    <div>
+    <div className="row">
+      <div className="col doc-col">
+          {current >= 2 ? <Wrong size={24} className="pdfico" /> : null}
+        <div>  
+          <img src={file1png} alt="" className="pdfico1" />
+        </div>
+        <h3 className="be">Manufacture authorization letter</h3>
       </div>
-      <div>  
-        <img src={file1png} alt="" className="pdfico1" />
+      <div className="col doc-col">
+       
+          {current >= 2 ? <Wrong size={24} className="pdfico"/> : null}
+       
+        <div>  
+          <img src={file2png} alt="" className="pdfico1" />
+        </div>
+        <h3 className="be">Manufacture nomination form
+  </h3> 
       </div>
-      <h3 className="tc">Signatory Authorization</h3>
+  
       
-      <div className="col">
-      <div className="circle12">
-        {current >= 2 ? <TiTick size={24} /> : null}
+      <div className="col doc-col">
+       
+          {current >= 2 ? <Right size={24} className="pdfico"/> : null}
+        
+        <div>  
+          <img src={file3png} alt="" className="pdfico1" />
+        </div>
+        <h3 className="be">AIR Affidavit Brand office
+  </h3>
       </div>
-      <div>  
-        <img src={file2png} alt="" className="pdfico1" />
+      <div className="col doc-col">
+        
+          {current >= 2 ? <Right size={24} className="pdfico" /> : null}   
+        
+        <div>  
+          <img src={file4png} alt="" className="pdfico1" />
+        </div>
+        <h3 className="be">AIR Afidavit Mfg branch office
+  </h3>
       </div>
-      <h3 className="wp">OEM Authorization</h3> 
-    </div>
-    </div>
-
-    
-    <div className="col">
-    
-      <div className="circle12">
-        {current >= 2 ? <TiTick size={24} /> : null}
+  
+  
+      <div className="col doc-col">
+        
+          {current >= 2 ? <Wrong size={24} className="pdfico"/> : null} 
+        
+        <div>  
+          <img src={file5png} alt="" className="pdfico1" />
+        </div>
+        <h3 className="be">AIR authorization letter
+  </h3>
       </div>
-      <div>  
-        <img src={file3png} alt="" className="pdfico1" />
-      </div>
-      <h3 className="be">MOU</h3>
+      <div className="col doc-col">
+        
+          {current >= 2 ? <Right size={24} className="pdfico"/> : null}
       
-      <div className="col">
-      <div className="circle12">
-        {current >= 2 ? <TiTick size={24} /> : null}   
+        <div>  
+          <img src={file6png} alt="" className="pdfico1" />
+        </div>
+        <h3 className="be">brand authorization letter</h3>
       </div>
-      <div>  
-        <img src={file4png} alt="" className="pdfico1" />
-      </div>
-      <h3 className="bi">Shareholding Pattern</h3>
+  
     </div>
-    </div>
-
-
-    <div className="col">
-      <div className="circle12">
-        {current >= 2 ? <TiTick size={24} /> : null} 
-      </div>
-      <div>  
-        <img src={file5png} alt="" className="pdfico1" />
-      </div>
-      <h3 className="ep">Annexure 1</h3>
-      
-      <div className="col">
-      <div className="circle12">
-        {current >= 2 ? <TiTick size={24} /> : null}
-      </div>
-      <div>  
-        <img src={file6png} alt="" className="pdfico1" />
-      </div>
-      <h3 className="legal">BOM</h3>
-    </div>
-    </div>
-
-    <div className="col">
-      <div className="circle12">
-        {current >= 2 ? <TiTick size={24} /> : null}
-      </div>
-      <div>  
-        <img src={file7png} alt="" className="pdfico1" />
-      </div>
-      <h3 className="isi">Non Applicability Proforma</h3>
-      
-      <div className="col">
-      <div className="circle12">
-        {current >= 2 ? <TiTick size={24} /> : null}
-      </div>
-      <div>  
-        <img src={file8png} alt="" className="pdfico1" />
-      </div>
-      <h3 className="management">Proforma Seeking Exemption</h3>
-    </div>
-    </div>
-
   </div>
-</div>
-      
+  
       
    {startDate && endDate && (
     <div>
@@ -214,23 +171,19 @@ function Compdownload() {
       )}
     </div>
   )}
-  
-              <button
-    className="btn"
-    onClick={() => {
-      current === steps.length
-        ? setComplete(true)
-        : setCurrentStep((prev) => prev + 1);
-      calculateEndDate();
-      setStartDate(new Date());
-    }}
-  >NEXT
-  </button>   
+  <button
+      className="btn"
+      onClick={() => {
+        current === steps.length
+          ? setComplete(true)
+          : setCurrentStep((prev) => prev + 1);
+        calculateEndDate();
+        setStartDate(new Date());
+      }}
+    >NEXT
+    </button>   
         </div>
-  
-  
     );
-  };
-
+  }
   export default Compdownload;
   

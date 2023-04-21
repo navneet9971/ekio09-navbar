@@ -28,8 +28,9 @@ function TECcompleted() {
   const name = queryParams.get("name");
   const projectCode = queryParams.get("projectCode");
    // const [currentStep] = useState(1);
-    const [current] = useState(1);
-   // const [complete, setComplete] = useState(false);
+   const steps = ["Application Submitted", "Sample sent for testing", "Test report generated", "Document pending with authorities", "Final report generated"];
+    const [current, setCurrentStep] = useState(1);
+    const [setComplete] = useState(false);
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
   //  const [clickedColor, setClickedColor] = useState(false);
@@ -92,19 +93,19 @@ function TECcompleted() {
   <Right className="mainsvg3"/>
   <p className="dt3">Date: 12/04/2023</p>
   <Thum4png className="mainsvg2"/>
-  <Wrong className="mainsvg3"/>
+  <Right className="mainsvg3"/>
   <p className="dt4">Date: 12/04/2023</p>
   <Thum5png className="mainsvg2"/>
-  <Wrong className="mainsvg3"/>
+  <Right className="mainsvg3"/>
   <p className="dt5">Date: 12/04/2023</p>
   <Thum6png className="mainsvg2"/>
-  <Wrong className="mainsvg3"/>
+  <Right className="mainsvg3"/>
   <p className="dt6">Date: 12/04/2023</p>
   <Thum7png className="mainsvg2"/>
-  <Wrong className="mainsvg3"/>
+  <Right className="mainsvg3"/>
    <p className="dt7">Date: 12/04/2023</p>
   <Thum8png className="mainsvg2"/>
-  <Wrong className="mainsvg3"/>
+  <Right className="mainsvg3"/>
   <p className="dt8">Date: 12/04/2023</p>
   </div>
         
@@ -153,7 +154,7 @@ function TECcompleted() {
 
     <div className="col doc-col">
       
-        {current >= 2 ? <Wrong size={24} className="pdfico"/> : null} 
+        {current >= 2 ? <Right size={24} className="pdfico"/> : null} 
       
       <div>  
         <img src={file5png} alt="" className="pdfico1" />
@@ -209,6 +210,9 @@ function TECcompleted() {
               <button
     className="btn"
     onClick={() => {
+      current === steps.length
+        ? setComplete(true)
+        : setCurrentStep((prev) => prev + 1);
       calculateEndDate();
       setStartDate(new Date());
     }}
