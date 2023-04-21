@@ -1,3 +1,7 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
 .first-container22 {
   background-color: rgb(235, 239, 243);
   border: 1px solid yellow;
@@ -812,4 +816,26 @@ video.videoBox {
   .rights .dropdown-btn {
     width: auto;
   }
+}
+
+.upload-form1{
+  padding:10px;
+}
+.upload-form2{
+  padding:10px;
+}
+.upload-form3{
+  margin-bottom: 30px;
+}
+.upload-file-input{
+  margin-top:15px!important;
+}
+.upload-buttons{
+  margin-top: 40px;;
+}
+.download-form1{
+  margin-bottom:40px;
+}
+.optionListContainer{
+  width:fit-content!important;
 }
