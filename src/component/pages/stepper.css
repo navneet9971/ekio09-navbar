@@ -478,18 +478,61 @@ p.dt10 {
 }
 
 /*-----Download button Css of Forms---*/
-button.clidown {
-  margin-left: 86em;
-  padding: 10px 20px;
-  background-color: #082a77;
-  color: #fff;
-  font-weight: bold;
+.dropdown {
+  display: inline-block;
+  position: relative;
 }
 
-button.clidown:hover{
+.dd-button {
+  display: inline-block;
+  border: 1px solid gray;
+  border-radius: 4px;
+  padding: 10px 30px 10px 20px;
   background-color: #55b700;
+  cursor: pointer;
+  white-space: nowrap;
+  margin-left: 75em;
+  font-weight: bold;
+    font-size: 14px;
 }
 
-.pdfico1{
-  width: 3em;
+.dd-button:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  width: 0; 
+  height: 0; 
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid black;
 }
+
+.dd-button:hover {
+  background-color: #082a77;
+}
+
+
+.dd-menu {
+    position: absolute;
+    top: 95%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0;
+    margin: 2px 0 0 0;
+    box-shadow: 0 0 6px 0 rgba(0,0,0,0.1);
+    background-color: #ffffff;
+    list-style-type: none;
+    margin-left: 65.8em;
+}
+
+.dd-menu li {
+  padding: 10px 20px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.dd-menu li:hover {
+  background-color: #55b700;
+} 
