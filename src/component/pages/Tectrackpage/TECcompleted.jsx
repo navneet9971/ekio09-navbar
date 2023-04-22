@@ -31,15 +31,15 @@ function TECcompleted() {
    const steps = ["Application Submitted", "Sample sent for testing", "Test report generated", "Document pending with authorities", "Final report generated"];
     const [current, setCurrentStep] = useState(1);
     const [setComplete] = useState(false);
-    const [startDate, setStartDate] = useState(null);
-    const [endDate, setEndDate] = useState(null);
+   // const [startDate, setStartDate] = useState(null);
+   // const [endDate, setEndDate] = useState(null);
   //  const [clickedColor, setClickedColor] = useState(false);
    // const [setClickedNext] = useState(false); // add state variable for tracking button click
    // const newSteps = ["Portal Registration", "Initation of testing", "AIR Regis", "Foreign OEM Registration", "BOM Submission", "Application Payment", "Final Submission", "Issuance of Cartification"];
   
 
 
-    const calculateEndDate = () => {
+  /*  const calculateEndDate = () => {
       const currentDate = new Date();
       const endDate = new Date(currentDate.setDate(currentDate.getDate() + 45));
       setEndDate(endDate);
@@ -61,7 +61,7 @@ function TECcompleted() {
           clearInterval(intervalId);
         }
       }, 1000);
-    };
+    }; */
     
     const handleDownload = () => {
       const input = document.getElementById('pdf-content');
@@ -85,28 +85,28 @@ function TECcompleted() {
         <div className="tecon">
   <Thum1png className="mainsvg2"/>   
   <Right  className="mainsvg3"/>
-  <p className="dt1">Date: 12/04/2023</p>
+ 
   <Thum2png className="mainsvg2"/>
   <Right  className="mainsvg3"/>
-  <p className="dt2">Date: 12/04/2023</p>
+  
   <Thum3png className="mainsvg2"/>
   <Right className="mainsvg3"/>
-  <p className="dt3">Date: 12/04/2023</p>
+ 
   <Thum4png className="mainsvg2"/>
   <Right className="mainsvg3"/>
-  <p className="dt4">Date: 12/04/2023</p>
+  
   <Thum5png className="mainsvg2"/>
   <Right className="mainsvg3"/>
-  <p className="dt5">Date: 12/04/2023</p>
+
   <Thum6png className="mainsvg2"/>
   <Right className="mainsvg3"/>
-  <p className="dt6">Date: 12/04/2023</p>
+
   <Thum7png className="mainsvg2"/>
   <Right className="mainsvg3"/>
-   <p className="dt7">Date: 12/04/2023</p>
+
   <Thum8png className="mainsvg2"/>
   <Right className="mainsvg3"/>
-  <p className="dt8">Date: 12/04/2023</p>
+
   </div>
         
     
@@ -194,7 +194,7 @@ function TECcompleted() {
 </div>
       
       
-   {startDate && endDate && (
+  {/* {startDate && endDate && (
     <div>
       <p className="stdate">Start Date: {startDate.toDateString()}</p>
       {typeof endDate === 'object' ? (
@@ -205,7 +205,7 @@ function TECcompleted() {
         <p>End Date: {endDate.days} days left</p>
       )}
     </div>
-  )}
+  )}  */}
   
               <button
     className="btn"
@@ -213,8 +213,8 @@ function TECcompleted() {
       current === steps.length
         ? setComplete(true)
         : setCurrentStep((prev) => prev + 1);
-      calculateEndDate();
-      setStartDate(new Date());
+      //calculateEndDate();
+      //setStartDate(new Date());
     }}
   >NEXT
   </button>   

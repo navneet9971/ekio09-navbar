@@ -26,17 +26,17 @@ function Compdownload() {
     //const [currentStep] = useState(1);
     const [current, setCurrentStep] = useState(1);
     const [setComplete] = useState(false);
-    const [startDate, setStartDate] = useState(null);
-    const [endDate, setEndDate] = useState(null);
+    //const [startDate, setStartDate] = useState(null);
+    //const [endDate, setEndDate] = useState(null);
     //const [clickedColor, setClickedColor] = useState(false);
     //const [setClickedNext] = useState(false); // add state variable for tracking button click
     //const newSteps = ["Application Submitted", "Sample sent for testing", "Test report generated", "Documents pending with authorities", "Final report generated"];
   
 
-    const calculateEndDate = () => {
+  /*  const calculateEndDate = () => {
       const currentDate = new Date();
       const endDate = new Date(currentDate.setDate(currentDate.getDate() + 45));
-      setEndDate(endDate);
+  setEndDate(endDate); 
     
       const intervalId = setInterval(() => {
         const remainingTime = endDate.getTime() - new Date().getTime();
@@ -55,7 +55,7 @@ function Compdownload() {
           clearInterval(intervalId);
         }
       }, 1000);
-    };
+    }; */
     
     const handleDownload = () => {
       const input = document.getElementById('pdf-content');
@@ -76,19 +76,19 @@ function Compdownload() {
         <div className="tecon">
     <Thum1png className="mainsvg2"/>   
     <Right  className="mainsvg3"/>
-    <p className="dt1">Date: 12/04/2023</p>
+   
     <Thum2png className="mainsvg2"/>
     <Right  className="mainsvg3"/>
-    <p className="dt2">Date: 12/04/2023</p>
+
     <Thum3png className="mainsvg2"/>
     <Right className="mainsvg3"/>
-    <p className="dt3">Date: 12/04/2023</p>
+ 
     <Thum4png className="mainsvg2"/>
     <Right className="mainsvg3"/>
-    <p className="dt4">Date: 12/04/2023</p>
+   
     <Thum5png className="mainsvg2"/>
     <Right className="mainsvg3"/>
-    <p className="dt5">Date: 12/04/2023</p>
+
     </div>
   
           
@@ -159,26 +159,12 @@ function Compdownload() {
   </div>
   
       
-   {startDate && endDate && (
-    <div>
-      <p className="stdate">Start Date: {startDate.toDateString()}</p>
-      {typeof endDate === 'object' ? (
-        <p className="enddate">
-          End Date: {endDate.days}days {endDate.hours}h {endDate.minutes}m {endDate.seconds}s
-        </p>
-      ) : (
-        <p>End Date: {endDate.days} days left</p>
-      )}
-    </div>
-  )}
   <button
       className="btn"
       onClick={() => {
         current === steps.length
           ? setComplete(true)
           : setCurrentStep((prev) => prev + 1);
-        calculateEndDate();
-        setStartDate(new Date());
       }}
     >NEXT
     </button>   

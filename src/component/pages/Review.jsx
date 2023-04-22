@@ -5,17 +5,17 @@ import "./Table.css";
 
 function Review() {
   const [data] = useState([
-    { id: 1, complianceType: "TEC", applicationName: "Telecom Products", startDate: "2023-03-25", projectCode:101, status: "on-going" },
-    { id: 2, complianceType: "BIS", applicationName: "Battery12", startDate: "2023-03-28", projectCode:102, status: "completed" }, 
-    { id: 3, complianceType: "TEC", applicationName: "Telecom Products", startDate: "2022-03-18", projectCode:103,status: "on-going"  },
-    { id: 4, complianceType: "BIS", applicationName: "Telecom Products", startDate: "2022-03-18", projectCode:104,status: "completed"  },
-    { id: 5, complianceType: "WPS", applicationName: "Telecom Products", startDate: "2022-03-18", projectCode:105,status: "completed"  },
-    { id: 6, complianceType: "TEC", applicationName: "Telecom Products", startDate: "2022-03-18", projectCode:106,status: "on-going"  },
-    { id: 7, complianceType: "BIS", applicationName: "Telecom Products", startDate: "2022-03-18", projectCode:107,status: "completed"  },
-    { id: 8, complianceType: "WPS", applicationName: "Telecom Products", startDate: "2022-03-18", projectCode:108,status: "on-going"  },
-    { id: 9, complianceType: "BIS", applicationName: "Telecom Products", startDate: "2022-03-18", projectCode:109,status: "completed"  },
-    { id: 10, complianceType: "TEC", applicationName: "Telecom Products", startDate: "2022-03-18", projectCode:110,status: "completed"  },
-    { id: 11, complianceType: "BIS", applicationName: "Telecom Products", startDate: "2022-03-18", projectCode:111,status: "on-going"  },
+    { id: 1, complianceType: "TEC", applicationName: "Telecom Products", startDate: "2023-03-25", endDate: "2023-05-10", projectCode:101, status: "on-going" },
+    { id: 2, complianceType: "BIS", applicationName: "Battery12", startDate: "2023-03-28", endDate: "2023-05-11", projectCode:102, status: "completed" }, 
+    { id: 3, complianceType: "TEC", applicationName: "Telecom Products", startDate: "2022-03-18", endDate: "2023-05-13",  projectCode:103,status: "on-going"  },
+    { id: 4, complianceType: "BIS", applicationName: "Telecom Products", startDate: "2022-03-18", endDate: "2023-05-15", projectCode:104,status: "completed"  },
+    { id: 5, complianceType: "WPS", applicationName: "Telecom Products", startDate: "2022-03-18", endDate: "2023-05-17", projectCode:105,status: "completed"  },
+    { id: 6, complianceType: "TEC", applicationName: "Telecom Products", startDate: "2022-03-18", endDate: "2023-05-19", projectCode:106,status: "on-going"  },
+    { id: 7, complianceType: "BIS", applicationName: "Telecom Products", startDate: "2022-03-18", endDate: "2023-05-20", projectCode:107,status: "completed"  },
+    { id: 8, complianceType: "WPS", applicationName: "Telecom Products", startDate: "2022-03-18", endDate: "2023-05-22", projectCode:108,status: "on-going"  },
+    { id: 9, complianceType: "BIS", applicationName: "Telecom Products", startDate: "2022-03-18", endDate: "2023-05-24", projectCode:109,status: "completed"  },
+    { id: 10, complianceType: "TEC", applicationName: "Telecom Products", startDate: "2022-03-18", endDate: "2023-05-26", projectCode:110,status: "completed"  },
+    { id: 11, complianceType: "BIS", applicationName: "Telecom Products", startDate: "2022-03-18", endDate: "2023-05-27", projectCode:111,status: "on-going"  },
 
   ]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -169,7 +169,7 @@ function Review() {
                 new Date().getTime()) /
                 (24 * 60 * 60 * 1000)
             )} days left`
-          : ""}
+          : "30 days Left"}
       </td>
       <td>{item.projectCode}</td>
       <td>{item.status}</td>
@@ -180,7 +180,6 @@ function Review() {
 
       </table>
       </div>
-
     </div>
     
   );
