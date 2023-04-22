@@ -31,6 +31,8 @@ function TECcompleted() {
    const steps = ["Application Submitted", "Sample sent for testing", "Test report generated", "Document pending with authorities", "Final report generated"];
     const [current, setCurrentStep] = useState(1);
     const [setComplete] = useState(false);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [setSelectedOption] = useState('');
    // const [startDate, setStartDate] = useState(null);
    // const [endDate, setEndDate] = useState(null);
   //  const [clickedColor, setClickedColor] = useState(false);
@@ -62,6 +64,17 @@ function TECcompleted() {
         }
       }, 1000);
     }; */
+
+    //Download Button Code handleOptionClick
+
+  const handleButtonClick = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleOptionClick = (option) => {
+    setSelectedOption(option);
+    setIsDropdownOpen(false);
+  };
     
     const handleDownload = () => {
       const input = document.getElementById('pdf-content');
@@ -69,7 +82,7 @@ function TECcompleted() {
       pdf.addHTML(input, () => {
         pdf.save('document.pdf');
       });
-    };
+    }; 
     
   
     return (
@@ -78,8 +91,22 @@ function TECcompleted() {
       <div>
         <h1 className="type">Compliance Type: {name}</h1>
         <h1 className="appli">Application Number: {projectCode}</h1>
-        <button className="clidown" onClick={handleDownload}>Download</button>
+       {/* <button className="clidown" onClick={handleDownload}>Download</button> */}
       </div>
+
+      <div className="dropdown">
+      <button className="dd-button" onClick={handleButtonClick}>
+        {'Download'}
+      </button>
+      {isDropdownOpen && (
+        <ul className="dd-menu">
+          <li onClick={() => handleOptionClick('Process')}>Process</li>
+          <li onClick={() => handleOptionClick('Testing')}>Testing</li>
+          <li onClick={() => handleOptionClick('Certificate')}>Certificate</li>
+          <li onClick={() => handleDownload('Trackreport')}>Track Report</li>
+        </ul>
+      )}
+    </div>
     
            
         <div className="tecon">

@@ -319,72 +319,86 @@ function DocumentBox() {
 
 
  // -------------------------------Document Box Codes here---------------------------------------------------
-  return (
-    <div className="document-box">
-      <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-        <form onSubmit={handleSubmit}>
-          <h3>Upload a File</h3>
+ return (
+  <div className="document-box">
+    <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+      <form onSubmit={handleSubmit}>
+      <h3>Upload a File</h3>
+        <div className='upload-form1'>
           <label htmlFor="file-input">
-            <h94>Choose File:</h94>
+            <h4>Choose File:</h4>
           </label>
-          <input className="file-input12" type="file" accept="application/pdf"  multiple onChange={handleFileChange} />
+          <input className="upload-file-input" type="file" accept="application/pdf"  multiple onChange={handleFileChange} />
+        </div>
+        
+        
+          <div className='upload-form2'>
           {files.length > 0 && (
-              <div>
-                <ul>
-                  {files.map((file, index) => (
-                    <li key={index}>{file.name} <TiTick size={24} /></li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          <label>
-            <h98>Select an Option:</h98>
-            <Multiselect 
-             isObject={false}
-            options={ options }
-            onRemove={(event)=> { console.log(event) }}
-            onSelect={ (event)=> { console.log(event) }}
-            showCheckbox
-            />
+            <div>
+              <ul>
+                {files.map((file, index) => (
+                  <li key={index}>{file.name} <TiTick size={24} /></li>
+                ))}
+              </ul>
+            </div>
+          )}
+            <label>
+            <h4>Select an Option:</h4>
+            <div className='upload-form3'>
+              <Multiselect 
+              isObject={false}
+              options={ options }
+              onRemove={(event)=> { console.log(event) }}
+              onSelect={ (event)=> { console.log(event) }}
+              showCheckbox
+              />
+            </div>
+            
           
           </label>
-          <div>
-          <button8 onClick={() => {
+          <div className='upload-buttons'>
+            <button8 onClick={() => {
                   setButtonPopup(false);
                     setFiles([]);
                     }}>Cancel</button8>
             <button8 type="submit">Upload</button8>
           </div>
-        </form>
-      </Popup>
-      <div className="header-btn">
-      <button7 onClick={() => setButtonPopup(true)}>Upload</button7>
-      </div>
-       
+          
+          </div>
+        
+      </form>
+    </Popup>
+    <div className="header-btn">
+    <button7 onClick={() => setButtonPopup(true)}>Upload</button7>
+    </div>
+     
 
-               {/*DOWNLOAD BUTTON POPUP SECTION */}
+             {/*DOWNLOAD BUTTON POPUP SECTION */}
 
-               <div className="header-btn1">
-       <button7 onClick={() => setButtonPopup1(true)}>Download</button7>
-       </div>
-      <Popup trigger={buttonPopup1} setTrigger={setButtonPopup1}>
-        <form onSubmit={handleSubmit}>
-          <h3>Download a File</h3>
-          <label>
-            <h98>Select a file to download:</h98>
+             <div className="header-btn1">
+                  <button7 onClick={() => setButtonPopup1(true)}>Download</button7>
+              </div>
+    <Popup trigger={buttonPopup1} setTrigger={setButtonPopup1}>
+      <form onSubmit={handleSubmit}>
+        <h3>Download a File</h3>
+        <label>
+          <h4>Select a file to download:</h4>
+          <div className='download-form1'>
             <Multiselect
             isObject={false}
             options={ options }
             onRemove={(event)=> { console.log(event) }}
             onSelect={ (event)=> { console.log(event) }}
             showCheckbox
-             />
-          </label>
-          <div>
-            <button8 type="submit">Download</button8>
+            />
           </div>
-        </form>
-      </Popup>
+        </label>
+        <div>
+          <button8 type="submit">Download</button8>
+        </div>
+      </form>
+    </Popup>
+
 {/*
       <div className="header-btn">
       <button7 onClick={viewDocument}>View</button7>
@@ -401,12 +415,11 @@ function Thirdpage() {
  // const [isWishlisted, setIsWishlisted] = useState(false);
   const [buttonPopup2, setButtonPopup2] = useState(false);
  
-
-  const notifyData = [
-    { "s.no": '1', notifaction: 'Mobile', Date: '2022-02-01', linked: 'In Progress' },
-    { "s.no": '2', notifaction: 'Screen', Date: '2022-02-02', linked: 'Completed' },
-    { "s.no": '3', notifaction: 'Chipset', Date: '2022-02-03', linked: 'Pending' },
-  ];
+  const [notifyData] = useState([
+    { "s.no": '1', category: 'Mobile', Title: 'SAMSUNG', external: 'In Progress', date: '02-12-2023' },
+    { "s.no": '2', category: 'Screen', Title: 'APPLE', external: 'Completed', date: '02-12-2023' },
+    { "s.no": '3', category: 'Chipset', Title: 'SAMSUNG', external: 'Pending', date: '02-12-2023' },
+  ]);
 
 // Video Section Codes Here---or Section-----
   return (
@@ -428,10 +441,10 @@ function Thirdpage() {
         <MiddleSection/>
 
 {/*------------------Notify Section -----------------------*/}
-      <div className= "notify" >
-      <div className="notify-btnn1">
+      <div className= "notifyy" >
+     
       <button7  onClick={() => setButtonPopup2(true)}>Notification</button7>
-      </div>
+
       <Popup trigger={buttonPopup2} setTrigger={setButtonPopup2}>
         <div>
           <h3 className='notif'>Notification</h3>
@@ -439,18 +452,20 @@ function Thirdpage() {
             <thead>
               <tr>
                 <th>S.No</th>
-                <th>Notification</th>
+                <th>Category</th>
+                <th>Title</th>
+                <th>External Link/Filepath</th>
                 <th>Date</th>
-                <th>Linked Notification</th>
               </tr>
             </thead>
             <tbody>
-              {notifyData.map((data, index) => (
+            {notifyData.map((data, index) => (
                 <tr key={index}>
                   <td>{data["s.no"]}</td>
-                  <td>{data.notifaction}</td>
-                  <td>{data.Date}</td>
-                  <td>{data.linked}</td>
+                  <td>{data.category}</td>
+                  <td>{data.Title}</td>
+                  <td>{data.external}</td>
+                  <td>{data.date}</td>
                 </tr>
               ))}
             </tbody>
@@ -460,7 +475,7 @@ function Thirdpage() {
       </div>
       <div1 class="vl"></div1>  
     </div>
-  );
+  )
  };
 
     // Start Applicatioon Form

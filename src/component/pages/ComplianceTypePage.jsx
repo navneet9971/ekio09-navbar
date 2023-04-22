@@ -8,6 +8,7 @@ import { ReactComponent as Thum4png } from ".././assets/bis-track-icons/document
 import { ReactComponent as Thum5png } from ".././assets/bis-track-icons/certificate.svg";
 import { ReactComponent as Wrong } from ".././assets/trckpg-rb/wrong.svg";
 import { ReactComponent as Right } from ".././assets/trckpg-rb/right.svg";
+import { ReactComponent as Time } from ".././assets/trckpg-rb/time.svg";
 import file1png from "../../component/assets/pdficon/Green01.png";
 import file2png from "../../component/assets/pdficon/Green02.png";
 import file3png from "../../component/assets/pdficon/Green03.png";
@@ -27,6 +28,8 @@ function Stepper() {
   const [ setComplete] = useState(false);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [setSelectedOption] = useState('');
   //const [setClickedColor] = useState(false);
  // const [ setActiveArrows] = useState([false, false, false, false, false]);
  // const [showTooltip, setShowTooltip] = useState(false); // declare showTooltip state
@@ -57,6 +60,18 @@ function Stepper() {
       }
     }, 1000);
   };
+
+
+    //Download Button Code handleOptionClick
+
+    const handleButtonClick = () => {
+      setIsDropdownOpen(!isDropdownOpen);
+    };
+  
+    const handleOptionClick = (option) => {
+      setSelectedOption(option);
+      setIsDropdownOpen(false);
+    };
   
 
   return (
@@ -64,6 +79,21 @@ function Stepper() {
       <h1 className="ongo">BIS On Going Application:-</h1>
       <h1 className="type">Compliance Type: {name}</h1>
       <h1 className="appli">Application Number: {projectCode}</h1>
+
+
+      <div className="dropdown">
+      <button className="dd-button" onClick={handleButtonClick}>
+        {'Download'}
+      </button>
+      {isDropdownOpen && (
+        <ul className="dd-menu">
+          <li onClick={() => handleOptionClick('Process')}>Process</li>
+          <li onClick={() => handleOptionClick('Testing')}>Testing</li>
+          <li onClick={() => handleOptionClick('Certificate')}>Certificate</li>
+        </ul>
+      )}
+    </div>
+    
               
       <div className="tecon">
   <Thum1png className="mainsvg2"/>   
@@ -73,13 +103,14 @@ function Stepper() {
   <Right  className="mainsvg3"/>
   <p className="dt2">Date: 12/04/2023</p>
   <Thum3png className="mainsvg2"/>
-  <Right className="mainsvg3"/>
+  <Wrong className="mainsvg3"/>
   <p className="dt3">Date: 12/04/2023</p>
   <Thum4png className="mainsvg2"/>
-  <Wrong className="mainsvg3"/>
+  <Time className="mainsvg3"/>
+  <Time className="mainsvg3"/>
   <p className="dt4">Date: 12/04/2023</p>
   <Thum5png className="mainsvg2"/>
-  <Wrong className="mainsvg3"/>
+  <Time className="mainsvg3"/>
   <p className="dt10">Date: 12/04/2023</p>
   </div>
 

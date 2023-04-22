@@ -415,13 +415,11 @@ function Thirdpage() {
  // const [videoUrl, setVideoUrl] = useState('');
  // const [isWishlisted, setIsWishlisted] = useState(false);
   const [buttonPopup2, setButtonPopup2] = useState(false);
- 
-
-  const notifyData = [
-    { "s.no": '1', notifaction: 'Mobile', Date: '2022-02-01', linked: 'In Progress' },
-    { "s.no": '2', notifaction: 'Screen', Date: '2022-02-02', linked: 'Completed' },
-    { "s.no": '3', notifaction: 'Chipset', Date: '2022-02-03', linked: 'Pending' },
-  ];
+  const [notifyData] = useState([
+    { "s.no": '1', category: 'Mobile', Title: 'SAMSUNG', external: 'In Progress', date: '02-12-2023' },
+    { "s.no": '2', category: 'Screen', Title: 'APPLE', external: 'Completed', date: '02-12-2023' },
+    { "s.no": '3', category: 'Chipset', Title: 'SAMSUNG', external: 'Pending', date: '02-12-2023' },
+  ]);
 
 // Video Section Codes Here---or Section-----
   return (
@@ -443,10 +441,10 @@ function Thirdpage() {
         <MiddleSection/>
 
 {/*------------------Notify Section -----------------------*/}
-      <div className= "notify" >
-      <div className="notify-btnn1">
+      <div className= "notifyy" >
+     
       <button7  onClick={() => setButtonPopup2(true)}>Notification</button7>
-      </div>
+
       <Popup trigger={buttonPopup2} setTrigger={setButtonPopup2}>
         <div>
           <h3 className='notif'>Notification</h3>
@@ -454,18 +452,20 @@ function Thirdpage() {
             <thead>
               <tr>
                 <th>S.No</th>
-                <th>Notification</th>
+                <th>Category</th>
+                <th>Title</th>
+                <th>External Link/Filepath</th>
                 <th>Date</th>
-                <th>Linked Notification</th>
               </tr>
             </thead>
             <tbody>
-              {notifyData.map((data, index) => (
+            {notifyData.map((data, index) => (
                 <tr key={index}>
                   <td>{data["s.no"]}</td>
-                  <td>{data.notifaction}</td>
-                  <td>{data.Date}</td>
-                  <td>{data.linked}</td>
+                  <td>{data.category}</td>
+                  <td>{data.Title}</td>
+                  <td>{data.external}</td>
+                  <td>{data.date}</td>
                 </tr>
               ))}
             </tbody>
@@ -475,595 +475,275 @@ function Thirdpage() {
       </div>
       <div1 class="vl"></div1>  
     </div>
-  );
+  )
  };
 
     // Start Applicatioon Form
 
 function Startapp() {
-  // state variables to store form data
-  const [company_email, setCompany_email] = useState("");
-  const [company_name_of_contact_person, setCompany_name_of_contact_person] = useState("");
-  const [company_designation, setCompany_designation] = useState("");
-  const [company_mobile_number, setCompany_mobile_number] = useState("");
-  const [company_manufacturing_unit_name, setCompany_manufacturing_unit_name] = useState("");
-  const [company_address, setCompany_address] = useState("");
-  const [company_country, setCompany_country] = useState("");
-  const [company_state, setCompany_state] = useState("");
-  const [company_zipcode, setCompany_zipcode] = useState("");
-  const [company_contact_number, setCompany_contact_number] = useState("");
-  const [top_management_of_the_manufacturing_unit_name_1, setTop_management_of_the_manufacturing_unit_name_1] = useState("");
-  const [top_management_of_the_manufacturing_unit_name_2, setTop_management_of_the_manufacturing_unit_name_2] = useState("");
-  const [top_management_of_the_manufacturing_unit_name_3, setTop_management_of_the_manufacturing_unit_name_3] = useState("");
-  const [top_management_of_the_manufacturing_unit_designation_1, setTop_management_of_the_manufacturing_unit_designation_1] = useState("");
-  const [top_management_of_the_manufacturing_unit_designation_2, setTop_management_of_the_manufacturing_unit_designation_2] = useState("");
-  const [top_management_of_the_manufacturing_unit_designation_3, setTop_management_of_the_manufacturing_unit_designation_3] = useState("");
-  const [technical_management_of_the_manufacturing_unit_name_1, setTechnical_management_of_the_manufacturing_unit_name_1] = useState("");
-  const [technical_management_of_the_manufacturing_unit_name_2, setTechnical_management_of_the_manufacturing_unit_name_2] = useState("");
-  const [technical_management_of_the_manufacturing_unit_name_3, setTechnical_management_of_the_manufacturing_unit_name_3] = useState("");
-  const [technical_management_of_the_manufacturing_unit_designation_1, setTechnical_management_of_the_manufacturing_unit_designation_1] = useState("");
-  const [technical_management_of_the_manufacturing_unit_designation_2, setTechnical_management_of_the_manufacturing_unit_designation_2] = useState("");
-  const [technical_management_of_the_manufacturing_unit_designation_3, setTechnical_management_of_the_manufacturing_unit_designation_3] = useState("");
-  const [contact_person_of_the_manufacturing_unit_name_1, setContact_person_of_the_manufacturing_unit_name_1] = useState("");
-  const [contact_person_of_the_manufacturing_unit_name_2, setContact_person_of_the_manufacturing_unit_name_2] = useState("");
-  const [contact_person_of_the_manufacturing_unit_name_3, setContact_person_of_the_manufacturing_unit_name_3] = useState("");
-  const[contact_person_of_the_manufacturing_unit_designation_1, setContact_person_of_the_manufacturing_unit_designation_1] =useState("");
-  const[contact_person_of_the_manufacturing_unit_designation_2, setContact_person_of_the_manufacturing_unit_designation_2] =useState("");
-  const[contact_person_of_the_manufacturing_unit_designation_3, setContact_person_of_the_manufacturing_unit_designation_3] =useState("");
-  const [name_of_the_AIR_company, setName_of_the_AIR_company] = useState("");
-  const [address_of_the_AIR_company, setAddress_of_the_AIR_company] = useState("");
-  const [authorized_signatory_name, setAuthorized_signatory_name ] = useState("");
-  const [aIR_Designation, setAIR_Designation ] = useState("");
-  const [aIR_Phone_number, setAIR_Phone_number ] = useState("");
-  const [aIR_Emailid, setAIR_Emailid ] = useState("");
-  const [nomination_signing_auth_name, setNomination_signing_auth_name ] = useState("");
-  const [nomination_designation, setNomination_designation ] = useState("");
-  const [nomination_factory_name, setNomination_factory_name ] = useState("");
-  const [nomination_address, setNomination_address ] = useState("");
-  const [nomination_contact_number, setNomination_contact_number ] = useState("");
-  const [nomination_email, setNomination_email ] = useState("");
-  const [nomination_AIR_company_name, setNomination_AIR_company_name ] = useState("");
-  const [nomination_AIR_company_address, setNomination_AIR_company_address ] = useState("");
-  const [nomination_AIR_company_contact_number, setNomination_AIR_company_contact_number ] = useState("");
-  const [nomination_AIR_company_email, setNomination_AIR_company_email ] = useState("");
-  const [brand_owner_company_name_and_address, setBrand_owner_company_name_and_address ] = useState("");
-  const [manufacture_name_and_address, setManufacture_name_and_address ] = useState("");
-  const [brand_Product, setBrand_Product ] = useState("");
-  const [brand_name, setBrand_name ] = useState("");
-  const [models_for_the_Product, setModels_for_the_Product ] = useState("");
-  const [brand_auth_owner_signing_person_name, setBrand_auth_owner_signing_person_name ] = useState("");
-  const [brand_auth_designation, setBrand_auth_designation ] = useState("");
-  const [buttonPopup5, setButtonPopup5] = useState(false);
+ // state variables to store form data
+ const [applicantCompanyName, setApplicantCompanyName] = useState("");
+ const [applicantCompanyAddress, setApplicantCompanyAddress] = useState("");
+ const [applicantDirectorName, setApplicantDirectorName] = useState("");
+ const [applicantContactNumber, setApplicantContactNumber] = useState("");
+ const [applicantEmailID, setApplicantEmailID] = useState("");
+ const [applicantAuthorisedSignatoryName, setApplicantAuthorisedSignatoryName] = useState("");
+ const [applicantAuthorisedSignatoryDesignation, setApplicantAuthorisedSignatoryDesignation] = useState("");
+ const [applicantContactNumber1, setApplicantContactNumber1] = useState("");
+ const [applicantEmailID1, setApplicantEmailID1] = useState("");
+ const [applicantNameofmanufacturingfactory, setApplicantNameofmanufacturingfactory] = useState("");
+ const [applicantAddressoffactory, setApplicantAddressoffactory] = useState("");
+ const [foreignCompanyName, setForeignCompanyName] = useState("");
+ const [foreignCompanyAddress, setForeignCompanyAddress] = useState("");
+ const [foreignAuthorizedSignatoryName, setForeignAuthorizedSignatoryName] = useState("");
+ const [foreignAuthorizedSignatoryDesignation, setForeignAuthorizedSignatoryDesignation] = useState("");
+ const [foreignContactNumber, setForeignContactNumber] = useState("");
+ const [foreignEmailID, setForeignEmailID ] = useState("");
+ const [buttonPopup5, setButtonPopup5] = useState(false);
 
-  
-  // function to handle form submission
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // TODO: handle form submission logic
-  
-    // Generate a random 4-digit number
-    const uniqueCode = Math.floor(Math.random() * 10000);
-  
-    // Display the unique code to the user
-    alert(`Your Project code is ${uniqueCode}.`);
-  
-    setButtonPopup5(false);
-  };
+ // function to handle file uploads
+ const handleFileUpload = (event) => {
+   // TODO: handle file upload logic
+ };
+
+ // function to handle form submission
+ const handleSubmit = (event) => {
+   event.preventDefault();
+   // TODO: handle form submission logic
+ 
+   // Generate a random 4-digit number
+   const uniqueCode = Math.floor(Math.random() * 10000);
+ 
+   // Display the unique code to the user
+   alert(`Your Project code is ${uniqueCode}.`);
+ 
+   setButtonPopup5(false);
+ };
 
 
-// Start Applicatioon Form----------------------------------------------------
-  return (
-    <div>
-      <div className="header-btn">
-      <button10 onClick={() => setButtonPopup5(true)}>Start New Application</button10>
-      </div>
 
-      <Popup trigger={buttonPopup5} setTrigger={setButtonPopup5}>
-        <div style={{ height: "500px", overflow: "scroll" }}>
-          <h801>BIS FORMS</h801>
-          <form onSubmit={handleSubmit}>
-            <h802>Portal registration form:</h802>
-            <label className="st8012">
-              Email:
-              <input
-                className="st805"
-                type="text"
-                value={company_email}
-                onChange={(event) => setCompany_email(event.target.value)}
-                required
-              />
-            </label>
-            <label className="st8012">
-              Name of Contact Person:
-              <input
-              className="st805"
-                type="text"
-                value={company_name_of_contact_person}
-                onChange={(event) => setCompany_name_of_contact_person(event.target.value)}
-                required
-              />
-            </label>
-            <label className="st8012">
-              Designation:
-              <input
-              className="st805"
-                type="text"
-                value={company_designation}
-                onChange={(event) => setCompany_designation(event.target.value)}
-                required
-              />
-            </label>
-            <label className="st8012">
-              Mobile NO:
-              <input
-              className="st805"
-                type="number"
-                value={company_mobile_number}
-                onChange={(event) => setCompany_mobile_number(event.target.value)}
-                required
-              />
-              </label>
-               <label className="st8012">
-              Manufacturing Unit Name:
-              <input
-              className="st805"
-                type="text"
-                value={company_manufacturing_unit_name}
-                onChange={(event) => setCompany_manufacturing_unit_name(event.target.value)}
-                required
-              />
-            </label>
-            <label className="st8012">
-              Address:
-              <input
-              className="st805"
-                type="text"
-                value={company_address}
-                onChange={(event) => setCompany_address(event.target.value)}
-                required
-              />
-              </label>
+ return (
+   <div>
+     <button10 onClick={() => setButtonPopup5(true)}>Start New Application</button10>
+     <Popup trigger={buttonPopup5} setTrigger={setButtonPopup5}>
+       <div style={{ height: "500px", overflow: "scroll" }}>
+         <h801>Indian OEM/Foreign Manufacture</h801>
+         <form onSubmit={handleSubmit}>
+           <h802>Applicant Company:</h802>
+           <label className="st8012">
+             Company Name:
+             <input
+               className="st805"
+               type="text"
+               value={applicantCompanyName}
+               onChange={(event) => setApplicantCompanyName(event.target.value)}
+               required
+             />
+           </label>
+           <label className="st8012">
+             Company Address:
+             <input
+             className="st805"
+               type="text"
+               value={applicantCompanyAddress}
+               onChange={(event) => setApplicantCompanyAddress(event.target.value)}
+               required
+             />
+           </label>
+           <label className="st8012">
+             Director Name:
+             <input
+             className="st805"
+               type="text"
+               value={applicantDirectorName}
+               onChange={(event) => setApplicantDirectorName(event.target.value)}
+               required
+             />
+           </label>
+           <label className="st8012">
+             Contact Number:
+             <input
+             className="st805"
+               type="number"
+               value={applicantContactNumber}
+               onChange={(event) => setApplicantContactNumber(event.target.value)}
+               required
+             />
+             </label>
               <label className="st8012">
-              Country:
-              <input
-              className="st805"
-                type="text"
-                value={company_country}
-                onChange={(event) => setCompany_country(event.target.value)}
-                required
-              />
-              </label>
-              <label className="st8012">
-              State/Province:
-              <input
-              className="st805"
-                type="text"
-                value={company_state}
-                onChange={(event) => setCompany_state(event.target.value)}
-                required
-              />
-              </label>
-              <label className="st8012">
-              Zip Code:
-              <input
-              className="st805"
-                type="text"
-                value={company_zipcode}
-                onChange={(event) => setCompany_zipcode(event.target.value)}
-                required
-              />
-              </label>
-              <label className="st8012">
-              Contact No:
-              <input
-              className="st805"
-                type="text"
-                value={company_contact_number}
-                onChange={(event) => setCompany_contact_number(event.target.value)}
-                required
-              />
-              </label>
+             Email ID:
+             <input
+             className="st805"
+               type="text"
+               value={applicantEmailID}
+               onChange={(event) => setApplicantEmailID(event.target.value)}
+               required
+             />
+           </label>
+           <label className="st8012">
+             Authorised Signatory Name:
+             <input
+             className="st805"
+               type="text"
+               value={applicantAuthorisedSignatoryName}
+               onChange={(event) => setApplicantAuthorisedSignatoryName(event.target.value)}
+               required
+             />
+             </label>
+             <label className="st8012">
+             Authorised Signatory Designation:
+             <input
+             className="st805"
+               type="text"
+               value={applicantAuthorisedSignatoryDesignation}
+               onChange={(event) => setApplicantAuthorisedSignatoryDesignation(event.target.value)}
+               required
+             />
+             </label>
+             <label className="st8012">
+             Contact Number:
+             <input
+             className="st805"
+               type="number"
+               value={applicantContactNumber1}
+               onChange={(event) => setApplicantContactNumber1(event.target.value)}
+               required
+             />
+             </label>
+             <label className="st8012">
+             Email ID:
+             <input
+             className="st805"
+               type="text"
+               value={applicantEmailID1}
+               onChange={(event) => setApplicantEmailID1(event.target.value)}
+               required
+             />
+             </label>
+             <label className="st8012">
+             Name of manufacturing factory:
+             <input
+             className="st805"
+               type="text"
+               value={applicantNameofmanufacturingfactory}
+               onChange={(event) => setApplicantNameofmanufacturingfactory(event.target.value)}
+               required
+             />
+             </label>
+             <label className="st8012">
+             Address of factory:
+             <input
+             className="st805"
+               type="text"
+               value={applicantAddressoffactory}
+               onChange={(event) => setApplicantAddressoffactory(event.target.value)}
+               required
+             />
+             </label>
 
 
-            <h802>Form 1:</h802>
-            <h3 className='topmang'>Top Management of the manufacturing unit:</h3>
-            <div className="row">
-  <div className="name-row">
-    <div className="names">
-      <h3 className="manufacunit">Name</h3>
-      <label className="st8012">
-        1
-        <input className="st805" type="text" 
-        value={top_management_of_the_manufacturing_unit_name_1} 
-        onChange={(event) => setTop_management_of_the_manufacturing_unit_name_1(event.target.value)} 
-        required />
-      </label>
-      <label className="st8012">
-        2
-        <input className="st805" type="text"
-         value={top_management_of_the_manufacturing_unit_name_2} 
-         onChange={(event) => setTop_management_of_the_manufacturing_unit_name_2(event.target.value)} 
-         required />
-      </label>
-      <label className="st8012">
-        3
-        <input className="st805" type="text" 
-        value={top_management_of_the_manufacturing_unit_name_3} 
-        onChange={(event) => setTop_management_of_the_manufacturing_unit_name_3(event.target.value)} 
-        required />
-      </label>
-    </div>
-    <div className="designations">
-      <h3 className="manufacunit1">Designation</h3>
-      <label className="st8012">
-        <input className="st805" type="text" 
-        value={top_management_of_the_manufacturing_unit_designation_1} 
-        onChange={(event) => setTop_management_of_the_manufacturing_unit_designation_1(event.target.value)} 
-        required />
-      </label>
-      <label className="st8012">
-        <input className="st805" type="text" 
-        value={top_management_of_the_manufacturing_unit_designation_2} 
-        onChange={(event) => setTop_management_of_the_manufacturing_unit_designation_2(event.target.value)} 
-        required />
-      </label>
-      <label className="st8012">
-        <input className="st805" type="text" 
-        value={top_management_of_the_manufacturing_unit_designation_3} 
-        onChange={(event) => setTop_management_of_the_manufacturing_unit_designation_3(event.target.value)} 
-        required />
-      </label>
-    </div>
-  </div>
-</div>
-
-<h3 className='techni'>Technical Management of the manufacturing unit:</h3>
-            <div className="row">
-  <div className="name-row">
-    <div className="names">
-      <h3 className="manufacunit">Name</h3>
-      <label className="st8012">
-        1
-        <input className="st805" type="text" 
-        value={technical_management_of_the_manufacturing_unit_name_1} 
-        onChange={(event) => setTechnical_management_of_the_manufacturing_unit_name_1(event.target.value)} 
-        required />
-      </label>
-      <label className="st8012">
-        2
-        <input className="st805" type="text" 
-        value={technical_management_of_the_manufacturing_unit_name_2} 
-        onChange={(event) => setTechnical_management_of_the_manufacturing_unit_name_2(event.target.value)} 
-        required />
-      </label>
-      <label className="st8012">
-        3
-        <input className="st805" type="text" 
-        value={technical_management_of_the_manufacturing_unit_name_3}
-        onChange={(event) => setTechnical_management_of_the_manufacturing_unit_name_3(event.target.value)} 
-        required />
-      </label>
-    </div>
-    <div className="designations">
-      <h3 className="manufacunit1">Designation</h3>
-      <label className="st8012">
-        <input className="st805" type="text" 
-        value={technical_management_of_the_manufacturing_unit_designation_1} 
-        onChange={(event) => setTechnical_management_of_the_manufacturing_unit_designation_1(event.target.value)} 
-        required />
-      </label>
-      <label className="st8012">
-        <input className="st805" type="text" 
-        value={technical_management_of_the_manufacturing_unit_designation_2} 
-        onChange={(event) => setTechnical_management_of_the_manufacturing_unit_designation_2(event.target.value)} 
-        required />
-      </label>
-      <label className="st8012">
-        <input className="st805" type="text" 
-        value={technical_management_of_the_manufacturing_unit_designation_3} 
-        onChange={(event) => setTechnical_management_of_the_manufacturing_unit_designation_3(event.target.value)} 
-        required />
-      </label>
-    </div>
-  </div>
-</div>
-            
-<h3 className='Contctprson'>Contact Person of the manufacturing unit:</h3>
-            <div className="row">
-  <div className="name-row">
-    <div className="names">
-      <h3 className="manufacunit">Name</h3>
-      <label className="st8012">
-        1
-        <input className="st805" type="text" 
-        value={contact_person_of_the_manufacturing_unit_name_1} 
-        onChange={(event) => setContact_person_of_the_manufacturing_unit_name_1(event.target.value)} 
-        required />
-      </label>
-      <label className="st8012">
-        2
-        <input className="st805" type="text" 
-        value={contact_person_of_the_manufacturing_unit_name_2} 
-        onChange={(event) => setContact_person_of_the_manufacturing_unit_name_2(event.target.value)} 
-        required />
-      </label>
-      <label className="st8012">
-        3
-        <input className="st805" type="text" 
-        value={contact_person_of_the_manufacturing_unit_name_3}
-         onChange={(event) => setContact_person_of_the_manufacturing_unit_name_3(event.target.value)} 
-         required />
-      </label>
-    </div>
-    <div className="designations">
-      <h3 className="manufacunit1">Designation</h3>
-      <label className="st8012">
-        <input className="st805" type="text" 
-        value={contact_person_of_the_manufacturing_unit_designation_1} 
-        onChange={(event) => setContact_person_of_the_manufacturing_unit_designation_1(event.target.value)} 
-        required />
-      </label>
-      <label className="st8012">
-        <input className="st805" type="text" 
-        value={contact_person_of_the_manufacturing_unit_designation_2} 
-        onChange={(event) => setContact_person_of_the_manufacturing_unit_designation_2(event.target.value)} 
-        required />
-      </label>
-      <label className="st8012">
-        <input className="st805" type="text" 
-        value={contact_person_of_the_manufacturing_unit_designation_3} 
-        onChange={(event) => setContact_person_of_the_manufacturing_unit_designation_3(event.target.value)} 
-        required />
-      </label>
-    </div>
-  </div>
-</div>
+           <h802>Foreign Manufacture:</h802>
+           <label className="st8012">
+             Company Name:
+             <input
+             className="st805"
+               type="text"
+               value={foreignCompanyName}
+               onChange={(event) => setForeignCompanyName(event.target.value)}
+               required
+             />
+           </label>
+           <label className="st8012">
+             Company Address:
+             <input
+             className="st805"
+               type="text"
+               value={foreignCompanyAddress}
+               onChange={(event) => setForeignCompanyAddress(event.target.value)}
+               required
+             />
+           </label>
+           <label className="st8012">
+             Authorized Signatory Name:
+             <input
+             className="st805"
+               type="text"
+               value={foreignAuthorizedSignatoryName}
+               onChange={(event) => setForeignAuthorizedSignatoryName(event.target.value)}
+               required
+             />
+           </label>
+           <label className="st8012">
+             Authorized Signatory Designation:
+             <input
+             className="st805"
+               type="text"
+               value={foreignAuthorizedSignatoryDesignation}
+               onChange={(event) => setForeignAuthorizedSignatoryDesignation(event.target.value)}
+               required
+             />
+           </label>
+           <label className="st8012">
+             Contact Number:
+             <input
+             className="st805"
+               type="number"
+               value={foreignContactNumber}
+               onChange={(event) => setForeignContactNumber(event.target.value)}
+               required
+             />
+           </label>
+           <label className="st8012">
+             Email ID:
+             <input
+             className="st805"
+               type="text"
+               value={foreignEmailID}
+               onChange={(event) => setForeignEmailID(event.target.value)}
+               required
+             />
+           </label>
 
 
-        
-            <label className="st8012">
-              Name of the AIR Company:
-              <input
-              className="st805"
-                type="text"
-                value={name_of_the_AIR_company}
-                onChange={(event) => setName_of_the_AIR_company(event.target.value)}
-                required
-              />
-            </label>
-            <label className="st8012">
-              Address of the AIR Company:
-              <input
-              className="st805"
-                type="text"
-                value={address_of_the_AIR_company}
-                onChange={(event) => setAddress_of_the_AIR_company(event.target.value)}
-                required
-              />
-            </label>
-            <label className="st8012">
-              Authorized signatory Name:
-              <input
-              className="st805"
-                type="text"
-                value={authorized_signatory_name}
-                onChange={(event) => setAuthorized_signatory_name (event.target.value)}
-                required
-              />
-            </label>
-            <label className="st8012">
-              Designation:
-              <input
-              className="st805"
-                type="text"
-                value={aIR_Designation}
-                onChange={(event) => setAIR_Designation (event.target.value)}
-                required
-              />
-            </label>
-            <label className="st8012">
-              Phone Number:
-              <input
-              className="st805"
-                type="text"
-                value={aIR_Phone_number}
-                onChange={(event) => setAIR_Phone_number (event.target.value)}
-                required
-              />
-            </label>
-            <label className="st8012">
-              Email id:
-              <input
-              className="st805"
-                type="text"
-                value={aIR_Emailid}
-                onChange={(event) => setAIR_Emailid (event.target.value)}
-                required
-              />
-            </label>
-
-
-            <h802>Nomination Form</h802>
-            <label className="st8012">
-              Signing Auth name:
-              <input
-              className="st805"
-                type="text"
-                value={nomination_signing_auth_name}
-                onChange={(event) => setNomination_signing_auth_name (event.target.value)}
-                required
-              />
-            </label>
-            <label className="st8012">
-              Designation:
-              <input
-              className="st805"
-                type="text"
-                value={nomination_designation}
-                onChange={(event) => setNomination_designation (event.target.value)}
-                required
-              />
-            </label>
-            <label className="st8012">
-             Factory Name:
-              <input
-              className="st805"
-                type="text"
-                value={nomination_factory_name}
-                onChange={(event) => setNomination_factory_name (event.target.value)}
-                required
-              />
-            </label>
-            <label className="st8012">
-              Address:
-              <input
-              className="st805"
-                type="text"
-                value={nomination_address}
-                onChange={(event) => setNomination_address (event.target.value)}
-                required
-              />
-            </label>
-            <label className="st8012">
-              Contact No:
-              <input
-              className="st805"
-                type="text"
-                value={nomination_contact_number}
-                onChange={(event) => setNomination_contact_number (event.target.value)}
-                required
-              />
-            </label>
-            <label className="st8012">
-               Email:
-              <input
-              className="st805"
-                type="text"
-                value={nomination_email}
-                onChange={(event) => setNomination_email (event.target.value)}
-                required
-              />
-            </label>
-            <label className="st8012">
-              AIR company name:
-              <input
-              className="st805"
-                type="text"
-                value={nomination_AIR_company_name}
-                onChange={(event) => setNomination_AIR_company_name  (event.target.value)}
-                required
-              />
-            </label>
-            <label className="st8012">
-              Address:
-              <input
-              className="st805"
-                type="text"
-                value={nomination_AIR_company_address}
-                onChange={(event) => setNomination_AIR_company_address (event.target.value)}
-                required
-              />
-            </label>
-            <label className="st8012">
-              Contact No:
-              <input
-              className="st805"
-                type="text"
-                value={nomination_AIR_company_contact_number}
-                onChange={(event) => setNomination_AIR_company_contact_number (event.target.value)}
-                required
-              />
-            </label>
-            <label className="st8012">
-             Email:
-              <input
-              className="st805"
-                type="text"
-                value={nomination_AIR_company_email}
-                onChange={(event) => setNomination_AIR_company_email (event.target.value)}
-                required
-              />
-            </label>
-
-
-            <h802>Brand Auth</h802>
-            <label className="st8012">
-              Brand Owner's Comapany Name and Address:
-              <input
-              className="st805"
-                type="text"
-                value={brand_owner_company_name_and_address}
-                onChange={(event) => setBrand_owner_company_name_and_address (event.target.value)}
-                required
-              />
-            </label>
-            <label className="st8012">
-              Manufacture Name and Address:
-              <input
-              className="st805"
-                type="text"
-                value={manufacture_name_and_address}
-                onChange={(event) => setManufacture_name_and_address (event.target.value)}
-                required
-              />
-            </label>
-            <label className="st8012">
-             Product:
-              <input
-              className="st805"
-                type="text"
-                value={brand_Product}
-                onChange={(event) => setBrand_Product (event.target.value)}
-                required
-              />
-            </label>
-            <label className="st8012">
-              Brand Name:
-              <input
-              className="st805"
-                type="text"
-                value={brand_name}
-                onChange={(event) => setBrand_name (event.target.value)}
-                required
-              />
-            </label>
-            <label className="st8012">
-              Models for the Product:
-              <input
-              className="st805"
-                type="text"
-                value={models_for_the_Product}
-                onChange={(event) => setModels_for_the_Product  (event.target.value)}
-                required
-              />
-            </label>
-            <label className="st8012">
-               Brand Owner Signing Person Name:
-              <input
-              className="st805"
-                type="text"
-                value={brand_auth_owner_signing_person_name}
-                onChange={(event) => setBrand_auth_owner_signing_person_name (event.target.value)}
-                required
-              />
-            </label>
-            <label className="st8012">
-              Designation:
-              <input
-              className="st805"
-                type="text"
-                value={brand_auth_designation}
-                onChange={(event) => setBrand_auth_designation (event.target.value)}
-                required
-              />
-            </label>
-
-            <button className='btn808' type="submit">Submit</button>
-          </form>
-        </div>
-      </Popup>
-    </div>
-  );
-  };  
+           <h802>Document Required:</h802>
+           <label className="st8012">
+             COI of Applicant Company:
+             <input  classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
+           </label>
+           <label className="st8012">
+             PAN Card of Applicant Company:
+             <input classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
+           </label>
+           <label className="st8012">
+             MOA:
+             <input classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
+           </label>
+           <label className="st8012">
+             AOA:
+             <input classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
+           </label>
+           <label className="st8012">
+             Shareholding Pattern:
+             <input classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
+           </label>
+           <label className="st8012">
+             Authorization letter:
+             <input classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
+           </label>
+           <label className="st8012">
+             MOU between Applicant & OEM:
+             <input classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
+           </label>
+           <label className="st8012">
+             AIR Authorization Letter for Appliicant:
+             <input classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
+           </label>
+           <button className='btn808' type="submit">Submit</button>
+         </form>
+       </div>
+     </Popup>
+   </div>
+ );
+ };  
 
 export default Thirdpage;

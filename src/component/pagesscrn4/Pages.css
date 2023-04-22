@@ -839,3 +839,9 @@ video.videoBox {
 .optionListContainer{
   width:fit-content!important;
 }
+
+/*----Notification button */
+.notifyy {
+  margin-left: 53em;
+  margin-top: -77.1em;
+}

@@ -407,4 +407,15 @@ select.form {
 }
 
 
+button.revbtn {
+  margin-top: -3em;
+  margin-left: 45em;
+  padding: 0.5em;
+  border-radius: 1em;
+  color: #fff;
+  background-color: #082a77;
+}
 
+button.revbtn:hover{
+  background-color: #55b700;
+}

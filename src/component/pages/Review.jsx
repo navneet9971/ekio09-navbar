@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Popup from "../pagesscrn4/popup/Popup";
+import { PDFDownloadLink} from "@react-pdf/renderer";
 import "./Table.css";
 
 function Review() {
   const [data] = useState([
     { id: 1, complianceType: "TEC", applicationName: "Telecom Products", startDate: "2023-03-25", endDate: "2023-05-10", projectCode:101, status: "on-going" },
-    { id: 2, complianceType: "BIS", applicationName: "Battery12", startDate: "2023-03-28", endDate: "2023-05-11", projectCode:102, status: "completed" }, 
+    { id: 2, complianceType: "BIS", applicationName: "Battery12", startDate: "2023-03-28", endDate: "2023-05-11", projectCode:102, status: "completed" },
     { id: 3, complianceType: "TEC", applicationName: "Telecom Products", startDate: "2022-03-18", endDate: "2023-05-13",  projectCode:103,status: "on-going"  },
     { id: 4, complianceType: "BIS", applicationName: "Telecom Products", startDate: "2022-03-18", endDate: "2023-05-15", projectCode:104,status: "completed"  },
     { id: 5, complianceType: "WPS", applicationName: "Telecom Products", startDate: "2022-03-18", endDate: "2023-05-17", projectCode:105,status: "completed"  },
@@ -16,7 +17,6 @@ function Review() {
     { id: 9, complianceType: "BIS", applicationName: "Telecom Products", startDate: "2022-03-18", endDate: "2023-05-24", projectCode:109,status: "completed"  },
     { id: 10, complianceType: "TEC", applicationName: "Telecom Products", startDate: "2022-03-18", endDate: "2023-05-26", projectCode:110,status: "completed"  },
     { id: 11, complianceType: "BIS", applicationName: "Telecom Products", startDate: "2022-03-18", endDate: "2023-05-27", projectCode:111,status: "on-going"  },
-
   ]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filterDate, setFilterDate] = useState("");
@@ -24,6 +24,9 @@ function Review() {
   const [startDate] = useState("");
   const [filterStatus, setFilterStatus] = useState("");
   const history = useHistory();
+   const [pdf] = useState(null);
+  // const viewerRef = useRef(null);
+
 
   const handleClick = (id, projectCode, complianceType) => {
     const selectedItem = data.find((item) => item.id === id);
@@ -99,6 +102,19 @@ function Review() {
   })
 
 
+  //PDF FILE DOWNLOAD HANDLE 
+
+ /* const handleDownload = () => {
+    const pdfContent = viewerRef.current?.pdfInstance;
+    if (pdfContent) {
+      pdfContent.getDataUrl({ format: "pdf" }, (url) => {
+        setPdf(url);
+      });
+    }
+  }; */
+  
+
+
   return (
     <div className="table">
       <h5>Track Applications</h5>
@@ -124,6 +140,16 @@ function Review() {
           <h3>Choose date not Found!</h3>
         </Popup>
       )}
+
+<div className="download-button">
+  <PDFDownloadLink
+    document={<iframe title="Document Preview" src={pdf} style={{ width: "100%", height: "100%" }} />}
+    fileName="table.pdf"
+  >
+    <button className="revbtn">Download PDF</button>
+  </PDFDownloadLink>
+</div>
+
   
 <div className="table-wrapper">
       <table className="Review">
