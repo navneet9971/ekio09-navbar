@@ -37,15 +37,19 @@ axiosInstance.get(`/compliance/?category=${category}&product=${product}&region=$
     accept: 'application/json',
   }
   })
-.then((response) => {
-  console.log(response.data);
-  // redirect the user to the second page with the compliance data
-  history.push('/navbar/secondpage');
-})
-.catch((error) => {
-  console.error(error);
-  alert('Something went wrong. Please try again later.');
-});
+  .then((response) => {
+    if (response.data.data.length === 0) {
+      alert('No compliance data found. Please check your input and try again.');
+    } else {
+      console.log(response.data);
+      // redirect the user to the second page with the compliance data
+      history.push('/navbar/secondpage');
+    }
+  })
+  .catch((error) => {
+    console.error(error);
+    alert('Something went wrong. Please try again later.');
+  });
 };
 
   return (

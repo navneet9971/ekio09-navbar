@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import "../Pages.css";
 import Popup from "../popup/Popup";
 import { TiTick } from "react-icons/ti";
@@ -50,182 +49,368 @@ function LabTestingBox() {
   //const [buttonPopup1, setButtonPopup1] = useState(false);
   const [submitPopup] = useState(false);
 
-    // state variables to store form data
-    const [testingManufacturernameaddress, setTestingManufacturernameaddress] = useState("");
-    const [testingTestitemdescription, setTestingTestitemdescription] = useState("");
-    const [testingTradeMark, setTestingTradeMark] = useState("");
-    const [testingModelTypereference, setTestingModelTypereference] = useState("");
-    const [testingRatedcurrentRatedvoltage, setTestingRatedcurrentRatedvoltage] = useState("");
-    const [testingOverallsize, setTestingOverallsize] = useState("");
-    const [testingMassoftheequipment, setTestingMassoftheequipment] = useState("");
-    const [testingSeriesModel, setTestingSeriesModel] = useState("");
-    const [testingSimilarities, setTestingSimilarities] = useState("");
-    const [testingDifferences, setTestingDifferences] = useState("");
-    const [testingWorstCase, setTestingWorstCase] = useState("");
-    const [testingMaxAccessoriesused, setTestingMaxAccessoriesused] = useState("");
-    const [testingModelsamplesubmittedfortesting, setTestingModelsamplesubmittedfortesting] = useState("");
-    
+  const [testingApplicantName, setTestingApplicantName] = useState("");
+  const [testingAddress, setTestingAddress] = useState("");
+  const [testingOEMName, setTestingOEMName] = useState("");
+  const [testingOEMAddress, setTestingOEMAddress] = useState("");
+  const [testingProductName, setTestingProductName] = useState("");
+  const [testingModelNo, setTestingModelNo] = useState("");
+  const [testingAssociated, setTestingAssociated] = useState("");
+  const [testingHardwareNumber, setTestingHardwareNumber] = useState("");
+  const [testingSoftwareNumber, setTestingSoftwareNumber] = useState("");
+  const [testingBrand, setTestingBrand] = useState("");
+  const [testingSr, setTestingSr] = useState("");
+  const [testingElectrical, setTestingElectrical] = useState("");
+  const [testingProductType, setTestingProductType] = useState("");
+  const [testingProductUse, setTestingProductUse] = useState("");
+  const [testingSoftware, setTestingSoftware] = useState("");
+  const [testingTechnicalsupportName, setTestingTechnicalsupportName] = useState("");
+  const [testingTechnicalsuppoertNumber, setTestingTechnicalsuppoertNumber] = useState("");
+  const [manufacturingProductName, setManufacturingProductName ] = useState("");
+  const [manufacturingModelNo, setManufacturingModelNo ] = useState("");
+  const [manufacturingAssociatedModels, setManufacturingAssociatedModels] = useState("");
+  const [manufacturingManufacturingName, setManufacturingManufacturingName ] = useState("");
+  const [manufacturingManufacturingAddress, setManufacturingManufacturingAddress ] = useState("");
+  const [manufacturingManufacturingCountry, setManufacturingManufacturingCountry] = useState("");
+  const [manufacturingContactName, setManufacturingContactName] = useState ("");
+  const [manufacturingContactNumber, setManufacturingContactNumber] = useState ("");
+  const [manufacturingContactEmail, setManufacturingContactEmail] = useState ("");
+  const [manufacturingOrigin, setManufacturingOrigin] = useState ("");
+  const [manufacturingContract, setManufacturingContract] = useState ("");
+  
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // TODO: handle form submission logic
-  };
- 
-// -------------Lab Testing Box Codes Here-------------------------------
-// TESTING BUTTON CODE HERE !!!!!!!!!!!
 
-  return (
-    <div className="lab-testing-box">
-            <div className="header-btn">
-      <button7 onClick={() => setButtonPopup(true)}>Request Testing</button7>
+  // function to handle file uploads
+const handleFileUpload = (event) => {
+  // TODO: handle file upload logic
+};
+
+const handleSubmit = (event) => {
+  event.preventDefault();
+  // TODO: handle form submission logic
+};
+
+
+
+return (
+  <div className="lab-testing-box">
+    <button7 onClick={() => setButtonPopup(true)}>Request Testing</button7>
+    <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+    <div style={{ height: "500px", overflow: "scroll" }}>
+        <h801>Testing Information Required</h801>
+        <form onSubmit={handleSubmit}>
+          <label className="st8012">
+            Applicant Name:
+            <input
+              className="st805"
+              type="text"
+              value={testingApplicantName}
+              onChange={(event) => setTestingApplicantName(event.target.value)}
+              required
+            />
+          </label>
+          <label className="st8012">
+            Address:
+            <input
+            className="st805"
+              type="text"
+              value={testingAddress}
+              onChange={(event) => setTestingAddress(event.target.value)}
+              required
+            />
+          </label>
+          <label className="st8012">
+            OEM Name:
+            <input
+            className="st805"
+              type="text"
+              value={testingOEMName}
+              onChange={(event) => setTestingOEMName(event.target.value)}
+              required
+            />
+          </label>
+          <label className="st8012">
+            OEM Address:
+            <input
+            className="st805"
+              type="text"
+              value={testingOEMAddress}
+              onChange={(event) => setTestingOEMAddress(event.target.value)}
+              required
+            />
+            </label>
+             <label className="st8012">
+            Product Name:
+            <input
+            className="st805"
+              type="text"
+              value={testingProductName}
+              onChange={(event) => setTestingProductName(event.target.value)}
+              required
+            />
+          </label>
+          <label className="st8012">
+            Model No:
+            <input
+            className="st805"
+              type="text"
+              value={testingModelNo}
+              onChange={(event) => setTestingModelNo(event.target.value)}
+              required
+            />
+            </label>
+            <label className="st8012">
+            Associated Models (if any):
+            <input
+            className="st805"
+              type="text"
+              value={testingAssociated}
+              onChange={(event) => setTestingAssociated(event.target.value)}
+              required
+            />
+            </label>
+            <label className="st8012">
+            Hardware Number:
+            <input
+            className="st805"
+              type="text"
+              value={testingHardwareNumber}
+              onChange={(event) => setTestingHardwareNumber(event.target.value)}
+              required
+            />
+            </label>
+            <label className="st8012">
+            Software Number	:
+            <input
+            className="st805"
+              type="text"
+              value={testingSoftwareNumber}
+              onChange={(event) => setTestingSoftwareNumber(event.target.value)}
+              required
+            />
+            </label>
+            <label className="st8012">
+            Brand:
+            <input
+            className="st805"
+              type="text"
+              value={testingBrand}
+              onChange={(event) => setTestingBrand(event.target.value)}
+              required
+            />
+            </label>
+            <label className="st8012">
+            Sr. No:
+            <input
+            className="st805"
+              type="text"
+              value={testingSr}
+              onChange={(event) => setTestingSr(event.target.value)}
+              required
+            />
+            </label>
+            <label className="st8012">
+            Electrical Rating:
+            <input
+            className="st805"
+              type="text"
+              value={testingElectrical}
+              onChange={(event) => setTestingElectrical(event.target.value)}
+              required
+            />
+            </label>
+            <label className="st8012">
+            Product Type (Fixed/Industrial/Portable/other):
+            <input
+            className="st805"
+              type="text"
+              value={testingProductType}
+              onChange={(event) => setTestingProductType(event.target.value)}
+              required
+            />
+            </label>
+            <label className="st8012">
+            Product Use (Indoor/Outdoor/other):
+            <input
+            className="st805"
+              type="text"
+              value={testingProductUse}
+              onChange={(event) => setTestingProductUse(event.target.value)}
+              required
+            />
+            </label>
+            <label className="st8012">
+            Filled CDF/CCl (Format attached):
+            <input  classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
+          </label>
+          <label className="st8012">
+            Complete USer Manual:
+            <input classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
+          </label>
+          <label className="st8012">
+            Circuit Diagram:
+            <input classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
+          </label>
+          <label className="st8012">
+            PCB Layout:
+            <input classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
+          </label>
+          <label className="st8012">
+            Software used (if any):
+            <input classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
+          </label>
+            <label className="st8012">
+            Software used (if any)	If yes, please upload:
+            <input
+            className="st805"
+              type="text"
+              value={testingSoftware}
+              onChange={(event) => setTestingSoftware(event.target.value)}
+              required
+            />
+            </label>
+            <label className="st8012">
+            Technical support person name:
+            <input
+            className="st805"
+              type="text"
+              value={testingTechnicalsupportName}
+              onChange={(event) => setTestingTechnicalsupportName(event.target.value)}
+              required
+            />
+            </label>
+            <label className="st8012">
+            Technical support person contact number:
+            <input
+            className="st805"
+              type="text"
+              value={testingTechnicalsuppoertNumber}
+              onChange={(event) => setTestingTechnicalsuppoertNumber(event.target.value)}
+              required
+            />
+            </label>
+
+
+          <h805>Manufacturing Location Information:</h805>
+          <label className="st8012">
+            Product Name:
+            <input
+            className="st805"
+              type="text"
+              value={manufacturingProductName}
+              onChange={(event) => setManufacturingProductName(event.target.value)}
+              required
+            />
+          </label>
+          <label className="st8012">
+            Model No:
+            <input
+            className="st805"
+              type="text"
+              value={manufacturingModelNo}
+              onChange={(event) => setManufacturingModelNo(event.target.value)}
+              required
+            />
+          </label>
+          <label className="st8012">
+            Associated Models:
+            <input
+            className="st805"
+              type="text"
+              value={manufacturingAssociatedModels}
+              onChange={(event) => setManufacturingAssociatedModels(event.target.value)}
+              required
+            />
+          </label>
+          <label className="st8012">
+            Manufacturer Name:
+            <input
+            className="st805"
+              type="text"
+              value={manufacturingManufacturingName}
+              onChange={(event) => setManufacturingManufacturingName(event.target.value)}
+              required
+            />
+          </label>
+          <label className="st8012">
+            Manufacturer Address:
+            <input
+            className="st805"
+              type="text"
+              value={manufacturingManufacturingAddress}
+              onChange={(event) => setManufacturingManufacturingAddress(event.target.value)}
+              required
+            />
+          </label>
+          <label className="st8012">
+            Manufacturing Country:
+            <input
+            className="st805"
+              type="text"
+              value={manufacturingManufacturingCountry}
+              onChange={(event) => setManufacturingManufacturingCountry(event.target.value)}
+              required
+            />
+          </label>
+          <label className="st8012">
+            Contact Person Name:
+            <input
+            className="st805"
+              type="text"
+              value={manufacturingContactName}
+              onChange={(event) => setManufacturingContactName(event.target.value)}
+              required
+            />
+          </label>
+          <label className="st8012">
+            Contact Person's Number:
+            <input
+            className="st805"
+              type="text"
+              value={manufacturingContactNumber}
+              onChange={(event) => setManufacturingContactNumber(event.target.value)}
+              required
+            />
+          </label>
+          <label className="st8012">
+            Contact Person's Email Id:
+            <input
+            className="st805"
+              type="text"
+              value={manufacturingContactEmail}
+              onChange={(event) => setManufacturingContactEmail(event.target.value)}
+              required
+            />
+          </label>
+          <label className="st8012">
+            Country of Origin:
+            <input
+            className="st805"
+              type="text"
+              value={manufacturingOrigin}
+              onChange={(event) => setManufacturingOrigin(event.target.value)}
+              required
+            />
+          </label>
+          <label className="st8012">
+            Contract Manufacturing(Yes/No):
+            <input
+            className="st805"
+              type="text"
+              value={manufacturingContract}
+              onChange={(event) => setManufacturingContract(event.target.value)}
+              required
+            />
+          </label>
+         
+          <button className='btn809' type="submit">Submit</button>
+        </form>
       </div>
-
-      <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-      <div style={{ height: "500px", overflow: "scroll" }}>
-          <h801>Testing Details</h801>
-          <form onSubmit={handleSubmit}>
-            <label className="st8012">
-            Manufacturer’s name & Address:
-              <input
-                className="st805"
-                type="text"
-                value={testingManufacturernameaddress}
-                onChange={(event) => setTestingManufacturernameaddress(event.target.value)}
-                required
-              />
-            </label>
-            <label className="st8012">
-            Test item description:
-              <input
-              className="st805"
-                type="text"
-                value={testingTestitemdescription}
-                onChange={(event) => setTestingTestitemdescription(event.target.value)}
-                required
-              />
-            </label>
-            <label className="st8012">
-            Trade Mark:
-              <input
-              className="st805"
-                type="text"
-                value={testingTradeMark}
-                onChange={(event) => setTestingTradeMark(event.target.value)}
-                required
-              />
-            </label>
-            <label className="st8012">
-            Model/Type reference:
-              <input
-              className="st805"
-                type="text"
-                value={testingModelTypereference}
-                onChange={(event) => setTestingModelTypereference(event.target.value)}
-                required
-              />
-              </label>
-               <label className="st8012">
-               Rated current (A) / Rated voltage (V):
-              <input
-              className="st805"
-                type="text"
-                value={testingRatedcurrentRatedvoltage}
-                onChange={(event) => setTestingRatedcurrentRatedvoltage(event.target.value)}
-                required
-              />
-            </label>
-            <label className="st8012">
-            Overall size of the equipment :
-              <input
-              className="st805"
-                type="text"
-                value={testingOverallsize}
-                onChange={(event) => setTestingOverallsize(event.target.value)}
-                required
-              />
-              </label>
-              <label className="st8012">
-              Mass of the equipment (kg):
-              <input
-              className="st805"
-                type="text"
-                value={testingMassoftheequipment}
-                onChange={(event) => setTestingMassoftheequipment(event.target.value)}
-                required
-              />
-              </label>
-              <label className="st8012">
-              Series  Model:
-              <input
-              className="st805"
-                type="text"
-                value={testingSeriesModel}
-                onChange={(event) => setTestingSeriesModel(event.target.value)}
-                required
-              />
-              </label>
-
-              <h3 className='model'>Models included in this series</h3>
-              <label className="st8012">
-              Similarities:
-              <input
-              className="st805"
-                type="text"
-                value={testingSimilarities}
-                onChange={(event) => setTestingSimilarities(event.target.value)}
-                required
-              />
-              </label>
-              <label className="st8012">
-              Differences:
-              <input
-              className="st805"
-                type="text"
-                value={testingDifferences}
-                onChange={(event) => setTestingDifferences(event.target.value)}
-                required
-              />
-              </label>
-              <label className="st8012">
-              Worst Case:
-              <input
-              className="st805"
-                type="text"
-                value={testingWorstCase}
-                onChange={(event) => setTestingWorstCase(event.target.value)}
-                required
-              />
-              </label>
-              <label className="st8012">
-              Max.  Accessories used:
-              <input
-              className="st805"
-                type="text"
-                value={testingMaxAccessoriesused}
-                onChange={(event) => setTestingMaxAccessoriesused(event.target.value)}
-                required
-              />
-              </label>
-              <label className="st8012">
-              Model / sample submitted for testing:
-              <input
-              className="st805"
-                type="text"
-                value={testingModelsamplesubmittedfortesting}
-                onChange={(event) => setTestingModelsamplesubmittedfortesting(event.target.value)}
-                required
-              />
-              </label>
-             
-           
-            <button className='btn809' type="submit">Submit</button>
-          </form>
-        </div>
-      </Popup>
-      {submitPopup && (
-  <Popup>
-    <div>Hello everyone</div>
-  </Popup>
+    </Popup>
+    {submitPopup && (
+<Popup>
+  <div>Hello everyone</div>
+</Popup>
 )}
      {/* <div className="header-btn">
       <button7 onClick={() => setButtonPopup1(true)}>Status</button7>
@@ -265,41 +450,16 @@ function LabTestingBox() {
 function DocumentBox() {
   const [buttonPopup, setButtonPopup] = useState(false);
   const [buttonPopup1, setButtonPopup1] = useState(false);
-  const [selectedOption] = useState('');
   const [selectedFile] = useState(null);
+  const [selectedOption] = useState('');
+  const [documentType] = useState('');
   const [files, setFiles] = useState([]);
-  const history = useHistory();
   const [options] = useState(['Signatory Authorization', 'OEM Authorization', 'MOU','Shareholding Pattern','Annexure 1', 'BOM', 'Non Applicability Proforma', 'Proforma Seeking Exemption' ]);
 
   const handleFileChange = (event) => {
     const newFiles = Array.from(event.target.files);
     setFiles([...files, ...newFiles]);
 
-    // Set the URL of the file to be downloaded based on the selected option
-    let fileUrl;
-    if (selectedOption === "Option 1") {
-      fileUrl = "https://example.com/signatory-authorization.pdf";
-    } else if (selectedOption === "Option 2") {
-      fileUrl = "https://example.com/oem-authorization.pdf";
-    } else if (selectedOption === "Option 3") {
-      fileUrl = "https://example.com/mou.pdf";
-    } else if (selectedOption === "Option 4") {
-      fileUrl = "https://example.com/shareholding-pattern.pdf";
-    } else if (selectedOption === "Option 5") {
-      fileUrl = "https://example.com/annexure.pdf";
-    } else if (selectedOption === "Option 6") {
-      fileUrl = "https://example.com/bom.pdf";
-    } else if (selectedOption === "Option 7") {
-      fileUrl = "https://example.com/non-applicability.pdf";
-    } else if (selectedOption === "Option 8") {
-      fileUrl = "https://example.com/proforma-seeking-exemption.pdf";
-    }
-
-    // Trigger the download of the file
-    const link = document.createElement("a");
-    link.href = fileUrl;
-    link.download = fileUrl.substring(fileUrl.lastIndexOf("/") + 1);
-    link.click();
 
     setButtonPopup(false);
   }
@@ -308,29 +468,67 @@ function DocumentBox() {
     event.preventDefault();
     console.log('Submitting form with file:', selectedFile);
     console.log('Selected option:', selectedOption);
-    // Code to handle uploading the file and selected option
-  
-    // Show success message and navigate to success page
-    const uploadedFileName = selectedFile ? selectedFile.name : files[files.length - 1].name;
-    const successUrl = `/success/${encodeURIComponent(uploadedFileName)}`;
-    history.push(successUrl);
+
+    const data = new FormData();
+    data.append('application', 'your_application_value');
+    data.append('compliance', 'your_compliance_value');
+    data.append('document_type', documentType);
+    if (selectedFile) {
+      data.append('document', selectedFile);
+    }
+    
+    axiosInstance.post(`/application/document/`, data)
+      .then(response => {
+        console.log(response.data);
+        // Show success message and navigate to success page
+        //const uploadedFileName = selectedFile ? selectedFile.name : files[files.length - 1].name;
+        // navigate to success page
+      })
+      .catch(error => {
+        console.log(error);
+      });
   
     setButtonPopup(false);
   }
 
 
+  const handleDownload = (event) => {
+    event.preventDefault();
+    console.log('Downloading file:', selectedOption);
+
+    axiosInstance.get(`compliance-form/?compliance=BIS`, {
+      params: {
+        document_type: selectedOption
+      },
+      responseType: 'blob'
+    })
+      .then(response => {
+        console.log(response.data);
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', selectedOption);
+        document.body.appendChild(link);
+        link.click();
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+    setButtonPopup1(false);
+  }
 
  // -------------------------------Document Box Codes here---------------------------------------------------
   return (
     <div className="document-box">
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-        <form onSubmit={handleSubmit}>
+       
         <h3>Upload a File</h3>
           <div className='upload-form1'>
             <label htmlFor="file-input">
               <h4>Choose File:</h4>
             </label>
-            <input className="upload-file-input" type="file" accept="application/pdf"  multiple onChange={handleFileChange} />
+            <input className="upload-file-input" type="file" accept=".pdf,.jpg,.jpeg" onChange={handleFileChange} />
           </div>
           
           
@@ -344,31 +542,15 @@ function DocumentBox() {
                 </ul>
               </div>
             )}
-              <label>
-              <h4>Select an Option:</h4>
-              <div className='upload-form3'>
-                <Multiselect 
-                isObject={false}
-                options={ options }
-                onRemove={(event)=> { console.log(event) }}
-                onSelect={ (event)=> { console.log(event) }}
-                showCheckbox
-                />
-              </div>
-              
-            
-            </label>
             <div className='upload-buttons'>
               <button8 onClick={() => {
                     setButtonPopup(false);
                       setFiles([]);
                       }}>Cancel</button8>
-              <button8 type="submit">Upload</button8>
+              <button8 type="submit" onClick={handleSubmit}>Upload</button8>
             </div>
             
             </div>
-          
-        </form>
       </Popup>
       <div className="header-btn">
       <button7 onClick={() => setButtonPopup(true)}>Upload</button7>
@@ -381,7 +563,6 @@ function DocumentBox() {
                     <button7 onClick={() => setButtonPopup1(true)}>Download</button7>
                 </div>
       <Popup trigger={buttonPopup1} setTrigger={setButtonPopup1}>
-        <form onSubmit={handleSubmit}>
           <h3>Download a File</h3>
           <label>
             <h4>Select a file to download:</h4>
@@ -396,9 +577,8 @@ function DocumentBox() {
             </div>
           </label>
           <div>
-            <button8 type="submit">Download</button8>
+            <button8 type="submit" onClick={handleDownload}>Download</button8>
           </div>
-        </form>
       </Popup>
 {/*
       <div className="header-btn">
@@ -449,27 +629,28 @@ function Thirdpage() {
         <div>
           <h3 className='notif'>Notification</h3>
           <table>
-            <thead>
-              <tr>
-                <th>S.No</th>
-                <th>Category</th>
-                <th>Title</th>
-                <th>External Link/Filepath</th>
-                <th>Date</th>
-              </tr>
-            </thead>
-            <tbody>
-            {notifyData.map((data, index) => (
-                <tr key={index}>
-                  <td>{data["s.no"]}</td>
-                  <td>{data.category}</td>
-                  <td>{data.Title}</td>
-                  <td>{data.external}</td>
-                  <td>{data.date}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+  <thead>
+    <tr>
+      <th>S.No</th>
+      <th>Category</th>
+      <th>Title</th>
+      <th>External Link/Filepath</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    {notifyData.map((data, index) => (
+      <tr key={index}>
+        <td>{data["s.no"]}</td>
+        <td>{data.category}</td>
+        <td>{data.Title}</td>
+        <td onClick={() => window.open(data.external)} style={{cursor: 'pointer'}}>{data.external}</td>
+        <td>{data.date}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
         </div>
       </Popup>
       </div>

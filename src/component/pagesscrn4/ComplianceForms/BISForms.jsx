@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import "../Pages.css";
 import Popup from "../popup/Popup";
 import { TiTick } from "react-icons/ti";
@@ -263,66 +262,80 @@ function LabTestingBox() {
 function DocumentBox() {
   const [buttonPopup, setButtonPopup] = useState(false);
   const [buttonPopup1, setButtonPopup1] = useState(false);
-  const [selectedOption] = useState('');
   const [selectedFile] = useState(null);
+  const [selectedOption] = useState('');
+  const [documentType] = useState('');
   const [files, setFiles] = useState([]);
-  const history = useHistory();
-  const [options] = useState(['Signatory Authorization', 'OEM Authorization', 'MOU','Shareholding Pattern','Annexure 1', 'BOM', 'Non Applicability Proforma', 'Proforma Seeking Exemption' ]);
+  const [options] = useState(['Manufacture authorization letter', 'Manufacture nomination form', 'AIR Affidavit Brand office','AIR Afidavit Mfg branch Office','AIR authorization latter', 'brand authorization latter' ]);
 
   const handleFileChange = (event) => {
     const newFiles = Array.from(event.target.files);
     setFiles([...files, ...newFiles]);
 
-    // Set the URL of the file to be downloaded based on the selected option
-    let fileUrl;
-    if (selectedOption === "Option 1") {
-      fileUrl = "https://example.com/signatory-authorization.pdf";
-    } else if (selectedOption === "Option 2") {
-      fileUrl = "https://example.com/oem-authorization.pdf";
-    } else if (selectedOption === "Option 3") {
-      fileUrl = "https://example.com/mou.pdf";
-    } else if (selectedOption === "Option 4") {
-      fileUrl = "https://example.com/shareholding-pattern.pdf";
-    } else if (selectedOption === "Option 5") {
-      fileUrl = "https://example.com/annexure.pdf";
-    } else if (selectedOption === "Option 6") {
-      fileUrl = "https://example.com/bom.pdf";
-    } else if (selectedOption === "Option 7") {
-      fileUrl = "https://example.com/non-applicability.pdf";
-    } else if (selectedOption === "Option 8") {
-      fileUrl = "https://example.com/proforma-seeking-exemption.pdf";
-    }
-
-    // Trigger the download of the file
-    const link = document.createElement("a");
-    link.href = fileUrl;
-    link.download = fileUrl.substring(fileUrl.lastIndexOf("/") + 1);
-    link.click();
-
-    setButtonPopup(false);
+  setButtonPopup(false);
   }
 
   function handleSubmit(event) {
     event.preventDefault();
     console.log('Submitting form with file:', selectedFile);
     console.log('Selected option:', selectedOption);
-    // Code to handle uploading the file and selected option
-  
-    // Show success message and navigate to success page
-    const uploadedFileName = selectedFile ? selectedFile.name : files[files.length - 1].name;
-    const successUrl = `/success/${encodeURIComponent(uploadedFileName)}`;
-    history.push(successUrl);
+
+    const data = new FormData();
+    data.append('application', 'your_application_value');
+    data.append('compliance', 'your_compliance_value');
+    data.append('document_type', documentType);
+    if (selectedFile) {
+      data.append('document', selectedFile);
+    }
+    
+    axiosInstance.post(`/application/document/`, data)
+      .then(response => {
+        console.log(response.data);
+        // Show success message and navigate to success page
+        //const uploadedFileName = selectedFile ? selectedFile.name : files[files.length - 1].name;
+        // navigate to success page
+      })
+      .catch(error => {
+        console.log(error);
+      });
   
     setButtonPopup(false);
   }
 
+
+  const handleDownload = (event) => {
+    event.preventDefault();
+    console.log('Downloading file:', selectedOption);
+
+    axiosInstance.get(`compliance-form/?compliance=BIS`, {
+      params: {
+        document_type: selectedOption
+      },
+      responseType: 'blob'
+    })
+      .then(response => {
+        console.log(response.data);
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', selectedOption);
+        document.body.appendChild(link);
+        link.click();
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+    setButtonPopup1(false);
+  }
+ 
 
 
  // -------------------------------Document Box Codes here---------------------------------------------------
  return (
   <div className="document-box">
     <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-      <form onSubmit={handleSubmit}>
+      
       <h3>Upload a File</h3>
         <div className='upload-form1'>
           <label htmlFor="file-input">
@@ -342,31 +355,19 @@ function DocumentBox() {
               </ul>
             </div>
           )}
-            <label>
-            <h4>Select an Option:</h4>
-            <div className='upload-form3'>
-              <Multiselect 
-              isObject={false}
-              options={ options }
-              onRemove={(event)=> { console.log(event) }}
-              onSelect={ (event)=> { console.log(event) }}
-              showCheckbox
-              />
-            </div>
-            
-          
-          </label>
+           
           <div className='upload-buttons'>
             <button8 onClick={() => {
                   setButtonPopup(false);
                     setFiles([]);
                     }}>Cancel</button8>
             <button8 type="submit">Upload</button8>
+            <button8 type="submit" onClick={handleSubmit}>Upload</button8>
           </div>
           
           </div>
         
-      </form>
+     
     </Popup>
     <div className="header-btn">
     <button7 onClick={() => setButtonPopup(true)}>Upload</button7>
@@ -394,7 +395,7 @@ function DocumentBox() {
           </div>
         </label>
         <div>
-          <button8 type="submit">Download</button8>
+        <button8 type="submit" onClick={handleDownload}>Download</button8>
         </div>
       </form>
     </Popup>
@@ -449,27 +450,28 @@ function Thirdpage() {
         <div>
           <h3 className='notif'>Notification</h3>
           <table>
-            <thead>
-              <tr>
-                <th>S.No</th>
-                <th>Category</th>
-                <th>Title</th>
-                <th>External Link/Filepath</th>
-                <th>Date</th>
-              </tr>
-            </thead>
-            <tbody>
-            {notifyData.map((data, index) => (
-                <tr key={index}>
-                  <td>{data["s.no"]}</td>
-                  <td>{data.category}</td>
-                  <td>{data.Title}</td>
-                  <td>{data.external}</td>
-                  <td>{data.date}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+  <thead>
+    <tr>
+      <th>S.No</th>
+      <th>Category</th>
+      <th>Title</th>
+      <th>External Link/Filepath</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    {notifyData.map((data, index) => (
+      <tr key={index}>
+        <td>{data["s.no"]}</td>
+        <td>{data.category}</td>
+        <td>{data.Title}</td>
+        <td onClick={() => window.open(data.external)} style={{cursor: 'pointer'}}>{data.external}</td>
+        <td>{data.date}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
         </div>
       </Popup>
       </div>

@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "eikomp-sasa",
+  "private_key_id": "1f7361d6ec4afed93483c0164702e68fb7fb9a9f",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCtMLyNQhy5Dqub\nIszQZJHKwo2dGPi31HhrgVlXhJcq7BYi5lTj7ZUDey5IAS5CcFSsAG5pzu4+Bomb\npI+VMA2ENJeFGTODAGywLO/xBommVcBszi1sQxn+13yrmWXquz8xArF7OnGTRuCw\n+OwDWeRWA4SR+4YphPiLA+NjHcDur5wZg1o/EtDMZc9kJi9UOmd5+H0h/8eMx8iY\nuyz70MukFQSG16FzHnSC45XmlLDuX+yYWoIiUxxc3P2aWTgmUVephfPlhTs1JOYY\nqebXiDF12AT6CcfatgKsD7zq0EEi4SPX+RorqDq/UI35aHc1cPwxhZlKhxz4r946\nZSqd68FnAgMBAAECggEAFmUCl0LLk1kEnaHUBBpiXmqRL0AxtmuV9VNw1F1DwtFr\np1r18nx1KVG9+/eTHhTdDgSxl6L3XDPc4AWuafx1svkDTWWjKzcHLDITW1ecvafB\noxAiAClzwhKRKgtC33sTl73Lv1h2Ton6t0eTaneENrnBDwi2zMWcnIqF1k+G9BYF\nsdiM3UFDqwbT8JrQcMCX/l8p9FFzvFKtjRGr6s+OIHeZFlUaKfiC4giduX0XJFAk\nHgcSSjc5R5gzgp8BhhApefkqaH9laNssc7vH00pPFjxNikQqOvsGoPjOAJRZArSN\nS2Bqt+Fq/PR3X209dHjGPnBUkPCbxFpCjR3+WZxTqQKBgQDpMGTZKQfCrsVfjtmg\nfhHyQ7+v8+j1GQ+PiRv8V2elJTY1Uszu3UHYp5tVEsyVfxCXp4mYLtAl60eEV0mv\n2mLn7L18KcsSbVcCvNyArK9m1eIk4BNJufyRobklvRfvlTbamXUcFsXxTwpeF0pd\nZ0ZN/E8dMzp0oB0+3COvo8qZtQKBgQC+IdV89BB8KGgHIFM+KWmi2S8TDwg/7Pm/\n7l1/B5zKDke31XO9LSrqJDi5HaXfHZtDjjBA519KimQWznqoo12HRBwGI1RRZMrM\nKTcxnKO7vE4C8fw8zUJ17JmBA4mwPxrqMv6eFDHxCUIefHdkR2XmAdxNEVpkL5as\nZZ7PyQowKwKBgQDixvycsKlqbLtoRi1hRpm/aKGnxWY9zoRyi93al0olsj24t/Cz\nMBwUTlPi9Whezvbc9cL7bDNjXR/tFVKFIbZkZLiWYrKqFgmzkOZEgSwHr2PBhuVb\nIvP80TGVAQOhLRTunKTmj0MrfTnQ7YeVtJULzJ9H/4UO3JP0iPRvoLOsrQKBgQCB\nngMyqhhK7CjvIsRdDlJrqHAFKCxRmDYy+EdZAFGNFesikivS/eXRtVvOJz4bOs3M\nYjTXKmS2Jl5RhfXs3WI3guEv9gnXa0UtpbNw6P5eT+NG8r0oni3+wotrfoPxWTP6\nEUWvcskRL2SZ7/RcsqfvA7mx+HCM+DxZzvVTZhTB/QKBgQChj/9X1zz1I57TQY5l\nLJyIfBT7TxCO8Qtsd+Gv0bvKlxU4rMXvb23ZwAa7XZBbRbEY4qwWhXkihmuXNhKQ\npgFYKSot8X2Z7L8SPyfbQg73IJgHWrBsadWi9cGF3ucvWWBgrHP5s2g6LMVw/gY4\nXJCehu1XW3WMUnuGS7u21LfH7Q==\n-----END PRIVATE KEY-----\n",
+  "client_email": "eikomp@eikomp-sasa.iam.gserviceaccount.com",
+  "client_id": "112062711827793472650",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/eikomp%40eikomp-sasa.iam.gserviceaccount.com"
+}

@@ -11,12 +11,20 @@ const Secondpage = () => {
   useEffect(() => {
     axiosInstance.get(`/compliance/?category=${localStorage.getItem("category")}&product=${localStorage.getItem("product")}&region=${localStorage.getItem("region")}`)
     .then(res => {
-      setComplianceData(res?.data?.data)
+      const uniqueComplianceData = [];
+      res?.data?.data.forEach(compliance => {
+        // check if the compliance id already exists in the array
+        if (!uniqueComplianceData.some(item => item.id === compliance.id)) {
+          uniqueComplianceData.push(compliance);
+        }
+      });
+      setComplianceData(uniqueComplianceData);
     })
     .catch(err => {
       alert('Something went wrong.')
     })
-  }, []);
+}, []);
+
   
   
 
