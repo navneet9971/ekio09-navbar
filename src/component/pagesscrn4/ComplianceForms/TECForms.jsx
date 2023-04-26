@@ -663,6 +663,7 @@ function Thirdpage() {
 
 function Startapp() {
  // state variables to store form data
+ const [types_of_company, setTypes_of_company] = useState("");
  const [applicantCompanyName, setApplicantCompanyName] = useState("");
  const [applicantCompanyAddress, setApplicantCompanyAddress] = useState("");
  const [applicantDirectorName, setApplicantDirectorName] = useState("");
@@ -708,9 +709,20 @@ function Startapp() {
      <button10 onClick={() => setButtonPopup5(true)}>Start New Application</button10>
      <Popup trigger={buttonPopup5} setTrigger={setButtonPopup5}>
        <div style={{ height: "500px", overflow: "scroll" }}>
-         <h801>Indian OEM/Foreign Manufacture</h801>
+         <h801></h801>
          <form onSubmit={handleSubmit}>
+        
            <h802>Applicant Company:</h802>
+           <label className="st8012">
+         Indian OEM/Foreign Manufacture:
+             <input
+               className="st805"
+               type="text"
+               value={types_of_company}
+               onChange={(event) => setTypes_of_company(event.target.value)}
+               required
+             />
+           </label>
            <label className="st8012">
              Company Name:
              <input
