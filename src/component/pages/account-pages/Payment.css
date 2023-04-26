@@ -4,7 +4,7 @@ h5{
     font-weight: 600;
 }
 
-button69 {
+.button69 {
     background-color: #552700;
     border-radius: 8px;
     border-style: none;
@@ -31,12 +31,12 @@ button69 {
     user-select: none;
     touch-action: manipulation;
 }
- button69:hover,
- button69:focus {
+ .button69:hover,
+ .button69:focus {
     background-color: rgb(6, 117, 6);
   }
 
-  button70 {
+  .button70 {
     background-color: #552700;
     border-radius: 8px;
     border-style: none;
@@ -65,7 +65,7 @@ button69 {
     user-select: none;
     touch-action: manipulation;
 }
-button70:hover,
- button70:focus {
+.button70:hover,
+ .button70:focus {
     background-color: rgb(6, 117, 6);
   }
