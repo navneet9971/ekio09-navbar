@@ -1,23 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Popup from "../pagesscrn4/popup/Popup";
 import { PDFDownloadLink} from "@react-pdf/renderer";
 import "./Table.css";
+import axiosInstance from "../../interceptors/axios";
 
 function Review() {
-  const [data] = useState([
-    { id: 1, complianceType: "TEC", applicationName: "Telecom Products", startDate: "2023-03-25", endDate: "2023-05-10", projectCode:101, status: "on-going" },
-    { id: 2, complianceType: "BIS", applicationName: "Battery12", startDate: "2023-03-28", endDate: "2023-05-11", projectCode:102, status: "completed" },
-    { id: 3, complianceType: "TEC", applicationName: "Telecom Products", startDate: "2022-03-18", endDate: "2023-05-13",  projectCode:103,status: "on-going"  },
-    { id: 4, complianceType: "BIS", applicationName: "Telecom Products", startDate: "2022-03-18", endDate: "2023-05-15", projectCode:104,status: "completed"  },
-    { id: 5, complianceType: "WPS", applicationName: "Telecom Products", startDate: "2022-03-18", endDate: "2023-05-17", projectCode:105,status: "completed"  },
-    { id: 6, complianceType: "TEC", applicationName: "Telecom Products", startDate: "2022-03-18", endDate: "2023-05-19", projectCode:106,status: "on-going"  },
-    { id: 7, complianceType: "BIS", applicationName: "Telecom Products", startDate: "2022-03-18", endDate: "2023-05-20", projectCode:107,status: "completed"  },
-    { id: 8, complianceType: "WPS", applicationName: "Telecom Products", startDate: "2022-03-18", endDate: "2023-05-22", projectCode:108,status: "on-going"  },
-    { id: 9, complianceType: "BIS", applicationName: "Telecom Products", startDate: "2022-03-18", endDate: "2023-05-24", projectCode:109,status: "completed"  },
-    { id: 10, complianceType: "TEC", applicationName: "Telecom Products", startDate: "2022-03-18", endDate: "2023-05-26", projectCode:110,status: "completed"  },
-    { id: 11, complianceType: "BIS", applicationName: "Telecom Products", startDate: "2022-03-18", endDate: "2023-05-27", projectCode:111,status: "on-going"  },
-  ]);
+  const [data, setData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filterDate, setFilterDate] = useState("");
   const [showPopup, setShowPopup] = useState(false);
@@ -27,7 +16,18 @@ function Review() {
    const [pdf] = useState(null);
   // const viewerRef = useRef(null);
 
-
+  useEffect(() => {
+    axiosInstance.get(`application/compliance/`)  
+        .then(response => {
+          setData(response.data.data);
+          console.log(response.data);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }, []);
+  
+  
   const handleClick = (id, projectCode, complianceType) => {
     const selectedItem = data.find((item) => item.id === id);
     const selectedStatus =
@@ -114,7 +114,6 @@ function Review() {
   }; */
   
 
-
   return (
     <div className="table">
       <h5>Track Applications</h5>
@@ -159,7 +158,8 @@ function Review() {
             <th className="header">Compliance Type</th>
             <th className="header">Application Name</th>
             <th className="header">Start Date</th>
-            <th className="header">End Date</th>
+            <th className="header">Estimated End Date</th>
+            <th className="header">Actual End Date</th>
             <th className="header">Project Code</th>
             <th className="header">
   Status{" "}
@@ -178,16 +178,16 @@ function Review() {
 
         <tbody>
   {filteredData.map((item, index) => (
-    <tr key={item.id}>
+    <tr key={item.unique.id}>
       <td>{index + 1}</td>
       <td
   className="clickable"
   onClick={() => handleClick(item.id)}
 >
-  {item.complianceType}
+  {item.compliance_name}
 </td>
-      <td>{item.applicationName}</td>
-      <td>{item.startDate}</td>
+      <td>{item.application_name}</td>
+      <td>{item.startdate}</td>
       <td>
         {item.endDate
           ? `${Math.ceil(
@@ -197,6 +197,7 @@ function Review() {
             )} days left`
           : "30 days Left"}
       </td>
+      <td>{item.actualdate}</td>
       <td>{item.projectCode}</td>
       <td>{item.status}</td>
      
