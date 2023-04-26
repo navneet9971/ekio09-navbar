@@ -62,9 +62,9 @@ function Login() {
               alt="logo"
             />
             <p>Don't have an account?</p>
-            <button1 onClick={signUpButton} style={{ cursor: "pointer" }}>
+            <button className="button1" onClick={signUpButton} style={{ cursor: "pointer" }}>
               Sign up
-            </button1>
+            </button>
             <h3 style={{ padding: 0 }}>WELCOME</h3>
           </div>
           <div className="input-box">
@@ -84,7 +84,7 @@ function Login() {
               onChange={handleChange}
             />
           </div>
-          <button1 onClick={handleSubmit}>Login</button1>
+          <button className="button1" onClick={handleSubmit}>Login</button>
           <Link to="#">Forgot Password?</Link>
         </div>
       </div>
