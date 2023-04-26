@@ -80,8 +80,9 @@ function Review() {
   };  
 
   const filteredData = data
-  .filter((item) =>
-    item.complianceType.toLowerCase().includes(searchQuery.toLowerCase())
+  .filter((item) =>{
+    if(item.complianceType)
+    return item.complianceType.toLowerCase().includes(searchQuery.toLowerCase())}
   )
   .filter((item) => (filterDate ? item.startDate === filterDate : true))
   .filter((item) =>
