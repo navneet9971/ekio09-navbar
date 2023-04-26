@@ -25,8 +25,6 @@ const Secondpage = () => {
     })
 }, []);
 
-  
-  
 
   // open compliance video in new window
   const handleVideoClick = (e, videoUrl) => {
