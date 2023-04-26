@@ -246,16 +246,16 @@
   }
   
   
-  button1,
-  button2,
-  button3 {
+  .button1,
+  .button2,
+  .button3 {
     flex-direction: row;
     gap: 10px;
   }
   
-  button1,
-  button2,
-  button3 {
+  .button1,
+  .button2,
+  .button3 {
     padding: 2px 5px;
     border-radius: 5px;
     border: none;
@@ -265,9 +265,9 @@
     font-size: 12px;
   }
   
-  button1:hover,
-  button2:hover,
-  button3:hover {
+  .button1:hover,
+  .button2:hover,
+  .button3:hover {
     background-color: #3e8e41;
   }
 
@@ -459,7 +459,7 @@ a.notify {
   top: 9em;
 }
 
-button10.rdrcbtn {
+.button10.rdrcbtn {
   left: 52em;
 }
 
@@ -522,7 +522,7 @@ button10.rdrcbtn {
     }
 
   /*------------ ThirdPage popup button css ---------------*/
-button8, button8:focus {
+.button8, .button8:focus {
       font-size: 17px;
       padding: 5px 14px;
       margin-left: 15px;
@@ -536,13 +536,13 @@ button8, button8:focus {
       transition-timing-function: linear;
     }
     
-    button8:active {
+    .button8:active {
       transform: translate(0, 0);
       border-bottom: 2px solid rgb(50, 50, 50);
     }
 
   /*-------------ThirdPage Butoon CSS--------------*/
-  button5, button7, button10 {
+  .button5, .button7, .button10 {
     align-items: center;
     border-radius: 14px;
     background-color: #082a71;
@@ -560,14 +560,14 @@ button8, button8:focus {
     font-family: Avenir
 }
   
-  button5:hover,
-  button7:hover,
-  button10:hover {
+  .button5:hover,
+  .button7:hover,
+  .button10:hover {
     background-color: #55b700;
   }
 
 /* button css styling is here of Forms Page  */
-button10 {
+.button10 {
     left: 1em;
 }
 

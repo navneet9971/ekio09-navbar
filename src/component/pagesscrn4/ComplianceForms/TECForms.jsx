@@ -94,7 +94,7 @@ const handleSubmit = (event) => {
 
 return (
   <div className="lab-testing-box">
-    <button7 onClick={() => setButtonPopup(true)}>Request Testing</button7>
+    <button className="button7" onClick={() => setButtonPopup(true)}>Request Testing</button>
     <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
     <div style={{ height: "500px", overflow: "scroll" }}>
         <h801>Testing Information Required</h801>
@@ -413,7 +413,7 @@ return (
 </Popup>
 )}
      {/* <div className="header-btn">
-      <button7 onClick={() => setButtonPopup1(true)}>Status</button7>
+      <button className="button7" onClick={() => setButtonPopup1(true)}>Status</button>
       </div>
       <Popup trigger={buttonPopup1} setTrigger={setButtonPopup1}>
         <div>
@@ -479,6 +479,7 @@ function DocumentBox() {
     
     axiosInstance.post(`/application/document/`, data)
       .then(response => {
+        console.log("GOT Response = " + response);
         console.log(response.data);
         // Show success message and navigate to success page
         //const uploadedFileName = selectedFile ? selectedFile.name : files[files.length - 1].name;
@@ -543,24 +544,24 @@ function DocumentBox() {
               </div>
             )}
             <div className='upload-buttons'>
-              <button8 onClick={() => {
+              <button className="button8" onClick={() => {
                     setButtonPopup(false);
                       setFiles([]);
-                      }}>Cancel</button8>
-              <button8 type="submit" onClick={handleSubmit}>Upload</button8>
+                      }}>Cancel</button>
+              <button className="button8" type="submit" onClick={handleSubmit}>Upload</button>
             </div>
             
             </div>
       </Popup>
       <div className="header-btn">
-      <button7 onClick={() => setButtonPopup(true)}>Upload</button7>
+      <button className="button7" onClick={() => setButtonPopup(true)}>Upload</button>
       </div>
        
 
                {/*DOWNLOAD BUTTON POPUP SECTION */}
 
                <div className="header-btn1">
-                    <button7 onClick={() => setButtonPopup1(true)}>Download</button7>
+                    <button className="button7" onClick={() => setButtonPopup1(true)}>Download</button>
                 </div>
       <Popup trigger={buttonPopup1} setTrigger={setButtonPopup1}>
           <h3>Download a File</h3>
@@ -577,12 +578,12 @@ function DocumentBox() {
             </div>
           </label>
           <div>
-            <button8 type="submit" onClick={handleDownload}>Download</button8>
+            <button className="button8" type="submit" onClick={handleDownload}>Download</button>
           </div>
       </Popup>
 {/*
       <div className="header-btn">
-      <button7 onClick={viewDocument}>View</button7>
+      <button className="button7" onClick={viewDocument}>View</button>
                   </div> */}
 
     </div>
@@ -623,7 +624,7 @@ function Thirdpage() {
 {/*------------------Notify Section -----------------------*/}
       <div className= "notifyy" >
      
-      <button7  onClick={() => setButtonPopup2(true)}>Notification</button7>
+      <button className="button7"  onClick={() => setButtonPopup2(true)}>Notification</button>
 
       <Popup trigger={buttonPopup2} setTrigger={setButtonPopup2}>
         <div>
@@ -706,7 +707,7 @@ function Startapp() {
 
  return (
    <div>
-     <button10 onClick={() => setButtonPopup5(true)}>Start New Application</button10>
+     <button className='button10' onClick={() => setButtonPopup5(true)}>Start New Application</button>
      <Popup trigger={buttonPopup5} setTrigger={setButtonPopup5}>
        <div style={{ height: "500px", overflow: "scroll" }}>
          <h801></h801>
