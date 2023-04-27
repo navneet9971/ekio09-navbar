@@ -47,8 +47,8 @@ return (
   </div>
 
   <div className="table-buttons">
-    <button69>Balance in Wallet</button69>
-    <button70 onClick={handleDownload}>Download</button70>
+    <button className="button69">Balance in Wallet</button>
+    <button className="button70" onClick={handleDownload}>Download</button>
   </div>
 
   <table>

@@ -75,7 +75,7 @@ function LabTestingBox() {
   return (
     <div className="lab-testing-box">
             <div className="header-btn">
-      <button7 onClick={() => setButtonPopup(true)}>Request Testing</button7>
+      <button className="button7" onClick={() => setButtonPopup(true)}>Request Testing</button>
       </div>
 
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
@@ -226,7 +226,7 @@ function LabTestingBox() {
   </Popup>
 )}
      {/* <div className="header-btn">
-      <button7 onClick={() => setButtonPopup1(true)}>Status</button7>
+      <button className="button7" onClick={() => setButtonPopup1(true)}>Status</button>
       </div>
       <Popup trigger={buttonPopup1} setTrigger={setButtonPopup1}>
         <div>
@@ -358,12 +358,12 @@ function DocumentBox() {
           )}
            
           <div className='upload-buttons'>
-            <button8 onClick={() => {
+            <button className="button8" onClick={() => {
                   setButtonPopup(false);
                     setFiles([]);
-                    }}>Cancel</button8>
-            <button8 type="submit">Upload</button8>
-            <button8 type="submit" onClick={handleSubmit}>Upload</button8>
+                    }}>Cancel</button>
+            <button className="button8" type="submit">Upload</button>
+            <button className="button8" type="submit" onClick={handleSubmit}>Upload</button>
           </div>
           
           </div>
@@ -371,14 +371,14 @@ function DocumentBox() {
      
     </Popup>
     <div className="header-btn">
-    <button7 onClick={() => setButtonPopup(true)}>Upload</button7>
+    <button className="button7" onClick={() => setButtonPopup(true)}>Upload</button>
     </div>
      
 
              {/*DOWNLOAD BUTTON POPUP SECTION */}
 
              <div className="header-btn1">
-                  <button7 onClick={() => setButtonPopup1(true)}>Download</button7>
+                  <button className="button7" onClick={() => setButtonPopup1(true)}>Download</button>
               </div>
     <Popup trigger={buttonPopup1} setTrigger={setButtonPopup1}>
       <form onSubmit={handleSubmit}>
@@ -396,14 +396,14 @@ function DocumentBox() {
           </div>
         </label>
         <div>
-        <button8 type="submit" onClick={handleDownload}>Download</button8>
+        <button className="button8" type="submit" onClick={handleDownload}>Download</button>
         </div>
       </form>
     </Popup>
 
 {/*
       <div className="header-btn">
-      <button7 onClick={viewDocument}>View</button7>
+      <button className="button7" onClick={viewDocument}>View</button>
                   </div> */}
 
     </div>
@@ -445,7 +445,7 @@ function Thirdpage() {
 {/*------------------Notify Section -----------------------*/}
       <div className= "notifyy" >
      
-      <button7  onClick={() => setButtonPopup2(true)}>Notification</button7>
+      <button className="button7"  onClick={() => setButtonPopup2(true)}>Notification</button>
 
       <Popup trigger={buttonPopup2} setTrigger={setButtonPopup2}>
         <div>
@@ -558,7 +558,7 @@ function Startapp() {
   return (
     <div>
       <div className="header-btn">
-      <button10 onClick={() => setButtonPopup5(true)}>Start New Application</button10>
+      <button className='button10' onClick={() => setButtonPopup5(true)}>Start New Application</button>
       </div>
 
       <Popup trigger={buttonPopup5} setTrigger={setButtonPopup5}>

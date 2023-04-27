@@ -28,7 +28,7 @@ label {
     font-weight: 600;
 }
 
-button26 {
+.button26 {
 	border-radius: 20px;
 	border: 1px solid #FF4B2B;
 	background-color: #FF4B2B;
@@ -41,7 +41,7 @@ button26 {
 	text-transform: uppercase;
 }
 
-button25 {
+.button25 {
     position: absolute;
     border-radius: 20px;
     border: 1px solid #FF4B2B;

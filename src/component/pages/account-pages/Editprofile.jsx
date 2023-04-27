@@ -54,7 +54,7 @@ function PasswordForm() {
 
   return (
     <div>
-      <button25 onClick={() => setShowAddUser(true)}>Add User</button25>
+      <button className='button25' onClick={() => setShowAddUser(true)}>Add User</button>
 
       <div className="form-box">
           <h2>Edit User:</h2>

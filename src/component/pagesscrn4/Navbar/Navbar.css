@@ -11,7 +11,7 @@ i {
   margin-right: 10px;
 }
 /*----------bootstrap-navbar--button---css------------*/
-button99 {
+.button99 {
   margin-right:60px;
   position: absolute;
   transform: translate(20%, -120%);
@@ -31,7 +31,7 @@ button99 {
   outline: none;
 }
 
-button99:hover {
+.button99:hover {
   background-color: #23c483;
   box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
   color: #fff;
@@ -39,7 +39,7 @@ button99:hover {
   transform: translate(20%, -120%);
 }
 
-button99:active {
+.button99:active {
   position: absolute;
   transform: translate(20%, -120%);
 }
@@ -210,7 +210,7 @@ button99:active {
     width: 100%;
     top: 0;
   }
-  button99 {
+  .button99 {
     position: unset !important;
     transform: none !important;
     margin: 0;

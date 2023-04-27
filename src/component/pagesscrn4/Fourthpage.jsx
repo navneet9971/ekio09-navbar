@@ -36,7 +36,7 @@ function Fourth() {
       <div className="left-section55">
       </div>
 
-      <button10 className='rdrcbtn' onClick={handleGoClick}> Start New Application </button10>
+      <button className=' button10 rdrcbtn' onClick={handleGoClick}> Start New Application </button>
 
 
       <div className="video-box55">
