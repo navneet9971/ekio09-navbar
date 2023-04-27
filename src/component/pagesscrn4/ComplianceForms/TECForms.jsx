@@ -492,31 +492,41 @@ function DocumentBox() {
   }
 
 
-  const handleDownload = (event) => {
+  const handleDownload = (event, form) => {
     event.preventDefault();
-    console.log('Downloading file:', selectedOption);
-
-    axiosInstance.get(`compliance-form/?compliance=BIS`, {
+    console.log('Downloading file:', form);
+  
+    axiosInstance.get(`compliance-form/?compliance=BIS${form}`, {
       params: {
-        document_type: selectedOption
+        document_type: form
       },
-      responseType: 'blob'
+      responseType: 'blob',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+        'Content-Type': 'application/json',
+        'accept': 'application/json',
+      }
     })
-      .then(response => {
-        console.log(response.data);
-        const url = window.URL.createObjectURL(new Blob([response.data]));
-        const link = document.createElement('a');
-        link.href = url;
-        link.setAttribute('download', selectedOption);
-        document.body.appendChild(link);
-        link.click();
-      })
-      .catch(error => {
-        console.log(error);
-      });
-
+    .then(response => {
+      console.log(response.data);
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+  
+      // Create a link element to trigger the download
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `${form}.docx`);
+  
+      // Add the link element to the document and trigger the download
+      document.body.appendChild(link);
+      link.click();
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  
     setButtonPopup1(false);
   }
+  
 
  // -------------------------------Document Box Codes here---------------------------------------------------
   return (
