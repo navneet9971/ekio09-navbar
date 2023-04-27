@@ -82,7 +82,9 @@ function Review() {
   const filteredData = data
   .filter((item) =>{
     if(item.complianceType)
-    return item.complianceType.toLowerCase().includes(searchQuery.toLowerCase())}
+      return item.complianceType.toLowerCase().includes(searchQuery.toLowerCase())
+      else return false;
+    }
   )
   .filter((item) => (filterDate ? item.startDate === filterDate : true))
   .filter((item) =>
