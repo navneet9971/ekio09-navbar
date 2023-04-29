@@ -33,6 +33,7 @@
     "semantic-ui-react": "^2.1.4",
     "styled-components": "^5.3.8",
     "tailwindcss": "^3.3.1",
+    "use-file-picker": "^1.6.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
