@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import jsPDF from 'jspdf';
+//import jsPDF from 'jspdf';
 import "./stepper.css";
+import axiosInstance from "../../interceptors/axios";
 //import { Chatbot } from 'react-chatbot-kit';
 //import config from '../../eikomp-sasa-1f7361d6ec4a.json'; // contains your Dialogflow agent credentials
 import { ReactComponent as Thum1png } from ".././assets/bis-track-icons/application.svg";
@@ -21,15 +22,15 @@ import file6png from "../../component/assets/pdficon/Red02.png";
 
 function Compdownload() {
   const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const name = queryParams.get("name");
-  const projectCode = queryParams.get("projectCode");
+  const uniqueid = new URLSearchParams(location.search).get("uniqueid");
+  const compliance_name = new URLSearchParams(location.search).get("compliance_name");
     const steps = ["Form Submitted", "Lab Testing", "Sample Completed", "End"];
     //const [currentStep] = useState(1);
     const [current, setCurrentStep] = useState(1);
     const [setComplete] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [setSelectedOption] = useState('');
+  const [docStatus, setDocStatus] = useState({});
     //const [startDate, setStartDate] = useState(null);
     //const [endDate, setEndDate] = useState(null);
     //const [clickedColor, setClickedColor] = useState(false);
@@ -60,6 +61,24 @@ function Compdownload() {
         }
       }, 1000);
     }; */
+
+
+    // APIS for PDF file Status Success or Not
+
+    useEffect(() => {
+      axiosInstance.get(`application/document/24`)
+        .then(response => {
+          const data = response.data.data;
+          const status = {};
+          data.forEach(doc => {
+            status[doc.name] = doc.status;
+          });
+          setDocStatus(status);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }, []);
     
     
      //Download Button Code handleOptionClick
@@ -74,20 +93,20 @@ function Compdownload() {
   };
 
 
-    const handleDownload = () => {
+ /*   const handleDownload = () => {
       const input = document.getElementById('pdf-content');
       const pdf = new jsPDF();
       pdf.addHTML(input, () => {
         pdf.save('document.pdf');
       });
-    };
+    }; */
     
   
     return (
       <div className="ongoing-applications">
         <h1 className="ongo">BIS Completed Application:-</h1>
-        <h1 className="type">Compliance Type: {name}</h1>
-        <h1 className="appli">Application Number: {projectCode}</h1>
+        <h1 className="type">Compliance Type: {compliance_name}</h1>
+        <h1 className="appli">Application Number: {uniqueid}</h1>
        {/* <button className="clidown" onClick={handleDownload}>Download</button> */}
 
         
@@ -100,7 +119,6 @@ function Compdownload() {
           <li onClick={() => handleOptionClick('Process')}>Process</li>
           <li onClick={() => handleOptionClick('Testing')}>Testing</li>
           <li onClick={() => handleOptionClick('Certificate')}>Certificate</li>
-          <li onClick={() => handleDownload('Trackreport')}>Track Report</li>
         </ul>
       )}
     </div>
@@ -126,69 +144,65 @@ function Compdownload() {
           
     <div>
     <div className="row">
-      <div className="col doc-col">
-          {current >= 2 ? <Wrong size={24} className="pdfico" /> : null}
-        <div>  
-          <img src={file1png} alt="" className="pdfico1" />
+    <div className="col doc-col">
+          {docStatus['Signatory Authorization'] === 'success' ? <Right size={24} className="pdfico" /> : <Wrong size={24} className="pdfico" />}
+          <div>
+            <img src={file1png} alt="" className="pdfico1" />
+          </div>
+          <h3 className="be">Manufacture authorization letter</h3>
+    
+
+              <div>
+              {docStatus['OEM Authorization'] === 'success' ? <Right size={24} className="pdfico" /> : <Wrong size={24} className="pdfico" />}
+                <img src={file2png} alt="" className="pdfico1" />
+              </div>
+              <h3 className="be">Manufacture nomination form</h3>
+            </div>
+
+
+            <div className="col doc-col">
+            {docStatus['MOU'] === 'success' ? <Right size={24} className="pdfico" /> : <Wrong size={24} className="pdfico" />}
+              <div>
+                <img src={file3png} alt="" className="pdfico1" />
+              </div>
+              <h3 className="be">AIR Affidavit Brand office
+</h3>
+            </div>
+            <div className="col doc-col">
+
+            {docStatus['Shareholding Pattern'] === 'success' ? <Right size={24} className="pdfico" /> : <Wrong size={24} className="pdfico" />}
+              <div>
+                <img src={file4png} alt="" className="pdfico1" />
+              </div>
+              <h3 className="be">
+AIR Afidavit Mfg branch office
+</h3>
+            </div>
+
+
+            <div className="col doc-col">
+
+            {docStatus['Annexure 1'] === 'success' ? <Right size={24} className="pdfico" /> : <Wrong size={24} className="pdfico" />}
+
+              <div>
+                <img src={file5png} alt="" className="pdfico1" />
+              </div>
+              <h3 className="be">
+AIR authorization letter
+</h3>
+            </div>
+            <div className="col doc-col">
+
+            {docStatus['BOM'] === 'success' ? <Right size={24} className="pdfico" /> : <Wrong size={24} className="pdfico" />}
+
+              <div>
+                <img src={file6png} alt="" className="pdfico1" />
+              </div>
+              <h3 className="be">brand authorization letter</h3>
+            </div>
+
+          </div>
         </div>
-        <h3 className="be">Manufacture authorization letter</h3>
-      </div>
-      <div className="col doc-col">
-       
-          {current >= 2 ? <Wrong size={24} className="pdfico"/> : null}
-       
-        <div>  
-          <img src={file2png} alt="" className="pdfico1" />
-        </div>
-        <h3 className="be">Manufacture nomination form
-  </h3> 
-      </div>
-  
-      
-      <div className="col doc-col">
-       
-          {current >= 2 ? <Right size={24} className="pdfico"/> : null}
-        
-        <div>  
-          <img src={file3png} alt="" className="pdfico1" />
-        </div>
-        <h3 className="be">AIR Affidavit Brand office
-  </h3>
-      </div>
-      <div className="col doc-col">
-        
-          {current >= 2 ? <Right size={24} className="pdfico" /> : null}   
-        
-        <div>  
-          <img src={file4png} alt="" className="pdfico1" />
-        </div>
-        <h3 className="be">AIR Afidavit Mfg branch office
-  </h3>
-      </div>
-  
-  
-      <div className="col doc-col">
-        
-          {current >= 2 ? <Wrong size={24} className="pdfico"/> : null} 
-        
-        <div>  
-          <img src={file5png} alt="" className="pdfico1" />
-        </div>
-        <h3 className="be">AIR authorization letter
-  </h3>
-      </div>
-      <div className="col doc-col">
-        
-          {current >= 2 ? <Right size={24} className="pdfico"/> : null}
-      
-        <div>  
-          <img src={file6png} alt="" className="pdfico1" />
-        </div>
-        <h3 className="be">brand authorization letter</h3>
-      </div>
-  
-    </div>
-  </div>
   
       
   <button
