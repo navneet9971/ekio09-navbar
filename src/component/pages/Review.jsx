@@ -8,9 +8,9 @@ import axiosInstance from "../../interceptors/axios";
 
 function Review() {
   const [tableData, setTableData] = useState([]);
-  const [data] = useState([]);
+  //const [data] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [filterDate, setFilterDate] = useState("");
+ // const [filterDate, setFilterDate] = useState("");
   const [showPopup, setShowPopup] = useState(false);
   //const [startDate] = useState("");
   const [filterStatus, setFilterStatus] = useState("");
@@ -25,7 +25,7 @@ function Review() {
         const tableData = response.data.data;
         console.log(tableData);
         setTableData(tableData); // Set the fetched data to state
-        
+
         // Use the id here for further processing
         const id = tableData[0].id;
         console.log(id);
@@ -35,22 +35,22 @@ function Review() {
         console.log(error);
       });
   }, []);
-  
-  
 
 
- 
-const handleClick = (id, uniqueid, compliance_name) => {
-  const selectedItem = tableData.find((data) => data.id === id);
-  const selectedStatus =
-    selectedItem.status === "on-going" ? "on-going" : "completed";
-  if (selectedItem.compliance_name === "BIS") {
-    history.push(`/navbar/${selectedStatus === "on-going" ? "ComplianceTypePage" : "Completedcompliancetype"}/id=${selectedItem.id}?uniqueid=${selectedItem.uniqueid}&compliance_name=${selectedItem.compliance_name}`);
-  } else if (selectedItem.compliance_name === "TEC") {
-    history.push(`/navbar/${selectedStatus === "on-going" ? "TECOngoing" : "TECcompleted"}/id=${selectedItem.id}?uniqueid=${selectedItem.uniqueid}&compliance_name=${selectedItem.compliance_name}`);
-    console.log(uniqueid)
-  }
-};
+
+
+
+  const handleClick = (id, uniqueid, compliance_name) => {
+    const selectedItem = tableData.find((data) => data.id === id);
+    const selectedStatus =
+      selectedItem.status === "on-going" ? "on-going" : "completed";
+    if (selectedItem.compliance_name === "BIS") {
+      history.push(`/navbar/${selectedStatus === "on-going" ? "ComplianceTypePage" : "Completedcompliancetype"}/id=${selectedItem.id}?uniqueid=${selectedItem.uniqueid}&compliance_name=${selectedItem.compliance_name}`);
+    } else if (selectedItem.compliance_name === "TEC") {
+      history.push(`/navbar/${selectedStatus === "on-going" ? "TECOngoing" : "TECcompleted"}/id=${selectedItem.id}?uniqueid=${selectedItem.uniqueid}&compliance_name=${selectedItem.compliance_name}`);
+      console.log(uniqueid)
+    }
+  };
 
 
 
@@ -73,34 +73,34 @@ const handleClick = (id, uniqueid, compliance_name) => {
   </select>
 
 
-  const handleFilterDateChange = (event) => {
+ /* const handleFilterDateChange = (event) => {
     const selectedDate = event.target.value;
     const hasMatch = data.some((data) => data.startDate === selectedDate);
     setFilterDate(hasMatch ? selectedDate : "");
     setShowPopup(!hasMatch);
-  };
+  }; */
 
- /* const filteredData = data
-    .filter((data) =>
-      data.compliance_name.toLowerCase().includes(searchQuery.toLowerCase())
-    )
-    .filter((data) => (filterDate ? data.startDate === filterDate : true))
-    .filter((data) =>
-      !filterStatus || data.status === filterStatus
-    )
-    .map((data) => {
-      const endDate =
-        startDate && data.startDate
-          ? new Date(startDate).getTime() + 45 * 24 * 60 * 60 * 1000 <=
-            new Date(data.startDate).getTime()
-            ? new Date(startDate).getTime() + 45 * 24 * 60 * 60 * 1000
-            : data.startDate
-          : "";
-      return {
-        ...data,
-        endDate: endDate ? `${Math.ceil((endDate - new Date().getTime()) / (24 * 60 * 60 * 1000))} days left` : ""
-      };
-    }) */
+  /* const filteredData = data
+     .filter((data) =>
+       data.compliance_name.toLowerCase().includes(searchQuery.toLowerCase())
+     )
+     .filter((data) => (filterDate ? data.startDate === filterDate : true))
+     .filter((data) =>
+       !filterStatus || data.status === filterStatus
+     )
+     .map((data) => {
+       const endDate =
+         startDate && data.startDate
+           ? new Date(startDate).getTime() + 45 * 24 * 60 * 60 * 1000 <=
+             new Date(data.startDate).getTime()
+             ? new Date(startDate).getTime() + 45 * 24 * 60 * 60 * 1000
+             : data.startDate
+           : "";
+       return {
+         ...data,
+         endDate: endDate ? `${Math.ceil((endDate - new Date().getTime()) / (24 * 60 * 60 * 1000))} days left` : ""
+       };
+     }) */
 
 
   return (
@@ -115,12 +115,12 @@ const handleClick = (id, uniqueid, compliance_name) => {
           value={searchQuery}
           onChange={(event) => setSearchQuery(event.target.value)}
         />
-        <input
+      {/*  <input
           type="date"
           placeholder="Enter Date"
           value={filterDate}
           onChange={handleFilterDateChange}
-        />
+  /> */}
       </div>
 
       {showPopup && (
@@ -143,7 +143,7 @@ const handleClick = (id, uniqueid, compliance_name) => {
         <table className="Review">
           <thead>
             <tr>
-            <th className="header">S.NO</th>
+              <th className="header">S.NO</th>
               <th className="header">Compliance Type</th>
               <th className="header">Application Name </th>
               <th className="header">Start Date</th>
