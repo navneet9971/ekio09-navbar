@@ -24,10 +24,10 @@ function Compdownload() {
   const location = useLocation();
   const uniqueid = new URLSearchParams(location.search).get("uniqueid");
   const compliance_name = new URLSearchParams(location.search).get("compliance_name");
-    const steps = ["Form Submitted", "Lab Testing", "Sample Completed", "End"];
+   // const steps = ["Form Submitted", "Lab Testing", "Sample Completed", "End"];
     //const [currentStep] = useState(1);
-    const [current, setCurrentStep] = useState(1);
-    const [setComplete] = useState(false);
+   //const [current, setCurrentStep] = useState(1);
+   // const [setComplete] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [setSelectedOption] = useState('');
   const [docStatus, setDocStatus] = useState({});
@@ -205,15 +205,7 @@ AIR authorization letter
         </div>
   
       
-  <button
-      className="btn"
-      onClick={() => {
-        current === steps.length
-          ? setComplete(true)
-          : setCurrentStep((prev) => prev + 1);
-      }}
-    >NEXT
-    </button>   
+
         </div>
 
         
