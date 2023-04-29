@@ -34,6 +34,8 @@ function TECcompleted() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [setSelectedOption] = useState('');
   const [docStatus, setDocStatus] = useState({});
+  const [startDate, setStartDate] = useState('');
+  const [step, setStep] = useState('');
    // const [startDate, setStartDate] = useState(null);
    // const [endDate, setEndDate] = useState(null);
   //  const [clickedColor, setClickedColor] = useState(false);
@@ -67,22 +69,35 @@ function TECcompleted() {
     }; */
 
 
-    // APIS for PDF file Status Success or Not
-
-    useEffect(() => {
-      axiosInstance.get(`application/document/23`)
-        .then(response => {
-          const data = response.data.data;
-          const status = {};
-          data.forEach(doc => {
-            status[doc.name] = doc.status;
-          });
-          setDocStatus(status);
-        })
-        .catch(error => {
-          console.log(error);
+  // API call to get document status
+  useEffect(() => {
+    axiosInstance.get(`application/document/38`)
+      .then(response => {
+        const data = response.data.data;
+        const status = {};
+        data.forEach(doc => {
+          status[doc.name] = doc.status;
         });
-    }, []);
+        setDocStatus(status);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
+
+  // API call to get application status
+  useEffect(() => {
+    axiosInstance.get('application/status/')
+      .then(response => {
+        const statusData = response.data.data[0];
+        setStartDate(statusData.start_date);
+        setStep(statusData.step);
+        console.log(statusData)
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
 
 
     //Download Button Code handleOptionClick
@@ -128,31 +143,39 @@ function TECcompleted() {
     </div>
     
            
-        <div className="tecon">
-  <Thum1png className="mainsvg2"/>   
-  <Right  className="mainsvg3"/>
- 
-  <Thum2png className="mainsvg2"/>
-  <Right  className="mainsvg3"/>
-  
-  <Thum3png className="mainsvg2"/>
-  <Right className="mainsvg3"/>
- 
-  <Thum4png className="mainsvg2"/>
-  <Right className="mainsvg3"/>
-  
-  <Thum5png className="mainsvg2"/>
-  <Right className="mainsvg3"/>
-
-  <Thum6png className="mainsvg2"/>
-  <Right className="mainsvg3"/>
-
-  <Thum7png className="mainsvg2"/>
-  <Right className="mainsvg3"/>
-
-  <Thum8png className="mainsvg2"/>
-  <Right className="mainsvg3"/>
-
+  <div className="tecon">
+   
+      <Thum1png className="mainsvg2"/>
+      {docStatus.Thum1png === 'success' ? <Right className="mainsvg3"/> : <Wrong className="mainsvg3"/>}
+    
+   
+      <Thum2png className="mainsvg2"/>
+      {docStatus.Thum2png === 'success' ? <Right className="mainsvg3"/> : <Wrong className="mainsvg3"/>}
+    
+   
+      <Thum3png className="mainsvg2"/>
+      {docStatus.Thum3png === 'success' ? <Right className="mainsvg3"/> : <Wrong className="mainsvg3"/>}
+    
+   
+      <Thum4png className="mainsvg2"/>
+      {docStatus.Thum4png === 'success' ? <Right className="mainsvg3"/> : <Wrong className="mainsvg3"/>}
+    
+   
+      <Thum5png className="mainsvg2"/>
+      {docStatus.Thum5png === 'success' ? <Right className="mainsvg3"/> : <Wrong className="mainsvg3"/>}
+    
+   
+      <Thum6png className="mainsvg2"/>
+      {docStatus.Thum6png === 'success' ? <Right className="mainsvg3"/> : <Wrong className="mainsvg3"/>}
+    
+   
+      <Thum7png className="mainsvg2"/>
+      {docStatus.Thum7png === 'success' ? <Right className="mainsvg3"/> : <Wrong className="mainsvg3"/>}
+    
+   
+      <Thum8png className="mainsvg2"/>
+      {docStatus.Thum8png === 'success' ? <Right className="mainsvg3"/> : <Wrong className="mainsvg3"/>}
+    
   </div>
             
         <div>

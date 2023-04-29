@@ -476,42 +476,25 @@ function DocumentBox() {
   const [documentType] = useState('');
   const [files, setFiles] = useState([]);
   const [options] = useState(['Signatory Authorization', 'OEM Authorization', 'MOU', 'Shareholding Pattern', 'Annexure 1', 'BOM', 'Non Applicability Proforma', 'Proforma Seeking Exemption']);
+  const [image, setImage] = useState('')
+ 
+  function handleImage(e) {
+        console.log(e.target.files)
+        setImage(e.target.files[0])  
+  }
 
-  const handleFileChange = (event) => {
-    const newFiles = Array.from(event.target.files);
-    setFiles([...files, ...newFiles]);
-
+  function handleUpload() {
+    const formData = new FormData()
+    formData.append('image', image)
+    axiosInstance.post(`application/document/`, formData)
+    .then((res) => {
+      console.log(res)
+    })
 
     setButtonPopup(false);
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    console.log('Submitting form with file:', selectedFile);
-    console.log('Selected option:', selectedOption);
 
-    const data = new FormData();
-    data.append('application', 'your_application_value');
-    data.append('compliance', 'your_compliance_value');
-    data.append('document_type', documentType);
-    if (selectedFile) {
-      data.append('document', selectedFile);
-    }
-
-    axiosInstance.post(`/application/document/`, data)
-      .then(response => {
-        console.log("GOT Response = " + response);
-        console.log(response.data);
-        // Show success message and navigate to success page
-        //const uploadedFileName = selectedFile ? selectedFile.name : files[files.length - 1].name;
-        // navigate to success page
-      })
-      .catch(error => {
-        console.log(error);
-      });
-
-    setButtonPopup(false);
-  }
 
 
   const handleDownload = (event, form) => {
@@ -555,34 +538,12 @@ function DocumentBox() {
     <div className="document-box">
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
 
-        <h3>Upload a File</h3>
-        <div className='upload-form1'>
-          <label htmlFor="file-input">
-            <h4>Choose File:</h4>
-          </label>
-          <input className="upload-file-input" type="file" accept=".pdf,.jpg,.jpeg" onChange={handleFileChange} />
-        </div>
+       <div>
+        <input type ="file" name="file" onChange={handleImage}/>
+        <button onClick={handleUpload}>UPLOAD</button>
+       </div>
 
 
-        <div className='upload-form2'>
-          {files.length > 0 && (
-            <div>
-              <ul>
-                {files.map((file, index) => (
-                  <li key={index}>{file.name} <TiTick size={24} /></li>
-                ))}
-              </ul>
-            </div>
-          )}
-          <div className='upload-buttons'>
-            <button className="button8" onClick={() => {
-              setButtonPopup(false);
-              setFiles([]);
-            }}>Cancel</button>
-            <button className="button8" type="submit" onClick={handleSubmit}>Upload</button>
-          </div>
-
-        </div>
       </Popup>
       <div className="header-btn">
         <button className="button7" onClick={() => setButtonPopup(true)}>Upload</button>
@@ -714,16 +675,38 @@ function Startapp() {
   const [foreignContactNumber, setForeignContactNumber] = useState("");
   const [foreignEmailID, setForeignEmailID] = useState("");
   const [buttonPopup5, setButtonPopup5] = useState(false);
+  const [image, setImage] = useState(null);
+  const [pdf, setPdf] = useState(null);
 
-  // function to handle file uploads
-  const handleFileUpload = (event) => {
-    // TODO: handle file upload logic
-  };
+  //handle image upload
+
+  function handleFileUpload(event) {
+    const file = event.target.files[0];
+    const allowedTypes = ['image/jpeg', 'image/png'];
+
+    if (allowedTypes.includes(file.type)) {
+      setImage(file);
+    } else {
+      // Handle invalid file type
+    }
+  }
+
+  
+  function handlePdfUpload(event) {
+    const file = event.target.files[0];
+    const allowedTypes = ['application/pdf'];
+
+    if (allowedTypes.includes(file.type)) {
+      setPdf(file);
+    } else {
+      // Handle invalid file type
+    }
+  }
 
   //handle from sumit here----------------------
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
     const formData = {
       application: localStorage.getItem('newApplicationId'),
@@ -748,23 +731,31 @@ function Startapp() {
       foreignContactNumber,
       foreignEmailID,
     };
+
+    /*  if (image) {
+        formData.append('documents', image, image.name);
+      }
+  
+      if (pdf) {
+        formData.append('documents', pdf, pdf.name);
+      }  */
+    
     console.log(formData)
     console.log('Application ID:', localStorage.getItem('newApplicationId'));
     console.log('Compliance ID:', localStorage.getItem("compliance_id"));
 
     // function to handle form submission
-    axiosInstance
-      .post(`/application/compliance/`, formData)
-      .then((response) => {
-        console.log(response.data);
-        // handle success
-      })
-      .catch((error) => {
-        console.log(error);
-        // handle error
-      });
-  };
-
+    axiosInstance.post('/application/compliance/', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+      }
+    }).then(response => {
+      console.log(response.data);
+    }).catch(error => {
+      console.log(error);
+    });
+  }
 
 
   return (
@@ -975,7 +966,7 @@ function Startapp() {
             <h802>Document Required:</h802>
             <label className="st8012">
               COI of Applicant Company:
-              <input classname="stup805" type="file" onChange={handleFileUpload} accept=".pdf" />
+              <input classname="stup805" type="file" onChange={handleFileUpload} accept=".jpg, .jpeg, .png, .pdf" />
             </label>
             <label className="st8012">
               PAN Card of Applicant Company:
