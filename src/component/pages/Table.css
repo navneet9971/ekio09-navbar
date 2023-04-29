@@ -419,3 +419,10 @@ button.revbtn {
 button.revbtn:hover{
   background-color: #55b700;
 }
+
+
+/*-----ID column hidden -------*/
+
+.hidden{
+  display: none;
+}

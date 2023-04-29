@@ -845,3 +845,9 @@ video.videoBox {
   margin-left: 53em;
   margin-top: -77.1em;
 }
+
+
+/*----Chatbot css--------*/
+.react-chatbot-kit-chat-inner-container{
+  margin-bottom: 0;
+}

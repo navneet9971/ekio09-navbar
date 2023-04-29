@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import jsPDF from 'jspdf';
+//import jsPDF from 'jspdf';
 import "../stepper.css";
+import axiosInstance from "../../../interceptors/axios";
 import { ReactComponent as Thum1png } from "../../assets/track-icon/reg.svg";
 import { ReactComponent as Thum2png } from "../../assets/track-icon/testing.svg";
 import { ReactComponent as Thum3png } from "../../assets/track-icon/AIR.svg";
@@ -24,15 +25,15 @@ import file8png from "../../assets/pdficon/Red04.png";
 
 function TECcompleted() {
   const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const name = queryParams.get("name");
-  const projectCode = queryParams.get("projectCode");
+  const uniqueid = new URLSearchParams(location.search).get("uniqueid");
+  const compliance_name = new URLSearchParams(location.search).get("compliance_name");
    // const [currentStep] = useState(1);
-   const steps = ["Application Submitted", "Sample sent for testing", "Test report generated", "Document pending with authorities", "Final report generated"];
-    const [current, setCurrentStep] = useState(1);
-    const [setComplete] = useState(false);
+  // const steps = ["Application Submitted", "Sample sent for testing", "Test report generated", "Document pending with authorities", "Final report generated"];
+   // const [current, setCurrentStep] = useState(1);
+ //   const [setComplete] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [setSelectedOption] = useState('');
+  const [docStatus, setDocStatus] = useState({});
    // const [startDate, setStartDate] = useState(null);
    // const [endDate, setEndDate] = useState(null);
   //  const [clickedColor, setClickedColor] = useState(false);
@@ -65,6 +66,25 @@ function TECcompleted() {
       }, 1000);
     }; */
 
+
+    // APIS for PDF file Status Success or Not
+
+    useEffect(() => {
+      axiosInstance.get(`application/document/23`)
+        .then(response => {
+          const data = response.data.data;
+          const status = {};
+          data.forEach(doc => {
+            status[doc.name] = doc.status;
+          });
+          setDocStatus(status);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }, []);
+
+
     //Download Button Code handleOptionClick
 
   const handleButtonClick = () => {
@@ -76,21 +96,21 @@ function TECcompleted() {
     setIsDropdownOpen(false);
   };
     
-    const handleDownload = () => {
+ /*   const handleDownload = () => {
       const input = document.getElementById('pdf-content');
       const pdf = new jsPDF();
       pdf.addHTML(input, () => {
         pdf.save('document.pdf');
       });
     }; 
-    
+  */
   
     return (
       <div className="ongoing-applications">
       <h1 className="ongo">TEC Completed Application:-</h1>
       <div>
-        <h1 className="type">Compliance Type: {name}</h1>
-        <h1 className="appli">Application Number: {projectCode}</h1>
+        <h1 className="type">Compliance Type: {compliance_name}</h1>
+        <h1 className="appli">Application Number: {uniqueid}</h1>
        {/* <button className="clidown" onClick={handleDownload}>Download</button> */}
       </div>
 
@@ -103,7 +123,6 @@ function TECcompleted() {
           <li onClick={() => handleOptionClick('Process')}>Process</li>
           <li onClick={() => handleOptionClick('Testing')}>Testing</li>
           <li onClick={() => handleOptionClick('Certificate')}>Certificate</li>
-          <li onClick={() => handleDownload('Trackreport')}>Track Report</li>
         </ul>
       )}
     </div>
@@ -135,90 +154,83 @@ function TECcompleted() {
   <Right className="mainsvg3"/>
 
   </div>
-        
+            
+        <div>
+          <div className="row">
+           
+          <div className="col doc-col">
+          {docStatus['Signatory Authorization'] === 'success' ? <Right size={24} className="pdfico" /> : <Wrong size={24} className="pdfico" />}
+          <div>
+            <img src={file1png} alt="" className="pdfico1" />
+          </div>
+          <h3 className="be">Signatory Authorization</h3>
     
-          
-        
-  <div>
-  <div className="row">
-    <div className="col doc-col">
-        {current >= 2 ? <Wrong size={24} className="pdfico" /> : null}
-      <div>  
-        <img src={file1png} alt="" className="pdfico1" />
-      </div>
-      <h3 className="be">Signatory Authorization</h3>
-    </div>
-    <div className="col doc-col">
-     
-        {current >= 2 ? <Wrong size={24} className="pdfico"/> : null}
-     
-      <div>  
-        <img src={file2png} alt="" className="pdfico1" />
-      </div>
-      <h3 className="be">OEM Authorization</h3> 
-    </div>
 
-    
-    <div className="col doc-col">
-     
-        {current >= 2 ? <Right size={24} className="pdfico"/> : null}
-      
-      <div>  
-        <img src={file3png} alt="" className="pdfico1" />
-      </div>
-      <h3 className="be">MOU</h3>
-    </div>
-    <div className="col doc-col">
-      
-        {current >= 2 ? <Right size={24} className="pdfico" /> : null}   
-      
-      <div>  
-        <img src={file4png} alt="" className="pdfico1" />
-      </div>
-      <h3 className="be">Shareholding Pattern</h3>
-    </div>
+              <div>
+              {docStatus['OEM Authorization'] === 'success' ? <Right size={24} className="pdfico" /> : <Wrong size={24} className="pdfico" />}
+                <img src={file2png} alt="" className="pdfico1" />
+              </div>
+              <h3 className="be">OEM Authorization</h3>
+            </div>
 
 
-    <div className="col doc-col">
-      
-        {current >= 2 ? <Right size={24} className="pdfico"/> : null} 
-      
-      <div>  
-        <img src={file5png} alt="" className="pdfico1" />
-      </div>
-      <h3 className="be">Annexure 1</h3>
-    </div>
-    <div className="col doc-col">
-      
-        {current >= 2 ? <Right size={24} className="pdfico"/> : null}
-    
-      <div>  
-        <img src={file6png} alt="" className="pdfico1" />
-      </div>
-      <h3 className="be">BOM</h3>
-    </div>
+            <div className="col doc-col">
+            {docStatus['MOU'] === 'success' ? <Right size={24} className="pdfico" /> : <Wrong size={24} className="pdfico" />}
+              <div>
+                <img src={file3png} alt="" className="pdfico1" />
+              </div>
+              <h3 className="be">MOU</h3>
+            </div>
+            <div className="col doc-col">
 
-    <div className="col doc-col">
-      
-        {current >= 2 ? <Wrong size={24} className="pdfico" /> : null}
-    
-      <div>  
-        <img src={file7png} alt="" className="pdfico1" />
-      </div>
-      <h3 className="be">Non Applicability Proforma</h3>
-    </div>
-    <div className="col doc-col">
-      
-        {current >= 2 ? <Right size={24} className="pdfico"/> : null}
-    
-      <div>  
-        <img src={file8png} alt="" className="pdfico1" />
-      </div>
-      <h3 className="be">Proforma Seeking Exemption</h3>
-    </div>
+            {docStatus['Shareholding Pattern'] === 'success' ? <Right size={24} className="pdfico" /> : <Wrong size={24} className="pdfico" />}
+              <div>
+                <img src={file4png} alt="" className="pdfico1" />
+              </div>
+              <h3 className="be">Shareholding Pattern</h3>
+            </div>
 
-  </div>
-</div>
+
+            <div className="col doc-col">
+
+            {docStatus['Annexure 1'] === 'success' ? <Right size={24} className="pdfico" /> : <Wrong size={24} className="pdfico" />}
+
+              <div>
+                <img src={file5png} alt="" className="pdfico1" />
+              </div>
+              <h3 className="be">Annexure 1</h3>
+            </div>
+            <div className="col doc-col">
+
+            {docStatus['BOM'] === 'success' ? <Right size={24} className="pdfico" /> : <Wrong size={24} className="pdfico" />}
+
+              <div>
+                <img src={file6png} alt="" className="pdfico1" />
+              </div>
+              <h3 className="be">BOM</h3>
+            </div>
+
+            <div className="col doc-col">
+
+            {docStatus['Non Applicability Proforma'] === 'success' ? <Right size={24} className="pdfico" /> : <Wrong size={24} className="pdfico" />}
+
+              <div>
+                <img src={file7png} alt="" className="pdfico1" />
+              </div>
+              <h3 className="be">Non Applicability Proforma</h3>
+            </div>
+            <div className="col doc-col">
+
+            {docStatus['Proforma Seeking Exemption'] === 'success' ? <Right size={24} className="pdfico" /> : <Wrong size={24} className="pdfico" />}
+
+              <div>
+                <img src={file8png} alt="" className="pdfico1" />
+              </div>
+              <h3 className="be">Proforma Seeking Exemption</h3>
+            </div>
+
+          </div>
+        </div>
       
       
   {/* {startDate && endDate && (
@@ -234,17 +246,6 @@ function TECcompleted() {
     </div>
   )}  */}
   
-              <button
-    className="btn"
-    onClick={() => {
-      current === steps.length
-        ? setComplete(true)
-        : setCurrentStep((prev) => prev + 1);
-      //calculateEndDate();
-      //setStartDate(new Date());
-    }}
-  >NEXT
-  </button>   
         </div>
   
   

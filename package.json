@@ -22,6 +22,7 @@
     "multiselect-react-dropdown": "^2.0.25",
     "react": "^18.2.0",
     "react-calendar-icon": "^0.10.0",
+    "react-chat-engine": "^1.11.28",
     "react-chatbot-kit": "^2.1.2",
     "react-datepicker": "^4.10.0",
     "react-dom": "^18.2.0",

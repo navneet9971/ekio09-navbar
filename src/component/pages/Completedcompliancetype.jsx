@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import jsPDF from 'jspdf';
 import "./stepper.css";
-import { Chatbot } from 'react-chatbot-kit';
-import config from '../../eikomp-sasa-1f7361d6ec4a.json'; // contains your Dialogflow agent credentials
+//import { Chatbot } from 'react-chatbot-kit';
+//import config from '../../eikomp-sasa-1f7361d6ec4a.json'; // contains your Dialogflow agent credentials
 import { ReactComponent as Thum1png } from ".././assets/bis-track-icons/application.svg";
 import { ReactComponent as Thum2png } from ".././assets/bis-track-icons/testing.svg";
 import { ReactComponent as Thum3png } from ".././assets/bis-track-icons/approval.svg";
@@ -200,13 +200,6 @@ function Compdownload() {
       }}
     >NEXT
     </button>   
-
-    <Chatbot
-      config={config}
-      actionProvider={"Hello"} // provide an action provider to handle user actions
-      messageHistory={"What is your Name"} // provide a message history component to display chat history
-    />
-
         </div>
 
         

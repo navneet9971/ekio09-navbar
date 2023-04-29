@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import "../stepper.css";
+import axiosInstance from "../../../interceptors/axios";
 import { ReactComponent as Thum1png } from "../../assets/track-icon/reg.svg";
 import { ReactComponent as Thum2png } from "../../assets/track-icon/testing.svg";
 import { ReactComponent as Thum3png } from "../../assets/track-icon/AIR.svg";
@@ -27,13 +28,15 @@ function Stepper() {
   const name = queryParams.get("name");
   const projectCode = queryParams.get("projectCode");
  // const [currentStep] = useState(3);
-  const [current, setCurrentStep] = useState(1);
-  const steps = ["Application Submitted", "Sample sent for testing", "Test report generated", "Document pending with authorities", "Final report generated"];
- const [setComplete] = useState(false);
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
+  const [current] = useState(1);
+  //const steps = ["Application Submitted", "Sample sent for testing", "Test report generated", "Document pending with authorities", "Final report generated"];
+ //const [setComplete] = useState(false);
+  const [startDate] = useState(null);
+  const [endDate] = useState(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [setSelectedOption] = useState('');
+ // const [compliance] = useState(''); 
+  //const [application] = useState('');
   //const [setClickedColor] = useState(false);
  // const [ setActiveArrows] = useState([false, false, false, false, false]);
  // const [showTooltip, setShowTooltip] = useState(false); // declare showTooltip state
@@ -42,7 +45,24 @@ function Stepper() {
 
 
 
-  const calculateEndDate = () => {
+//APIs of Status of forms Upload done or Not
+
+useEffect(() => {
+  axiosInstance.get(`application/document/`)
+    .then(response => {
+      const formStatus = response.data;
+      console.log(formStatus);
+    //  setTableData(formStatus); // Set the fetched data to state
+    })
+    .catch(error => {
+      console.log(error);
+    });
+}, []);
+
+
+
+
+/*  const calculateEndDate = () => {
     const currentDate = new Date();
     const endDate = new Date(currentDate.setDate(currentDate.getDate() + 45));
     setEndDate(endDate);
@@ -64,7 +84,7 @@ function Stepper() {
         clearInterval(intervalId);
       }
     }, 1000);
-  };
+  }; */
 
 
   //Download Button Code handleOptionClick
@@ -227,19 +247,9 @@ function Stepper() {
     )}
   </div>
 )}
-
-<button
-    className="btn"
-    onClick={() => {
-      current === steps.length
-      ? setComplete(true)
-      : setCurrentStep((prev) => prev + 1);
-      calculateEndDate();
-      setStartDate(new Date());
-    }}
-  >NEXT
-  </button>   
+ 
       </div>
+      
   );
 }
 

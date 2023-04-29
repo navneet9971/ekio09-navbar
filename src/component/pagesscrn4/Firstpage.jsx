@@ -3,6 +3,14 @@ import { useHistory } from 'react-router-dom';
 import './Pages.css';
 import axiosInstance from '../../interceptors/axios';
 
+import Chatbot from 'react-chatbot-kit';
+import 'react-chatbot-kit/build/main.css';
+import config from '../../chatbot/config';
+import messageParser from '../../chatbot/MessageParser';
+import actionProvider from '../../chatbot/ActionProvider';
+
+
+
 const Firstpage = () => {
   const [category, setCategory] = useState(''); // state for category input
   const [product, setProduct] = useState(''); // state for product input
@@ -79,10 +87,19 @@ axiosInstance.get(`/compliance/?category=${category}&product=${product}&region=$
           </select>
         </div>
       </div>
-
       <div className="gobutton22"> 
         <button onClick={handleGoClick}>GO</button>
-      </div>     
+      </div>    
+<div style={{
+  position: "fixed",
+  right: '25px',
+  bottom: '50px',
+  boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px',
+
+}}
+>
+      <Chatbot  config={config} messageParser={messageParser} actionProvider={actionProvider} /> 
+      </div>
     </div>
   );
 };

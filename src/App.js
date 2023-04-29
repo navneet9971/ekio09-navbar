@@ -28,6 +28,7 @@ import Payment from "./component/pages/account-pages/Payment";
 import Track from "./component/pages/account-pages/Track";
 import Transaction from "./component/pages/account-pages/Transaction";
 import MainPage from "./component/MainPages";
+//import SupportAdmin from "./component/SupportAdmin";
 
 
 const App = () => {
@@ -91,18 +92,19 @@ const App = () => {
               <CompletedComplince />
             </Route>
 
-            <Route path="/navbar/TECOngoing/:id">
-              <TECOnGoing />
+            <Route path="/navbar/TECOngoing/:id"> 
+              <TECOnGoing /> 
             </Route>
 
             <Route path="/navbar/TECcompleted/:id">
-              <TECcompleted />
+              <TECcompleted /> 
             </Route>
 
 
             <Route path="/navbar/download">
               <Download />
             </Route>
+
             <Route path="/navbar/view">
               <View />
             </Route>
