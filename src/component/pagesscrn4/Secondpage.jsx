@@ -19,7 +19,7 @@ const Secondpage = () => {
         }
       });
       setComplianceData(uniqueComplianceData);
-    })
+    }) 
     .catch(err => {
       alert('Something went wrong.')
     })

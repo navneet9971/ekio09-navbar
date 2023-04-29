@@ -8,8 +8,8 @@ import axiosInstance from '../../../interceptors/axios';
 function MiddleSection() {
   // State variable
   const [middleData, setMiddleData] = useState("");
+  const [newApplicationId, setNewApplicationId] = useState();
 
-  // Effect hook to load data from local storage or API
   useEffect(() => {
     axiosInstance
       .get(`compliance/${localStorage.getItem("compliance_id")}`)
@@ -19,7 +19,28 @@ function MiddleSection() {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  
+    
+  axiosInstance
+  .post(`application/form/`, {
+    category: localStorage.getItem("category"),
+    product: localStorage.getItem("product"), 
+  })
+  .then((response) => {
+    const id = response.data.data['id'];
+    setNewApplicationId(id);
+    localStorage.setItem('newApplicationId', id); // store id in localStorage
+    console.log(id)
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+}, []);
+
+  
+  
+  
+  
 
   // Rendered components
   return (
@@ -699,18 +720,49 @@ function Startapp() {
    // TODO: handle file upload logic
  };
 
- // function to handle form submission
- const handleSubmit = (event) => {
-   event.preventDefault();
-   // TODO: handle form submission logic
- 
-   // Generate a random 4-digit number
-   const uniqueCode = Math.floor(Math.random() * 10000);
- 
-   // Display the unique code to the user
-   alert(`Your Project code is ${uniqueCode}.`);
- 
-   setButtonPopup5(false);
+ //handle from sumit here----------------------
+
+ const handleSubmit = (e) => {
+  e.preventDefault();
+
+  const formData = {
+    application: localStorage.getItem('newApplicationId'),
+    compliance: localStorage.getItem("compliance_id"),
+    request_for: 'certification',
+    types_of_company,
+    applicantCompanyName,
+    applicantCompanyAddress,
+    applicantDirectorName,
+    applicantContactNumber,
+    applicantEmailID,
+    applicantAuthorisedSignatoryName,
+    applicantAuthorisedSignatoryDesignation,
+    applicantContactNumber1,
+    applicantEmailID1,
+    applicantNameofmanufacturingfactory,
+    applicantAddressoffactory,
+    foreignCompanyName,
+    foreignCompanyAddress,
+    foreignAuthorizedSignatoryName,
+    foreignAuthorizedSignatoryDesignation,
+    foreignContactNumber,
+    foreignEmailID,
+  };
+  console.log(formData)
+  console.log('Application ID:', localStorage.getItem('newApplicationId'));
+  console.log('Compliance ID:', localStorage.getItem("compliance_id"));
+
+   // function to handle form submission
+   axiosInstance
+     .post(`/application/compliance/`, formData)
+     .then((response) => {
+       console.log(response.data);
+       // handle success
+     })
+     .catch((error) => {
+       console.log(error);
+       // handle error
+     });
  };
 
 
@@ -722,6 +774,17 @@ function Startapp() {
        <div style={{ height: "500px", overflow: "scroll" }}>
          <h801></h801>
          <form onSubmit={handleSubmit}>
+
+
+         <div className="compliance-container" style={{ display: 'none' }}>
+  <h2>Compliance Data</h2>
+  <div>
+    <p>Application ID: {localStorage.getItem('newApplicationId') || "No application created yet"}</p>
+    <p>Compliance ID: {localStorage.getItem("compliance_id") || "No compliance selected yet"}</p>
+    <p>Request For: certification</p>
+  </div>
+</div>
+
         
            <h802>Applicant Company:</h802>
            <label className="st8012">
@@ -729,9 +792,9 @@ function Startapp() {
              <input
                className="st805"
                type="text"
-               value={types_of_company}
+               
                onChange={(event) => setTypes_of_company(event.target.value)}
-               required
+               
              />
            </label>
            <label className="st8012">
@@ -739,19 +802,19 @@ function Startapp() {
              <input
                className="st805"
                type="text"
-               value={applicantCompanyName}
+              
                onChange={(event) => setApplicantCompanyName(event.target.value)}
-               required
+               
              />
            </label>
            <label className="st8012">
              Company Address:
              <input
-             className="st805"
+              className="st805"
                type="text"
-               value={applicantCompanyAddress}
+               
                onChange={(event) => setApplicantCompanyAddress(event.target.value)}
-               required
+               
              />
            </label>
            <label className="st8012">
@@ -759,9 +822,9 @@ function Startapp() {
              <input
              className="st805"
                type="text"
-               value={applicantDirectorName}
+               
                onChange={(event) => setApplicantDirectorName(event.target.value)}
-               required
+               
              />
            </label>
            <label className="st8012">
@@ -769,9 +832,9 @@ function Startapp() {
              <input
              className="st805"
                type="number"
-               value={applicantContactNumber}
+               
                onChange={(event) => setApplicantContactNumber(event.target.value)}
-               required
+               
              />
              </label>
               <label className="st8012">
@@ -779,9 +842,9 @@ function Startapp() {
              <input
              className="st805"
                type="text"
-               value={applicantEmailID}
+               
                onChange={(event) => setApplicantEmailID(event.target.value)}
-               required
+               
              />
            </label>
            <label className="st8012">
@@ -789,9 +852,9 @@ function Startapp() {
              <input
              className="st805"
                type="text"
-               value={applicantAuthorisedSignatoryName}
+               
                onChange={(event) => setApplicantAuthorisedSignatoryName(event.target.value)}
-               required
+               
              />
              </label>
              <label className="st8012">
@@ -799,9 +862,9 @@ function Startapp() {
              <input
              className="st805"
                type="text"
-               value={applicantAuthorisedSignatoryDesignation}
+               
                onChange={(event) => setApplicantAuthorisedSignatoryDesignation(event.target.value)}
-               required
+               
              />
              </label>
              <label className="st8012">
@@ -809,9 +872,9 @@ function Startapp() {
              <input
              className="st805"
                type="number"
-               value={applicantContactNumber1}
+               
                onChange={(event) => setApplicantContactNumber1(event.target.value)}
-               required
+               
              />
              </label>
              <label className="st8012">
@@ -819,9 +882,9 @@ function Startapp() {
              <input
              className="st805"
                type="text"
-               value={applicantEmailID1}
+               
                onChange={(event) => setApplicantEmailID1(event.target.value)}
-               required
+               
              />
              </label>
              <label className="st8012">
@@ -829,9 +892,9 @@ function Startapp() {
              <input
              className="st805"
                type="text"
-               value={applicantNameofmanufacturingfactory}
+               
                onChange={(event) => setApplicantNameofmanufacturingfactory(event.target.value)}
-               required
+               
              />
              </label>
              <label className="st8012">
@@ -839,9 +902,9 @@ function Startapp() {
              <input
              className="st805"
                type="text"
-               value={applicantAddressoffactory}
+               
                onChange={(event) => setApplicantAddressoffactory(event.target.value)}
-               required
+              
              />
              </label>
 
@@ -852,9 +915,9 @@ function Startapp() {
              <input
              className="st805"
                type="text"
-               value={foreignCompanyName}
+               
                onChange={(event) => setForeignCompanyName(event.target.value)}
-               required
+               
              />
            </label>
            <label className="st8012">
@@ -862,9 +925,9 @@ function Startapp() {
              <input
              className="st805"
                type="text"
-               value={foreignCompanyAddress}
+               
                onChange={(event) => setForeignCompanyAddress(event.target.value)}
-               required
+              
              />
            </label>
            <label className="st8012">
@@ -872,9 +935,9 @@ function Startapp() {
              <input
              className="st805"
                type="text"
-               value={foreignAuthorizedSignatoryName}
+               
                onChange={(event) => setForeignAuthorizedSignatoryName(event.target.value)}
-               required
+              
              />
            </label>
            <label className="st8012">
@@ -882,9 +945,9 @@ function Startapp() {
              <input
              className="st805"
                type="text"
-               value={foreignAuthorizedSignatoryDesignation}
+              
                onChange={(event) => setForeignAuthorizedSignatoryDesignation(event.target.value)}
-               required
+              
              />
            </label>
            <label className="st8012">
@@ -892,9 +955,9 @@ function Startapp() {
              <input
              className="st805"
                type="number"
-               value={foreignContactNumber}
+              
                onChange={(event) => setForeignContactNumber(event.target.value)}
-               required
+              
              />
            </label>
            <label className="st8012">
@@ -902,9 +965,9 @@ function Startapp() {
              <input
              className="st805"
                type="text"
-               value={foreignEmailID}
+
                onChange={(event) => setForeignEmailID(event.target.value)}
-               required
+              
              />
            </label>
 
@@ -912,35 +975,35 @@ function Startapp() {
            <h802>Document Required:</h802>
            <label className="st8012">
              COI of Applicant Company:
-             <input  classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
+             <input  classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf"  />
            </label>
            <label className="st8012">
              PAN Card of Applicant Company:
-             <input classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
+             <input classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf"  />
            </label>
            <label className="st8012">
              MOA:
-             <input classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
+             <input classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf"  />
            </label>
            <label className="st8012">
              AOA:
-             <input classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
+             <input classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf"  />
            </label>
            <label className="st8012">
              Shareholding Pattern:
-             <input classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
+             <input classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf"  />
            </label>
            <label className="st8012">
              Authorization letter:
-             <input classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
+             <input classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf"  />
            </label>
            <label className="st8012">
              MOU between Applicant & OEM:
-             <input classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
+             <input classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf"  />
            </label>
            <label className="st8012">
              AIR Authorization Letter for Appliicant:
-             <input classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
+             <input classname ="stup805" type="file" onChange={handleFileUpload} accept=".pdf"  />
            </label>
            <button className='btn808' type="submit">Submit</button>
          </form>
