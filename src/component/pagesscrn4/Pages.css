@@ -851,3 +851,15 @@ video.videoBox {
 .react-chatbot-kit-chat-inner-container{
   margin-bottom: 0;
 }
+
+/*------TECform Upload button POP css ------ */
+select.optionss {
+  width: 20em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  min-height: 22px;
+  padding: 5px;
+  position: relative;
+  margin-bottom: 2em;
+}
+

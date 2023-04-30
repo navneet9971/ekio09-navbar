@@ -598,10 +598,12 @@ function DocumentBox() {
 
         <div>
       <div>
+      <h3>Upload a File</h3>
         <input type ="file" name="file" onChange={(e) => setUploades(e.target.files)} accept/>
       </div>
       <div>
-        <select value={documentType} onChange={(e) => setDocumentType(e.target.value)}>
+        <select className="optionss" value={documentType} onChange={(e) => setDocumentType(e.target.value)}>
+          
           <option value="">Select Document Type</option>
           {options.map((option, index) => (
             <option key={index} value={option}>{option}</option>
@@ -609,7 +611,7 @@ function DocumentBox() {
         </select>
       </div>
       <div>
-        <button onClick={handleUpload}>UPLOAD</button>
+        <button className = "button8" onClick={handleUpload}>UPLOAD</button>
       </div>
     </div>
 
