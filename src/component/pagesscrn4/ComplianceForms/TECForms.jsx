@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "../Pages.css";
 import Popup from "../popup/Popup";
-import { TiTick } from "react-icons/ti";
+//import { TiTick } from "react-icons/ti";
 import Multiselect from 'multiselect-react-dropdown';
 import axiosInstance from '../../../interceptors/axios';
 
@@ -84,7 +84,7 @@ function LabTestingBox() {
   const [testingElectrical, setTestingElectrical] = useState("");
   const [testingProductType, setTestingProductType] = useState("");
   const [testingProductUse, setTestingProductUse] = useState("");
-  const [testingSoftware, setTestingSoftware] = useState("");
+  //const [testingSoftware, setTestingSoftware] = useState("");
   const [testingTechnicalsupportName, setTestingTechnicalsupportName] = useState("");
   const [testingTechnicalsuppoertNumber, setTestingTechnicalsuppoertNumber] = useState("");
   const [manufacturingProductName, setManufacturingProductName] = useState("");
@@ -98,18 +98,96 @@ function LabTestingBox() {
   const [manufacturingContactEmail, setManufacturingContactEmail] = useState("");
   const [manufacturingOrigin, setManufacturingOrigin] = useState("");
   const [manufacturingContract, setManufacturingContract] = useState("");
+  const [cdfccl, setCdfccl] = useState("");
+  const [usermanual, setUsermanual] = useState("");
+  const [circuitdiagram, setCircuitdiagram] = useState("");
+  const [pcblayout, setPcblayout] = useState("");
+  const [softwareuser, setSoftwareuser] = useState("");
 
 
-
-  // function to handle file uploads
-  const handleFileUpload = (event) => {
-    // TODO: handle file upload logic
-  };
-
+  
+  //APIS Form DATA
   const handleSubmit = (event) => {
     event.preventDefault();
-    // TODO: handle form submission logic
-  };
+
+    const formData = new FormData();
+    formData.append('application', localStorage.getItem('newApplicationId'));
+    formData.append('compliance', localStorage.getItem("compliance_id"));
+    formData.append('request_for', 'lab testing');
+    formData.append("testingApplicantName", testingApplicantName);
+    formData.append("testingAddress", testingAddress);
+    formData.append("testingOEMName", testingOEMName);
+    formData.append("testingOEMAddress", testingOEMAddress);
+    formData.append("testingProductName", testingProductName);
+    formData.append("testingModelNo", testingModelNo);
+    formData.append("testingAssociated", testingAssociated);
+    formData.append("testingHardwareNumber", testingHardwareNumber);
+    formData.append("testingSoftwareNumber", testingSoftwareNumber);
+    formData.append("testingBrand", testingBrand);
+    formData.append("testingSr", testingSr);
+    formData.append("testingElectrical", testingElectrical);
+    formData.append("testingProductType", testingProductType);
+    formData.append("testingProductUse", testingProductUse);
+   // formData.append("testingSoftware", testingSoftware);
+    formData.append("testingTechnicalsupportName", testingTechnicalsupportName);
+    formData.append("testingTechnicalsuppoertNumber", testingTechnicalsuppoertNumber);
+    formData.append("manufacturingProductName", manufacturingProductName);
+    formData.append("manufacturingModelNo", manufacturingModelNo);
+    formData.append("manufacturingAssociatedModels", manufacturingAssociatedModels);
+    formData.append("manufacturingManufacturingName", manufacturingManufacturingName);
+    formData.append("manufacturingManufacturingAddress", manufacturingManufacturingAddress);
+    formData.append("manufacturingManufacturingCountry", manufacturingManufacturingCountry);
+    formData.append("manufacturingContactName", manufacturingContactName);
+    formData.append("manufacturingContactNumber", manufacturingContactNumber);
+    formData.append("manufacturingContactEmail", manufacturingContactEmail);
+    formData.append("manufacturingOrigin", manufacturingOrigin);
+    formData.append("manufacturingContract", manufacturingContract);
+
+
+      // Add file to form data
+      
+      if (cdfccl) {
+        for (let i = 0; i < cdfccl.length; i++) {
+          formData.append('documents', cdfccl[i]);
+        }
+      }
+      if (usermanual) {
+        for (let i = 0; i < usermanual.length; i++) {
+          formData.append('documents', usermanual[i]);
+        }
+      }
+      if (circuitdiagram) {
+        for (let i = 0; i < circuitdiagram.length; i++) {
+          formData.append('documents', circuitdiagram[i]);
+        }
+      }
+      if (pcblayout) {
+        for (let i = 0; i < pcblayout.length; i++) {
+          formData.append('documents', pcblayout[i]);
+        }
+      }
+      if (softwareuser) {
+        for (let i = 0; i < softwareuser.length; i++) {
+          formData.append('documents', softwareuser[i]);
+        }
+      }
+
+    console.log('Application ID:', localStorage.getItem('newApplicationId'));
+    console.log('Compliance ID:', localStorage.getItem("compliance_id"));
+
+    // function to handle form submission
+    axiosInstance.post('/application/compliance/', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+      }
+    }).then(response => {
+      console.log(response.data);
+    }).catch(error => {
+      console.log(error);
+    });
+  }
+  
 
 
 
@@ -125,9 +203,8 @@ function LabTestingBox() {
               <input
                 className="st805"
                 type="text"
-                value={testingApplicantName}
                 onChange={(event) => setTestingApplicantName(event.target.value)}
-                required
+
               />
             </label>
             <label className="st8012">
@@ -135,9 +212,8 @@ function LabTestingBox() {
               <input
                 className="st805"
                 type="text"
-                value={testingAddress}
                 onChange={(event) => setTestingAddress(event.target.value)}
-                required
+
               />
             </label>
             <label className="st8012">
@@ -145,9 +221,8 @@ function LabTestingBox() {
               <input
                 className="st805"
                 type="text"
-                value={testingOEMName}
                 onChange={(event) => setTestingOEMName(event.target.value)}
-                required
+
               />
             </label>
             <label className="st8012">
@@ -155,9 +230,8 @@ function LabTestingBox() {
               <input
                 className="st805"
                 type="text"
-                value={testingOEMAddress}
                 onChange={(event) => setTestingOEMAddress(event.target.value)}
-                required
+
               />
             </label>
             <label className="st8012">
@@ -165,9 +239,8 @@ function LabTestingBox() {
               <input
                 className="st805"
                 type="text"
-                value={testingProductName}
                 onChange={(event) => setTestingProductName(event.target.value)}
-                required
+
               />
             </label>
             <label className="st8012">
@@ -175,9 +248,8 @@ function LabTestingBox() {
               <input
                 className="st805"
                 type="text"
-                value={testingModelNo}
                 onChange={(event) => setTestingModelNo(event.target.value)}
-                required
+
               />
             </label>
             <label className="st8012">
@@ -185,9 +257,8 @@ function LabTestingBox() {
               <input
                 className="st805"
                 type="text"
-                value={testingAssociated}
                 onChange={(event) => setTestingAssociated(event.target.value)}
-                required
+
               />
             </label>
             <label className="st8012">
@@ -195,9 +266,8 @@ function LabTestingBox() {
               <input
                 className="st805"
                 type="text"
-                value={testingHardwareNumber}
                 onChange={(event) => setTestingHardwareNumber(event.target.value)}
-                required
+
               />
             </label>
             <label className="st8012">
@@ -205,9 +275,8 @@ function LabTestingBox() {
               <input
                 className="st805"
                 type="text"
-                value={testingSoftwareNumber}
                 onChange={(event) => setTestingSoftwareNumber(event.target.value)}
-                required
+
               />
             </label>
             <label className="st8012">
@@ -215,9 +284,8 @@ function LabTestingBox() {
               <input
                 className="st805"
                 type="text"
-                value={testingBrand}
                 onChange={(event) => setTestingBrand(event.target.value)}
-                required
+
               />
             </label>
             <label className="st8012">
@@ -225,9 +293,8 @@ function LabTestingBox() {
               <input
                 className="st805"
                 type="text"
-                value={testingSr}
                 onChange={(event) => setTestingSr(event.target.value)}
-                required
+
               />
             </label>
             <label className="st8012">
@@ -235,9 +302,8 @@ function LabTestingBox() {
               <input
                 className="st805"
                 type="text"
-                value={testingElectrical}
                 onChange={(event) => setTestingElectrical(event.target.value)}
-                required
+
               />
             </label>
             <label className="st8012">
@@ -245,9 +311,8 @@ function LabTestingBox() {
               <input
                 className="st805"
                 type="text"
-                value={testingProductType}
                 onChange={(event) => setTestingProductType(event.target.value)}
-                required
+
               />
             </label>
             <label className="st8012">
@@ -255,49 +320,38 @@ function LabTestingBox() {
               <input
                 className="st805"
                 type="text"
-                value={testingProductUse}
                 onChange={(event) => setTestingProductUse(event.target.value)}
-                required
+
               />
             </label>
             <label className="st8012">
               Filled CDF/CCl (Format attached):
-              <input classname="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
+              <input classname="stup805" type="file"   onChange={(event) => setCdfccl(event.target.files)} multiple accept />
             </label>
             <label className="st8012">
-              Complete USer Manual:
-              <input classname="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
+              Complete User Manual:
+              <input classname="stup805" type="file"  onChange={(event) => setUsermanual(event.target.files)} multiple accept />
             </label>
             <label className="st8012">
               Circuit Diagram:
-              <input classname="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
+              <input classname="stup805" type="file"  onChange={(event) => setCircuitdiagram(event.target.files)} multiple accept />
             </label>
             <label className="st8012">
               PCB Layout:
-              <input classname="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
+              <input classname="stup805" type="file"  onChange={(event) => setPcblayout(event.target.files)} multiple accept />
             </label>
             <label className="st8012">
               Software used (if any):
-              <input classname="stup805" type="file" onChange={handleFileUpload} accept=".pdf" required />
+              <input classname="stup805" type="file"  onChange={(event) => setSoftwareuser(event.target.files)} multiple accept />
             </label>
-            <label className="st8012">
-              Software used (if any)	If yes, please upload:
-              <input
-                className="st805"
-                type="text"
-                value={testingSoftware}
-                onChange={(event) => setTestingSoftware(event.target.value)}
-                required
-              />
-            </label>
+           
             <label className="st8012">
               Technical support person name:
               <input
                 className="st805"
                 type="text"
-                value={testingTechnicalsupportName}
                 onChange={(event) => setTestingTechnicalsupportName(event.target.value)}
-                required
+
               />
             </label>
             <label className="st8012">
@@ -305,9 +359,8 @@ function LabTestingBox() {
               <input
                 className="st805"
                 type="text"
-                value={testingTechnicalsuppoertNumber}
                 onChange={(event) => setTestingTechnicalsuppoertNumber(event.target.value)}
-                required
+
               />
             </label>
 
@@ -318,9 +371,8 @@ function LabTestingBox() {
               <input
                 className="st805"
                 type="text"
-                value={manufacturingProductName}
                 onChange={(event) => setManufacturingProductName(event.target.value)}
-                required
+
               />
             </label>
             <label className="st8012">
@@ -328,9 +380,8 @@ function LabTestingBox() {
               <input
                 className="st805"
                 type="text"
-                value={manufacturingModelNo}
                 onChange={(event) => setManufacturingModelNo(event.target.value)}
-                required
+
               />
             </label>
             <label className="st8012">
@@ -338,9 +389,8 @@ function LabTestingBox() {
               <input
                 className="st805"
                 type="text"
-                value={manufacturingAssociatedModels}
                 onChange={(event) => setManufacturingAssociatedModels(event.target.value)}
-                required
+
               />
             </label>
             <label className="st8012">
@@ -348,39 +398,35 @@ function LabTestingBox() {
               <input
                 className="st805"
                 type="text"
-                value={manufacturingManufacturingName}
                 onChange={(event) => setManufacturingManufacturingName(event.target.value)}
-                required
               />
             </label>
+
+          <label className="st8012">
+            Manufacturer Address:
+            <input
+            className="st805"
+              type="text"
+              onChange={(event) => setManufacturingManufacturingAddress(event.target.value)}
+            />
+          </label>
             <label className="st8012">
-              Manufacturer Address:
+              Manufacturer Country:
               <input
                 className="st805"
                 type="text"
-                value={manufacturingManufacturingAddress}
-                onChange={(event) => setManufacturingManufacturingAddress(event.target.value)}
-                required
-              />
-            </label>
-            <label className="st8012">
-              Manufacturing Country:
-              <input
-                className="st805"
-                type="text"
-                value={manufacturingManufacturingCountry}
                 onChange={(event) => setManufacturingManufacturingCountry(event.target.value)}
-                required
+
               />
             </label>
+
             <label className="st8012">
               Contact Person Name:
               <input
                 className="st805"
-                type="text"
-                value={manufacturingContactName}
+                type="text" 
                 onChange={(event) => setManufacturingContactName(event.target.value)}
-                required
+
               />
             </label>
             <label className="st8012">
@@ -388,19 +434,17 @@ function LabTestingBox() {
               <input
                 className="st805"
                 type="text"
-                value={manufacturingContactNumber}
                 onChange={(event) => setManufacturingContactNumber(event.target.value)}
-                required
+
               />
             </label>
             <label className="st8012">
               Contact Person's Email Id:
               <input
                 className="st805"
-                type="text"
-                value={manufacturingContactEmail}
+                type="text" 
                 onChange={(event) => setManufacturingContactEmail(event.target.value)}
-                required
+
               />
             </label>
             <label className="st8012">
@@ -408,9 +452,8 @@ function LabTestingBox() {
               <input
                 className="st805"
                 type="text"
-                value={manufacturingOrigin}
                 onChange={(event) => setManufacturingOrigin(event.target.value)}
-                required
+
               />
             </label>
             <label className="st8012">
@@ -418,9 +461,8 @@ function LabTestingBox() {
               <input
                 className="st805"
                 type="text"
-                value={manufacturingContract}
                 onChange={(event) => setManufacturingContract(event.target.value)}
-                required
+
               />
             </label>
 
@@ -471,26 +513,41 @@ function LabTestingBox() {
 function DocumentBox() {
   const [buttonPopup, setButtonPopup] = useState(false);
   const [buttonPopup1, setButtonPopup1] = useState(false);
-  const [selectedFile] = useState(null);
-  const [selectedOption] = useState('');
-  const [documentType] = useState('');
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedOption, setSelectedOption] = useState('');
+  const [documentType, setDocumentType] = useState('');
   const [files, setFiles] = useState([]);
   const [options] = useState(['Signatory Authorization', 'OEM Authorization', 'MOU', 'Shareholding Pattern', 'Annexure 1', 'BOM', 'Non Applicability Proforma', 'Proforma Seeking Exemption']);
-  const [image, setImage] = useState('')
- 
-  function handleImage(e) {
-        console.log(e.target.files)
-        setImage(e.target.files[0])  
-  }
+  const [image, setImage] = useState('');
+  const [document, setDocument] = useState(null);
+  const [uploades ,setUploades] = useState('');
+  const applicationID = localStorage.getItem('newApplicationId');
+  const compliance = localStorage.getItem('compliance');
 
+  
   function handleUpload() {
-    const formData = new FormData()
-    formData.append('image', image)
-    axiosInstance.post(`application/document/`, formData)
-    .then((res) => {
-      console.log(res)
+    const formData = new FormData();
+  
+    for (let i = 0; i < uploades.length; i++) {
+      formData.append('document', uploades[i]);
+    }
+    formData.append('application', applicationID);
+    formData.append('compliance', compliance);
+    formData.append('document_type', documentType);
+    formData.append('status', 'sumbitted');
+  
+    axiosInstance.post(`application/document/`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
     })
-
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  
     setButtonPopup(false);
   }
 
@@ -530,7 +587,7 @@ function DocumentBox() {
       });
 
     setButtonPopup1(false);
-  }
+  }  
 
 
   // -------------------------------Document Box Codes here---------------------------------------------------
@@ -538,10 +595,22 @@ function DocumentBox() {
     <div className="document-box">
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
 
-       <div>
-        <input type ="file" name="file" onChange={handleImage}/>
+        <div>
+      <div>
+        <input type ="file" name="file" onChange={(e) => setUploades(e.target.files)} accept/>
+      </div>
+      <div>
+        <select value={documentType} onChange={(e) => setDocumentType(e.target.value)}>
+          <option value="">Select Document Type</option>
+          {options.map((option, index) => (
+            <option key={index} value={option}>{option}</option>
+          ))}
+        </select>
+      </div>
+      <div>
         <button onClick={handleUpload}>UPLOAD</button>
-       </div>
+      </div>
+    </div>
 
 
       </Popup>
@@ -674,63 +743,87 @@ function Startapp() {
   const [foreignAuthorizedSignatoryDesignation, setForeignAuthorizedSignatoryDesignation] = useState("");
   const [foreignContactNumber, setForeignContactNumber] = useState("");
   const [foreignEmailID, setForeignEmailID] = useState("");
+  const [coiApplicant, setCoiApplicant] = useState("");
+  const [panCard, setPanCard] = useState("");
+  const [moa, setMoa] = useState("");
+  const [aoa, setAoa] = useState("");
+  const [shareholding, setShareholding] = useState("");
+  const [authorizationletter, setAuthorizationletter] = useState("");
+  const [mouApplicantOem, setMouApplicantOem] = useState("");
+  const [aIRAuthorizationLetter, setAIRAuthorizationLetter] = useState("");
   const [buttonPopup5, setButtonPopup5] = useState(false);
-  const [image, setImage] = useState(null);
-  const [pdf, setPdf] = useState(null);
 
-  //handle image upload
 
-  function handleFileUpload(event) {
-    const file = event.target.files[0];
-    const allowedTypes = ['image/jpeg', 'image/png'];
-
-    if (allowedTypes.includes(file.type)) {
-      setImage(file);
-    } else {
-      // Handle invalid file type
-    }
-  }
-
-  
-  function handlePdfUpload(event) {
-    const file = event.target.files[0];
-    const allowedTypes = ['application/pdf'];
-
-    if (allowedTypes.includes(file.type)) {
-      setPdf(file);
-    } else {
-      // Handle invalid file type
-    }
-  }
 
   //handle from sumit here----------------------
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const formData = {
-      application: localStorage.getItem('newApplicationId'),
-      compliance: localStorage.getItem("compliance_id"),
-      request_for: 'certification',
-      types_of_company,
-      applicantCompanyName,
-      applicantCompanyAddress,
-      applicantDirectorName,
-      applicantContactNumber,
-      applicantEmailID,
-      applicantAuthorisedSignatoryName,
-      applicantAuthorisedSignatoryDesignation,
-      applicantContactNumber1,
-      applicantEmailID1,
-      applicantNameofmanufacturingfactory,
-      applicantAddressoffactory,
-      foreignCompanyName,
-      foreignCompanyAddress,
-      foreignAuthorizedSignatoryName,
-      foreignAuthorizedSignatoryDesignation,
-      foreignContactNumber,
-      foreignEmailID,
-    };
+     const formData = new FormData();
+  formData.append('application', localStorage.getItem('newApplicationId'));
+  formData.append('compliance', localStorage.getItem("compliance_id"));
+  formData.append('request_for', 'certification');
+  formData.append('types_of_company', types_of_company);
+  formData.append('applicantCompanyName', applicantCompanyName);
+  formData.append('applicantCompanyAddress', applicantCompanyAddress);
+  formData.append('applicantDirectorName', applicantDirectorName);
+  formData.append('applicantContactNumber', applicantContactNumber);
+  formData.append('applicantEmailID', applicantEmailID);
+  formData.append('applicantAuthorisedSignatoryName', applicantAuthorisedSignatoryName);
+  formData.append('applicantAuthorisedSignatoryDesignation', applicantAuthorisedSignatoryDesignation);
+  formData.append('applicantContactNumber1', applicantContactNumber1);
+  formData.append('applicantEmailID1', applicantEmailID1);
+  formData.append('applicantNameofmanufacturingfactory', applicantNameofmanufacturingfactory);
+  formData.append('applicantAddressoffactory', applicantAddressoffactory);
+  formData.append('foreignCompanyName', foreignCompanyName);
+  formData.append('foreignCompanyAddress', foreignCompanyAddress);
+  formData.append('foreignAuthorizedSignatoryName', foreignAuthorizedSignatoryName);
+  formData.append('foreignAuthorizedSignatoryDesignation', foreignAuthorizedSignatoryDesignation);
+  formData.append('foreignContactNumber', foreignContactNumber);
+  formData.append('foreignEmailID', foreignEmailID);
+
+  // Add the selected file to the form data
+  if (coiApplicant) {
+    for (let i = 0; i < coiApplicant.length; i++) {
+      formData.append('documents', coiApplicant[i]);
+    }
+  }
+  if (panCard) {
+    for (let i = 0; i < panCard.length; i++) {
+      formData.append('documents', panCard[i]);
+    }
+  }
+  if (moa) {
+    for (let i = 0; i < moa.length; i++) {
+      formData.append('documents', moa[i]);
+    }
+  }
+  if (aoa) {
+    for (let i = 0; i < aoa.length; i++) {
+      formData.append('documents', aoa[i]);
+    }
+  }
+  if (shareholding) {
+    for (let i = 0; i < shareholding.length; i++) {
+      formData.append('documents', shareholding[i]);
+    }
+  }
+  if (authorizationletter) {
+    for (let i = 0; i < authorizationletter.length; i++) {
+      formData.append('documents', authorizationletter[i]);
+    }
+  }
+  if (mouApplicantOem) {
+    for (let i = 0; i < mouApplicantOem.length; i++) {
+      formData.append('documents', mouApplicantOem[i]);
+    }
+  }
+  if (aIRAuthorizationLetter) {
+    for (let i = 0; i < aIRAuthorizationLetter.length; i++) {
+      formData.append('documents', aIRAuthorizationLetter[i]);
+    }
+  }
 
     /*  if (image) {
         formData.append('documents', image, image.name);
@@ -748,7 +841,6 @@ function Startapp() {
     axiosInstance.post('/application/compliance/', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
-        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
       }
     }).then(response => {
       console.log(response.data);
@@ -966,35 +1058,35 @@ function Startapp() {
             <h802>Document Required:</h802>
             <label className="st8012">
               COI of Applicant Company:
-              <input classname="stup805" type="file" onChange={handleFileUpload} accept=".jpg, .jpeg, .png, .pdf" />
+              <input classname="stup805" type="file" onChange={(event) => setCoiApplicant(event.target.files)} multiple accept />
             </label>
             <label className="st8012">
               PAN Card of Applicant Company:
-              <input classname="stup805" type="file" onChange={handleFileUpload} accept=".pdf" />
+              <input classname="stup805" type="file" onChange={(event) => setPanCard(event.target.files)} multiple accept />
             </label>
             <label className="st8012">
               MOA:
-              <input classname="stup805" type="file" onChange={handleFileUpload} accept=".pdf" />
+              <input classname="stup805" type="file"  onChange={(event) => setMoa(event.target.files)} multiple accept/>
             </label>
             <label className="st8012">
               AOA:
-              <input classname="stup805" type="file" onChange={handleFileUpload} accept=".pdf" />
+              <input classname="stup805" type="file" onChange={(event) => setAoa(event.target.files)} multiple accept />
             </label>
             <label className="st8012">
               Shareholding Pattern:
-              <input classname="stup805" type="file" onChange={handleFileUpload} accept=".pdf" />
+              <input classname="stup805" type="file"  onChange={(event) => setShareholding(event.target.files)} multiple accept/>
             </label>
             <label className="st8012">
               Authorization letter:
-              <input classname="stup805" type="file" onChange={handleFileUpload} accept=".pdf" />
+              <input classname="stup805" type="file"  onChange={(event) => setAuthorizationletter(event.target.files)} multiple accept/>
             </label>
             <label className="st8012">
               MOU between Applicant & OEM:
-              <input classname="stup805" type="file" onChange={handleFileUpload} accept=".pdf" />
+              <input classname="stup805" type="file"  onChange={(event) => setMouApplicantOem(event.target.files)} multiple accept/>
             </label>
             <label className="st8012">
               AIR Authorization Letter for Appliicant:
-              <input classname="stup805" type="file" onChange={handleFileUpload} accept=".pdf" />
+              <input classname="stup805" type="file"  onChange={(event) => setAIRAuthorizationLetter(event.target.files)} multiple accept/>
             </label>
             <button className='btn808' type="submit">Submit</button>
           </form>
