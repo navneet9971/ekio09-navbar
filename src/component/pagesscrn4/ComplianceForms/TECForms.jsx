@@ -8,7 +8,7 @@ import axiosInstance from '../../../interceptors/axios';
 function MiddleSection() {
   // State variable
   const [middleData, setMiddleData] = useState("");
-  const [newApplicationId, setNewApplicationId] = useState();
+  const [applicationId, setNewApplicationId] = useState();
 
   useEffect(() => {
     axiosInstance
@@ -29,7 +29,7 @@ function MiddleSection() {
       .then((response) => {
         const id = response.data.data['id'];
         setNewApplicationId(id);
-        localStorage.setItem('newApplicationId', id); // store id in localStorage
+        localStorage.setItem("newApplicationId", id); // store id in localStorage
         console.log(id)
       })
       .catch((error) => {
@@ -49,6 +49,7 @@ function MiddleSection() {
       {middleData && (
         <>
           <div className="introdu">
+          <h1 style={{ display: 'none' }}>Application Number: {applicationId}</h1>
             <h398 className="cont">{middleData.product_name} - Introduction</h398>
             <h2 className="content">{middleData.content}</h2>
           </div>
@@ -513,16 +514,12 @@ function LabTestingBox() {
 function DocumentBox() {
   const [buttonPopup, setButtonPopup] = useState(false);
   const [buttonPopup1, setButtonPopup1] = useState(false);
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [selectedOption, setSelectedOption] = useState('');
   const [documentType, setDocumentType] = useState('');
-  const [files, setFiles] = useState([]);
   const [options] = useState(['Signatory Authorization', 'OEM Authorization', 'MOU', 'Shareholding Pattern', 'Annexure 1', 'BOM', 'Non Applicability Proforma', 'Proforma Seeking Exemption']);
-  const [image, setImage] = useState('');
-  const [document, setDocument] = useState(null);
+  const [document] = useState(null);
   const [uploades ,setUploades] = useState('');
   const applicationID = localStorage.getItem('newApplicationId');
-  const compliance = localStorage.getItem('compliance');
+  const compliance = localStorage.getItem('compliance_id');
 
   
   function handleUpload() {
@@ -535,6 +532,10 @@ function DocumentBox() {
     formData.append('compliance', compliance);
     formData.append('document_type', documentType);
     formData.append('status', 'sumbitted');
+
+    console.log(applicationID)
+    console.log(compliance)
+    console.log(documentType)
   
     axiosInstance.post(`application/document/`, formData, {
       headers: {

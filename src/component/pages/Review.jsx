@@ -16,7 +16,6 @@ function Review() {
   const [filterStatus, setFilterStatus] = useState("");
   const history = useHistory();
   const [pdf] = useState("");
-  const [complianceId, setComplianceId] = useState("");
   const idel = localStorage.getItem('ide');
  
 
@@ -30,15 +29,14 @@ function Review() {
         // Use the id here for further processing
         const id = tableData[idel].id;
         console.log(id);
-        // Store application and compliance in localStorage
-      localStorage.setItem('compliance', complianceId);
-    
+
+
         // ...
       })
       .catch(error => {
         console.log(error);
       });
-  }, []);
+  }, [idel]);
 
 
 

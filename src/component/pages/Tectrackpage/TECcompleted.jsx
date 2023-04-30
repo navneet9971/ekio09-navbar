@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
 //import jsPDF from 'jspdf';
 import "../stepper.css";
 import axiosInstance from "../../../interceptors/axios";
@@ -31,11 +30,7 @@ function TECcompleted() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [setSelectedOption] = useState('');
   const [docStatus, setDocStatus] = useState({});
-  const [startDate, setStartDate] = useState('');
-  const [step, setStep] = useState('');
-  const [application_id, setApplication_id] = useState("");
-  const [compliance_id, setCompliance_id] = useState("");
-  const [request_for, setRequest_for] = useState("");
+  //const [startDate, setStartDate] = useState('');
   const [uniqueid, setUniqueid] = useState("");
   const [complianceid, setComplianceid] = useState("");
   const idel = localStorage.getItem('ide');
@@ -78,7 +73,6 @@ function TECcompleted() {
     axiosInstance.get(`application/compliance/${idel}/`)
       .then(response => {
         const data = response.data.data;
-        console.log(data);
        const compliance_id = data["compliance"];
         const application_id = data["application"];
         const request_for = data["request_for"];
@@ -97,13 +91,7 @@ function TECcompleted() {
             const statusData = response.data.data[0];
            // setStartDate(statusData.start_date);
            // setStep(statusData.step);
-           const status = {};
-           Object.keys(data).forEach(key => {
-             const doc = data[key];
-             status[doc.name] = doc.status;
-           });
-           const datastatus = statusData["document_type"]
-            console.log(datastatus);
+           console.log(statusData)
           })
           .catch(error => {
             console.log(error);
@@ -111,16 +99,25 @@ function TECcompleted() {
   
         axiosInstance.get(`application/document/?compliance=${compliance_id}&application=${application_id}`)
           .then(response => {
-            const statusData = response.data.data[0];
+            const documentData = response.data.data;
            // setStartDate(statusData.start_date);
            // setStep(statusData.step);
-            console.log(response.data);
+           const docStatus = {};
+      for (let i = 0; i < documentData.length; i++) {
+        const statusData = documentData[i];
+        docStatus[statusData["document_type"]] = statusData["status"];
+      }
+         setDocStatus(docStatus);
+         console.log(docStatus)
           })
+          .catch(error => {
+            console.log(error);
+          });
       })
       .catch(error => {
         console.log(error);
       });
-  }, []);
+  }, [idel]);
 
 
     //Download Button Code handleOptionClick
@@ -148,7 +145,7 @@ function TECcompleted() {
       <h1 className="ongo">TEC Completed Application:-</h1>
       <div>
         <h1 className="type">Compliance Type: {complianceid} </h1>
-        <h1 className="appli">Application Number: {uniqueid}  </h1>
+        <h1 className="appli">Application Number:  {uniqueid}  </h1>
        {/* <button className="clidown" onClick={handleDownload}>Download</button> */}
       </div>
 
@@ -205,31 +202,33 @@ function TECcompleted() {
           <div className="row">
            
           <div className="col doc-col">
-          {docStatus['Signatory Authorization'] === 'success' ? <Right size={24} className="pdfico" /> : <Wrong size={24} className="pdfico" />}
+          {docStatus['Authorized Signatory Letter'] === 'submitted' ? ( <> <Right size={24} className="pdfico" />  </>) : (<Wrong size={24} className="pdfico" />) }
           <div>
             <img src={file1png} alt="" className="pdfico1" />
           </div>
-          <h3 className="be">Signatory Authorization</h3>
+          <h3 className="be">Authorized Signatory Letter</h3>
     
 
               <div>
-              {docStatus['OEM Authorization'] === 'success' ? <Right size={24} className="pdfico" /> : <Wrong size={24} className="pdfico" />}
+              {docStatus['OEM authorized to AIR'] === 'submitted' ? ( <> <Right size={24} className="pdfico" /> </>) : (<Wrong size={24} className="pdfico" />) }
                 <img src={file2png} alt="" className="pdfico1" />
               </div>
-              <h3 className="be">OEM Authorization</h3>
+              <h3 className="be">OEM Authorized to AIR</h3>
             </div>
 
 
             <div className="col doc-col">
-            {docStatus['MOU'] === 'success' ? <Right size={24} className="pdfico" /> : <Wrong size={24} className="pdfico" />}
+              {docStatus['MOU'] === 'submitted' ? (  <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={48} className="pdfico" />)}
               <div>
                 <img src={file3png} alt="" className="pdfico1" />
               </div>
               <h3 className="be">MOU</h3>
             </div>
-            <div className="col doc-col">
 
-            {docStatus['Shareholding Pattern'] === 'success' ? <Right size={24} className="pdfico" /> : <Wrong size={24} className="pdfico" />}
+            <div className="col doc-col">
+              
+
+            {docStatus['Shareholding Pattern'] === 'submitted' ? ( <> <Right size={24} className="pdfico" /> </> )  : ( <Wrong size={24} className="pdfico" /> )}
               <div>
                 <img src={file4png} alt="" className="pdfico1" />
               </div>
@@ -239,7 +238,7 @@ function TECcompleted() {
 
             <div className="col doc-col">
 
-            {docStatus['Annexure 1'] === 'success' ? <Right size={24} className="pdfico" /> : <Wrong size={24} className="pdfico" />}
+            {docStatus['Annexure 1'] === 'submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
 
               <div>
                 <img src={file5png} alt="" className="pdfico1" />
@@ -248,7 +247,7 @@ function TECcompleted() {
             </div>
             <div className="col doc-col">
 
-            {docStatus['BOM'] === 'success' ? <Right size={24} className="pdfico" /> : <Wrong size={24} className="pdfico" />}
+            {docStatus['BOM'] === 'sumbitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" />)}
 
               <div>
                 <img src={file6png} alt="" className="pdfico1" />
@@ -258,7 +257,7 @@ function TECcompleted() {
 
             <div className="col doc-col">
 
-            {docStatus['Non Applicability Proforma'] === 'success' ? <Right size={24} className="pdfico" /> : <Wrong size={24} className="pdfico" />}
+            {docStatus['Non Applicability Proforma'] === 'sumbitted' ? ( <> <Right size={24} className="pdfico" /> </>) : (<Wrong size={24} className="pdfico" />)}
 
               <div>
                 <img src={file7png} alt="" className="pdfico1" />
@@ -267,7 +266,7 @@ function TECcompleted() {
             </div>
             <div className="col doc-col">
 
-            {docStatus['Proforma Seeking Exemption'] === 'success' ? <Right size={24} className="pdfico" /> : <Wrong size={24} className="pdfico" />}
+            {docStatus['Proforma Seeking Exemption'] === 'sumbitted' ? (<> <Right size={24} className="pdfico" /> </>) : ( <Wrong size={24} className="pdfico" />)}
 
               <div>
                 <img src={file8png} alt="" className="pdfico1" />
