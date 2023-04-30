@@ -16,19 +16,23 @@ function Review() {
   const [filterStatus, setFilterStatus] = useState("");
   const history = useHistory();
   const [pdf] = useState("");
-
-
+  const [complianceId, setComplianceId] = useState("");
+  const idel = localStorage.getItem('ide');
+ 
 
   useEffect(() => {
     axiosInstance.get(`application/compliance/`)
       .then(response => {
         const tableData = response.data.data;
-        console.log(tableData);
+       console.log(tableData);
         setTableData(tableData); // Set the fetched data to state
 
         // Use the id here for further processing
-        const id = tableData[2].id;
+        const id = tableData[idel].id;
         console.log(id);
+        // Store application and compliance in localStorage
+      localStorage.setItem('compliance', complianceId);
+    
         // ...
       })
       .catch(error => {
@@ -40,15 +44,16 @@ function Review() {
 
 
 
-  const handleClick = (id, uniqueid, compliance_name) => {
+  const handleClick = (id) => {
+    localStorage.setItem('ide', id);
+    console.log(id)
     const selectedItem = tableData.find((data) => data.id === id);
     const selectedStatus =
       selectedItem.status === "on-going" ? "on-going" : "completed";
     if (selectedItem.compliance_name === "BIS") {
-      history.push(`/navbar/${selectedStatus === "on-going" ? "ComplianceTypePage" : "Completedcompliancetype"}/id=${selectedItem.id}?uniqueid=${selectedItem.uniqueid}&compliance_name=${selectedItem.compliance_name}`);
+      history.push(`/navbar/${selectedStatus === "on-going" ? "ComplianceTypePage" : "Completedcompliancetype"}/id=${id}`);
     } else if (selectedItem.compliance_name === "TEC") {
-      history.push(`/navbar/${selectedStatus === "on-going" ? "TECOngoing" : "TECcompleted"}/id=${selectedItem.id}?uniqueid=${selectedItem.uniqueid}&compliance_name=${selectedItem.compliance_name}`);
-      console.log(uniqueid)
+      history.push(`/navbar/${selectedStatus === "on-going" ? "TECOngoing" : "TECcompleted"}/id=${id}`);
     }
   };
 

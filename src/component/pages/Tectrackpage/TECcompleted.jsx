@@ -24,9 +24,6 @@ import file8png from "../../assets/pdficon/Red04.png";
 
 
 function TECcompleted() {
-  const location = useLocation();
-  const uniqueid = new URLSearchParams(location.search).get("uniqueid");
-  const compliance_name = new URLSearchParams(location.search).get("compliance_name");
    // const [currentStep] = useState(1);
   // const steps = ["Application Submitted", "Sample sent for testing", "Test report generated", "Document pending with authorities", "Final report generated"];
    // const [current, setCurrentStep] = useState(1);
@@ -36,6 +33,13 @@ function TECcompleted() {
   const [docStatus, setDocStatus] = useState({});
   const [startDate, setStartDate] = useState('');
   const [step, setStep] = useState('');
+  const [application_id, setApplication_id] = useState("");
+  const [compliance_id, setCompliance_id] = useState("");
+  const [request_for, setRequest_for] = useState("");
+  const [uniqueid, setUniqueid] = useState("");
+  const [complianceid, setComplianceid] = useState("");
+  const idel = localStorage.getItem('ide');
+
    // const [startDate, setStartDate] = useState(null);
    // const [endDate, setEndDate] = useState(null);
   //  const [clickedColor, setClickedColor] = useState(false);
@@ -71,33 +75,52 @@ function TECcompleted() {
 
   // API call to get document status
   useEffect(() => {
-    axiosInstance.get(`application/document/38`)
+    axiosInstance.get(`application/compliance/${idel}/`)
       .then(response => {
         const data = response.data.data;
-        const status = {};
-        data.forEach(doc => {
-          status[doc.name] = doc.status;
-        });
-        setDocStatus(status);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }, []);
+        console.log(data);
+       const compliance_id = data["compliance"];
+        const application_id = data["application"];
+        const request_for = data["request_for"];
 
-  // API call to get application status
-  useEffect(() => {
-    axiosInstance.get('application/status/')
-      .then(response => {
-        const statusData = response.data.data[0];
-        setStartDate(statusData.start_date);
-        setStep(statusData.step);
-        console.log(statusData)
+        // store local storage then show the values 
+        setUniqueid(data["uniqueid"]);
+        setComplianceid(data["compliance_name"])
+    
+        const compliancename = data["compliance_name"]
+        localStorage.setItem("compliance_name", compliancename)
+        
+  //status APIs used 
+
+        axiosInstance.get(`application/status/?compliance=${compliance_id}&application=${application_id}&request_for=${request_for}`)
+          .then(response => {
+            const statusData = response.data.data[0];
+           // setStartDate(statusData.start_date);
+           // setStep(statusData.step);
+           const status = {};
+           Object.keys(data).forEach(key => {
+             const doc = data[key];
+             status[doc.name] = doc.status;
+           });
+           const datastatus = statusData["document_type"]
+            console.log(datastatus);
+          })
+          .catch(error => {
+            console.log(error);
+          });
+  
+        axiosInstance.get(`application/document/?compliance=${compliance_id}&application=${application_id}`)
+          .then(response => {
+            const statusData = response.data.data[0];
+           // setStartDate(statusData.start_date);
+           // setStep(statusData.step);
+            console.log(response.data);
+          })
       })
       .catch(error => {
         console.log(error);
-      });
-  }, []);
+      });
+  }, []);
 
 
     //Download Button Code handleOptionClick
@@ -124,8 +147,8 @@ function TECcompleted() {
       <div className="ongoing-applications">
       <h1 className="ongo">TEC Completed Application:-</h1>
       <div>
-        <h1 className="type">Compliance Type: {compliance_name}</h1>
-        <h1 className="appli">Application Number: {uniqueid}</h1>
+        <h1 className="type">Compliance Type: {complianceid} </h1>
+        <h1 className="appli">Application Number: {uniqueid}  </h1>
        {/* <button className="clidown" onClick={handleDownload}>Download</button> */}
       </div>
 

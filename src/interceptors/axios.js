@@ -30,7 +30,7 @@ axiosInstance.interceptors.response.use(
 
 		if (
 			error.response.status === 401 &&
-			originalRequest.url === baseURL + 'refresh/'
+			originalRequest.url === baseURL + 'refresh'
 		) {
 			window.location.href = '/';
 			return Promise.reject(error);
