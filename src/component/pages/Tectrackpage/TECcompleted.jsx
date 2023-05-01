@@ -19,6 +19,8 @@ import file2png from "../../assets/pdficon/Green02.png";
 import file3png from "../../assets/pdficon/Green03.png";
 import file4png from "../../assets/pdficon/Green04.png";
 import file5png from "../../assets/pdficon/Red01.png";
+import file6png from "../../assets/pdficon/Red02.png";
+
 
 
 
@@ -39,7 +41,7 @@ function TECcompleted() {
   const [documentType, setDocumentType] = useState('');
   const [uploades ,setUploades] = useState('');
     const [buttonPopup, setButtonPopup] = useState(false);
-  const [options] = useState(['Manufacturing details', 'Shareholding Pattern', 'Annexure 2 OEM authorized AIR', 'Annexure 3 MOU', 'Annex 1 Signatory authorization']); 
+  const [options] = useState(['Authorized Signatory Letter', 'MOU', 'AOA', 'OEM authorized to AIR', 'MOA', 'Certificate of Incorporation']); 
   const [buttonPopup1, setButtonPopup1] = useState(false);
   const [document] = useState(null);
    // const [startDate, setStartDate] = useState(null);
@@ -740,50 +742,61 @@ const handleDownload = (event, form) => {
           <div className="row">
            
           <div className="col doc-col">
-          {docStatus['Manufacturing details'] === 'submitted' ? ( <> <Right size={24} className="pdfico" />  </>) : (<Wrong size={24} className="pdfico" />) }
+          {docStatus['Authorized Signatory Letter'] === 'submitted' ? ( <> <Right size={24} className="pdfico" />  </>) : (<Wrong size={24} className="pdfico" />) }
           <div>
             <img src={file1png} alt="" className="pdfico1" />
           </div>
-          <h3 className="be">Manufacturing details</h3>
+          <h3 className="be">Authorized Signatory Letter</h3>
     </div>
 
-    <div className="col doc-col">
-              {docStatus['Shareholding_Pattern'] === 'submitted' ? ( <> <Right size={24} className="pdfico" /> </>) : (<Wrong size={24} className="pdfico" />) }
+            <div className="col doc-col">
+              {docStatus['MOU'] === 'submitted' ? (  <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={48} className="pdfico" />)}
               <div>
                 <img src={file2png} alt="" className="pdfico1" />
               </div>
-              <h3 className="be">Shareholding Pattern</h3>
-          </div>
-
-
-            <div className="col doc-col">
-              {docStatus['Annexure 2 OEM authorized AIR'] === 'submitted' ? (  <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={48} className="pdfico" />)}
-              <div>
-                <img src={file3png} alt="" className="pdfico1" />
-              </div>
-              <h3 className="be">Annexure 2 OEM authorized AIR</h3>
+              <h3 className="be">MOU</h3>
             </div>
 
             <div className="col doc-col">
               
 
-            {docStatus['Annexure 3 MOU'] === 'submitted' ? ( <> <Right size={24} className="pdfico" /> </> )  : ( <Wrong size={24} className="pdfico" /> )}
+            {docStatus['AOA'] === 'submitted' ? ( <> <Right size={24} className="pdfico" /> </> )  : ( <Wrong size={24} className="pdfico" /> )}
               <div>
-                <img src={file4png} alt="" className="pdfico1" />
+                <img src={file3png} alt="" className="pdfico1" />
               </div>
-              <h3 className="be">Annexure 3 MOU</h3>
+              <h3 className="be">AOA</h3>
             </div>
 
 
             <div className="col doc-col">
 
-            {docStatus['Annex 1 Signatory authorization'] === 'submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
+            {docStatus['OEM authorized to AIR'] === 'submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
 
               <div>
-                <img src={file5png} alt="" className="pdfico1" />
+                <img src={file4png} alt="" className="pdfico1" />
               </div>
-              <h3 className="be">Annex 1 Signatory authorization</h3>
+              <h3 className="be">OEM Authorized to AIR</h3>
             </div>
+
+            <div className="col doc-col">
+
+{docStatus['MOA'] === 'submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
+
+  <div>
+    <img src={file5png} alt="" className="pdfico1" />
+  </div>
+  <h3 className="be">MOA</h3>
+</div>
+
+<div className="col doc-col">
+
+{docStatus['Certificate of Incorporation'] === 'submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
+
+  <div>
+    <img src={file6png} alt="" className="pdfico1" />
+  </div>
+  <h3 className="be">Certificate of Incorporation</h3>
+</div>
            
 
           </div>
