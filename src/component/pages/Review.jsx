@@ -17,6 +17,7 @@ function Review() {
   const history = useHistory();
   const [pdf] = useState("");
   const idel = localStorage.getItem('ide');
+  
  
 
   useEffect(() => {
@@ -204,5 +205,6 @@ function Review() {
 
   );
 }
+
 
 export default Review;
