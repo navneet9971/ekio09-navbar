@@ -32,6 +32,7 @@ function TECcompleted() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [setSelectedOption] = useState('');
   const [docStatus, setDocStatus] = useState({});
+  const [docStep, setdocStep] = useState({});
   //const [startDate, setStartDate] = useState('');
   const [uniqueid, setUniqueid] = useState("");
   const [complianceid, setComplianceid] = useState("");
@@ -216,16 +217,22 @@ const handleSubmit = (event) => {
         
   //status APIs used 
 
-        axiosInstance.get(`application/status/?compliance=${compliance_id}&application=${application_id}&request_for=${request_for}`)
-          .then(response => {
-            const statusData = response.data.data[0];
-           // setStartDate(statusData.start_date);
-           // setStep(statusData.step);
-           console.log(statusData)
-          })
-          .catch(error => {
-            console.log(error);
-          });
+  axiosInstance.get(`application/status/?compliance=${compliance_id}&application=${application_id}&request_for=${request_for}`)
+  .then(response => {
+    const stepstatus = response.data.data;
+    const newDocStep = { ...docStep }; // create a new object that copies the existing state
+    for (let i = 0; i < stepstatus.length; i++) {
+      const step = stepstatus[i];
+      newDocStep[step.step] = [step.status, step.message, step.start_date];
+    }
+    setdocStep(newDocStep);
+    
+  })
+  .catch(error => {
+    console.log(error);
+  });
+
+
   
         axiosInstance.get(`application/document/?compliance=${compliance_id}&application=${application_id}`)
           .then(response => {
@@ -238,16 +245,13 @@ const handleSubmit = (event) => {
         docStatus[statusData["document_type"]] = statusData["status"];
       }
          setDocStatus(docStatus);
-         console.log(docStatus)
+         
           })
-          .catch(error => {
-            console.log(error);
-          });
       })
       .catch(error => {
         console.log(error);
-      });
-  }, [idel]);
+  })
+  });
 
 
     //Download Button Code handleOptionClick
@@ -306,13 +310,8 @@ const handleSubmit = (event) => {
     /*---------DOWNLOAD BUTTON APS CALLS------*/
     
 const handleDownload = (event, form) => {
-  event.preventDefault();
-  console.log('Downloading file:', form);
 
-  axiosInstance.get(`compliance-form/?compliance=BIS${form}`, {
-    params: {
-      document_type: form
-    },
+  axiosInstance.get(`compliance-form/?compliance=TEC`, {
     responseType: 'blob',
     headers: {
       'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
@@ -321,17 +320,14 @@ const handleDownload = (event, form) => {
     }
   })
     .then(response => {
-      console.log(response.data);
       const url = window.URL.createObjectURL(new Blob([response.data]));
-
-      // Create a link element to trigger the download
       const link = document.createElement('a');
+      console.log(response.data)
       link.href = url;
       link.setAttribute('download', `${form}.docx`);
-
-      // Add the link element to the document and trigger the download
       document.body.appendChild(link);
       link.click();
+      link.remove();
     })
     .catch(error => {
       console.log(error);
@@ -705,37 +701,65 @@ const handleDownload = (event, form) => {
           
   <div className="tecon">
    
-      <Thum1png className="mainsvg2"/>
-      {docStatus.Thum1png === 'success' ? <Right className="mainsvg3"/> : <Wrong className="mainsvg3"/>}
-    
-   
-      <Thum2png className="mainsvg2"/>
-      {docStatus.Thum2png === 'success' ? <Right className="mainsvg3"/> : <Wrong className="mainsvg3"/>}
-    
-   
-      <Thum3png className="mainsvg2"/>
-      {docStatus.Thum3png === 'success' ? <Right className="mainsvg3"/> : <Wrong className="mainsvg3"/>}
-    
-   
-      <Thum4png className="mainsvg2"/>
-      {docStatus.Thum4png === 'success' ? <Right className="mainsvg3"/> : <Wrong className="mainsvg3"/>}
-    
-   
-      <Thum5png className="mainsvg2"/>
-      {docStatus.Thum5png === 'success' ? <Right className="mainsvg3"/> : <Wrong className="mainsvg3"/>}
-    
-   
-      <Thum6png className="mainsvg2"/>
-      {docStatus.Thum6png === 'success' ? <Right className="mainsvg3"/> : <Wrong className="mainsvg3"/>}
-    
-   
-      <Thum7png className="mainsvg2"/>
-      {docStatus.Thum7png === 'success' ? <Right className="mainsvg3"/> : <Wrong className="mainsvg3"/>}
-    
-   
-      <Thum8png className="mainsvg2"/>
-      {docStatus.Thum8png === 'success' ? <Right className="mainsvg3"/> : <Wrong className="mainsvg3"/>}
-    
+
+  <Thum1png className="mainsvg2" />
+  {docStep["1"] && docStep["1"][0] === "Completed" ? (
+    <Right className="mainsvg3" />
+  ) : (
+    <Wrong className="mainsvg3" />
+  )}
+
+
+  <Thum2png className="mainsvg2" />
+  {docStep["2"] && docStep["2"][0] === "Completed" ? (
+    <Right className="mainsvg3" />
+  ) : (
+    <Wrong className="mainsvg3" />
+  )}
+
+  <Thum3png className="mainsvg2" />
+  {docStep["3"] && docStep["3"][0] === "Completed" ? (
+    <Right className="mainsvg3" />
+  ) : (
+    <Wrong className="mainsvg3" />
+  )}
+
+  <Thum4png className="mainsvg2" />
+  {docStep["4"] && docStep["4"][0] === "Completed" ? (
+    <Right className="mainsvg3" />
+  ) : (
+    <Wrong className="mainsvg3" />
+  )}
+
+  <Thum5png className="mainsvg2" />
+  {docStep["5"] && docStep["5"][0] === "Completed" ? (
+    <Right className="mainsvg3" />
+  ) : (
+    <Wrong className="mainsvg3" />
+  )}
+
+  <Thum6png className="mainsvg2" />
+  {docStep["6"] && docStep["6"][0] === "Completed" ? (
+    <Right className="mainsvg3" />
+  ) : (
+    <Wrong className="mainsvg3" />
+  )}
+
+  <Thum7png className="mainsvg2" />
+  {docStep["7"] && docStep["7"][0] === "Completed" ? (
+    <Right className="mainsvg3" />
+  ) : (
+    <Wrong className="mainsvg3" />
+  )}
+
+  <Thum8png className="mainsvg2" />
+  {docStep["8"] && docStep["8"][0] === "Completed" ? (
+    <Right className="mainsvg3" />
+  ) : (
+    <Wrong className="mainsvg3" />
+  )}
+
+
   </div>
             
         <div>
