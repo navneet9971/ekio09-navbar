@@ -6322,6 +6322,18 @@ file-loader@^6.2.0:
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
 
+file-saver@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.npmjs.org/file-saver/-/file-saver-2.0.5.tgz"
+  integrity sha512-P9bmyZ3h/PRG+Nzga+rbdI4OEpNDzAVyy74uVO9ATgzLK6VtAsYybF/+TOCvrc0MO793d6+42lLyZTw7/ArVzA==
+
+file-selector@0.2.4:
+  version "0.2.4"
+  resolved "https://registry.npmjs.org/file-selector/-/file-selector-0.2.4.tgz"
+  integrity sha512-ZDsQNbrv6qRi1YTDOEWzf5J2KjZ9KMI1Q2SGeTkCJmNNW25Jg4TW4UMcmoqcg4WrAyKRcpBXdbWRxkfrOzVRbA==
+  dependencies:
+    tslib "^2.0.3"
+
 filelist@^1.0.1:
   version "1.0.4"
   resolved "https://registry.npmjs.org/filelist/-/filelist-1.0.4.tgz"
@@ -13295,6 +13307,13 @@ url-parse@^1.5.3:
   dependencies:
     querystringify "^2.1.1"
     requires-port "^1.0.0"
+
+use-file-picker@^1.6.1:
+  version "1.6.1"
+  resolved "https://registry.npmjs.org/use-file-picker/-/use-file-picker-1.6.1.tgz"
+  integrity sha512-5ChNPXmy/WM1TyBTZmUAGZtJ3gqmeWa+xgYF/pxnLxVGdCaLsSnJhyf87/dhO1Snnl6uTdOfcdGTnuQbuyd3Jw==
+  dependencies:
+    file-selector "0.2.4"
 
 use-sync-external-store@^1.0.0:
   version "1.2.0"
