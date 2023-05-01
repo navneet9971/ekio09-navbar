@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 //import jsPDF from 'jspdf';
 import "../stepper.css";
+import Popup from "../../pagesscrn4/popup/Popup";
 import axiosInstance from "../../../interceptors/axios";
+import Multiselect from 'multiselect-react-dropdown';
 import { ReactComponent as Thum1png } from "../../assets/track-icon/reg.svg";
 import { ReactComponent as Thum2png } from "../../assets/track-icon/testing.svg";
 import { ReactComponent as Thum3png } from "../../assets/track-icon/AIR.svg";
@@ -17,9 +19,7 @@ import file2png from "../../assets/pdficon/Green02.png";
 import file3png from "../../assets/pdficon/Green03.png";
 import file4png from "../../assets/pdficon/Green04.png";
 import file5png from "../../assets/pdficon/Red01.png";
-import file6png from "../../assets/pdficon/Red02.png";
-import file7png from "../../assets/pdficon/Red03.png";
-import file8png from "../../assets/pdficon/Red04.png";
+
 
 
 function TECcompleted() {
@@ -34,6 +34,14 @@ function TECcompleted() {
   const [uniqueid, setUniqueid] = useState("");
   const [complianceid, setComplianceid] = useState("");
   const idel = localStorage.getItem('ide');
+  const applicationID = localStorage.getItem('newApplicationId');
+  const compliance = localStorage.getItem('compliance_id');
+  const [documentType, setDocumentType] = useState('');
+  const [uploades ,setUploades] = useState('');
+    const [buttonPopup, setButtonPopup] = useState(false);
+  const [options] = useState(['Manufacturing details', 'Shareholding Pattern', 'Annexure 2 OEM authorized AIR', 'Annexure 3 MOU', 'Annex 1 Signatory authorization']); 
+  const [buttonPopup1, setButtonPopup1] = useState(false);
+  const [document] = useState(null);
 
    // const [startDate, setStartDate] = useState(null);
    // const [endDate, setEndDate] = useState(null);
@@ -139,6 +147,78 @@ function TECcompleted() {
       });
     }; 
   */
+
+    /*---- upload button APIS CALLS */
+
+    function handleUpload() {
+      const formData = new FormData();
+    
+      for (let i = 0; i < uploades.length; i++) {
+        formData.append('document', uploades[i]);
+      }
+      formData.append('application', applicationID);
+      formData.append('compliance', compliance);
+      formData.append('document_type', documentType);
+      formData.append('status', 'sumbitted');
+  
+      console.log(applicationID)
+      console.log(compliance)
+      console.log(documentType)
+    
+      axiosInstance.post(`application/document/`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    
+      setButtonPopup(false);
+    }
+
+
+    /*---------DOWNLOAD BUTTON APS CALLS------*/
+    
+const handleDownload = (event, form) => {
+  event.preventDefault();
+  console.log('Downloading file:', form);
+
+  axiosInstance.get(`compliance-form/?compliance=BIS${form}`, {
+    params: {
+      document_type: form
+    },
+    responseType: 'blob',
+    headers: {
+      'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+      'Content-Type': 'application/json',
+      'accept': 'application/json',
+    }
+  })
+    .then(response => {
+      console.log(response.data);
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+
+      // Create a link element to trigger the download
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `${form}.docx`);
+
+      // Add the link element to the document and trigger the download
+      document.body.appendChild(link);
+      link.click();
+    })
+    .catch(error => {
+      console.log(error);
+    });
+
+  setButtonPopup1(false);
+}  
+  
+  
   
     return (
       <div className="ongoing-applications">
@@ -151,7 +231,7 @@ function TECcompleted() {
 
       <div className="dropdown">
       <button className="dd-button" onClick={handleButtonClick}>
-        {'Download'}
+        {'Report'}
       </button>
       {isDropdownOpen && (
         <ul className="dd-menu">
@@ -161,8 +241,58 @@ function TECcompleted() {
         </ul>
       )}
     </div>
-    
-           
+
+
+
+ {/*----------------UPLOAD BUTTON CODE ------------*/ }
+ <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+<div>
+  <div>
+  <h3>Upload a File</h3>
+  <input type ="file" name="file" onChange={(e) => setUploades(e.target.files)} accept/>
+  </div>
+  <div>
+  <select className="optionss" value={documentType} onChange={(e) => setDocumentType(e.target.value)}>
+          
+          <option value="">Select Document Type</option>
+          {options.map((option, index) => (
+            <option key={index} value={option}>{option}</option>
+          ))}
+        </select>
+  </div>
+  <div>
+  <button className = "button8" onClick={handleUpload}>UPLOAD</button>
+  </div>
+</div>
+</Popup>
+<div className="header-btn">
+<button className="button7" onClick={() => setButtonPopup(true)}>Upload</button>
+</div>
+
+{/*------------------DOWNLOAD BUTTON CODE ----------------*/}
+
+<div className="header-btn1">
+<button className="button7" onClick={() => setButtonPopup1(true)}>Download</button>
+</div>
+<Popup trigger={buttonPopup1} setTrigger={setButtonPopup1}>
+        <h3>Download a File</h3>
+        <label>
+          <h4>Select a file to download:</h4>
+          <div className="download-form1"> 
+          <Multiselect
+              isObject={false}
+              options={options}
+              onRemove={(event) => { console.log(event) }}
+              onSelect={(event) => { console.log(event) }}
+              showCheckbox
+            />
+          </div>
+          </label>
+          <div>
+          <button className="button8" type="submit" onClick={handleDownload}>Download</button>
+          </div>
+          </Popup>
+          
   <div className="tecon">
    
       <Thum1png className="mainsvg2"/>
@@ -202,77 +332,51 @@ function TECcompleted() {
           <div className="row">
            
           <div className="col doc-col">
-          {docStatus['Authorized Signatory Letter'] === 'submitted' ? ( <> <Right size={24} className="pdfico" />  </>) : (<Wrong size={24} className="pdfico" />) }
+          {docStatus['Manufacturing details'] === 'submitted' ? ( <> <Right size={24} className="pdfico" />  </>) : (<Wrong size={24} className="pdfico" />) }
           <div>
             <img src={file1png} alt="" className="pdfico1" />
           </div>
-          <h3 className="be">Authorized Signatory Letter</h3>
-    
+          <h3 className="be">Manufacturing details</h3>
+    </div>
 
+    <div className="col doc-col">
+              {docStatus['Shareholding_Pattern'] === 'submitted' ? ( <> <Right size={24} className="pdfico" /> </>) : (<Wrong size={24} className="pdfico" />) }
               <div>
-              {docStatus['OEM authorized to AIR'] === 'submitted' ? ( <> <Right size={24} className="pdfico" /> </>) : (<Wrong size={24} className="pdfico" />) }
                 <img src={file2png} alt="" className="pdfico1" />
               </div>
-              <h3 className="be">OEM Authorized to AIR</h3>
-            </div>
+              <h3 className="be">Shareholding Pattern</h3>
+          </div>
 
 
             <div className="col doc-col">
-              {docStatus['MOU'] === 'submitted' ? (  <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={48} className="pdfico" />)}
+              {docStatus['Annexure 2 OEM authorized AIR'] === 'submitted' ? (  <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={48} className="pdfico" />)}
               <div>
                 <img src={file3png} alt="" className="pdfico1" />
               </div>
-              <h3 className="be">MOU</h3>
+              <h3 className="be">Annexure 2 OEM authorized AIR</h3>
             </div>
 
             <div className="col doc-col">
               
 
-            {docStatus['Shareholding Pattern'] === 'submitted' ? ( <> <Right size={24} className="pdfico" /> </> )  : ( <Wrong size={24} className="pdfico" /> )}
+            {docStatus['Annexure 3 MOU'] === 'submitted' ? ( <> <Right size={24} className="pdfico" /> </> )  : ( <Wrong size={24} className="pdfico" /> )}
               <div>
                 <img src={file4png} alt="" className="pdfico1" />
               </div>
-              <h3 className="be">Shareholding Pattern</h3>
+              <h3 className="be">Annexure 3 MOU</h3>
             </div>
 
 
             <div className="col doc-col">
 
-            {docStatus['Annexure 1'] === 'submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
+            {docStatus['Annex 1 Signatory authorization'] === 'submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
 
               <div>
                 <img src={file5png} alt="" className="pdfico1" />
               </div>
-              <h3 className="be">Annexure 1</h3>
+              <h3 className="be">Annex 1 Signatory authorization</h3>
             </div>
-            <div className="col doc-col">
-
-            {docStatus['BOM'] === 'sumbitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" />)}
-
-              <div>
-                <img src={file6png} alt="" className="pdfico1" />
-              </div>
-              <h3 className="be">BOM</h3>
-            </div>
-
-            <div className="col doc-col">
-
-            {docStatus['Non Applicability Proforma'] === 'sumbitted' ? ( <> <Right size={24} className="pdfico" /> </>) : (<Wrong size={24} className="pdfico" />)}
-
-              <div>
-                <img src={file7png} alt="" className="pdfico1" />
-              </div>
-              <h3 className="be">Non Applicability Proforma</h3>
-            </div>
-            <div className="col doc-col">
-
-            {docStatus['Proforma Seeking Exemption'] === 'sumbitted' ? (<> <Right size={24} className="pdfico" /> </>) : ( <Wrong size={24} className="pdfico" />)}
-
-              <div>
-                <img src={file8png} alt="" className="pdfico1" />
-              </div>
-              <h3 className="be">Proforma Seeking Exemption</h3>
-            </div>
+           
 
           </div>
         </div>

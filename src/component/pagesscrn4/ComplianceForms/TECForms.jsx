@@ -512,47 +512,10 @@ function LabTestingBox() {
 // -------------------------------Document Box Codes here---------------------------------------------------
 
 function DocumentBox() {
-  const [buttonPopup, setButtonPopup] = useState(false);
+
   const [buttonPopup1, setButtonPopup1] = useState(false);
-  const [documentType, setDocumentType] = useState('');
   const [options] = useState(['Signatory Authorization', 'OEM Authorization', 'MOU', 'Shareholding Pattern', 'Annexure 1', 'BOM', 'Non Applicability Proforma', 'Proforma Seeking Exemption']);
   const [document] = useState(null);
-  const [uploades ,setUploades] = useState('');
-  const applicationID = localStorage.getItem('newApplicationId');
-  const compliance = localStorage.getItem('compliance_id');
-
-  
-  function handleUpload() {
-    const formData = new FormData();
-  
-    for (let i = 0; i < uploades.length; i++) {
-      formData.append('document', uploades[i]);
-    }
-    formData.append('application', applicationID);
-    formData.append('compliance', compliance);
-    formData.append('document_type', documentType);
-    formData.append('status', 'sumbitted');
-
-    console.log(applicationID)
-    console.log(compliance)
-    console.log(documentType)
-  
-    axiosInstance.post(`application/document/`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  
-    setButtonPopup(false);
-  }
-
-
 
 
   const handleDownload = (event, form) => {
@@ -594,34 +557,7 @@ function DocumentBox() {
   // -------------------------------Document Box Codes here---------------------------------------------------
   return (
     <div className="document-box">
-      <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-
-        <div>
-      <div>
-      <h3>Upload a File</h3>
-        <input type ="file" name="file" onChange={(e) => setUploades(e.target.files)} accept/>
-      </div>
-      <div>
-        <select className="optionss" value={documentType} onChange={(e) => setDocumentType(e.target.value)}>
-          
-          <option value="">Select Document Type</option>
-          {options.map((option, index) => (
-            <option key={index} value={option}>{option}</option>
-          ))}
-        </select>
-      </div>
-      <div>
-        <button className = "button8" onClick={handleUpload}>UPLOAD</button>
-      </div>
-    </div>
-
-
-      </Popup>
-      <div className="header-btn">
-        <button className="button7" onClick={() => setButtonPopup(true)}>Upload</button>
-      </div>
-
-
+    
       {/*DOWNLOAD BUTTON POPUP SECTION */}
 
       <div className="header-btn1">
