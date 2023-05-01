@@ -518,11 +518,13 @@ function DocumentBox() {
   const [document] = useState(null);
 
 
+
+
   const handleDownload = (event, form) => {
     event.preventDefault();
     console.log('Downloading file:', form);
-
-    axiosInstance.get(`compliance-form/?compliance=BIS${form}`, {
+  
+    axiosInstance.get(`compliance-form/?compliance=TEC${form}`, {
       params: {
         document_type: form
       },
@@ -533,25 +535,25 @@ function DocumentBox() {
         'accept': 'application/json',
       }
     })
-      .then(response => {
-        console.log(response.data);
-        const url = window.URL.createObjectURL(new Blob([response.data]));
-
-        // Create a link element to trigger the download
-        const link = document.createElement('a');
-        link.href = url;
-        link.setAttribute('download', `${form}.docx`);
-
-        // Add the link element to the document and trigger the download
-        document.body.appendChild(link);
-        link.click();
-      })
-      .catch(error => {
-        console.log(error);
-      });
-
+    .then(response => {
+      console.log(response.data);
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+  
+      // Create a link element to trigger the download
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `${form}.docx`);
+  
+      // Add the link element to the document and trigger the download
+      document.body.appendChild(link);
+      link.click();
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  
     setButtonPopup1(false);
-  }  
+  }
 
 
   // -------------------------------Document Box Codes here---------------------------------------------------
@@ -570,9 +572,9 @@ function DocumentBox() {
           <div className='download-form1'>
             <Multiselect
               isObject={false}
-              options={options}
-              onRemove={(event) => { console.log(event) }}
-              onSelect={(event) => { console.log(event) }}
+              options={ options }
+              onRemove={ (event) => { console.log(event) }}
+              onSelect={ (event) => { console.log(event) }}
               showCheckbox
             />
           </div>

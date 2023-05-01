@@ -204,55 +204,55 @@ const handleSubmit = (event) => {
     axiosInstance.get(`application/compliance/${idel}/`)
       .then(response => {
         const data = response.data.data;
-       const compliance_id = data["compliance"];
+        const compliance_id = data["compliance"];
         const application_id = data["application"];
         const request_for = data["request_for"];
-
+  
         // store local storage then show the values 
         setUniqueid(data["uniqueid"]);
         setComplianceid(data["compliance_name"])
-    
+  
         const compliancename = data["compliance_name"]
         localStorage.setItem("compliance_name", compliancename)
-        
-  //status APIs used 
-
-  axiosInstance.get(`application/status/?compliance=${compliance_id}&application=${application_id}&request_for=${request_for}`)
-  .then(response => {
-    const stepstatus = response.data.data;
-    const newDocStep = { ...docStep }; // create a new object that copies the existing state
-    for (let i = 0; i < stepstatus.length; i++) {
-      const step = stepstatus[i];
-      newDocStep[step.step] = [step.status, step.message, step.start_date];
-    }
-    setdocStep(newDocStep);
-    
-  })
-  .catch(error => {
-    console.log(error);
-  });
-
-
+  
+        //status APIs used 
+        axiosInstance.get(`application/status/?compliance=${compliance_id}&application=${application_id}&request_for=${request_for}`)
+          .then(response => {
+            const stepstatus = response.data.data;
+            const newDocStep = {}; // create a new object that copies the existing state
+            for (let i = 0; i < stepstatus.length; i++) {
+              const step = stepstatus[i];
+              newDocStep[step.step] = [step.status, step.message, step.start_date];
+            }
+            setdocStep(newDocStep);
+            console.log(stepstatus);
+            console.log(newDocStep);
+          })
+          .catch(error => {
+            console.log(error);
+          });
   
         axiosInstance.get(`application/document/?compliance=${compliance_id}&application=${application_id}`)
           .then(response => {
             const documentData = response.data.data;
-           // setStartDate(statusData.start_date);
-           // setStep(statusData.step);
-           const docStatus = {};
-      for (let i = 0; i < documentData.length; i++) {
-        const statusData = documentData[i];
-        docStatus[statusData["document_type"]] = statusData["status"];
-      }
-         setDocStatus(docStatus);
-         
+            const docStatus = {};
+            for (let i = 0; i < documentData.length; i++) {
+              const statusData = documentData[i];
+              docStatus[statusData["document_type"]] = statusData["status"];
+            }
+            setDocStatus(docStatus);
+            console.log(docStatus)
+          })
+          .catch(error => {
+            console.log(error);
           })
       })
       .catch(error => {
         console.log(error);
-  })
-  });
-
+      })
+  }, [idel]);
+  
+  
 
     //Download Button Code handleOptionClick
 
