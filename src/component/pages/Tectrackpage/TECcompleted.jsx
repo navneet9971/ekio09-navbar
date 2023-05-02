@@ -51,7 +51,17 @@ function TECcompleted() {
    // const [setClickedNext] = useState(false); // add state variable for tracking button click
    // const newSteps = ["Portal Registration", "Initation of testing", "AIR Regis", "Foreign OEM Registration", "BOM Submission", "Application Payment", "Final Submission", "Issuance of Cartification"];
   
-//LAB TESTING FROM CONST HERE ---------------------------------------
+   //POPUP BUTTONS OF STEPS 
+   const [buttonPopup3, setButtonPopup3] = useState(false);
+   const [buttonPopup4, setButtonPopup4] = useState(false);
+   const [buttonPopup5, setButtonPopup5] = useState(false);
+   const [buttonPopup6, setButtonPopup6] = useState(false);
+   const [buttonPopup7, setButtonPopup7] = useState(false);
+   const [buttonPopup8, setButtonPopup8] = useState(false);
+   const [buttonPopup9, setButtonPopup9] = useState(false);
+   const [buttonPopup10, setButtonPopup10] = useState(false);
+
+   //LAB TESTING FROM CONST HERE ---------------------------------------
 const [buttonPopup2, setButtonPopup2] = useState(false);
   //const [buttonPopup1, setButtonPopup1] = useState(false);
   const [submitPopup] = useState(false);
@@ -89,6 +99,8 @@ const [buttonPopup2, setButtonPopup2] = useState(false);
   const [circuitdiagram, setCircuitdiagram] = useState("");
   const [pcblayout, setPcblayout] = useState("");
   const [softwareuser, setSoftwareuser] = useState("");
+  //hover mouse const 
+  
 
 // LAB TESTING FROM DATA HANDLE HERE WITH APIS ------------------------------
 const handleSubmit = (event) => {
@@ -335,9 +347,10 @@ const handleDownload = (event, form) => {
 
   setButtonPopup1(false);
 }  
-  
-  
-  
+
+
+
+
     return (
       <div className="ongoing-applications">
       <h1 className="ongo">TEC Completed Application:-</h1>
@@ -701,62 +714,119 @@ const handleDownload = (event, form) => {
           
   <div className="tecon">
    
+   <Popup trigger={buttonPopup3} setTrigger={setButtonPopup3}>
+  <h2>  Meassge :- 
+   {docStep["1"] && docStep["1"][1]}</h2>
+   <h2>Start Date :-
+   {docStep["1"] && docStep["1"][2]}</h2>
+   </Popup>
 
   <Thum1png className="mainsvg2" />
   {docStep["1"] && docStep["1"][0] === "Completed" ? (
-    <Right className="mainsvg3" />
+    <Right className="mainsvg3" onClick={() => setButtonPopup3(true)} />
   ) : (
-    <Wrong className="mainsvg3" />
+    <Wrong className="mainsvg3" onClick={() => setButtonPopup3(true)}/>
   )}
 
+
+
+<Popup trigger={buttonPopup4} setTrigger={setButtonPopup4}>
+<h2>  Meassge :- 
+   {docStep["2"] && docStep["2"][1]}</h2>
+   <h2>Start Date :-
+   {docStep["2"] && docStep["2"][2]}</h2>
+   </Popup>
 
   <Thum2png className="mainsvg2" />
   {docStep["2"] && docStep["2"][0] === "Completed" ? (
-    <Right className="mainsvg3" />
+    <Right className="mainsvg3" onClick={() => setButtonPopup4(true)}/>
   ) : (
-    <Wrong className="mainsvg3" />
+    <Wrong className="mainsvg3" onClick={() => setButtonPopup4(true)}/>
   )}
+
+
+<Popup trigger={buttonPopup5} setTrigger={setButtonPopup5}>
+<h2>  Meassge :- 
+   {docStep["3"] && docStep["3"][1]}</h2>
+   <h2>Start Date :-
+   {docStep["3"] && docStep["3"][2]}</h2>
+   </Popup>
 
   <Thum3png className="mainsvg2" />
   {docStep["3"] && docStep["3"][0] === "Completed" ? (
-    <Right className="mainsvg3" />
+    <Right className="mainsvg3" onClick={() => setButtonPopup5(true)}/>
   ) : (
-    <Wrong className="mainsvg3" />
+    <Wrong className="mainsvg3" onClick={() => setButtonPopup5(true)}/>
   )}
 
+
+<Popup trigger={buttonPopup6} setTrigger={setButtonPopup6}>
+<h2>  Meassge :- 
+   {docStep["4"] && docStep["4"][1]}</h2>
+   <h2>Start Date :-
+   {docStep["4"] && docStep["4"][2]}</h2>
+   </Popup>
   <Thum4png className="mainsvg2" />
   {docStep["4"] && docStep["4"][0] === "Completed" ? (
-    <Right className="mainsvg3" />
+    <Right className="mainsvg3" onClick={() => setButtonPopup6(true)}/>
   ) : (
-    <Wrong className="mainsvg3" />
+    <Wrong className="mainsvg3" onClick={() => setButtonPopup6(true)}/>
   )}
+
+<Popup trigger={buttonPopup7} setTrigger={setButtonPopup7}>
+<h2>  Meassge :- 
+   {docStep["5"] && docStep["5"][1]}</h2>
+   <h2>Start Date :-
+   {docStep["5"] && docStep["5"][2]}</h2>
+   </Popup>
 
   <Thum5png className="mainsvg2" />
   {docStep["5"] && docStep["5"][0] === "Completed" ? (
-    <Right className="mainsvg3" />
+    <Right className="mainsvg3" onClick={() => setButtonPopup7(true)}/>
   ) : (
-    <Wrong className="mainsvg3" />
+    <Wrong className="mainsvg3" onClick={() => setButtonPopup7(true)}/>
   )}
+
+<Popup trigger={buttonPopup8} setTrigger={setButtonPopup8}>
+<h2>  Meassge :- 
+   {docStep["6"] && docStep["6"][1]}</h2>
+   <h2>Start Date :-
+   {docStep["6"] && docStep["6"][2]}</h2>
+   </Popup>
 
   <Thum6png className="mainsvg2" />
   {docStep["6"] && docStep["6"][0] === "Completed" ? (
-    <Right className="mainsvg3" />
+    <Right className="mainsvg3" onClick={() => setButtonPopup8(true)}/>
   ) : (
-    <Wrong className="mainsvg3" />
+    <Wrong className="mainsvg3" onClick={() => setButtonPopup8(true)}/>
   )}
+
+<Popup trigger={buttonPopup9} setTrigger={setButtonPopup9}>
+<h2>  Meassge :- 
+   {docStep["7"] && docStep["7"][1]}</h2>
+   <h2>Start Date :-
+   {docStep["7"] && docStep["7"][2]}</h2>
+   </Popup>
 
   <Thum7png className="mainsvg2" />
   {docStep["7"] && docStep["7"][0] === "Completed" ? (
-    <Right className="mainsvg3" />
+    <Right className="mainsvg3" onClick={() => setButtonPopup9(true)}/>
   ) : (
-    <Wrong className="mainsvg3" />
+    <Wrong className="mainsvg3" onClick={() => setButtonPopup9(true)}/>
   )}
+
+<Popup trigger={buttonPopup10} setTrigger={setButtonPopup10}>
+<h2>  Meassge :- 
+   {docStep["8"] && docStep["8"][1]}</h2>
+   <h2>Start Date :-
+   {docStep["8"] && docStep["8"][2]}</h2>
+   </Popup>
 
   <Thum8png className="mainsvg2" />
   {docStep["8"] && docStep["8"][0] === "Completed" ? (
-    <Right className="mainsvg3" />
+    <Right className="mainsvg3" onClick={() => setButtonPopup10(true)}/>
   ) : (
-    <Wrong className="mainsvg3" />
+    <Wrong className="mainsvg3" onClick={() => setButtonPopup10(true)}/>
   )}
 
 

@@ -5,6 +5,7 @@ import Popup from "../popup/Popup";
 import Multiselect from 'multiselect-react-dropdown';
 import axiosInstance from '../../../interceptors/axios';
 
+
 function MiddleSection() {
   // State variable
   const [middleData, setMiddleData] = useState("");
@@ -792,9 +793,26 @@ function Startapp() {
         'Content-Type': 'multipart/form-data',
       }
     }).then(response => {
-      console.log(response.data);
-      const autosave = response.data.data["forms"]
-      console.log(autosave)
+      const data = response.data; // your JSON data here
+
+// loop through each form in the "forms" field
+      for (const [formName, formData] of Object.entries(data.data.forms)) {
+        // create a new Blob object with the formData
+        const file = new Blob([formData], { type: 'text/plain' });
+
+        // create a URL for the file
+        const fileUrl = URL.createObjectURL(file);
+
+        // create a temporary anchor tag to trigger the download
+        const link = document.createElement('a');
+        link.href = fileUrl;
+        link.download = `${data.data.uniqueid} - ${formName}.txt`;
+        link.click();
+
+        // clean up the URL object
+        URL.revokeObjectURL(fileUrl);
+      }
+      
     }).catch(error => {
       console.log(error);
     });

@@ -114,7 +114,7 @@ p.btn-title {
 }
 
 .button-container {
-  margin: 50px auto; /* Center the container and add 50px margin at the top and bottom */
+  margin-top: -6em; /* Center the container and add 50px margin at the top and bottom */
   display: flex; /* Use flexbox layout */
   justify-content: center; /* Center the buttons horizontally */
 }
@@ -142,8 +142,8 @@ button.continue-button:hover{
 
 /* ---------- MAINPAGE SVG AND TEXT CSS-------*/
 svg.mainsvg1 {
-  width: 25em;
-  height: 10em;
+  width: 182px;
+  height: 26em;
 }
 
 svg.mainsvg2 {

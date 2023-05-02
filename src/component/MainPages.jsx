@@ -44,7 +44,7 @@ const MainPage = () => {
   <Steps4 className="mainsvg1"/>
   <Steps5 className="mainsvg1"/>
   <Steps6 className="mainsvg1"/>
-  <Steps7 className="mainsvg9"/>
+  <Steps7 className="mainsvg1"/>
 
         <div className="button-container">
           <button onClick={handleContinue} className="continue-button">
