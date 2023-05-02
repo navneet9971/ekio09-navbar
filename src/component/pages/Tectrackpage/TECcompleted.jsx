@@ -44,7 +44,7 @@ function TECcompleted() {
     const [buttonPopup, setButtonPopup] = useState(false);
   const [options] = useState(['Authorized Signatory Letter', 'MOU', 'AOA', 'OEM authorized to AIR', 'MOA', 'Certificate of Incorporation']); 
   const [buttonPopup1, setButtonPopup1] = useState(false);
-  const [document] = useState(null);
+ // const [document] = useState(null);
    // const [startDate, setStartDate] = useState(null);
    // const [endDate, setEndDate] = useState(null);
   //  const [clickedColor, setClickedColor] = useState(false);

@@ -515,16 +515,14 @@ function DocumentBox() {
 
   const [buttonPopup1, setButtonPopup1] = useState(false);
   const [options] = useState(['Signatory Authorization', 'OEM Authorization', 'MOU', 'Shareholding Pattern', 'Annexure 1', 'BOM', 'Non Applicability Proforma', 'Proforma Seeking Exemption']);
-  const [document] = useState(null);
-
-
+  //const [document] = useState(null);
 
 
   const handleDownload = (event, form) => {
     event.preventDefault();
     console.log('Downloading file:', form);
   
-    axiosInstance.get(`compliance-form/?compliance=TEC${form}`, {
+    axiosInstance.get(`compliance-form/?compliance=TEC`, {
       params: {
         document_type: form
       },
@@ -539,14 +537,21 @@ function DocumentBox() {
       console.log(response.data);
       const url = window.URL.createObjectURL(new Blob([response.data]));
   
-      // Create a link element to trigger the download
-      const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', `${form}.docx`);
+      try {
+        // Create a link element to trigger the download
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', `${form}.docx`);
   
-      // Add the link element to the document and trigger the download
-      document.body.appendChild(link);
-      link.click();
+        // Add the link element to the document and trigger the download
+        document.body.appendChild(link);
+        link.click();
+      } catch (error) {
+        console.log(error);
+      } finally {
+        // Clean up the URL object to free up memory
+        window.URL.revokeObjectURL(url);
+      }
     })
     .catch(error => {
       console.log(error);
@@ -554,43 +559,46 @@ function DocumentBox() {
   
     setButtonPopup1(false);
   }
+  
 
 
   // -------------------------------Document Box Codes here---------------------------------------------------
   return (
     <div className="document-box">
-    
-      {/*DOWNLOAD BUTTON POPUP SECTION */}
 
-      <div className="header-btn1">
-        <button className="button7" onClick={() => setButtonPopup1(true)}>Download</button>
-      </div>
-      <Popup trigger={buttonPopup1} setTrigger={setButtonPopup1}>
+             {/*DOWNLOAD BUTTON POPUP SECTION */}
+
+             <div className="header-btn1">
+                  <button className="button7" onClick={() => setButtonPopup1(true)}>Download</button>
+              </div>
+    <Popup trigger={buttonPopup1} setTrigger={setButtonPopup1}>
         <h3>Download a File</h3>
         <label>
           <h4>Select a file to download:</h4>
           <div className='download-form1'>
             <Multiselect
-              isObject={false}
-              options={ options }
-              onRemove={ (event) => { console.log(event) }}
-              onSelect={ (event) => { console.log(event) }}
-              showCheckbox
+            isObject={false}
+            options={ options }
+            onRemove={(event)=> { console.log(event) }}
+            onSelect={ (event)=> { console.log(event) }}
+            showCheckbox
             />
           </div>
         </label>
         <div>
           <button className="button8" type="submit" onClick={handleDownload}>Download</button>
         </div>
-      </Popup>
-      {/*
-      <div className="header-btn">
-      <button className="button7" onClick={viewDocument}>View</button>
-                  </div> */}
+    </Popup>
+{/*
+    <div className="header-btn">
+    <button className="button7" onClick={viewDocument}>View</button>
+                </div> */}
 
-    </div>
-  );
+  </div>
+);
 }
+    
+  
 
 // Video Section Codes Here----------------------------------------
 
