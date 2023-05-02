@@ -2,6 +2,18 @@
   box-sizing: border-box;
 }
 
+.bgchangecompleted{
+  background-image: url("../assets/pages-bgimages/4.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 91vh;
+  background-position: right center;
+}
+
+
 h1.type {
   float: left;
   color: black;
@@ -303,7 +315,6 @@ button120.btn {
 
 .ongoing-applications{
   width: 100%;
-  background-color: #fff;
   padding:30px;
   padding-top:60px;
 }
@@ -478,66 +489,34 @@ p.dt10 {
 }
 
 /*-----Download button Css of Forms---*/
-.dropdown {
-  display: inline-block;
-  position: relative;
-}
-
-.dd-button {
-  display: inline-block;
-  border: 1px solid gray;
-  border-radius: 4px;
-  padding: 10px 30px 10px 20px;
-  background-color: #55b700;
-  cursor: pointer;
-  white-space: nowrap;
-  margin-left: 75em;
-  font-weight: bold;
-    font-size: 14px;
-    color: white;
-}
-
-.dd-button:after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  right: 15px;
-  transform: translateY(-50%);
-  width: 0; 
-  height: 0; 
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 5px solid black;
-}
-
-.dd-button:hover {
-  background-color: #082a77;
-}
-
-
 .dd-menu {
-    position: absolute;
-    top: 95%;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 0;
-    margin: 2px 0 0 0;
-    box-shadow: 0 0 6px 0 rgba(0,0,0,0.1);
-    background-color: #ffffff;
-    list-style-type: none;
-    margin-left: 65.8em;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: absolute;
+  top: 100%;
+  left: 419px;
+  z-index: 974;
+  padding: 20px;
 }
 
-.dd-menu li {
-  padding: 10px 20px;
+.reportbtn {
+  padding: 10px 10px;
+  border-radius: 20px;
+  /* border: none; */
+  background-color: #082a71;
+  color: white;
   cursor: pointer;
-  white-space: nowrap;
+  font-size: 26px;
+  font-weight: 600;
+  margin-left: 20px;
 }
 
-.dd-menu li:hover {
+.reportbtn:hover{
   background-color: #55b700;
-} 
+}
 
 
-/*----------HOver POPup------*/
-
+.pdffilesup {
+  margin: 0 8em;
+}

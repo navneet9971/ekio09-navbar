@@ -2,12 +2,8 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './Pages.css';
 import axiosInstance from '../../interceptors/axios';
-
-import Chatbot from 'react-chatbot-kit';
 import 'react-chatbot-kit/build/main.css';
-import config from '../../chatbot/config';
-import messageParser from '../../chatbot/MessageParser';
-import actionProvider from '../../chatbot/ActionProvider';
+
 
 
 
@@ -61,8 +57,9 @@ axiosInstance.get(`/compliance/?category=${category}&product=${product}&region=$
 };
 
   return (
+    <div className='bgchange'>
     <div className="first-container22">
-      <h3>Please Enter the following details to Start a new application :</h3>
+      <h3>Please enter the following details to Start a new application :</h3>
       <h4 className="red-warning">You need to fill at least 1 data point to see the list of compliance.</h4>
 
       <div className="form-group22">
@@ -90,16 +87,8 @@ axiosInstance.get(`/compliance/?category=${category}&product=${product}&region=$
       <div className="gobutton22"> 
         <button onClick={handleGoClick}>GO</button>
       </div>    
-<div style={{
-  position: "fixed",
-  right: '25px',
-  bottom: '50px',
-  boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px',
 
-}}
->
-      <Chatbot  config={config} messageParser={messageParser} actionProvider={actionProvider} /> 
-      </div>
+    </div>
     </div>
   );
 };

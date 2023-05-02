@@ -2,14 +2,20 @@
   box-sizing: border-box;
 }
 
-.first-container22 {
-  background-color: rgb(235, 239, 243);
-  border: 1px solid yellow;
-  width: 700px;
-  margin: 100px auto 0;
-  border-radius: 20px;
-  padding: 52px 60px 50px 30px;
-  outline: dashed 1px black;
+.bgchange{
+  background-image: url("../assets/pages-bgimages/Copy\ of\ background.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 91vh;
+}
+
+.first-container22 { 
+  /* border: 1px solid yellow; */ 
+  padding: 31px 60px 50px 30px;
+  /* outline: dashed 1px black; */
 }
 .first-container22 h30 {
   font-size: 17px;
@@ -38,7 +44,7 @@
   border-radius: 0 5px 5px 0;
   padding: 2px 7px;
   border: solid 1px #cbc9c9;
-  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.09);
+ /* box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.09); */
   background: #fff;
 }
 .first-container22 .region-group22 {
@@ -542,38 +548,32 @@ a.notify {
     }
 
   /*-------------ThirdPage Butoon CSS--------------*/
-  .button5, .button7, .button10 {
+
+  .header-btn1 {
+    display: flex;
+    justify-content: flex-end; /* Change this to adjust the spacing between buttons */
     align-items: center;
-    border-radius: 14px;
-    background-color: #082a71;
-    box-sizing: border-box;
-    color: #efe3e3;
-    cursor: pointer;
-    display: inline-flex;
-    height: 48px;
-    margin: 10px 40px;
-    justify-content: center;
-    overflow: hidden;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding: 30px;
+  }
+  .button7 {
+    /* Add any styles for the button here */
+    padding: 10px;
     position: relative;
-    font-family: Avenir
+    left: 324px; /* Adjust this value to move the button left or right */
+    top: 10px; /* Adjust this value to move the button up or down */
+    margin-right: 20px;
+    background-color: #082a71;
+    color: #fff;
+    border-radius: 15px;
+    cursor: pointer;
+  }
+.button7:hover {
+background-color: #55b700;
 }
   
-  .button5:hover,
-  .button7:hover,
-  .button10:hover {
-    background-color: #55b700;
-  }
-
 /* button css styling is here of Forms Page  */
 .button10 {
     left: 1em;
-}
-
-.lab-testing-box {
-  margin-left: 18em;
-  margin-top: -4.3em;
 }
 
 .document-box {
@@ -581,19 +581,11 @@ a.notify {
   margin-top: -4.3em;
 }
 
-.header-btn1 {
-  margin-top: -4.3em;
-  margin-left: 10em;
-}
-
 .notify-btnn1 {
   margin-top: -108em;
   margin-left: 54em;
 }
 
-.header-btn {
-  display: contents;
-}
 
 /*------- APIS comeing data css ------*/
 h2.content {
@@ -621,8 +613,12 @@ h398.reqdoc {
 }
 
 .ftch.data {
+  background-image: url("../assets/pages-bgimages/3.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
   text-align: center;
   margin-top: 30px;
+  background-position: right center ; 
 }
 
 

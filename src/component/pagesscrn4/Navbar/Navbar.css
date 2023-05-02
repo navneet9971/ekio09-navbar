@@ -14,7 +14,7 @@ i {
 .button99 {
   margin-right:60px;
   position: absolute;
-  transform: translate(20%, -120%);
+  transform: translate(59%, -125%);
   margin-left: 86%;
   padding: 1em 1em;
   font-size: 12px;
@@ -22,7 +22,7 @@ i {
   letter-spacing: 2.5px;
   font-weight: 500;
   color: #000;
-  background-color: #fff;
+  background-color: #55b700;
   border: none;
   border-radius: 45px;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
@@ -32,21 +32,21 @@ i {
 }
 
 .button99:hover {
-  background-color: #23c483;
+  background-color: #082a71;
   box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
   color: #fff;
   position: absolute;
-  transform: translate(20%, -120%);
+  transform: translate(59%, -125%);
 }
 
 .button99:active {
   position: absolute;
-  transform: translate(20%, -120%);
+  transform: translate(59%, -125%);
 }
 
 /*----------bootstrap-navbar---css------------*/
 .navbar-mainbg {
-  background-color: #5161ce;
+ /* background-color: #5161ce; */
   padding: 0px;
 }
 #navbarSupportedContent {
@@ -66,9 +66,9 @@ i {
   float: left;
 }
 #navbarSupportedContent ul li a {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(2,2,2);
   text-decoration: none;
-  font-size: 15px;
+  font-size: 19px;
   display: block;
   padding: 12px 20px;
   transition-duration: 0.6s;
@@ -131,7 +131,7 @@ i {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: #5161ce;
+/*  background-color: #5161ce; */
 }
 .hori-selector .right:before {
   bottom: 0;
@@ -166,7 +166,7 @@ i {
 .nav-btn {
   display: none;
   background: transparent;
-  color: #fff;
+  color: #111111;
   border: none;
   font-size: 18px;
   margin-left: 20px;
@@ -187,7 +187,7 @@ i {
     transform: translateX(-300px);
     transition: 0.4s all;
     position: fixed;
-    background-color: #5161ce;
+   /* background-color: #5161ce; */
     left: 0;
     width: 230px;
     height: calc(100% - 40px);

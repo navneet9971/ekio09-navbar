@@ -29,7 +29,6 @@ function TECcompleted() {
   // const steps = ["Application Submitted", "Sample sent for testing", "Test report generated", "Document pending with authorities", "Final report generated"];
    // const [current, setCurrentStep] = useState(1);
  //   const [setComplete] = useState(false);
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [setSelectedOption] = useState('');
   const [docStatus, setDocStatus] = useState({});
   const [docStep, setdocStep] = useState({});
@@ -268,13 +267,9 @@ const handleSubmit = (event) => {
 
     //Download Button Code handleOptionClick
 
-  const handleButtonClick = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
-    setIsDropdownOpen(false);
   };
     
  /*   const handleDownload = () => {
@@ -352,6 +347,7 @@ const handleDownload = (event, form) => {
 
 
     return (
+     <div className="bgchangecompleted">
       <div className="ongoing-applications">
       <h1 className="ongo">TEC Completed Application:-</h1>
       <div>
@@ -360,18 +356,12 @@ const handleDownload = (event, form) => {
        {/* <button className="clidown" onClick={handleDownload}>Download</button> */}
       </div>
 
-      <div className="dropdown">
-      <button className="dd-button" onClick={handleButtonClick}>
-        {'Report'}
-      </button>
-      {isDropdownOpen && (
-        <ul className="dd-menu">
-          <li onClick={() => handleOptionClick('Process')}>Process</li>
-          <li onClick={() => handleOptionClick('Testing')}>Testing</li>
-          <li onClick={() => handleOptionClick('Certificate')}>Certificate</li>
-        </ul>
-      )}
-    </div>
+        <div className="dd-menu">
+          <button className="reportbtn" onClick={() => handleOptionClick('Process')}>Process</button>
+          <button className="reportbtn" onClick={() => handleOptionClick('Testing')}>Testing</button>
+          <button className="reportbtn" onClick={() => handleOptionClick('Certificate')}>Certificate</button>
+        </div>
+ 
 
 
 
@@ -396,15 +386,13 @@ const handleDownload = (event, form) => {
   </div>
 </div>
 </Popup>
-<div className="header-btn">
-<button className="button7" onClick={() => setButtonPopup(true)}>Upload</button>
-</div>
+
+
 
 
 {/*-----------LAB TESTING JSX CODE IS HERE----------*/}
 
 <div className="lab-testing-box">
-      <button className="button7" onClick={() => setButtonPopup2(true)}>Request Testing</button>
       <Popup trigger={buttonPopup2} setTrigger={setButtonPopup2}>
         <div style={{ height: "500px", overflow: "scroll" }}>
           <h801>Testing Information Required</h801>
@@ -691,6 +679,8 @@ const handleDownload = (event, form) => {
 {/*------------------DOWNLOAD BUTTON CODE ----------------*/}
 
 <div className="header-btn1">
+<button className="button7" onClick={() => setButtonPopup2(true)}>Request Testing</button>
+<button className="button7" onClick={() => setButtonPopup(true)}>Upload</button>
 <button className="button7" onClick={() => setButtonPopup1(true)}>Download</button>
 </div>
 <Popup trigger={buttonPopup1} setTrigger={setButtonPopup1}>
@@ -832,7 +822,7 @@ const handleDownload = (event, form) => {
 
   </div>
             
-        <div>
+        <div className="pdffilesup">
           <div className="row">
            
           <div className="col doc-col">
@@ -912,6 +902,7 @@ const handleDownload = (event, form) => {
   )}  */}
   
         </div>
+       </div>
   
   
     );

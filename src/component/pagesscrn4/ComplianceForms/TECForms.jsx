@@ -794,7 +794,7 @@ function Startapp() {
       }
     }).then(response => {
       const data = response.data; // your JSON data here
-
+console.log(data)
 // loop through each form in the "forms" field
       for (const [formName, formData] of Object.entries(data.data.forms)) {
         // create a new Blob object with the formData
