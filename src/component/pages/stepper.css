@@ -3,14 +3,13 @@
 }
 
 .bgchangecompleted{
-  background-image: url("../assets/pages-bgimages/4.svg");
+  background-image: url("../assets/pages-bgimages/10.svg");
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 91vh;
-  background-position: right center;
+  min-height: 100vh;
 }
 
 
@@ -495,7 +494,7 @@ p.dt10 {
   align-items: center;
   position: absolute;
   top: 100%;
-  left: 224px;
+  left: 134px;
   z-index: 974;
   padding: 20px;
 }

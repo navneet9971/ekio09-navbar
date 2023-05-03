@@ -363,8 +363,8 @@ const handleDownload = (event, form) => {
       </div>
 
         <div className="dd-menu">
-          <button className="reportbtn" onClick={() => handleOptionClick('Process')}>Download Process</button>
-          <button className="reportbtn" onClick={() => handleOptionClick('Testing')}>Download Testing</button>
+          <button className="reportbtn" onClick={() => handleOptionClick('Process')}>Download Process Report</button>
+          <button className="reportbtn" onClick={() => handleOptionClick('Testing')}>Download Test Certificate</button>
           <button className="reportbtn" onClick={() => handleOptionClick('Certificate')}>Download Certificate</button>
         </div>
  

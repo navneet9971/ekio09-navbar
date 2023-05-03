@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axiosInstance from "../../interceptors/axios";
 import "./Pages.css";
+import backgroundImage from '../assets/pages-bgimages/11.svg';
 
 const Secondpage = () => {
   const history = useHistory();
@@ -47,6 +48,7 @@ const Secondpage = () => {
   };
 
   return (
+   <div style={{ backgroundImage: `url(${backgroundImage})` }}>
     <div className="table">
       <h1>List of Compliance</h1>
       <div className="table-wrapper">
@@ -91,6 +93,7 @@ const Secondpage = () => {
           </tbody>
         </table>
       </div>
+    </div>
     </div>
   );
 };
