@@ -569,8 +569,8 @@ function DocumentBox() {
 
              {/*DOWNLOAD BUTTON POPUP SECTION */}
 
-             <div className="header-btn1">
-                  <button className="button7" onClick={() => setButtonPopup1(true)}>Download</button>
+             <div className="tecforms-btn1">
+                  <button className='tec-btn' onClick={() => setButtonPopup1(true)}>Download</button>
               </div>
     <Popup trigger={buttonPopup1} setTrigger={setButtonPopup1}>
         <h3>Download a File</h3>
@@ -635,8 +635,9 @@ function Thirdpage() {
       {/*------------------Notify Section -----------------------*/}
       <div className="notifyy" >
 
-        <button className="button7" onClick={() => setButtonPopup2(true)}>Notification</button>
-
+<div className="tecforms-btn2">
+        <button className='tec-btn' onClick={() => setButtonPopup2(true)}>Notification</button>
+        </div>
         <Popup trigger={buttonPopup2} setTrigger={setButtonPopup2}>
           <div>
             <h3 className='notif'>Notification</h3>
@@ -821,7 +822,9 @@ console.log(data)
 
   return (
     <div>
-      <button className='button10' onClick={() => setButtonPopup5(true)}>Start New Application</button>
+      <div className="tecforms-btn3">
+      <button className='tec-btn' onClick={() => setButtonPopup5(true)}>Start New Application</button>
+      </div>
       <Popup trigger={buttonPopup5} setTrigger={setButtonPopup5}>
         <div style={{ height: "500px", overflow: "scroll" }}>
           <h801></h801>

@@ -569,9 +569,9 @@ a.notify {
       font-weight: 600;
       cursor: pointer;
   }
-.button7:hover {
-background-color: #55b700;
-}
+  .button7:hover {
+    background-color: #55b700;
+  }
   
 /* button css styling is here of Forms Page  */
 .button10 {
@@ -860,4 +860,36 @@ select.optionss {
   position: relative;
   margin-bottom: 2em;
 }
+
+.tecforms-btn1 {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 28px;
+  transform: translateX(-35%);
+}
+
+.tecforms-btn2 {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 23px;
+  transform: translateX(-98%);
+}
+
+.tec-btn{
+  padding: 10px;
+  position: relative;
+  top: 10px;
+  margin-right: 20px;
+  background-color: #082a71;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tec-btn:hover{
+  background-color: #55b700;
+}
+
 

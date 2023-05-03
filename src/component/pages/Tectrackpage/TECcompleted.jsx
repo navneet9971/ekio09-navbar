@@ -35,8 +35,6 @@ function TECcompleted() {
   const [uniqueid, setUniqueid] = useState("");
   const [complianceid, setComplianceid] = useState("");
   const idel = localStorage.getItem('ide');
-  const applicationID = localStorage.getItem('newApplicationId');
-  const compliance = localStorage.getItem('compliance_id');
   const [documentType, setDocumentType] = useState('');
   const [uploades ,setUploades] = useState('');
     const [buttonPopup, setButtonPopup] = useState(false);
@@ -98,7 +96,10 @@ const [buttonPopup2, setButtonPopup2] = useState(false);
   const [pcblayout, setPcblayout] = useState("");
   const [softwareuser, setSoftwareuser] = useState("");
   //hover mouse const 
-  
+
+  //const useing APIS call from upload button 
+  const [compliance_id, setCompliance_id1] = useState(null);
+  const [application_id, setApplication_id1]=  useState(null);
 
 // LAB TESTING FROM DATA HANDLE HERE WITH APIS ------------------------------
 const handleSubmit = (event) => {
@@ -217,7 +218,12 @@ const handleSubmit = (event) => {
         const compliance_id = data["compliance"];
         const application_id = data["application"];
         const request_for = data["request_for"];
+        setCompliance_id1(compliance_id);
+        setApplication_id1(application_id);
+        console.log(compliance_id)
+        console.log(application_id)
   
+        console.log(data)
         // store local storage then show the values 
         setUniqueid(data["uniqueid"]);
         setComplianceid(data["compliance_name"])
@@ -245,6 +251,7 @@ const handleSubmit = (event) => {
         axiosInstance.get(`application/document/?compliance=${compliance_id}&application=${application_id}`)
           .then(response => {
             const documentData = response.data.data;
+            console.log(documentData)
             const docStatus = {};
             for (let i = 0; i < documentData.length; i++) {
               const statusData = documentData[i];
@@ -288,13 +295,13 @@ const handleSubmit = (event) => {
       for (let i = 0; i < uploades.length; i++) {
         formData.append('document', uploades[i]);
       }
-      formData.append('application', applicationID);
-      formData.append('compliance', compliance);
+      formData.append('application', application_id);
+      formData.append('compliance', compliance_id);
       formData.append('document_type', documentType);
       formData.append('status', 'sumbitted');
   
-      console.log(applicationID)
-      console.log(compliance)
+      console.log(application_id)
+      console.log(compliance_id)
       console.log(documentType)
     
       axiosInstance.post(`application/document/`, formData, {
@@ -825,7 +832,7 @@ const handleDownload = (event, form) => {
           <div className="row">
            
           <div className="col doc-col">
-          {docStatus['Authorized Signatory Letter'] === 'submitted' ? ( <> <Right size={24} className="pdfico" />  </>) : (<Wrong size={24} className="pdfico" />) }
+          {docStatus['Authorized Signatory Letter'] === 'sumbitted' ? ( <> <Right size={24} className="pdfico" />  </>) : (<Wrong size={24} className="pdfico" />) }
           <div>
             <img src={file1png} alt="" className="pdfico1" />
           </div>
@@ -833,7 +840,7 @@ const handleDownload = (event, form) => {
     </div>
 
             <div className="col doc-col">
-              {docStatus['MOU'] === 'submitted' ? (  <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={48} className="pdfico" />)}
+              {docStatus['MOU'] === 'sumbitted' ? (  <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" />)}
               <div>
                 <img src={file2png} alt="" className="pdfico1" />
               </div>
@@ -843,7 +850,7 @@ const handleDownload = (event, form) => {
             <div className="col doc-col">
               
 
-            {docStatus['AOA'] === 'submitted' ? ( <> <Right size={24} className="pdfico" /> </> )  : ( <Wrong size={24} className="pdfico" /> )}
+            {docStatus['AOA'] === 'sumbitted' ? ( <> <Right size={24} className="pdfico" /> </> )  : ( <Wrong size={24} className="pdfico" /> )}
               <div>
                 <img src={file3png} alt="" className="pdfico1" />
               </div>
@@ -853,7 +860,7 @@ const handleDownload = (event, form) => {
 
             <div className="col doc-col">
 
-            {docStatus['OEM authorized to AIR'] === 'submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
+            {docStatus['OEM authorized to AIR'] === 'sumbitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
 
               <div>
                 <img src={file4png} alt="" className="pdfico1" />
@@ -863,7 +870,7 @@ const handleDownload = (event, form) => {
 
             <div className="col doc-col">
 
-{docStatus['MOA'] === 'submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
+{docStatus['MOA'] === 'sumbitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
 
   <div>
     <img src={file5png} alt="" className="pdfico1" />
@@ -873,7 +880,7 @@ const handleDownload = (event, form) => {
 
 <div className="col doc-col">
 
-{docStatus['Certificate of Incorporation'] === 'submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
+{docStatus['Certificate of Incorporation'] === 'sumbitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
 
   <div>
     <img src={file6png} alt="" className="pdfico1" />

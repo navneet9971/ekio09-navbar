@@ -129,7 +129,7 @@ function Review() {
               <th className="header">Application Name </th>
               <th className="header">Start Date</th>
               <th className="header">Project Code</th>
-              <th className="header">Estimated End Date</th>
+              <th className="header">Days for completion of Process</th>
               <th className="header">Actual End Date</th>
               <th className="header">
                 Status{" "}
