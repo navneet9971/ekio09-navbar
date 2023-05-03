@@ -363,7 +363,7 @@ const handleDownload = (event, form) => {
       </div>
 
         <div className="dd-menu">
-          <button className="reportbtn" onClick={() => handleOptionClick('Process')}>Download Process Report</button>
+          <button className="reportbtn" onClick={() => handleOptionClick('Process')}>Download Progress Report</button>
           <button className="reportbtn" onClick={() => handleOptionClick('Testing')}>Download Test Certificate</button>
           <button className="reportbtn" onClick={() => handleOptionClick('Certificate')}>Download Certificate</button>
         </div>
@@ -711,7 +711,7 @@ const handleDownload = (event, form) => {
   <div className="tecon">
    
    <Popup trigger={buttonPopup3} setTrigger={setButtonPopup3}>
-  <h2>  Meassge :- 
+  <h2>  Message :- 
    {docStep["1"] && docStep["1"][1]}</h2>
    <h2>Start Date :- 
    {docStep["1"] && docStep["1"][2].slice(0,10)}</h2>
@@ -727,7 +727,7 @@ const handleDownload = (event, form) => {
 
 
 <Popup trigger={buttonPopup4} setTrigger={setButtonPopup4}>
-<h2>  Meassge :- 
+<h2>  Message :- 
    {docStep["2"] && docStep["2"][1]}</h2>
    <h2>Start Date :-
    {docStep["2"] && docStep["2"][2].slice(0,10)}</h2>
@@ -742,7 +742,7 @@ const handleDownload = (event, form) => {
 
 
 <Popup trigger={buttonPopup5} setTrigger={setButtonPopup5}>
-<h2>  Meassge :- 
+<h2>  Message :- 
    {docStep["3"] && docStep["3"][1]}</h2>
    <h2>Start Date :-
    {docStep["3"] && docStep["3"][2].slice(0,10)}</h2>
@@ -757,7 +757,7 @@ const handleDownload = (event, form) => {
 
 
 <Popup trigger={buttonPopup6} setTrigger={setButtonPopup6}>
-<h2>  Meassge :- 
+<h2>  Message :- 
    {docStep["4"] && docStep["4"][1]}</h2>
    <h2>Start Date :-
    {docStep["4"] && docStep["4"][2].slice(0,10)}</h2>
@@ -770,7 +770,7 @@ const handleDownload = (event, form) => {
   )}
 
 <Popup trigger={buttonPopup7} setTrigger={setButtonPopup7}>
-<h2>  Meassge :- 
+<h2>  Message :- 
    {docStep["5"] && docStep["5"][1]}</h2>
    <h2>Start Date :-
    {docStep["5"] && docStep["5"][2].slice(0,10)}</h2>
@@ -784,7 +784,7 @@ const handleDownload = (event, form) => {
   )}
 
 <Popup trigger={buttonPopup8} setTrigger={setButtonPopup8}>
-<h2>  Meassge :- 
+<h2>  Message :- 
    {docStep["6"] && docStep["6"][1]}</h2>
    <h2>Start Date :-
    {docStep["6"] && docStep["6"][2].slice(0,10)}</h2>
@@ -798,7 +798,7 @@ const handleDownload = (event, form) => {
   )}
 
 <Popup trigger={buttonPopup9} setTrigger={setButtonPopup9}>
-<h2>  Meassge :- 
+<h2>  Message :- 
    {docStep["7"] && docStep["7"][1]}</h2>
    <h2>Start Date :-
    {docStep["7"] && docStep["7"][2].slice(0,10)}</h2>
@@ -812,7 +812,7 @@ const handleDownload = (event, form) => {
   )}
 
 <Popup trigger={buttonPopup10} setTrigger={setButtonPopup10}>
-<h2>  Meassge :- 
+<h2>  Message :- 
    {docStep["8"] && docStep["8"][1]}</h2>
    <h2>Start Date :-
    {docStep["8"] && docStep["8"][2].slice(0,10)}</h2>
