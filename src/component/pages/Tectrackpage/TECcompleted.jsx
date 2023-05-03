@@ -23,7 +23,6 @@ import file6png from "../../assets/pdficon/Red02.png";
 
 
 
-
 function TECcompleted() {
    // const [currentStep] = useState(1);
   // const steps = ["Application Submitted", "Sample sent for testing", "Test report generated", "Document pending with authorities", "Final report generated"];
@@ -357,9 +356,9 @@ const handleDownload = (event, form) => {
       </div>
 
         <div className="dd-menu">
-          <button className="reportbtn" onClick={() => handleOptionClick('Process')}>Process</button>
-          <button className="reportbtn" onClick={() => handleOptionClick('Testing')}>Testing</button>
-          <button className="reportbtn" onClick={() => handleOptionClick('Certificate')}>Certificate</button>
+          <button className="reportbtn" onClick={() => handleOptionClick('Process')}>Download Process</button>
+          <button className="reportbtn" onClick={() => handleOptionClick('Testing')}>Download Testing</button>
+          <button className="reportbtn" onClick={() => handleOptionClick('Certificate')}>Download Certificate</button>
         </div>
  
 
@@ -707,8 +706,8 @@ const handleDownload = (event, form) => {
    <Popup trigger={buttonPopup3} setTrigger={setButtonPopup3}>
   <h2>  Meassge :- 
    {docStep["1"] && docStep["1"][1]}</h2>
-   <h2>Start Date :-
-   {docStep["1"] && docStep["1"][2]}</h2>
+   <h2>Start Date :- 
+   {docStep["1"] && docStep["1"][2].slice(0,10)}</h2>
    </Popup>
 
   <Thum1png className="mainsvg2" />
@@ -724,7 +723,7 @@ const handleDownload = (event, form) => {
 <h2>  Meassge :- 
    {docStep["2"] && docStep["2"][1]}</h2>
    <h2>Start Date :-
-   {docStep["2"] && docStep["2"][2]}</h2>
+   {docStep["2"] && docStep["2"][2].slice(0,10)}</h2>
    </Popup>
 
   <Thum2png className="mainsvg2" />
@@ -739,7 +738,7 @@ const handleDownload = (event, form) => {
 <h2>  Meassge :- 
    {docStep["3"] && docStep["3"][1]}</h2>
    <h2>Start Date :-
-   {docStep["3"] && docStep["3"][2]}</h2>
+   {docStep["3"] && docStep["3"][2].slice(0,10)}</h2>
    </Popup>
 
   <Thum3png className="mainsvg2" />
@@ -754,7 +753,7 @@ const handleDownload = (event, form) => {
 <h2>  Meassge :- 
    {docStep["4"] && docStep["4"][1]}</h2>
    <h2>Start Date :-
-   {docStep["4"] && docStep["4"][2]}</h2>
+   {docStep["4"] && docStep["4"][2].slice(0,10)}</h2>
    </Popup>
   <Thum4png className="mainsvg2" />
   {docStep["4"] && docStep["4"][0] === "Completed" ? (
@@ -767,7 +766,7 @@ const handleDownload = (event, form) => {
 <h2>  Meassge :- 
    {docStep["5"] && docStep["5"][1]}</h2>
    <h2>Start Date :-
-   {docStep["5"] && docStep["5"][2]}</h2>
+   {docStep["5"] && docStep["5"][2].slice(0,10)}</h2>
    </Popup>
 
   <Thum5png className="mainsvg2" />
@@ -781,7 +780,7 @@ const handleDownload = (event, form) => {
 <h2>  Meassge :- 
    {docStep["6"] && docStep["6"][1]}</h2>
    <h2>Start Date :-
-   {docStep["6"] && docStep["6"][2]}</h2>
+   {docStep["6"] && docStep["6"][2].slice(0,10)}</h2>
    </Popup>
 
   <Thum6png className="mainsvg2" />
@@ -795,7 +794,7 @@ const handleDownload = (event, form) => {
 <h2>  Meassge :- 
    {docStep["7"] && docStep["7"][1]}</h2>
    <h2>Start Date :-
-   {docStep["7"] && docStep["7"][2]}</h2>
+   {docStep["7"] && docStep["7"][2].slice(0,10)}</h2>
    </Popup>
 
   <Thum7png className="mainsvg2" />
@@ -809,7 +808,7 @@ const handleDownload = (event, form) => {
 <h2>  Meassge :- 
    {docStep["8"] && docStep["8"][1]}</h2>
    <h2>Start Date :-
-   {docStep["8"] && docStep["8"][2]}</h2>
+   {docStep["8"] && docStep["8"][2].slice(0,10)}</h2>
    </Popup>
 
   <Thum8png className="mainsvg2" />

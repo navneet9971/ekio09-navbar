@@ -5,6 +5,13 @@ import { PDFDownloadLink } from "@react-pdf/renderer";
 import "./Table.css";
 import axiosInstance from "../../interceptors/axios";
 
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const year = date.getFullYear().toString().slice(-2);
+  return `${day}/${month}/${year}`;
+}
 
 function Review() {
   const [tableData, setTableData] = useState([]);
@@ -75,36 +82,6 @@ function Review() {
     <option value="on-going">On-going</option>
     <option value="completed">Completed</option>
   </select>
-
-
- /* const handleFilterDateChange = (event) => {
-    const selectedDate = event.target.value;
-    const hasMatch = data.some((data) => data.startDate === selectedDate);
-    setFilterDate(hasMatch ? selectedDate : "");
-    setShowPopup(!hasMatch);
-  }; */
-
-  /* const filteredData = data
-     .filter((data) =>
-       data.compliance_name.toLowerCase().includes(searchQuery.toLowerCase())
-     )
-     .filter((data) => (filterDate ? data.startDate === filterDate : true))
-     .filter((data) =>
-       !filterStatus || data.status === filterStatus
-     )
-     .map((data) => {
-       const endDate =
-         startDate && data.startDate
-           ? new Date(startDate).getTime() + 45 * 24 * 60 * 60 * 1000 <=
-             new Date(data.startDate).getTime()
-             ? new Date(startDate).getTime() + 45 * 24 * 60 * 60 * 1000
-             : data.startDate
-           : "";
-       return {
-         ...data,
-         endDate: endDate ? `${Math.ceil((endDate - new Date().getTime()) / (24 * 60 * 60 * 1000))} days left` : ""
-       };
-     }) */
 
 
   return (
@@ -180,18 +157,12 @@ function Review() {
                   {data.compliance_name}
                 </td>
                 <td>{data.application_name}</td>
-                <td>{data.startdate}</td>
-                <td>{data.uniqueid}</td>
                 <td>
-                  {data.endDate
-                    ? `${Math.ceil(
-                      (new Date(data.endDate).getTime() -
-                        new Date().getTime()) /
-                      (24 * 60 * 60 * 1000)
-                    )} days left`
-                    : ""}
+                  {formatDate(data.startdate)}
                 </td>
-                <td>{data.actualdate}</td>
+                <td>{data.uniqueid}</td>
+                <td> {data.estimated_date}</td>
+                <td>{data.end_date}</td>
                 <td>{data.status}</td>
                 <td className="hidden">{data.id}</td>
               </tr>

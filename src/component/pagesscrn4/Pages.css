@@ -557,15 +557,17 @@ a.notify {
   }
   .button7 {
     /* Add any styles for the button here */
-    padding: 10px;
-    position: relative;
-    left: 324px; /* Adjust this value to move the button left or right */
-    top: 10px; /* Adjust this value to move the button up or down */
-    margin-right: 20px;
-    background-color: #082a71;
-    color: #fff;
-    border-radius: 15px;
-    cursor: pointer;
+      padding: 10px;
+      position: relative;
+      left: 421px;
+      top: 10px;
+      margin-right: 20px;
+      background-color: #082a71;
+      color: #fff;
+      font-size: 16px;
+      border-radius: 15px;
+      font-weight: 600;
+      cursor: pointer;
   }
 .button7:hover {
 background-color: #55b700;
