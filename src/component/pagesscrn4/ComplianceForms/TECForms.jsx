@@ -704,6 +704,7 @@ function Startapp() {
   const [mouApplicantOem, setMouApplicantOem] = useState("");
   const [aIRAuthorizationLetter, setAIRAuthorizationLetter] = useState("");
   const [buttonPopup5, setButtonPopup5] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
 
 
@@ -717,8 +718,8 @@ function Startapp() {
   formData.append('compliance', localStorage.getItem("compliance_id"));
   formData.append('request_for', 'certification');
   formData.append('types_of_company', types_of_company);
-  formData.append('applicantCompanyName', applicantCompanyName);
-  formData.append('applicantCompanyAddress', applicantCompanyAddress);
+  formData.append('Applicant_company_name', applicantCompanyName);
+  formData.append('Applicant_company_address', applicantCompanyAddress);
   formData.append('applicantDirectorName', applicantDirectorName);
   formData.append('applicantContactNumber', applicantContactNumber);
   formData.append('applicantEmailID', applicantEmailID);
@@ -794,7 +795,10 @@ function Startapp() {
       }
     }).then(response => {
       const data = response.data; // your JSON data here
-console.log(data)
+
+      // form submission successful
+  setFormSubmitted(true);
+ console.log(data)
 // loop through each form in the "forms" field
       for (const [formName, formData] of Object.entries(data.data.forms)) {
         // create a new Blob object with the formData
@@ -806,7 +810,7 @@ console.log(data)
         // create a temporary anchor tag to trigger the download
         const link = document.createElement('a');
         link.href = fileUrl;
-        link.download = `${data.data.uniqueid} - ${formName}.txt`;
+        link.download = `${formName}.txt`;
         link.click();
 
         // clean up the URL object
@@ -814,10 +818,14 @@ console.log(data)
       }
       
     }).catch(error => {
+      setFormSubmitted(false);
       console.log(error);
     });
   }
 
+  const handleClosePopup = () => {
+    setFormSubmitted(false);
+  };
 
   return (
     <div>
@@ -826,7 +834,6 @@ console.log(data)
       </div>
       <Popup trigger={buttonPopup5} setTrigger={setButtonPopup5}>
         <div style={{ height: "500px", overflow: "scroll" }}>
-          <h801></h801>
           <form onSubmit={handleSubmit}>
 
 
@@ -840,7 +847,7 @@ console.log(data)
   </div> */}
 
 
-            <h802>Applicant Company:</h802>
+            <h1 className='h802'>Applicant Company:</h1>
             <label className="st8012">
               Indian OEM/Foreign Manufacture:
               <input
@@ -942,7 +949,7 @@ console.log(data)
               />
             </label>
   
-            <h802>Foreign Manufacture:</h802>
+            <h1 className='h802'>Foreign Manufacture:</h1>
             <label className="st8012">
               Company Name:
               <input
@@ -1005,7 +1012,7 @@ console.log(data)
             </label>
 
 
-            <h802>Document Required:</h802>
+            <h1 className='h802'>Document Required:</h1>
             <label className="st8012">
               COI of Applicant Company:
               <input classname="stup805" type="file" onChange={(event) => setCoiApplicant(event.target.files)} multiple accept />
@@ -1039,6 +1046,17 @@ console.log(data)
               <input classname="stup805" type="file"  onChange={(event) => setAIRAuthorizationLetter(event.target.files)} multiple accept/>
             </label>
             <button className='btn808' type="submit">Submit</button>
+            
+            {formSubmitted && (
+        <div className="submit-pop">
+          {formSubmitted === true ? (
+            <p>Form submitted successfully!</p>
+          ) : (
+            <p>Form submission failed. Please try again.</p>
+          )}
+          <button className="sumbitpop-btn" onClick={handleClosePopup}>OK</button>
+        </div>
+      )}
           </form>
         </div>
       </Popup>

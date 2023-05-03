@@ -41,6 +41,7 @@ function TECcompleted() {
     const [buttonPopup, setButtonPopup] = useState(false);
   const [options] = useState(['Authorized Signatory Letter', 'MOU', 'AOA', 'OEM authorized to AIR', 'MOA', 'Certificate of Incorporation']); 
   const [buttonPopup1, setButtonPopup1] = useState(false);
+  const [uploadStatus, setUploadStatus] = useState('');
  // const [document] = useState(null);
    // const [startDate, setStartDate] = useState(null);
    // const [endDate, setEndDate] = useState(null);
@@ -61,8 +62,6 @@ function TECcompleted() {
    //LAB TESTING FROM CONST HERE ---------------------------------------
 const [buttonPopup2, setButtonPopup2] = useState(false);
   //const [buttonPopup1, setButtonPopup1] = useState(false);
-  const [submitPopup] = useState(false);
-
   const [testingApplicantName, setTestingApplicantName] = useState("");
   const [testingAddress, setTestingAddress] = useState("");
   const [testingOEMName, setTestingOEMName] = useState("");
@@ -96,6 +95,7 @@ const [buttonPopup2, setButtonPopup2] = useState(false);
   const [circuitdiagram, setCircuitdiagram] = useState("");
   const [pcblayout, setPcblayout] = useState("");
   const [softwareuser, setSoftwareuser] = useState("");
+  const [formSubmitted, setFormSubmitted] = useState(false);
   //hover mouse const 
 
   //const useing APIS call from upload button 
@@ -178,11 +178,18 @@ const handleSubmit = (event) => {
       Authorization: `Bearer ${localStorage.getItem('access_token')}`,
     }
   }).then(response => {
+    // form submission successful
+  setFormSubmitted(true);
     console.log(response.data);
   }).catch(error => {
+    setFormSubmitted(false);
     console.log(error);
   });
 }
+
+const handleClosePopup = () => {
+  setFormSubmitted(false);
+};
 
 
 
@@ -312,12 +319,14 @@ const handleSubmit = (event) => {
       })
         .then((res) => {
           console.log(res);
+          setUploadStatus('status');
         })
         .catch((error) => {
           console.log(error);
+          setUploadStatus('failure');
         });
     
-      setButtonPopup(false);
+     // setButtonPopup(false);
     }
 
 
@@ -387,6 +396,12 @@ const handleDownload = (event, form) => {
   </div>
   <div>
   <button className = "button8" onClick={handleUpload}>UPLOAD</button>
+  {uploadStatus &&
+    <div className="submit-pop">
+      <p>{uploadStatus === 'status' ? 'Your document was uploaded successfully.' : 'There was an error uploading your document.'}</p>
+      <button className="sumbitpop-btn" onClick={() => setUploadStatus('')}>OK</button>
+    </div>  
+  }
   </div>
 </div>
 </Popup>
@@ -399,7 +414,7 @@ const handleDownload = (event, form) => {
 <div className="lab-testing-box">
       <Popup trigger={buttonPopup2} setTrigger={setButtonPopup2}>
         <div style={{ height: "500px", overflow: "scroll" }}>
-          <h801>Testing Information Required</h801>
+          <h1 className="h801">Testing Information Required</h1>
           <form onSubmit={handleSubmit}>
             <label className="st8012">
               Applicant Name:
@@ -568,7 +583,7 @@ const handleDownload = (event, form) => {
             </label>
 
 
-            <h805>Manufacturing Location Information:</h805>
+            <h1 className="h801">Manufacturing Location Information:</h1>
             <label className="st8012">
               Product Name:
               <input
@@ -670,14 +685,22 @@ const handleDownload = (event, form) => {
             </label>
 
             <button className='btn809' type="submit">Submit</button>
+
+            {formSubmitted && (
+        <div className="submit-pop">
+          {formSubmitted === true ? (
+            <p>Your Testing Form Submit!!</p>
+          ) : (
+            <p>Testing Form failed. Please try again.</p>
+          )}
+          <button className="sumbitpop-btn" onClick={handleClosePopup}>OK</button>
+        </div>
+      )}
           </form>
         </div>
       </Popup>
-      {submitPopup && (
-        <Popup>
-          <div>Hello everyone</div>
-        </Popup>
-      )}
+      
+      
 </div>
 
 {/*------------------DOWNLOAD BUTTON CODE ----------------*/}

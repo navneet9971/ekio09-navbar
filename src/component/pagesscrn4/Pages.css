@@ -307,16 +307,19 @@ h1.cont {
 
   /*---THird page Start application popup css------- */
 
-h801{
-  text-align: center;
-  font-size: 30px;
+.h802 {
+  font-size: 22px;
+  color: black;
+  margin: 5px 160px;
 }
 
-h802{
-  font-size: 22px;
-  font-weight: 600;
-  margin: 7em;
+.h801 {
+  color: black;
+  margin: 12px auto;
+  font-size: 24px;
+  text-align: center;
 }
+
 
 h805 {
   font-size: 25px;
@@ -889,4 +892,39 @@ select.optionss {
   background-color: #55b700;
 }
 
+
+/*------ANY THIS SUMBIT POPUP CSS ------*/
+.submit-pop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submit-pop p {
+  color: white;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.sumbitpop-btn {
+  background-color: #55b721;
+  color: white;
+  border: none;
+  padding: 11px 24px;
+  font-size: 18px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 70px;
+  margin-left: -203px;
+}
+
+.sumbitpop-btn:hover{
+  background-color: #082a71;
+}
 
