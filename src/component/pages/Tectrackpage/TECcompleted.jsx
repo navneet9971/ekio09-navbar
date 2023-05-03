@@ -23,6 +23,7 @@ import file6png from "../../assets/pdficon/Red02.png";
 
 
 
+
 function TECcompleted() {
    // const [currentStep] = useState(1);
   // const steps = ["Application Submitted", "Sample sent for testing", "Test report generated", "Document pending with authorities", "Final report generated"];
@@ -367,9 +368,6 @@ const handleDownload = (event, form) => {
           <button className="reportbtn" onClick={() => handleOptionClick('Testing')}>Download Test Certificate</button>
           <button className="reportbtn" onClick={() => handleOptionClick('Certificate')}>Download Certificate</button>
         </div>
- 
-
-
 
  {/*----------------UPLOAD BUTTON CODE ------------*/ }
  <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>

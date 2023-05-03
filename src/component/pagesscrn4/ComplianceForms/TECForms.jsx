@@ -4,6 +4,7 @@ import Popup from "../popup/Popup";
 //import { TiTick } from "react-icons/ti";
 import Multiselect from 'multiselect-react-dropdown';
 import axiosInstance from '../../../interceptors/axios';
+import bgimage from "../../assets/pages-bgimages/15.svg";
 
 
 function MiddleSection() {
@@ -45,6 +46,7 @@ function MiddleSection() {
 
   // Rendered components
   return (
+    <div style={{ backgroundImage: `url(${bgimage})` }}>
     <div className="ftch data">
       {/* Middle section component */}
       {middleData && (
@@ -61,6 +63,7 @@ function MiddleSection() {
 
         </>
       )}
+    </div>
     </div>
   )
 };
@@ -686,8 +689,6 @@ function Startapp() {
   const [applicantAuthorisedSignatoryDesignation, setApplicantAuthorisedSignatoryDesignation] = useState("");
   const [applicantContactNumber1, setApplicantContactNumber1] = useState("");
   const [applicantEmailID1, setApplicantEmailID1] = useState("");
-  const [applicantNameofmanufacturingfactory, setApplicantNameofmanufacturingfactory] = useState("");
-  const [applicantAddressoffactory, setApplicantAddressoffactory] = useState("");
   const [foreignCompanyName, setForeignCompanyName] = useState("");
   const [foreignCompanyAddress, setForeignCompanyAddress] = useState("");
   const [foreignAuthorizedSignatoryName, setForeignAuthorizedSignatoryName] = useState("");
@@ -725,8 +726,6 @@ function Startapp() {
   formData.append('applicantAuthorisedSignatoryDesignation', applicantAuthorisedSignatoryDesignation);
   formData.append('applicantContactNumber1', applicantContactNumber1);
   formData.append('applicantEmailID1', applicantEmailID1);
-  formData.append('applicantNameofmanufacturingfactory', applicantNameofmanufacturingfactory);
-  formData.append('applicantAddressoffactory', applicantAddressoffactory);
   formData.append('foreignCompanyName', foreignCompanyName);
   formData.append('foreignCompanyAddress', foreignCompanyAddress);
   formData.append('foreignAuthorizedSignatoryName', foreignAuthorizedSignatoryName);
@@ -942,28 +941,7 @@ console.log(data)
 
               />
             </label>
-            <label className="st8012">
-              Name of manufacturing factory:
-              <input
-                className="st805"
-                type="text"
-
-                onChange={(event) => setApplicantNameofmanufacturingfactory(event.target.value)}
-
-              />
-            </label>
-            <label className="st8012">
-              Address of factory:
-              <input
-                className="st805"
-                type="text"
-
-                onChange={(event) => setApplicantAddressoffactory(event.target.value)}
-
-              />
-            </label>
-
-
+  
             <h802>Foreign Manufacture:</h802>
             <label className="st8012">
               Company Name:
