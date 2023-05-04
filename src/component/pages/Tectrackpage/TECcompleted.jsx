@@ -219,8 +219,12 @@ const handleClosePopup = () => {
 
 
   // API call to get document status
+  
+  
   useEffect(() => {
-    axiosInstance.get(`application/compliance/${idel}/`)
+    const interval = setInterval(() => {
+      console.log('Refreshing Data..!!');
+      axiosInstance.get(`application/compliance/${idel}/`)
       .then(response => {
         const data = response.data.data;
         const compliance_id = data["compliance"];
@@ -275,6 +279,9 @@ const handleClosePopup = () => {
       .catch(error => {
         console.log(error);
       })
+    }, 5000);
+    
+      return () => clearInterval(interval);
   }, [idel]);
   
   
