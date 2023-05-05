@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "../Pages.css";
 import Popup from "../popup/Popup";
 //import { TiTick } from "react-icons/ti";
-import Multiselect from 'multiselect-react-dropdown';
+import Select from 'react-select';
 import axiosInstance from '../../../interceptors/axios';
 import bgimage from "../../assets/pages-bgimages/15.svg";
 
@@ -74,44 +74,80 @@ function MiddleSection() {
 function DocumentBox() {
 
   const [buttonPopup1, setButtonPopup1] = useState(false);
-  const [options] = useState(['Signatory Authorization', 'OEM Authorization', 'MOU', 'Shareholding Pattern', 'Annexure 1', 'BOM', 'Non Applicability Proforma', 'Proforma Seeking Exemption']);
+  const docStatus1 = {
+    Shareholding_Pattern: 'http://eikomp.pythonanywhere.com/media/media/compliance/form/Shareholding_Pattern.docx',
+    Manufacturing_details: 'http://eikomp.pythonanywhere.com/media/media/compliance/form/Manufacturing_details_tfyJoOx.xlsx',
+    'CDF-CCL_Format': 'http://eikomp.pythonanywhere.com/media/media/compliance/form/CDF-CCL_Format_TMdRsOP.docx',
+  };
   //const [document] = useState(null);
-
-
-  const handleDownload = (event, form) => {
-    event.preventDefault();
-    console.log('Downloading file:', form);
-  
-    axiosInstance.get(`compliance-form/?compliance=TEC`, {
-      responseType: 'blob',  
-    })
-    .then(response => {
-      console.log(response.data);
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-  
-      try {
-        // Create a link element to trigger the download
-        const link = document.createElement('a');
-        link.href = url;
-        link.setAttribute('download', `${form}.docx`);
-  
-        // Add the link element to the document and trigger the download
-        document.body.appendChild(link);
-        link.click();
-      } catch (error) {
-        console.log(error);
-      } finally {
-        // Clean up the URL object to free up memory
-        window.URL.revokeObjectURL(url);
-      }
-    })
-    .catch(error => {
-      console.log(error);
-    });
-  
-    setButtonPopup1(false);
+  const storedValue = JSON.parse(localStorage.getItem("myKey"));
+  console.log(storedValue[0]['form']);
+  const base = "http://eikomp.pythonanywhere.com";
+  const docStatus = {};
+  for (let i = 0; i < storedValue.length; i++) {
+    const statusData = storedValue[i];
+    docStatus[statusData["name"]] = `${base}${statusData["form"]}`;
   }
+      // console.log(docStatus['Shareholding_Pattern'])
+      // console.log(docStatus["Manufacturing details"])
+      // console.log(docStatus['CDF-CCL Format'])
+      console.log(docStatus)
+
+
+  useEffect(() => {
+    axiosInstance
+      .get(`compliance-form/?compliance=TEC`)
+      .then((response) => {
+        const downloadData = response.data;
+        localStorage.setItem("myKey", JSON.stringify(downloadData));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+
+    const [selectedOptions, setSelectedOptions] = useState([]);
   
+    const handleDownload = (event) => {
+      event.preventDefault();
+  
+      // Build the URLs based on the selected options and the docStatus data
+      const urls = [];
+      selectedOptions.forEach(option => {
+        urls.push(docStatus1[option.value]);
+      });
+  
+      // Download the files
+      const downloadPromises = urls.map(url => fetch(url));
+      Promise.all(downloadPromises)
+        .then(responses => Promise.all(responses.map(response => response.blob())))
+        .then(blobs => {
+          blobs.forEach((blob, index) => {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${selectedOptions[index].label}.docx`;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+          });
+        })
+        .catch(error => {
+          console.error('There was an error downloading the file:', error);
+        });
+    };
+  
+    // setButtonPopup1(false);
+
+
+  const options = [
+    { value: 'Shareholding_Pattern', label: 'Shareholding Pattern'},
+    { value: 'Manufacturing_details', label: 'Manufacturing Details' },
+    { value: 'CDF-CCL_Format', label: 'CDF-CCL Format' },
+  ];
+
+
 
 
   // -------------------------------Document Box Codes here---------------------------------------------------
@@ -126,17 +162,18 @@ function DocumentBox() {
     <Popup trigger={buttonPopup1} setTrigger={setButtonPopup1}>
         <h3>Download a File</h3>
         <label>
-          <h4>Select a file to download:</h4>
-          <div className='download-form1'>
-            <Multiselect
-            isObject={false}
-            options={ options }
-            onRemove={(event)=> { console.log(event) }}
-            onSelect={ (event)=> { console.log(event) }}
-            showCheckbox
-            />
-          </div>
-        </label>
+  <h4>Select file(s) to download:</h4>
+  <div className="scroll-bar">
+  <Select
+        options={options}
+        value={selectedOptions}
+        onChange={setSelectedOptions}
+        isMulti
+        placeholder="Select files..."
+      />
+  </div>
+</label>
+
         <div>
           <button className="button8" type="submit" onClick={handleDownload}>Download</button>
         </div>
