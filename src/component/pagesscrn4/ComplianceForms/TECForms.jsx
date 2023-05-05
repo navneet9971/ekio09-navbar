@@ -77,21 +77,25 @@ function DocumentBox() {
   const docStatus1 = {
     Shareholding_Pattern: 'http://eikomp.pythonanywhere.com/media/media/compliance/form/Shareholding_Pattern.docx',
     Manufacturing_details: 'http://eikomp.pythonanywhere.com/media/media/compliance/form/Manufacturing_details_tfyJoOx.xlsx',
-    'CDF-CCL_Format': 'http://eikomp.pythonanywhere.com/media/media/compliance/form/CDF-CCL_Format_TMdRsOP.docx',
+    CDFCCL_Format: 'http://eikomp.pythonanywhere.com/media/media/compliance/form/CDF-CCL_Format_TMdRsOP.docx',
   };
   //const [document] = useState(null);
   const storedValue = JSON.parse(localStorage.getItem("myKey"));
   // console.log(storedValue[0]['form']);
-  const base = "http://eikomp.pythonanywhere.com";
+if (storedValue !== null) {
+    const base = "http://eikomp.pythonanywhere.com";
   const docStatus = {};
   for (let i = 0; i < storedValue.length; i++) {
     const statusData = storedValue[i];
     docStatus[statusData["name"]] = `${base}${statusData["form"]}`;
   }
+  console.log(docStatus);
+} else {
+  console.error("There is no data stored in localStorage with the key 'myKey'");
+}
       // console.log(docStatus['Shareholding_Pattern'])
       // console.log(docStatus["Manufacturing details"])
       // console.log(docStatus['CDF-CCL Format'])
-      console.log(docStatus)
 
 
   useEffect(() => {
@@ -144,7 +148,7 @@ function DocumentBox() {
   const options = [
     { value: 'Shareholding_Pattern', label: 'Shareholding Pattern'},
     { value: 'Manufacturing_details', label: 'Manufacturing Details' },
-    { value: 'CDF-CCL_Format', label: 'CDF-CCL Format' },
+    { value: 'CDFCCL_Format', label: 'CDF-CCL Format' },
   ];
 
 

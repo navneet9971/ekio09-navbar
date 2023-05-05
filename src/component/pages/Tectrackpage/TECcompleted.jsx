@@ -428,18 +428,23 @@ logoImg.onload = function () {
       CDFCCL_Format: 'http://eikomp.pythonanywhere.com/media/media/compliance/form/CDF-CCL_Format_TMdRsOP.docx',
     };
   
+
     const storedValue = JSON.parse(localStorage.getItem("myKey"));
+
+
     console.log(storedValue[0]['form']);
+    
+  if (storedValue !== null) {
     const base = "http://eikomp.pythonanywhere.com";
-    const docStatus2 = {};
-    for (let i = 0; i < storedValue.length; i++) {
-      const statusData = storedValue[i];
-      docStatus2[statusData["name"]] = `${base}${statusData["form"]}`;
-    }
-        // console.log(docStatus['Shareholding_Pattern'])
-        // console.log(docStatus["Manufacturing details"])
-        // console.log(docStatus['CDF-CCL Format'])
-        console.log(docStatus2)
+  const docStatus2 = {};
+  for (let i = 0; i < storedValue.length; i++) {
+    const statusData = storedValue[i];
+    docStatus2[statusData["name"]] = `${base}${statusData["form"]}`;
+  }
+  console.log(docStatus2);
+} else {
+  console.error("There is no data stored in localStorage with the key 'myKey'");
+}
 
 
     const handleDownload = (event) => {
@@ -476,6 +481,8 @@ logoImg.onload = function () {
     { value: 'Manufacturing_details', label: 'Manufacturing Details' },
     { value: 'CDFCCL_Format', label: 'CDFCCL Format' },
   ];
+
+
     return (
      <div className="bgchangecompleted">
       <div className="ongoing-applications">
