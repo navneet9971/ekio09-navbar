@@ -216,9 +216,13 @@ const handleClosePopup = () => {
 
 
   // API call to get document status
+  
+  
   useEffect(() => {
     const interval = setInterval(() => {
     axiosInstance.get(`application/compliance/${idel}/`)
+      console.log('Refreshing Data..!!');
+      axiosInstance.get(`application/compliance/${idel}/`)
       .then(response => {
         const data = response.data.data;
         const compliance_id = data["compliance"];
@@ -273,10 +277,10 @@ const handleClosePopup = () => {
       .catch(error => {
         console.log(error);
       })
-  },  5000);
-
-  return () => clearInterval(interval)
-},[idel]);
+    }, 5000);
+    
+      return () => clearInterval(interval);
+  }, [idel]);
   
   
 
@@ -349,9 +353,7 @@ logoImg.onload = function () {
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
-  };
-    
-    
+  }; 
  /*   const handleDownload = () => {
       const input = document.getElementById('pdf-content');
       const pdf = new jsPDF();
