@@ -81,7 +81,7 @@ function DocumentBox() {
   };
   //const [document] = useState(null);
   const storedValue = JSON.parse(localStorage.getItem("myKey"));
-  console.log(storedValue[0]['form']);
+  // console.log(storedValue[0]['form']);
   const base = "http://eikomp.pythonanywhere.com";
   const docStatus = {};
   for (let i = 0; i < storedValue.length; i++) {
@@ -189,8 +189,6 @@ function DocumentBox() {
 );
 }
     
-  
-
 // Video Section Codes Here----------------------------------------
 
 function Thirdpage() {
@@ -348,12 +346,12 @@ function Startapp() {
   if (shareholding) {
     for (let i = 0; i < shareholding.length; i++) {
       formData.append('documents', shareholding[i]);
-    }
+  }
   }
   if (boardresolution) {
     for (let i = 0; i < boardresolution.length; i++) {
       formData.append('documents', boardresolution[i]);
-    }
+  }
   }
 
     /*  if (image) {
