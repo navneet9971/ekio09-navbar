@@ -83,15 +83,7 @@ function DocumentBox() {
     console.log('Downloading file:', form);
   
     axiosInstance.get(`compliance-form/?compliance=TEC`, {
-      params: {
-        document_type: form
-      },
-      responseType: 'blob',
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
-        'Content-Type': 'application/json',
-        'accept': 'application/json',
-      }
+      responseType: 'blob',  
     })
     .then(response => {
       console.log(response.data);
