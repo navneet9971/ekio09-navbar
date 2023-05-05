@@ -242,6 +242,7 @@ function Startapp() {
   const [applicantDesignation, setApplicantDesignation] = useState("");
   const [applicantContactNumber, setApplicantContactNumber] = useState("");
   const [applicantEmailID, setApplicantEmailID] = useState("");
+  const [applicantCIN, setApplicantCIN] = useState("");
   const [applicantAuthorisedSignatoryName, setApplicantAuthorisedSignatoryName] = useState("");
   const [applicantAuthorisedSignatoryDesignation, setApplicantAuthorisedSignatoryDesignation] = useState("");
   const [applicantContactNumber1, setApplicantContactNumber1] = useState("");
@@ -273,23 +274,24 @@ function Startapp() {
   formData.append('application', localStorage.getItem('newApplicationId'));
   formData.append('compliance', localStorage.getItem("compliance_id"));
   formData.append('request_for', 'certification');
-  formData.append('types_of_company', types_of_company);
+  formData.append('Types_of_company', types_of_company);
   formData.append('Applicant_company_name', applicantCompanyName);
   formData.append('Applicant_company_address', applicantCompanyAddress);
-  formData.append('applicantDirectorName', applicantDirectorName);
+  formData.append('Applicant_director_name', applicantDirectorName);
   formData.append('Applicant_director_designation', applicantDesignation);
-  formData.append('applicantContactNumber', applicantContactNumber);
-  formData.append('applicantEmailID', applicantEmailID);
-  formData.append('applicantAuthorisedSignatoryName', applicantAuthorisedSignatoryName);
-  formData.append('applicantAuthorisedSignatoryDesignation', applicantAuthorisedSignatoryDesignation);
-  formData.append('applicantContactNumber1', applicantContactNumber1);
-  formData.append('applicantEmailID1', applicantEmailID1);
-  formData.append('foreignCompanyName', foreignCompanyName);
-  formData.append('foreignCompanyAddress', foreignCompanyAddress);
-  formData.append('foreignAuthorizedSignatoryName', foreignAuthorizedSignatoryName);
-  formData.append('foreignAuthorizedSignatoryDesignation', foreignAuthorizedSignatoryDesignation);
-  formData.append('foreignContactNumber', foreignContactNumber);
-  formData.append('foreignEmailID', foreignEmailID);
+  formData.append('Applicant_contact_number', applicantContactNumber);
+  formData.append('Applicant_emailid', applicantEmailID);
+  formData.append('Applicant_company_CIN', applicantCIN);
+  formData.append('Applicant_signatory_name', applicantAuthorisedSignatoryName);
+  formData.append('Applicant_signatory_designation', applicantAuthorisedSignatoryDesignation);
+  formData.append('Applicant_signatory_number', applicantContactNumber1);
+  formData.append('Applicant_signatory_emailid', applicantEmailID1);
+  formData.append('Foreign_manufacturer_company_name', foreignCompanyName);
+  formData.append('Foreign_manufacturer_company_address', foreignCompanyAddress);
+  formData.append('Foreign_manufacturer_authorised_signatory_name', foreignAuthorizedSignatoryName);
+  formData.append('Foreign_manufacturer_authorised_signatory_designation', foreignAuthorizedSignatoryDesignation);
+  formData.append('Foreign_manufacturer_contact_number', foreignContactNumber);
+  formData.append('Foreign_manufacturer_emailid', foreignEmailID);
 
   // Add the selected file to the form data
   if (coiApplicant) {
@@ -397,13 +399,10 @@ function Startapp() {
             <h1 className='h802'>Applicant Company:</h1>
             <label className="st8012">
               Indian OEM/Foreign Manufacture:
-              <input
-                className="st805"
-                type="text"
-
-                onChange={(event) => setTypes_of_company(event.target.value)}
-
-              />
+             <select className='st804' onChange={(event) =>  setTypes_of_company(event.target.value)}>
+              <option value="Foregin">Foregin</option>
+              <option value="Indian">Indian</option>
+             </select>
             </label>
             <label className="st8012">
               Company Name:
@@ -462,6 +461,16 @@ function Startapp() {
                 type="text"
 
                 onChange={(event) => setApplicantEmailID(event.target.value)}
+
+              />
+            </label>
+            <label className="st8012">
+             Company CIN:
+              <input
+                className="st805"
+                type="text"
+
+                onChange={(event) => setApplicantCIN(event.target.value)}
 
               />
             </label>

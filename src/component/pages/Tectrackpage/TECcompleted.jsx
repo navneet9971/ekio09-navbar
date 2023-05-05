@@ -74,7 +74,9 @@ const [buttonPopup2, setButtonPopup2] = useState(false);
   const [testingSr, setTestingSr] = useState("");
   const [testingElectrical, setTestingElectrical] = useState("");
   const [testingProductType, setTestingProductType] = useState("");
+  const [testingProductTypeOther, setTestingProductTypeOther] = useState("")
   const [testingProductUse, setTestingProductUse] = useState("");
+  const [testingProductOther, setTestingProductOther] = useState("");
   //const [testingSoftware, setTestingSoftware] = useState("");
   const [testingTechnicalsupportName, setTestingTechnicalsupportName] = useState("");
   const [testingTechnicalsuppoertNumber, setTestingTechnicalsuppoertNumber] = useState("");
@@ -108,20 +110,22 @@ const handleSubmit = (event) => {
   const formData = new FormData();
   formData.append('application', localStorage.getItem('newApplicationId'));
   formData.append('compliance', localStorage.getItem("compliance_id"));
-  formData.append('request_for', 'lab testing');
-  formData.append("testingProductName", testingProductName);
-  formData.append("testingModelNo", testingModelNo);
-  formData.append("testingAssociated", testingAssociated);
-  formData.append("testingHardwareNumber", testingHardwareNumber);
-  formData.append("testingSoftwareNumber", testingSoftwareNumber);
-  formData.append("testingBrand", testingBrand);
-  formData.append("testingSr", testingSr);
-  formData.append("testingElectrical", testingElectrical);
-  formData.append("testingProductType", testingProductType);
-  formData.append("testingProductUse", testingProductUse);
+  formData.append('request_for', 'lab_testing');
+  formData.append("Product_name", testingProductName);
+  formData.append("Model_number", testingModelNo);
+  formData.append("Associate_models", testingAssociated);
+  formData.append("Hardware_number", testingHardwareNumber);
+  formData.append("Software_number", testingSoftwareNumber);
+  formData.append("Brand", testingBrand);
+  formData.append("Serial_number", testingSr);
+  formData.append("Electrical_rating", testingElectrical);
+  formData.append("Product_type", testingProductType);
+  formData.append("Product_type_other", testingProductTypeOther)
+  formData.append("Product_use", testingProductUse);
+  formData.append("Product_use_other", testingProductOther);
  // formData.append("testingSoftware", testingSoftware);
-  formData.append("testingTechnicalsupportName", testingTechnicalsupportName);
-  formData.append("testingTechnicalsuppoertNumber", testingTechnicalsuppoertNumber);
+  formData.append("Technical_support_person_name", testingTechnicalsupportName);
+  formData.append("Technical_support_person_contact_number", testingTechnicalsuppoertNumber);
   // formData.append("manufacturingProductName", manufacturingProductName);
   // formData.append("manufacturingModelNo", manufacturingModelNo);
   // formData.append("manufacturingAssociatedModels", manufacturingAssociatedModels);
@@ -167,7 +171,7 @@ const handleSubmit = (event) => {
   console.log('Compliance ID:', localStorage.getItem("compliance_id"));
 
   // function to handle form submission
-  axiosInstance.post('/application/compliance/', formData, {
+  axiosInstance.put(`/application/compliance/${idel}/`, formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
       Authorization: `Bearer ${localStorage.getItem('access_token')}`,
@@ -553,28 +557,42 @@ const handleDownload = (event, form) => {
             </label>
             <label className="st8012">
         Product Type:
-        <select className="st801" value={testingProductType} onChange={(event) => setTestingProductType(event.target.value)}>
+        <select className="st801" onChange={(event) => setTestingProductType(event.target.value)}>
           <option value="Fixed">Fixed</option>
           <option value="Industrial">Industrial</option>
           <option value="Portable">Portable</option>
           <option value="Other">Other</option>
         </select>
-        {testingProductType === "Other" && (
-          <input className="st805" type="text" value={setTestingProductType} onChange={(event) => setTestingProductType(event.target.value)} />
-        )}
       </label>
+
+      <label className="st8012">
+              Product Type (if other):
+              <input
+                className="st805"
+                type="text"
+                onChange={(event) => setTestingProductTypeOther(event.target.value)}
+              />
+            </label>
           
             <label className="st8012">
               Product Use:
-              <select className="st801" value={testingProductUse} onChange={(event) => setTestingProductUse(event.target.value)}>
+              <select className="st801" onChange={(event) => setTestingProductUse(event.target.value)}>
                 <option value="Indoor">Indoor</option>
-                <option value="Outdoor">Outdoor</option>
-                <option value="Other">Other</option>
+                <option value="Outdoor">Outdoor</option> 
+                <option valur="Other">Other</option>              
               </select>
-              {testingProductUse === "Other" && (
-                <input className="st805" type="text" value={setTestingProductUse} onChange={(event) => setTestingProductUse(event.target.value)} />
-              )}
             </label>
+
+            <label className="st8012">
+              Product Use(if other):
+              <input
+                className="st805"
+                type="text"
+                onChange={(event) => setTestingProductOther(event.target.value)}
+
+              />
+            </label>
+
             <label className="st8012">
               Filled CDF/CCl (Format attached):
               <input classname="stup805" type="file"   onChange={(event) => setCdfccl(event.target.files)} multiple accept />

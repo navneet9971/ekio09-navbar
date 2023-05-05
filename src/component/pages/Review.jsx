@@ -177,8 +177,8 @@ return (
                 {data.compliance_name}
               </td>
               <td>{data.application_name}</td>
-              <td>{data.model_number}</td>
-              <td>{data.associated_number}</td>
+              <td>{data.fields['model_number']}</td> 
+              <td>{data.fields['family']}</td>
               <td>
                 {formatDate(data.startdate)}
               </td>

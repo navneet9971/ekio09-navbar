@@ -931,3 +931,13 @@ select.optionss {
   background-color: #082a71;
 }
 
+/*--------DropDown of start Application form-------*/
+select.st804 {
+  width: 217px;
+  height: 28px;
+  margin: 10px 38px;
+  text-align: center;
+  padding: 0px;
+  font-size: 20px;
+  font-weight: 600;
+}
