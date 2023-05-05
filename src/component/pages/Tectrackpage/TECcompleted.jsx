@@ -476,8 +476,6 @@ logoImg.onload = function () {
     { value: 'Manufacturing_details', label: 'Manufacturing Details' },
     { value: 'CDFCCL_Format', label: 'CDFCCL Format' },
   ];
-
-
     return (
      <div className="bgchangecompleted">
       <div className="ongoing-applications">
