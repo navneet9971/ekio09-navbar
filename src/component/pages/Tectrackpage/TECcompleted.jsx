@@ -471,7 +471,6 @@ logoImg.onload = function () {
         });
     };
   
-    
   const options1 = [
     { value: 'Shareholding_Pattern', label: 'Shareholding Pattern'},
     { value: 'Manufacturing_details', label: 'Manufacturing Details' },
