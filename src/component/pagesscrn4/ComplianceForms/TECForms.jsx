@@ -75,15 +75,15 @@ function DocumentBox() {
 
   const [buttonPopup1, setButtonPopup1] = useState(false);
   const docStatus1 = {
-    Shareholding_Pattern: 'http://eikomp.pythonanywhere.com/media/media/compliance/form/Shareholding_Pattern.docx',
-    Manufacturing_details: 'http://eikomp.pythonanywhere.com/media/media/compliance/form/Manufacturing_details_tfyJoOx.xlsx',
-    CDFCCL_Format: 'http://eikomp.pythonanywhere.com/media/media/compliance/form/CDF-CCL_Format_TMdRsOP.docx',
+    Shareholding_Pattern: 'https://eikomp.pythonanywhere.com/media/media/compliance/form/Shareholding_Pattern.docx',
+    Manufacturing_details: 'https://eikomp.pythonanywhere.com/media/media/compliance/form/Manufacturing_details_tfyJoOx.xlsx',
+    CDFCCL_Format: 'https://eikomp.pythonanywhere.com/media/media/compliance/form/CDF-CCL_Format_TMdRsOP.docx',
   };
   //const [document] = useState(null);
   const storedValue = JSON.parse(localStorage.getItem("myKey"));
   // console.log(storedValue[0]['form']);
 if (storedValue !== null) {
-    const base = "http://eikomp.pythonanywhere.com";
+    const base = "https://eikomp.pythonanywhere.com";
   const docStatus = {};
   for (let i = 0; i < storedValue.length; i++) {
     const statusData = storedValue[i];
