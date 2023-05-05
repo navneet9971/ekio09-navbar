@@ -900,7 +900,7 @@ select.optionss {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: black;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -914,15 +914,18 @@ select.optionss {
 
 .sumbitpop-btn {
   background-color: #55b721;
-  color: white;
   border: none;
-  padding: 11px 24px;
-  font-size: 18px;
   border-radius: 4px;
+  color: #fff;
   cursor: pointer;
-  margin-top: 70px;
-  margin-left: -203px;
+  font-size: 18px;
+  position: absolute;
+  left: 50%;
+  top: 56%;
+  transform: translate(-50%, -50%);
+  padding: 11px 24px;
 }
+
 
 .sumbitpop-btn:hover{
   background-color: #082a71;

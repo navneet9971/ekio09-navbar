@@ -274,9 +274,7 @@ th {
 
 .search-bar {
   position: absolute;
-  transform: translate(50px, 50px);
-  top: 73px;
-  left: 992px;
+    transform: translate(1020px, -58px);
   }
 
 input[type="option"] {
@@ -299,15 +297,15 @@ input[type="date"]:hover{
 }
 
 /* Dropdown status css*/
-select.dropon {
+.dropon {
   position: absolute;
-  top: 11.6em;
-  left: 96em;
+  transform: translate(0.5em, -2.3em);
   width: 12px;
   height: 1px;
   padding: 10px;
   background-color: #082a77;
 }
+
 
 select.dropon:hover {
 background-color: #55b700;
@@ -406,23 +404,41 @@ select.form {
   }
 }
 
-
-button.revbtn {
-  margin-top: -3em;
-  margin-left: 45em;
-  padding: 0.5em;
-  border-radius: 1em;
-  color: #fff;
-  background-color: #082a77;
-}
-
-button.revbtn:hover{
-  background-color: #55b700;
-}
-
-
 /*-----ID column hidden -------*/
 
 .hidden{
   display: none;
+}
+
+/*----------DOWNLOAD BUTTON CSS----*/
+.tablerepot-btn {
+  margin: 3px 57px;
+}
+
+.btn-wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+.revbtn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 34px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.revbtn:hover {
+  background-color: #0062cc;
+}
+
+/*---LAB TESTING DROP DOWN OPTION------*/
+select.st801 {
+  padding: 0px 8px;
+  width: 110px;
+  margin: 0px 25px;
 }
