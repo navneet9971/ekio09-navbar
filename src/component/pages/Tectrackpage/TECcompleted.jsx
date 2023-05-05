@@ -437,6 +437,7 @@ logoImg.onload = function () {
   if (storedValue !== null) {
     const base = "http://eikomp.pythonanywhere.com";
   const docStatus2 = {};
+  console.log(storedValue)
   for (let i = 0; i < storedValue.length; i++) {
     const statusData = storedValue[i];
     docStatus2[statusData["name"]] = `${base}${statusData["form"]}`;
