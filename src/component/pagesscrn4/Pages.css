@@ -941,3 +941,21 @@ select.st804 {
   font-size: 20px;
   font-weight: 600;
 }
+
+/*-------StartApp Download Button CSS-----*/
+
+
+.select-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 13px;
+}
+
+
+.select-container .select__option--is-selected {
+  background-color: #f5f5f5;
+}
+.css-1fdsijx-ValueContainer {
+  width: 20em;
+}

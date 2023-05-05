@@ -164,14 +164,16 @@ function DocumentBox() {
         <label>
   <h4>Select file(s) to download:</h4>
   <div className="scroll-bar">
-  <Select
-        options={options}
-        value={selectedOptions}
-        onChange={setSelectedOptions}
-        isMulti
-        placeholder="Select files..."
-      />
+  <div className="select-container">
+    <Select
+      options={options}
+      value={selectedOptions}
+      onChange={setSelectedOptions}
+      isMulti
+      placeholder="Select files..."
+    />
   </div>
+</div>
 </label>
 
         <div>
