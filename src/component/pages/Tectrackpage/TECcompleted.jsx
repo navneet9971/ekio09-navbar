@@ -425,7 +425,7 @@ logoImg.onload = function () {
     const docDownload = {
       Shareholding_Pattern: 'http://eikomp.pythonanywhere.com/media/media/compliance/form/Shareholding_Pattern.docx',
       Manufacturing_details: 'http://eikomp.pythonanywhere.com/media/media/compliance/form/Manufacturing_details_tfyJoOx.xlsx',
-      'CDF-CCL_Format': 'http://eikomp.pythonanywhere.com/media/media/compliance/form/CDF-CCL_Format_TMdRsOP.docx',
+      CDFCCL_Format: 'http://eikomp.pythonanywhere.com/media/media/compliance/form/CDF-CCL_Format_TMdRsOP.docx',
     };
   
     const storedValue = JSON.parse(localStorage.getItem("myKey"));
@@ -475,7 +475,7 @@ logoImg.onload = function () {
   const options1 = [
     { value: 'Shareholding_Pattern', label: 'Shareholding Pattern'},
     { value: 'Manufacturing_details', label: 'Manufacturing Details' },
-    { value: 'CDF-CCL_Format', label: 'CDF-CCL Format' },
+    { value: 'CDFCCL_Format', label: 'CDFCCL Format' },
   ];
 
 
