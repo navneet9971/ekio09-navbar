@@ -44,6 +44,18 @@ function SignUP() {
       return; // Exit the function to prevent the API request from being made
     }
   
+    // Password validation
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+    if (!passwordRegex.test(formData.password)) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Invalid Password',
+        text:
+          'The password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character.',
+      });
+      return; // Exit the function to prevent the API request from being made
+    }
+  
     // Make a POST request to the API endpoint
     axios
       .post(`https://backend.eikompapp.com/register`, {
@@ -105,6 +117,7 @@ function SignUP() {
         }
       });
   };
+  
   
   
   
