@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 //import jsPDF from 'jspdf';
 import "../stepper.css";
+import Select from 'react-select';
 import Popup from "../../pagesscrn4/popup/Popup";
 import axiosInstance from "../../../interceptors/axios";
-import Multiselect from 'multiselect-react-dropdown';
+import jsPDF from "jspdf";
+import 'jspdf-autotable';
 import { ReactComponent as Thum1png } from "../../assets/track-icon/reg.svg";
 import { ReactComponent as Thum2png } from "../../assets/track-icon/testing.svg";
 import { ReactComponent as Thum3png } from "../../assets/track-icon/AIR.svg";
@@ -20,6 +22,8 @@ import file3png from "../../assets/pdficon/Green03.png";
 import file4png from "../../assets/pdficon/Green04.png";
 import file5png from "../../assets/pdficon/Red01.png";
 import file6png from "../../assets/pdficon/Red02.png";
+import pdflogo from "../../assets/icons/eikomp_logo.png"
+
 
 
 
@@ -40,6 +44,7 @@ function TECcompleted() {
     const [buttonPopup, setButtonPopup] = useState(false);
   const [options] = useState(['Authorized Signatory Letter', 'MOU', 'AOA', 'OEM authorized to AIR', 'MOA', 'Certificate of Incorporation']); 
   const [buttonPopup1, setButtonPopup1] = useState(false);
+  const [uploadStatus, setUploadStatus] = useState('');
  // const [document] = useState(null);
    // const [startDate, setStartDate] = useState(null);
    // const [endDate, setEndDate] = useState(null);
@@ -60,12 +65,6 @@ function TECcompleted() {
    //LAB TESTING FROM CONST HERE ---------------------------------------
 const [buttonPopup2, setButtonPopup2] = useState(false);
   //const [buttonPopup1, setButtonPopup1] = useState(false);
-  const [submitPopup] = useState(false);
-
-  const [testingApplicantName, setTestingApplicantName] = useState("");
-  const [testingAddress, setTestingAddress] = useState("");
-  const [testingOEMName, setTestingOEMName] = useState("");
-  const [testingOEMAddress, setTestingOEMAddress] = useState("");
   const [testingProductName, setTestingProductName] = useState("");
   const [testingModelNo, setTestingModelNo] = useState("");
   const [testingAssociated, setTestingAssociated] = useState("");
@@ -75,27 +74,33 @@ const [buttonPopup2, setButtonPopup2] = useState(false);
   const [testingSr, setTestingSr] = useState("");
   const [testingElectrical, setTestingElectrical] = useState("");
   const [testingProductType, setTestingProductType] = useState("");
+  const [testingProductTypeOther, setTestingProductTypeOther] = useState("")
   const [testingProductUse, setTestingProductUse] = useState("");
+  const [testingProductOther, setTestingProductOther] = useState("");
   //const [testingSoftware, setTestingSoftware] = useState("");
   const [testingTechnicalsupportName, setTestingTechnicalsupportName] = useState("");
   const [testingTechnicalsuppoertNumber, setTestingTechnicalsuppoertNumber] = useState("");
-  const [manufacturingProductName, setManufacturingProductName] = useState("");
-  const [manufacturingModelNo, setManufacturingModelNo] = useState("");
-  const [manufacturingAssociatedModels, setManufacturingAssociatedModels] = useState("");
-  const [manufacturingManufacturingName, setManufacturingManufacturingName] = useState("");
-  const [manufacturingManufacturingAddress, setManufacturingManufacturingAddress] = useState("");
-  const [manufacturingManufacturingCountry, setManufacturingManufacturingCountry] = useState("");
-  const [manufacturingContactName, setManufacturingContactName] = useState("");
-  const [manufacturingContactNumber, setManufacturingContactNumber] = useState("");
-  const [manufacturingContactEmail, setManufacturingContactEmail] = useState("");
-  const [manufacturingOrigin, setManufacturingOrigin] = useState("");
-  const [manufacturingContract, setManufacturingContract] = useState("");
+  // const [manufacturingProductName, setManufacturingProductName] = useState("");
+  // const [manufacturingModelNo, setManufacturingModelNo] = useState("");
+  // const [manufacturingAssociatedModels, setManufacturingAssociatedModels] = useState("");
+  // const [manufacturingManufacturingName, setManufacturingManufacturingName] = useState("");
+  // const [manufacturingManufacturingAddress, setManufacturingManufacturingAddress] = useState("");
+  // const [manufacturingManufacturingCountry, setManufacturingManufacturingCountry] = useState("");
+  // const [manufacturingContactName, setManufacturingContactName] = useState("");
+  // const [manufacturingContactNumber, setManufacturingContactNumber] = useState("");
+  // const [manufacturingContactEmail, setManufacturingContactEmail] = useState("");
+  // const [manufacturingOrigin, setManufacturingOrigin] = useState("");
+  // const [manufacturingContract, setManufacturingContract] = useState("");
   const [cdfccl, setCdfccl] = useState("");
   const [usermanual, setUsermanual] = useState("");
   const [circuitdiagram, setCircuitdiagram] = useState("");
   const [pcblayout, setPcblayout] = useState("");
   const [softwareuser, setSoftwareuser] = useState("");
-  //hover mouse const 
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  
+
+  //Download Form Const------------HERE
+ 
 
   //const useing APIS call from upload button 
   const [compliance_id, setCompliance_id1] = useState(null);
@@ -108,35 +113,33 @@ const handleSubmit = (event) => {
   const formData = new FormData();
   formData.append('application', localStorage.getItem('newApplicationId'));
   formData.append('compliance', localStorage.getItem("compliance_id"));
-  formData.append('request_for', 'lab testing');
-  formData.append("testingApplicantName", testingApplicantName);
-  formData.append("testingAddress", testingAddress);
-  formData.append("testingOEMName", testingOEMName);
-  formData.append("testingOEMAddress", testingOEMAddress);
-  formData.append("testingProductName", testingProductName);
-  formData.append("testingModelNo", testingModelNo);
-  formData.append("testingAssociated", testingAssociated);
-  formData.append("testingHardwareNumber", testingHardwareNumber);
-  formData.append("testingSoftwareNumber", testingSoftwareNumber);
-  formData.append("testingBrand", testingBrand);
-  formData.append("testingSr", testingSr);
-  formData.append("testingElectrical", testingElectrical);
-  formData.append("testingProductType", testingProductType);
-  formData.append("testingProductUse", testingProductUse);
+  formData.append('request_for', 'lab_testing');
+  formData.append("Product_name", testingProductName);
+  formData.append("Model_number", testingModelNo);
+  formData.append("Associate_models", testingAssociated);
+  formData.append("Hardware_number", testingHardwareNumber);
+  formData.append("Software_number", testingSoftwareNumber);
+  formData.append("Brand", testingBrand);
+  formData.append("Serial_number", testingSr);
+  formData.append("Electrical_rating", testingElectrical);
+  formData.append("Product_type", testingProductType);
+  formData.append("Product_type_other", testingProductTypeOther)
+  formData.append("Product_use", testingProductUse);
+  formData.append("Product_use_other", testingProductOther);
  // formData.append("testingSoftware", testingSoftware);
-  formData.append("testingTechnicalsupportName", testingTechnicalsupportName);
-  formData.append("testingTechnicalsuppoertNumber", testingTechnicalsuppoertNumber);
-  formData.append("manufacturingProductName", manufacturingProductName);
-  formData.append("manufacturingModelNo", manufacturingModelNo);
-  formData.append("manufacturingAssociatedModels", manufacturingAssociatedModels);
-  formData.append("manufacturingManufacturingName", manufacturingManufacturingName);
-  formData.append("manufacturingManufacturingAddress", manufacturingManufacturingAddress);
-  formData.append("manufacturingManufacturingCountry", manufacturingManufacturingCountry);
-  formData.append("manufacturingContactName", manufacturingContactName);
-  formData.append("manufacturingContactNumber", manufacturingContactNumber);
-  formData.append("manufacturingContactEmail", manufacturingContactEmail);
-  formData.append("manufacturingOrigin", manufacturingOrigin);
-  formData.append("manufacturingContract", manufacturingContract);
+  formData.append("Technical_support_person_name", testingTechnicalsupportName);
+  formData.append("Technical_support_person_contact_number", testingTechnicalsuppoertNumber);
+  // formData.append("manufacturingProductName", manufacturingProductName);
+  // formData.append("manufacturingModelNo", manufacturingModelNo);
+  // formData.append("manufacturingAssociatedModels", manufacturingAssociatedModels);
+  // formData.append("manufacturingManufacturingName", manufacturingManufacturingName);
+  // formData.append("manufacturingManufacturingAddress", manufacturingManufacturingAddress);
+  // formData.append("manufacturingManufacturingCountry", manufacturingManufacturingCountry);
+  // formData.append("manufacturingContactName", manufacturingContactName);
+  // formData.append("manufacturingContactNumber", manufacturingContactNumber);
+  // formData.append("manufacturingContactEmail", manufacturingContactEmail);
+  // formData.append("manufacturingOrigin", manufacturingOrigin);
+  // formData.append("manufacturingContract", manufacturingContract);
 
 
     // Add file to form data
@@ -171,17 +174,26 @@ const handleSubmit = (event) => {
   console.log('Compliance ID:', localStorage.getItem("compliance_id"));
 
   // function to handle form submission
-  axiosInstance.post('/application/compliance/', formData, {
+  axiosInstance.put(`/application/compliance/${idel}/`, formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
       Authorization: `Bearer ${localStorage.getItem('access_token')}`,
     }
   }).then(response => {
+    // form submission successful
+  setFormSubmitted(true);
     console.log(response.data);
   }).catch(error => {
+    setFormSubmitted(false);
     console.log(error);
   });
 }
+
+ //setButtonPopup2(false);
+
+const handleClosePopup = () => {
+  setFormSubmitted(false);
+};
 
 
 
@@ -211,8 +223,13 @@ const handleSubmit = (event) => {
 
 
   // API call to get document status
+  
+  
   useEffect(() => {
+    const interval = setInterval(() => {
     axiosInstance.get(`application/compliance/${idel}/`)
+      console.log('Refreshing Data..!!');
+      axiosInstance.get(`application/compliance/${idel}/`)
       .then(response => {
         const data = response.data.data;
         const compliance_id = data["compliance"];
@@ -267,6 +284,9 @@ const handleSubmit = (event) => {
       .catch(error => {
         console.log(error);
       })
+    }, 5000);
+    
+      return () => clearInterval(interval);
   }, [idel]);
   
   
@@ -274,10 +294,73 @@ const handleSubmit = (event) => {
     //Download Button Code handleOptionClick
 
 
+    const handleDownloadreport = () => {
+      // create a new instance of jsPDF
+      const doc = new jsPDF();
+
+//load the image 
+const logoImg = new Image();
+logoImg.src = pdflogo;
+   
+//wait for the image to load 
+logoImg.onload = function () {
+         // Add the content to the PDF
+    doc.addImage(logoImg, 'PNG', 10, 4, 50, 30);
+  doc.text(`Compliance Type: ${complianceid}`, 10, 50);
+  doc.text(`Application Number: ${uniqueid}`, 10, 60);
+  doc.text(`Date: ${new Date().toLocaleDateString()}`, 10, 70);
+  doc.text('Details of Documents:-', 10, 160);
+  
+
+   // Define the table columns and rows
+   const columns = ['Step Name', 'Start Date', 'Status'];
+   const rows = [['Portal Registration', docStep["1"] && docStep["1"][2].slice(0,10), docStep["1"] && docStep["1"][0]],
+                ['Initiation of Testing', docStep["2"] && docStep["2"][2].slice(0,10), docStep["2"] && docStep["2"][0] ],
+                ['AIR registration', docStep["3"] && docStep["3"][2].slice(0,10), docStep["3"] && docStep["3"][0]  ],
+                ['Foreign OEM Registration', docStep["4"] && docStep["4"][2].slice(0,10), docStep["4"] && docStep["4"][0] ],
+                ['BOM Submission ', docStep["5"] && docStep["5"][2].slice(0,10), docStep["5"] && docStep["5"][0] ],
+                ['Application Payment', docStep["6"] && docStep["6"][2].slice(0,10), docStep["6"] && docStep["6"][0]],
+                ['Final Submission', docStep["7"] && docStep["7"][2].slice(0,10), docStep["7"] && docStep["7"][0] ],
+                ['Issuance of certification', docStep["8"] && docStep["8"][2].slice(0,10), docStep["8"] && docStep["8"][0]], 
+  ];
+
+ 
+   // Generate the table using jspdf-autotable
+   doc.autoTable({
+     head: [columns],
+     body: rows,
+     startY: 75,
+   });
+
+
+   //SECOND TABLE DATA 
+   const columns1 =['Step Name', 'Date Of submission', 'Status']
+   const rows1 =[['Authorized Signatory Letter', '', docStatus['Authorized Signatory Letter']],
+   ['MOU', '', docStatus['MOU']],
+   ['AOA', '', docStatus['AOA']],
+   ['OEM authorized to AIR', '', docStatus['OEM authorized to AIR']],
+   ['MOA', '', docStatus['MOA']],
+   ['Certificate of Incorporation', '', docStatus['Certificate of Incorporation']],
+   ]
+
+
+
+    
+   // Generate the table using jspdf-autotable
+   doc.autoTable({
+    head: [columns1],
+    body: rows1,
+    startY: 170,
+  });
+  // Save the PDF
+  doc.save('my-document.pdf');
+}
+    }
+    
+
   const handleOptionClick = (option) => {
     setSelectedOption(option);
-  };
-    
+  }; 
  /*   const handleDownload = () => {
       const input = document.getElementById('pdf-content');
       const pdf = new jsPDF();
@@ -311,45 +394,91 @@ const handleSubmit = (event) => {
       })
         .then((res) => {
           console.log(res);
+          setUploadStatus('status');
         })
         .catch((error) => {
           console.log(error);
+          setUploadStatus('failure');
         });
     
-      setButtonPopup(false);
+     // setButtonPopup(false);
     }
 
 
     /*---------DOWNLOAD BUTTON APS CALLS------*/
     
-const handleDownload = (event, form) => {
+    useEffect(() => {
+      axiosInstance
+        .get(`compliance-form/?compliance=TEC`)
+        .then((response) => {
+          const downloadData = response.data;
+          localStorage.setItem("myKey", JSON.stringify(downloadData));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }, []);
 
-  axiosInstance.get(`compliance-form/?compliance=TEC`, {
-    responseType: 'blob',
-    headers: {
-      'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
-      'Content-Type': 'application/json',
-      'accept': 'application/json',
-    }
-  })
-    .then(response => {
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement('a');
-      console.log(response.data)
-      link.href = url;
-      link.setAttribute('download', `${form}.docx`);
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-    })
-    .catch(error => {
-      console.log(error);
-    });
+    
+    const [selectedOptions, setSelectedOptions] = useState([]);
 
-  setButtonPopup1(false);
-}  
+    const docDownload = {
+      Shareholding_Pattern: 'https://eikomp.pythonanywhere.com/media/media/compliance/form/Shareholding_Pattern.docx',
+      Manufacturing_details: 'https://eikomp.pythonanywhere.com/media/media/compliance/form/Manufacturing_details_tfyJoOx.xlsx',
+      CDFCCL_Format: 'https://eikomp.pythonanywhere.com/media/media/compliance/form/CDF-CCL_Format_TMdRsOP.docx',
+    };
+  
+    const storedValue = JSON.parse(localStorage.getItem("myKey"));
+    console.log(storedValue[0]['form']);
+    
+  if (storedValue !== null) {
+    const base = "https://eikomp.pythonanywhere.com";
+  const docStatus2 = {};
+  console.log(storedValue)
+  for (let i = 0; i < storedValue.length; i++) {
+    const statusData = storedValue[i];
+    docStatus2[statusData["name"]] = `${base}${statusData["form"]}`;
+  }
+  console.log(docStatus2);
+} else {
+  console.error("There is no data stored in localStorage with the key 'myKey'");
+}
 
 
+    const handleDownload = (event) => {
+      event.preventDefault();
+
+         // Build the URLs based on the selected options and the docStatus data
+         const urls = [];
+         selectedOptions.forEach(option => {
+           urls.push(docDownload[option.value]);
+         });
+
+          // Download the files
+      const downloadPromises = urls.map(url => fetch(url));
+      Promise.all(downloadPromises)
+        .then(responses => Promise.all(responses.map(response => response.blob())))
+        .then(blobs => {
+          blobs.forEach((blob, index) => {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${selectedOptions[index].label}.docx`;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+          });
+        })
+        .catch(error => {
+          console.error('There was an error downloading the file:', error);
+        });
+    };
+  
+  const options1 = [
+    { value: 'Shareholding_Pattern', label: 'Shareholding Pattern'},
+    { value: 'Manufacturing_details', label: 'Manufacturing Details' },
+    { value: 'CDFCCL_Format', label: 'CDFCCL Format' },
+  ];
 
 
     return (
@@ -361,16 +490,6 @@ const handleDownload = (event, form) => {
         <h1 className="appli">Application Number:  {uniqueid}  </h1>
        {/* <button className="clidown" onClick={handleDownload}>Download</button> */}
       </div>
-
-      <div className="dd-menu">
-          <button className="reportbtn" onClick={() => handleOptionClick('Process')}>Download Process Report</button>
-          <button className="reportbtn" onClick={() => handleOptionClick('Testing')}>Download Test Certificate</button>
-          <button className="reportbtn" onClick={() => handleOptionClick('Certificate')}>Download Certificate</button>
-        </div>
- 
- 
-
-
 
  {/*----------------UPLOAD BUTTON CODE ------------*/ }
  <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
@@ -390,6 +509,12 @@ const handleDownload = (event, form) => {
   </div>
   <div>
   <button className = "button8" onClick={handleUpload}>UPLOAD</button>
+  {uploadStatus &&
+    <div className="submit-pop">
+      <p>{uploadStatus === 'status' ? 'Your documents have been uploaded successfully' : 'There was an error uploading your document.'}</p>
+      <button className="sumbitpop-btn" onClick={() => setUploadStatus('')}>OK</button>
+    </div>  
+  }
   </div>
 </div>
 </Popup>
@@ -402,44 +527,9 @@ const handleDownload = (event, form) => {
 <div className="lab-testing-box">
       <Popup trigger={buttonPopup2} setTrigger={setButtonPopup2}>
         <div style={{ height: "500px", overflow: "scroll" }}>
-          <h801>Testing Information Required</h801>
+          <h1 className="h801">Testing Information Required</h1>
           <form onSubmit={handleSubmit}>
-            <label className="st8012">
-              Applicant Name:
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setTestingApplicantName(event.target.value)}
-
-              />
-            </label>
-            <label className="st8012">
-              Address:
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setTestingAddress(event.target.value)}
-
-              />
-            </label>
-            <label className="st8012">
-              OEM Name:
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setTestingOEMName(event.target.value)}
-
-              />
-            </label>
-            <label className="st8012">
-              OEM Address:
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setTestingOEMAddress(event.target.value)}
-
-              />
-            </label>
+          
             <label className="st8012">
               Product Name:
               <input
@@ -513,23 +603,43 @@ const handleDownload = (event, form) => {
               />
             </label>
             <label className="st8012">
-              Product Type (Fixed/Industrial/Portable/other):
+        Product Type:
+        <select className="st801" onChange={(event) => setTestingProductType(event.target.value)}>
+          <option value="Fixed">Fixed</option>
+          <option value="Industrial">Industrial</option>
+          <option value="Portable">Portable</option>
+          <option value="Other">Other</option>
+        </select>
+      </label>
+
+      <label className="st8012">
+              Product Type (if other):
               <input
                 className="st805"
                 type="text"
-                onChange={(event) => setTestingProductType(event.target.value)}
-
+                onChange={(event) => setTestingProductTypeOther(event.target.value)}
               />
             </label>
+          
             <label className="st8012">
-              Product Use (Indoor/Outdoor/other):
+              Product Use:
+              <select className="st801" onChange={(event) => setTestingProductUse(event.target.value)}>
+                <option value="Indoor">Indoor</option>
+                <option value="Outdoor">Outdoor</option> 
+                <option valur="Other">Other</option>              
+              </select>
+            </label>
+
+            <label className="st8012">
+              Product Use(if other):
               <input
                 className="st805"
                 type="text"
-                onChange={(event) => setTestingProductUse(event.target.value)}
+                onChange={(event) => setTestingProductOther(event.target.value)}
 
               />
             </label>
+
             <label className="st8012">
               Filled CDF/CCl (Format attached):
               <input classname="stup805" type="file"   onChange={(event) => setCdfccl(event.target.files)} multiple accept />
@@ -540,15 +650,15 @@ const handleDownload = (event, form) => {
             </label>
             <label className="st8012">
               Circuit Diagram:
-              <input classname="stup805" type="file"  onChange={(event) => setCircuitdiagram(event.target.files)} multiple accept />
+              <input className="stup805" type="file"  onChange={(event) => setCircuitdiagram(event.target.files)} multiple accept />
             </label>
             <label className="st8012">
               PCB Layout:
-              <input classname="stup805" type="file"  onChange={(event) => setPcblayout(event.target.files)} multiple accept />
+              <input className="stup805" type="file"  onChange={(event) => setPcblayout(event.target.files)} multiple accept />
             </label>
             <label className="st8012">
               Software used (if any):
-              <input classname="stup805" type="file"  onChange={(event) => setSoftwareuser(event.target.files)} multiple accept />
+              <input className="stup805" type="file"  onChange={(event) => setSoftwareuser(event.target.files)} multiple accept />
             </label>
            
             <label className="st8012">
@@ -571,7 +681,7 @@ const handleDownload = (event, form) => {
             </label>
 
 
-            <h805>Manufacturing Location Information:</h805>
+            {/* <h1 className="h801">Manufacturing Location Information:</h1>
             <label className="st8012">
               Product Name:
               <input
@@ -670,17 +780,25 @@ const handleDownload = (event, form) => {
                 onChange={(event) => setManufacturingContract(event.target.value)}
 
               />
-            </label>
+            </label> */}
 
             <button className='btn809' type="submit">Submit</button>
+
+            {formSubmitted && (
+        <div className="submit-pop">
+          {formSubmitted === true ? (
+            <p>Your request for testing has been successfully submitted</p>
+          ) : (
+            <p>Testing Form failed. Please try again.</p>
+          )}
+          <button className="sumbitpop-btn" onClick={handleClosePopup}>OK</button>
+        </div>
+      )}
           </form>
         </div>
       </Popup>
-      {submitPopup && (
-        <Popup>
-          <div>Hello everyone</div>
-        </Popup>
-      )}
+      
+      
 </div>
 
 {/*------------------DOWNLOAD BUTTON CODE ----------------*/}
@@ -693,26 +811,29 @@ const handleDownload = (event, form) => {
 <Popup trigger={buttonPopup1} setTrigger={setButtonPopup1}>
         <h3>Download a File</h3>
         <label>
-          <h4>Select a file to download:</h4>
-          <div className="download-form1"> 
-          <Multiselect
-              isObject={false}
-              options={options}
-              onRemove={(event) => { console.log(event) }}
-              onSelect={(event) => { console.log(event) }}
-              showCheckbox
-            />
-          </div>
-          </label>
+  <h4>Select file(s) to download:</h4>
+  <div className="scroll-bar">
+  <div className="select-container">
+    <Select
+      options={options1}
+      value={selectedOptions}
+      onChange={setSelectedOptions}
+      isMulti
+      placeholder="Select files..."
+    />
+  </div>
+</div>
+</label>
           <div>
           <button className="button8" type="submit" onClick={handleDownload}>Download</button>
           </div>
           </Popup>
           
   <div className="tecon">
+    <h2 className="steps-count">Steps To Be Completed</h2>
    
    <Popup trigger={buttonPopup3} setTrigger={setButtonPopup3}>
-  <h2>  Meassge :- 
+  <h2>  Message :- 
    {docStep["1"] && docStep["1"][1]}</h2>
    <h2>Start Date :- 
    {docStep["1"] && docStep["1"][2].slice(0,10)}</h2>
@@ -728,7 +849,7 @@ const handleDownload = (event, form) => {
 
 
 <Popup trigger={buttonPopup4} setTrigger={setButtonPopup4}>
-<h2>  Meassge :- 
+<h2>  Message :- 
    {docStep["2"] && docStep["2"][1]}</h2>
    <h2>Start Date :-
    {docStep["2"] && docStep["2"][2].slice(0,10)}</h2>
@@ -743,7 +864,7 @@ const handleDownload = (event, form) => {
 
 
 <Popup trigger={buttonPopup5} setTrigger={setButtonPopup5}>
-<h2>  Meassge :- 
+<h2>  Message :- 
    {docStep["3"] && docStep["3"][1]}</h2>
    <h2>Start Date :-
    {docStep["3"] && docStep["3"][2].slice(0,10)}</h2>
@@ -758,7 +879,7 @@ const handleDownload = (event, form) => {
 
 
 <Popup trigger={buttonPopup6} setTrigger={setButtonPopup6}>
-<h2>  Meassge :- 
+<h2>  Message :- 
    {docStep["4"] && docStep["4"][1]}</h2>
    <h2>Start Date :-
    {docStep["4"] && docStep["4"][2].slice(0,10)}</h2>
@@ -771,7 +892,7 @@ const handleDownload = (event, form) => {
   )}
 
 <Popup trigger={buttonPopup7} setTrigger={setButtonPopup7}>
-<h2>  Meassge :- 
+<h2>  Message :- 
    {docStep["5"] && docStep["5"][1]}</h2>
    <h2>Start Date :-
    {docStep["5"] && docStep["5"][2].slice(0,10)}</h2>
@@ -785,7 +906,7 @@ const handleDownload = (event, form) => {
   )}
 
 <Popup trigger={buttonPopup8} setTrigger={setButtonPopup8}>
-<h2>  Meassge :- 
+<h2>  Message :- 
    {docStep["6"] && docStep["6"][1]}</h2>
    <h2>Start Date :-
    {docStep["6"] && docStep["6"][2].slice(0,10)}</h2>
@@ -799,7 +920,7 @@ const handleDownload = (event, form) => {
   )}
 
 <Popup trigger={buttonPopup9} setTrigger={setButtonPopup9}>
-<h2>  Meassge :- 
+<h2>  Message :- 
    {docStep["7"] && docStep["7"][1]}</h2>
    <h2>Start Date :-
    {docStep["7"] && docStep["7"][2].slice(0,10)}</h2>
@@ -813,7 +934,7 @@ const handleDownload = (event, form) => {
   )}
 
 <Popup trigger={buttonPopup10} setTrigger={setButtonPopup10}>
-<h2>  Meassge :- 
+<h2>  Message :- 
    {docStep["8"] && docStep["8"][1]}</h2>
    <h2>Start Date :-
    {docStep["8"] && docStep["8"][2].slice(0,10)}</h2>
@@ -825,10 +946,10 @@ const handleDownload = (event, form) => {
   ) : (
     <Wrong className="mainsvg3" onClick={() => setButtonPopup10(true)}/>
   )}
-
-
   </div>
-            
+
+  
+  <h2 className="pdfstep-name"> Documents To Be Submitted</h2>  
         <div className="pdffilesup">
           <div className="row">
            
@@ -882,7 +1003,6 @@ const handleDownload = (event, form) => {
 <div className="col doc-col">
 
 {docStatus['Certificate of Incorporation'] === 'sumbitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
-
   <div>
     <img src={file6png} alt="" className="pdfico1" />
   </div>
@@ -893,7 +1013,12 @@ const handleDownload = (event, form) => {
           </div>
         </div>
       
-
+{/*------- LAST THREE BUTTON CODES HERE _____________*/}
+<div className="dd-menu">
+          <button className="reportbtn" onClick={handleDownloadreport}>Download Progress Report</button>
+          <button className="reportbtn" onClick={() => handleOptionClick('Testing')}>Download Test Certificate</button>
+          <button className="reportbtn" onClick={() => handleOptionClick('Certificate')}>Download Certificate</button>
+        </div>
       
   {/* {startDate && endDate && (
     <div>
