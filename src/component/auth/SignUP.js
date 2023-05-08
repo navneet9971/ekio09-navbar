@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Col, Row } from "antd";
 import { useHistory } from "react-router-dom";
 import "../assets/css/global.css";
+import Swal from 'sweetalert2';
 
 function SignUP() {
   const history = useHistory();
@@ -26,28 +27,90 @@ function SignUP() {
 		});
 	};
    
-  const handleSubmit = (e) => {
-		e.preventDefault();
-		console.log(formData);
 
-		axios
-			.post(`https://backend.eikompapp.com/register`, {
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Prevent the default form submission behavior
+  
+    // Log the form data to the console
+    console.log(formData);
+  
+    // Check if password and confirm password match
+    if (formData.password !== formData.password2) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Password Mismatch',
+        text: 'The password and confirm password do not match.',
+      });
+      return; // Exit the function to prevent the API request from being made
+    }
+  
+    // Make a POST request to the API endpoint
+    axios
+      .post(`https://backend.eikompapp.com/register`, {
         first_name: formData.first_name,
         last_name: formData.last_name,
-				email: formData.email,
-				username: formData.username,
-				password: formData.password,
+        email: formData.email,
+        username: formData.username,
+        password: formData.password,
         password2: formData.password2,
         organization_name: formData.organization_name,
         mobile: formData.mobile,
-
-			})
-			.then((res) => {
-				history.push('/');
-				console.log(res);
-				console.log(res.data);
-			});
-	};
+      })
+      .then((res) => {
+        // Handle successful registration
+        history.push('/'); // Navigate to the homepage
+        console.log(res);
+        console.log(res.data);
+  
+        // Check the success status directly from the response
+        const success = res.status === 201; // Modify this condition based on the actual success status returned by the API
+  
+        // Open file browser popup if registration is successful
+        if (success) {
+          console.log('Registration successful'); // Display success message in console
+          Swal.fire({
+            icon: 'success',
+            title: 'Registration Successful',
+            text: 'Your registration was successful!',
+            confirmButtonText: 'OK',
+          }).then(() => {
+            history.push('/'); // Redirect to the homepage after clicking "OK"
+          });
+        }
+      })
+      .catch((error) => {
+        // Handle API errors
+        if (error.response && error.response.data) {
+          const errorData = error.response.data;
+          // Display error message to the user
+          console.error(errorData); // Log the error response to the console
+  
+          // Check if the user is already registered
+          if (errorData.message && errorData.message.includes('already registered')) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Registration Error',
+              text: 'You are already registered. Please use a different email or username.',
+            });
+          } else {
+            // Show generic error message
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'An error occurred during registration.',
+            });
+          }
+        } else {
+          console.error(error); // Log other types of errors to the console
+        }
+      });
+  };
+  
+  
+  
+  
+  
+  
 
   return (
     <div className="auth-box">
