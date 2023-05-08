@@ -48,20 +48,19 @@ function Review() {
 
 
 
-
-
   const handleClick = (id) => {
     localStorage.setItem('ide', id);
     console.log(id)
     const selectedItem = tableData.find((data) => data.id === id);
-    const selectedStatus =
-      selectedItem.status === "on-going" ? "on-going" : "completed";
+    const selectedStatus = selectedItem["status"] === "Ongoing" ? "Ongoing" : "completed";
+console.log(selectedStatus);
+//console.log(selectedItem["status"])
     if (selectedItem.compliance_name === "BIS") {
-      history.push(`/navbar/${selectedStatus === "on-going" ? "ComplianceTypePage" : "Completedcompliancetype"}/id=${id}`);
+      history.push(`/navbar/${selectedStatus === "Ongoing" ? "ComplianceTypePage" : "Completedcompliancetype"}/id=${id}`);
     } else if (selectedItem.compliance_name === "TEC") {
-      history.push(`/navbar/${selectedStatus === "on-going" ? "TECOngoing" : "TECcompleted"}/id=${id}`);
+      history.push(`/navbar/${selectedStatus === "Ongoing" ? "TECOngoing" : "TECcompleted"}/id=${id}`);
     }
-  };
+  };  
 
 
   function handleFilterStatusChange(event) {
