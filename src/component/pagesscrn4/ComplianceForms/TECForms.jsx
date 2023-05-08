@@ -58,9 +58,7 @@ function MiddleSection() {
           </div>
 
           <h398 className="regpro">{middleData.product_name} - Registration Process</h398>
-          <img className="imgback" alt="flowchart" src={"https://eikomp.pythonanywhere.com" + middleData.flowchart} />
-
-
+          <img className="imgback" alt="flowchart" src={"https://backend.eikompapp.com" + middleData.flowchart} />
         </>
       )}
     </div>
@@ -75,15 +73,16 @@ function DocumentBox() {
 
   const [buttonPopup1, setButtonPopup1] = useState(false);
   const docStatus1 = {
-    Shareholding_Pattern: 'https://eikomp.pythonanywhere.com/media/media/compliance/form/Shareholding_Pattern.docx',
-    Manufacturing_details: 'https://eikomp.pythonanywhere.com/media/media/compliance/form/Manufacturing_details_tfyJoOx.xlsx',
-    CDFCCL_Format: 'https://eikomp.pythonanywhere.com/media/media/compliance/form/CDF-CCL_Format_TMdRsOP.docx',
+    Shareholding_Pattern: 'https://backend.eikompapp.com/media/media/compliance/form/Shareholding_Pattern.docx',
+    Manufacturing_details: 'https://backend.eikompapp.com/media/media/compliance/form/Manufacturing_details_tfyJoOx.xlsx',
+    CDFCCL_Format: 'https://backend.eikompapp.com/media/media/compliance/form/CDF-CCL_Format_TMdRsOP.docx',
   };
+  
   //const [document] = useState(null);
   const storedValue = JSON.parse(localStorage.getItem("myKey"));
   // console.log(storedValue[0]['form']);
 if (storedValue !== null) {
-    const base = "https://eikomp.pythonanywhere.com";
+    const base = "https://backend.eikompapp.com/";
   const docStatus = {};
   for (let i = 0; i < storedValue.length; i++) {
     const statusData = storedValue[i];

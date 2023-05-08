@@ -37,7 +37,7 @@ function TECcompleted() {
   const idel = localStorage.getItem('ide');
   const [documentType, setDocumentType] = useState('');
   const [uploades ,setUploades] = useState('');
-    const [buttonPopup, setButtonPopup] = useState(false);
+  const [buttonPopup, setButtonPopup] = useState(false);
   const [options] = useState(['Authorized Signatory Letter', 'MOU', 'AOA', 'OEM authorized to AIR', 'MOA', 'Certificate of Incorporation']); 
   const [buttonPopup1, setButtonPopup1] = useState(false);
  // const [document] = useState(null);
