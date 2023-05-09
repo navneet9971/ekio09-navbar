@@ -47,6 +47,7 @@ function Review() {
   }, [idel]);
 
 
+
   const handleClick = (id) => {
     localStorage.setItem('ide', id);
     console.log(id)
@@ -60,62 +61,52 @@ console.log(selectedStatus);
       history.push(`/navbar/${selectedStatus === "Ongoing" ? "TECOngoing" : "TECcompleted"}/id=${id}`);
     }
   };  
-  
 
 
   function handleFilterStatusChange(event) {
+    const selectedStatus = event.target.value;
+    console.log(selectedStatus);
+  
     if (event.target && event.target.value) {
-      const selectedStatus = event.target.value;
-      console.log(selectedStatus);
-  
       setFilterStatus(selectedStatus);
+    }
   
-      if (selectedStatus === "all") {
-        history.push("/navbar");
-      } else {
-        history.push(`/navbar/${selectedStatus}`);
-      }
+    if (selectedStatus === "all") {
+      history.push("/navbar");
+    } else {
+      history.push(`/navbar/${selectedStatus}`);
     }
   }
-  
-//download PDF handle
+
+  //download PDF handle
   
     
-const handletableDownload = () => {
-  // create a new instance of jsPDF
-  const doc = new jsPDF('landscape');
-  
-  // set the table headers and rows using the data array
-  const headers = ["S.NO", "Project Code", "Compliance Type", "Product Name", "Model Number", "Associated Number/Family Model", "Start Date", "Estimated Completion Date", "Status", "Actual End Date"];
-  const rows = tableData.map((data, index) => [  index + 1,  data.uniqueid,  data.compliance_name,  data.application_name, data.model_number, data.associated_number,  formatDate(data.startdate), data.estimated_date, data.status, data.end_date]);
-  
-  // set custom column widths
-  const columnWidth = [3, 25, 25, 30, 25, 40, 25, 35, 20, 35];
-  
-  // set custom row height
-  const rowHeight = 6;
+  const handletableDownload = () => {
+    // create a new instance of jsPDF
+    const doc = new jsPDF('landscape');
+    
+    // set the table headers and rows using the data array
+    const headers = ["S.NO", "Project Code", "Compliance Type", "Product Name", "Model Number", "Associated Number/Family Model", "Start Date", "Estimated Completion Date", "Status", "Actual End Date"];
+    const rows = tableData.map((data, index) => [  index + 1,  data.uniqueid,  data.compliance_name,  data.application_name, data.model_number, data.associated_number,  formatDate(data.startdate), data.estimated_date, data.status, data.end_date]);
+    
+    // set custom column widths
+    const columnWidth = [3, 25, 25, 30, 25, 40, 25, 35, 20, 35];
+    
+    // set custom row height
+    const rowHeight = 6;
 
-  // add the table to the PDF document with custom column widths and row height
+    // add the table to the PDF document with custom column widths and row height
 doc.autoTable({
-head: [headers],
-body: rows,
-columnWidth: columnWidth,
-rowHeight: rowHeight,
-styles: { cellPadding: 2, valign: 'middle', halign: 'center' } // Center aligns the content vertically and horizontally
+  head: [headers],
+  body: rows,
+  columnWidth: columnWidth,
+  rowHeight: rowHeight,
+  styles: { cellPadding: 2, valign: 'middle', halign: 'center' } // Center aligns the content vertically and horizontally
 });
-  
-  // add the table to the PDF document with custom column widths and row height
-  doc.autoTable({
-    head: [headers],
-    body: rows,
-    columnWidth: columnWidth,
-    rowHeight: rowHeight,
-  });
-
+    
   // download the PDF file
-  doc.save("payment_history.pdf");
-};
-
+    doc.save("payment_history.pdf");
+  };
 
   
   
