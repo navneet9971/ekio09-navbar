@@ -1,86 +1,62 @@
-import axios from 'axios';
+import axios from "axios";
 
 const baseURL = 'https://eikomp.pythonanywhere.com/';
 
 const axiosInstance = axios.create({
-	baseURL: baseURL,
-	timeout: 5000,
-	headers: {
-		Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-		'Content-Type': 'application/json',
-		accept: 'application/json',
-	}, 
+  baseURL: baseURL,
+  headers: {
+	Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+    "Content-Type": "application/json",
+  },
 });
 
+axiosInstance.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("access_token")
+    if (token) {
+      config.headers["Authorization"] = 'Bearer ' + token;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 axiosInstance.interceptors.response.use(
-	(response) => {
-		return response;
-	},
-	async function (error) {
-		const originalRequest = error.config;
+  (res) => {
+    return res;
+  },
+  async (err) => {
+    const originalConfig = err.config;
 
-		if (typeof error.response === 'undefined') {
-			alert(
-				'A server/network error occurred. ' +
-					'Looks like CORS might be the problem. ' +
-					'Sorry about this - we will get it fixed shortly.'
-			);
-			return Promise.reject(error);
-		}
+    if (originalConfig.url !== baseURL+"login" && err.response) {
+      // Access Token was expired
+      if (err.response.status === 401 && !originalConfig._retry) {
+        originalConfig._retry = true;
 
-		if (
-			error.response.status === 401 &&
-			originalRequest.url === baseURL + 'refresh'
-		) {
-			window.location.href = '/';
-			return Promise.reject(error);
-		}
+        try {
+          const rs = await axiosInstance.post("refresh", {
+			
+            refresh: localStorage.getItem("refresh_token"),
+          });
 
-		if (
-			error.response.data.code === 'token_not_valid' &&
-			error.response.status === 401 &&
-			error.response.statusText === 'Unauthorized'
-		) {
-			const refreshToken = localStorage.getItem('refresh_token');
+          const { access_token } = rs.data.access;
+          localStorage.setItem("access_token", access_token);
+		  localStorage.setItem("refresh_token", rs.data.refresh);
 
-			if (refreshToken) {
-				const tokenParts = JSON.parse(window.atob(refreshToken.split('.')[1]));
+		  axiosInstance.defaults.headers['Authorization'] =
+		  'Bearer ' + rs.data.access;
+	  
+          return axiosInstance(originalConfig);
+        } catch (_error) {
+          return Promise.reject(_error);
+        }
+      }
+    }
 
-				// exp date in token is expressed in seconds, while now() returns milliseconds:
-				const now = Math.ceil(Date.now() / 1000);
-				console.log(tokenParts.exp);
-
-				if (tokenParts.exp > now) {
-					return axiosInstance
-						.post('refresh', { refresh: refreshToken })
-						.then((response) => {
-							console.log(response.data.access);
-							localStorage.setItem('access_token', response.data.access);
-							localStorage.setItem('refresh_token', response.data.refresh);
-
-							axiosInstance.defaults.headers['Authorization'] =
-								'Bearer ' + response.data.access;
-							originalRequest.headers['Authorization'] =
-								'Bearer ' + response.data.access;
-
-							return axiosInstance(originalRequest);
-						})
-						.catch((err) => {
-							console.log(err);
-						});
-				} else {
-					console.log('Refresh token is expired', tokenParts.exp, now);
-					window.location.href = '/';
-				}
-			} else {
-				console.log('Refresh token not available.');
-				window.location.href = '/';
-			}
-		}
-
-		// specific error handling done elsewhere
-		return Promise.reject(error);
-	}
+    return Promise.reject(err);
+  }
 );
 
 export default axiosInstance;

@@ -27,12 +27,10 @@ function Login() {
       username: formData.username,
       password: formData.password,
     }, { withCredentials: true })
-    .then((res) => {
+    .then(async res => {
       localStorage.setItem('access_token', res.data.access);
       localStorage.setItem('refresh_token', res.data.refresh);
       localStorage.setItem('user_id', res.data.profile.id);
-      axiosInstance.defaults.headers['Authorization'] =
-        'Bearer ' + localStorage.getItem('access_token');
       history.push('/navbar/mainpage');
       //console.log(res);
       //console.log(res.data);
