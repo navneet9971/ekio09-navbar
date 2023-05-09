@@ -63,7 +63,7 @@ axiosInstance.get(`/compliance/?category=${category}&product=${product}&region=$
       <h4 className="red-warning">You need to fill at least 1 data point to see the list of compliance.</h4>
 
       <div className="form-group22">
-        <label htmlFor="category-input">Enter Category:</label>
+        <label htmlFor="category-input">Enter Industry:</label>
         <input type="text" id="category-input" value={category} onChange={handleCategoryChange} />
       </div>
 

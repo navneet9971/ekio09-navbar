@@ -236,3 +236,94 @@ body {
     display: none;
   }
 }
+
+/*------ Forget Password POPUP CSS-----------*/
+h3.email-popup {
+  text-align: center;
+  margin: 28px;
+  font-size: 30px;
+}
+
+button.forgetbtn {
+  display: block;
+  padding: 1px 14px;
+  font-size: 25px;
+  font-weight: 600;
+  color: white;
+  border-radius: 20px;
+  margin: 10px auto;
+  background-color: #082a71;
+}
+
+button.forgetbtn:hover{
+  background-color: #55b700;
+}
+
+input.forgetinput {
+  margin: 18px;
+  padding: 6px 25px;
+  font-size: 16px;
+  border: 1px solid #0e0e0e;
+  border-radius: 4px;
+}
+
+input.forgetinput:focus {
+  outline: none;
+  border-color: #082a71;
+  box-shadow: 0 0 3px #082a71;
+}
+
+img.forgotlogo {
+  display: flex;
+  width: 240px;
+  margin: 58px auto;
+}
+
+h2.rest-pass {
+  display: flex;
+  justify-content: center;
+}
+
+
+label.pasword-forget {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.password-input {
+  display: flex;
+  padding: 24px;
+  margin: 1px 550px;
+}
+
+
+.password-input {
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+  margin: 1px;
+}
+
+
+  input.pasword {
+    padding: 2px 20px;
+}
+
+button.submit-forget {
+  padding: 8px 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: white;
+  background-color: #082a71;
+  margin: 2px auto;
+  display: block;
+}
+
+button.submit-forget:hover{
+  background-color: #55b700;
+}
+
+.password-toggle-icon{
+  padding: 5px 10px;
+}

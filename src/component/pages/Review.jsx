@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Popup from "../pagesscrn4/popup/Popup";
-import { PDFDownloadLink } from "@react-pdf/renderer";
 import "./Table.css";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 import axiosInstance from "../../interceptors/axios";
 
 function formatDate(dateString) {
@@ -22,7 +23,6 @@ function Review() {
   //const [startDate] = useState("");
   const [filterStatus, setFilterStatus] = useState("");
   const history = useHistory();
-  const [pdf] = useState("");
   const idel = localStorage.getItem('ide');
   
  
@@ -48,20 +48,19 @@ function Review() {
 
 
 
-
-
   const handleClick = (id) => {
     localStorage.setItem('ide', id);
     console.log(id)
     const selectedItem = tableData.find((data) => data.id === id);
-    const selectedStatus =
-      selectedItem.status === "on-going" ? "on-going" : "completed";
+    const selectedStatus = selectedItem["status"] === "Ongoing" ? "Ongoing" : "completed";
+console.log(selectedStatus);
+//console.log(selectedItem["status"])
     if (selectedItem.compliance_name === "BIS") {
-      history.push(`/navbar/${selectedStatus === "on-going" ? "ComplianceTypePage" : "Completedcompliancetype"}/id=${id}`);
+      history.push(`/navbar/${selectedStatus === "Ongoing" ? "ComplianceTypePage" : "Completedcompliancetype"}/id=${id}`);
     } else if (selectedItem.compliance_name === "TEC") {
-      history.push(`/navbar/${selectedStatus === "on-going" ? "TECOngoing" : "TECcompleted"}/id=${id}`);
+      history.push(`/navbar/${selectedStatus === "Ongoing" ? "TECOngoing" : "TECcompleted"}/id=${id}`);
     }
-  };
+  };  
 
 
   function handleFilterStatusChange(event) {
@@ -79,6 +78,38 @@ function Review() {
     }
   }
 
+  //download PDF handle
+  
+    
+  const handletableDownload = () => {
+    // create a new instance of jsPDF
+    const doc = new jsPDF('landscape');
+    
+    // set the table headers and rows using the data array
+    const headers = ["S.NO", "Project Code", "Compliance Type", "Product Name", "Model Number", "Associated Number/Family Model", "Start Date", "Estimated Completion Date", "Status", "Actual End Date"];
+    const rows = tableData.map((data, index) => [  index + 1,  data.uniqueid,  data.compliance_name,  data.application_name, data.model_number, data.associated_number,  formatDate(data.startdate), data.estimated_date, data.status, data.end_date]);
+    
+    // set custom column widths
+    const columnWidth = [3, 25, 25, 30, 25, 40, 25, 35, 20, 35];
+    
+    // set custom row height
+    const rowHeight = 6;
+
+    // add the table to the PDF document with custom column widths and row height
+doc.autoTable({
+  head: [headers],
+  body: rows,
+  columnWidth: columnWidth,
+  rowHeight: rowHeight,
+  styles: { cellPadding: 2, valign: 'middle', halign: 'center' } // Center aligns the content vertically and horizontally
+});
+  
+    // download the PDF file
+    doc.save("payment_history.pdf");
+  };
+
+  
+  
   
 return (
   <div className="table">
@@ -99,27 +130,25 @@ return (
         <h3>Choose date not Found!</h3>
       </Popup>
     )}
-
-    <div className="download-button">
-      <PDFDownloadLink
-        document={<iframe title="Document Preview" src={pdf} style={{ width: "100%", height: "100%" }} />}
-        fileName="table.pdf"
-      >
-        <button className="revbtn">Download PDF</button>
-      </PDFDownloadLink>
-    </div>
+ 
+ <div className="tablerepot-btn">
+ <div className="btn-wrapper">
+        <button className="revbtn" onClick={handletableDownload}>Download Table Data</button>
+        </div>
+        </div>
 
     <div className="table-wrapper">
       <table className="Review">
         <thead>
           <tr>
             <th className="header">S.NO</th>
-            <th className="header">Compliance Type</th>
-            <th className="header">Application Name </th>
-            <th className="header">Start Date</th>
             <th className="header">Project Code</th>
-            <th className="header">Days for completion of Process</th>
-            <th className="header">Actual End Date</th>
+            <th className="header">Compliance Type</th>
+            <th className="header">Product Name </th>
+            <th className="header">Model Number</th>
+            <th className="header">Associated Number/Family Model</th>
+            <th className="header">Start Date</th>
+            <th className="header">Estimated Completion Date</th>
             <th className="header">
               Status{" "}
               <select
@@ -132,6 +161,7 @@ return (
                 <option value="completed">Completed</option>
               </select>
             </th>
+            <th className="header">Actual End Date</th>
           </tr>
         </thead>
 
@@ -139,20 +169,22 @@ return (
           {tableData.map((data, index) => (
             <tr key={data.id}>
               <td>{index + 1}</td>
-              <td
-                className="clickable"
-                onClick={() => handleClick(data.id)}
-              >
+                 <td
+                 className="clickable"
+                 onClick={() => handleClick(data.id)}>{data.uniqueid}</td>
+
+              <td className="clickable" onClick={() => handleClick(data.id)}>
                 {data.compliance_name}
               </td>
               <td>{data.application_name}</td>
+              <td>{data.fields['Model_number']}</td> 
+              <td>{data.fields['Associate_models']}</td>
               <td>
                 {formatDate(data.startdate)}
               </td>
-              <td>{data.uniqueid}</td>
               <td> {data.estimated_date}</td>
+                 <td>{data.status}</td>
               <td>{data.end_date}</td>
-              <td>{data.status}</td>
             </tr>
           ))}
         </tbody>

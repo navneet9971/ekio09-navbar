@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "../Pages.css";
 import Popup from "../popup/Popup";
 //import { TiTick } from "react-icons/ti";
-import Multiselect from 'multiselect-react-dropdown';
+import Select from 'react-select';
 import axiosInstance from '../../../interceptors/axios';
 import bgimage from "../../assets/pages-bgimages/15.svg";
 
@@ -68,502 +68,90 @@ function MiddleSection() {
   )
 };
 
-// -------------Lab Testing Box Codes Here-------------------------------
-
-// function LabTestingBox() {
-//   const [buttonPopup, setButtonPopup] = useState(false);
-//   //const [buttonPopup1, setButtonPopup1] = useState(false);
-//   const [submitPopup] = useState(false);
-
-//   const [testingApplicantName, setTestingApplicantName] = useState("");
-//   const [testingAddress, setTestingAddress] = useState("");
-//   const [testingOEMName, setTestingOEMName] = useState("");
-//   const [testingOEMAddress, setTestingOEMAddress] = useState("");
-//   const [testingProductName, setTestingProductName] = useState("");
-//   const [testingModelNo, setTestingModelNo] = useState("");
-//   const [testingAssociated, setTestingAssociated] = useState("");
-//   const [testingHardwareNumber, setTestingHardwareNumber] = useState("");
-//   const [testingSoftwareNumber, setTestingSoftwareNumber] = useState("");
-//   const [testingBrand, setTestingBrand] = useState("");
-//   const [testingSr, setTestingSr] = useState("");
-//   const [testingElectrical, setTestingElectrical] = useState("");
-//   const [testingProductType, setTestingProductType] = useState("");
-//   const [testingProductUse, setTestingProductUse] = useState("");
-//   //const [testingSoftware, setTestingSoftware] = useState("");
-//   const [testingTechnicalsupportName, setTestingTechnicalsupportName] = useState("");
-//   const [testingTechnicalsuppoertNumber, setTestingTechnicalsuppoertNumber] = useState("");
-//   const [manufacturingProductName, setManufacturingProductName] = useState("");
-//   const [manufacturingModelNo, setManufacturingModelNo] = useState("");
-//   const [manufacturingAssociatedModels, setManufacturingAssociatedModels] = useState("");
-//   const [manufacturingManufacturingName, setManufacturingManufacturingName] = useState("");
-//   const [manufacturingManufacturingAddress, setManufacturingManufacturingAddress] = useState("");
-//   const [manufacturingManufacturingCountry, setManufacturingManufacturingCountry] = useState("");
-//   const [manufacturingContactName, setManufacturingContactName] = useState("");
-//   const [manufacturingContactNumber, setManufacturingContactNumber] = useState("");
-//   const [manufacturingContactEmail, setManufacturingContactEmail] = useState("");
-//   const [manufacturingOrigin, setManufacturingOrigin] = useState("");
-//   const [manufacturingContract, setManufacturingContract] = useState("");
-//   const [cdfccl, setCdfccl] = useState("");
-//   const [usermanual, setUsermanual] = useState("");
-//   const [circuitdiagram, setCircuitdiagram] = useState("");
-//   const [pcblayout, setPcblayout] = useState("");
-//   const [softwareuser, setSoftwareuser] = useState("");
-
-
-  
-//   //APIS Form DATA
-//   const handleSubmit = (event) => {
-//     event.preventDefault();
-
-//     const formData = new FormData();
-//     formData.append('application', localStorage.getItem('newApplicationId'));
-//     formData.append('compliance', localStorage.getItem("compliance_id"));
-//     formData.append('request_for', 'lab testing');
-//     formData.append("testingApplicantName", testingApplicantName);
-//     formData.append("testingAddress", testingAddress);
-//     formData.append("testingOEMName", testingOEMName);
-//     formData.append("testingOEMAddress", testingOEMAddress);
-//     formData.append("testingProductName", testingProductName);
-//     formData.append("testingModelNo", testingModelNo);
-//     formData.append("testingAssociated", testingAssociated);
-//     formData.append("testingHardwareNumber", testingHardwareNumber);
-//     formData.append("testingSoftwareNumber", testingSoftwareNumber);
-//     formData.append("testingBrand", testingBrand);
-//     formData.append("testingSr", testingSr);
-//     formData.append("testingElectrical", testingElectrical);
-//     formData.append("testingProductType", testingProductType);
-//     formData.append("testingProductUse", testingProductUse);
-//    // formData.append("testingSoftware", testingSoftware);
-//     formData.append("testingTechnicalsupportName", testingTechnicalsupportName);
-//     formData.append("testingTechnicalsuppoertNumber", testingTechnicalsuppoertNumber);
-//     formData.append("manufacturingProductName", manufacturingProductName);
-//     formData.append("manufacturingModelNo", manufacturingModelNo);
-//     formData.append("manufacturingAssociatedModels", manufacturingAssociatedModels);
-//     formData.append("manufacturingManufacturingName", manufacturingManufacturingName);
-//     formData.append("manufacturingManufacturingAddress", manufacturingManufacturingAddress);
-//     formData.append("manufacturingManufacturingCountry", manufacturingManufacturingCountry);
-//     formData.append("manufacturingContactName", manufacturingContactName);
-//     formData.append("manufacturingContactNumber", manufacturingContactNumber);
-//     formData.append("manufacturingContactEmail", manufacturingContactEmail);
-//     formData.append("manufacturingOrigin", manufacturingOrigin);
-//     formData.append("manufacturingContract", manufacturingContract);
-
-
-//       // Add file to form data
-      
-//       if (cdfccl) {
-//         for (let i = 0; i < cdfccl.length; i++) {
-//           formData.append('documents', cdfccl[i]);
-//         }
-//       }
-//       if (usermanual) {
-//         for (let i = 0; i < usermanual.length; i++) {
-//           formData.append('documents', usermanual[i]);
-//         }
-//       }
-//       if (circuitdiagram) {
-//         for (let i = 0; i < circuitdiagram.length; i++) {
-//           formData.append('documents', circuitdiagram[i]);
-//         }
-//       }
-//       if (pcblayout) {
-//         for (let i = 0; i < pcblayout.length; i++) {
-//           formData.append('documents', pcblayout[i]);
-//         }
-//       }
-//       if (softwareuser) {
-//         for (let i = 0; i < softwareuser.length; i++) {
-//           formData.append('documents', softwareuser[i]);
-//         }
-//       }
-
-//     console.log('Application ID:', localStorage.getItem('newApplicationId'));
-//     console.log('Compliance ID:', localStorage.getItem("compliance_id"));
-
-//     // function to handle form submission
-//     axiosInstance.post('/application/compliance/', formData, {
-//       headers: {
-//         'Content-Type': 'multipart/form-data',
-//         Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-//       }
-//     }).then(response => {
-//       console.log(response.data);
-//     }).catch(error => {
-//       console.log(error);
-//     });
-//   }
-  
-
-
-
-//   return (
-//     <div className="lab-testing-box">
-//       <button className="button7" onClick={() => setButtonPopup(true)}>Request Testing</button>
-//       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-//         <div style={{ height: "500px", overflow: "scroll" }}>
-//           <h801>Testing Information Required</h801>
-//           <form onSubmit={handleSubmit}>
-//             <label className="st8012">
-//               Applicant Name:
-//               <input
-//                 className="st805"
-//                 type="text"
-//                 onChange={(event) => setTestingApplicantName(event.target.value)}
-
-//               />
-//             </label>
-//             <label className="st8012">
-//               Address:
-//               <input
-//                 className="st805"
-//                 type="text"
-//                 onChange={(event) => setTestingAddress(event.target.value)}
-
-//               />
-//             </label>
-//             <label className="st8012">
-//               OEM Name:
-//               <input
-//                 className="st805"
-//                 type="text"
-//                 onChange={(event) => setTestingOEMName(event.target.value)}
-
-//               />
-//             </label>
-//             <label className="st8012">
-//               OEM Address:
-//               <input
-//                 className="st805"
-//                 type="text"
-//                 onChange={(event) => setTestingOEMAddress(event.target.value)}
-
-//               />
-//             </label>
-//             <label className="st8012">
-//               Product Name:
-//               <input
-//                 className="st805"
-//                 type="text"
-//                 onChange={(event) => setTestingProductName(event.target.value)}
-
-//               />
-//             </label>
-//             <label className="st8012">
-//               Model No:
-//               <input
-//                 className="st805"
-//                 type="text"
-//                 onChange={(event) => setTestingModelNo(event.target.value)}
-
-//               />
-//             </label>
-//             <label className="st8012">
-//               Associated Models (if any):
-//               <input
-//                 className="st805"
-//                 type="text"
-//                 onChange={(event) => setTestingAssociated(event.target.value)}
-
-//               />
-//             </label>
-//             <label className="st8012">
-//               Hardware Number:
-//               <input
-//                 className="st805"
-//                 type="text"
-//                 onChange={(event) => setTestingHardwareNumber(event.target.value)}
-
-//               />
-//             </label>
-//             <label className="st8012">
-//               Software Number	:
-//               <input
-//                 className="st805"
-//                 type="text"
-//                 onChange={(event) => setTestingSoftwareNumber(event.target.value)}
-
-//               />
-//             </label>
-//             <label className="st8012">
-//               Brand:
-//               <input
-//                 className="st805"
-//                 type="text"
-//                 onChange={(event) => setTestingBrand(event.target.value)}
-
-//               />
-//             </label>
-//             <label className="st8012">
-//               Sr. No:
-//               <input
-//                 className="st805"
-//                 type="text"
-//                 onChange={(event) => setTestingSr(event.target.value)}
-
-//               />
-//             </label>
-//             <label className="st8012">
-//               Electrical Rating:
-//               <input
-//                 className="st805"
-//                 type="text"
-//                 onChange={(event) => setTestingElectrical(event.target.value)}
-
-//               />
-//             </label>
-//             <label className="st8012">
-//               Product Type (Fixed/Industrial/Portable/other):
-//               <input
-//                 className="st805"
-//                 type="text"
-//                 onChange={(event) => setTestingProductType(event.target.value)}
-
-//               />
-//             </label>
-//             <label className="st8012">
-//               Product Use (Indoor/Outdoor/other):
-//               <input
-//                 className="st805"
-//                 type="text"
-//                 onChange={(event) => setTestingProductUse(event.target.value)}
-
-//               />
-//             </label>
-//             <label className="st8012">
-//               Filled CDF/CCl (Format attached):
-//               <input classname="stup805" type="file"   onChange={(event) => setCdfccl(event.target.files)} multiple accept />
-//             </label>
-//             <label className="st8012">
-//               Complete User Manual:
-//               <input classname="stup805" type="file"  onChange={(event) => setUsermanual(event.target.files)} multiple accept />
-//             </label>
-//             <label className="st8012">
-//               Circuit Diagram:
-//               <input classname="stup805" type="file"  onChange={(event) => setCircuitdiagram(event.target.files)} multiple accept />
-//             </label>
-//             <label className="st8012">
-//               PCB Layout:
-//               <input classname="stup805" type="file"  onChange={(event) => setPcblayout(event.target.files)} multiple accept />
-//             </label>
-//             <label className="st8012">
-//               Software used (if any):
-//               <input classname="stup805" type="file"  onChange={(event) => setSoftwareuser(event.target.files)} multiple accept />
-//             </label>
-           
-//             <label className="st8012">
-//               Technical support person name:
-//               <input
-//                 className="st805"
-//                 type="text"
-//                 onChange={(event) => setTestingTechnicalsupportName(event.target.value)}
-
-//               />
-//             </label>
-//             <label className="st8012">
-//               Technical support person contact number:
-//               <input
-//                 className="st805"
-//                 type="text"
-//                 onChange={(event) => setTestingTechnicalsuppoertNumber(event.target.value)}
-
-//               />
-//             </label>
-
-
-//             <h805>Manufacturing Location Information:</h805>
-//             <label className="st8012">
-//               Product Name:
-//               <input
-//                 className="st805"
-//                 type="text"
-//                 onChange={(event) => setManufacturingProductName(event.target.value)}
-
-//               />
-//             </label>
-//             <label className="st8012">
-//               Model No:
-//               <input
-//                 className="st805"
-//                 type="text"
-//                 onChange={(event) => setManufacturingModelNo(event.target.value)}
-
-//               />
-//             </label>
-//             <label className="st8012">
-//               Associated Models:
-//               <input
-//                 className="st805"
-//                 type="text"
-//                 onChange={(event) => setManufacturingAssociatedModels(event.target.value)}
-
-//               />
-//             </label>
-//             <label className="st8012">
-//               Manufacturer Name:
-//               <input
-//                 className="st805"
-//                 type="text"
-//                 onChange={(event) => setManufacturingManufacturingName(event.target.value)}
-//               />
-//             </label>
-
-//           <label className="st8012">
-//             Manufacturer Address:
-//             <input
-//             className="st805"
-//               type="text"
-//               onChange={(event) => setManufacturingManufacturingAddress(event.target.value)}
-//             />
-//           </label>
-//             <label className="st8012">
-//               Manufacturer Country:
-//               <input
-//                 className="st805"
-//                 type="text"
-//                 onChange={(event) => setManufacturingManufacturingCountry(event.target.value)}
-
-//               />
-//             </label>
-
-//             <label className="st8012">
-//               Contact Person Name:
-//               <input
-//                 className="st805"
-//                 type="text" 
-//                 onChange={(event) => setManufacturingContactName(event.target.value)}
-
-//               />
-//             </label>
-//             <label className="st8012">
-//               Contact Person's Number:
-//               <input
-//                 className="st805"
-//                 type="text"
-//                 onChange={(event) => setManufacturingContactNumber(event.target.value)}
-
-//               />
-//             </label>
-//             <label className="st8012">
-//               Contact Person's Email Id:
-//               <input
-//                 className="st805"
-//                 type="text" 
-//                 onChange={(event) => setManufacturingContactEmail(event.target.value)}
-
-//               />
-//             </label>
-//             <label className="st8012">
-//               Country of Origin:
-//               <input
-//                 className="st805"
-//                 type="text"
-//                 onChange={(event) => setManufacturingOrigin(event.target.value)}
-
-//               />
-//             </label>
-//             <label className="st8012">
-//               Contract Manufacturing(Yes/No):
-//               <input
-//                 className="st805"
-//                 type="text"
-//                 onChange={(event) => setManufacturingContract(event.target.value)}
-
-//               />
-//             </label>
-
-//             <button className='btn809' type="submit">Submit</button>
-//           </form>
-//         </div>
-//       </Popup>
-//       {submitPopup && (
-//         <Popup>
-//           <div>Hello everyone</div>
-//         </Popup>
-//       )}
-//       {/* <div className="header-btn">
-//       <button className="button7" onClick={() => setButtonPopup1(true)}>Status</button>
-//       </div>
-//       <Popup trigger={buttonPopup1} setTrigger={setButtonPopup1}>
-//         <div>
-//           <h32>My Order</h32>
-//           <table>
-//             <thead>
-//               <tr>
-//                 <th>S.No</th>
-//                 <th>Order Category</th>
-//                 <th>On Date</th>
-//                 <th>Current Status</th>
-//               </tr>
-//             </thead>
-//             <tbody>
-//               {statusData.map((data, index) => (
-//                 <tr key={index}>
-//                   <td>{data["s.no"]}</td>
-//                   <td>{data.category}</td>
-//                   <td>{data.onDate}</td>
-//                   <td>{data.currentStatus}</td>
-//                 </tr>
-//               ))}
-//             </tbody>
-//           </table>
-//         </div>
-//       </Popup>*/}
-//     </div>
-//   );
-// }
-
 
 // -------------------------------Document Box Codes here---------------------------------------------------
 
 function DocumentBox() {
 
   const [buttonPopup1, setButtonPopup1] = useState(false);
-  const [options] = useState(['Signatory Authorization', 'OEM Authorization', 'MOU', 'Shareholding Pattern', 'Annexure 1', 'BOM', 'Non Applicability Proforma', 'Proforma Seeking Exemption']);
+  const docStatus1 = {
+    Shareholding_Pattern: 'https://eikomp.pythonanywhere.com/media/media/compliance/form/Shareholding_Pattern.docx',
+    Manufacturing_details: 'https://eikomp.pythonanywhere.com/media/media/compliance/form/Manufacturing_details_tfyJoOx.xlsx',
+    CDFCCL_Format: 'https://eikomp.pythonanywhere.com/media/media/compliance/form/CDF-CCL_Format_TMdRsOP.docx',
+  };
   //const [document] = useState(null);
-
-
-  const handleDownload = (event, form) => {
-    event.preventDefault();
-    console.log('Downloading file:', form);
-  
-    axiosInstance.get(`compliance-form/?compliance=TEC`, {
-      params: {
-        document_type: form
-      },
-      responseType: 'blob',
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
-        'Content-Type': 'application/json',
-        'accept': 'application/json',
-      }
-    })
-    .then(response => {
-      console.log(response.data);
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-  
-      try {
-        // Create a link element to trigger the download
-        const link = document.createElement('a');
-        link.href = url;
-        link.setAttribute('download', `${form}.docx`);
-  
-        // Add the link element to the document and trigger the download
-        document.body.appendChild(link);
-        link.click();
-      } catch (error) {
-        console.log(error);
-      } finally {
-        // Clean up the URL object to free up memory
-        window.URL.revokeObjectURL(url);
-      }
-    })
-    .catch(error => {
-      console.log(error);
-    });
-  
-    setButtonPopup1(false);
+  const storedValue = JSON.parse(localStorage.getItem("myKey"));
+  // console.log(storedValue[0]['form']);
+if (storedValue !== null) {
+    const base = "https://eikomp.pythonanywhere.com";
+  const docStatus = {};
+  for (let i = 0; i < storedValue.length; i++) {
+    const statusData = storedValue[i];
+    docStatus[statusData["name"]] = `${base}${statusData["form"]}`;
   }
+  console.log(docStatus);
+} else {
+  console.error("There is no data stored in localStorage with the key 'myKey'");
+}
+      // console.log(docStatus['Shareholding_Pattern'])
+      // console.log(docStatus["Manufacturing details"])
+      // console.log(docStatus['CDF-CCL Format'])
+
+
+  useEffect(() => {
+    axiosInstance
+      .get(`compliance-form/?compliance=TEC`)
+      .then((response) => {
+        const downloadData = response.data;
+        localStorage.setItem("myKey", JSON.stringify(downloadData));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+
+    const [selectedOptions, setSelectedOptions] = useState([]);
   
+    const handleDownload = (event) => {
+      event.preventDefault();
+  
+      // Build the URLs based on the selected options and the docStatus data
+      const urls = [];
+      selectedOptions.forEach(option => {
+        urls.push(docStatus1[option.value]);
+      });
+  
+      // Download the files
+      const downloadPromises = urls.map(url => fetch(url));
+      Promise.all(downloadPromises)
+        .then(responses => Promise.all(responses.map(response => response.blob())))
+        .then(blobs => {
+          blobs.forEach((blob, index) => {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${selectedOptions[index].label}.docx`;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+          });
+        })
+        .catch(error => {
+          console.error('There was an error downloading the file:', error);
+        });
+    };
+  
+    // setButtonPopup1(false);
+
+
+  const options = [
+    { value: 'Shareholding_Pattern', label: 'Shareholding Pattern'},
+    { value: 'Manufacturing_details', label: 'Manufacturing Details' },
+    { value: 'CDFCCL_Format', label: 'CDF-CCL Format' },
+  ];
+
+
 
 
   // -------------------------------Document Box Codes here---------------------------------------------------
@@ -578,17 +166,20 @@ function DocumentBox() {
     <Popup trigger={buttonPopup1} setTrigger={setButtonPopup1}>
         <h3>Download a File</h3>
         <label>
-          <h4>Select a file to download:</h4>
-          <div className='download-form1'>
-            <Multiselect
-            isObject={false}
-            options={ options }
-            onRemove={(event)=> { console.log(event) }}
-            onSelect={ (event)=> { console.log(event) }}
-            showCheckbox
-            />
-          </div>
-        </label>
+  <h4>Select file(s) to download:</h4>
+  <div className="scroll-bar">
+  <div className="select-container">
+    <Select
+      options={options}
+      value={selectedOptions}
+      onChange={setSelectedOptions}
+      isMulti
+      placeholder="Select files..."
+    />
+  </div>
+</div>
+</label>
+
         <div>
           <button className="button8" type="submit" onClick={handleDownload}>Download</button>
         </div>
@@ -602,8 +193,6 @@ function DocumentBox() {
 );
 }
     
-  
-
 // Video Section Codes Here----------------------------------------
 
 function Thirdpage() {
@@ -683,8 +272,10 @@ function Startapp() {
   const [applicantCompanyName, setApplicantCompanyName] = useState("");
   const [applicantCompanyAddress, setApplicantCompanyAddress] = useState("");
   const [applicantDirectorName, setApplicantDirectorName] = useState("");
+  const [applicantDesignation, setApplicantDesignation] = useState("");
   const [applicantContactNumber, setApplicantContactNumber] = useState("");
   const [applicantEmailID, setApplicantEmailID] = useState("");
+  const [applicantCIN, setApplicantCIN] = useState("");
   const [applicantAuthorisedSignatoryName, setApplicantAuthorisedSignatoryName] = useState("");
   const [applicantAuthorisedSignatoryDesignation, setApplicantAuthorisedSignatoryDesignation] = useState("");
   const [applicantContactNumber1, setApplicantContactNumber1] = useState("");
@@ -700,9 +291,8 @@ function Startapp() {
   const [moa, setMoa] = useState("");
   const [aoa, setAoa] = useState("");
   const [shareholding, setShareholding] = useState("");
-  const [authorizationletter, setAuthorizationletter] = useState("");
-  const [mouApplicantOem, setMouApplicantOem] = useState("");
-  const [aIRAuthorizationLetter, setAIRAuthorizationLetter] = useState("");
+  const [boardresolution, setBoardresolution] = useState("");
+ 
   const [buttonPopup5, setButtonPopup5] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
 
@@ -717,22 +307,24 @@ function Startapp() {
   formData.append('application', localStorage.getItem('newApplicationId'));
   formData.append('compliance', localStorage.getItem("compliance_id"));
   formData.append('request_for', 'certification');
-  formData.append('types_of_company', types_of_company);
+  formData.append('Types_of_company', types_of_company);
   formData.append('Applicant_company_name', applicantCompanyName);
   formData.append('Applicant_company_address', applicantCompanyAddress);
-  formData.append('applicantDirectorName', applicantDirectorName);
-  formData.append('applicantContactNumber', applicantContactNumber);
-  formData.append('applicantEmailID', applicantEmailID);
-  formData.append('applicantAuthorisedSignatoryName', applicantAuthorisedSignatoryName);
-  formData.append('applicantAuthorisedSignatoryDesignation', applicantAuthorisedSignatoryDesignation);
-  formData.append('applicantContactNumber1', applicantContactNumber1);
-  formData.append('applicantEmailID1', applicantEmailID1);
-  formData.append('foreignCompanyName', foreignCompanyName);
-  formData.append('foreignCompanyAddress', foreignCompanyAddress);
-  formData.append('foreignAuthorizedSignatoryName', foreignAuthorizedSignatoryName);
-  formData.append('foreignAuthorizedSignatoryDesignation', foreignAuthorizedSignatoryDesignation);
-  formData.append('foreignContactNumber', foreignContactNumber);
-  formData.append('foreignEmailID', foreignEmailID);
+  formData.append('Applicant_director_name', applicantDirectorName);
+  formData.append('Applicant_director_designation', applicantDesignation);
+  formData.append('Applicant_contact_number', applicantContactNumber);
+  formData.append('Applicant_emailid', applicantEmailID);
+  formData.append('Applicant_company_CIN', applicantCIN);
+  formData.append('Applicant_signatory_name', applicantAuthorisedSignatoryName);
+  formData.append('Applicant_signatory_designation', applicantAuthorisedSignatoryDesignation);
+  formData.append('Applicant_signatory_number', applicantContactNumber1);
+  formData.append('Applicant_signatory_emailid', applicantEmailID1);
+  formData.append('Foreign_manufacturer_company_name', foreignCompanyName);
+  formData.append('Foreign_manufacturer_company_address', foreignCompanyAddress);
+  formData.append('Foreign_manufacturer_authorised_signatory_name', foreignAuthorizedSignatoryName);
+  formData.append('Foreign_manufacturer_authorised_signatory_designation', foreignAuthorizedSignatoryDesignation);
+  formData.append('Foreign_manufacturer_contact_number', foreignContactNumber);
+  formData.append('Foreign_manufacturer_emailid', foreignEmailID);
 
   // Add the selected file to the form data
   if (coiApplicant) {
@@ -758,22 +350,12 @@ function Startapp() {
   if (shareholding) {
     for (let i = 0; i < shareholding.length; i++) {
       formData.append('documents', shareholding[i]);
-    }
   }
-  if (authorizationletter) {
-    for (let i = 0; i < authorizationletter.length; i++) {
-      formData.append('documents', authorizationletter[i]);
-    }
   }
-  if (mouApplicantOem) {
-    for (let i = 0; i < mouApplicantOem.length; i++) {
-      formData.append('documents', mouApplicantOem[i]);
-    }
+  if (boardresolution) {
+    for (let i = 0; i < boardresolution.length; i++) {
+      formData.append('documents', boardresolution[i]);
   }
-  if (aIRAuthorizationLetter) {
-    for (let i = 0; i < aIRAuthorizationLetter.length; i++) {
-      formData.append('documents', aIRAuthorizationLetter[i]);
-    }
   }
 
     /*  if (image) {
@@ -850,13 +432,10 @@ function Startapp() {
             <h1 className='h802'>Applicant Company:</h1>
             <label className="st8012">
               Indian OEM/Foreign Manufacture:
-              <input
-                className="st805"
-                type="text"
-
-                onChange={(event) => setTypes_of_company(event.target.value)}
-
-              />
+             <select className='st804' onChange={(event) =>  setTypes_of_company(event.target.value)}>
+              <option value="Foregin">Foregin</option>
+              <option value="Indian">Indian</option>
+             </select>
             </label>
             <label className="st8012">
               Company Name:
@@ -879,12 +458,22 @@ function Startapp() {
               />
             </label>
             <label className="st8012">
-              Director Name:
+              Director Name/(Any other higher Authority)
               <input
                 className="st805"
                 type="text"
 
                 onChange={(event) => setApplicantDirectorName(event.target.value)}
+
+              />
+            </label>
+            <label className="st8012">
+              Designation:
+              <input
+                className="st805"
+                type="text"
+
+                onChange={(event) => setApplicantDesignation(event.target.value)}
 
               />
             </label>
@@ -905,6 +494,16 @@ function Startapp() {
                 type="text"
 
                 onChange={(event) => setApplicantEmailID(event.target.value)}
+
+              />
+            </label>
+            <label className="st8012">
+             Company CIN:
+              <input
+                className="st805"
+                type="text"
+
+                onChange={(event) => setApplicantCIN(event.target.value)}
 
               />
             </label>
@@ -1034,23 +633,15 @@ function Startapp() {
               <input classname="stup805" type="file"  onChange={(event) => setShareholding(event.target.files)} multiple accept/>
             </label>
             <label className="st8012">
-              Authorization letter:
-              <input classname="stup805" type="file"  onChange={(event) => setAuthorizationletter(event.target.files)} multiple accept/>
-            </label>
-            <label className="st8012">
-              MOU between Applicant & OEM:
-              <input classname="stup805" type="file"  onChange={(event) => setMouApplicantOem(event.target.files)} multiple accept/>
-            </label>
-            <label className="st8012">
-              AIR Authorization Letter for Appliicant:
-              <input classname="stup805" type="file"  onChange={(event) => setAIRAuthorizationLetter(event.target.files)} multiple accept/>
+              Board Resolution (If Director is not signing Authority):
+              <input classname="stup805" type="file"  onChange={(event) => setBoardresolution(event.target.files)} multiple accept/>
             </label>
             <button className='btn808' type="submit">Submit</button>
             
             {formSubmitted && (
         <div className="submit-pop">
           {formSubmitted === true ? (
-            <p>Form submitted successfully!</p>
+            <p>Your Application has been submitted successfully.You can track the progress in Track Application section</p>
           ) : (
             <p>Form submission failed. Please try again.</p>
           )}
