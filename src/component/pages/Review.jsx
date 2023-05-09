@@ -103,14 +103,6 @@ doc.autoTable({
   rowHeight: rowHeight,
   styles: { cellPadding: 2, valign: 'middle', halign: 'center' } // Center aligns the content vertically and horizontally
 });
-    
-    // add the table to the PDF document with custom column widths and row height
-    doc.autoTable({
-      head: [headers],
-      body: rows,
-      columnWidth: columnWidth,
-      rowHeight: rowHeight,
-    });
   
     // download the PDF file
     doc.save("payment_history.pdf");
