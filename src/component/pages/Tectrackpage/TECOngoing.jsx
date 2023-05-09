@@ -423,9 +423,9 @@ logoImg.onload = function () {
     const [selectedOptions, setSelectedOptions] = useState([]);
 
     const docDownload = {
-      Shareholding_Pattern: 'https://backend.eikompapp.com/media/media/compliance/form/Shareholding_Pattern.docx',
-      Manufacturing_details: 'https://backend.eikompapp.com/media/media/compliance/form/Manufacturing_details_tfyJoOx.xlsx',
-      CDFCCL_Format: 'https://backend.eikompapp.com/media/media/compliance/form/CDF-CCL_Format_TMdRsOP.docx',
+      Shareholding_Pattern: 'https://eikomp.pythonanywhere.com/media/media/compliance/form/Shareholding_Pattern.docx',
+      Manufacturing_details: 'https://eikomp.pythonanywhere.com/media/media/compliance/form/Manufacturing_details_tfyJoOx.xlsx',
+      CDFCCL_Format: 'https://eikomp.pythonanywhere.com/media/media/compliance/form/CDF-CCL_Format_TMdRsOP.docx',
     };
   
     const storedValue = JSON.parse(localStorage.getItem("myKey"));
