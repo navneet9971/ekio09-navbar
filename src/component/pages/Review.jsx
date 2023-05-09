@@ -78,34 +78,44 @@ console.log(selectedStatus);
     }
   }
   
-  //download PDF handle
+//download PDF handle
   
     
-  const handletableDownload = () => {
-    // create a new instance of jsPDF
-    const doc = new jsPDF();
-    
-    // set the table headers and rows using the data array
-    const headers = ["S.NO", "Project Code", "Compliance Type", "Product Name", "Model Number", "Associated Number/Family Model", "Start Date", "Estimated Completion Date", "Status", "Actual End Date"];
-    const rows = tableData.map((data, index) => [  index + 1,  data.uniqueid,  data.compliance_name,  data.application_name, data.model_number, data.associated_number, data.startdate, data.estimated_date, data.status, data.end_date]);
-    
-    // set custom column widths
-    const columnWidth = [3, 25, 25, 30, 25, 40, 25, 35, 20, 35];
-    
-    // set custom row height
-    const rowHeight = 10;
-    
-    // add the table to the PDF document with custom column widths and row height
-    doc.autoTable({
-      head: [headers],
-      body: rows,
-      columnWidth: columnWidth,
-      rowHeight: rowHeight,
-    });
+const handletableDownload = () => {
+  // create a new instance of jsPDF
+  const doc = new jsPDF('landscape');
   
-    // download the PDF file
-    doc.save("payment_history.pdf");
-  };
+  // set the table headers and rows using the data array
+  const headers = ["S.NO", "Project Code", "Compliance Type", "Product Name", "Model Number", "Associated Number/Family Model", "Start Date", "Estimated Completion Date", "Status", "Actual End Date"];
+  const rows = tableData.map((data, index) => [  index + 1,  data.uniqueid,  data.compliance_name,  data.application_name, data.model_number, data.associated_number,  formatDate(data.startdate), data.estimated_date, data.status, data.end_date]);
+  
+  // set custom column widths
+  const columnWidth = [3, 25, 25, 30, 25, 40, 25, 35, 20, 35];
+  
+  // set custom row height
+  const rowHeight = 6;
+
+  // add the table to the PDF document with custom column widths and row height
+doc.autoTable({
+head: [headers],
+body: rows,
+columnWidth: columnWidth,
+rowHeight: rowHeight,
+styles: { cellPadding: 2, valign: 'middle', halign: 'center' } // Center aligns the content vertically and horizontally
+});
+  
+  // add the table to the PDF document with custom column widths and row height
+  doc.autoTable({
+    head: [headers],
+    body: rows,
+    columnWidth: columnWidth,
+    rowHeight: rowHeight,
+  });
+
+  // download the PDF file
+  doc.save("payment_history.pdf");
+};
+
 
   
   
