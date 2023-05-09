@@ -87,7 +87,7 @@ console.log(selectedStatus);
     
     // set the table headers and rows using the data array
     const headers = ["S.NO", "Project Code", "Compliance Type", "Product Name", "Model Number", "Associated Number/Family Model", "Start Date", "Estimated Completion Date", "Status", "Actual End Date"];
-    const rows = tableData.map((data, index) => [  index + 1,  data.uniqueid,  data.compliance_name,  data.application_name, data.model_number, data.associated_number,  formatDate(data.startdate), data.estimated_date, data.status, data.end_date]);
+    const rows = tableData.map((data, index) => [  index + 1,  data.uniqueid,  data.compliance_name,  data.application_name, data.Model_number, data.Associated_models,  formatDate(data.startdate), data.estimated_date, data.status, data.end_date]);
     
     // set custom column widths
     const columnWidth = [3, 25, 25, 30, 25, 40, 25, 35, 20, 35];
