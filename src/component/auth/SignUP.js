@@ -58,7 +58,7 @@ function SignUP() {
   
     // Make a POST request to the API endpoint
     axios
-      .post(`https://eikomp.pythonanywhere.com/register`, {
+    .post(`https://backend.eikompapp.com/register`, {
         first_name: formData.first_name,
         last_name: formData.last_name,
         email: formData.email,
