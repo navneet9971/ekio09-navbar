@@ -75,9 +75,9 @@ function DocumentBox() {
 
   const [buttonPopup1, setButtonPopup1] = useState(false);
   const docStatus1 = {
-    Shareholding_Pattern: 'https://backend.eikompapp.com/media/media/compliance/form/Shareholding_Pattern.docx',
-    Manufacturing_details: 'https://backend.eikompapp.com/media/media/compliance/form/Manufacturing_details_tfyJoOx.xlsx',
-    CDFCCL_Format: 'https://backend.eikompapp.com/media/media/compliance/form/CDF-CCL_Format_TMdRsOP.docx',
+    Shareholding_Pattern: 'https://eikomp-backend-media.s3.amazonaws.com/media/compliance/form/Shareholding_Pattern.docx',
+    Manufacturing_details: 'https://eikomp-backend-media.s3.amazonaws.com/media/compliance/form/Manufacturing_details_tfyJoOx.xlsx',
+    CDFCCL_Format: 'https://eikomp-backend-media.s3.amazonaws.com/media/compliance/form/CDF-CCL_Format_TMdRsOP.docx',
   };
   //const [document] = useState(null);
   const storedValue = JSON.parse(localStorage.getItem("myKey"));
