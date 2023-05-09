@@ -66,7 +66,7 @@ function Login() {
     axiosInstance.post(`login`, {
       username: formData.username,
       password: formData.password,
-    }, { withCredentials: true })
+    }, {  })
     .then(async res => {
       localStorage.setItem('access_token', res.data.access);
       localStorage.setItem('refresh_token', res.data.refresh);

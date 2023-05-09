@@ -5,7 +5,7 @@ const baseURL = 'https://eikomp.pythonanywhere.com/';
 const axiosInstance = axios.create({
   baseURL: baseURL,
   headers: {
-	Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+	Authorization : `Bearer ${localStorage.getItem('access_token')}`,
     "Content-Type": "application/json",
   },
 });
