@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = 'https://eikomp-backend-media.s3.amazonaws.com/';
+const baseURL = 'https://backend.eikompapp.com/';
 
 const axiosInstance = axios.create({
   baseURL: baseURL,

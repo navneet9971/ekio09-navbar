@@ -58,7 +58,7 @@ function MiddleSection() {
           </div>
 
           <h398 className="regpro">{middleData.product_name} - Registration Process</h398>
-          <img className="imgback" alt="flowchart" src={"https://eikomp-backend-media.s3.amazonaws.com/" + middleData.flowchart} />
+          <img className="imgback" alt="flowchart" src={middleData.flowchart} />
 
 
         </>
@@ -75,7 +75,7 @@ function DocumentBox() {
 
   const [buttonPopup1, setButtonPopup1] = useState(false);
   const docStatus1 = {
-    Shareholding_Pattern: 'https://eikomp-backend-media.s3.amazonaws.com/media/compliance/form/Shareholding_Pattern.docx',
+    Shareholding_Pattern: 'https://eikomp-backend-media.s3.amazonaws.com/media/compliance/form/Shareholding_Pattern.docx ',
     Manufacturing_details: 'https://eikomp-backend-media.s3.amazonaws.com/media/compliance/form/Manufacturing_details_tfyJoOx.xlsx',
     CDFCCL_Format: 'https://eikomp-backend-media.s3.amazonaws.com/media/compliance/form/CDF-CCL_Format_TMdRsOP.docx',
   };
@@ -408,6 +408,8 @@ function Startapp() {
   const handleClosePopup = () => {
     setFormSubmitted(false);
   };
+
+ 
 
   return (
     <div>
