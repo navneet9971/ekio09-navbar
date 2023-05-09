@@ -58,7 +58,7 @@ function MiddleSection() {
           </div>
 
           <h398 className="regpro">{middleData.product_name} - Registration Process</h398>
-          <img className="imgback" alt="flowchart" src={"https://backend.eikompapp.com" + middleData.flowchart} />
+          <img className="imgback" alt="flowchart" src={"https://eikomp-backend-media.s3.amazonaws.com/" + middleData.flowchart} />
 
 
         </>
@@ -83,7 +83,7 @@ function DocumentBox() {
   const storedValue = JSON.parse(localStorage.getItem("myKey"));
   // console.log(storedValue[0]['form']);
 if (storedValue !== null) {
-  const base = "https://backend.eikompapp.com/";
+  const base = "https://eikomp-backend-media.s3.amazonaws.com/";
   const docStatus = {};
   for (let i = 0; i < storedValue.length; i++) {
     const statusData = storedValue[i];
