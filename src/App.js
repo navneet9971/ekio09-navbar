@@ -28,6 +28,7 @@ import Payment from "./component/pages/account-pages/Payment";
 import Track from "./component/pages/account-pages/Track";
 import Transaction from "./component/pages/account-pages/Transaction";
 import MainPage from "./component/MainPages";
+import RestPassword from "./component/ForgetPassword";
 //import SupportAdmin from "./component/SupportAdmin";
 
 
@@ -40,6 +41,10 @@ const App = () => {
         </Route>
         <Route path="/signup">
           <SignUP />
+        </Route>
+
+        <Route path="/restpassword">
+          <RestPassword />
         </Route>
 
         <Route path="/navbar">

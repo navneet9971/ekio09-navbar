@@ -3,15 +3,55 @@ import { Link, useHistory} from "react-router-dom";
 import { FaUserAlt, FaLock} from "react-icons/fa";
 import "../assets/css/global.css";
 import axiosInstance from "../../interceptors/axios";
+import Popup from "../pagesscrn4/popup/Popup";
+import Swal from 'sweetalert2';
 
 
 function Login() {
   const history = useHistory();
+  const [linkPopup, setLinkPopup] = useState(false);
+  const [forgetemail, setForgetemail] = useState("");
   const initialFormData = Object.freeze({
     username: '',
     password: '',
   });
   const  [formData, updateFormData] = useState(initialFormData);
+
+   /*-------forget password handle-------------*/
+   const handleforgetemail = (e) => {
+   
+     e.preventDefault();
+   const formData = new FormData();
+    formData.append('email', forgetemail )
+
+    axiosInstance.post('password-reset/' , formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+    .then((res) => {
+      // Handle successful registration
+      history.push('/'); // Navigate to the homepage
+      console.log(res);
+      console.log(res.data);
+
+      // Check the success status directly from the response
+      const success = res.status === 200; // Modify this condition based on the actual success status returned by the API
+
+      // Open file browser popup if registration is successful
+      if (success) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Link Send',
+          text: 'Password Rest Link Send On Your Email ID',
+          confirmButtonText: 'OK',
+        });
+        setLinkPopup(false)
+      }
+    })
+   }
+ 
+/*----------LOGIN HANDLE ------------*/
 
   const handleChange = (e) => {
     updateFormData({
@@ -49,6 +89,7 @@ function Login() {
     history.push("/signup");
   };
 
+ 
   return (
     <div className="auth-box">
       <div className="login">
@@ -85,7 +126,20 @@ function Login() {
             />
           </div>
           <button className="button1" onClick={handleSubmit}>Login</button>
-          <Link to="#">Forgot Password?</Link>
+          
+
+          <Link onClick = {() => setLinkPopup(true)}>Forgot Password?</Link>
+           <Popup trigger={linkPopup} setTrigger={setLinkPopup}>
+            <h3 className="email-popup">ENTER YOU EMAIL ID</h3>
+            <label className="forget-email">
+              Enter your email:
+              <input
+              className="forgetinput"
+              type="text"
+              onChange={(event) => setForgetemail(event.target.value)} />
+            </label>
+          <button className="forgetbtn" onClick={handleforgetemail}>Send</button>
+          </Popup>
         </div>
       </div>
     </div>
