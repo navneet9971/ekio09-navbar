@@ -197,12 +197,18 @@ body {
 }
 .signup .left-box input {
   width: 100%;
-  padding: 10px 0 15px;
+  padding: 10px 3px 15px;
   margin-bottom: 30px;
   border: none;
   font-weight: 600;
   border-bottom: 1px solid #9dabae;
 }
+
+.password-toggle {
+  margin: 11px;
+  font-size: 16px;
+}
+
 .signup .left-box button {
   background: #006091;
   display: block;

@@ -4,9 +4,11 @@ import { Col, Row } from "antd";
 import { useHistory } from "react-router-dom";
 import "../assets/css/global.css";
 import Swal from 'sweetalert2';
+import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 
 function SignUP() {
   const history = useHistory();
+  const [showPassword, setShowPassword] = useState(false);
  //const [isServerSideError, setIsServerSideError] = useState(false);
  //const [serverErrors, setServerErrors] = useState([]);
   const initialFormData = Object.freeze({
@@ -27,6 +29,9 @@ function SignUP() {
 		});
 	};
    
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevent the default form submission behavior
@@ -190,25 +195,37 @@ function SignUP() {
                 required
               />
             </Col>
-            <Col xs={24} md={24}>
+             {/* Password Field */}
+             <Col xs={24} md={24}>
               <label1>Password</label1>
-              <input
-                type="password"
-                placeholder=""
-                name="password"
-                onChange={handleChange}
-                required
-              />
+              <div className="password-input">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder=""
+                  name="password"
+                  onChange={handleChange}
+                  required
+                />
+                <div className="password-toggle" onClick={togglePasswordVisibility}>
+                  {showPassword}
+                </div>
+              </div>
             </Col>
+            {/* Confirm Password Field */}
             <Col xs={24} md={24}>
               <label1>Confirm Password</label1>
-              <input
-                type="password"
-                placeholder=""
-                name="password2"
-                onChange={handleChange}
-                required
-              />
+              <div className="password-input">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder=""
+                  name="password2"
+                  onChange={handleChange}
+                  required
+                />
+                <div className="password-toggle" onClick={togglePasswordVisibility}>
+                  {showPassword ? <EyeInvisibleOutlined /> : <EyeOutlined />}
+                </div>
+              </div>
             </Col>
           </Row>
           <button onClick={handleSubmit} className="button">
