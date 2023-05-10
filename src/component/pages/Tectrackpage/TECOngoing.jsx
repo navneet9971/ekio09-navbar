@@ -25,6 +25,7 @@ import file5png from "../../assets/pdficon/Red01.png";
 import file6png from "../../assets/pdficon/Red02.png";
 import pdflogo from "../../assets/icons/eikomp_logo.png"
 import StatusBar from "../../Statusbar";
+import Chatbot from "../../Chatbot/Chatbot";
 
 
 
@@ -249,6 +250,7 @@ const handleClosePopup = () => {
         // store local storage then show the values 
         setUniqueid(data["uniqueid"]);
         setComplianceid(data["compliance_name"])
+
   
         const compliancename = data["compliance_name"]
         localStorage.setItem("compliance_name", compliancename)
@@ -844,6 +846,7 @@ logoImg.onload = function () {
         completedResponses={completedResponses}
       />
     </div>
+
           
   <div className="tecon">
     <h2 className="steps-count">Steps To Be Completed</h2>
@@ -1049,6 +1052,7 @@ logoImg.onload = function () {
       )}
     </div>
   )}  */}
+   <Chatbot />
   
         </div>
        </div>

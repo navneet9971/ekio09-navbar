@@ -38,7 +38,6 @@ function Review() {
         const id = tableData[idel].id;
         console.log(id);
 
-
         // ...
       })
       .catch(error => {
