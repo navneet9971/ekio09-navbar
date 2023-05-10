@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import "../stepper.css";
 import Select from 'react-select';
 import Popup from "../../pagesscrn4/popup/Popup";
+import Message from "../../pagesscrn4/popup/Message";
 import axiosInstance from "../../../interceptors/axios";
 import jsPDF from "jspdf";
 import 'jspdf-autotable';
@@ -23,6 +24,7 @@ import file4png from "../../assets/pdficon/Green04.png";
 import file5png from "../../assets/pdficon/Red01.png";
 import file6png from "../../assets/pdficon/Red02.png";
 import pdflogo from "../../assets/icons/eikomp_logo.png"
+import StatusBar from "../../Statusbar";
 
 
 
@@ -45,6 +47,9 @@ function TECcompleted() {
   const [options] = useState(['Authorized Signatory Letter', 'MOU', 'AOA', 'OEM authorized to AIR', 'MOA', 'Certificate of Incorporation']); 
   const [buttonPopup1, setButtonPopup1] = useState(false);
   const [uploadStatus, setUploadStatus] = useState('');
+  const totalResponses = 8;
+  const completedResponses = localStorage.getItem('stepstatus');
+  
  // const [document] = useState(null);
    // const [startDate, setStartDate] = useState(null);
    // const [endDate, setEndDate] = useState(null);
@@ -254,8 +259,11 @@ const handleClosePopup = () => {
             const stepstatus = response.data.data;
             const newDocStep = {}; // create a new object that copies the existing state
             for (let i = 0; i < stepstatus.length; i++) {
+              
               const step = stepstatus[i];
               newDocStep[step.step] = [step.status, step.message, step.start_date];
+            // Store the length of stepstatus in localStorage
+              localStorage.setItem('stepstatus', stepstatus.length);
             }
             setdocStep(newDocStep);
             console.log(stepstatus);
@@ -432,7 +440,7 @@ logoImg.onload = function () {
     console.log(storedValue[0]['form']);
     
   if (storedValue !== null) {
-    const base = "https://eikomp.pythonanywhere.com";
+    const base = "https://eikomp-backend-media.s3.amazonaws.com/";
   const docStatus2 = {};
   console.log(storedValue)
   for (let i = 0; i < storedValue.length; i++) {
@@ -828,16 +836,24 @@ logoImg.onload = function () {
           <button className="button8" type="submit" onClick={handleDownload}>Download</button>
           </div>
           </Popup>
+
+{/*--------Ststus Bar CODE IS HERE --------------------*/}
+          <div className>
+      <StatusBar
+        totalResponses={totalResponses}
+        completedResponses={completedResponses}
+      />
+    </div>
           
   <div className="tecon">
     <h2 className="steps-count">Steps To Be Completed</h2>
    
-   <Popup trigger={buttonPopup3} setTrigger={setButtonPopup3}>
+   <Message trigger={buttonPopup3} setTrigger={setButtonPopup3}>
   <h2>  Message :- 
    {docStep["1"] && docStep["1"][1]}</h2>
    <h2>Start Date :- 
    {docStep["1"] && docStep["1"][2].slice(0,10)}</h2>
-   </Popup>
+   </Message>
 
   <Thum1png className="mainsvg2" />
   {docStep["1"] && docStep["1"][0] === "Completed" ? (
@@ -848,12 +864,12 @@ logoImg.onload = function () {
 
 
 
-<Popup trigger={buttonPopup4} setTrigger={setButtonPopup4}>
+<Message trigger={buttonPopup4} setTrigger={setButtonPopup4}>
 <h2>  Message :- 
    {docStep["2"] && docStep["2"][1]}</h2>
    <h2>Start Date :-
    {docStep["2"] && docStep["2"][2].slice(0,10)}</h2>
-   </Popup>
+   </Message>
 
   <Thum2png className="mainsvg2" />
   {docStep["2"] && docStep["2"][0] === "Completed" ? (
@@ -863,12 +879,12 @@ logoImg.onload = function () {
   )}
 
 
-<Popup trigger={buttonPopup5} setTrigger={setButtonPopup5}>
+<Message trigger={buttonPopup5} setTrigger={setButtonPopup5}>
 <h2>  Message :- 
    {docStep["3"] && docStep["3"][1]}</h2>
    <h2>Start Date :-
    {docStep["3"] && docStep["3"][2].slice(0,10)}</h2>
-   </Popup>
+   </Message>
 
   <Thum3png className="mainsvg2" />
   {docStep["3"] && docStep["3"][0] === "Completed" ? (
@@ -878,12 +894,13 @@ logoImg.onload = function () {
   )}
 
 
-<Popup trigger={buttonPopup6} setTrigger={setButtonPopup6}>
+<Message trigger={buttonPopup6} setTrigger={setButtonPopup6}>
 <h2>  Message :- 
    {docStep["4"] && docStep["4"][1]}</h2>
    <h2>Start Date :-
    {docStep["4"] && docStep["4"][2].slice(0,10)}</h2>
-   </Popup>
+   </Message>
+
   <Thum4png className="mainsvg2" />
   {docStep["4"] && docStep["4"][0] === "Completed" ? (
     <Right className="mainsvg3" onClick={() => setButtonPopup6(true)}/>
@@ -891,12 +908,12 @@ logoImg.onload = function () {
     <Wrong className="mainsvg3" onClick={() => setButtonPopup6(true)}/>
   )}
 
-<Popup trigger={buttonPopup7} setTrigger={setButtonPopup7}>
+<Message trigger={buttonPopup7} setTrigger={setButtonPopup7}>
 <h2>  Message :- 
    {docStep["5"] && docStep["5"][1]}</h2>
    <h2>Start Date :-
    {docStep["5"] && docStep["5"][2].slice(0,10)}</h2>
-   </Popup>
+   </Message>
 
   <Thum5png className="mainsvg2" />
   {docStep["5"] && docStep["5"][0] === "Completed" ? (
@@ -905,12 +922,12 @@ logoImg.onload = function () {
     <Wrong className="mainsvg3" onClick={() => setButtonPopup7(true)}/>
   )}
 
-<Popup trigger={buttonPopup8} setTrigger={setButtonPopup8}>
+<Message trigger={buttonPopup8} setTrigger={setButtonPopup8}>
 <h2>  Message :- 
    {docStep["6"] && docStep["6"][1]}</h2>
    <h2>Start Date :-
    {docStep["6"] && docStep["6"][2].slice(0,10)}</h2>
-   </Popup>
+   </Message>
 
   <Thum6png className="mainsvg2" />
   {docStep["6"] && docStep["6"][0] === "Completed" ? (
@@ -919,12 +936,12 @@ logoImg.onload = function () {
     <Wrong className="mainsvg3" onClick={() => setButtonPopup8(true)}/>
   )}
 
-<Popup trigger={buttonPopup9} setTrigger={setButtonPopup9}>
+<Message trigger={buttonPopup9} setTrigger={setButtonPopup9}>
 <h2>  Message :- 
    {docStep["7"] && docStep["7"][1]}</h2>
    <h2>Start Date :-
    {docStep["7"] && docStep["7"][2].slice(0,10)}</h2>
-   </Popup>
+   </Message>
 
   <Thum7png className="mainsvg2" />
   {docStep["7"] && docStep["7"][0] === "Completed" ? (
@@ -933,12 +950,12 @@ logoImg.onload = function () {
     <Wrong className="mainsvg3" onClick={() => setButtonPopup9(true)}/>
   )}
 
-<Popup trigger={buttonPopup10} setTrigger={setButtonPopup10}>
+<Message trigger={buttonPopup10} setTrigger={setButtonPopup10}>
 <h2>  Message :- 
    {docStep["8"] && docStep["8"][1]}</h2>
    <h2>Start Date :-
    {docStep["8"] && docStep["8"][2].slice(0,10)}</h2>
-   </Popup>
+   </Message>
 
   <Thum8png className="mainsvg2" />
   {docStep["8"] && docStep["8"][0] === "Completed" ? (

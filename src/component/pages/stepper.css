@@ -526,3 +526,15 @@ p.dt10 {
 h2.pdfstep-name {
   text-align: center;
 }
+
+
+/*----------------Status Bar css here-------*/
+h1.statusbar {
+  color: black;
+  text-align: center;
+}
+
+.status-bar {
+  display: block;
+  margin: -58px -5px;
+}
