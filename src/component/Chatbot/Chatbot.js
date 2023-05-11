@@ -3,7 +3,6 @@ import { Widget, addResponseMessage } from 'react-chat-widget';
 import 'react-chat-widget/lib/styles.css';
 import axiosInstance from '../../interceptors/axios';
 
-
 const Chatbot = () => {
   const [sendingMessage, setSendingMessage] = useState(false);
   const [initialMessageDisplayed, setInitialMessageDisplayed] = useState(false);
@@ -14,12 +13,9 @@ const Chatbot = () => {
   useEffect(() => {
     if (!initialMessageDisplayed) {
       setInitialMessageDisplayed(true);
-      setTimeout(() => {
-        addResponseMessage('Hello, how can I help you?');
-      }, 0);
+      addResponseMessage('Hello, how can I help you?');
     }
   }, [initialMessageDisplayed]);
-  
 
   const handleFormSubmit = async (message) => {
     if (sendingMessage) {
@@ -35,8 +31,6 @@ const Chatbot = () => {
       formData.append('issue', message);
 
       const response = await axiosInstance.post('chatbot/', formData);
-      console.log(response.data.message);
-
       const botMessage = JSON.stringify(response.data.message);
       addResponseMessage(botMessage);
     } catch (error) {
@@ -57,6 +51,7 @@ const Chatbot = () => {
           handleNewUserMessage={handleNewUserMessage}
           title="Chat"
           subtitle="Ask me anything"
+          showChat={true} // Display the chat widget without needing to click
         />
       </div>
     </div>

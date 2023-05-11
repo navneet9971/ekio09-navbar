@@ -334,13 +334,13 @@ logoImg.onload = function () {
 
 
    //SECOND TABLE DATA 
-   const columns1 =['Step Name', 'Date Of submission', 'Status']
-   const rows1 =[['Authorized Signatory Letter', '', docStatus['Authorized Signatory Letter']],
-   ['MOU', '', docStatus['MOU']],
-   ['AOA', '', docStatus['AOA']],
-   ['OEM authorized to AIR', '', docStatus['OEM authorized to AIR']],
-   ['MOA', '', docStatus['MOA']],
-   ['Certificate of Incorporation', '', docStatus['Certificate of Incorporation']],
+   const columns1 =['Step Name', 'Status']
+   const rows1 =[['Authorized Signatory Letter', docStatus['Authorized Signatory Letter']],
+   ['MOU', docStatus['MOU']],
+   ['AOA', docStatus['AOA']],
+   ['OEM authorized to AIR', docStatus['OEM authorized to AIR']],
+   ['MOA', docStatus['MOA']],
+   ['Certificate of Incorporation', docStatus['Certificate of Incorporation']],
    ]
 
 
@@ -372,10 +372,10 @@ logoImg.onload = function () {
 
     /*---- upload button APIS CALLS */
 
-    function handleUpload() {
+    function handleUpload(files) {
       const formData = new FormData();
     
-      for (let i = 0; i < uploades.length; i++) {
+      for (let i = 0; i < files.length; i++) {
         formData.append('document', uploades[i]);
       }
       formData.append('application', application_id);
@@ -1016,7 +1016,7 @@ logoImg.onload = function () {
 {/*------- LAST THREE BUTTON CODES HERE _____________*/}
 <div className="dd-menu">
           <button className="reportbtn" onClick={handleDownloadreport}>Download Progress Report</button>
-          <button className="reportbtn" onClick={() => handleOptionClick('Testing')}>Download Test Certificate</button>
+          <button className="reportbtn" onClick={() => handleOptionClick('Testing')}>Download Test Report</button>
           <button className="reportbtn" onClick={() => handleOptionClick('Certificate')}>Download Certificate</button>
         </div>
       

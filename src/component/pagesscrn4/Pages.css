@@ -869,11 +869,15 @@ select.optionss {
 }
 
 .tecforms-btn2 {
-  display: flex;
-  justify-content: flex-start;
-  margin-top: 23px;
-  transform: translateX(-98%);
+  padding: 10px;
+  /* display: flex; */
+  /* justify-content: flex-start; */
+   margin-top: 4px; 
+  position: absolute;
+  left: 0;
+  transform: translateX(180%);
 }
+
 
 .tec-btn{
   padding: 10px;

@@ -104,7 +104,7 @@ doc.autoTable({
 });
   
     // download the PDF file
-    doc.save("payment_history.pdf");
+    doc.save("Track Application History.pdf");
   };
 
   

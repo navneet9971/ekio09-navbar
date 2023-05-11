@@ -173,7 +173,7 @@ const handleSubmit = (event) => {
     if (softwareuser) {
       for (let i = 0; i < softwareuser.length; i++) {
         formData.append('documents', softwareuser[i]);
-      }
+    }
     }
 
   console.log('Application ID:', localStorage.getItem('newApplicationId'));
@@ -261,14 +261,14 @@ const handleClosePopup = () => {
             const stepstatus = response.data.data;
             const newDocStep = {}; // create a new object that copies the existing state
             for (let i = 0; i < stepstatus.length; i++) {
-              
               const step = stepstatus[i];
               newDocStep[step.step] = [step.status, step.message, step.start_date];
-            // Store the length of stepstatus in localStorage
-              localStorage.setItem('stepstatus', stepstatus.length);
             }
+
+            // Store the length of stepstatus in localStorage
+            localStorage.setItem('stepstatus', stepstatus.length);
             setdocStep(newDocStep);
-            console.log(stepstatus);
+            console.log(stepstatus.length);
             console.log(newDocStep);
           })
           .catch(error => {
@@ -344,18 +344,16 @@ logoImg.onload = function () {
 
 
    //SECOND TABLE DATA 
-   const columns1 =['Step Name', 'Date Of submission', 'Status']
-   const rows1 =[['Authorized Signatory Letter', '', docStatus['Authorized Signatory Letter']],
-   ['MOU', '', docStatus['MOU']],
-   ['AOA', '', docStatus['AOA']],
-   ['OEM authorized to AIR', '', docStatus['OEM authorized to AIR']],
-   ['MOA', '', docStatus['MOA']],
-   ['Certificate of Incorporation', '', docStatus['Certificate of Incorporation']],
+   const columns1 =['Step Name', 'Status']
+   const rows1 =[['Authorized Signatory Letter', docStatus['Authorized Signatory Letter']],
+   ['MOU', docStatus['MOU']],
+   ['AOA', docStatus['AOA']],
+   ['OEM authorized to AIR', docStatus['OEM authorized to AIR']],
+   ['MOA', docStatus['MOA']],
+   ['Certificate of Incorporation', docStatus['Certificate of Incorporation']],
    ]
 
-
-
-    
+  
    // Generate the table using jspdf-autotable
    doc.autoTable({
     head: [columns1],
@@ -363,7 +361,7 @@ logoImg.onload = function () {
     startY: 170,
   });
   // Save the PDF
-  doc.save('my-document.pdf');
+  doc.save('Progress Tracker.pdf');
 }
     }
     
@@ -436,6 +434,9 @@ logoImg.onload = function () {
       Shareholding_Pattern: 'https://eikomp-backend-media.s3.amazonaws.com/media/compliance/form/Shareholding_Pattern.docx ',
       Manufacturing_details: 'https://eikomp-backend-media.s3.amazonaws.com/media/compliance/form/Manufacturing_details_tfyJoOx.xlsx',
       CDFCCL_Format: 'https://eikomp-backend-media.s3.amazonaws.com/media/compliance/form/CDF-CCL_Format_TMdRsOP.docx',
+      Annex_1_Signatory_authorization: 'https://eikomp-backend-media.s3.ap-south-1.amazonaws.com/media/compliance/form/Annex_1_Signatory_authorization.docx', 
+      Annexure_2_OEM_authorized_to_AIR: 'https://eikomp-backend-media.s3.ap-south-1.amazonaws.com/media/compliance/form/Annexure_2_OEM_authorized_to_AIR.docx', 
+      Annexure_3_MOU: 'https://eikomp-backend-media.s3.ap-south-1.amazonaws.com/media/compliance/form/Annexure_3_MOU.docx',
     };
   
     const storedValue = JSON.parse(localStorage.getItem("myKey"));
@@ -488,6 +489,9 @@ logoImg.onload = function () {
     { value: 'Shareholding_Pattern', label: 'Shareholding Pattern'},
     { value: 'Manufacturing_details', label: 'Manufacturing Details' },
     { value: 'CDFCCL_Format', label: 'CDFCCL Format' },
+    { value: 'Annex_1_Signatory_authorization', label: 'Annex 1 Signatory authorization'},
+    { value: 'Annexure_2_OEM_authorized_to_AIR', label: 'Annexure 2 OEM authorized to AIR'},
+    { value: 'Annexure_3_MOU', label: 'Annexure 3 MOU'},
   ];
 
 
@@ -1036,7 +1040,7 @@ logoImg.onload = function () {
 {/*------- LAST THREE BUTTON CODES HERE _____________*/}
 <div className="dd-menu">
           <button className="reportbtn" onClick={handleDownloadreport}>Download Progress Report</button>
-          <button className="reportbtn" onClick={() => handleOptionClick('Testing')}>Download Test Certificate</button>
+          <button className="reportbtn" onClick={() => handleOptionClick('Testing')}>Download Test Report</button>
           <button className="reportbtn" onClick={() => handleOptionClick('Certificate')}>Download Certificate</button>
         </div>
       

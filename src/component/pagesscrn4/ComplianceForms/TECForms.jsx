@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "../Pages.css";
 import Popup from "../popup/Popup";
 //import { TiTick } from "react-icons/ti";
-import Select from 'react-select';
+//import Select from 'react-select';
 import axiosInstance from '../../../interceptors/axios';
 import bgimage from "../../assets/pages-bgimages/15.svg";
 
@@ -71,7 +71,7 @@ function MiddleSection() {
 
 // -------------------------------Document Box Codes here---------------------------------------------------
 
-function DocumentBox() {
+/*  function DocumentBox() {
 
   const [buttonPopup1, setButtonPopup1] = useState(false);
   const docStatus1 = {
@@ -150,15 +150,15 @@ if (storedValue !== null) {
     { value: 'Manufacturing_details', label: 'Manufacturing Details' },
     { value: 'CDFCCL_Format', label: 'CDF-CCL Format' },
   ];
-
+*/
 
 
 
   // -------------------------------Document Box Codes here---------------------------------------------------
-  return (
+ /* return (
     <div className="document-box">
 
-             {/*DOWNLOAD BUTTON POPUP SECTION */}
+          //   DOWNLOAD BUTTON POPUP SECTION 
 
              <div className="tecforms-btn1">
                   <button className='tec-btn' onClick={() => setButtonPopup1(true)}>Download</button>
@@ -183,15 +183,15 @@ if (storedValue !== null) {
         <div>
           <button className="button8" type="submit" onClick={handleDownload}>Download</button>
         </div>
-    </Popup>
+    </Popup> 
 {/*
     <div className="header-btn">
     <button className="button7" onClick={viewDocument}>View</button>
-                </div> */}
+                </div> 
 
   </div>
 );
-}
+}  */
     
 // Video Section Codes Here----------------------------------------
 
@@ -210,7 +210,7 @@ function Thirdpage() {
     <div className="app55">
       <Startapp />
     {/*  <LabTestingBox /> */}
-      <DocumentBox />
+    {/*  <DocumentBox />   */}
       {/*  <div>
         <button className = "wishlist" 
         onClick={handleWishlistClick}>
@@ -315,10 +315,10 @@ function Startapp() {
   formData.append('Applicant_contact_number', applicantContactNumber);
   formData.append('Applicant_emailid', applicantEmailID);
   formData.append('Applicant_company_CIN', applicantCIN);
-  formData.append('Applicant_signatory_name', applicantAuthorisedSignatoryName);
-  formData.append('Applicant_signatory_designation', applicantAuthorisedSignatoryDesignation);
-  formData.append('Applicant_signatory_number', applicantContactNumber1);
-  formData.append('Applicant_signatory_emailid', applicantEmailID1);
+  formData.append('Authorised_signatory_name', applicantAuthorisedSignatoryName);
+  formData.append('Authorised_signatory_designation', applicantAuthorisedSignatoryDesignation);
+  formData.append('Authorised_signatory_number', applicantContactNumber1);
+  formData.append('Authorised_signatory_emailid', applicantEmailID1);
   formData.append('Foreign_manufacturer_company_name', foreignCompanyName);
   formData.append('Foreign_manufacturer_company_address', foreignCompanyAddress);
   formData.append('Foreign_manufacturer_authorised_signatory_name', foreignAuthorizedSignatoryName);
@@ -615,9 +615,10 @@ function Startapp() {
 
             <h1 className='h802'>Document Required:</h1>
             <label className="st8012">
-              COI of Applicant Company:
-              <input classname="stup805" type="file" onChange={(event) => setCoiApplicant(event.target.files)} multiple accept />
-            </label>
+  COI of Applicant Company:
+  <input className="stup805" type="file" onChange={(event) => setCoiApplicant(event.target.files)} multiple accept />
+</label>
+
             <label className="st8012">
               PAN Card of Applicant Company:
               <input classname="stup805" type="file" onChange={(event) => setPanCard(event.target.files)} multiple accept />
