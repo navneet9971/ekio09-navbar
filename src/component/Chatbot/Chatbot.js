@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Widget, addResponseMessage } from 'react-chat-widget';
-import 'react-chat-widget/lib/styles.css';
+//import 'react-chat-widget/lib/styles.css';
 import axiosInstance from '../../interceptors/axios';
 
 const Chatbot = () => {
