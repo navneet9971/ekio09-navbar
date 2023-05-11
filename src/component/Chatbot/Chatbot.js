@@ -1,34 +1,34 @@
 import React, { useState, useEffect } from 'react';
+import { Widget, addResponseMessage } from 'react-chat-widget';
+import 'react-chat-widget/lib/styles.css';
 import axiosInstance from '../../interceptors/axios';
 
+
 const Chatbot = () => {
-  const [messages, setMessages] = useState([]);
-  const [inputValue, setInputValue] = useState('');
+  const [sendingMessage, setSendingMessage] = useState(false);
+  const [initialMessageDisplayed, setInitialMessageDisplayed] = useState(false);
+
   const uniqueid = localStorage.getItem('unique');
   const complianceid = localStorage.getItem('compliance_id');
 
   useEffect(() => {
-    const initialMessage = { text: 'Hello, how can I help you?', sender: 'bot' };
-    setMessages([initialMessage]);
-  }, []);
-
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
-  };
-
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
-
-    if (inputValue.trim() !== '') {
-      const userMessage = { text: inputValue, sender: 'user' };
-      setMessages([...messages, userMessage]);
-      sendMessageToApi(inputValue);
-      setInputValue('');
+    if (!initialMessageDisplayed) {
+      setInitialMessageDisplayed(true);
+      setTimeout(() => {
+        addResponseMessage('Hello, how can I help you?');
+      }, 0);
     }
-  };
+  }, [initialMessageDisplayed]);
+  
 
-  const sendMessageToApi = async (message) => {
+  const handleFormSubmit = async (message) => {
+    if (sendingMessage) {
+      return;
+    }
+
     try {
+      setSendingMessage(true);
+
       const formData = new FormData();
       formData.append('uniqueid', uniqueid);
       formData.append('compliance', complianceid);
@@ -37,37 +37,28 @@ const Chatbot = () => {
       const response = await axiosInstance.post('chatbot/', formData);
       console.log(response.data.message);
 
-      const botMessage = {
-        text: JSON.stringify(response.data.message),
-        sender: 'bot',
-      };
-      setMessages((prevMessages) => [...prevMessages, botMessage]);
+      const botMessage = JSON.stringify(response.data.message);
+      addResponseMessage(botMessage);
     } catch (error) {
       console.error('API request failed:', error);
+    } finally {
+      setSendingMessage(false);
     }
+  };
+
+  const handleNewUserMessage = (message) => {
+    handleFormSubmit(message);
   };
 
   return (
     <div className="chatbot-container">
-      <div className="chatbox">
-        {messages.map((message, index) => (
-          <div key={index} className={`message12 ${message.sender}`}>
-            {message.text}
-          </div>
-        ))}
-      </div>
-      <form onSubmit={handleFormSubmit} className="chat-form">
-        <input
-          type="text"
-          value={inputValue}
-          onChange={handleInputChange}
-          placeholder="Type your message..."
-          className="input-field"
+      <div className="floating-chat">
+        <Widget
+          handleNewUserMessage={handleNewUserMessage}
+          title="Chat"
+          subtitle="Ask me anything"
         />
-        <button type="submit" className="send-button">
-          Send
-        </button>
-      </form>
+      </div>
     </div>
   );
 };
