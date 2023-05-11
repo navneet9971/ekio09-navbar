@@ -35,8 +35,8 @@ function Review() {
         setTableData(tableData); // Set the fetched data to state
 
         // Use the id here for further processing
-        const id = tableData[idel].id;
-        console.log(id);
+        // const id = tableData[idel].id;
+        // console.log(id);
 
         // ...
       })
