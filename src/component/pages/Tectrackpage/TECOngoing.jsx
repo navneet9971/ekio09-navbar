@@ -25,7 +25,7 @@ import file5png from "../../assets/pdficon/Red01.png";
 import file6png from "../../assets/pdficon/Red02.png";
 import pdflogo from "../../assets/icons/eikomp_logo.png"
 import StatusBar from "../../Statusbar";
-import Chatbot from "../../Chatbot/Chatbot";
+//import Chatbot from "../../Chatbot/Chatbot";
 
 
 
@@ -1055,8 +1055,8 @@ logoImg.onload = function () {
         <p>End Date: {endDate.days} days left</p>
       )}
     </div>
-  )}  */}
-   <Chatbot />
+  )}  
+   <Chatbot /> */}
   
         </div>
        </div>
