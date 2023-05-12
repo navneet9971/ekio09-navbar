@@ -515,6 +515,16 @@ p.dt10 {
   background-color: #55b700;
 }
 
+.reportbtn:disabled {
+  cursor: not-allowed; /* Change the cursor style when the button is disabled */
+}
+
+.reportbtn:disabled:hover {
+  background-color: #082a71; /* Remove background color on hover */ /* Change text color on hover */
+  text-decoration: none; /* Remove underline on hover */
+  /* Add any other styles you want to remove or modify on hover */
+}
+
 .pdffilesup {
   margin: 0 8em;
 }

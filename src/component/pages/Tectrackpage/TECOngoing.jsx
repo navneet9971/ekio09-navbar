@@ -68,6 +68,16 @@ function TECcompleted() {
    const [buttonPopup9, setButtonPopup9] = useState(false);
    const [buttonPopup10, setButtonPopup10] = useState(false);
 
+
+//Notification Button Const Here all---------------
+const [buttonPopup11, setButtonPopup11] = useState(false);
+  const [notifyData] = useState([
+    { "s.no": '1', category: 'Mobile', Title: 'SAMSUNG', external: 'In Progress', date: '02-12-2023' },
+    { "s.no": '2', category: 'Screen', Title: 'APPLE', external: 'Completed', date: '02-12-2023' },
+    { "s.no": '3', category: 'Chipset', Title: 'SAMSUNG', external: 'Pending', date: '02-12-2023' },
+  ]);
+
+
    //LAB TESTING FROM CONST HERE ---------------------------------------
 const [buttonPopup2, setButtonPopup2] = useState(false);
   //const [buttonPopup1, setButtonPopup1] = useState(false);
@@ -278,7 +288,22 @@ const handleClosePopup = () => {
         axiosInstance.get(`application/document/?compliance=${compliance_id}&application=${application_id}`)
           .then(response => {
             const documentData = response.data.data;
-            console.log(documentData)
+            //console.log(response.data.key)
+
+           localStorage.setItem("report", response.data.report);
+           localStorage.setItem("certificate",response.data.certificate)
+         //  console.log(response.data.key)
+          
+            // if (response.data.key) == 'No' {
+            //     download report 
+            //     download certificate
+            // }
+            // else
+            // {
+            //   for i in documentData:
+            //   if "report" in i['document_type'].lower():
+            //     download report -  button -name - i['document_type'] link - i['document']
+            // }
             const docStatus = {};
             for (let i = 0; i < documentData.length; i++) {
               const statusData = documentData[i];
@@ -294,7 +319,7 @@ const handleClosePopup = () => {
       .catch(error => {
         console.log(error);
       })
-    }, 5000);
+    }, 2000);
     
       return () => clearInterval(interval);
   }, [idel]);
@@ -366,9 +391,7 @@ logoImg.onload = function () {
     }
     
 
-  const handleOptionClick = (option) => {
-    setSelectedOption(option);
-  }; 
+
  /*   const handleDownload = () => {
       const input = document.getElementById('pdf-content');
       const pdf = new jsPDF();
@@ -413,6 +436,28 @@ logoImg.onload = function () {
     }
 
 
+
+    /*-------handleOptions download report-----*/
+    const ReportOptionClick = (option) => {
+      const reportKey = localStorage.getItem("hell");
+      console.log(reportKey);
+      console.log("segbskhgks");
+      if (reportKey === 'Yes') {
+        setSelectedOption(option);
+      }
+    };
+
+    const CertificateOptionClick = (option) => {
+      const certificateKey = localStorage.getItem("hell");
+      console.log(certificateKey);
+      console.log("nananananan");
+      if (certificateKey === 'Yes') {
+        setSelectedOption(option);
+      }
+    };
+
+    
+
     /*---------DOWNLOAD BUTTON APS CALLS------*/
     
     useEffect(() => {
@@ -440,17 +485,15 @@ logoImg.onload = function () {
     };
   
     const storedValue = JSON.parse(localStorage.getItem("myKey"));
-    console.log(storedValue[0]['form']);
     
   if (storedValue !== null) {
     const base = "https://eikomp-backend-media.s3.amazonaws.com/";
   const docStatus2 = {};
-  console.log(storedValue)
+
   for (let i = 0; i < storedValue.length; i++) {
     const statusData = storedValue[i];
     docStatus2[statusData["name"]] = `${base}${statusData["form"]}`;
   }
-  console.log(docStatus2);
 } else {
   console.error("There is no data stored in localStorage with the key 'myKey'");
 }
@@ -815,12 +858,47 @@ logoImg.onload = function () {
       
 </div>
 
+
+{/*---------------Notification code Here------------------------*/}
+
+        <Popup trigger={buttonPopup11} setTrigger={setButtonPopup11}>
+          <div>
+            <h3 className='notif'>Notification</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>S.No</th>
+                  <th>Category</th>
+                  <th>Title</th>
+                  <th>External Link/Filepath</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {notifyData.map((data, index) => (
+                  <tr key={index}>
+                    <td>{data["s.no"]}</td>
+                    <td>{data.category}</td>
+                    <td>{data.Title}</td>
+                    <td onClick={() => window.open(data.external)} style={{ cursor: 'pointer' }}>{data.external}</td>
+                    <td>{data.date}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+
+          </div>
+        </Popup>
+
+
+
 {/*------------------DOWNLOAD BUTTON CODE ----------------*/}
 
 <div className="header-btn1">
 <button className="button7" onClick={() => setButtonPopup2(true)}>Request Testing</button>
 <button className="button7" onClick={() => setButtonPopup(true)}>Upload</button>
 <button className="button7" onClick={() => setButtonPopup1(true)}>Download</button>
+<button className='button7' onClick={() => setButtonPopup11(true)}>Notification</button>
 </div>
 <Popup trigger={buttonPopup1} setTrigger={setButtonPopup1}>
         <h3>Download a File</h3>
@@ -1037,11 +1115,11 @@ logoImg.onload = function () {
           </div>
         </div>
       
-{/*------- LAST THREE BUTTON CODES HERE _____________*/}
+{/*------- LAST THREE BUTTON CODES HERE --------------------*/}
 <div className="dd-menu">
           <button className="reportbtn" onClick={handleDownloadreport}>Download Progress Report</button>
-          <button className="reportbtn" onClick={() => handleOptionClick('Testing')}>Download Test Report</button>
-          <button className="reportbtn" onClick={() => handleOptionClick('Certificate')}>Download Certificate</button>
+          <button className="reportbtn" onClick={ReportOptionClick} disabled={localStorage.getItem('report') === 'No'}>Download Test Report</button>
+          <button className="reportbtn" onClick={CertificateOptionClick} disabled={localStorage.getItem('hell') === 'No'}>Download Certificate</button>
         </div>
       
   {/* {startDate && endDate && (
@@ -1055,8 +1133,8 @@ logoImg.onload = function () {
         <p>End Date: {endDate.days} days left</p>
       )}
     </div>
-  )}  
-      <Chatbot />*/}
+  )}  */}
+
   
         </div>
        </div>

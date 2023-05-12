@@ -195,15 +195,15 @@ if (storedValue !== null) {
     
 // Video Section Codes Here----------------------------------------
 
-function Thirdpage() {
+   function Thirdpage() {
   // const [videoUrl, setVideoUrl] = useState('');
   // const [isWishlisted, setIsWishlisted] = useState(false);
-  const [buttonPopup2, setButtonPopup2] = useState(false);
-  const [notifyData] = useState([
+  //const [buttonPopup2, setButtonPopup2] = useState(false);
+/*  const [notifyData] = useState([
     { "s.no": '1', category: 'Mobile', Title: 'SAMSUNG', external: 'In Progress', date: '02-12-2023' },
     { "s.no": '2', category: 'Screen', Title: 'APPLE', external: 'Completed', date: '02-12-2023' },
     { "s.no": '3', category: 'Chipset', Title: 'SAMSUNG', external: 'Pending', date: '02-12-2023' },
-  ]);
+  ]); */
 
   // Video Section Codes Here---or Section-----
   return (
@@ -225,12 +225,9 @@ function Thirdpage() {
       <MiddleSection />
 
       {/*------------------Notify Section -----------------------*/}
-      <div className="notifyy" >
 
-<div className="tecforms-btn2">
-        <button className='tec-btn' onClick={() => setButtonPopup2(true)}>Notification</button>
-        </div>
-        <Popup trigger={buttonPopup2} setTrigger={setButtonPopup2}>
+       {/* <button className='tec-btn' onClick={() => setButtonPopup2(true)}>Notification</button> */}
+     {/* <Popup trigger={buttonPopup2} setTrigger={setButtonPopup2}>
           <div>
             <h3 className='notif'>Notification</h3>
             <table>
@@ -257,9 +254,9 @@ function Thirdpage() {
             </table>
 
           </div>
-        </Popup>
-      </div>
-      <div1 class="vl"></div1>
+                </Popup> */}
+     
+ 
     </div>
   )
 };
@@ -430,8 +427,6 @@ function Startapp() {
               </div>
   </div> */}
 
-
-            <h1 className='h802'>Applicant Company:</h1>
             <label className="st8012">
               Indian OEM/Foreign Manufacture:
              <select className='st804' onChange={(event) =>  setTypes_of_company(event.target.value)}>
@@ -439,6 +434,9 @@ function Startapp() {
               <option value="Indian">Indian</option>
              </select>
             </label>
+
+            <h1 className='h802'>Applicant Company:</h1>
+
             <label className="st8012">
               Company Name:
               <input
