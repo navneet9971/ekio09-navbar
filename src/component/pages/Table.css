@@ -274,14 +274,38 @@ th {
 
 .search-bar {
   position: absolute;
-    transform: translate(1020px, -58px);
-  }
+  transform: translate(860px, -70px);
+}
 
-input[type="option"] {
+
+input[type="text"] {
   padding: 12px 25px;
   border-radius: 20px 25px;
    font-weight: 600;
 }
+
+.search-bar {
+  white-space: nowrap;
+}
+
+.search-bar i,
+.search-bar select,
+.search-bar input {
+  display: inline-block;
+  /* vertical-align: middle; */
+  margin-right: 4px;
+  /* width: 1em; */
+  padding: 0.4em;
+}
+
+.search-bar select {
+  width: 150px; /* Adjust the width as needed */
+}
+
+.search-bar input {
+  width: 200px; /* Adjust the width as needed */
+}
+
 
 input[type="date"] {
   position: absolute;

@@ -17,6 +17,7 @@ function formatDate(dateString) {
 function Review() {
   const [tableData, setTableData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedOption, setSelectedOption] = useState('');
   const [showPopup, setShowPopup] = useState(false);
   const [selectedStatus, setSelectedStatus] = useState('All');
   const history = useHistory();
@@ -68,20 +69,48 @@ function Review() {
     doc.save("Track Application History.pdf");
   };
 
+  
+  const handleOptionChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
+
+  const handleSearchQueryChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  let placeholderText = 'Search';
+
+  if (selectedOption === 'compliance') {
+    placeholderText = 'Search Compliance Type';
+  } else if (selectedOption === 'product') {
+    placeholderText = 'Search Product Name';
+  } else if (selectedOption === 'model') {
+    placeholderText = 'Search Model Number';
+  } else if (selectedOption === 'family') {
+    placeholderText = 'Search Associated No/Family Model';
+  }
+
   return (
     <div className="table">
       <h5>Track Applications</h5>
-
+      
       <div className="search-bar">
-        <i className="fas fa-search"></i>
-        <input
-                  type="option"
-                  placeholder="Search Compliance Type"
-                  value={searchQuery}
-                  onChange={(event) => setSearchQuery(event.target.value)}
-                />
-              </div>
-        
+      <i className="fas fa-search"></i>
+      <select  className="search-drop" value={selectedOption} onChange={handleOptionChange}>
+        <option value="">Select an option</option>
+        <option value="compliance">Compliance Type</option>
+        <option value="product">Product Name</option>
+        <option value="model">Model Number</option>
+        <option value="family">Associated No/Family Model</option>
+      </select>
+      <input
+        type="text"
+        placeholder={placeholderText}
+        value={searchQuery}
+        onChange={handleSearchQueryChange}
+      />
+    </div>
+  
               {showPopup && (
                 <Popup trigger={showPopup} setTrigger={setShowPopup}>
                   <h3>Choose date not Found!</h3>
@@ -124,40 +153,58 @@ function Review() {
                     </tr>
                   </thead>
         
-                  <tbody>
-                    {tableData.map((data, index) => {
-                      if (
-                        (selectedStatus === 'Ongoing' && data.status !== 'Ongoing') ||
-                        (selectedStatus === 'Completed' && data.status !== 'Completed')
-                      ) {
-                        return null; // Skip rendering this row
-                      }
-                      return (
-                        <tr key={data.id}>
-                          <td>{index + 1}</td>
-                          <td
-                            className="clickable"
-                            onClick={() => handleClick(data.id)}
-                          >
-                            {data.uniqueid}
-                          </td>
-                          <td
-                            className="clickable"
-                            onClick={() => handleClick(data.id)}
-                          >
-                            {data.compliance_name}
-                          </td>
-                          <td>{data.application_name}</td>
-                          <td>{data.fields['Model_number']}</td>
-                          <td>{data.fields['Associate_models']}</td>
-                          <td>{formatDate(data.startdate)}</td>
-                          <td>{data.estimated_date}</td>
-                          <td>{data.status}</td>
-                          <td>{data.end_date}</td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
+              
+<tbody>
+  {tableData
+    .filter((data) => {
+      if (
+        (selectedStatus === 'Ongoing' && data.status !== 'Ongoing') ||
+        (selectedStatus === 'Completed' && data.status !== 'Completed')
+      ) {
+        return false; // Skip this row
+      }
+
+      let displayData = tableData;
+
+      if (selectedOption === 'compliance') {
+        displayData = data.compliance_name;
+      } else if (selectedOption === 'product') {
+        displayData = data.application_name;
+      } else if (selectedOption === 'model') {
+        displayData = data.fields['Model_number'];
+      } else if (selectedOption === 'family') {
+        displayData = data.fields['Associate_models'];
+      }
+
+      if (searchQuery) {
+        return (
+          displayData &&
+          displayData.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+      }
+
+      return true;
+    })
+    .map((data, index) => (
+      <tr key={data.id}>
+        <td>{index + 1}</td>
+        <td className="clickable" onClick={() => handleClick(data.id)}>
+          {data.uniqueid}
+        </td>
+        <td className="clickable" onClick={() => handleClick(data.id)}>
+          {data.compliance_name}
+        </td>
+        <td>{data.application_name}</td>
+        <td>{data.fields['Model_number']}</td>
+        <td>{data.fields['Associate_models']}</td>
+        <td>{formatDate(data.startdate)}</td>
+        <td>{data.estimated_date}</td>
+        <td>{data.status}</td>
+        <td>{data.end_date}</td>
+      </tr>
+    ))}
+</tbody>
+
                 </table>
               </div>
             </div>
