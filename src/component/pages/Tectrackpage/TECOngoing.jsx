@@ -1119,7 +1119,7 @@ logoImg.onload = function () {
 <div className="dd-menu">
           <button className="reportbtn" onClick={handleDownloadreport}>Download Progress Report</button>
           <button className="reportbtn" onClick={ReportOptionClick} disabled={localStorage.getItem('report') === 'No'}>Download Test Report</button>
-          <button className="reportbtn" onClick={CertificateOptionClick} disabled={localStorage.getItem('hell') === 'No'}>Download Certificate</button>
+          <button className="reportbtn" onClick={CertificateOptionClick} disabled={localStorage.getItem('certificate') === 'No'}>Download Certificate</button>
         </div>
       
   {/* {startDate && endDate && (
@@ -1134,7 +1134,7 @@ logoImg.onload = function () {
       )}
     </div>
   )}  */}
-  
+
   
         </div>
        </div>
