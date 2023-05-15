@@ -59,8 +59,11 @@ axiosInstance.get(`/compliance/?category=${category}&product=${product}&region=$
   return (
     <div className='bgchange'>
     <div className="first-container22">
-      <h3>Please enter the following details to Start a new application :</h3>
+      
+      <div className='fist-title'>
+      <h3 className="firstpage-title">Please enter the following details to Start a new application :</h3>
       <h4 className="red-warning">You need to fill at least 1 data point to see the list of compliance.</h4>
+      </div>
 
       <div className="form-group22">
         <label htmlFor="category-input">Enter Industry:</label>
@@ -85,7 +88,7 @@ axiosInstance.get(`/compliance/?category=${category}&product=${product}&region=$
         </div>
       </div>
       <div className="gobutton22"> 
-        <button onClick={handleGoClick}>GO</button>
+        <button className="first-go" onClick={handleGoClick}>GO</button>
       </div>    
 
     </div>

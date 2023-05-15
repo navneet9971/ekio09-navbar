@@ -13,7 +13,7 @@ import Firstpage from "./component/pagesscrn4/Firstpage";
 import Secondpage from "./component/pagesscrn4/Secondpage";
 import TECForms from "./component/pagesscrn4/ComplianceForms/TECForms";
 import BISForms from "./component/pagesscrn4/ComplianceForms/BISForms";
-import Fourthpage from "./component/pagesscrn4/Fourthpage";
+import Fourthpage from "./component/pagesscrn4/Knowyourcompliance";
 import ClientDashboard from "./component/pagesscrn4/client-dashbord/Clientdashboard";
 import Navbar from "./component/pagesscrn4/Navbar/Navbar";
 import BISongoing from "./component/pages/Bistrackpages/BISoongoing";
@@ -27,8 +27,9 @@ import Package from "./component/pages/account-pages/Package";
 import Payment from "./component/pages/account-pages/Payment";
 import Track from "./component/pages/account-pages/Track";
 import Transaction from "./component/pages/account-pages/Transaction";
+import Knowyoucompliance from "./component/pagesscrn4/Knowyourcompliance"
 //import MainPage from "./component/MainPages";
-import Chatbot from "./component/Chatbot/Chatbot";
+//import Chatbot from "./component/Chatbot/Chatbot";
 //import RestPassword from "./component/ForgetPassword";
 //import SupportAdmin from "./component/SupportAdmin";
 
@@ -44,9 +45,9 @@ const App = () => {
           <SignUP />
         </Route>
 
-        <Route path="/chatbot">
+        {/* <Route path="/chatbot">
           <Chatbot />
-        </Route>
+        </Route> */}
      {/*   <Route path="/restpassword">
           <RestPassword />
   </Route> */}
@@ -94,6 +95,7 @@ const App = () => {
             <Route path="/navbar/review">
               <Review />
             </Route>
+
             <Route path="/navbar/BISongoing/:id">
               <BISongoing />
             </Route>
@@ -117,6 +119,10 @@ const App = () => {
 
             <Route path="/navbar/view">
               <View />
+            </Route>
+
+            <Route path="/navbar/knowyourcompliance">
+              <Knowyoucompliance />
             </Route>
             
 {/*--------------------------My account pages Path inside of navbar-----------------------------------*/}

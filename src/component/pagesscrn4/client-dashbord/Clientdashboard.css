@@ -11,14 +11,14 @@
 
 h3.dash-title {
   font-size: 30px;
-  /* text-align: center; */
-  margin: 42px 192px;
-
+  text-align: center;
+  margin: -8px 20px;
+  margin-bottom: 65px;
 }
 
 
 .welcome .welcome-options {
-  width: 70%;
+  width: 90%;
   margin: 0 auto;
   background: #f3f8fe;
   padding: 50px 0 40px;
@@ -27,8 +27,8 @@ h3.dash-title {
 }
 .welcome .welcome-options .option-box {
     /* display: flex; */
-    align-items: end;
-    /* justify-content: center; */
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
     text-align: center;
 }

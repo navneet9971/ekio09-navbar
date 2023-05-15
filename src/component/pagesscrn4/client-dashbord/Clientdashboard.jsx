@@ -4,7 +4,7 @@ import { Link} from "react-router-dom";
 import { ReactComponent as Thumb1 } from "../../assets/images/welcome/1.svg";
 import { ReactComponent as Thumb2 } from "../../assets/images/welcome/2.svg";
 //import { ReactComponent as Thumb3 } from "../../assets/images/welcome/3.svg";
-//import { ReactComponent as Thumb4 } from "../../assets/images/welcome/4.svg";
+import { ReactComponent as Thumb4 } from "../../assets/images/welcome/4.svg";
 //import Thumb5png from "../../assets/images/welcome/5.png";
 import "./Clientdashboard.css";
 import axiosInstance from "../../../interceptors/axios";
@@ -26,11 +26,11 @@ const ClientDashboard = () => {
 			});
 
   const WELCOME_OPTIONS = [
-    // {
-    //   title: "Know Your Compliance",
-    //   thumb: <Thumb4 />,
-    //   route: "/navbar/firstpage",
-    // },
+    {
+      title: "Know Your Compliance",
+      thumb: <Thumb4 />,
+      route: "/navbar/knowyourcompliance",
+    },
     {
       title: "Start New Project",
       thumb: <Thumb1 />,
