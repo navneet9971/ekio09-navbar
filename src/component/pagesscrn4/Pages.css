@@ -76,6 +76,7 @@ button.first-go {
   color: white;
   border-radius: 20px;
   background-color: #082a71;
+  cursor: pointer;
 }
 
 button.first-go:hover{
