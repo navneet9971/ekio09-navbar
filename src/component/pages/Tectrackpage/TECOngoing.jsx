@@ -31,7 +31,7 @@ import Swal from 'sweetalert2';
 
 
 
-function TECcompleted() {
+function TECOngoing() {
    // const [currentStep] = useState(1);
   // const steps = ["Application Submitted", "Sample sent for testing", "Test report generated", "Document pending with authorities", "Final report generated"];
    // const [current, setCurrentStep] = useState(1);
@@ -521,9 +521,9 @@ logoImg.onload = function () {
     const [selectedOptions, setSelectedOptions] = useState([]);
 
     const docDownload = {
-      Shareholding_Pattern: 'https://eikomp-backend-media.s3.amazonaws.com/media/compliance/form/Shareholding_Pattern.docx ',
-      Manufacturing_details: 'https://eikomp-backend-media.s3.amazonaws.com/media/compliance/form/Manufacturing_details_tfyJoOx.xlsx',
-      CDFCCL_Format: 'https://eikomp-backend-media.s3.amazonaws.com/media/compliance/form/CDF-CCL_Format_TMdRsOP.docx',
+      Shareholding_Pattern: 'https://eikomp-backend-media.s3.amazonaws.com/media/compliance/form/Shareholding_Pattern.docx',
+      Manufacturing_details: 'https://eikomp-backend-media.s3.amazonaws.com/media/compliance/form/Manufacturing_details.xlsx',
+      CDFCCL_Format: 'https://eikomp-backend-media.s3.amazonaws.com/media/compliance/form/CDF-CCL_Format.docx',
       Annex_1_Signatory_authorization: 'https://eikomp-backend-media.s3.ap-south-1.amazonaws.com/media/compliance/form/Annex_1_Signatory_authorization.docx', 
       Annexure_2_OEM_authorized_to_AIR: 'https://eikomp-backend-media.s3.ap-south-1.amazonaws.com/media/compliance/form/Annexure_2_OEM_authorized_to_AIR.docx', 
       Annexure_3_MOU: 'https://eikomp-backend-media.s3.ap-south-1.amazonaws.com/media/compliance/form/Annexure_3_MOU.docx',
@@ -576,7 +576,7 @@ logoImg.onload = function () {
   const options1 = [
     { value: 'Shareholding_Pattern', label: 'Shareholding Pattern'},
     { value: 'Manufacturing_details', label: 'Manufacturing Details' },
-    { value: 'CDFCCL_Format', label: 'CDFCCL Format' },
+    { value: 'CDFCCL_Format', label: 'CDF/CCL Format' },
     { value: 'Annex_1_Signatory_authorization', label: 'Annex 1 Signatory authorization'},
     { value: 'Annexure_2_OEM_authorized_to_AIR', label: 'Annexure 2 OEM authorized to AIR'},
     { value: 'Annexure_3_MOU', label: 'Annexure 3 MOU'},
@@ -1188,5 +1188,5 @@ logoImg.onload = function () {
     );
   };
 
-  export default TECcompleted;
+  export default TECOngoing;
   

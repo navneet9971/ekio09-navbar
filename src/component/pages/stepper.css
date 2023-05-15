@@ -157,6 +157,7 @@ img.pdfico1 {
   margin-bottom: 62px;
   margin-top: 16px;
   margin-left: 7em;
+  display: flex;
 }
 
 .pdf-container {
@@ -547,4 +548,11 @@ h1.statusbar {
 .status-bar {
   display: block;
   margin: -58px -5px;
+}
+
+
+/*----BIS oongoing CSS START HERE ------------*/
+.row1{
+  display: block;
+  justify-content: center;
 }

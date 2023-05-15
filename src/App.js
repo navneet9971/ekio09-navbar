@@ -27,7 +27,7 @@ import Package from "./component/pages/account-pages/Package";
 import Payment from "./component/pages/account-pages/Payment";
 import Track from "./component/pages/account-pages/Track";
 import Transaction from "./component/pages/account-pages/Transaction";
-import MainPage from "./component/MainPages";
+//import MainPage from "./component/MainPages";
 import Chatbot from "./component/Chatbot/Chatbot";
 //import RestPassword from "./component/ForgetPassword";
 //import SupportAdmin from "./component/SupportAdmin";
@@ -54,9 +54,10 @@ const App = () => {
         <Route path="/navbar">
          <Navbar /> 
         <Switch>
-        <Route path="/navbar/mainpage">
+
+        {/* <Route path="/navbar/mainpage">
           <MainPage />
-        </Route>
+        </Route> */}
        
         <Route path="/navbar/clientdashboard">
           <ClientDashboard />

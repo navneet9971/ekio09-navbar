@@ -61,10 +61,10 @@ const Navbar = () => {
     axiosInstance.defaults.headers['Authorization'] = null;
     history.push('/');
   }
-  const isStartApplicationActive =
-  pathname === "/navbar/firstpage" ||
-  pathname === "/navbar/secondpage" ||
-  pathname.includes("navbar/compliance");
+  // const isStartApplicationActive =
+  // pathname === "/navbar/firstpage" ||
+  // pathname === "/navbar/secondpage" ||
+  // pathname.includes("navbar/compliance");
 
   return (
     <nav className="navbar navbar-expand-lg navbar-mainbg">
@@ -86,7 +86,7 @@ const Navbar = () => {
             </NavLink>
           </li>
 
-          <li
+          {/* <li
             className={
               isStartApplicationActive ? "active nav-item" : "nav-item"
             }>
@@ -97,9 +97,9 @@ const Navbar = () => {
             >
               Start New Project
             </NavLink>
-          </li>
+          </li> */}
 
-          <li
+          {/* <li
             className={
               pathname === "/navbar/review" ? "active nav-item" : "nav-item"
             }>
@@ -110,7 +110,7 @@ const Navbar = () => {
             >
              Track Application
             </NavLink>
-          </li>
+          </li> */}
 
        {/*   <li
             className={

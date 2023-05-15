@@ -424,6 +424,7 @@ function Startapp() {
           });
         });      
   }
+  
  
   return (
     <div>
@@ -504,16 +505,29 @@ function Startapp() {
 
               />
             </label>
+          
             <label className="st8012">
-              Email ID:
-              <input
-                className="st805"
-                type="text"
+  Email ID:
+  <input
+    className="st805"
+    type="text"
+    onChange={(event) => {
+      const inputValue = event.target.value;
+      const isValidEmail = inputValue.includes('@') && inputValue.includes('.');
+      setApplicantEmailID(inputValue);
+      const errorElement = document.getElementById('applicant-email-error');
 
-                onChange={(event) => setApplicantEmailID(event.target.value)}
+      if (isValidEmail) {
+        errorElement.textContent = '';
+      } else {
+        errorElement.textContent = 'Please enter a valid email address. Use @ and .xyz';
+      }
+    }}
+  />
+</label>
+<span id="applicant-email-error" style={{ color: 'red' }}></span>
 
-              />
-            </label>
+
             <label className="st8012">
              Company CIN:
               <input
@@ -554,16 +568,28 @@ function Startapp() {
 
               />
             </label>
+           
             <label className="st8012">
-              Email ID:
-              <input
-                className="st805"
-                type="text"
+  Email ID:
+  <input
+    className="st805"
+    type="text"
+    onChange={(event) => {
+      const inputValue = event.target.value;
+      const isValidEmail = inputValue.includes('@') && inputValue.includes('.');
+      setApplicantEmailID1(inputValue);
+      const errorElement = document.getElementById('applicant-email-error1');
 
-                onChange={(event) => setApplicantEmailID1(event.target.value)}
+      if (isValidEmail) {
+        errorElement.textContent = '';
+      } else {
+        errorElement.textContent = 'Please enter a valid email address. Use @ and .xyz';
+      }
+    }}
+  />
+</label>
+<span id="applicant-email-error1" style={{ color: 'red' }}></span>
 
-              />
-            </label>
   
             <h1 className='h802'>Foreign Manufacture:</h1>
             <label className="st8012">
@@ -616,16 +642,27 @@ function Startapp() {
 
               />
             </label>
+        
             <label className="st8012">
-              Email ID:
-              <input
-                className="st805"
-                type="text"
+  Email ID:
+  <input
+    className="st805"
+    type="text"
+    onChange={(event) => {
+      const inputValue = event.target.value;
+      const isValidEmail = inputValue.includes('@') && inputValue.includes('.');
+      setForeignEmailID(inputValue);
+      const errorElement = document.getElementById('foreign-email-error');
 
-                onChange={(event) => setForeignEmailID(event.target.value)}
-
-              />
-            </label>
+      if (isValidEmail) {
+        errorElement.textContent = '';
+      } else {
+        errorElement.textContent = 'Please enter a valid email address. Use @ and .xyz';
+      }
+    }}
+  />
+</label>
+<span id="foreign-email-error" style={{ color: 'red' }}></span>
 
 
             <h1 className='h802'>Document Required:</h1>

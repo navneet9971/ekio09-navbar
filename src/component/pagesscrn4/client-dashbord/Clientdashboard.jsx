@@ -3,9 +3,9 @@ import { Row, Col } from "antd";
 import { Link} from "react-router-dom";
 import { ReactComponent as Thumb1 } from "../../assets/images/welcome/1.svg";
 import { ReactComponent as Thumb2 } from "../../assets/images/welcome/2.svg";
-import { ReactComponent as Thumb3 } from "../../assets/images/welcome/3.svg";
-import { ReactComponent as Thumb4 } from "../../assets/images/welcome/4.svg";
-import Thumb5png from "../../assets/images/welcome/5.png";
+//import { ReactComponent as Thumb3 } from "../../assets/images/welcome/3.svg";
+//import { ReactComponent as Thumb4 } from "../../assets/images/welcome/4.svg";
+//import Thumb5png from "../../assets/images/welcome/5.png";
 import "./Clientdashboard.css";
 import axiosInstance from "../../../interceptors/axios";
 
@@ -26,31 +26,32 @@ const ClientDashboard = () => {
 			});
 
   const WELCOME_OPTIONS = [
+    // {
+    //   title: "Know Your Compliance",
+    //   thumb: <Thumb4 />,
+    //   route: "/navbar/firstpage",
+    // },
     {
       title: "Start New Project",
       thumb: <Thumb1 />,
       route: "/navbar/firstpage",
     },
     {
-      title: "Track Application",
+      title: "Application Progress & Reporting",
       thumb: <Thumb2 />,
       route: "/navbar/review",
     },
-    {
-      title: "My account",
-      thumb: <Thumb3 />,
-      route: "/navbar/myaccount",
-    },
-    {
-      title: "Checklist of Compliance",
-      thumb: <Thumb4 />,
-      route: "/navbar/check",
-    },
-    {
-      title: "Add users",
-      thumb: <img src={Thumb5png} alt="" />,
-      route: "/navbar/add",
-    },
+    // {
+    //   title: "My account",
+    //   thumb: <Thumb3 />,
+    //   route: "/navbar/myaccount",
+    // },
+   
+    // {
+    //   title: "Add users",
+    //   thumb: <img src={Thumb5png} alt="" />,
+    //   route: "/navbar/add",
+    // },
   ];
  
 
@@ -58,7 +59,9 @@ const ClientDashboard = () => {
     <div className="welcome">
       <div className="nav-box">Welcome {first_name} {last_name}</div>
       <div className="welcome-options">
+      <h3 className="dash-title">Your Compliance Dashboard</h3>
         <Row>
+          
           {WELCOME_OPTIONS.map((item, index) => (
             <Col xs={12} md={12} lg={8} key={index}>
               <Link to={item.route} className="option-box">

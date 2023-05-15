@@ -40,7 +40,7 @@ function Review() {
     const selectedStatus = selectedItem['status'] === "Ongoing" ? "Ongoing" : "completed";
 
     if (selectedItem.compliance_name === "BIS") {
-      history.push(`/navbar/${selectedStatus === "Ongoing" ? "ComplianceTypePage" : "Completedcompliancetype"}/id=${id}`);
+      history.push(`/navbar/${selectedStatus === "Ongoing" ? "BISoongoing" : "BIScompleted"}/id=${id}`);
     } else if (selectedItem.compliance_name === "TEC") {
       history.push(`/navbar/${selectedStatus === "Ongoing" ? "TECOngoing" : "TECcompleted"}/id=${id}`);
     }
@@ -88,11 +88,13 @@ function Review() {
     placeholderText = 'Search Model Number';
   } else if (selectedOption === 'family') {
     placeholderText = 'Search Associated No/Family Model';
+  } else if (selectedOption === 'project') {
+    placeholderText = 'Search Project Code';
   }
 
   return (
     <div className="table">
-      <h5>Track Applications</h5>
+      <h5>Application Progress & Reports</h5>
       
       <div className="search-bar">
       <i className="fas fa-search"></i>
@@ -102,6 +104,7 @@ function Review() {
         <option value="product">Product Name</option>
         <option value="model">Model Number</option>
         <option value="family">Associated No/Family Model</option>
+        <option value="project">Project Code</option>
       </select>
       <input
         type="search-text"
@@ -176,6 +179,8 @@ function Review() {
         displayData = data.fields['Model_number'];
       } else if (selectedOption === 'family') {
         displayData = data.fields['Associate_models'];
+      } else if (selectedOption === 'project') {
+        displayData = data.uniqueid;
       }
 
       if (searchQuery) {
@@ -190,7 +195,7 @@ function Review() {
     .map((data, index) => (
       <tr key={data.id}>
         <td>{index + 1}</td>
-        <td className="clickable" onClick={() => handleClick(data.id)}>
+        <td className="clickable1" onClick={() => handleClick(data.id)}>
           {data.uniqueid}
         </td>
         <td className="clickable" onClick={() => handleClick(data.id)}>
