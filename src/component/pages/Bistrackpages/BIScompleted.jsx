@@ -6,10 +6,10 @@ import axiosInstance from "../../../interceptors/axios";
 //import { Chatbot } from 'react-chatbot-kit';
 //import config from '../../eikomp-sasa-1f7361d6ec4a.json'; // contains your Dialogflow agent credentials
 //import { ReactComponent as Thum1png } from "../../assets/bis-track-icons/Application.svg";
-import { ReactComponent as Thum2png } from "../../assets/bis-track-icons/Testing.svg";
-import { ReactComponent as Thum3png } from "../../assets/bis-track-icons/Approval.svg";
-import { ReactComponent as Thum4png } from "../../assets/bis-track-icons/Documentation.svg";
-import { ReactComponent as Thum5png } from "../../assets/bis-track-icons/Approval.svg";
+// import { ReactComponent as Thum2png } from "../../assets/bis-track-icons/Testing.svg";
+// import { ReactComponent as Thum3png } from "../../assets/bis-track-icons/Approval.svg";
+// import { ReactComponent as Thum4png } from "../../assets/bis-track-icons/Documentation.svg";
+// import { ReactComponent as Thum5png } from "../../assets/bis-track-icons/Approval.svg";
 //import { ReactComponent as Thum6png } from "../../assets/bis-track-icons/Certificate.svg";
 import { ReactComponent as Wrong } from "../../assets/trckpg-rb/wrong.svg";
 import { ReactComponent as Right } from "../../assets/trckpg-rb/right.svg";
@@ -127,7 +127,7 @@ function Compdownload() {
          <div className="tecon">
     {/* <Thum1png className="mainsvg2"/>   
     <Right  className="mainsvg3"/>  */}
-   
+{/*    
     <Thum2png className="mainsvg2"/>
     <Right  className="mainsvg3"/>
 
@@ -138,7 +138,7 @@ function Compdownload() {
     <Right className="mainsvg3"/>
    
     <Thum5png className="mainsvg2"/>
-    <Right className="mainsvg3"/>
+    <Right className="mainsvg3"/> */}
 
     </div>
   
