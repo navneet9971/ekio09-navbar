@@ -16,8 +16,8 @@ import BISForms from "./component/pagesscrn4/ComplianceForms/BISForms";
 import Fourthpage from "./component/pagesscrn4/Fourthpage";
 import ClientDashboard from "./component/pagesscrn4/client-dashbord/Clientdashboard";
 import Navbar from "./component/pagesscrn4/Navbar/Navbar";
-import Edit from "./component/pages/ComplianceTypePage";
-import CompletedComplince from "./component/pages/Completedcompliancetype";
+import BISongoing from "./component/pages/Bistrackpages/BISoongoing";
+import BIScompleted from "./component/pages/Bistrackpages/BIScompleted";
 import TECOnGoing from "./component/pages//Tectrackpage/TECOngoing";
 import TECcompleted from "./component/pages/Tectrackpage/TECcompleted";
 import Bookmarks from "./component/pages/account-pages/Bookmarks";
@@ -93,12 +93,12 @@ const App = () => {
             <Route path="/navbar/review">
               <Review />
             </Route>
-            <Route path="/navbar/ComplianceTypePage/:id">
-              <Edit />
+            <Route path="/navbar/BISongoing/:id">
+              <BISongoing />
             </Route>
 
-            <Route path="/navbar/Completedcompliancetype/:id">
-              <CompletedComplince />
+            <Route path="/navbar/BIScompleted/:id">
+              <BIScompleted />
             </Route>
 
             <Route path="/navbar/TECOngoing/:id"> 

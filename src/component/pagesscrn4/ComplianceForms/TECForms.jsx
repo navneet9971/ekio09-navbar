@@ -5,6 +5,7 @@ import Popup from "../popup/Popup";
 //import Select from 'react-select';
 import axiosInstance from '../../../interceptors/axios';
 import bgimage from "../../assets/pages-bgimages/15.svg";
+import Swal from 'sweetalert2';
 
 
 function MiddleSection() {
@@ -291,7 +292,6 @@ function Startapp() {
   const [boardresolution, setBoardresolution] = useState("");
  
   const [buttonPopup5, setButtonPopup5] = useState(false);
-  const [formSubmitted, setFormSubmitted] = useState(false);
 
 
 
@@ -376,7 +376,7 @@ function Startapp() {
       const data = response.data; // your JSON data here
 
       // form submission successful
-  setFormSubmitted(true);
+      setButtonPopup5(true);
  console.log(data)
 // loop through each form in the "forms" field
       for (const [formName, formData] of Object.entries(data.data.forms)) {
@@ -395,19 +395,36 @@ function Startapp() {
         // clean up the URL object
         URL.revokeObjectURL(fileUrl);
       }
+      const formSubmitted = true; // Corrected the assignment statement
       
-    }).catch(error => {
-      setFormSubmitted(false);
-      console.log(error);
-    });
+          if (formSubmitted) { // Assuming success status is available in uploadStatus
+            Swal.fire({
+              icon: 'success',
+              title: 'Form Submitted',
+              text: 'Your Application has been submitted successfully.You can track the progress in Track Application section',
+              confirmButtonText: 'OK',
+            });
+            setButtonPopup5(false);
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Form not submitted',
+              text: 'Form submission failed. Please try again.',
+              confirmButtonText: 'OK',
+            });
+          }
+        })
+        .catch((error) => {
+          // Handle error case here
+          Swal.fire({
+            icon: 'error',
+            title: 'Form Submission Failed',
+            text: 'Sorry, there was an error Submission your form',
+            confirmButtonText: 'OK',
+          });
+        });      
   }
-
-  const handleClosePopup = () => {
-    setFormSubmitted(false);
-  };
-
  
-
   return (
     <div>
       <div className="tecforms-btn3">
@@ -639,7 +656,7 @@ function Startapp() {
             </label>
             <button className='btn808' type="submit">Submit</button>
             
-            {formSubmitted && (
+            {/* {formSubmitted && (
         <div className="submit-pop">
           {formSubmitted === true ? (
             <p>Your Application has been submitted successfully.You can track the progress in Track Application section</p>
@@ -648,7 +665,7 @@ function Startapp() {
           )}
           <button className="sumbitpop-btn" onClick={handleClosePopup}>OK</button>
         </div>
-      )}
+      )} */}
           </form>
         </div>
       </Popup>

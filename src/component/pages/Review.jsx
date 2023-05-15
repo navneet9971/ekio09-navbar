@@ -104,7 +104,7 @@ function Review() {
         <option value="family">Associated No/Family Model</option>
       </select>
       <input
-        type="text"
+        type="search-text"
         placeholder={placeholderText}
         value={searchQuery}
         onChange={handleSearchQueryChange}
@@ -154,7 +154,7 @@ function Review() {
                   </thead>
         
               
-<tbody>
+                  <tbody>
   {tableData
     .filter((data) => {
       if (
@@ -166,7 +166,9 @@ function Review() {
 
       let displayData = tableData;
 
-      if (selectedOption === 'compliance') {
+      if (selectedOption === "") {
+        return true; // Show all rows
+      } else if (selectedOption === 'compliance') {
         displayData = data.compliance_name;
       } else if (selectedOption === 'product') {
         displayData = data.application_name;

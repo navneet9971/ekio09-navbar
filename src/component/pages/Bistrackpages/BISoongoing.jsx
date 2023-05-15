@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import "./stepper.css";
-import { ReactComponent as Thum1png } from ".././assets/bis-track-icons/application.svg";
-import { ReactComponent as Thum2png } from ".././assets/bis-track-icons/testing.svg";
-import { ReactComponent as Thum3png } from ".././assets/bis-track-icons/approval.svg";
-import { ReactComponent as Thum4png } from ".././assets/bis-track-icons/documentation.svg";
-import { ReactComponent as Thum5png } from ".././assets/bis-track-icons/certificate.svg";
-import { ReactComponent as Wrong } from ".././assets/trckpg-rb/wrong.svg";
-import { ReactComponent as Right } from ".././assets/trckpg-rb/right.svg";
-import { ReactComponent as Time } from ".././assets/trckpg-rb/time.svg";
-import file1png from "../../component/assets/pdficon/Green01.png";
-import file2png from "../../component/assets/pdficon/Green02.png";
-import file3png from "../../component/assets/pdficon/Green03.png";
-import file4png from "../../component/assets/pdficon/Green04.png";
-import file5png from "../../component/assets/pdficon/Red01.png";
-import file6png from "../../component/assets/pdficon/Red02.png";
+import "../stepper.css";
+import { ReactComponent as Thum1png } from "../../assets/bis-track-icons/application.svg";
+import { ReactComponent as Thum2png } from "../../assets/bis-track-icons/testing.svg";
+import { ReactComponent as Thum3png } from "../../assets/bis-track-icons/approval.svg";
+import { ReactComponent as Thum4png } from "../../assets/bis-track-icons/documentation.svg";
+import { ReactComponent as Thum5png } from "../../assets/bis-track-icons/certificate.svg";
+import { ReactComponent as Wrong } from "../../assets/trckpg-rb/wrong.svg";
+import { ReactComponent as Right } from "../../assets/trckpg-rb/right.svg";
+import { ReactComponent as Time } from "../../assets/trckpg-rb/time.svg";
+import file1png from "../../assets/pdficon/Green01.png";
+import file2png from "../../assets/pdficon/Green02.png";
+import file3png from "../../assets/pdficon/Green03.png";
+import file4png from "../../assets/pdficon/Green04.png";
+import file5png from "../../assets/pdficon/Red01.png";
+import file6png from "../../assets/pdficon/Red02.png";
 
 
 function Stepper() {

@@ -26,6 +26,7 @@ import file6png from "../../assets/pdficon/Red02.png";
 import pdflogo from "../../assets/icons/eikomp_logo.png"
 import StatusBar from "../../Statusbar";
 //import Chatbot from "../../Chatbot/Chatbot";
+import Swal from 'sweetalert2';
 
 
 
@@ -47,7 +48,6 @@ function TECcompleted() {
     const [buttonPopup, setButtonPopup] = useState(false);
   const [options] = useState(['Authorized Signatory Letter', 'MOU', 'AOA', 'OEM authorized to AIR', 'MOA', 'Certificate of Incorporation']); 
   const [buttonPopup1, setButtonPopup1] = useState(false);
-  const [uploadStatus, setUploadStatus] = useState('');
   const totalResponses = 8;
   const completedResponses = localStorage.getItem('stepstatus');
   
@@ -112,7 +112,6 @@ const [buttonPopup2, setButtonPopup2] = useState(false);
   const [circuitdiagram, setCircuitdiagram] = useState("");
   const [pcblayout, setPcblayout] = useState("");
   const [softwareuser, setSoftwareuser] = useState("");
-  const [formSubmitted, setFormSubmitted] = useState(false);
   
 
   //Download Form Const------------HERE
@@ -197,19 +196,41 @@ const handleSubmit = (event) => {
     }
   }).then(response => {
     // form submission successful
-  setFormSubmitted(true);
+    setButtonPopup2(true);
     console.log(response.data);
-  }).catch(error => {
-    setFormSubmitted(false);
-    console.log(error);
-  });
+
+    const formSubmitted = true ; // Corrected the assignment statement
+      
+    if (formSubmitted) { // Assuming success status is available in uploadStatus
+      Swal.fire({
+        icon: 'success',
+        title: 'Form Submitted',
+        text: 'Your request for testing has been successfully submitted',
+        confirmButtonText: 'OK',
+      });
+      setButtonPopup2(false);
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Form Submitted Failed',
+        text: 'Testing Form failed. Please try again.',
+        confirmButtonText: 'OK',
+      });
+    }
+  })
+  .catch((error) => {
+    // Handle error case here
+    Swal.fire({
+      icon: 'error',
+      title: 'Form Submitted Failed',
+      text: 'Sorry, there was an error Submitted your form',
+      confirmButtonText: 'OK',
+    });
+  });      
 }
 
  //setButtonPopup2(false);
 
-const handleClosePopup = () => {
-  setFormSubmitted(false);
-};
 
 
 
@@ -418,19 +439,43 @@ logoImg.onload = function () {
       console.log(compliance_id)
       console.log(documentType)
     
-      axiosInstance.post(`application/document/`, formData, {
+      axiosInstance.post('application/document/', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       })
         .then((res) => {
           console.log(res);
-          setUploadStatus('status');
+          setButtonPopup('status');
+      
+          const uploadStatus = 'status'; // Corrected the assignment statement
+      
+          if (uploadStatus) { // Assuming success status is available in uploadStatus
+            Swal.fire({
+              icon: 'success',
+              title: 'Upload Success',
+              text: 'Your documents have been uploaded successfully',
+              confirmButtonText: 'OK',
+            });
+            setButtonPopup(false);
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Upload Failed',
+              text: 'Sorry, there was an error uploading your documents',
+              confirmButtonText: 'OK',
+            });
+          }
         })
         .catch((error) => {
-          console.log(error);
-          setUploadStatus('failure');
-        });
+          // Handle error case here
+          Swal.fire({
+            icon: 'error',
+            title: 'Upload Failed',
+            text: 'Sorry, there was an error uploading your documents',
+            confirmButtonText: 'OK',
+          });
+        });      
     
      // setButtonPopup(false);
     }
@@ -566,12 +611,12 @@ logoImg.onload = function () {
   </div>
   <div>
   <button className = "button8" onClick={handleUpload}>UPLOAD</button>
-  {uploadStatus &&
+  {/* {uploadStatus &&
     <div className="submit-pop">
       <p>{uploadStatus === 'status' ? 'Your documents have been uploaded successfully' : 'There was an error uploading your document.'}</p>
       <button className="sumbitpop-btn" onClick={() => setUploadStatus('')}>OK</button>
     </div>  
-  }
+  } */}
   </div>
 </div>
 </Popup>
@@ -841,7 +886,7 @@ logoImg.onload = function () {
 
             <button className='btn809' type="submit">Submit</button>
 
-            {formSubmitted && (
+            {/* {formSubmitted && (
         <div className="submit-pop">
           {formSubmitted === true ? (
             <p>Your request for testing has been successfully submitted</p>
@@ -850,7 +895,7 @@ logoImg.onload = function () {
           )}
           <button className="sumbitpop-btn" onClick={handleClosePopup}>OK</button>
         </div>
-      )}
+      )} */}
           </form>
         </div>
       </Popup>
