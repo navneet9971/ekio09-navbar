@@ -7,12 +7,12 @@ import Message from "../../pagesscrn4/popup/Message";
 import axiosInstance from "../../../interceptors/axios";
 import jsPDF from "jspdf";
 import 'jspdf-autotable';
-import { ReactComponent as Thum1png } from "../../assets/bis-track-icons/Registration.svg";
-import { ReactComponent as Thum2png } from "../../assets/bis-track-icons/Testing.svg";
-import { ReactComponent as Thum3png } from "../../assets/bis-track-icons/Documentation.svg";
-//import { ReactComponent as Thum4png } from "../../assets/bis-track-icons/Application.svg";
-import { ReactComponent as Thum5png } from "../../assets/bis-track-icons/Approval.svg";
-import { ReactComponent as Thum6png } from "../../assets/bis-track-icons/Certificate.svg";
+// import { ReactComponent as Thum1png } from "../../assets/bis-track-icons/Registration.svg";
+// import { ReactComponent as Thum2png } from "../../assets/bis-track-icons/Testing.svg";
+// import { ReactComponent as Thum3png } from "../../assets/bis-track-icons/Documentation.svg";
+// //import { ReactComponent as Thum4png } from "../../assets/bis-track-icons/Application.svg";
+// import { ReactComponent as Thum5png } from "../../assets/bis-track-icons/Approval.svg";
+// import { ReactComponent as Thum6png } from "../../assets/bis-track-icons/Certificate.svg";
 import { ReactComponent as Wrong } from "../../assets/trckpg-rb/wrong.svg";
 import { ReactComponent as Right } from "../../assets/trckpg-rb/right.svg";
 import file1png from "../../assets/pdficon/Green01.png";
@@ -984,12 +984,12 @@ logoImg.onload = function () {
    {docStep["1"] && docStep["1"][2].slice(0,10)}</h2>
    </Message>
 
-  <Thum1png className="mainsvg2" />
+  {/* <Thum1png className="mainsvg2" />
   {docStep["1"] && docStep["1"][0] === "Completed" ? (
     <Right className="mainsvg3" onClick={() => setButtonPopup3(true)} />
   ) : (
     <Wrong className="mainsvg3" onClick={() => setButtonPopup3(true)}/>
-  )}
+  )} */}
 
 
 
@@ -999,13 +999,13 @@ logoImg.onload = function () {
    <h2>Start Date :-
    {docStep["2"] && docStep["2"][2].slice(0,10)}</h2>
    </Message>
-
+{/* 
   <Thum2png className="mainsvg2" />
   {docStep["2"] && docStep["2"][0] === "Completed" ? (
     <Right className="mainsvg3" onClick={() => setButtonPopup4(true)}/>
   ) : (
     <Wrong className="mainsvg3" onClick={() => setButtonPopup4(true)}/>
-  )}
+  )} */}
 
 
 <Message trigger={buttonPopup5} setTrigger={setButtonPopup5}>
@@ -1015,12 +1015,12 @@ logoImg.onload = function () {
    {docStep["3"] && docStep["3"][2].slice(0,10)}</h2>
    </Message>
 
-  <Thum3png className="mainsvg2" />
+  {/* <Thum3png className="mainsvg2" />
   {docStep["3"] && docStep["3"][0] === "Completed" ? (
     <Right className="mainsvg3" onClick={() => setButtonPopup5(true)}/>
   ) : (
     <Wrong className="mainsvg3" onClick={() => setButtonPopup5(true)}/>
-  )}
+  )} */}
 
 
 <Message trigger={buttonPopup6} setTrigger={setButtonPopup6}>
@@ -1043,13 +1043,13 @@ logoImg.onload = function () {
    <h2>Start Date :-
    {docStep["5"] && docStep["5"][2].slice(0,10)}</h2>
    </Message>
-
+{/* 
   <Thum5png className="mainsvg2" />
   {docStep["5"] && docStep["5"][0] === "Completed" ? (
     <Right className="mainsvg3" onClick={() => setButtonPopup7(true)}/>
   ) : (
     <Wrong className="mainsvg3" onClick={() => setButtonPopup7(true)}/>
-  )}
+  )} */}
 
 <Message trigger={buttonPopup8} setTrigger={setButtonPopup8}>
 <h2>  Message :- 
@@ -1058,12 +1058,12 @@ logoImg.onload = function () {
    {docStep["6"] && docStep["6"][2].slice(0,10)}</h2>
    </Message>
 
-  <Thum6png className="mainsvg2" />
+  {/* <Thum6png className="mainsvg2" />
   {docStep["6"] && docStep["6"][0] === "Completed" ? (
     <Right className="mainsvg3" onClick={() => setButtonPopup8(true)}/>
   ) : (
     <Wrong className="mainsvg3" onClick={() => setButtonPopup8(true)}/>
-  )}
+  )} */}
 
 
 
