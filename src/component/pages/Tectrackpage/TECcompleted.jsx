@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import "../stepper.css";
 import Select from 'react-select';
 import Popup from "../../pagesscrn4/popup/Popup";
+import Message from "../../pagesscrn4/popup/Message";
 import axiosInstance from "../../../interceptors/axios";
 import jsPDF from "jspdf";
 import 'jspdf-autotable';
@@ -23,11 +24,14 @@ import file4png from "../../assets/pdficon/Green04.png";
 import file5png from "../../assets/pdficon/Red01.png";
 import file6png from "../../assets/pdficon/Red02.png";
 import pdflogo from "../../assets/icons/eikomp_logo.png"
+import StatusBar from "../../Statusbar";
+// import Chatbot from "../../Chatbot/Chatbot";
+import Swal from 'sweetalert2';
 
 
 
 
-function TECcompleted() {
+function TECOngoing() {
    // const [currentStep] = useState(1);
   // const steps = ["Application Submitted", "Sample sent for testing", "Test report generated", "Document pending with authorities", "Final report generated"];
    // const [current, setCurrentStep] = useState(1);
@@ -44,7 +48,9 @@ function TECcompleted() {
     const [buttonPopup, setButtonPopup] = useState(false);
   const [options] = useState(['Authorized Signatory Letter', 'MOU', 'AOA', 'OEM authorized to AIR', 'MOA', 'Certificate of Incorporation']); 
   const [buttonPopup1, setButtonPopup1] = useState(false);
-  const [uploadStatus, setUploadStatus] = useState('');
+  const totalResponses = 8;
+  const completedResponses = localStorage.getItem('stepstatus');
+  
  // const [document] = useState(null);
    // const [startDate, setStartDate] = useState(null);
    // const [endDate, setEndDate] = useState(null);
@@ -61,6 +67,16 @@ function TECcompleted() {
    const [buttonPopup8, setButtonPopup8] = useState(false);
    const [buttonPopup9, setButtonPopup9] = useState(false);
    const [buttonPopup10, setButtonPopup10] = useState(false);
+
+
+//Notification Button Const Here all---------------
+const [buttonPopup11, setButtonPopup11] = useState(false);
+  const [notifyData] = useState([
+    { "s.no": '1', category: 'Mobile', Title: 'SAMSUNG', external: 'In Progress', date: '02-12-2023' },
+    { "s.no": '2', category: 'Screen', Title: 'APPLE', external: 'Completed', date: '02-12-2023' },
+    { "s.no": '3', category: 'Chipset', Title: 'SAMSUNG', external: 'Pending', date: '02-12-2023' },
+  ]);
+
 
    //LAB TESTING FROM CONST HERE ---------------------------------------
 const [buttonPopup2, setButtonPopup2] = useState(false);
@@ -96,7 +112,6 @@ const [buttonPopup2, setButtonPopup2] = useState(false);
   const [circuitdiagram, setCircuitdiagram] = useState("");
   const [pcblayout, setPcblayout] = useState("");
   const [softwareuser, setSoftwareuser] = useState("");
-  const [formSubmitted, setFormSubmitted] = useState(false);
   
 
   //Download Form Const------------HERE
@@ -167,7 +182,7 @@ const handleSubmit = (event) => {
     if (softwareuser) {
       for (let i = 0; i < softwareuser.length; i++) {
         formData.append('documents', softwareuser[i]);
-      }
+    }
     }
 
   console.log('Application ID:', localStorage.getItem('newApplicationId'));
@@ -181,19 +196,41 @@ const handleSubmit = (event) => {
     }
   }).then(response => {
     // form submission successful
-  setFormSubmitted(true);
+    setButtonPopup2(true);
     console.log(response.data);
-  }).catch(error => {
-    setFormSubmitted(false);
-    console.log(error);
-  });
+
+    const formSubmitted = true ; // Corrected the assignment statement
+      
+    if (formSubmitted) { // Assuming success status is available in uploadStatus
+      Swal.fire({
+        icon: 'success',
+        title: 'Form Submitted',
+        text: 'Your request for testing has been successfully submitted',
+        confirmButtonText: 'OK',
+      });
+      setButtonPopup2(false);
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Form Submitted Failed',
+        text: 'Testing Form failed. Please try again.',
+        confirmButtonText: 'OK',
+      });
+    }
+  })
+  .catch((error) => {
+    // Handle error case here
+    Swal.fire({
+      icon: 'error',
+      title: 'Form Submitted Failed',
+      text: 'Sorry, there was an error Submitted your form',
+      confirmButtonText: 'OK',
+    });
+  });      
 }
 
  //setButtonPopup2(false);
 
-const handleClosePopup = () => {
-  setFormSubmitted(false);
-};
 
 
 
@@ -244,6 +281,7 @@ const handleClosePopup = () => {
         // store local storage then show the values 
         setUniqueid(data["uniqueid"]);
         setComplianceid(data["compliance_name"])
+
   
         const compliancename = data["compliance_name"]
         localStorage.setItem("compliance_name", compliancename)
@@ -257,8 +295,11 @@ const handleClosePopup = () => {
               const step = stepstatus[i];
               newDocStep[step.step] = [step.status, step.message, step.start_date];
             }
+
+            // Store the length of stepstatus in localStorage
+            localStorage.setItem('stepstatus', stepstatus.length);
             setdocStep(newDocStep);
-            console.log(stepstatus);
+            console.log(stepstatus.length);
             console.log(newDocStep);
           })
           .catch(error => {
@@ -268,7 +309,22 @@ const handleClosePopup = () => {
         axiosInstance.get(`application/document/?compliance=${compliance_id}&application=${application_id}`)
           .then(response => {
             const documentData = response.data.data;
-            console.log(documentData)
+            //console.log(response.data.key)
+
+           localStorage.setItem("report", response.data.report);
+           localStorage.setItem("certificate",response.data.certificate)
+         //  console.log(response.data.key)
+          
+            // if (response.data.key) == 'No' {
+            //     download report 
+            //     download certificate
+            // }
+            // else
+            // {
+            //   for i in documentData:
+            //   if "report" in i['document_type'].lower():
+            //     download report -  button -name - i['document_type'] link - i['document']
+            // }
             const docStatus = {};
             for (let i = 0; i < documentData.length; i++) {
               const statusData = documentData[i];
@@ -284,7 +340,7 @@ const handleClosePopup = () => {
       .catch(error => {
         console.log(error);
       })
-    }, 5000);
+    }, 2000);
     
       return () => clearInterval(interval);
   }, [idel]);
@@ -343,9 +399,7 @@ logoImg.onload = function () {
    ['Certificate of Incorporation', docStatus['Certificate of Incorporation']],
    ]
 
-
-
-    
+  
    // Generate the table using jspdf-autotable
    doc.autoTable({
     head: [columns1],
@@ -353,14 +407,12 @@ logoImg.onload = function () {
     startY: 170,
   });
   // Save the PDF
-  doc.save('my-document.pdf');
+  doc.save('Progress Tracker.pdf');
 }
     }
     
 
-  const handleOptionClick = (option) => {
-    setSelectedOption(option);
-  }; 
+
  /*   const handleDownload = () => {
       const input = document.getElementById('pdf-content');
       const pdf = new jsPDF();
@@ -372,10 +424,10 @@ logoImg.onload = function () {
 
     /*---- upload button APIS CALLS */
 
-    function handleUpload(files) {
+    function handleUpload() {
       const formData = new FormData();
     
-      for (let i = 0; i < files.length; i++) {
+      for (let i = 0; i < uploades.length; i++) {
         formData.append('document', uploades[i]);
       }
       formData.append('application', application_id);
@@ -387,23 +439,69 @@ logoImg.onload = function () {
       console.log(compliance_id)
       console.log(documentType)
     
-      axiosInstance.post(`application/document/`, formData, {
+      axiosInstance.post('application/document/', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       })
         .then((res) => {
           console.log(res);
-          setUploadStatus('status');
+          setButtonPopup('status');
+      
+          const uploadStatus = 'status'; // Corrected the assignment statement
+      
+          if (uploadStatus) { // Assuming success status is available in uploadStatus
+            Swal.fire({
+              icon: 'success',
+              title: 'Upload Success',
+              text: 'Your documents have been uploaded successfully',
+              confirmButtonText: 'OK',
+            });
+            setButtonPopup(false);
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Upload Failed',
+              text: 'Sorry, there was an error uploading your documents',
+              confirmButtonText: 'OK',
+            });
+          }
         })
         .catch((error) => {
-          console.log(error);
-          setUploadStatus('failure');
-        });
+          // Handle error case here
+          Swal.fire({
+            icon: 'error',
+            title: 'Upload Failed',
+            text: 'Sorry, there was an error uploading your documents',
+            confirmButtonText: 'OK',
+          });
+        });      
     
      // setButtonPopup(false);
     }
 
+
+
+    /*-------handleOptions download report-----*/
+    const ReportOptionClick = (option) => {
+      const reportKey = localStorage.getItem("hell");
+      console.log(reportKey);
+      console.log("segbskhgks");
+      if (reportKey === 'Yes') {
+        setSelectedOption(option);
+      }
+    };
+
+    const CertificateOptionClick = (option) => {
+      const certificateKey = localStorage.getItem("hell");
+      console.log(certificateKey);
+      console.log("nananananan");
+      if (certificateKey === 'Yes') {
+        setSelectedOption(option);
+      }
+    };
+
+    
 
     /*---------DOWNLOAD BUTTON APS CALLS------*/
     
@@ -413,6 +511,7 @@ logoImg.onload = function () {
         .then((response) => {
           const downloadData = response.data;
           localStorage.setItem("myKey", JSON.stringify(downloadData));
+
         })
         .catch((error) => {
           console.log(error);
@@ -423,23 +522,24 @@ logoImg.onload = function () {
     const [selectedOptions, setSelectedOptions] = useState([]);
 
     const docDownload = {
-      Shareholding_Pattern: 'https://eikomp-backend-media.s3.amazonaws.com/media/compliance/form/Shareholding_Pattern.docx ',
-      Manufacturing_details: 'https://eikomp-backend-media.s3.amazonaws.com/media/compliance/form/Manufacturing_details_tfyJoOx.xlsx',
-      CDFCCL_Format: 'https://eikomp-backend-media.s3.amazonaws.com/media/compliance/form/CDF-CCL_Format_TMdRsOP.docx',
+      Shareholding_Pattern: 'https://eikomp-backend-media.s3.amazonaws.com/media/compliance/form/Shareholding_Pattern.docx',
+      Manufacturing_details: 'https://eikomp-backend-media.s3.amazonaws.com/media/compliance/form/Manufacturing_Details.docx',
+      CDFCCL_Format: 'https://eikomp-backend-media.s3.amazonaws.com/media/compliance/form/CDF-CCL_Format.docx',
+      Annex_1_Signatory_authorization: 'https://eikomp-backend-media.s3.ap-south-1.amazonaws.com/media/compliance/form/Annex_1_Signatory_authorization.docx', 
+      Annexure_2_OEM_authorized_to_AIR: 'https://eikomp-backend-media.s3.ap-south-1.amazonaws.com/media/compliance/form/Annexure_2_OEM_authorized_to_AIR.docx', 
+      Annexure_3_MOU: 'https://eikomp-backend-media.s3.ap-south-1.amazonaws.com/media/compliance/form/Annexure_3_MOU.docx',
     };
   
     const storedValue = JSON.parse(localStorage.getItem("myKey"));
-    console.log(storedValue[0]['form']);
     
   if (storedValue !== null) {
     const base = "https://eikomp-backend-media.s3.amazonaws.com/";
   const docStatus2 = {};
-  console.log(storedValue)
+
   for (let i = 0; i < storedValue.length; i++) {
     const statusData = storedValue[i];
     docStatus2[statusData["name"]] = `${base}${statusData["form"]}`;
   }
-  console.log(docStatus2);
 } else {
   console.error("There is no data stored in localStorage with the key 'myKey'");
 }
@@ -468,6 +568,24 @@ logoImg.onload = function () {
             a.click();
             a.remove();
           });
+
+          
+          if (downloadPromises) { // Assuming success status is available in uploadStatus
+            Swal.fire({
+              icon: 'success',
+              title: 'Download Success',
+              text: 'Your documents have been downloaded successfully',
+              confirmButtonText: 'OK',
+            });
+            setButtonPopup1(false);
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Download Failed',
+              text: 'Sorry, there was an error downloading your documents',
+              confirmButtonText: 'OK',
+            });
+          }
         })
         .catch(error => {
           console.error('There was an error downloading the file:', error);
@@ -477,7 +595,10 @@ logoImg.onload = function () {
   const options1 = [
     { value: 'Shareholding_Pattern', label: 'Shareholding Pattern'},
     { value: 'Manufacturing_details', label: 'Manufacturing Details' },
-    { value: 'CDFCCL_Format', label: 'CDFCCL Format' },
+    { value: 'CDFCCL_Format', label: 'CDF/CCL Format' },
+    { value: 'Annex_1_Signatory_authorization', label: 'Annex 1 Signatory authorization'},
+    { value: 'Annexure_2_OEM_authorized_to_AIR', label: 'Annexure 2 OEM authorized to AIR'},
+    { value: 'Annexure_3_MOU', label: 'Annexure 3 MOU'},
   ];
 
 
@@ -509,12 +630,12 @@ logoImg.onload = function () {
   </div>
   <div>
   <button className = "button8" onClick={handleUpload}>UPLOAD</button>
-  {uploadStatus &&
+  {/* {uploadStatus &&
     <div className="submit-pop">
       <p>{uploadStatus === 'status' ? 'Your documents have been uploaded successfully' : 'There was an error uploading your document.'}</p>
       <button className="sumbitpop-btn" onClick={() => setUploadStatus('')}>OK</button>
     </div>  
-  }
+  } */}
   </div>
 </div>
 </Popup>
@@ -784,7 +905,7 @@ logoImg.onload = function () {
 
             <button className='btn809' type="submit">Submit</button>
 
-            {formSubmitted && (
+            {/* {formSubmitted && (
         <div className="submit-pop">
           {formSubmitted === true ? (
             <p>Your request for testing has been successfully submitted</p>
@@ -793,7 +914,7 @@ logoImg.onload = function () {
           )}
           <button className="sumbitpop-btn" onClick={handleClosePopup}>OK</button>
         </div>
-      )}
+      )} */}
           </form>
         </div>
       </Popup>
@@ -801,12 +922,47 @@ logoImg.onload = function () {
       
 </div>
 
+
+{/*---------------Notification code Here------------------------*/}
+
+        <Popup trigger={buttonPopup11} setTrigger={setButtonPopup11}>
+          <div>
+            <h3 className='notif'>Notification</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>S.No</th>
+                  <th>Category</th>
+                  <th>Title</th>
+                  <th>External Link/Filepath</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {notifyData.map((data, index) => (
+                  <tr key={index}>
+                    <td>{data["s.no"]}</td>
+                    <td>{data.category}</td>
+                    <td>{data.Title}</td>
+                    <td onClick={() => window.open(data.external)} style={{ cursor: 'pointer' }}>{data.external}</td>
+                    <td>{data.date}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+
+          </div>
+        </Popup>
+
+
+
 {/*------------------DOWNLOAD BUTTON CODE ----------------*/}
 
 <div className="header-btn1">
 <button className="button7" onClick={() => setButtonPopup2(true)}>Request Testing</button>
 <button className="button7" onClick={() => setButtonPopup(true)}>Upload</button>
 <button className="button7" onClick={() => setButtonPopup1(true)}>Download</button>
+<button className='button7' onClick={() => setButtonPopup11(true)}>Notification</button>
 </div>
 <Popup trigger={buttonPopup1} setTrigger={setButtonPopup1}>
         <h3>Download a File</h3>
@@ -828,16 +984,25 @@ logoImg.onload = function () {
           <button className="button8" type="submit" onClick={handleDownload}>Download</button>
           </div>
           </Popup>
+
+{/*--------Ststus Bar CODE IS HERE --------------------*/}
+          <div className>
+      <StatusBar
+        totalResponses={totalResponses}
+        completedResponses={completedResponses}
+      />
+    </div>
+
           
   <div className="tecon">
     <h2 className="steps-count">Steps To Be Completed</h2>
    
-   <Popup trigger={buttonPopup3} setTrigger={setButtonPopup3}>
+   <Message trigger={buttonPopup3} setTrigger={setButtonPopup3}>
   <h2>  Message :- 
    {docStep["1"] && docStep["1"][1]}</h2>
    <h2>Start Date :- 
    {docStep["1"] && docStep["1"][2].slice(0,10)}</h2>
-   </Popup>
+   </Message>
 
   <Thum1png className="mainsvg2" />
   {docStep["1"] && docStep["1"][0] === "Completed" ? (
@@ -848,12 +1013,12 @@ logoImg.onload = function () {
 
 
 
-<Popup trigger={buttonPopup4} setTrigger={setButtonPopup4}>
+<Message trigger={buttonPopup4} setTrigger={setButtonPopup4}>
 <h2>  Message :- 
    {docStep["2"] && docStep["2"][1]}</h2>
    <h2>Start Date :-
    {docStep["2"] && docStep["2"][2].slice(0,10)}</h2>
-   </Popup>
+   </Message>
 
   <Thum2png className="mainsvg2" />
   {docStep["2"] && docStep["2"][0] === "Completed" ? (
@@ -863,12 +1028,12 @@ logoImg.onload = function () {
   )}
 
 
-<Popup trigger={buttonPopup5} setTrigger={setButtonPopup5}>
+<Message trigger={buttonPopup5} setTrigger={setButtonPopup5}>
 <h2>  Message :- 
    {docStep["3"] && docStep["3"][1]}</h2>
    <h2>Start Date :-
    {docStep["3"] && docStep["3"][2].slice(0,10)}</h2>
-   </Popup>
+   </Message>
 
   <Thum3png className="mainsvg2" />
   {docStep["3"] && docStep["3"][0] === "Completed" ? (
@@ -878,12 +1043,13 @@ logoImg.onload = function () {
   )}
 
 
-<Popup trigger={buttonPopup6} setTrigger={setButtonPopup6}>
+<Message trigger={buttonPopup6} setTrigger={setButtonPopup6}>
 <h2>  Message :- 
    {docStep["4"] && docStep["4"][1]}</h2>
    <h2>Start Date :-
    {docStep["4"] && docStep["4"][2].slice(0,10)}</h2>
-   </Popup>
+   </Message>
+
   <Thum4png className="mainsvg2" />
   {docStep["4"] && docStep["4"][0] === "Completed" ? (
     <Right className="mainsvg3" onClick={() => setButtonPopup6(true)}/>
@@ -891,12 +1057,12 @@ logoImg.onload = function () {
     <Wrong className="mainsvg3" onClick={() => setButtonPopup6(true)}/>
   )}
 
-<Popup trigger={buttonPopup7} setTrigger={setButtonPopup7}>
+<Message trigger={buttonPopup7} setTrigger={setButtonPopup7}>
 <h2>  Message :- 
    {docStep["5"] && docStep["5"][1]}</h2>
    <h2>Start Date :-
    {docStep["5"] && docStep["5"][2].slice(0,10)}</h2>
-   </Popup>
+   </Message>
 
   <Thum5png className="mainsvg2" />
   {docStep["5"] && docStep["5"][0] === "Completed" ? (
@@ -905,12 +1071,12 @@ logoImg.onload = function () {
     <Wrong className="mainsvg3" onClick={() => setButtonPopup7(true)}/>
   )}
 
-<Popup trigger={buttonPopup8} setTrigger={setButtonPopup8}>
+<Message trigger={buttonPopup8} setTrigger={setButtonPopup8}>
 <h2>  Message :- 
    {docStep["6"] && docStep["6"][1]}</h2>
    <h2>Start Date :-
    {docStep["6"] && docStep["6"][2].slice(0,10)}</h2>
-   </Popup>
+   </Message>
 
   <Thum6png className="mainsvg2" />
   {docStep["6"] && docStep["6"][0] === "Completed" ? (
@@ -919,12 +1085,12 @@ logoImg.onload = function () {
     <Wrong className="mainsvg3" onClick={() => setButtonPopup8(true)}/>
   )}
 
-<Popup trigger={buttonPopup9} setTrigger={setButtonPopup9}>
+<Message trigger={buttonPopup9} setTrigger={setButtonPopup9}>
 <h2>  Message :- 
    {docStep["7"] && docStep["7"][1]}</h2>
    <h2>Start Date :-
    {docStep["7"] && docStep["7"][2].slice(0,10)}</h2>
-   </Popup>
+   </Message>
 
   <Thum7png className="mainsvg2" />
   {docStep["7"] && docStep["7"][0] === "Completed" ? (
@@ -933,12 +1099,12 @@ logoImg.onload = function () {
     <Wrong className="mainsvg3" onClick={() => setButtonPopup9(true)}/>
   )}
 
-<Popup trigger={buttonPopup10} setTrigger={setButtonPopup10}>
+<Message trigger={buttonPopup10} setTrigger={setButtonPopup10}>
 <h2>  Message :- 
    {docStep["8"] && docStep["8"][1]}</h2>
    <h2>Start Date :-
    {docStep["8"] && docStep["8"][2].slice(0,10)}</h2>
-   </Popup>
+   </Message>
 
   <Thum8png className="mainsvg2" />
   {docStep["8"] && docStep["8"][0] === "Completed" ? (
@@ -1013,11 +1179,11 @@ logoImg.onload = function () {
           </div>
         </div>
       
-{/*------- LAST THREE BUTTON CODES HERE _____________*/}
+{/*------- LAST THREE BUTTON CODES HERE --------------------*/}
 <div className="dd-menu">
           <button className="reportbtn" onClick={handleDownloadreport}>Download Progress Report</button>
-          <button className="reportbtn" onClick={() => handleOptionClick('Testing')}>Download Test Report</button>
-          <button className="reportbtn" onClick={() => handleOptionClick('Certificate')}>Download Certificate</button>
+          <button className="reportbtn" onClick={ReportOptionClick} disabled={localStorage.getItem('report') === 'No'}>Download Test Report</button>
+          <button className="reportbtn" onClick={CertificateOptionClick} disabled={localStorage.getItem('certificate') === 'No'}>Download Certificate</button>
         </div>
       
   {/* {startDate && endDate && (
@@ -1032,7 +1198,8 @@ logoImg.onload = function () {
       )}
     </div>
   )}  */}
-  
+
+  {/* <Chatbot /> */}
         </div>
        </div>
   
@@ -1040,5 +1207,5 @@ logoImg.onload = function () {
     );
   };
 
-  export default TECcompleted;
+  export default TECOngoing;
   

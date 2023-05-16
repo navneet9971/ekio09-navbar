@@ -42,7 +42,7 @@ const ClientDashboard = () => {
       route: "/navbar/review",
     },
     {
-      title: "How To use ",
+      title: "How To use Platform",
       thumb: <Thumb3 />,
       route: "/navbar/mainpage",
     },
