@@ -898,3 +898,12 @@ select.st804 {
 .css-1fdsijx-ValueContainer {
   width: 20em;
 }
+
+/*-------------------BIS FROM DROP DOWN------------*/
+select.bisdrop {
+  height: 32px;
+  width: 29em;
+  padding: 3px 7px;
+  margin: 10px;
+  border-color: black;
+}
