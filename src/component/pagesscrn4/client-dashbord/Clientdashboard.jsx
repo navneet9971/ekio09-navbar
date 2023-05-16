@@ -3,7 +3,7 @@ import { Row, Col } from "antd";
 import { Link} from "react-router-dom";
 import { ReactComponent as Thumb1 } from "../../assets/images/welcome/1.svg";
 import { ReactComponent as Thumb2 } from "../../assets/images/welcome/2.svg";
-//import { ReactComponent as Thumb3 } from "../../assets/images/welcome/3.svg";
+import { ReactComponent as Thumb3 } from "../../assets/how to use.svg";
 import { ReactComponent as Thumb4 } from "../../assets/images/welcome/4.svg";
 //import Thumb5png from "../../assets/images/welcome/5.png";
 import "./Clientdashboard.css";
@@ -29,7 +29,7 @@ const ClientDashboard = () => {
     {
       title: "Know Your Compliance",
       thumb: <Thumb4 />,
-      route: "/navbar/knowyourcompliance",
+      route: "/navbar/firstcompliance",
     },
     {
       title: "Start New Project",
@@ -41,11 +41,11 @@ const ClientDashboard = () => {
       thumb: <Thumb2 />,
       route: "/navbar/review",
     },
-    // {
-    //   title: "My account",
-    //   thumb: <Thumb3 />,
-    //   route: "/navbar/myaccount",
-    // },
+    {
+      title: "How To use ",
+      thumb: <Thumb3 />,
+      route: "/navbar/mainpage",
+    },
    
     // {
     //   title: "Add users",

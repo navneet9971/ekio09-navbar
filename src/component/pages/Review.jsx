@@ -14,6 +14,8 @@ function formatDate(dateString) {
   return `${day}/${month}/${year}`;
 }
 
+
+
 function Review() {
   const [tableData, setTableData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -33,6 +35,14 @@ function Review() {
         console.log(error);
       });
   }, [idel]);
+
+
+  // Sort the tableData array based on startdate in descending order
+const sortedTableData = tableData.sort((a, b) => new Date(b.startdate) - new Date(a.startdate));
+
+// Get the latest startdate from the sortedTableData array
+const latestStartDate = sortedTableData.length > 0 ? sortedTableData[0].startdate : '';
+console.log(latestStartDate)
 
   const handleClick = (id) => {
     localStorage.setItem('ide', id);
@@ -198,7 +208,7 @@ function Review() {
         <td className="clickable1" onClick={() => handleClick(data.id)}>
           {data.uniqueid}
         </td>
-        <td className="clickable" onClick={() => handleClick(data.id)}>
+        <td className="clickable2" onClick={() => handleClick(data.id)}>
           {data.compliance_name}
         </td>
         <td>{data.application_name}</td>

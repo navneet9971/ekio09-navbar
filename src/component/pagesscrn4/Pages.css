@@ -486,6 +486,18 @@ a.notify {
 
   /*-------------ThirdPage Butoon CSS--------------*/
 
+
+  td.clickable {
+    color: #55b700;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+td.clickable:hover{
+  color: #0d45a5;
+}
+
+
   .header-btn1 {
     display: flex;
     justify-content: flex-end; /* Change this to adjust the spacing between buttons */
@@ -879,7 +891,6 @@ select.st804 {
   justify-content: flex-start;
   padding: 13px;
 }
-
 
 .select-container .select__option--is-selected {
   background-color: #f5f5f5;

@@ -13,7 +13,7 @@ import Firstpage from "./component/pagesscrn4/Firstpage";
 import Secondpage from "./component/pagesscrn4/Secondpage";
 import TECForms from "./component/pagesscrn4/ComplianceForms/TECForms";
 import BISForms from "./component/pagesscrn4/ComplianceForms/BISForms";
-import Fourthpage from "./component/pagesscrn4/Knowyourcompliance";
+import Fourthpage from "./component/pagesscrn4/Complianceinformation/TECcompliance";
 import ClientDashboard from "./component/pagesscrn4/client-dashbord/Clientdashboard";
 import Navbar from "./component/pagesscrn4/Navbar/Navbar";
 import BISongoing from "./component/pages/Bistrackpages/BISoongoing";
@@ -27,8 +27,10 @@ import Package from "./component/pages/account-pages/Package";
 import Payment from "./component/pages/account-pages/Payment";
 import Track from "./component/pages/account-pages/Track";
 import Transaction from "./component/pages/account-pages/Transaction";
-import Knowyoucompliance from "./component/pagesscrn4/Knowyourcompliance"
-//import MainPage from "./component/MainPages";
+import TECcompliance from "./component/pagesscrn4/Complianceinformation/TECcompliance";
+import FirstCompliance from "./component/pagesscrn4/Complianceinformation/Firstcompliance";
+import Secondcompliance from "./component/pagesscrn4/Complianceinformation/Secondcompliance";
+import MainPage from "./component/MainPages";
 //import Chatbot from "./component/Chatbot/Chatbot";
 //import RestPassword from "./component/ForgetPassword";
 //import SupportAdmin from "./component/SupportAdmin";
@@ -56,16 +58,18 @@ const App = () => {
          <Navbar /> 
         <Switch>
 
-        {/* <Route path="/navbar/mainpage">
+          <Route path="/navbar/mainpage">
           <MainPage />
-        </Route> */}
-       
+        </Route> 
+        
         <Route path="/navbar/clientdashboard">
           <ClientDashboard />
         </Route>
+
         <Route path="/navbar/secondpage">
           <Secondpage />
         </Route>
+
         <Route path="/navbar/compliance/TEC">
           <TECForms />
         </Route> 
@@ -121,8 +125,19 @@ const App = () => {
               <View />
             </Route>
 
-            <Route path="/navbar/knowyourcompliance">
-              <Knowyoucompliance />
+
+{/*-----------------Compliance Information page redirct here----------------*/}
+
+<Route path="/navbar/firstcompliance">
+          <FirstCompliance />
+        </Route>
+
+        <Route path="/navbar/secondcompliance">
+          <Secondcompliance />
+        </Route>
+
+        <Route path="/navbar/TECcompliance">
+              <TECcompliance />
             </Route>
             
 {/*--------------------------My account pages Path inside of navbar-----------------------------------*/}

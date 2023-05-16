@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import "./Pages.css";
-import bgimage from "../../component/assets/pages-bgimages/15.svg";
-import axiosInstance from '../../interceptors/axios';
+import "../Pages.css";
+import bgimage from "../../assets/pages-bgimages/15.svg";
+import axiosInstance from '../../../interceptors/axios';
 
 
 
