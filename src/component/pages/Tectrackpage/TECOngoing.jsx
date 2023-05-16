@@ -511,6 +511,7 @@ logoImg.onload = function () {
         .then((response) => {
           const downloadData = response.data;
           localStorage.setItem("myKey", JSON.stringify(downloadData));
+
         })
         .catch((error) => {
           console.log(error);
@@ -567,6 +568,24 @@ logoImg.onload = function () {
             a.click();
             a.remove();
           });
+
+          
+          if (downloadPromises) { // Assuming success status is available in uploadStatus
+            Swal.fire({
+              icon: 'success',
+              title: 'Download Success',
+              text: 'Your documents have been downloaded successfully',
+              confirmButtonText: 'OK',
+            });
+            setButtonPopup1(false);
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Download Failed',
+              text: 'Sorry, there was an error downloading your documents',
+              confirmButtonText: 'OK',
+            });
+          }
         })
         .catch(error => {
           console.error('There was an error downloading the file:', error);

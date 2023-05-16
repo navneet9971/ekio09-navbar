@@ -8,12 +8,12 @@ import { ReactComponent as Steps4 } from "../component/assets/main-page-svg/4.sv
 import { ReactComponent as Steps5 } from "../component/assets/main-page-svg/5.svg";
 import { ReactComponent as Steps6 } from "../component/assets/main-page-svg/6.svg";
 import { ReactComponent as Steps7 } from "../component/assets/main-page-svg/7.svg";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 const MainPage = () => {
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
-  const history = useHistory();
+  // const history = useHistory();
 
   useEffect(() => {
     axiosInstance
@@ -30,9 +30,9 @@ const MainPage = () => {
       });
   }, []); // run only once on mount
 
-  const handleContinue = () => {
-    history.push("/navbar/firstpage");
-  };
+  // const handleContinue = () => {
+  //   history.push("/navbar/firstpage");
+  // };
 
   return (
     <div className="welcome">
@@ -46,11 +46,11 @@ const MainPage = () => {
   <Steps6 className="mainsvg1"/>
   <Steps7 className="mainsvg1"/>
 
-        <div className="button-container">
+        {/* <div className="button-container">
           <button onClick={handleContinue} className="continue-button">
             Continue
           </button>
-        </div>
+        </div> */}
       </div>
   );
 };
