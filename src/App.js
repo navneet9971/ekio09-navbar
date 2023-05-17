@@ -100,7 +100,7 @@ const App = () => {
               <Review />
             </Route>
 
-            <Route path="/navbar/BISongoing/:id">
+            <Route path="/navbar/BISoongoing/:id">
               <BISongoing />
             </Route>
 

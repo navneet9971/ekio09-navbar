@@ -79,19 +79,9 @@ const [buttonPopup2, setButtonPopup2] = useState(false);
   //const [buttonPopup1, setButtonPopup1] = useState(false);
   const [testingProductName, setTestingProductName] = useState("");
   const [testingModelNo, setTestingModelNo] = useState("");
-  const [testingAssociated, setTestingAssociated] = useState("");
-  const [testingHardwareNumber, setTestingHardwareNumber] = useState("");
-  const [testingSoftwareNumber, setTestingSoftwareNumber] = useState("");
   const [testingBrand, setTestingBrand] = useState("");
   const [testingSr, setTestingSr] = useState("");
   const [testingElectrical, setTestingElectrical] = useState("");
-  const [testingProductType, setTestingProductType] = useState("");
-  const [testingProductTypeOther, setTestingProductTypeOther] = useState("")
-  const [testingProductUse, setTestingProductUse] = useState("");
-  const [testingProductOther, setTestingProductOther] = useState("");
-  //const [testingSoftware, setTestingSoftware] = useState("");
-  const [testingTechnicalsupportName, setTestingTechnicalsupportName] = useState("");
-  const [testingTechnicalsuppoertNumber, setTestingTechnicalsuppoertNumber] = useState("");
   // const [manufacturingProductName, setManufacturingProductName] = useState("");
   // const [manufacturingModelNo, setManufacturingModelNo] = useState("");
   // const [manufacturingAssociatedModels, setManufacturingAssociatedModels] = useState("");
@@ -107,7 +97,6 @@ const [buttonPopup2, setButtonPopup2] = useState(false);
   const [usermanual, setUsermanual] = useState("");
   const [circuitdiagram, setCircuitdiagram] = useState("");
   const [pcblayout, setPcblayout] = useState("");
-  const [softwareuser, setSoftwareuser] = useState("");
   
 
   //Download Form Const------------HERE
@@ -127,19 +116,10 @@ const handleSubmit = (event) => {
   formData.append('request_for', 'lab_testing');
   formData.append("Product_name", testingProductName);
   formData.append("Model_number", testingModelNo);
-  formData.append("Associate_models", testingAssociated);
-  formData.append("Hardware_number", testingHardwareNumber);
-  formData.append("Software_number", testingSoftwareNumber);
   formData.append("Brand", testingBrand);
   formData.append("Serial_number", testingSr);
   formData.append("Electrical_rating", testingElectrical);
-  formData.append("Product_type", testingProductType);
-  formData.append("Product_type_other", testingProductTypeOther)
-  formData.append("Product_use", testingProductUse);
-  formData.append("Product_use_other", testingProductOther);
  // formData.append("testingSoftware", testingSoftware);
-  formData.append("Technical_support_person_name", testingTechnicalsupportName);
-  formData.append("Technical_support_person_contact_number", testingTechnicalsuppoertNumber);
   // formData.append("manufacturingProductName", manufacturingProductName);
   // formData.append("manufacturingModelNo", manufacturingModelNo);
   // formData.append("manufacturingAssociatedModels", manufacturingAssociatedModels);
@@ -175,11 +155,7 @@ const handleSubmit = (event) => {
         formData.append('documents', pcblayout[i]);
       }
     }
-    if (softwareuser) {
-      for (let i = 0; i < softwareuser.length; i++) {
-        formData.append('documents', softwareuser[i]);
-    }
-    }
+   
 
   console.log('Application ID:', localStorage.getItem('newApplicationId'));
   console.log('Compliance ID:', localStorage.getItem("compliance_id"));
@@ -393,6 +369,7 @@ logoImg.onload = function () {
    ['GST', docStatus['GST']],
    ['Employee ID/Visiting Card of Siging authority', docStatus['Employee ID/Visiting Card of Siging authority']],
    ['MSME', docStatus['MSME']],
+     ['Form_3_Affidavit', docStatus['Form_3_Affidavit']],
    ]
 
   
@@ -630,6 +607,14 @@ logoImg.onload = function () {
         <div style={{ height: "500px", overflow: "scroll" }}>
           <h1 className="h801">Testing Information Required</h1>
           <form onSubmit={handleSubmit}>
+
+          <label className="st8012">
+              Testing:
+             <select className='st804' onChange={(event) =>  setTestingProductName(event.target.value)}>
+              <option value="Main">MAIN</option>
+              <option value="Successive">SUCCESSIVE</option>
+             </select>
+            </label>
           
             <label className="st8012">
               Product Name:
@@ -649,33 +634,7 @@ logoImg.onload = function () {
 
               />
             </label>
-            <label className="st8012">
-              Associated Models (if any):
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setTestingAssociated(event.target.value)}
-
-              />
-            </label>
-            <label className="st8012">
-              Hardware Number:
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setTestingHardwareNumber(event.target.value)}
-
-              />
-            </label>
-            <label className="st8012">
-              Software Number	:
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setTestingSoftwareNumber(event.target.value)}
-
-              />
-            </label>
+           
             <label className="st8012">
               Brand:
               <input
@@ -686,7 +645,7 @@ logoImg.onload = function () {
               />
             </label>
             <label className="st8012">
-              Sr. No:
+              Series Model:
               <input
                 className="st805"
                 type="text"
@@ -703,46 +662,42 @@ logoImg.onload = function () {
 
               />
             </label>
-            <label className="st8012">
-        Product Type:
-        <select className="st801" onChange={(event) => setTestingProductType(event.target.value)}>
-          <option value="Fixed">Fixed</option>
-          <option value="Industrial">Industrial</option>
-          <option value="Portable">Portable</option>
-          <option value="Other">Other</option>
-        </select>
-      </label>
 
-      <label className="st8012">
-              Product Type (if other):
+            <label className="st8012">
+              Lab Name:
               <input
                 className="st805"
                 type="text"
-                onChange={(event) => setTestingProductTypeOther(event.target.value)}
+                onChange={(event) => setTestingElectrical(event.target.value)}
+
               />
             </label>
+
+            
+            <label className="st8012">
+              Quantity:
+              <input
+                className="st805"
+                type="text"
+                onChange={(event) => setTestingElectrical(event.target.value)}
+
+              />
+            </label>
+
+                
+            <label className="st8012">
+              IS standard:
+              <input
+                className="st805"
+                type="text"
+                onChange={(event) => setTestingElectrical(event.target.value)}
+
+              />
+            </label>
+            
           
             <label className="st8012">
-              Product Use:
-              <select className="st801" onChange={(event) => setTestingProductUse(event.target.value)}>
-                <option value="Indoor">Indoor</option>
-                <option value="Outdoor">Outdoor</option> 
-                <option valur="Other">Other</option>              
-              </select>
-            </label>
-
-            <label className="st8012">
-              Product Use(if other):
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setTestingProductOther(event.target.value)}
-
-              />
-            </label>
-
-            <label className="st8012">
-              Filled CDF/CCl (Format attached):
+              Filled CDF/CCL (Format attached):
               <input classname="stup805" type="file"   onChange={(event) => setCdfccl(event.target.files)} multiple accept />
             </label>
             <label className="st8012">
@@ -758,30 +713,15 @@ logoImg.onload = function () {
               <input className="stup805" type="file"  onChange={(event) => setPcblayout(event.target.files)} multiple accept />
             </label>
             <label className="st8012">
-              Software used (if any):
-              <input className="stup805" type="file"  onChange={(event) => setSoftwareuser(event.target.files)} multiple accept />
+              Marking Label:
+              <input className="stup805" type="file"  onChange={(event) => setPcblayout(event.target.files)} multiple accept />
+            </label>
+            <label className="st8012">
+              Technical Specification:
+              <input className="stup805" type="file"  onChange={(event) => setPcblayout(event.target.files)} multiple accept />
             </label>
            
-            <label className="st8012">
-              Technical support person name:
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setTestingTechnicalsupportName(event.target.value)}
-
-              />
-            </label>
-            <label className="st8012">
-              Technical support person contact number:
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setTestingTechnicalsuppoertNumber(event.target.value)}
-
-              />
-            </label>
-
-
+      
             {/* <h1 className="h801">Manufacturing Location Information:</h1>
             <label className="st8012">
               Product Name:

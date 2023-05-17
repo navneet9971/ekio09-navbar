@@ -327,8 +327,14 @@ label.st8017 {
 .designations {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  margin-left: 41px;
+  /* align-items: flex-end; */
+  margin-left: 20px;
+}
+
+.side-div {
+  display: grid;
+  /* align-items: center; */
+  margin-left: 30px;
 }
 
 .st8012 {
@@ -906,4 +912,73 @@ select.bisdrop {
   padding: 3px 7px;
   margin: 10px;
   border-color: black;
+}
+
+/* BIS REGISTER AND UN REGISTER POPUP CSS */
+.checkbox-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.bis-register {
+  margin-right: 10px;
+}
+
+input.bis-register {
+  width: 20px;
+  height: 20px;
+}
+
+h3.reg-popup-titlte {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 25px;
+}
+
+/*---------- BIS register POPup page css--------- */
+.bis-userid {
+  display: grid;
+  justify-content: flex-start;
+  /* row-gap: 3px; */
+  margin-bottom: 20px;
+}
+
+select#has-r-number {
+  display: flex;
+  justify-content: flex-start;
+  width: 100px;
+  height: 34px;
+  padding: inherit;
+  margin-bottom: 20px;
+  border-color: black;
+  /* font-size: 15px; */
+  font-weight: 600;
+}
+
+input#user-id {
+  padding: 4px 3px;
+  width: 15em;
+  font-size: 20px;
+  border-color: black;
+}
+
+span.eye-icon-fun {
+  /* size: 1px; */
+  cursor: pointer;
+}
+
+button.bis-register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 16px;
+  font-size: 17px;
+  font-weight: 600;
+  color: white;
+  border-radius: 15px;
+  background-color: #082a71;
+}
+
+button.bis-register:hover {
+  background-color: #55b700;
 }

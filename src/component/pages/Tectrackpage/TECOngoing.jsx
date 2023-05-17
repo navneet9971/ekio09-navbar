@@ -290,6 +290,7 @@ const handleSubmit = (event) => {
         axiosInstance.get(`application/status/?compliance=${compliance_id}&application=${application_id}&request_for=${request_for}`)
           .then(response => {
             const stepstatus = response.data.data;
+            console.log(stepstatus)
             const newDocStep = {}; // create a new object that copies the existing state
             for (let i = 0; i < stepstatus.length; i++) {
               const step = stepstatus[i];

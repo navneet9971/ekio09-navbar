@@ -199,8 +199,52 @@ const Secondpage = () => {
   }
 
 
- //Start BIS New Application Form const Code Here --------------------------------------
+ //Start BIS New Application Form const Code Here ------------------------------------------------
+  const[buttonRegister, setButtonRegister] = useState(false);
+  const[buttonRegisterPage, setButtonRegisterPage ] = useState(false);
   const [buttonPopup6, setButtonPopup6] = useState(false);
+  const [ buttonbisrqdetails, setButtonbisrqdetails] = useState(false);
+  
+  
+  
+  //BIS REgister POPUP box Filled Const Data here--------------------------------------------------
+const [userId, setUserId] = useState("");
+  const [password, setPassword] = useState('');
+  const [hasRNumber, setHasRNumber] = useState(false);
+  const [rNumber, setRNumber] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
+
+
+   const handleRNumberChange = (event) => {
+    const { value } = event.target;
+    setRNumber(value);
+  };
+
+
+   const handleDropdownChange = (event) => {
+    const { value } = event.target;
+    setHasRNumber(value === "yes");
+  };
+
+  const handleRegisterSubmit = (event) => {
+    event.preventDefault();
+    // Handle form submission logic here
+    if (hasRNumber) {
+      // Logic when R number is selected
+      console.log("R Number:", rNumber);
+    } else {
+      // Logic when R number is not selected
+      setButtonbisrqdetails(true);
+      console.log("R Number not selected");
+    }
+  };
+
+
+
+
+
+  //BIS NEW APPLICATION CONST DATA HERE------------------------------------------------------------
   const [types_of_biscompany, setTypes_of_biscompany] = useState("");
   const [manufacturerfactoryname, setManufacturerfactoryname] = useState("");
   const [manufacturerfactoryaddress, setManufacturerfactoryaddress] = useState("");
@@ -412,7 +456,7 @@ const Secondpage = () => {
     }
     
     else if (complianceName === "BIS") {
-      setButtonPopup6(true)
+      setButtonRegister(true)
     } 
     //  else if (complianceName === "WPS") {
     //   history.push(`/navbar/compliance/WPS`);} 
@@ -420,6 +464,20 @@ const Secondpage = () => {
     //   // handle other compliance names
     // }
   };
+
+
+  // HandleChange of Registerbutton---------
+  function handleRadioChange(event) {
+  const value = event.target.value;
+  
+  if (value === 'register') {
+    // Call the function for registering
+    setButtonRegisterPage(true);
+  } else if (value === 'unregister') {
+    // Call the function for unregistering
+    setButtonPopup6(true);
+  }
+}
 
 
 
@@ -758,10 +816,313 @@ const Secondpage = () => {
 
 
 
+{/*--------------BIS REGSITER AND UNREGISTER CODES HERE ------------------------------- */}
+<Popup trigger={buttonRegister} setTrigger={setButtonRegister}>
+<h3 className="reg-popup-titlte">Are You a Registered User?</h3>
+<div className="checkbox-container">
+  <div className="bis-register">
+    <div>
+      <label>
+        <input
+        className="bis-register"
+          type="checkbox"
+          value="register"
+          //checked={radioValue === 'Option 1'}
+          onChange={handleRadioChange}
+        />
+       YES
+      </label>
+    </div>
+  </div>
+  <div className="bis-register">
+    <div>
+      <label>
+        <input
+          className="bis-register"
+          type="checkbox"
+          value="unregister"
+          //checked={radioValue === 'Unregister'}
+          onChange={handleRadioChange}
+        />
+        NO
+      </label>
+    </div>
+  </div>
+</div>
+</Popup>
+
+{/*---------------- BIS REGISTER POPUP PAGE CODE HERE----------------------------------- */}
+<Popup trigger={buttonRegisterPage} setTrigger={setButtonRegisterPage}>
+  
+<form onSubmit={handleRegisterSubmit}>
+ 
+      <div className="bis-userid">
+        <label htmlFor="user-id">User ID:</label>
+        <input
+          type="text"
+          id="user-id"
+          value={userId}
+          onChange={(event) => setUserId(event.target.value)}
+        />
+      </div>
+
+      <div className="bis-userid">
+      <label htmlFor="password">Password:</label>
+      <div className="password-input-container">
+      <input
+        type={showPassword ? 'text' : 'password'}
+        id="user-id"
+        value={password}
+        onChange={(event) => setPassword(event.target.value)}
+      />
+      <span
+        className="eye-icon-fun"
+        onClick={() => setShowPassword(!showPassword)}
+        role="button"
+        tabIndex={0}
+      >
+        {showPassword ? '🙈' : '👁️'}
+      </span>
+      </div>
+    </div>
+    
+      <div className="bis-userid">
+  <label htmlFor="has-r-number">Do you have an R number?</label>
+  <select
+    id="has-r-number"
+    value={hasRNumber ? "yes" : "no"}
+    onChange={handleDropdownChange}
+  >
+    <option value="yes">Yes</option>
+    <option value="no">No</option>
+  </select>
+</div>
+      {hasRNumber && (
+        <div className="bis-userid">
+          <label htmlFor="r-number">R Number:</label>
+          <input
+            type="text"
+            id="user-id"
+            value={rNumber}
+            onChange={handleRNumberChange}
+          />
+        </div>
+      )}
+      <button className="bis-register" type="submit">Submit</button>
+    </form>
+</Popup>
+
+
+{/*------------------ BIS REQUIRED DETAILS POPUP PAGE CODE HERE-------------------------- */}
+<Popup trigger={buttonbisrqdetails} setTrigger={setButtonbisrqdetails}>
+<div style={{ height: "500px", width:"608px", overflow: "scroll" }}>
+          <form onSubmit={handleBISSubmit}>
+
+<h1 className='h802'>Brand</h1>
+
+<label className="st8012">
+Trademark:
+  <input
+    className="st805"
+    type="number"
+
+    onChange={(event) => setBrand_trademark(event.target.value)}
+
+  />
+</label>
+
+<label className="st8012">
+Owned by self or others:
+<select className="st801" onChange={(event) =>  setBrand_owned_self_others(event.target.value)}>
+<option value="self">Self</option>
+<option value="others">Others</option>
+</select>
+</label>
+
+<label className="st8012">
+Is the Brand Name/Trade Mark Registered?:
+<select className="st801" onChange={(event) =>  setBrand_name_trademark_registered(event.target.value)}>
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+</label>
+<label className="st8012">
+Brand Owner Company Name:
+  <input
+    className="st805"
+    type="text"
+
+    onChange={(event) => setBrand_owner_company_name(event.target.value)}
+
+  />
+</label>
+<label className="st8012">
+Brand Owner Company Address:
+  <input
+    className="st805"
+    type="number"
+
+    onChange={(event) => setBrand_owner_company_address(event.target.value)}
+
+  />
+</label>
+
+
+<h1 className='h802'>AIR </h1>
+<label className="st8012">
+AIR company Name:
+  <input
+    className="st805"
+    type="text"
+
+    onChange={(event) => setAir_company_name(event.target.value)}
+
+  />
+</label>
+<label className="st8012">
+AIR company Address:
+  <input
+    className="st805"
+    type="text"
+
+    onChange={(event) => setAir_comapny_address(event.target.value)}
+  />
+</label>
+
+{/*----------------- Top Mangement Box here ------------------------- */}
+<h3 className='techni'>Top management AIR </h3>
+<div className="row">
+<div className="name-row">
+<div className="names">
+<label className="st8012">
+<input className="st805" type="text" 
+placeholder="Name"
+onChange={(event) => setAir_authorized_signatory_name(event.target.value)} 
+/>
+</label>
+
+<label className="st8012">
+<input className="st805" type="text" 
+placeholder="Designation"
+onChange={(event) => setAir_authorized_signatory_designation(event.target.value)} 
+/>
+</label>
+</div>
+</div>
+</div>
+
+<div className="row">
+<div className="name-row">
+<div className="side-div">
+
+<label className="st8012">
+<input
+className="st805"
+type="text"
+placeholder="Contact Number"
+onChange={(event) =>setContact_person_of_the_manufacturing_unit_name_1(event.target.value)}
+/>
+</label>
+
+<label className="st8012">
+<input className="st805" type="text" 
+placeholder="Email Id"
+onChange={(event) => setContact_person_of_the_manufacturing_unit_designation_1(event.target.value)} 
+/>
+</label>
+</div>
+</div>
+</div>
+
+{/*---------------- Name of authorized Signatory -----------------------------*/}
+
+<h3 className='techni'>Name of authorized Signatory</h3>
+<div className="row">
+<div className="name-row">
+<div className="names">
+<label className="st8012">
+<input className="st805" type="text" 
+placeholder="Name"
+onChange={(event) => setAir_top_management_name(event.target.value)} 
+/>
+</label>
+
+<label className="st8012">
+<input className="st805" type="text" 
+placeholder="Designation"
+onChange={(event) => setAir_top_management_designation(event.target.value)} 
+/>
+</label>
+</div>
+</div>
+</div>
+
+<div className="row">
+<div className="name-row">
+<div className="side-div">
+
+<label className="st8012">
+<input
+className="st805"
+type="text"
+placeholder="Contact Number"
+onChange={(event) =>setContact_person_of_the_manufacturing_unit_name_1(event.target.value)}
+/>
+</label>
+
+<label className="st8012">
+<input className="st805" type="text" 
+placeholder="Email Id"
+onChange={(event) => setContact_person_of_the_manufacturing_unit_designation_1(event.target.value)} 
+/>
+</label>
+</div>
+</div>
+</div>
+
+
+<label className="st8012">
+Aadhar Card:
+  <input
+    className="st805"
+    type="text"
+
+    onChange={(event) => setAir_aadharcard(event.target.value)}
+
+  />
+</label>
+<label className="st8012">
+PAN Card:
+  <input
+    className="st805"
+    type="text"
+
+    onChange={(event) => setAir_pancard(event.target.value)}
+
+  />
+</label>
+
+<select className="bisdrop" onChange={(event) => setDropdown_signing_person(event.target.value)}>
+<option value="TOPMANAGEMENT1">SIGNING PERSON  WILL BE FROM TOP MANAGEMENT </option>
+<option value="SomeOne">SIGNING PERSON  WILL BE someone from the company </option>
+</select>
+
+<div>
+<select className="bisdrop" onChange={(event) => setDropdown_signing_person(event.target.value)}>
+<option value="AIRSISTER">If the AIR company is the sister company of the manufacturer and have office in India  </option>
+<option value="AIRINDIA">If the AIR company is the Brandowner and have office in India  </option>
+<option value="AIRBRANDOWNER">If the AIR company is the Brandowner </option>
+</select>
+</div>
+<button className='btn808' type="submit">Submit</button>
+</form>
+</div>
+</Popup>
+
 
 {/*---------------BIS FORMS START NEW APPLICATION POPUP CODE HERE ----------------------*/}
 <Popup trigger={buttonPopup6} setTrigger={setButtonPopup6}>
-        <div style={{ height: "500px", width:"600px", overflow: "scroll" }}>
+        <div style={{ height: "500px", width:"608px", overflow: "scroll" }}>
           <form onSubmit={handleBISSubmit}>
 
 
@@ -824,7 +1185,6 @@ const Secondpage = () => {
               <input
                 className="st805"
                 type="text"
-
                 onChange={(event) => setManufacturerEmailid(event.target.value)}
               />
             </label>
@@ -834,136 +1194,129 @@ const Secondpage = () => {
           <option value="CONTACTPERSON">SIGNING PERSON  WILL BE CONTACT PERSON</option>
         </select>
 
-            <h3 className='topmang'>Top Management</h3>
+
+{/* ----------------Top Management code Here---------------------- */}
+
+            <h3 className='topmang'>Top Management (Fill atleast Two)</h3>
             <div className="row">
   <div className="name-row">
     <div className="names">
-      <h3 className="manufacunit">Name</h3>
       <label className="st8012">
-        1
         <input className="st805" type="text" 
-        
+        placeholder="1)Name"
         onChange={(event) => setTop_management_of_the_manufacturing_unit_name_1(event.target.value)} 
-        required />
+       />
       </label>
       <label className="st8012">
-        2
         <input className="st805" type="text"
-        
+        placeholder="2)Name"
          onChange={(event) => setTop_management_of_the_manufacturing_unit_name_2(event.target.value)} 
-         required />
+          />
       </label>
       <label className="st8012">
-        3
         <input className="st805" type="text" 
-       
+       placeholder="3)Name"
         onChange={(event) => setTop_management_of_the_manufacturing_unit_name_3(event.target.value)} 
-        required />
+         />
       </label>
 
       <label className="st8012">
-        4
         <input className="st805" type="text" 
-       
+       placeholder="4)Name"
         onChange={(event) => setTop_management_of_the_manufacturing_unit_name_4(event.target.value)} 
-        required />
+       />
       </label>
 
       <label className="st8012">
-        5
         <input className="st805" type="text" 
-       
+       placeholder="5)Name"
         onChange={(event) => setTop_management_of_the_manufacturing_unit_name_5(event.target.value)} 
-        required />
+       />
       </label>
     </div>
 
     <div className="designations">
-      <h3 className="manufacunit1">Designation</h3>
       <label className="st8012">
         <input className="st805" type="text" 
-      
+      placeholder="1)Designation"
         onChange={(event) => setTop_management_of_the_manufacturing_unit_designation_1(event.target.value)} 
-        required />
+       />
       </label>
       <label className="st8012">
         <input className="st805" type="text" 
-       
+       placeholder="2)Designation"
         onChange={(event) => setTop_management_of_the_manufacturing_unit_designation_2(event.target.value)} 
-        required />
+       />
       </label>
       <label className="st8012">
         <input className="st805" type="text" 
-       
+       placeholder="3)Designation"
         onChange={(event) => setTop_management_of_the_manufacturing_unit_designation_3(event.target.value)} 
-        required />
+       />
       </label>
 
       <label className="st8012">
         <input className="st805" type="text" 
-      
+      placeholder="4)Designation"
         onChange={(event) => setTop_management_of_the_manufacturing_unit_designation_4(event.target.value)} 
-        required />
+      />
       </label>
 
       <label className="st8012">
         <input className="st805" type="text" 
-      
+      placeholder="5)Designation"
         onChange={(event) => setTop_management_of_the_manufacturing_unit_designation_5(event.target.value)} 
-        required />
+       />
       </label>
     </div>
   </div>
 </div>
 
 
-<h3 className='techni'>Technical Management:</h3>
+{/*---------- Technical Management Input code Here---------------- */}
+
+<h3 className='techni'>Technical Management (Fill atleast Two)</h3>
             <div className="row">
   <div className="name-row">
     <div className="names">
-      <h3 className="manufacunit">Name</h3>
       <label className="st8012">
-        1
         <input className="st805" type="text" 
-       
+       placeholder="1)Name"
         onChange={(event) => setTechnical_management_of_the_manufacturing_unit_name_1(event.target.value)} 
-        required />
+       />
       </label>
       <label className="st8012">
-        2
         <input className="st805" type="text" 
-      
+      placeholder="2)Name"
         onChange={(event) => setTechnical_management_of_the_manufacturing_unit_name_2(event.target.value)} 
-        required />
+         />
       </label>
       <label className="st8012">
-        3
         <input className="st805" type="text" 
-       
+       placeholder="3)Name"
         onChange={(event) => setTechnical_management_of_the_manufacturing_unit_name_3(event.target.value)} 
-        required />
+       />
       </label>
     </div>
 
     <div className="designations">
-      <h3 className="manufacunit1">Designation</h3>
       <label className="st8012">
         <input className="st805" type="text" 
-       
+       placeholder="1)Designation"
         onChange={(event) => setTechnical_management_of_the_manufacturing_unit_designation_1(event.target.value)} 
-        required />
+       />
       </label>
       <label className="st8012">
         <input className="st805" type="text" 
-       
+       placeholder="2)Designation"
         onChange={(event) => setTechnical_management_of_the_manufacturing_unit_designation_2(event.target.value)} 
-        required />
+       />
       </label>
       <label className="st8012">
         <input className="st805" type="text" 
-        
+        placeholder="3)Designation"
         onChange={(event) => setTechnical_management_of_the_manufacturing_unit_designation_3(event.target.value)} 
-        required />
+       />
       </label>
     </div>
   </div>
@@ -974,51 +1327,52 @@ const Secondpage = () => {
             <div className="row">
   <div className="name-row">
     <div className="names">
-      <h3 className="manufacunit">Name</h3>
       <label className="st8012">
-        1
         <input className="st805" type="text" 
-       
+        placeholder="Name"
         onChange={(event) => setContact_person_of_the_manufacturing_unit_name_1(event.target.value)} 
-        required />
+         />
       </label>
+     
+      <label className="st8012">
+        <input className="st805" type="text" 
+         placeholder="Designation"
+        onChange={(event) => setContact_person_of_the_manufacturing_unit_designation_1(event.target.value)} 
+         />
+      </label>
+      </div>
+      </div>
       </div>
 
-      <div className="designations">
-      <h3 className="manufacunit1">Designation</h3>
+    <div className="row">
+  <div className="name-row">
+    <div className="side-div">
+      
+    <label className="st8012">
+  <input
+    className="st805"
+    type="text"
+    placeholder="Contact Number"
+    onChange={(event) =>setContact_person_of_the_manufacturing_unit_name_1(event.target.value)}
+  />
+</label>
+     
       <label className="st8012">
         <input className="st805" type="text" 
-       
+       placeholder="Email Id"
         onChange={(event) => setContact_person_of_the_manufacturing_unit_designation_1(event.target.value)} 
-        required />
-      </label>
-      </div>
-      <div className="designations">
-      <h3 className="manufacunit1">Contact No</h3>
-      <label className="st8012">
-        <input className="st805" type="text" 
-       
-        onChange={(event) => setContact_person_of_the_manufacturing_unit_designation_1(event.target.value)} 
-        required />
-      </label>
-      </div>
-      <div className="designations">
-      <h3 className="manufacunit1">Email Id</h3>
-      <label className="st8012">
-        <input className="st805" type="text" 
-       
-        onChange={(event) => setContact_person_of_the_manufacturing_unit_designation_1(event.target.value)} 
-        required />
+         />
       </label>
       </div>
       </div>
       </div>
+     
 
 
       <h1 className='h802'>Brand</h1>
 
             <label className="st8012">
-            Trademark Number:
+            Trademark:
               <input
                 className="st805"
                 type="number"
@@ -1028,7 +1382,6 @@ const Secondpage = () => {
               />
             </label>
           
- 
             <label className="st8012">
             Owned by self or others:
             <select className="st801" onChange={(event) =>  setBrand_owned_self_others(event.target.value)}>
@@ -1087,72 +1440,92 @@ const Secondpage = () => {
               />
             </label>
 
-
+{/*----------------- Top Mangement Box here ------------------------- */}
+            <h3 className='techni'>Top management AIR </h3>
             <div className="row">
   <div className="name-row">
     <div className="names">
-      <h3 className="manufacunit">Name</h3>
       <label className="st8012">
-        1
         <input className="st805" type="text" 
-       
-        onChange={(event) => setAir_top_management_name(event.target.value)} 
-        required />
-      </label>
-
-      <label className="st8012">
-        1
-        <input className="st805" type="text" 
-       
+        placeholder="Name"
         onChange={(event) => setAir_authorized_signatory_name(event.target.value)} 
-        required />
+         />
       </label>
-      </div>
-
-
-      <div className="designations">
-      <h3 className="manufacunit1">Designation</h3>
+     
       <label className="st8012">
         <input className="st805" type="text" 
-       
+         placeholder="Designation"
+        onChange={(event) => setAir_authorized_signatory_designation(event.target.value)} 
+         />
+      </label>
+      </div>
+      </div>
+      </div>
+
+    <div className="row">
+  <div className="name-row">
+    <div className="side-div">
+      
+    <label className="st8012">
+  <input
+    className="st805"
+    type="text"
+    placeholder="Contact Number"
+    onChange={(event) =>setContact_person_of_the_manufacturing_unit_name_1(event.target.value)}
+  />
+</label>
+     
+      <label className="st8012">
+        <input className="st805" type="text" 
+       placeholder="Email Id"
+        onChange={(event) => setContact_person_of_the_manufacturing_unit_designation_1(event.target.value)} 
+         />
+      </label>
+      </div>
+      </div>
+      </div>
+
+ {/*---------------- Name of authorized Signatory -----------------------------*/}
+
+      <h3 className='techni'>Name of authorized Signatory</h3>
+            <div className="row">
+  <div className="name-row">
+    <div className="names">
+      <label className="st8012">
+        <input className="st805" type="text" 
+        placeholder="Name"
+        onChange={(event) => setAir_top_management_name(event.target.value)} 
+         />
+      </label>
+     
+      <label className="st8012">
+        <input className="st805" type="text" 
+         placeholder="Designation"
         onChange={(event) => setAir_top_management_designation(event.target.value)} 
-        required />
-      </label>
-      <label className="st8012">
-        <input className="st805" type="text" 
-       
-        onChange={(event) =>  setAir_authorized_signatory_designation(event.target.value)} 
-        required />
+         />
       </label>
       </div>
-      <div className="designations">
-      <h3 className="manufacunit1">Contact No</h3>
-      <label className="st8012">
-        <input className="st805" type="text" 
-       
-        onChange={(event) => setContact_person_of_the_manufacturing_unit_designation_1(event.target.value)} 
-        required />
-      </label>
-      <label className="st8012">
-        <input className="st805" type="text" 
-       
-        onChange={(event) =>  setAir_authorized_signatory_designation(event.target.value)} 
-        required />
-      </label>
       </div>
-      <div className="designations">
-      <h3 className="manufacunit1">Email Id</h3>
+      </div>
+
+    <div className="row">
+  <div className="name-row">
+    <div className="side-div">
+      
+    <label className="st8012">
+  <input
+    className="st805"
+    type="text"
+    placeholder="Contact Number"
+    onChange={(event) =>setContact_person_of_the_manufacturing_unit_name_1(event.target.value)}
+  />
+</label>
+     
       <label className="st8012">
         <input className="st805" type="text" 
-       
+       placeholder="Email Id"
         onChange={(event) => setContact_person_of_the_manufacturing_unit_designation_1(event.target.value)} 
-        required />
-      </label>
-      <label className="st8012">
-        <input className="st805" type="text" 
-       
-        onChange={(event) =>  setAir_authorized_signatory_designation(event.target.value)} 
-        required />
+         />
       </label>
       </div>
       </div>
