@@ -227,6 +227,8 @@ const [userId, setUserId] = useState("");
     setHasRNumber(value === "yes");
   };
 
+//BIS USER CHOICE IF YES OR NO THEN SWITCH POPUP HANDLE HERE
+
   const handleRegisterSubmit = (event) => {
     event.preventDefault();
     // Handle form submission logic here
@@ -238,6 +240,7 @@ const [userId, setUserId] = useState("");
       setButtonbisrqdetails(true);
       console.log("R Number not selected");
     }
+    setButtonRegisterPage(false);
   };
 
 
@@ -423,6 +426,8 @@ const [userId, setUserId] = useState("");
               confirmButtonText: 'OK',
             });
             setButtonPopup5(false);
+            setButtonPopup6(false);
+            setButtonbisrqdetails(false);
           } else {
             Swal.fire({
               icon: 'error',
@@ -829,6 +834,7 @@ const [userId, setUserId] = useState("");
           value="register"
           //checked={radioValue === 'Option 1'}
           onChange={handleRadioChange}
+          onClick={() => setButtonRegister(false)}
         />
        YES
       </label>
@@ -843,6 +849,7 @@ const [userId, setUserId] = useState("");
           value="unregister"
           //checked={radioValue === 'Unregister'}
           onChange={handleRadioChange}
+          onClick={() => setButtonRegister(false)}
         />
         NO
       </label>
@@ -913,13 +920,12 @@ const [userId, setUserId] = useState("");
 </Popup>
 
 
-{/*------------------ BIS REQUIRED DETAILS POPUP PAGE CODE HERE-------------------------- */}
+{/*------------------ BIS REQUIRED DETAILS POPUP IF USER SELECTED NO PAGE CODE HERE-------------------------- */}
 <Popup trigger={buttonbisrqdetails} setTrigger={setButtonbisrqdetails}>
 <div style={{ height: "500px", width:"608px", overflow: "scroll" }}>
           <form onSubmit={handleBISSubmit}>
 
 <h1 className='h802'>Brand</h1>
-
 <label className="st8012">
 Trademark:
   <input
@@ -1126,22 +1132,15 @@ PAN Card:
           <form onSubmit={handleBISSubmit}>
 
 
-      {/*      <div className="compliance-container" style={{ display: 'none' }}>
+          <div className="compliance-container" style={{ display: 'none' }}>
               <h2>Compliance Data</h2>
               <div>
                 <p>Application ID: {localStorage.getItem('newApplicationId') || "No application created yet"}</p>
                 <p>Compliance ID: {localStorage.getItem("compliance_id") || "No compliance selected yet"}</p>
                 <p>Request For: certification</p>
               </div>
-  </div> */}
+  </div> 
   <h1 className='h802'>  Certification Process </h1>
-            {/* <label className="st8012">
-            Certification Process
-             <select className='st804' onChange={(event) =>  setTypes_of_company(event.target.value)}>
-              <option value="Foregin">Foregin</option>
-              <option value="Indian">Indian</option>
-             </select>
-            </label> */}
 
 <label className="st8012">
             Manufacture:
