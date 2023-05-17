@@ -1,7 +1,7 @@
 import React from 'react';
 
 const StatusBar = ({ totalResponses, completedResponses }) => {
-  const percentage = (completedResponses / totalResponses) * 100;
+  const percentage = ((completedResponses / totalResponses) * 100).toFixed(2);
      
 
   return (

@@ -43,10 +43,10 @@ function BISoongoing() {
   const idel = localStorage.getItem('ide');
   const [documentType, setDocumentType] = useState('');
   const [uploades ,setUploades] = useState('');
-    const [buttonPopup, setButtonPopup] = useState(false);
+  const [buttonPopup, setButtonPopup] = useState(false);
   const [options] = useState(['Business License', 'ISO', 'Trademark Cetificate', 'AdharCard', 'PanCard', 'GST', 'Employee ID/Visiting Card of Siging authority', 'MSME', 'Form 3 (AFFIDAVIT)']); 
   const [buttonPopup1, setButtonPopup1] = useState(false);
-  const totalResponses = 6;
+  const totalResponses = 6; 
   const completedResponses = localStorage.getItem('stepstatus');
   
  // const [document] = useState(null);
