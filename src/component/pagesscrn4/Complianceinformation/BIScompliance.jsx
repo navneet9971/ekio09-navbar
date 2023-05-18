@@ -5,7 +5,7 @@ import axiosInstance from '../../../interceptors/axios';
 
 
 
-function MiddleSection() {
+function BIScompliance() {
     // State variable
     const [middleData, setMiddleData] = useState("");
     // const [applicationId, setNewApplicationId] = useState();
@@ -49,9 +49,9 @@ function MiddleSection() {
         {/* Middle section component */}
         {middleData && (
           <>
-
+          
             {/* <h1 style={{ display: 'none' }}>Application Number: {applicationId}</h1> */}
-              <h3 className="conte">{middleData.product_name} - Introduction</h3>
+            <h3 className="conte">{middleData.product_name} - Introduction</h3>
               <h2 className="content">{middleData.content}</h2>
           
   
@@ -66,4 +66,4 @@ function MiddleSection() {
     )
   };
 
-  export default MiddleSection;
+  export default BIScompliance;

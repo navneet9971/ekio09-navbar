@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { Link, useHistory} from "react-router-dom";
+import {  useHistory} from "react-router-dom";
 import { FaUserAlt, FaLock} from "react-icons/fa";
 import "../assets/css/global.css";
 import axiosInstance from "../../interceptors/axios";
@@ -16,18 +16,18 @@ function Login() {
     password: '',
   });
   const  [formData, updateFormData] = useState(initialFormData);
+  const [showPassword, setShowPassword] = useState(false);
+/*-------forget password handle-------------*/
+const handleforgetemail = (e) => {
+  e.preventDefault();
+  const formData = new FormData();
+  formData.append('email', forgetemail);
 
-   /*-------forget password handle-------------*/
-   const handleforgetemail = (e) => {
-   
-     e.preventDefault();
-   const formData = new FormData();
-    formData.append('email', forgetemail )
-
-    axiosInstance.post('password-reset/' , formData, {
+  axiosInstance
+    .post('password-reset/', formData, {
       headers: {
-        'Content-Type': 'multipart/form-data'
-      }
+        'Content-Type': 'multipart/form-data',
+      },
     })
     .then((res) => {
       // Handle successful registration
@@ -43,13 +43,24 @@ function Login() {
         Swal.fire({
           icon: 'success',
           title: 'Link Send',
-          text: 'Password Rest Link Send On Your Email ID',
+          text: 'Password Reset Link Sent to Your Email ID',
           confirmButtonText: 'OK',
         });
-        setLinkPopup(false)
+        setLinkPopup(false);
       }
     })
-   }
+    .catch((error) => {
+      if (error.response && error.response.status === 400) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Email Not Registered',
+          text: 'Please enter a registered email address.',
+          confirmButtonText: 'OK',
+        });
+      }
+    });
+};
+
  
 /*----------LOGIN HANDLE ------------*/
 
@@ -78,13 +89,40 @@ function Login() {
     .catch((error) => {
       // handle error during login
       console.error(error);
-      // show error message to user
-      alert("Incorrect username or password. Please try again.");
+      
+      if (error === 'username_not_match') {
+        // show error message for username mismatch
+        Swal.fire({
+          icon: 'error',
+          title: 'Incorrect',
+          text: 'Incorrect username. Please try again.',
+        });
+      } else if (error === 'password_not_match') {
+        // show error message for password mismatch
+        Swal.fire({
+          icon: 'error',
+          title: 'Incorrect',
+          text: 'Incorrect password. Please try again.',
+        });
+      } else {
+        // handle other errors
+        // show a generic error message
+        Swal.fire({
+          icon: 'error',
+          title: 'Please try again later',
+          text: 'Incorrect username or password. Please try again.',
+        });
+      }
     });
 };
 
   const signUpButton = () => {
     history.push("/signup");
+  };
+
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
  
@@ -118,15 +156,21 @@ function Login() {
             <FaLock />
             <input
               name="password"
-              type="password"
+              type={showPassword ? "text" : "password"}
               placeholder="Password"
               onChange={handleChange}
-            />
-          </div>
+                          />
+                          <span className = "login-showpass" onClick={togglePasswordVisibility} style={{ cursor: 'pointer' , margin: '1px'}}>
+                  {showPassword ? '🙈' : '👁️'}
+                  </span>
+                        </div>
+         
+
           <button className="button1" onClick={handleSubmit}>Login</button>
           
-
-          <Link onClick = {() => setLinkPopup(true)}>Forgot Password?</Link>
+          <span onClick = {() => setLinkPopup(true)} 
+           style={{ cursor: 'pointer', margin: '15px' }}
+          >Forgot Password?</span>
            <Popup trigger={linkPopup} setTrigger={setLinkPopup}>
             <h3 className="email-popup">ENTER YOU EMAIL ID</h3>
             <label className="forget-email">

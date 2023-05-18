@@ -43,7 +43,7 @@ const Secondpage = () => {
     } else if (complianceName === "WPS") {
       history.push(`/navbar/compliance/WPS`);
     } else if (complianceName === "BIS") {
-      history.push(`/navbar/compliance/BIS`);
+      history.push(`/navbar/BIScompliance`);
     } else {
       // handle other compliance names
     }
@@ -59,9 +59,9 @@ const Secondpage = () => {
           <thead>
             <tr>
          {/*     <th>S.no</th> */}
-              <th>Compliance Name</th>
-              <th>Description</th>
-              <th>Video</th>
+              <th style={{ cursor: 'default' }}>Compliance Name</th>
+              <th style={{ cursor: 'default' }}>Description</th>
+              <th style={{ cursor: 'default' }}>Video</th>
             </tr>
           </thead>
           <tbody>
@@ -75,7 +75,7 @@ const Secondpage = () => {
       > 
         {compliance.product_name}
       </td>
-                <td>{compliance.details}</td>
+                <td style={{ cursor: 'default' }}>{compliance.details}</td>
                 <td>
                   {/* display compliance video */}
                   <a

@@ -778,28 +778,28 @@ const [userId, setUserId] = useState("");
             <h1 className='h802'>Document Required:</h1>
             <label className="st8012">
   COI of Applicant Company:
-  <input className="stup805" type="file" onChange={(event) => setCoiApplicant(event.target.files)} multiple accept />
+  <input className="stup805" type="file" onChange={(event) => setCoiApplicant(event.target.files)}  />
 </label>
 
             <label className="st8012">
               PAN Card of Applicant Company:
-              <input classname="stup805" type="file" onChange={(event) => setPanCard(event.target.files)} multiple accept />
+              <input className="stup805" type="file" onChange={(event) => setPanCard(event.target.files)}  />
             </label>
             <label className="st8012">
               MOA:
-              <input classname="stup805" type="file"  onChange={(event) => setMoa(event.target.files)} multiple accept/>
+              <input className="stup805" type="file"  onChange={(event) => setMoa(event.target.files)} />
             </label>
             <label className="st8012">
               AOA:
-              <input classname="stup805" type="file" onChange={(event) => setAoa(event.target.files)} multiple accept />
+              <input className="stup805" type="file" onChange={(event) => setAoa(event.target.files)}  />
             </label>
             <label className="st8012">
               Shareholding Pattern:
-              <input classname="stup805" type="file"  onChange={(event) => setShareholding(event.target.files)} multiple accept/>
+              <input className="stup805" type="file"  onChange={(event) => setShareholding(event.target.files)} />
             </label>
             <label className="st8012">
               Board Resolution (If Director is not signing Authority):
-              <input classname="stup805" type="file"  onChange={(event) => setBoardresolution(event.target.files)} multiple accept/>
+              <input className="stup805" type="file"  onChange={(event) => setBoardresolution(event.target.files)} />
             </label>
             <button className='btn808' type="submit">Submit</button>
             
@@ -876,7 +876,7 @@ const [userId, setUserId] = useState("");
       <div className="password-input-container">
       <input
         type={showPassword ? 'text' : 'password'}
-        id="user-id"
+        id="password"
         value={password}
         onChange={(event) => setPassword(event.target.value)}
       />
@@ -1124,7 +1124,7 @@ PAN Card:
 </Popup>
 
 
-{/*---------------BIS FORMS START NEW APPLICATION POPUP CODE HERE ----------------------*/}
+{/*---------------START NEW APPLICATION BIS REQUIRED DETAILS POPUP IF USER SELECTED YES PAGE CODE HERE  ----------------------*/}
 <Popup trigger={buttonPopup6} setTrigger={setButtonPopup6}>
         <div style={{ height: "500px", width:"608px", overflow: "scroll" }}>
           <form onSubmit={handleBISSubmit}>
@@ -1566,36 +1566,36 @@ PAN Card:
             <h1 className='h802'>Upload documents</h1>
             <label className="st8012">
             Business License :
-  <input className="stup805" type="file" onChange={(event) => setUpload_business_license(event.target.files)} multiple accept />
+  <input className="stup805" type="file" onChange={(event) => setUpload_business_license(event.target.files)} />
 </label>
 
             <label className="st8012">
               ISO:
-              <input classname="stup805" type="file" onChange={(event) =>  setUpload_iso(event.target.files)} multiple accept />
+              <input className="stup805" type="file" onChange={(event) =>  setUpload_iso(event.target.files)} />
             </label>
             <label className="st8012">
             Trademark Cetificate:
-              <input classname="stup805" type="file"  onChange={(event) => setUpload_trademark_cetificate(event.target.files)} multiple accept/>
+              <input className="stup805" type="file"  onChange={(event) => setUpload_trademark_cetificate(event.target.files)}/>
             </label>
             <label className="st8012">
             Adhar Card:
-              <input classname="stup805" type="file" onChange={(event) => setUpload_adharcard(event.target.files)} multiple accept />
+              <input className="stup805" type="file" onChange={(event) => setUpload_adharcard(event.target.files)} />
             </label>
             <label className="st8012">
             Pan Card:
-              <input classname="stup805" type="file"  onChange={(event) => setUpload_pancard(event.target.files)} multiple accept/>
+              <input className="stup805" type="file"  onChange={(event) => setUpload_pancard(event.target.files)}/>
             </label>
             <label className="st8012">
             GST:
-              <input classname="stup805" type="file"  onChange={(event) => setUpload_gst(event.target.files)} multiple accept/>
+              <input className="stup805" type="file"  onChange={(event) => setUpload_gst(event.target.files)}/>
             </label>
             <label className="st8012">
             Employee ID / Visiting Card of Siging authority:
-              <input classname="stup805" type="file"  onChange={(event) => setUpload_employeeid_visitingcard(event.target.files)} multiple accept/>
+              <input className="stup805" type="file"  onChange={(event) => setUpload_employeeid_visitingcard(event.target.files)}/>
             </label>
             <label className="st8012">
             MSME:
-              <input classname="stup805" type="file"  onChange={(event) => setUpload_msme(event.target.files)} multiple accept/>
+              <input className="stup805" type="file"  onChange={(event) => setUpload_msme(event.target.files)}/>
             </label>
             <button className='btn808' type="submit">Submit</button>
             

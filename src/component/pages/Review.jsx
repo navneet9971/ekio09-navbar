@@ -162,7 +162,7 @@ console.log(latestStartDate)
                           <option value="Completed">Completed</option>
                         </select>
                       </th>
-                      <th className="header" no-cursor-pointer>Actual End Date</th>
+                      <th className="header" style={{ cursor: 'default' }}>Actual End Date</th>
                     </tr>
                   </thead>
         

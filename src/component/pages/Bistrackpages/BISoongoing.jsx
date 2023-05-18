@@ -23,7 +23,7 @@ import file5png from "../../assets/pdficon/Red01.png";
 import file6png from "../../assets/pdficon/Red02.png";
 import pdflogo from "../../assets/icons/eikomp_logo.png"
 import StatusBar from "../../Statusbar";
-// import Chatbot from "../../Chatbot/Chatbot";
+import Chatbot from "../../Chatbot/Chatbot";
 import Swal from 'sweetalert2';
 
 
@@ -577,7 +577,7 @@ logoImg.onload = function () {
 <div>
   <div>
   <h3>Upload a File</h3>
-  <input type ="file" name="file" onChange={(e) => setUploades(e.target.files)} accept/>
+  <input type ="file" name="file" onChange={(e) => setUploades(e.target.files)}/>
   </div>
   <div>
   <select className="optionss" value={documentType} onChange={(e) => setDocumentType(e.target.value)}>
@@ -702,27 +702,27 @@ logoImg.onload = function () {
           
             <label className="st8012">
               Filled CDF/CCL (Format attached):
-              <input classname="stup805" type="file"   onChange={(event) => setCdfccl(event.target.files)} multiple accept />
+              <input className="stup805" type="file"   onChange={(event) => setCdfccl(event.target.files)} />
             </label>
             <label className="st8012">
               Complete User Manual:
-              <input classname="stup805" type="file"  onChange={(event) => setUsermanual(event.target.files)} multiple accept />
+              <input className="stup805" type="file"  onChange={(event) => setUsermanual(event.target.files)} />
             </label>
             <label className="st8012">
               Circuit Diagram:
-              <input className="stup805" type="file"  onChange={(event) => setCircuitdiagram(event.target.files)} multiple accept />
+              <input className="stup805" type="file"  onChange={(event) => setCircuitdiagram(event.target.files)} />
             </label>
             <label className="st8012">
               PCB Layout:
-              <input className="stup805" type="file"  onChange={(event) => setPcblayout(event.target.files)} multiple accept />
+              <input className="stup805" type="file"  onChange={(event) => setPcblayout(event.target.files)} />
             </label>
             <label className="st8012">
               Marking Label:
-              <input className="stup805" type="file"  onChange={(event) => setPcblayout(event.target.files)} multiple accept />
+              <input className="stup805" type="file"  onChange={(event) => setPcblayout(event.target.files)} />
             </label>
             <label className="st8012">
               Technical Specification:
-              <input className="stup805" type="file"  onChange={(event) => setPcblayout(event.target.files)} multiple accept />
+              <input className="stup805" type="file"  onChange={(event) => setPcblayout(event.target.files)} />
             </label>
            
 
@@ -1012,7 +1012,7 @@ logoImg.onload = function () {
       )}
     </div>
   )}  */}
-   {/* <Chatbot /> */}
+    <Chatbot /> 
   
         </div>
        </div>

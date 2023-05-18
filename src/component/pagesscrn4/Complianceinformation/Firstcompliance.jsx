@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import '../Pages.css';
-
+import Swal from 'sweetalert2';
 import 'react-chatbot-kit/build/main.css';
 import axiosInstance from '../../../interceptors/axios';
 
@@ -44,7 +44,12 @@ axiosInstance.get(`/compliance/?category=${category}&product=${product}&region=$
   })
   .then((response) => {
     if (response.data.data.length === 0) {
-      alert('No compliance data found. Please check your input and try again.');
+      Swal.fire({
+        icon: 'error',
+        title: 'Compliance Not Found',
+        text: ' Please check your input and try again',
+        confirmButtonText: 'OK',
+      });
     } else {
       console.log(response.data);
       // redirect the user to the second page with the compliance data

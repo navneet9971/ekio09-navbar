@@ -28,6 +28,7 @@ import Payment from "./component/pages/account-pages/Payment";
 import Track from "./component/pages/account-pages/Track";
 import Transaction from "./component/pages/account-pages/Transaction";
 import TECcompliance from "./component/pagesscrn4/Complianceinformation/TECcompliance";
+import BIScompliance from "./component/pagesscrn4/Complianceinformation/BIScompliance";
 import FirstCompliance from "./component/pagesscrn4/Complianceinformation/Firstcompliance";
 import Secondcompliance from "./component/pagesscrn4/Complianceinformation/Secondcompliance";
 import MainPage from "./component/MainPages";
@@ -139,7 +140,12 @@ const App = () => {
         <Route path="/navbar/TECcompliance">
               <TECcompliance />
             </Route>
-            
+
+            <Route path="/navbar/BIScompliance">
+              <BIScompliance />
+            </Route>
+
+      
 {/*--------------------------My account pages Path inside of navbar-----------------------------------*/}
 
             <Route path="/navbar/transaction">

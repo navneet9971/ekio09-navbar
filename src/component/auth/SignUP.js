@@ -4,7 +4,6 @@ import { Col, Row } from "antd";
 import { useHistory } from "react-router-dom";
 import "../assets/css/global.css";
 import Swal from 'sweetalert2';
-import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 
 function SignUP() {
   const history = useHistory();
@@ -75,7 +74,6 @@ function SignUP() {
       })
       .then((res) => {
         // Handle successful registration
-        history.push('/'); // Navigate to the homepage
         console.log(res);
         console.log(res.data);
   
@@ -102,32 +100,33 @@ function SignUP() {
           // Display error message to the user
           console.error(errorData); // Log the error response to the console
   
-          // Check if the user is already registered
-          if (errorData.message && errorData.message.includes('already registered')) {
-            Swal.fire({
-              icon: 'error',
-              title: 'Registration Error',
-              text: 'You are already registered. Please use a different email or username.',
-            });
-          } else {
-            // Show generic error message
-            Swal.fire({
-              icon: 'error',
-              title: 'Error',
-              text: 'An error occurred during registration.',
-            });
-          }
+          //check UserName Error HERE ----
+          if (error.response) {
+            const { data } = error.response;
+            if (data.username && Array.isArray(data.username)) {
+              // Display username error message using Swal
+              Swal.fire({
+                icon: 'error',
+                title: 'Already use this username. Please use a different username',
+                text: data.username[0],
+              });
+            }
+
+           // check Email alredy register here 
+            if (data.email && Array.isArray(data.email)) {
+                    // Display email error message using Swal
+                    Swal.fire({
+                      icon: 'error',
+                      title: 'Already registered. Please use a different email',
+                      text: data.email[0],
+                    });
+                  }
+                }
         } else {
           console.error(error); // Log other types of errors to the console
         }
       });
   };
-  
-  
-  
-  
-  
-  
   
 
   return (
@@ -136,7 +135,7 @@ function SignUP() {
         <div className="left-box">
           <Row gutter={[24, 0]}>
             <Col xs={24} md={12}>
-              <label1>First Name</label1>
+              <label className="signup-title">First Name</label>
               <input
                 type="text"
                 placeholder=""
@@ -146,7 +145,7 @@ function SignUP() {
               />
             </Col>
             <Col xs={24} md={12}>
-              <label1>Last Name</label1>
+              <label className="signup-title">Last Name</label>
               <input
                 type="text"
                 placeholder=""
@@ -156,7 +155,7 @@ function SignUP() {
               />
             </Col>
             <Col xs={24} md={24}>
-              <label1>Company Name</label1>
+              <label className="signup-title">Company Name</label>
               <input
                 type="text"
                 placeholder=""
@@ -166,7 +165,7 @@ function SignUP() {
               />
             </Col>
             <Col xs={24} md={24}>
-              <label1>Email ID</label1>
+              <label className="signup-title">Email ID</label>
               <input
                 type="email"
                 placeholder=""
@@ -176,7 +175,7 @@ function SignUP() {
               />
             </Col>
             <Col xs={24} md={24}>
-              <label1>Mobile Number</label1>
+              <label className="signup-title">Mobile Number</label>
               <input
                 type="tel"
                 placeholder=""
@@ -186,7 +185,7 @@ function SignUP() {
               />
             </Col>
             <Col xs={24} md={24}>
-              <label1>Username</label1>
+              <label className="signup-title">Username</label>
               <input
                 type="text"
                 placeholder=""
@@ -197,7 +196,7 @@ function SignUP() {
             </Col>
              {/* Password Field */}
              <Col xs={24} md={24}>
-              <label1>Password</label1>
+              <label className="signup-title">Password</label>
               <div className="password-input">
                 <input
                   type={showPassword ? "text" : "password"}
@@ -213,7 +212,7 @@ function SignUP() {
             </Col>
             {/* Confirm Password Field */}
             <Col xs={24} md={24}>
-              <label1>Confirm Password</label1>
+              <label className="signup-title">Confirm Password</label>
               <div className="password-input">
                 <input
                   type={showPassword ? "text" : "password"}
@@ -222,8 +221,8 @@ function SignUP() {
                   onChange={handleChange}
                   required
                 />
-                <div className="password-toggle" onClick={togglePasswordVisibility}>
-                  {showPassword ? <EyeInvisibleOutlined /> : <EyeOutlined />}
+                <div className="password-toggle" onClick={togglePasswordVisibility} style={{ cursor: 'pointer' }}>
+                  {showPassword ? '🙈' : '👁️'}
                 </div>
               </div>
             </Col>

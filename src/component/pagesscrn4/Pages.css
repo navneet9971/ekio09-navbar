@@ -103,11 +103,7 @@ background-color: #55b721;
   h1 {
     font-size: 32px;
     margin-bottom: 25px;
-    color: #fff;
-  }
-  
-  h1:hover{
-    color: lightgreen;
+    color: #0a0a0a;
   }
   
   table {
@@ -550,14 +546,12 @@ h2.content {
   font-size: 20px;
 }
 
-h398.cont {
+h3.conte {
   font-size: 25px;
-  margin: 407px;
   font-weight: 600;
 }
 
-h398.regpro {
-  margin: 372px;
+h3.regpro {
   font-size: 26px;
   font-weight: 600;
 }
@@ -955,7 +949,8 @@ select#has-r-number {
   font-weight: 600;
 }
 
-input#user-id {
+input#user-id,
+input#password {
   padding: 4px 3px;
   width: 15em;
   font-size: 20px;

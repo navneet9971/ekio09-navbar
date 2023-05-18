@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 //import jsPDF from 'jspdf';
 import "../stepper.css";
-import Select from 'react-select';
 import Popup from "../../pagesscrn4/popup/Popup";
 import Message from "../../pagesscrn4/popup/Message";
 import axiosInstance from "../../../interceptors/axios";
@@ -26,16 +25,11 @@ import file6png from "../../assets/pdficon/Red02.png";
 import pdflogo from "../../assets/icons/eikomp_logo.png"
 import StatusBar from "../../Statusbar";
 // import Chatbot from "../../Chatbot/Chatbot";
-import Swal from 'sweetalert2';
 
 
 
 
 function TECOngoing() {
-   // const [currentStep] = useState(1);
-  // const steps = ["Application Submitted", "Sample sent for testing", "Test report generated", "Document pending with authorities", "Final report generated"];
-   // const [current, setCurrentStep] = useState(1);
- //   const [setComplete] = useState(false);
   const [setSelectedOption] = useState('');
   const [docStatus, setDocStatus] = useState({});
   const [docStep, setdocStep] = useState({});
@@ -43,20 +37,9 @@ function TECOngoing() {
   const [uniqueid, setUniqueid] = useState("");
   const [complianceid, setComplianceid] = useState("");
   const idel = localStorage.getItem('ide');
-  const [documentType, setDocumentType] = useState('');
-  const [uploades ,setUploades] = useState('');
-    const [buttonPopup, setButtonPopup] = useState(false);
-  const [options] = useState(['Authorized Signatory Letter', 'MOU', 'AOA', 'OEM authorized to AIR', 'MOA', 'Certificate of Incorporation']); 
-  const [buttonPopup1, setButtonPopup1] = useState(false);
   const totalResponses = 8;
   const completedResponses = localStorage.getItem('stepstatus');
-  
- // const [document] = useState(null);
-   // const [startDate, setStartDate] = useState(null);
-   // const [endDate, setEndDate] = useState(null);
-  //  const [clickedColor, setClickedColor] = useState(false);
-   // const [setClickedNext] = useState(false); // add state variable for tracking button click
-   // const newSteps = ["Portal Registration", "Initation of testing", "AIR Regis", "Foreign OEM Registration", "BOM Submission", "Application Payment", "Final Submission", "Issuance of Cartification"];
+ 
   
    //POPUP BUTTONS OF STEPS 
    const [buttonPopup3, setButtonPopup3] = useState(false);
@@ -78,187 +61,6 @@ const [buttonPopup11, setButtonPopup11] = useState(false);
   ]);
 
 
-   //LAB TESTING FROM CONST HERE ---------------------------------------
-const [buttonPopup2, setButtonPopup2] = useState(false);
-  //const [buttonPopup1, setButtonPopup1] = useState(false);
-  const [testingProductName, setTestingProductName] = useState("");
-  const [testingModelNo, setTestingModelNo] = useState("");
-  const [testingAssociated, setTestingAssociated] = useState("");
-  const [testingHardwareNumber, setTestingHardwareNumber] = useState("");
-  const [testingSoftwareNumber, setTestingSoftwareNumber] = useState("");
-  const [testingBrand, setTestingBrand] = useState("");
-  const [testingSr, setTestingSr] = useState("");
-  const [testingElectrical, setTestingElectrical] = useState("");
-  const [testingProductType, setTestingProductType] = useState("");
-  const [testingProductTypeOther, setTestingProductTypeOther] = useState("")
-  const [testingProductUse, setTestingProductUse] = useState("");
-  const [testingProductOther, setTestingProductOther] = useState("");
-  //const [testingSoftware, setTestingSoftware] = useState("");
-  const [testingTechnicalsupportName, setTestingTechnicalsupportName] = useState("");
-  const [testingTechnicalsuppoertNumber, setTestingTechnicalsuppoertNumber] = useState("");
-  // const [manufacturingProductName, setManufacturingProductName] = useState("");
-  // const [manufacturingModelNo, setManufacturingModelNo] = useState("");
-  // const [manufacturingAssociatedModels, setManufacturingAssociatedModels] = useState("");
-  // const [manufacturingManufacturingName, setManufacturingManufacturingName] = useState("");
-  // const [manufacturingManufacturingAddress, setManufacturingManufacturingAddress] = useState("");
-  // const [manufacturingManufacturingCountry, setManufacturingManufacturingCountry] = useState("");
-  // const [manufacturingContactName, setManufacturingContactName] = useState("");
-  // const [manufacturingContactNumber, setManufacturingContactNumber] = useState("");
-  // const [manufacturingContactEmail, setManufacturingContactEmail] = useState("");
-  // const [manufacturingOrigin, setManufacturingOrigin] = useState("");
-  // const [manufacturingContract, setManufacturingContract] = useState("");
-  const [cdfccl, setCdfccl] = useState("");
-  const [usermanual, setUsermanual] = useState("");
-  const [circuitdiagram, setCircuitdiagram] = useState("");
-  const [pcblayout, setPcblayout] = useState("");
-  const [softwareuser, setSoftwareuser] = useState("");
-  
-
-  //Download Form Const------------HERE
- 
-
-  //const useing APIS call from upload button 
-  const [compliance_id, setCompliance_id1] = useState(null);
-  const [application_id, setApplication_id1]=  useState(null);
-
-// LAB TESTING FROM DATA HANDLE HERE WITH APIS ------------------------------
-const handleSubmit = (event) => {
-  event.preventDefault();
-
-  const formData = new FormData();
-  formData.append('application', localStorage.getItem('newApplicationId'));
-  formData.append('compliance', localStorage.getItem("compliance_id"));
-  formData.append('request_for', 'lab_testing');
-  formData.append("Product_name", testingProductName);
-  formData.append("Model_number", testingModelNo);
-  formData.append("Associate_models", testingAssociated);
-  formData.append("Hardware_number", testingHardwareNumber);
-  formData.append("Software_number", testingSoftwareNumber);
-  formData.append("Brand", testingBrand);
-  formData.append("Serial_number", testingSr);
-  formData.append("Electrical_rating", testingElectrical);
-  formData.append("Product_type", testingProductType);
-  formData.append("Product_type_other", testingProductTypeOther)
-  formData.append("Product_use", testingProductUse);
-  formData.append("Product_use_other", testingProductOther);
- // formData.append("testingSoftware", testingSoftware);
-  formData.append("Technical_support_person_name", testingTechnicalsupportName);
-  formData.append("Technical_support_person_contact_number", testingTechnicalsuppoertNumber);
-  // formData.append("manufacturingProductName", manufacturingProductName);
-  // formData.append("manufacturingModelNo", manufacturingModelNo);
-  // formData.append("manufacturingAssociatedModels", manufacturingAssociatedModels);
-  // formData.append("manufacturingManufacturingName", manufacturingManufacturingName);
-  // formData.append("manufacturingManufacturingAddress", manufacturingManufacturingAddress);
-  // formData.append("manufacturingManufacturingCountry", manufacturingManufacturingCountry);
-  // formData.append("manufacturingContactName", manufacturingContactName);
-  // formData.append("manufacturingContactNumber", manufacturingContactNumber);
-  // formData.append("manufacturingContactEmail", manufacturingContactEmail);
-  // formData.append("manufacturingOrigin", manufacturingOrigin);
-  // formData.append("manufacturingContract", manufacturingContract);
-
-
-    // Add file to form data
-    
-    if (cdfccl) {
-      for (let i = 0; i < cdfccl.length; i++) {
-        formData.append('documents', cdfccl[i]);
-      }
-    }
-    if (usermanual) {
-      for (let i = 0; i < usermanual.length; i++) {
-        formData.append('documents', usermanual[i]);
-      }
-    }
-    if (circuitdiagram) {
-      for (let i = 0; i < circuitdiagram.length; i++) {
-        formData.append('documents', circuitdiagram[i]);
-      }
-    }
-    if (pcblayout) {
-      for (let i = 0; i < pcblayout.length; i++) {
-        formData.append('documents', pcblayout[i]);
-      }
-    }
-    if (softwareuser) {
-      for (let i = 0; i < softwareuser.length; i++) {
-        formData.append('documents', softwareuser[i]);
-    }
-    }
-
-  console.log('Application ID:', localStorage.getItem('newApplicationId'));
-  console.log('Compliance ID:', localStorage.getItem("compliance_id"));
-
-  // function to handle form submission
-  axiosInstance.put(`/application/compliance/${idel}/`, formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-      Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-    }
-  }).then(response => {
-    // form submission successful
-    setButtonPopup2(true);
-    console.log(response.data);
-
-    const formSubmitted = true ; // Corrected the assignment statement
-      
-    if (formSubmitted) { // Assuming success status is available in uploadStatus
-      Swal.fire({
-        icon: 'success',
-        title: 'Form Submitted',
-        text: 'Your request for testing has been successfully submitted',
-        confirmButtonText: 'OK',
-      });
-      setButtonPopup2(false);
-    } else {
-      Swal.fire({
-        icon: 'error',
-        title: 'Form Submitted Failed',
-        text: 'Testing Form failed. Please try again.',
-        confirmButtonText: 'OK',
-      });
-    }
-  })
-  .catch((error) => {
-    // Handle error case here
-    Swal.fire({
-      icon: 'error',
-      title: 'Form Submitted Failed',
-      text: 'Sorry, there was an error Submitted your form',
-      confirmButtonText: 'OK',
-    });
-  });      
-}
-
- //setButtonPopup2(false);
-
-
-
-
-  /*  const calculateEndDate = () => {
-      const currentDate = new Date();
-      const endDate = new Date(currentDate.setDate(currentDate.getDate() + 45));
-      setEndDate(endDate);
-    
-      const intervalId = setInterval(() => {
-        const remainingTime = endDate.getTime() - new Date().getTime();
-        if (remainingTime >= 0) {
-          const remainingDays = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
-          const remainingHours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          const remainingMinutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
-          const remainingSeconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
-          setEndDate({
-            days: remainingDays,
-            hours: remainingHours,
-            minutes: remainingMinutes,
-            seconds: remainingSeconds,
-          });
-        } else {
-          clearInterval(intervalId);
-        }
-      }, 1000);
-    }; */
-
-
   // API call to get document status
   
   
@@ -272,8 +74,6 @@ const handleSubmit = (event) => {
         const compliance_id = data["compliance"];
         const application_id = data["application"];
         const request_for = data["request_for"];
-        setCompliance_id1(compliance_id);
-        setApplication_id1(application_id);
         console.log(compliance_id)
         console.log(application_id)
   
@@ -410,77 +210,7 @@ logoImg.onload = function () {
   doc.save('Progress Tracker.pdf');
 }
     }
-    
-
-
- /*   const handleDownload = () => {
-      const input = document.getElementById('pdf-content');
-      const pdf = new jsPDF();
-      pdf.addHTML(input, () => {
-        pdf.save('document.pdf');
-      });
-    }; 
-  */
-
-    /*---- upload button APIS CALLS */
-
-    function handleUpload() {
-      const formData = new FormData();
-    
-      for (let i = 0; i < uploades.length; i++) {
-        formData.append('document', uploades[i]);
-      }
-      formData.append('application', application_id);
-      formData.append('compliance', compliance_id);
-      formData.append('document_type', documentType);
-      formData.append('status', 'sumbitted');
   
-      console.log(application_id)
-      console.log(compliance_id)
-      console.log(documentType)
-    
-      axiosInstance.post('application/document/', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      })
-        .then((res) => {
-          console.log(res);
-          setButtonPopup('status');
-      
-          const uploadStatus = 'status'; // Corrected the assignment statement
-      
-          if (uploadStatus) { // Assuming success status is available in uploadStatus
-            Swal.fire({
-              icon: 'success',
-              title: 'Upload Success',
-              text: 'Your documents have been uploaded successfully',
-              confirmButtonText: 'OK',
-            });
-            setButtonPopup(false);
-          } else {
-            Swal.fire({
-              icon: 'error',
-              title: 'Upload Failed',
-              text: 'Sorry, there was an error uploading your documents',
-              confirmButtonText: 'OK',
-            });
-          }
-        })
-        .catch((error) => {
-          // Handle error case here
-          Swal.fire({
-            icon: 'error',
-            title: 'Upload Failed',
-            text: 'Sorry, there was an error uploading your documents',
-            confirmButtonText: 'OK',
-          });
-        });      
-    
-     // setButtonPopup(false);
-    }
-
-
 
     /*-------handleOptions download report-----*/
     const ReportOptionClick = (option) => {
@@ -503,105 +233,7 @@ logoImg.onload = function () {
 
     
 
-    /*---------DOWNLOAD BUTTON APS CALLS------*/
     
-    useEffect(() => {
-      axiosInstance
-        .get(`compliance-form/?compliance=TEC`)
-        .then((response) => {
-          const downloadData = response.data;
-          localStorage.setItem("myKey", JSON.stringify(downloadData));
-
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }, []);
-
-    
-    const [selectedOptions, setSelectedOptions] = useState([]);
-
-    const docDownload = {
-      Shareholding_Pattern: 'https://eikomp-backend-media.s3.amazonaws.com/media/compliance/form/Shareholding_Pattern.docx',
-      Manufacturing_details: 'https://eikomp-backend-media.s3.amazonaws.com/media/compliance/form/Manufacturing_Details.docx',
-      CDFCCL_Format: 'https://eikomp-backend-media.s3.amazonaws.com/media/compliance/form/CDF-CCL_Format.docx',
-      Annex_1_Signatory_authorization: 'https://eikomp-backend-media.s3.ap-south-1.amazonaws.com/media/compliance/form/Annex_1_Signatory_authorization.docx', 
-      Annexure_2_OEM_authorized_to_AIR: 'https://eikomp-backend-media.s3.ap-south-1.amazonaws.com/media/compliance/form/Annexure_2_OEM_authorized_to_AIR.docx', 
-      Annexure_3_MOU: 'https://eikomp-backend-media.s3.ap-south-1.amazonaws.com/media/compliance/form/Annexure_3_MOU.docx',
-    };
-  
-    const storedValue = JSON.parse(localStorage.getItem("myKey"));
-    
-  if (storedValue !== null) {
-    const base = "https://eikomp-backend-media.s3.amazonaws.com/";
-  const docStatus2 = {};
-
-  for (let i = 0; i < storedValue.length; i++) {
-    const statusData = storedValue[i];
-    docStatus2[statusData["name"]] = `${base}${statusData["form"]}`;
-  }
-} else {
-  console.error("There is no data stored in localStorage with the key 'myKey'");
-}
-
-
-    const handleDownload = (event) => {
-      event.preventDefault();
-
-         // Build the URLs based on the selected options and the docStatus data
-         const urls = [];
-         selectedOptions.forEach(option => {
-           urls.push(docDownload[option.value]);
-         });
-
-          // Download the files
-      const downloadPromises = urls.map(url => fetch(url));
-      Promise.all(downloadPromises)
-        .then(responses => Promise.all(responses.map(response => response.blob())))
-        .then(blobs => {
-          blobs.forEach((blob, index) => {
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `${selectedOptions[index].label}.docx`;
-            document.body.appendChild(a);
-            a.click();
-            a.remove();
-          });
-
-          
-          if (downloadPromises) { // Assuming success status is available in uploadStatus
-            Swal.fire({
-              icon: 'success',
-              title: 'Download Success',
-              text: 'Your documents have been downloaded successfully',
-              confirmButtonText: 'OK',
-            });
-            setButtonPopup1(false);
-          } else {
-            Swal.fire({
-              icon: 'error',
-              title: 'Download Failed',
-              text: 'Sorry, there was an error downloading your documents',
-              confirmButtonText: 'OK',
-            });
-          }
-        })
-        .catch(error => {
-          console.error('There was an error downloading the file:', error);
-        });
-    };
-  
-  const options1 = [
-    { value: 'Shareholding_Pattern', label: 'Shareholding Pattern'},
-    { value: 'Manufacturing_details', label: 'Manufacturing Details' },
-    { value: 'CDFCCL_Format', label: 'CDF/CCL Format' },
-    { value: 'Annex_1_Signatory_authorization', label: 'Annex 1 Signatory authorization'},
-    { value: 'Annexure_2_OEM_authorized_to_AIR', label: 'Annexure 2 OEM authorized to AIR'},
-    { value: 'Annexure_3_MOU', label: 'Annexure 3 MOU'},
-  ];
-
-
     return (
      <div className="bgchangecompleted">
       <div className="ongoing-applications">
@@ -611,316 +243,6 @@ logoImg.onload = function () {
         <h1 className="appli">Application Number:  {uniqueid}  </h1>
        {/* <button className="clidown" onClick={handleDownload}>Download</button> */}
       </div>
-
- {/*----------------UPLOAD BUTTON CODE ------------*/ }
- <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-<div>
-  <div>
-  <h3>Upload a File</h3>
-  <input type ="file" name="file" onChange={(e) => setUploades(e.target.files)} accept/>
-  </div>
-  <div>
-  <select className="optionss" value={documentType} onChange={(e) => setDocumentType(e.target.value)}>
-          
-          <option value="">Select Document Type</option>
-          {options.map((option, index) => (
-            <option key={index} value={option}>{option}</option>
-          ))}
-        </select>
-  </div>
-  <div>
-  <button className = "button8" onClick={handleUpload}>UPLOAD</button>
-  {/* {uploadStatus &&
-    <div className="submit-pop">
-      <p>{uploadStatus === 'status' ? 'Your documents have been uploaded successfully' : 'There was an error uploading your document.'}</p>
-      <button className="sumbitpop-btn" onClick={() => setUploadStatus('')}>OK</button>
-    </div>  
-  } */}
-  </div>
-</div>
-</Popup>
-
-
-
-
-{/*-----------LAB TESTING JSX CODE IS HERE----------*/}
-
-<div className="lab-testing-box">
-      <Popup trigger={buttonPopup2} setTrigger={setButtonPopup2}>
-        <div style={{ height: "500px", overflow: "scroll" }}>
-          <h1 className="h801">Testing Information Required</h1>
-          <form onSubmit={handleSubmit}>
-          
-            <label className="st8012">
-              Product Name:
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setTestingProductName(event.target.value)}
-
-              />
-            </label>
-            <label className="st8012">
-              Model No:
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setTestingModelNo(event.target.value)}
-
-              />
-            </label>
-            <label className="st8012">
-              Associated Models (if any):
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setTestingAssociated(event.target.value)}
-
-              />
-            </label>
-            <label className="st8012">
-              Hardware Number:
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setTestingHardwareNumber(event.target.value)}
-
-              />
-            </label>
-            <label className="st8012">
-              Software Number	:
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setTestingSoftwareNumber(event.target.value)}
-
-              />
-            </label>
-            <label className="st8012">
-              Brand:
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setTestingBrand(event.target.value)}
-
-              />
-            </label>
-            <label className="st8012">
-              Sr. No:
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setTestingSr(event.target.value)}
-
-              />
-            </label>
-            <label className="st8012">
-              Electrical Rating:
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setTestingElectrical(event.target.value)}
-
-              />
-            </label>
-            <label className="st8012">
-        Product Type:
-        <select className="st801" onChange={(event) => setTestingProductType(event.target.value)}>
-          <option value="Fixed">Fixed</option>
-          <option value="Industrial">Industrial</option>
-          <option value="Portable">Portable</option>
-          <option value="Other">Other</option>
-        </select>
-      </label>
-
-      <label className="st8012">
-              Product Type (if other):
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setTestingProductTypeOther(event.target.value)}
-              />
-            </label>
-          
-            <label className="st8012">
-              Product Use:
-              <select className="st801" onChange={(event) => setTestingProductUse(event.target.value)}>
-                <option value="Indoor">Indoor</option>
-                <option value="Outdoor">Outdoor</option> 
-                <option valur="Other">Other</option>              
-              </select>
-            </label>
-
-            <label className="st8012">
-              Product Use(if other):
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setTestingProductOther(event.target.value)}
-
-              />
-            </label>
-
-            <label className="st8012">
-              Filled CDF/CCl (Format attached):
-              <input classname="stup805" type="file"   onChange={(event) => setCdfccl(event.target.files)} multiple accept />
-            </label>
-            <label className="st8012">
-              Complete User Manual:
-              <input classname="stup805" type="file"  onChange={(event) => setUsermanual(event.target.files)} multiple accept />
-            </label>
-            <label className="st8012">
-              Circuit Diagram:
-              <input className="stup805" type="file"  onChange={(event) => setCircuitdiagram(event.target.files)} multiple accept />
-            </label>
-            <label className="st8012">
-              PCB Layout:
-              <input className="stup805" type="file"  onChange={(event) => setPcblayout(event.target.files)} multiple accept />
-            </label>
-            <label className="st8012">
-              Software used (if any):
-              <input className="stup805" type="file"  onChange={(event) => setSoftwareuser(event.target.files)} multiple accept />
-            </label>
-           
-            <label className="st8012">
-              Technical support person name:
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setTestingTechnicalsupportName(event.target.value)}
-
-              />
-            </label>
-            <label className="st8012">
-              Technical support person contact number:
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setTestingTechnicalsuppoertNumber(event.target.value)}
-
-              />
-            </label>
-
-
-            {/* <h1 className="h801">Manufacturing Location Information:</h1>
-            <label className="st8012">
-              Product Name:
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setManufacturingProductName(event.target.value)}
-
-              />
-            </label>
-            <label className="st8012">
-              Model No:
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setManufacturingModelNo(event.target.value)}
-
-              />
-            </label>
-            <label className="st8012">
-              Associated Models:
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setManufacturingAssociatedModels(event.target.value)}
-
-              />
-            </label>
-            <label className="st8012">
-              Manufacturer Name:
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setManufacturingManufacturingName(event.target.value)}
-              />
-            </label>
-
-          <label className="st8012">
-            Manufacturer Address:
-            <input
-            className="st805"
-              type="text"
-              onChange={(event) => setManufacturingManufacturingAddress(event.target.value)}
-            />
-          </label>
-            <label className="st8012">
-              Manufacturer Country:
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setManufacturingManufacturingCountry(event.target.value)}
-
-              />
-            </label>
-
-            <label className="st8012">
-              Contact Person Name:
-              <input
-                className="st805"
-                type="text" 
-                onChange={(event) => setManufacturingContactName(event.target.value)}
-
-              />
-            </label>
-            <label className="st8012">
-              Contact Person's Number:
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setManufacturingContactNumber(event.target.value)}
-
-              />
-            </label>
-            <label className="st8012">
-              Contact Person's Email Id:
-              <input
-                className="st805"
-                type="text" 
-                onChange={(event) => setManufacturingContactEmail(event.target.value)}
-
-              />
-            </label>
-            <label className="st8012">
-              Country of Origin:
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setManufacturingOrigin(event.target.value)}
-
-              />
-            </label>
-            <label className="st8012">
-              Contract Manufacturing(Yes/No):
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setManufacturingContract(event.target.value)}
-
-              />
-            </label> */}
-
-            <button className='btn809' type="submit">Submit</button>
-
-            {/* {formSubmitted && (
-        <div className="submit-pop">
-          {formSubmitted === true ? (
-            <p>Your request for testing has been successfully submitted</p>
-          ) : (
-            <p>Testing Form failed. Please try again.</p>
-          )}
-          <button className="sumbitpop-btn" onClick={handleClosePopup}>OK</button>
-        </div>
-      )} */}
-          </form>
-        </div>
-      </Popup>
-      
-      
-</div>
 
 
 {/*---------------Notification code Here------------------------*/}
@@ -959,34 +281,15 @@ logoImg.onload = function () {
 {/*------------------DOWNLOAD BUTTON CODE ----------------*/}
 
 <div className="header-btn1">
-<button className="button7" onClick={() => setButtonPopup2(true)} disabled>Request Testing</button>
-<button className="button7" onClick={() => setButtonPopup(true)} disabled>Upload</button>
-<button className="button7" onClick={() => setButtonPopup1(true)} disabled>Download</button>
+<button className="button7"  disabled>Request Testing</button>
+<button className="button7"  disabled>Upload</button>
+<button className="button7"  disabled>Download</button>
 <button className='button7' onClick={() => setButtonPopup11(true)}>Notification</button>
 </div>
-<Popup trigger={buttonPopup1} setTrigger={setButtonPopup1}>
-        <h3>Download a File</h3>
-        <label>
-  <h4>Select file(s) to download:</h4>
-  <div className="scroll-bar">
-  <div className="select-container">
-    <Select
-      options={options1}
-      value={selectedOptions}
-      onChange={setSelectedOptions}
-      isMulti
-      placeholder="Select files..."
-    />
-  </div>
-</div>
-</label>
-          <div>
-          <button className="button8" type="submit" onClick={handleDownload}>Download</button>
-          </div>
-          </Popup>
+
 
 {/*--------Ststus Bar CODE IS HERE --------------------*/}
-          <div className>
+          <div>
       <StatusBar
         totalResponses={totalResponses}
         completedResponses={completedResponses}
