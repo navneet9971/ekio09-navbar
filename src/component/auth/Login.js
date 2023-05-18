@@ -89,30 +89,12 @@ const handleforgetemail = (e) => {
     .catch((error) => {
       // handle error during login
       console.error(error);
-      
-      if (error === 'username_not_match') {
-        // show error message for username mismatch
-        Swal.fire({
-          icon: 'error',
-          title: 'Incorrect',
-          text: 'Incorrect username. Please try again.',
-        });
-      } else if (error === 'password_not_match') {
-        // show error message for password mismatch
-        Swal.fire({
-          icon: 'error',
-          title: 'Incorrect',
-          text: 'Incorrect password. Please try again.',
-        });
-      } else {
-        // handle other errors
         // show a generic error message
         Swal.fire({
           icon: 'error',
           title: 'Please try again later',
           text: 'Incorrect username or password. Please try again.',
         });
-      }
     });
 };
 
