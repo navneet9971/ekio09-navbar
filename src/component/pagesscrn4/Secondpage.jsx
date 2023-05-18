@@ -821,7 +821,7 @@ const [userId, setUserId] = useState("");
 
 {/*--------------BIS REGSITER AND UNREGISTER CODES HERE ------------------------------- */}
 <Popup trigger={buttonRegister} setTrigger={setButtonRegister}>
-<h3 className="reg-popup-titlte">Are You a Registered User?</h3>
+<h3 className="reg-popup-titlte">Are You Registered On The BIS Portal? </h3>
 <div className="checkbox-container">
   <div className="bis-register">
     <div>
