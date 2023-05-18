@@ -136,20 +136,21 @@ console.log(latestStartDate)
                   </button>
                 </div>
               </div>
+              
         
               <div className="table-wrapper">
                 <table className="Review">
                   <thead>
                     <tr>
-                      <th className="header">S.NO</th>
-                      <th className="header">Project Code</th>
-                      <th className="header">Compliance Type</th>
-                      <th className="header">Product Name </th>
-                      <th className="header">Model Number</th>
-                      <th className="header">Associated Number/Family Model</th>
-                      <th className="header">Start Date</th>
-                      <th className="header">Estimated Completion Date</th>
-                      <th className="header">
+                      <th className="header" style={{ cursor: 'default' }}>S.NO</th>
+                      <th className="header" style={{ cursor: 'default' }}>Project Code</th>
+                      <th className="header" style={{ cursor: 'default' }}>Compliance Type</th>
+                      <th className="header" style={{ cursor: 'default' }}>Product Name </th>
+                      <th className="header" style={{ cursor: 'default' }}>Model Number</th>
+                      <th className="header" style={{ cursor: 'default' }}>Associated Number/Family Model</th>
+                      <th className="header" style={{ cursor: 'default' }}>Start Date</th>
+                      <th className="header" style={{ cursor: 'default' }}>Estimated Completion Date</th>
+                      <th className="header" style={{ cursor: 'default' }}>
                         Status{" "}
                         <select
                           className="dropon"
@@ -161,7 +162,7 @@ console.log(latestStartDate)
                           <option value="Completed">Completed</option>
                         </select>
                       </th>
-                      <th className="header">Actual End Date</th>
+                      <th className="header" no-cursor-pointer>Actual End Date</th>
                     </tr>
                   </thead>
         
@@ -203,20 +204,20 @@ console.log(latestStartDate)
     })
     .map((data, index) => (
       <tr key={data.id}>
-        <td>{index + 1}</td>
+        <td style={{ cursor: 'default' }}>{index + 1}</td>
         <td className="clickable1" onClick={() => handleClick(data.id)}>
           {data.uniqueid}
         </td>
         <td className="clickable2" onClick={() => handleClick(data.id)}>
           {data.compliance_name}
         </td>
-        <td>{data.application_name}</td>
-        <td>{data.fields['Model_number']}</td>
-        <td>{data.fields['Associate_models']}</td>
-        <td>{formatDate(data.startdate)}</td>
-        <td>{data.estimated_date}</td>
-        <td>{data.status}</td>
-        <td>{data.end_date}</td>
+        <td style={{ cursor: 'default' }}>{data.application_name}</td>
+        <td style={{ cursor: 'default' }}>{data.fields['Model_number']}</td>
+        <td style={{ cursor: 'default' }}>{data.fields['Associate_models']}</td>
+        <td style={{ cursor: 'default' }}>{formatDate(data.startdate)}</td>
+        <td style={{ cursor: 'default' }}>{data.estimated_date}</td>
+        <td style={{ cursor: 'default' }}>{data.status}</td>
+        <td style={{ cursor: 'default' }}>{data.end_date}</td>
       </tr>
     ))}
 </tbody>

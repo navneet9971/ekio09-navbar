@@ -43,6 +43,7 @@ function TECOngoing() {
   const [uniqueid, setUniqueid] = useState("");
   const [complianceid, setComplianceid] = useState("");
   const idel = localStorage.getItem('ide');
+  const [testingbtnkey, setTestingbtnkey] =useState("");
   const [documentType, setDocumentType] = useState('');
   const [uploades ,setUploades] = useState('');
     const [buttonPopup, setButtonPopup] = useState(false);
@@ -280,7 +281,9 @@ const handleSubmit = (event) => {
         console.log(data)
         // store local storage then show the values 
         setUniqueid(data["uniqueid"]);
-        setComplianceid(data["compliance_name"])
+        setComplianceid(data["compliance_name"]);
+        setTestingbtnkey(data["testing"]);
+        console.log(data["testing"]);
 
   
         const compliancename = data["compliance_name"]
@@ -960,7 +963,7 @@ logoImg.onload = function () {
 {/*------------------DOWNLOAD BUTTON CODE ----------------*/}
 
 <div className="header-btn1">
-<button className="button7" onClick={() => setButtonPopup2(true)}>Request Testing</button>
+<button className="button7" onClick={() => setButtonPopup2(true)} disabled={testingbtnkey === 'Yes'}>Request Testing</button>
 <button className="button7" onClick={() => setButtonPopup(true)}>Upload</button>
 <button className="button7" onClick={() => setButtonPopup1(true)}>Download</button>
 <button className='button7' onClick={() => setButtonPopup11(true)}>Notification</button>

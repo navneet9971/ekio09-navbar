@@ -495,9 +495,9 @@ const [userId, setUserId] = useState("");
           <thead>
             <tr>
          {/*     <th>S.no</th> */}
-              <th>Compliance Name</th>
-              <th>Description</th>
-              <th>Video</th>
+              <th style={{ cursor: 'default' }}>Compliance Name</th>
+              <th style={{ cursor: 'default' }}>Description</th>
+              <th style={{ cursor: 'default' }}>Video</th>
              
             </tr>
           </thead>
@@ -512,7 +512,7 @@ const [userId, setUserId] = useState("");
       > 
         {compliance.product_name}
       </td>
-                <td>{compliance.details}</td>
+                <td style={{ cursor: 'default' }}>{compliance.details}</td>
                 <td>
                   {/* display compliance video */}
                   <a
@@ -536,8 +536,6 @@ const [userId, setUserId] = useState("");
           </tbody>
         </table>
       </div>
-
-
 
 
 

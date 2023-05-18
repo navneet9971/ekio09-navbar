@@ -41,6 +41,7 @@ function BISoongoing() {
   const [uniqueid, setUniqueid] = useState("");
   const [complianceid, setComplianceid] = useState("");
   const idel = localStorage.getItem('ide');
+  const [testingbtnkey, setTestingbtnkey] =useState("");
   const [documentType, setDocumentType] = useState('');
   const [uploades ,setUploades] = useState('');
   const [buttonPopup, setButtonPopup] = useState(false);
@@ -249,11 +250,13 @@ const handleSubmit = (event) => {
         console.log(compliance_id)
         console.log(application_id)
   
+  
         console.log(data)
         // store local storage then show the values 
         setUniqueid(data["uniqueid"]);
         setComplianceid(data["compliance_name"])
-
+        setTestingbtnkey(data["testing"]);
+        console.log(data["testing"]);
   
         const compliancename = data["compliance_name"]
         localStorage.setItem("compliance_name", compliancename)
@@ -603,6 +606,7 @@ logoImg.onload = function () {
 {/*-----------LAB TESTING JSX CODE IS HERE----------*/}
 
 <div className="lab-testing-box">
+
       <Popup trigger={buttonPopup2} setTrigger={setButtonPopup2}>
         <div style={{ height: "500px", overflow: "scroll" }}>
           <h1 className="h801">Testing Information Required</h1>
@@ -721,120 +725,8 @@ logoImg.onload = function () {
               <input className="stup805" type="file"  onChange={(event) => setPcblayout(event.target.files)} multiple accept />
             </label>
            
-      
-            {/* <h1 className="h801">Manufacturing Location Information:</h1>
-            <label className="st8012">
-              Product Name:
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setManufacturingProductName(event.target.value)}
-
-              />
-            </label>
-            <label className="st8012">
-              Model No:
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setManufacturingModelNo(event.target.value)}
-
-              />
-            </label>
-            <label className="st8012">
-              Associated Models:
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setManufacturingAssociatedModels(event.target.value)}
-
-              />
-            </label>
-            <label className="st8012">
-              Manufacturer Name:
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setManufacturingManufacturingName(event.target.value)}
-              />
-            </label>
-
-          <label className="st8012">
-            Manufacturer Address:
-            <input
-            className="st805"
-              type="text"
-              onChange={(event) => setManufacturingManufacturingAddress(event.target.value)}
-            />
-          </label>
-            <label className="st8012">
-              Manufacturer Country:
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setManufacturingManufacturingCountry(event.target.value)}
-
-              />
-            </label>
-
-            <label className="st8012">
-              Contact Person Name:
-              <input
-                className="st805"
-                type="text" 
-                onChange={(event) => setManufacturingContactName(event.target.value)}
-
-              />
-            </label>
-            <label className="st8012">
-              Contact Person's Number:
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setManufacturingContactNumber(event.target.value)}
-
-              />
-            </label>
-            <label className="st8012">
-              Contact Person's Email Id:
-              <input
-                className="st805"
-                type="text" 
-                onChange={(event) => setManufacturingContactEmail(event.target.value)}
-
-              />
-            </label>
-            <label className="st8012">
-              Country of Origin:
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setManufacturingOrigin(event.target.value)}
-
-              />
-            </label>
-            <label className="st8012">
-              Contract Manufacturing(Yes/No):
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setManufacturingContract(event.target.value)}
-
-              />
-            </label> */}
 
             <button className='btn809' type="submit">Submit</button>
-
-            {/* {formSubmitted && (
-        <div className="submit-pop">
-          {formSubmitted === true ? (
-            <p>Your request for testing has been successfully submitted</p>
-          ) : (
-            <p>Testing Form failed. Please try again.</p>
-          )}
-          <button className="sumbitpop-btn" onClick={handleClosePopup}>OK</button>
-        </div>
-      )} */}
           </form>
         </div>
       </Popup>
@@ -879,7 +771,7 @@ logoImg.onload = function () {
 {/*------------------DOWNLOAD BUTTON CODE ----------------*/}
 
 <div className="header-btn1">
-<button className="button7" onClick={() => setButtonPopup2(true)}>Request Testing</button>
+<button className="button7" onClick={() => setButtonPopup2(true)} disabled={testingbtnkey === 'Yes'} >Request Testing</button>
 <button className="button7" onClick={() => setButtonPopup(true)}>Upload</button>
 <button className="button7" onClick={() => setButtonPopup1(true)}>Download</button>
 <button className='button7' onClick={() => setButtonPopup11(true)}>Notification</button>

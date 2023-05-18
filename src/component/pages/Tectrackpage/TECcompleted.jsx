@@ -959,9 +959,9 @@ logoImg.onload = function () {
 {/*------------------DOWNLOAD BUTTON CODE ----------------*/}
 
 <div className="header-btn1">
-<button className="button7" onClick={() => setButtonPopup2(true)}>Request Testing</button>
-<button className="button7" onClick={() => setButtonPopup(true)}>Upload</button>
-<button className="button7" onClick={() => setButtonPopup1(true)}>Download</button>
+<button className="button7" onClick={() => setButtonPopup2(true)} disabled>Request Testing</button>
+<button className="button7" onClick={() => setButtonPopup(true)} disabled>Upload</button>
+<button className="button7" onClick={() => setButtonPopup1(true)} disabled>Download</button>
 <button className='button7' onClick={() => setButtonPopup11(true)}>Notification</button>
 </div>
 <Popup trigger={buttonPopup1} setTrigger={setButtonPopup1}>
