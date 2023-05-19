@@ -301,9 +301,16 @@ const handleSubmit = (event) => {
             }
 
             // Store the length of stepstatus in localStorage
-            localStorage.setItem('stepstatus', stepstatus.length);
+
+            let count = 0;  
+            for (let i = 0; i < stepstatus.length; i++) {
+              if (stepstatus[i].status === 'Completed') {
+                count += 1;
+              }
+            }
+            localStorage.setItem('stepstatus', count);   
+            console.log(count);         
             setdocStep(newDocStep);
-            console.log(stepstatus.length);
             console.log(newDocStep);
           })
           .catch(error => {
@@ -319,16 +326,6 @@ const handleSubmit = (event) => {
            localStorage.setItem("certificate",response.data.certificate)
          //  console.log(response.data.key)
           
-            // if (response.data.key) == 'No' {
-            //     download report 
-            //     download certificate
-            // }
-            // else
-            // {
-            //   for i in documentData:
-            //   if "report" in i['document_type'].lower():
-            //     download report -  button -name - i['document_type'] link - i['document']
-            // }
             const docStatus = {};
             for (let i = 0; i < documentData.length; i++) {
               const statusData = documentData[i];

@@ -455,6 +455,7 @@ const [userId, setUserId] = useState("");
 
  // navigate to compliance page based on compliance name
   const handleClick = (complianceName, complianceId) => {
+    
    localStorage.setItem("compliance_id", complianceId);
     if (complianceName === "TEC") {
        setButtonPopup5(true)
