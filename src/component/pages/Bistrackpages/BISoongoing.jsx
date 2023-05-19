@@ -272,7 +272,14 @@ const handleSubmit = (event) => {
             }
 
             // Store the length of stepstatus in localStorage
-            localStorage.setItem('stepstatus', stepstatus.length);
+
+            let count = 0;  
+            for (let i = 0; i < stepstatus.length; i++) {
+              if (stepstatus[i].status === 'Completed') {
+                count += 1;
+              }
+            }
+            localStorage.setItem('stepstatus', count);
             setdocStep(newDocStep);
             console.log(stepstatus.length);
             console.log(newDocStep);
