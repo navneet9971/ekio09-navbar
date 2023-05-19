@@ -50,7 +50,11 @@ const Secondpage = () => {
 
 
   //Start TEC New Application Form const Code Here ---------------------------------
-  const [buttonPopup5, setButtonPopup5] = useState(false);
+  const [buttonpopupform1tec, setButtonpopupform1tec] = useState(false);
+  const [buttonautofillpopuptec, setButtonautofillpopuptec] = useState(false);
+  const [buttonautofilledtec, setButtonautofilledtec] = useState(false);
+
+  //from const code here-----------
   const [types_of_company, setTypes_of_company] = useState("");
   const [applicantCompanyName, setApplicantCompanyName] = useState("");
   const [applicantCompanyAddress, setApplicantCompanyAddress] = useState("");
@@ -149,7 +153,7 @@ const Secondpage = () => {
       const data = response.data; // your JSON data here
 
       // form submission successful
-      setButtonPopup5(true);
+      setButtonpopupform1tec(true);
  console.log(data)
 // loop through each form in the "forms" field
       for (const [formName, formData] of Object.entries(data.data.forms)) {
@@ -177,7 +181,8 @@ const Secondpage = () => {
               text: 'Your Application has been submitted successfully.You can track the progress in Track Application section',
               confirmButtonText: 'OK',
             });
-            setButtonPopup5(false);
+            setButtonpopupform1tec(false);
+            setButtonautofilledtec(false);
           } else {
             Swal.fire({
               icon: 'error',
@@ -195,24 +200,89 @@ const Secondpage = () => {
             text: 'Sorry, there was an error Submission your form',
             confirmButtonText: 'OK',
           });
-        });      
+        });    
   }
+
+   //TEC AUTO FILL FORM CONST HERE ---------------------
+   const [tecformData, setTecformData] = useState({
+    Applicant_company_CIN:'',
+    Applicant_company_address:'',
+    Applicant_company_name:'',
+    Applicant_contact_number:'',
+    Applicant_director_designation:'',
+    Applicant_director_name:'',
+    Applicant_emailid:'',
+    Authorised_signatory_designation:'',
+    Authorised_signatory_emailid:'',
+    Authorised_signatory_name:'',
+    Authorised_signatory_number:'',
+    Foreign_manufacturer_authorised_signatory_designation:'',
+    Foreign_manufacturer_authorised_signatory_name:'',
+    Foreign_manufacturer_company_address: '',
+    Foreign_manufacturer_company_name: '',
+    Foreign_manufacturer_contact_number:'',
+    Foreign_manufacturer_emailid:'',
+    Types_of_company:'',
+    application:'',
+    compliance:'',
+    request_for:'',
+  });
+
+  const handleChange = (e) => {
+    setTecformData({ ...tecformData, [e.target.name]: e.target.value });
+  };
+
+  useEffect(() => {
+    // Fetch data from the backend and auto-fill the form
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await axiosInstance.get(`application/inclusive/?compliance=${localStorage.getItem("compliance_name")}`);
+      const tecdata = response.data['fields'];
+      console.log(tecdata)
+      setTecformData(tecdata); // Set the fetched data to the form state
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
+   //BIS DYNAMIC POPUP CHOOSE OPTION YES OR NO  function handle here-------------------------
+   function handleautofilledtec(event) {
+    const value = event.target.value;
+    
+    if (autofillform === 'Yes' && value === 'Yesautofilledtec') {
+      // Call the function for registering
+      setButtonautofillpopuptec(true);
+      console.log(autofillform);
+    } else if (value === 'Noform1tec') {
+      // Call the function for unregistering
+      setButtonpopupform1tec(true);
+    }
+  }
+  
+/*----------------------BIS FUNCTION CODE START HERE----------------*/
 
 
  //Start BIS New Application Form const Code Here ------------------------------------------------
-  const[buttonRegister, setButtonRegister] = useState(false);
-  const[buttonRegisterPage, setButtonRegisterPage ] = useState(false);
-  const [buttonPopup6, setButtonPopup6] = useState(false);
-  const [ buttonbisrqdetails, setButtonbisrqdetails] = useState(false);
+  const[buttonRegisterbis, setButtonRegisterbis] = useState(false);
+  const[buttonRegisterPagebis, setButtonRegisterPagebis ] = useState(false);
+  const [buttonPopup6bis, setButtonPopup6bis] = useState(false);
+  const [ buttonbisrqdetailsbis, setButtonbisrqdetailsbis] = useState(false);
+  const [buttonautofilledbis, setButtonautofilledbis] = useState(false);
+  const [buttonautofillpopupbis, setButtonautofillpopupbis] = useState(false);
   
   
   
-  //BIS REgister POPUP box Filled Const Data here--------------------------------------------------
+  //BIS Register POPUP box Filled Const Data here--------------------------------------------------
 const [userId, setUserId] = useState("");
   const [password, setPassword] = useState('');
   const [hasRNumber, setHasRNumber] = useState(false);
   const [rNumber, setRNumber] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [autofillform, setAutofillform] = useState(null);
 
 
 
@@ -237,10 +307,10 @@ const [userId, setUserId] = useState("");
       console.log("R Number:", rNumber);
     } else {
       // Logic when R number is not selected
-      setButtonbisrqdetails(true);
+      setButtonbisrqdetailsbis(true);
       console.log("R Number not selected");
     }
-    setButtonRegisterPage(false);
+    setButtonRegisterPagebis(false);
   };
 
 
@@ -397,7 +467,7 @@ const [userId, setUserId] = useState("");
       const data = response.data; // your JSON data here
 
       // form submission successful
-      setButtonPopup5(true);
+      setButtonpopupform1tec(true);
  console.log(data)
 // loop through each form in the "forms" field
       for (const [formName, formData] of Object.entries(data.data.forms)) {
@@ -425,9 +495,9 @@ const [userId, setUserId] = useState("");
               text: 'Your Application has been submitted successfully.You can track the progress in Track Application section',
               confirmButtonText: 'OK',
             });
-            setButtonPopup5(false);
-            setButtonPopup6(false);
-            setButtonbisrqdetails(false);
+            setButtonpopupform1tec(false);
+            setButtonPopup6bis(false);
+            setButtonbisrqdetailsbis(false);
           } else {
             Swal.fire({
               icon: 'error',
@@ -453,16 +523,28 @@ const [userId, setUserId] = useState("");
     window.open(videoUrl, "Compliance Video", "width=800,height=600");
   };
 
+
+  //CALL APIs TO SEND A COMPLIANCE NAME ---------------------------
+
+  axiosInstance.get(`application/inclusive/?compliance=${localStorage.getItem("compliance_name")}`)
+  .then(response => {
+    const autofill = response.data["key"]
+    //console.log(autofill);
+    setAutofillform(autofill);
+  })
+
  // navigate to compliance page based on compliance name
   const handleClick = (complianceName, complianceId) => {
-    
+
    localStorage.setItem("compliance_id", complianceId);
+   localStorage.setItem("compliance_name", complianceName);
+
     if (complianceName === "TEC") {
-       setButtonPopup5(true)
+      setButtonautofilledtec(true)
     }
     
     else if (complianceName === "BIS") {
-      setButtonRegister(true)
+      setButtonautofilledbis(true)
     } 
     //  else if (complianceName === "WPS") {
     //   history.push(`/navbar/compliance/WPS`);} 
@@ -472,16 +554,32 @@ const [userId, setUserId] = useState("");
   };
 
 
+  //BIS DYNAMIC POPUP CHOOSE OPTION YES OR NO  function handle here-------------------------
+  function handleautofilled(event) {
+    const value = event.target.value;
+    
+    if (autofillform === 'Yes' && value === 'Yesautofilled') {
+      // Call the function for registering
+      setButtonautofillpopupbis(true);
+      console.log(autofillform);
+    } else if (value === 'Noform1') {
+      // Call the function for unregistering
+      setButtonRegisterbis(true);
+    }
+  }
+  
+
+  
   // HandleChange of Registerbutton---------
   function handleRadioChange(event) {
   const value = event.target.value;
   
   if (value === 'register') {
     // Call the function for registering
-    setButtonRegisterPage(true);
+    setButtonRegisterPagebis(true);
   } else if (value === 'unregister') {
     // Call the function for unregistering
-    setButtonPopup6(true);
+    setButtonPopup6bis(true);
   }
 }
 
@@ -539,10 +637,293 @@ const [userId, setUserId] = useState("");
       </div>
 
 
+{/*------------------------ TEC DYNAMIC FORM DATA POPUP CODE HERE------------------------ */}
+<Popup trigger={buttonautofilledtec} setTrigger={setButtonautofilledtec}>
+<h3 className="reg-popup-titlte">You Are Continue With Your Previous Data</h3>
+<div className="checkbox-container">
+  <div className="bis-register">
+    <div>
+      <label>
+        <input
+        className="bis-register"
+          type="checkbox"
+          value="Yesautofilledtec"
+          //checked={radioValue === 'Option 1'}
+          onChange={handleautofilledtec}
+          onClick={() => setButtonautofilledtec(false)}
+        />
+       YES
+      </label>
+      </div>
+  </div>
 
+  <div className="bis-register">
+    <div>
+      <label>
+        <input
+          className="bis-register"
+          type="checkbox"
+          value="Noform1tec"
+          //checked={radioValue === 'Unregister'}
+           onChange={handleautofilledtec}
+           onClick={() => setButtonpopupform1tec(false)}
+        />
+        NO
+      </label>
+    </div>
+  </div>
+</div>
+
+</Popup>
+
+
+{/*-------------- TEC DYNAMIC AUTO FILL FORM CODE HERE --------------------------------- */}
+<Popup trigger={buttonautofillpopuptec} setTrigger={setButtonautofillpopuptec}>
+<div style={{ height: "500px", overflow: "scroll" }}>
+          <form onSubmit={handleSubmit}>
+
+          <label className="st8012">
+      Applicant company CIN
+   <input
+        className="st805"
+        type="text"
+        name="Applicant_company_CIN"
+        value={tecformData.Applicant_company_CIN}
+        onChange={handleChange}
+      />
+      </label> 
+
+      <label className="st8012">
+      Applicant company address
+   <input
+        className="st805"
+        type="text"
+        name="Applicant_company_address"
+        value={tecformData.Applicant_company_address}
+        onChange={handleChange}
+      />
+      </label> 
+
+      <label className="st8012">
+      Applicant company name
+   <input
+        className="st805"
+        type="text"
+        name="Applicant_company_name"
+        value={tecformData.Applicant_company_name}
+        onChange={handleChange}
+      />
+      </label> 
+
+      <label className="st8012">
+      Applicant contact number
+   <input
+        className="st805"
+        type="text"
+        name="Applicant_contact_number"
+        value={tecformData.Applicant_contact_number}
+        onChange={handleChange}
+      />
+      </label> 
+
+      <label className="st8012">
+      Applicant director designation
+   <input
+        className="st805"
+        type="text"
+        name="Applicant_director_designation"
+        value={tecformData.Applicant_director_designation}
+        onChange={handleChange}
+      />
+      </label> 
+
+      <label className="st8012">
+      Applicant director name
+   <input
+        className="st805"
+        type="text"
+        name="Applicant_director_name"
+        value={tecformData.Applicant_director_name}
+        onChange={handleChange}
+      />
+      </label> 
+
+      <label className="st8012">
+      Applicant emailid
+   <input
+        className="st805"
+        type="text"
+        name="Applicant_emailid"
+        value={tecformData.Applicant_emailid}
+        onChange={handleChange}
+      />
+      </label> 
+
+      <label className="st8012">
+      Authorised signatory designation
+   <input
+        className="st805"
+        type="text"
+        name="Authorised_signatory_designation"
+        value={tecformData.Authorised_signatory_designation}
+        onChange={handleChange}
+      />
+      </label> 
+
+      <label className="st8012">
+      Authorised signatory emailid
+   <input
+        className="st805"
+        type="text"
+        name="Authorised_signatory_emailid"
+        value={tecformData.Authorised_signatory_emailid}
+        onChange={handleChange}
+      />
+      </label> 
+
+      <label className="st8012">
+      Authorised signatory name
+   <input
+        className="st805"
+        type="text"
+        name="Authorised_signatory_name"
+        value={tecformData.Authorised_signatory_name}
+        onChange={handleChange}
+      />
+      </label>
+
+      <label className="st8012">
+      Authorised signatory number
+   <input
+        className="st805"
+        type="text"
+        name="Authorised_signatory_number"
+        value={tecformData.Authorised_signatory_number}
+        onChange={handleChange}
+      />
+      </label>
+
+      <label className="st8012">
+      Foreign_manufacturer_authorised_signatory_designation
+   <input
+        className="st805"
+        type="text"
+        name="Foreign_manufacturer_authorised_signatory_designation"
+        value={tecformData.Foreign_manufacturer_authorised_signatory_designation}
+        onChange={handleChange}
+      />
+      </label>
+
+      <label className="st8012">
+      Foreign_manufacturer_authorised_signatory_name
+   <input
+        className="st805"
+        type="text"
+        name="Foreign_manufacturer_authorised_signatory_name"
+        value={tecformData.Foreign_manufacturer_authorised_signatory_name}
+        onChange={handleChange}
+      />
+      </label>
+
+      <label className="st8012">
+      Foreign_manufacturer_company_address
+   <input
+        className="st805"
+        type="text"
+        name="Foreign_manufacturer_company_address"
+        value={tecformData.Foreign_manufacturer_company_address}
+        onChange={handleChange}
+      />
+      </label>
+
+      <label className="st8012">
+      Foreign_manufacturer_company_name
+   <input
+        className="st805"
+        type="text"
+        name="Foreign_manufacturer_company_name"
+        value={tecformData.Foreign_manufacturer_company_name}
+        onChange={handleChange}
+      />
+      </label>
+
+      <label className="st8012">
+      Foreign_manufacturer_contact_number
+   <input
+        className="st805"
+        type="text"
+        name="Foreign_manufacturer_contact_number"
+        value={tecformData.Foreign_manufacturer_contact_number}
+        onChange={handleChange}
+      />
+      </label>
+
+      <label className="st8012">
+      Foreign_manufacturer_emailid
+   <input
+        className="st805"
+        type="text"
+        name="Foreign_manufacturer_emailid"
+        value={tecformData.Foreign_manufacturer_emailid}
+        onChange={handleChange}
+      />
+      </label>
+
+      <label className="st8012">
+      Types_of_company
+   <input
+        className="st805"
+        type="text"
+        name="Types_of_company"
+        value={tecformData.Types_of_company}
+        onChange={handleChange}
+      />
+      </label>
+
+      <label className="st8012">
+      application
+   <input
+        className="st805"
+        type="text"
+        name="application"
+        value={tecformData.application}
+        onChange={handleChange}
+      />
+      </label>
+
+      <label className="st8012">
+      compliance
+   <input
+        className="st805"
+        type="text"
+        name="compliance"
+        value={tecformData.compliance}
+        onChange={handleChange}
+      />
+      </label>
+
+      <label className="st8012">
+      request_for
+   <input
+        className="st805"
+        type="text"
+        name="request_for"
+        value={tecformData.request_for}
+        onChange={handleChange}
+      />
+      </label>
+
+
+
+      <button className='btn808' type="submit">Submit</button>
+
+            </form>
+            </div>
+
+</Popup>
 
 {/*---------------TEC FORMS START NEW APPLICATION POPUP CODE HERE ----------------------*/}
-<Popup trigger={buttonPopup5} setTrigger={setButtonPopup5}>
+<Popup trigger={buttonpopupform1tec} setTrigger={setButtonpopupform1tec}>
         <div style={{ height: "500px", overflow: "scroll" }}>
           <form onSubmit={handleSubmit}>
 
@@ -818,10 +1199,56 @@ const [userId, setUserId] = useState("");
         </div>
       </Popup>
 
+{/*----------------- TEC END HERE AND START BIS FROMS CODE HERE ---------------------- */}
+
+{/*------------------------ BIS DYNAMIC FORM DATA POPUP CODE HERE------------------------ */}
+<Popup trigger={buttonautofilledbis} setTrigger={setButtonautofilledbis}>
+<h3 className="reg-popup-titlte">You Are Continue With Your Previous Data</h3>
+<div className="checkbox-container">
+  <div className="bis-register">
+    <div>
+      <label>
+        <input
+        className="bis-register"
+          type="checkbox"
+          value="Yesautofilled"
+          //checked={radioValue === 'Option 1'}
+          onChange={handleautofilled}
+          onClick={() => setButtonautofilledbis(false)}
+        />
+       YES
+      </label>
+      </div>
+  </div>
+
+  <div className="bis-register">
+    <div>
+      <label>
+        <input
+          className="bis-register"
+          type="checkbox"
+          value="Noform1"
+          //checked={radioValue === 'Unregister'}
+           onChange={handleautofilled}
+           onClick={() => setButtonRegisterbis(false)}
+        />
+        NO
+      </label>
+    </div>
+  </div>
+</div>
+
+</Popup>
+
+
+{/*--------- BIS DYNAMIC FORM DATA AUTO FILL FORM CODE IS HERE -------------------- */}
+<Popup trigger={buttonautofillpopupbis} setTrigger={setButtonautofillpopupbis}>
+  WORK IN PROGRESS
+</Popup>
 
 
 {/*--------------BIS REGSITER AND UNREGISTER CODES HERE ------------------------------- */}
-<Popup trigger={buttonRegister} setTrigger={setButtonRegister}>
+<Popup trigger={buttonRegisterbis} setTrigger={setButtonRegisterbis}>
 <h3 className="reg-popup-titlte">Are You Registered On The BIS Portal? </h3>
 <div className="checkbox-container">
   <div className="bis-register">
@@ -833,7 +1260,7 @@ const [userId, setUserId] = useState("");
           value="register"
           //checked={radioValue === 'Option 1'}
           onChange={handleRadioChange}
-          onClick={() => setButtonRegister(false)}
+          onClick={() => setButtonRegisterbis(false)}
         />
        YES
       </label>
@@ -848,7 +1275,7 @@ const [userId, setUserId] = useState("");
           value="unregister"
           //checked={radioValue === 'Unregister'}
           onChange={handleRadioChange}
-          onClick={() => setButtonRegister(false)}
+          onClick={() => setButtonRegisterbis(false)}
         />
         NO
       </label>
@@ -858,7 +1285,7 @@ const [userId, setUserId] = useState("");
 </Popup>
 
 {/*---------------- BIS REGISTER POPUP PAGE CODE HERE----------------------------------- */}
-<Popup trigger={buttonRegisterPage} setTrigger={setButtonRegisterPage}>
+<Popup trigger={buttonRegisterPagebis} setTrigger={setButtonRegisterPagebis}>
   
 <form onSubmit={handleRegisterSubmit}>
  
@@ -920,7 +1347,7 @@ const [userId, setUserId] = useState("");
 
 
 {/*------------------ BIS REQUIRED DETAILS POPUP IF USER SELECTED NO PAGE CODE HERE-------------------------- */}
-<Popup trigger={buttonbisrqdetails} setTrigger={setButtonbisrqdetails}>
+<Popup trigger={buttonbisrqdetailsbis} setTrigger={setButtonbisrqdetailsbis}>
 <div style={{ height: "500px", width:"608px", overflow: "scroll" }}>
           <form onSubmit={handleBISSubmit}>
 
@@ -1126,7 +1553,7 @@ PAN Card:
 
 
 {/*---------------START NEW APPLICATION BIS REQUIRED DETAILS POPUP IF USER SELECTED YES PAGE CODE HERE  ----------------------*/}
-<Popup trigger={buttonPopup6} setTrigger={setButtonPopup6}>
+<Popup trigger={buttonPopup6bis} setTrigger={setButtonPopup6bis}>
         <div style={{ height: "500px", width:"608px", overflow: "scroll" }}>
           <form onSubmit={handleBISSubmit}>
 

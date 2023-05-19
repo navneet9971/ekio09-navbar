@@ -805,7 +805,7 @@ logoImg.onload = function () {
           </Popup>
 
 {/*--------Ststus Bar CODE IS HERE --------------------*/}
-          <div className>
+          <div>
       <StatusBar
         totalResponses={totalResponses}
         completedResponses={completedResponses}
