@@ -40,7 +40,7 @@ const Secondpage = () => {
           const id = response.data.data['id'];
           setNewApplicationId(id);
           localStorage.setItem("newApplicationId", id); // store id in localStorage
-          console.log(id)
+         console.log(id)
         })
         .catch((error) => {
           console.log(error);
@@ -141,66 +141,84 @@ const Secondpage = () => {
   }
 
     console.log(formData)
-    console.log('Application ID:', localStorage.getItem('newApplicationId'));
-    console.log('Compliance ID:', localStorage.getItem("compliance_id"));
 
-    // function to handle form submission
-    axiosInstance.post('/application/compliance/', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      }
-    }).then(response => {
-      const data = response.data; // your JSON data here
+   console.log('Application ID:', localStorage.getItem('newApplicationId'));
+   console.log('Compliance ID:', localStorage.getItem("compliance_id"));
 
-      // form submission successful
-      setButtonpopupform1tec(true);
- console.log(data)
-// loop through each form in the "forms" field
-      for (const [formName, formData] of Object.entries(data.data.forms)) {
-        // create a new Blob object with the formData
-        const file = new Blob([formData], { type: 'text/plain' });
+ // Create a new FormData object
+ const combinedFormData = new FormData();
 
-        // create a URL for the file
-        const fileUrl = URL.createObjectURL(file);
+ // Append the form data to the combined FormData object
+ for (const [key, value] of Object.entries(formData)) {
+   combinedFormData.append(key, value);
+ }
 
-        // create a temporary anchor tag to trigger the download
-        const link = document.createElement('a');
-        link.href = fileUrl;
-        link.download = `${formName}.txt`;
-        link.click();
+ // Append the tecformData to the combined FormData object
+ for (const [key, value] of Object.entries(tecformData)) {
+   combinedFormData.append(key, value);
+ }
 
-        // clean up the URL object
-        URL.revokeObjectURL(fileUrl);
-      }
-      const formSubmitted = true; // Corrected the assignment statement
-      
-          if (formSubmitted) { // Assuming success status is available in uploadStatus
-            Swal.fire({
-              icon: 'success',
-              title: 'Form Submitted',
-              text: 'Your Application has been submitted successfully.You can track the progress in Track Application section',
-              confirmButtonText: 'OK',
-            });
-            setButtonpopupform1tec(false);
-            setButtonautofilledtec(false);
-          } else {
-            Swal.fire({
-              icon: 'error',
-              title: 'Form not submitted',
-              text: 'Form submission failed. Please try again.',
-              confirmButtonText: 'OK',
-            });
-          }
-        })
-        .catch((error) => {
-          // Handle error case here
-          Swal.fire({
-            icon: 'error',
-            title: 'Form Submission Failed',
-            text: 'Sorry, there was an error Submission your form',
-            confirmButtonText: 'OK',
-          });
-        });    
+ // Make the API POST request with the combined FormData
+ axiosInstance
+   .post('/application/compliance/', combinedFormData, {
+     headers: {
+       'Content-Type': 'multipart/form-data',
+     },
+   })
+  .then(response => {
+    const data = response.data; // your JSON data here
+    // form submission successful
+    console.log(data);
+
+    // loop through each form in the "forms" field
+    for (const [formName, formData] of Object.entries(data.data.forms)) {
+      // create a new Blob object with the formData
+      const file = new Blob([formData], { type: 'text/plain' });
+
+      // create a URL for the file
+      const fileUrl = URL.createObjectURL(file);
+
+      // create a temporary anchor tag to trigger the download
+      const link = document.createElement('a');
+      link.href = fileUrl;
+      link.download = `${formName}.txt`;
+      link.click();
+
+      // clean up the URL object
+      URL.revokeObjectURL(fileUrl);
+    }
+
+    const formSubmitted = true; // Assuming success status is available in uploadStatus
+
+    if (formSubmitted) { // Assuming success status is available in uploadStatus
+      Swal.fire({
+        icon: 'success',
+        title: 'Form Submitted',
+        text: 'Your Application has been submitted successfully. You can track the progress in the Track Application section.',
+        confirmButtonText: 'OK',
+      }).then(() => {
+        setButtonpopupform1tec(false);
+        setButtonautofilledtec(false);
+      });
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Form not submitted',
+        text: 'Form submission failed. Please try again.',
+        confirmButtonText: 'OK',
+      });
+    }
+  })
+  .catch((error) => {
+    // Handle error case here for both formData and tecformData
+    Swal.fire({
+      icon: 'error',
+      title: 'Form Submission Failed',
+      text: 'Sorry, there was an error submitting your form',
+      confirmButtonText: 'OK',
+    });
+  });
+
   }
 
    //TEC AUTO FILL FORM CONST HERE ---------------------
@@ -223,11 +241,14 @@ const Secondpage = () => {
     Foreign_manufacturer_contact_number:'',
     Foreign_manufacturer_emailid:'',
     Types_of_company:'',
-    application:'',
-    compliance:'',
-    request_for:'',
+    application:'newApplicationId',
+    compliance:"compliance_id",
+    request_for:'certification',
+    // application:'',
+    // compliance:'',
+    // request_for:'',
   });
-
+ 
   const handleChange = (e) => {
     setTecformData({ ...tecformData, [e.target.name]: e.target.value });
   };
@@ -261,6 +282,7 @@ const Secondpage = () => {
       // Call the function for unregistering
       setButtonpopupform1tec(true);
     }
+    setButtonautofilledtec(false);
   }
   
 /*----------------------BIS FUNCTION CODE START HERE----------------*/
@@ -467,7 +489,7 @@ const [userId, setUserId] = useState("");
       const data = response.data; // your JSON data here
 
       // form submission successful
-      setButtonpopupform1tec(true);
+      
  console.log(data)
 // loop through each form in the "forms" field
       for (const [formName, formData] of Object.entries(data.data.forms)) {
@@ -566,6 +588,7 @@ const [userId, setUserId] = useState("");
       // Call the function for unregistering
       setButtonRegisterbis(true);
     }
+    setButtonautofilledbis(false)
   }
   
 
@@ -682,6 +705,7 @@ const [userId, setUserId] = useState("");
 <div style={{ height: "500px", overflow: "scroll" }}>
           <form onSubmit={handleSubmit}>
 
+<h3>Applicant</h3>
           <label className="st8012">
       Applicant company CIN
    <input
@@ -803,8 +827,9 @@ const [userId, setUserId] = useState("");
       />
       </label>
 
+<h3>Foreign Manufacturer</h3>
       <label className="st8012">
-      Foreign_manufacturer_authorised_signatory_designation
+      Authorised signatory designation
    <input
         className="st805"
         type="text"
@@ -815,7 +840,7 @@ const [userId, setUserId] = useState("");
       </label>
 
       <label className="st8012">
-      Foreign_manufacturer_authorised_signatory_name
+      Authorised signatory name
    <input
         className="st805"
         type="text"
@@ -826,7 +851,7 @@ const [userId, setUserId] = useState("");
       </label>
 
       <label className="st8012">
-      Foreign_manufacturer_company_address
+      Company address
    <input
         className="st805"
         type="text"
@@ -837,7 +862,7 @@ const [userId, setUserId] = useState("");
       </label>
 
       <label className="st8012">
-      Foreign_manufacturer_company_name
+      Company name
    <input
         className="st805"
         type="text"
@@ -848,7 +873,7 @@ const [userId, setUserId] = useState("");
       </label>
 
       <label className="st8012">
-      Foreign_manufacturer_contact_number
+      Contact_number
    <input
         className="st805"
         type="text"
@@ -859,7 +884,7 @@ const [userId, setUserId] = useState("");
       </label>
 
       <label className="st8012">
-      Foreign_manufacturer_emailid
+      Email ID
    <input
         className="st805"
         type="text"
@@ -870,50 +895,16 @@ const [userId, setUserId] = useState("");
       </label>
 
       <label className="st8012">
-      Types_of_company
-   <input
-        className="st805"
-        type="text"
-        name="Types_of_company"
-        value={tecformData.Types_of_company}
-        onChange={handleChange}
-      />
+      Types of company
+      <select className='st804' 
+      name="Types_of_company"
+      value={tecformData.Types_of_company}
+      onChange={handleChange}
+      >
+              <option value="Foregin">Foregin</option>
+              <option value="Indian">Indian</option>
+             </select>
       </label>
-
-      <label className="st8012">
-      application
-   <input
-        className="st805"
-        type="text"
-        name="application"
-        value={tecformData.application}
-        onChange={handleChange}
-      />
-      </label>
-
-      <label className="st8012">
-      compliance
-   <input
-        className="st805"
-        type="text"
-        name="compliance"
-        value={tecformData.compliance}
-        onChange={handleChange}
-      />
-      </label>
-
-      <label className="st8012">
-      request_for
-   <input
-        className="st805"
-        type="text"
-        name="request_for"
-        value={tecformData.request_for}
-        onChange={handleChange}
-      />
-      </label>
-
-
 
       <button className='btn808' type="submit">Submit</button>
 
@@ -1243,7 +1234,7 @@ const [userId, setUserId] = useState("");
 
 {/*--------- BIS DYNAMIC FORM DATA AUTO FILL FORM CODE IS HERE -------------------- */}
 <Popup trigger={buttonautofillpopupbis} setTrigger={setButtonautofillpopupbis}>
-  WORK IN PROGRESS
+  Abhi Kaam Start hai Baad may aana !! abhi Bye!!
 </Popup>
 
 
