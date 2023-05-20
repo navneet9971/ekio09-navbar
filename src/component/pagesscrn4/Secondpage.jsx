@@ -679,7 +679,7 @@ const [userId, setUserId] = useState("");
 
 {/*------------------------ TEC DYNAMIC FORM DATA POPUP CODE HERE------------------------ */}
 <Popup trigger={buttonautofilledtec} setTrigger={setButtonautofilledtec}>
-<h3 className="reg-popup-titlte">You Are Continue With Your Previous Data</h3>
+<h3 className="reg-popup-titlte">Continue with previous data?</h3>
 <div className="checkbox-container">
   <div className="bis-register">
     <div>
@@ -1211,7 +1211,7 @@ const [userId, setUserId] = useState("");
 
 {/*------------------------ BIS DYNAMIC FORM DATA POPUP CODE HERE------------------------ */}
 <Popup trigger={buttonautofilledbis} setTrigger={setButtonautofilledbis}>
-<h3 className="reg-popup-titlte">You Are Continue With Your Previous Data</h3>
+<h3 className="reg-popup-titlte">Continue with previous data?</h3>
 <div className="checkbox-container">
   <div className="bis-register">
     <div>
