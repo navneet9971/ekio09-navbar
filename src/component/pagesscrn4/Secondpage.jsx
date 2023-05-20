@@ -86,6 +86,7 @@ const Secondpage = () => {
     event.preventDefault();
 
      const formData = new FormData();
+     console.log(formData);
   formData.append('application', localStorage.getItem('newApplicationId'));
   formData.append('compliance', localStorage.getItem("compliance_id"));
   formData.append('request_for', 'certification');
@@ -140,137 +141,142 @@ const Secondpage = () => {
   }
   }
 
-    console.log(formData)
-
    console.log('Application ID:', localStorage.getItem('newApplicationId'));
    console.log('Compliance ID:', localStorage.getItem("compliance_id"));
 
- // Create a new FormData object
- const combinedFormData = new FormData();
 
- // Append the form data to the combined FormData object
- for (const [key, value] of Object.entries(formData)) {
-   combinedFormData.append(key, value);
- }
-
- // Append the tecformData to the combined FormData object
- for (const [key, value] of Object.entries(tecformData)) {
-   combinedFormData.append(key, value);
- }
-
- // Make the API POST request with the combined FormData
- axiosInstance
-   .post('/application/compliance/', combinedFormData, {
-     headers: {
-       'Content-Type': 'multipart/form-data',
-     },
-   })
-  .then(response => {
-    const data = response.data; // your JSON data here
-    // form submission successful
-    console.log(data);
-
-    // loop through each form in the "forms" field
-    for (const [formName, formData] of Object.entries(data.data.forms)) {
-      // create a new Blob object with the formData
-      const file = new Blob([formData], { type: 'text/plain' });
-
-      // create a URL for the file
-      const fileUrl = URL.createObjectURL(file);
-
-      // create a temporary anchor tag to trigger the download
-      const link = document.createElement('a');
-      link.href = fileUrl;
-      link.download = `${formName}.txt`;
-      link.click();
-
-      // clean up the URL object
-      URL.revokeObjectURL(fileUrl);
-    }
-
-    const formSubmitted = true; // Assuming success status is available in uploadStatus
-
-    if (formSubmitted) { // Assuming success status is available in uploadStatus
-      Swal.fire({
-        icon: 'success',
-        title: 'Form Submitted',
-        text: 'Your Application has been submitted successfully. You can track the progress in the Track Application section.',
-        confirmButtonText: 'OK',
-      }).then(() => {
-        setButtonpopupform1tec(false);
-        setButtonautofilledtec(false);
-      });
-    } else {
-      Swal.fire({
-        icon: 'error',
-        title: 'Form not submitted',
-        text: 'Form submission failed. Please try again.',
-        confirmButtonText: 'OK',
-      });
-    }
-  })
-  .catch((error) => {
-    // Handle error case here for both formData and tecformData
-    Swal.fire({
-      icon: 'error',
-      title: 'Form Submission Failed',
-      text: 'Sorry, there was an error submitting your form',
-      confirmButtonText: 'OK',
-    });
+   // Make the API POST request with the formData
+axiosInstance
+.post('/application/compliance/', formData, {
+  headers: {
+    'Content-Type': 'multipart/form-data',
+  },
+})
+.then(response => {
+  const data = response.data; // your JSON data here
+  // form submission successful
+  console.log(data);
+  Swal.fire({
+    title: 'Success',
+    text: 'Form submitted successfully',
+    icon: 'success',
   });
+
+  // Loop through each form in the "forms" field
+  for (const [formName, formData] of Object.entries(data.data.forms)) {
+    // Create a new Blob object with the formData
+    const file = new Blob([formData], { type: 'text/plain' });
+
+    // Create a URL for the file
+    const fileUrl = URL.createObjectURL(file);
+
+    // Create a temporary anchor tag to trigger the download
+    const link = document.createElement('a');
+    link.href = fileUrl;
+    link.download = `${formName}.txt`;
+    link.click();
+
+    // Clean up the URL object
+    URL.revokeObjectURL(fileUrl);
+  }
+})
+.catch(error => {
+  // handle error
+  console.error(error);
+  Swal.fire({
+    title: 'Error',
+    text: 'Failed to submit form',
+    icon: 'error',
+  });
+});
 
   }
 
-   //TEC AUTO FILL FORM CONST HERE ---------------------
+
+   //TEC AUTO FILL FORM CONST HERE And also CALL APIS for auto fill  ---------------------
    const [tecformData, setTecformData] = useState({
-    Applicant_company_CIN:'',
-    Applicant_company_address:'',
-    Applicant_company_name:'',
-    Applicant_contact_number:'',
-    Applicant_director_designation:'',
-    Applicant_director_name:'',
-    Applicant_emailid:'',
-    Authorised_signatory_designation:'',
-    Authorised_signatory_emailid:'',
-    Authorised_signatory_name:'',
-    Authorised_signatory_number:'',
-    Foreign_manufacturer_authorised_signatory_designation:'',
-    Foreign_manufacturer_authorised_signatory_name:'',
+    Applicant_company_CIN: '',
+    Applicant_company_address: '',
+    Applicant_company_name: '',
+    Applicant_contact_number: '',
+    Applicant_director_designation: '',
+    Applicant_director_name: '',
+    Applicant_emailid: '',
+    Authorised_signatory_designation: '',
+    Authorised_signatory_emailid: '',
+    Authorised_signatory_name: '',
+    Authorised_signatory_number: '',
+    Foreign_manufacturer_authorised_signatory_designation: '',
+    Foreign_manufacturer_authorised_signatory_name: '',
     Foreign_manufacturer_company_address: '',
     Foreign_manufacturer_company_name: '',
-    Foreign_manufacturer_contact_number:'',
-    Foreign_manufacturer_emailid:'',
-    Types_of_company:'',
-    application:'newApplicationId',
-    compliance:"compliance_id",
-    request_for:'certification',
-    // application:'',
-    // compliance:'',
-    // request_for:'',
+    Foreign_manufacturer_contact_number: '',
+    Foreign_manufacturer_emailid: '',
+    Types_of_company: '',
+    application: 'newApplicationId',
+    compliance: 'compliance_id',
+    request_for: 'certification',
   });
- 
+
+  const handleSubmittecauto = (event) => {
+    event.preventDefault();
+
+    axiosInstance
+      .post('/application/compliance/', tecformData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .then((response) => {
+        const data = response.data;
+        console.log(data);
+        Swal.fire({
+          title: 'Success',
+          text: 'Form submitted successfully',
+          icon: 'success',
+        });
+
+        for (const [formName, formData] of Object.entries(data.data.forms)) {
+          const file = new Blob([formData], { type: 'text/plain' });
+          const fileUrl = URL.createObjectURL(file);
+          const link = document.createElement('a');
+          link.href = fileUrl;
+          link.download = `${formName}.txt`;
+          link.click();
+          URL.revokeObjectURL(fileUrl);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        Swal.fire({
+          title: 'Error',
+          text: 'Failed to submit form',
+          icon: 'error',
+        });
+      });
+  };
+
   const handleChange = (e) => {
     setTecformData({ ...tecformData, [e.target.name]: e.target.value });
   };
 
-  useEffect(() => {
-    // Fetch data from the backend and auto-fill the form
-    fetchData();
-  }, []);
-
   const fetchData = async () => {
     try {
-      const response = await axiosInstance.get(`application/inclusive/?compliance=${localStorage.getItem("compliance_name")}`);
+      const response = await axiosInstance.get(
+        `application/inclusive/?compliance=${localStorage.getItem('compliance_name')}`
+      );
       const tecdata = response.data['fields'];
-      console.log(tecdata)
-      setTecformData(tecdata); // Set the fetched data to the form state
+      console.log(tecdata);
+      setTecformData({ ...tecformData, ...tecdata });
     } catch (error) {
       console.error(error);
     }
   };
 
 
-   //BIS DYNAMIC POPUP CHOOSE OPTION YES OR NO  function handle here-------------------------
+
+
+   //TEC DYNAMIC POPUP CHOOSE OPTION YES OR NO  function handle here-------------------------
    function handleautofilledtec(event) {
     const value = event.target.value;
     
@@ -401,7 +407,7 @@ const [userId, setUserId] = useState("");
   formData.append('Applicant_company_name', manufacturerfactoryaddress);
   formData.append('Applicant_company_address', manufacturerContactno);
   formData.append('Applicant_director_name', dropdown_signing_person);
-    formData.append('Applicant_director_name', manufacturerEmailid);
+  formData.append('Applicant_director_name', manufacturerEmailid);
   formData.append('Applicant_director_designation',top_management_of_the_manufacturing_unit_name_1);
   formData.append('Applicant_director_designation',top_management_of_the_manufacturing_unit_name_2);
   formData.append('Applicant_director_designation',top_management_of_the_manufacturing_unit_name_3);
@@ -517,7 +523,6 @@ const [userId, setUserId] = useState("");
               text: 'Your Application has been submitted successfully.You can track the progress in Track Application section',
               confirmButtonText: 'OK',
             });
-            setButtonpopupform1tec(false);
             setButtonPopup6bis(false);
             setButtonbisrqdetailsbis(false);
           } else {
@@ -556,24 +561,36 @@ const [userId, setUserId] = useState("");
   })
 
  // navigate to compliance page based on compliance name
-  const handleClick = (complianceName, complianceId) => {
+  const handleClick = async (complianceName, complianceId) => {
+  localStorage.setItem("compliance_id", complianceId);
+  localStorage.setItem("compliance_name", complianceName);
 
-   localStorage.setItem("compliance_id", complianceId);
-   localStorage.setItem("compliance_name", complianceName);
-
-    if (complianceName === "TEC") {
-      setButtonautofilledtec(true)
+  if (complianceName === "TEC") {
+    try {
+      await fetchData(); // Fetch data on button click
+      setButtonautofilledtec(true);
+    } catch (error) {
+      console.error(error);
     }
-    
-    else if (complianceName === "BIS") {
-      setButtonautofilledbis(true)
-    } 
-    //  else if (complianceName === "WPS") {
-    //   history.push(`/navbar/compliance/WPS`);} 
-    // else {
-    //   // handle other compliance names
-    // }
-  };
+  } else if (complianceName === "BIS") {
+    try {
+      await fetchData(); // Fetch data on button click
+      setButtonautofilledbis(true);
+    } catch (error) {
+      console.error(error);
+    }
+  // } else if (complianceName === "WPS") {
+  //   try {
+  //     await fetchData(); // Fetch data on button click
+  //     history.push(`/navbar/compliance/WPS`);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  } else {
+    // handle other compliance names
+  }
+};
+
 
 
   //BIS DYNAMIC POPUP CHOOSE OPTION YES OR NO  function handle here-------------------------
@@ -703,7 +720,7 @@ const [userId, setUserId] = useState("");
 {/*-------------- TEC DYNAMIC AUTO FILL FORM CODE HERE --------------------------------- */}
 <Popup trigger={buttonautofillpopuptec} setTrigger={setButtonautofillpopuptec}>
 <div style={{ height: "500px", overflow: "scroll" }}>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmittecauto}>
 
 <h3>Applicant</h3>
           <label className="st8012">
