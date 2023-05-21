@@ -39,7 +39,7 @@ const Secondpage = () => {
         .then((response) => {
           const id = response.data.data['id'];
           setNewApplicationId(id);
-          localStorage.setItem("newApplicationId", id); // store id in localStorage
+          // localStorage.setItem("newApplicationId", id); // store id in localStorage
          console.log(id)
         })
         .catch((error) => {
@@ -87,7 +87,7 @@ const Secondpage = () => {
 
      const formData = new FormData();
      console.log(formData);
-  formData.append('application', localStorage.getItem('newApplicationId'));
+  formData.append('application', applicationId);
   formData.append('compliance', localStorage.getItem("compliance_id"));
   formData.append('request_for', 'certification');
   formData.append('Types_of_company', types_of_company);
@@ -213,16 +213,20 @@ axiosInstance
     Foreign_manufacturer_contact_number: '',
     Foreign_manufacturer_emailid: '',
     Types_of_company: '',
-    application: 'newApplicationId',
+    application: '',
     compliance: 'compliance_id',
     request_for: 'certification',
   });
 
+  console.log(tecformData)
+
   const handleSubmittecauto = (event) => {
     event.preventDefault();
 
+    const updatedTecformData = { ...tecformData, application: applicationId };
+
     axiosInstance
-      .post('/application/compliance/', tecformData, {
+      .post('/application/compliance/', updatedTecformData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
