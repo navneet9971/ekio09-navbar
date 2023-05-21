@@ -922,7 +922,7 @@ const [userId, setUserId] = useState("");
       value={tecformData.Types_of_company}
       onChange={handleChange}
       >
-              <option value="Foregin">Foregin</option>
+              <option value="Foregin">Foreign</option>
               <option value="Indian">Indian</option>
              </select>
       </label>
