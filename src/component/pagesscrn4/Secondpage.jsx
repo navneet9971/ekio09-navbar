@@ -218,7 +218,7 @@ axiosInstance
     request_for: 'certification',
   });
 
-  console.log(tecformData)
+  // console.log(tecformData)  //TecForm Data consolelog here and checkout
 
   const handleSubmittecauto = (event) => {
     event.preventDefault();
@@ -309,44 +309,78 @@ axiosInstance
   
   
   //BIS Register POPUP box Filled Const Data here--------------------------------------------------
-const [userId, setUserId] = useState("");
-  const [password, setPassword] = useState('');
   const [hasRNumber, setHasRNumber] = useState(false);
-  const [rNumber, setRNumber] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [autofillform, setAutofillform] = useState(null);
 
 
 
-   const handleRNumberChange = (event) => {
-    const { value } = event.target;
-    setRNumber(value);
-  };
 
 
-   const handleDropdownChange = (event) => {
-    const { value } = event.target;
-    setHasRNumber(value === "yes");
-  };
+//BIS USER  R NUMBER Submit CHOICE IF YES OR NO THEN SWITCH POPUP HANDLE HERE
+const [rnumberformData, setRnumberformData] = useState({
+  Username_BISPortal: '',
+  Password_BISPortal: '',
+  Rnumber:'',
+  application: '',
+  compliance: localStorage.getItem("compliance_id"),
+  request_for: 'certification',
+});
 
-//BIS USER CHOICE IF YES OR NO THEN SWITCH POPUP HANDLE HERE
 
-  const handleRegisterSubmit = (event) => {
+
+  const handleRnumberRegisterSubmit = (event) => {
     event.preventDefault();
-    // Handle form submission logic here
-    if (hasRNumber) {
-      // Logic when R number is selected
-      console.log("R Number:", rNumber);
-    } else {
-      // Logic when R number is not selected
-      setButtonbisrqdetailsbis(true);
-      console.log("R Number not selected");
+
+    
+     const updatedrnumberformData = { ...rnumberformData, application: applicationId };
+console.log(updatedrnumberformData)
+      axiosInstance
+      .post('application/compliance/', updatedrnumberformData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .then((response) => {
+        const data = response.data;
+        console.log(data);
+        Swal.fire({
+          title: 'Success',
+          text: 'Form submitted successfully',
+          icon: 'success',
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        Swal.fire({
+          title: 'Error',
+          text: 'Failed to submit form',
+          icon: 'error',
+        });
+      });
     }
-    setButtonRegisterPagebis(false);
-  };
 
+    const handleRNumbersubmit = (event) => {
+      event.preventDefault();
+      // Handle form submission logic here
+      if (hasRNumber) {
+        // Logic when R number is selected
+        handleRnumberRegisterSubmit(event);
+        console.log("R Number:");
+      } else {
+        // Logic when R number is not selected
+        setButtonbisrqdetailsbis(true);
+        console.log("R Number not selected");
+      }
+      // setButtonRegisterPagebis(false);
+    };
+  
+    const handleDropdownChange = (event) => {
+      const { value } = event.target;
+      setHasRNumber(value === "yes");
+    };
 
-
+ 
 
 
   //BIS NEW APPLICATION CONST DATA HERE------------------------------------------------------------
@@ -625,6 +659,7 @@ const [userId, setUserId] = useState("");
     // Call the function for unregistering
     setButtonPopup6bis(true);
   }
+  setButtonRegisterbis(false)
 }
 
 
@@ -1296,64 +1331,85 @@ const [userId, setUserId] = useState("");
 </div>
 </Popup>
 
-{/*---------------- BIS REGISTER POPUP PAGE CODE HERE----------------------------------- */}
+{/*---------------- BIS REGISTER POPUP R number PAGE CODE HERE----------------------------------- */}
 <Popup trigger={buttonRegisterPagebis} setTrigger={setButtonRegisterPagebis}>
   
-<form onSubmit={handleRegisterSubmit}>
- 
+<form onSubmit={handleRNumbersubmit}>
       <div className="bis-userid">
         <label htmlFor="user-id">User ID:</label>
         <input
           type="text"
           id="user-id"
-          value={userId}
-          onChange={(event) => setUserId(event.target.value)}
+          name="Username_BISPortal"
+          value={rnumberformData.Username_BISPortal}
+          onChange={(event) =>
+            setRnumberformData({
+              ...rnumberformData,
+              Username_BISPortal: event.target.value
+            })
+          }
         />
       </div>
 
       <div className="bis-userid">
-      <label htmlFor="password">Password:</label>
-      <div className="password-input-container">
-      <input
-        type={showPassword ? 'text' : 'password'}
-        id="password"
-        value={password}
-        onChange={(event) => setPassword(event.target.value)}
-      />
-      <span
-        className="eye-icon-fun"
-        onClick={() => setShowPassword(!showPassword)}
-        role="button"
-        tabIndex={0}
-      >
-        {showPassword ? '🙈' : '👁️'}
-      </span>
+        <label htmlFor="password">Password:</label>
+        <div className="password-input-container">
+          <input
+            type={showPassword ? 'text' : 'password'}
+            id="password"
+            name="Password_BISPortal"
+            value={rnumberformData.Password_BISPortal}
+            onChange={(event) =>
+              setRnumberformData({
+                ...rnumberformData,
+                Password_BISPortal: event.target.value
+              })
+            }
+          />
+          <span
+            className="eye-icon-fun"
+            onClick={() => setShowPassword(!showPassword)}
+            role="button"
+            tabIndex={0}
+          >
+            {showPassword ? '🙈' : '👁️'}
+          </span>
+        </div>
       </div>
-    </div>
-    
+
       <div className="bis-userid">
-  <label htmlFor="has-r-number">Do you have an R number?</label>
-  <select
-    id="has-r-number"
-    value={hasRNumber ? "yes" : "no"}
-    onChange={handleDropdownChange}
-  >
-    <option value="yes">Yes</option>
-    <option value="no">No</option>
-  </select>
-</div>
+        <label htmlFor="has-r-number">Do you have an R number?</label>
+        <select
+          id="has-r-number"
+          value={hasRNumber ? "yes" : "no"}
+          onChange={handleDropdownChange}
+        >
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+      </div>
+
       {hasRNumber && (
         <div className="bis-userid">
           <label htmlFor="r-number">R Number:</label>
           <input
             type="text"
             id="user-id"
-            value={rNumber}
-            onChange={handleRNumberChange}
+            name="Rnumber"
+            value={rnumberformData.Rnumber}
+            onChange={(event) =>
+              setRnumberformData({
+                ...rnumberformData,
+                Rnumber: event.target.value
+              })
+            }
           />
         </div>
       )}
-      <button className="bis-register" type="submit">Submit</button>
+
+      <button className="bis-register" type="submit">
+        Submit
+      </button>
     </form>
 </Popup>
 

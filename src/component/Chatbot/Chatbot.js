@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Widget, addResponseMessage } from 'react-chat-widget';
+import { Widget, addResponseMessage, setQuickButtons } from 'react-chat-widget';
 import 'react-chat-widget/lib/styles.css';
 import axiosInstance from '../../interceptors/axios';
 
-const Chatbot = () => { 
+const Chatbot = () => {
   const [sendingMessage, setSendingMessage] = useState(false); // Track if a message is being sent
 
   const uniqueid = localStorage.getItem('unique');
   const complianceid = localStorage.getItem('compliance_id');
 
   useEffect(() => {
-    addResponseMessage('Hello, how can I help you?');
+    const buttons = [{ label: 'Yes', value: '1' }, { label: 'No', value: '2' }];
+    addResponseMessage('Are you satisfied?'); // Initial question
+    setQuickButtons(buttons);
   }, []);
-
 
   const handleFormSubmit = async (message) => {
     if (sendingMessage) {
@@ -23,16 +24,36 @@ const Chatbot = () => {
     try {
       setSendingMessage(true); // Set sendingMessage to true when a message is being sent
 
-      const formData = new FormData();
-      formData.append('uniqueid', uniqueid);
-      formData.append('compliance', complianceid);
-      formData.append('issue', message);
+      if (message === '1') {
+        // User clicked 'Yes'
+        addResponseMessage('Thank you!');
+      } else if (message === '2') {
+        // User clicked 'No'
+        const buttons = [
+          { label: 'Portal Registration', value: 'Portal Registration' },
+          { label: 'Initiation of Testing', value: 'Initiation of Testing' },
+          { label: 'AIR registration', value: 'AIR registration' },
+          { label: 'Foreign OEM Registration', value: 'Foreign OEM Registration' },
+          { label: 'BOM Submission', value: 'BOM Submission' },
+          { label: 'Application Payment', value: 'Application Payment' },
+          { label: 'Final Submission', value: 'Final Submission' },
+          { label: 'Issuance of certification', value: 'Issuance of certification' },
+        ];
+        addResponseMessage('Please choose an option:');
+        setQuickButtons(buttons);
+      } else {
+        // Make API call for other messages
+        const formData = new FormData();
+        formData.append('uniqueid', uniqueid);
+        formData.append('compliance', complianceid);
+        formData.append('issue', message);
 
-      const response = await axiosInstance.post('chatbot/', formData);
-      console.log(response.data.message);
+        const response = await axiosInstance.post('chatbot/', formData);
+        console.log(response.data.message);
 
-      const botMessage = JSON.stringify(response.data.message);
-      addResponseMessage(botMessage);
+        const botMessage = JSON.stringify(response.data.message);
+        addResponseMessage(botMessage);
+      }
     } catch (error) {
       console.error('API request failed:', error);
     } finally {
@@ -51,6 +72,22 @@ const Chatbot = () => {
           handleNewUserMessage={handleNewUserMessage}
           title="Chat"
           subtitle="Ask me anything"
+          senderPlaceHolder="Type a message..."
+          showCloseButton={true}
+          fullScreenMode={false}
+          badge={0}
+          autofocus={true}
+          customLauncher={
+            <button className="custom-launcher-button">Chat with us</button>
+          }
+          customSubmitButton={
+            <button className="custom-submit-button">Send</button>
+          }
+          handleQuickButtonClicked={(message) => handleNewUserMessage(message)}
+          quickButtons={[
+            { label: 'YES', value: 'YES' },
+            { label: 'NO', value: 'NO' },
+          ]}
         />
       </div>
     </div>
