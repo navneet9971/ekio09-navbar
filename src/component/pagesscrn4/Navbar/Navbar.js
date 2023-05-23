@@ -70,10 +70,10 @@ const Navbar = () => {
     <nav className="navbar navbar-expand-lg navbar-mainbg">
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className={`navbar-nav ml-auto ${open ? "active" : ""}`}>
-          <div className="hori-selector">
+          {/* <div className="hori-selector">
             <div className="left"></div>
             <div className="right"></div>
-          </div>
+          </div> */}
 
           <li
             className={pathname === "/navbar/clientdashboard" ? "active" : ""}>

@@ -3,7 +3,7 @@
 }
 
 .bgchange{
-  background-image: url("../assets/pages-bgimages/Copy\ of\ background.svg");
+  background-image: url("../assets/pages-bgimages/background.svg");
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
@@ -12,86 +12,138 @@
   min-height: 91vh;
 }
 
+
+/* Common styles for form groups and regions */
 .form-group22,
 .region-group22 {
   flex: 1 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   gap: 15px;
-  padding: 24px;
+  padding: 12px;
+  width: 23em;
 }
 
+/* Center the container vertically */
 .centerdiv {
   position: relative;
   top: 50%;
   transform: translateY(-99%);
 }
 
+/* Grid container for form groups */
 .first-container22 {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
   gap: 10px;
 }
 
+/* Adjust flex basis for form groups, regions, and go button */
 .form-group22,
 .region-group22,
 .gobutton22 {
   flex-basis: calc(33.33% - 10px);
 }
 
+/* Title with flex display and padding */
 .fist-title {
   display: flex;
   padding: 20px;
 }
 
+/* Red warning text color */
 .red-warning {
   color: red;
   padding: 3px;
 }
 
+/* White color for first text input label */
+label.firsttext-input {
+  color: white;
+}
+
+/* Category input styles */
 input#category-input {
   width: 22em;
-  height: 2em;
+  height: 3em;
   padding: 3px;
   font-weight: 700;
+  border-radius: 7px;
+  font-size: 15px;
+  border-style: none;
 }
 
-input#product-input {
-  width: 22em;
-  height: 2em;
-  padding: 3px;
-  font-weight: 700;
-}
-
+/* Region select styles */
 select#region-select22 {
   height: 44px;
   padding: 8px 44px;
+  border-radius: 10px;
+  margin: 0px -4px;
 }
 
+/* Placeholder font size for form group inputs */
+.form-group22 input::placeholder {
+  font-size: 24px;
+}
+
+/* Side image container styles */
+.side-img {
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+}
+
+/* Custom side image styles */
+.custom-side-img {
+  width: 885px;
+  height: 451px;
+  padding: 122px -4px;
+  position: absolute;
+  left: 325px;
+  transform: translateY(-103%);
+}
+
+/* Responsive styles for button */
 button.first-go {
-  padding: 13px 18px;
+  display: flex;
+  justify-content: flex-start;
+  padding: 8px 22px;
   font-size: 22px;
   font-weight: 600;
-  color: white;
-  border-radius: 20px;
-  background-color: #082a71;
+  color: #FF8025;
+  border-radius: 10px;
   cursor: pointer;
+  width: 80px;
+  border-style: none;
 }
 
-button.first-go:hover{
-background-color: #55b721;
+/* Media queries for responsiveness */
+@media only screen and (max-width: 600px) {
+  /* Adjust width for form groups and side image */
+  .form-group22,
+  .custom-side-img {
+    width: 100%;
+    padding: 12px;
+    left: 0;
+    transform: translateY(0);
+  }
+
+  /* Adjust width for category input */
+  input#category-input {
+    width: 100%;
+  }
+
+  /* Adjust width for region select */
+  select#region-select22 {
+    width: 100%;
+  }
+
+  /* Adjust flex-basis for form groups, regions, and go button */
+  .form-group22,
+  .region-group22,
+  .gobutton22 {
+    flex-basis: 100%;
+  }
 }
-
-.gobutton22 {
-  display: flex;
-  justify-content: flex-end;
-  margin: 0 240px;
-}
-
-
-
-
 
 
 

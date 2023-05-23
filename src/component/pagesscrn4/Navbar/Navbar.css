@@ -16,28 +16,28 @@ i {
   position: absolute;
   transform: translate(59%, -125%);
   margin-left: 86%;
-  padding: 1em 1em;
-  font-size: 12px;
+  padding: 1em 1.5em;
   text-transform: uppercase;
   letter-spacing: 2.5px;
-  font-weight: 500;
-  color: #000;
-  background-color: #55b700;
+  font-weight: bold;
+  font-size: 12px;
+  color: #FF8025;
+  background-color: #fff;
   border: none;
-  border-radius: 45px;
+  border-radius: 10px;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease 0s;
   cursor: pointer;
   outline: none;
 }
 
-.button99:hover {
+/* .button99:hover {
   background-color: #082a71;
   box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
   color: #fff;
   position: absolute;
   transform: translate(59%, -125%);
-}
+} */
 
 .button99:active {
   position: absolute;
@@ -53,6 +53,7 @@ i {
   padding-top: 10px;
   overflow: hidden;
   position: relative;
+  background-color: #55B600;
 }
 #navbarSupportedContent ul {
   padding: 0px;
@@ -75,12 +76,17 @@ i {
   transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
   position: relative;
 }
+
 #navbarSupportedContent > ul > li.active > a,
 #navbarSupportedContent > ul > li > a.active {
-  color: #4cdb0a;
-  background-color: transparent;
-  transition: all 0.7s;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 800;
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+    text-underline-offset: 0.2em; /* Adjust the value as needed */
 }
+
 #navbarSupportedContent a:not(:only-child):after {
   content: "\f105";
   position: absolute;

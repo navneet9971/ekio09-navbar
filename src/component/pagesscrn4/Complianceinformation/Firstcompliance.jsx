@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import '../Pages.css';
-import Swal from 'sweetalert2';
 import 'react-chatbot-kit/build/main.css';
+import Swal from 'sweetalert2';
+import { ReactComponent as Sideimg } from "../../assets/from-images.svg";
 import axiosInstance from '../../../interceptors/axios';
 
 
 
 
-const Firstpage = () => {
+const Firstcompliance = () => {
   const [category, setCategory] = useState(''); // state for category input
   const [product, setProduct] = useState(''); // state for product input
   const [region, setRegion] = useState(''); // state for selected region
@@ -72,18 +72,17 @@ axiosInstance.get(`/compliance/?category=${category}&product=${product}&region=$
       </div>
 
       <div className="form-group22">
-        <label htmlFor="category-input">Enter Industry:</label>
-        <input type="text" id="category-input" value={category} onChange={handleCategoryChange} />
+        <label className='firsttext-input'>Enter Industry:</label>
+        <input type="text" placeholder='Type Here..' id="category-input" value={category} onChange={handleCategoryChange} />
       </div>
 
       <div className="form-group22">
-        <label htmlFor="product-input">Enter Name of Product:</label>
-        <input type="text" id="product-input" value={product} onChange={handleProductChange} />
+        <label className='firsttext-input'>Enter Name of Product:</label>
+        <input type="text" placeholder='Type Here..' id="category-input" value={product} onChange={handleProductChange} />
       </div>
 
       <div className="region-group22">
-        <label htmlFor="region-select22">Region:</label>
-        <div className="centerdiv"> 
+        <label className='firsttext-input'>Region:</label>
           <select id="region-select22" value={region} onChange={handleRegionChange}>
             <option value="">-- Select a region --</option>
             <option value="Europe">Europe</option>
@@ -91,15 +90,18 @@ axiosInstance.get(`/compliance/?category=${category}&product=${product}&region=$
             <option value="Asia">Asia</option>
             <option value="Americas">Americas</option>
           </select>
-        </div>
       </div>
-      <div className="gobutton22"> 
+      
         <button className="first-go" onClick={handleGoClick}>GO</button>
-      </div>    
+
+        <div className="side-img">
+  <Sideimg className="custom-side-img" />
+</div>
+
 
     </div>
     </div>
   );
 };
 
-export default Firstpage;
+export default Firstcompliance;
