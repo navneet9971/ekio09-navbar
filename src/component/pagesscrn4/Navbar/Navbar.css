@@ -184,6 +184,7 @@ i {
     align-items: center;
     justify-content: flex-end;
     width: 100%;
+    background-color: #55B600;
   }
   .nav-btn {
     display: flex;
