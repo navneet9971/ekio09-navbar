@@ -4,7 +4,6 @@
   font-weight: 600;
   font-size: 40px;
   color: black;
- 
 }
 /* 
 .bg-clienttdash{
@@ -19,18 +18,23 @@
   font-weight: 600;
   padding: 10px;
   color: #fff;
-  /* margin: -9px; */
+  margin: -9px;
+  width: 100.7%;
+  margin-bottom: 30px;
 }
 
+.bg-clientdash{
+  background-image: url("../../assets/pages-bgimages/background.svg");
+}
 
-.welcome .welcome-options {
+/* .welcome .welcome-options {
   width: 100%;
   margin: 0 auto;
-  background: #f3f8fe;
+  
   padding: 50px 0 40px;
   border-radius: 20px;
   margin-bottom: 20px;
-}
+} */
 
 .name-bg {
   width: 100%;
@@ -59,14 +63,8 @@
 }
 
 
-
-.welcome .welcome-options .option-box {
-    /* display: flex; */
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    margin-bottom: 55px;
+a.option-box {
+  margin: 20px;
 }
 
 .welcome .welcome-options .option-box * {
@@ -81,10 +79,23 @@
   color: #898989;
 }
 
-.welcome .welcome-options .option-box:hover * {
-  color: #006193;
-  fill: #006193;
+a.option-box:hover * {
+  transform: scale(1);
+  animation: shining 2s infinite;
 }
+
+@keyframes shining {
+  0% {
+    opacity: 6;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 6;
+  }
+}
+
 
 .welcome .welcome-options .view-report {
   display: block;
@@ -99,6 +110,7 @@
   cursor: pointer;
   transition: 0.3s all;
 }
+
 .welcome .welcome-options .view-report:hover {
   background: #caced3;
 }
@@ -192,10 +204,4 @@ button.continue-button:hover{
 svg.mainsvg1 {
   width: 182px;
   height: 26em;
-}
-
-svg.mainsvg2 {
-  width: 20em;
-  height: 10em;
-  margin: 0 27.5em;
 }

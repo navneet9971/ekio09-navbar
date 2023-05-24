@@ -2,6 +2,23 @@
   box-sizing: border-box;
 }
 
+.tble-reviewbg{
+  background-image: url("../assets/pages-bgimages/background.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.table-bgsconpage{
+  background-image: url("../assets/pages-bgimages/background.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  align-items: center;
+  justify-content: center;
+  min-height: 91vh;
+}
+
+
 .bgchange{
   background-image: url("../assets/pages-bgimages/background.svg");
   background-repeat: no-repeat;
@@ -65,7 +82,7 @@ label.firsttext-input {
 input#category-input {
   width: 22em;
   height: 3em;
-  padding: 3px;
+  padding: 11px;
   font-weight: 700;
   border-radius: 7px;
   font-size: 15px;
@@ -155,7 +172,7 @@ button.first-go {
   h1 {
     font-size: 32px;
     margin-bottom: 25px;
-    color: #0a0a0a;
+    color: #fff;
   }
   
   table {
@@ -552,26 +569,25 @@ td.clickable:hover{
 }
 
 
-  .header-btn1 {
-    display: flex;
-    justify-content: flex-end; /* Change this to adjust the spacing between buttons */
-    align-items: center;
-    padding: 30px;
-  }
+.header-btn1 {
+  display: flex;
+  position: absolute;
+  top: 340px;
+  left: 20px;
+}
+
   .button7 {
-    /* Add any styles for the button here */
-      padding: 10px;
-      position: relative;
-      left: 498px;
-      top: 10px;
-      margin-right: 20px;
-      background-color: #082a71;
-      color: #fff;
-      font-size: 16px;
-      border-radius: 15px;
-      font-weight: 600;
-      cursor: pointer;
-  }
+    padding: 9px 30px;
+    position: relative;
+    margin-right: 20px;
+    background-color: #fff;
+    color: orange;
+    font-size: 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    border-style: none;
+}
   .button7:hover {
     background-color: #55b700;
   }
@@ -596,16 +612,19 @@ td.clickable:hover{
 h2.content {
   margin: 14px;
   font-size: 20px;
+  color: #fff;
 }
 
 h3.conte {
   font-size: 25px;
   font-weight: 600;
+  color: #fff;      
 }
 
 h3.regpro {
   font-size: 26px;
   font-weight: 600;
+  color: #fff;
 }
 
 h398.reqdoc {
@@ -617,7 +636,7 @@ h398.reqdoc {
 
 .ftch.data {
   text-align: center;
-  margin-top: 30px;
+  padding: 20px;
 }
 
 

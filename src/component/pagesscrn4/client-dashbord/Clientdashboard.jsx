@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Row, Col } from "antd";
 import { Link } from "react-router-dom";
-import { ReactComponent as Thumb1 } from "../../assets/images/welcome/2.svg";
-import { ReactComponent as Thumb2 } from "../../assets/images/welcome/4.svg";
-import { ReactComponent as Thumb3 } from "../../assets/images/welcome/use.svg";
-import { ReactComponent as Thumb4 } from "../../assets/images/welcome/know.svg";
+import Thumb1png  from "../../assets/images/2.png";
+import Thumb2png  from "../../assets/images/4.png";
+import Thumb3png  from "../../assets/images/use.png";
+import Thumb4png from "../../assets/images/know.png";
 import { ReactComponent as Mapbg } from "../../assets/client-map.svg";
 import axiosInstance from "../../../interceptors/axios";
 
@@ -32,22 +32,22 @@ const ClientDashboard = () => {
 
   const WELCOME_OPTIONS = [
     {
-      thumb: <Thumb4 />,
+      thumb: <img src={Thumb4png} alt="" />,
       // title: "Know Your Compliance",
       route: "/navbar/firstcompliance",
     },
     {
-      thumb: <Thumb1 />,
+      thumb: <img src={Thumb1png} alt="" />,
       // title: "Start New Project",
       route: "/navbar/firstpage",
     },
     {
-      thumb: <Thumb2 />,
+      thumb: <img src={Thumb2png} alt="" />,
       // title: "Application Progress & Reporting",
       route: "/navbar/review",
     },
     {
-      thumb: <Thumb3 />,
+      thumb: <img src={Thumb3png} alt="" />,
       // title: "How To use Platform",
       route: "/navbar/mainpage",
     },
@@ -68,8 +68,9 @@ const ClientDashboard = () => {
         <div className="upper-name">
           Welcome, {firstName} {lastName}
         </div>
+        <div className="bg-clientdash">
         <div className="dash-titlebg">Your Compliance Dashboard</div>
-        <div className="welcome-options">
+     
           <Row>
             {WELCOME_OPTIONS.map((item, index) => (
               <Col xs={12} md={12} lg={8} key={index}>
@@ -83,6 +84,7 @@ const ClientDashboard = () => {
         </div>
       </div>
     </div>
+
   );
 };
 

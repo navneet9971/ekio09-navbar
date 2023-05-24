@@ -572,8 +572,8 @@ logoImg.onload = function () {
     return (
      <div className="bgchangecompleted">
       <div className="ongoing-applications">
-      <h1 className="ongo">BIS Ongoing Application:-</h1>
-      <div>
+      <h1 className="ongo">BIS Ongoing Application</h1>
+      <div className="ongoing-title">
         <h1 className="type">Compliance Type: {complianceid} </h1>
         <h1 className="appli">Application Number:  {uniqueid}  </h1>
        {/* <button className="clidown" onClick={handleDownload}>Download</button> */}
@@ -1001,10 +1001,12 @@ logoImg.onload = function () {
         </div>
       
 {/*------- LAST THREE BUTTON CODES HERE --------------------*/}
+<div class="box">
 <div className="dd-menu">
           <button className="reportbtn" onClick={handleDownloadreport}>Download Progress Report</button>
           <button className="reportbtn" onClick={ReportOptionClick} disabled={localStorage.getItem('report') === 'No'}>Download Test Report</button>
           <button className="reportbtn" onClick={CertificateOptionClick} disabled={localStorage.getItem('certificate') === 'No'}>Download Certificate</button>
+        </div>
         </div>
       
   {/* {startDate && endDate && (

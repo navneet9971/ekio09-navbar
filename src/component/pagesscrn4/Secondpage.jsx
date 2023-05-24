@@ -436,6 +436,8 @@ console.log(updatedrnumberformData)
   const [upload_gst, setUpload_gst] = useState("");
   const [upload_employeeid_visitingcard, setUpload_employeeid_visitingcard] = useState("");
   const [upload_msme, setUpload_msme] = useState("");
+  const [Password_BISPortal, setPassword_BISPortal] = useState("");
+  const [Username_BISPortal, setUsername_BISPortal] = useState("");
  
 
 
@@ -494,7 +496,8 @@ console.log(updatedrnumberformData)
  formData.append('AIR_company_pan_card', AIR_company_pan_card);
  formData.append('AIR_company_condition', AIR_signing_person);
  formData.append('Foreign_manufacturer_emailid', AIR_company_condition);
-
+ formData.append ('Username_BISPortal', Username_BISPortal);
+ formData.append ('Password_BISPortal', Password_BISPortal);
  // Add the selected file to the form data
  if (upload_business_license) {
    for (let i = 0; i < upload_business_license.length; i++) {
@@ -684,9 +687,10 @@ console.log(data)
 
 
   return (
+    <div className="table-bgsconpage">
     <div className="table">
     <h1 style={{ display: 'none' }}>Application Number: {applicationId}</h1>
-      <h1>List of Compliance</h1>
+    <h1 >List of Compliance</h1>
       <div className="table-wrapper">
         <table className="Review">
           <thead>
@@ -1354,6 +1358,19 @@ console.log(data)
 <Popup trigger={buttonRegisterPagebis} setTrigger={setButtonRegisterPagebis}>
   
 <form onSubmit={handleRNumbersubmit}>
+<div className="bis-userid">
+        <label htmlFor="has-r-number">Do you have an R number?</label>
+        <select
+          id="has-r-number"
+          value={hasRNumber ? "yes" : "no"}
+          onChange={handleDropdownChange}
+        >
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+      </div>
+
+{hasRNumber && (
       <div className="bis-userid">
         <label htmlFor="user-id">User ID:</label>
         <input
@@ -1369,7 +1386,9 @@ console.log(data)
           }
         />
       </div>
+      )}
 
+{hasRNumber && (
       <div className="bis-userid">
         <label htmlFor="password">Password:</label>
         <div className="password-input-container">
@@ -1395,18 +1414,8 @@ console.log(data)
           </span>
         </div>
       </div>
+      )}
 
-      <div className="bis-userid">
-        <label htmlFor="has-r-number">Do you have an R number?</label>
-        <select
-          id="has-r-number"
-          value={hasRNumber ? "yes" : "no"}
-          onChange={handleDropdownChange}
-        >
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
-        </select>
-      </div>
 
       {hasRNumber && (
         <div className="bis-userid">
@@ -1438,6 +1447,28 @@ console.log(data)
 <div style={{ height: "500px", width:"608px", overflow: "scroll" }}>
           <form onSubmit={handleBISSubmit}>
 
+<h1 className='h802'>BIS PORTAL</h1>
+
+          <label className="st8012">
+           Username:
+              <input
+                className="st805"
+                type="text"
+                onChange={(event) => setUsername_BISPortal(event.target.value)}
+
+              />
+            </label>
+
+            <label className="st8012">
+           Password:
+              <input
+                className="st805"
+                type="text"
+                onChange={(event) =>  setPassword_BISPortal(event.target.value)}
+
+              />
+            </label>
+
    <h1 className='h802'>Brand</h1>
 
             <label className="st8012">
@@ -1458,6 +1489,7 @@ console.log(data)
           <option value="others">Others</option>
         </select>
             </label>
+
 
             <label className="st8012">
             Is the Brand Name/Trade Mark Registered?:
@@ -2146,6 +2178,7 @@ console.log(data)
       </Popup>
 
 
+    </div>
     </div>
   );
 };

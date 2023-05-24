@@ -52,6 +52,7 @@ const Secondpage = () => {
 
 
   return (
+    <div className="table-bgsconpage">
     <div className="table">
       <h1>List of Compliance</h1>
       <div className="table-wrapper">
@@ -96,6 +97,7 @@ const Secondpage = () => {
           </tbody>
         </table>
       </div>
+    </div>
     </div>
   );
 };

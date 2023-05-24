@@ -10,7 +10,7 @@ const StatusBar = ({ totalResponses, completedResponses }) => {
         style={{
           width: '31%',
           height: '20px',
-          backgroundColor: '#e2180e',
+          backgroundColor: '#fff',
           borderRadius: '50px',
         }}
       >
@@ -18,12 +18,12 @@ const StatusBar = ({ totalResponses, completedResponses }) => {
           style={{
             width: `${percentage}%`,
             height: '100%',
-            backgroundColor: 'green',
+            backgroundColor: '#55B600',
             borderRadius: '50px',
           }}
         />
       </div>
-      <p>{`${percentage}% Completed`}</p>
+      <p className='status-percent'>{`${percentage}% `}</p>
     </div>
   );
 };

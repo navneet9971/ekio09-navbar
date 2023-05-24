@@ -3,29 +3,28 @@
 }
 
 .bgchangecompleted{
-  background-image: url("../assets/pages-bgimages/10.svg");
+  background-image: url("../assets/pages-bgimages//background.svg");
   background-repeat: no-repeat;
   background-size: cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
 }
 
 
 h1.type {
   float: left;
-  color: black;
-  font-size: 25px;
+  color: #fff;
+  font-size: 33px;
   font-weight: 600;
 }
 
 h1.appli {
-  float: right;
-  color: black;
-  font-size: 25px;
+  position: absolute;
+  top: 275px;
+  right: 721px;
+  color: #fff;
   padding-right: 30px;
 }
+
+
 
 p.stdate{
   text-align: inherit;
@@ -42,9 +41,10 @@ p.enddate{
 
 h1.ongo {
   font-size: 30px;
-  color: black;
-  margin-top: -30px;
-  margin-bottom: 40px;
+  color: #fff;
+  text-align: center;
+  /* margin-top: -30px; */
+  /* margin-bottom: 40px; */
 }
 
 button.clidown {
@@ -489,16 +489,29 @@ p.dt10 {
 }
 
 /*-----Download button Css of Forms---*/
+/* .box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  outline: 2px solid black;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+} */
+
 .dd-menu {
   display: flex;
-  justify-content: flex-end;
+  /* flex-direction: column; */
   align-items: center;
-  position: absolute;
-  top: 100%;
-  left: 134px;
-  z-index: 974;
-  padding: 20px;
+  outline: 2px solid #fff;
 }
+
+.reportbtn {
+  margin-bottom: 10px;
+}
+
 
 .reportbtn {
   padding: 10px 10px;
@@ -550,8 +563,19 @@ h1.statusbar {
 }
 
 .status-bar {
-  display: block;
-  margin: -58px -5px;
+  display: flex;
+  justify-content: flex-start;
+  position: absolute;
+  left: 428px;
+  top: 180px;
+  width: 1920px; /* Assuming 1em = 16px, 120em = 1920px */
+}
+p.status-percent {
+  color: #fff;
+  position: absolute;
+  top: 26px;
+  font-size: 25px;
+  left: 246px;
 }
 
 

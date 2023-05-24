@@ -102,6 +102,7 @@ console.log(latestStartDate)
   }
 
   return (
+ <div className="tble-reviewbg">
     <div className="table">
       <h5>Application Progress & Reports</h5>
       
@@ -224,6 +225,7 @@ console.log(latestStartDate)
 
                 </table>
               </div>
+            </div>
             </div>
           );
         }

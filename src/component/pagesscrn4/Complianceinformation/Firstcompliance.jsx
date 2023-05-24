@@ -67,7 +67,7 @@ axiosInstance.get(`/compliance/?category=${category}&product=${product}&region=$
     <div className="first-container22">
       
       <div className='fist-title'>
-      <h3 className="firstpage-title">Please enter the following details to Start a new application :</h3>
+      <h3 style={{ color: 'white' }} className="firstpage-title">Please enter the following details to Start a new application:</h3>
       <h4 className="red-warning">You need to fill at least 1 data point to see the list of compliance.</h4>
       </div>
 

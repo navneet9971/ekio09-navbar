@@ -80,8 +80,7 @@ i {
 #navbarSupportedContent > ul > li.active > a,
 #navbarSupportedContent > ul > li > a.active {
     color: #fff;
-    font-size: 20px;
-    font-weight: 800;
+    font-size: 19px;
     text-decoration: underline;
     text-decoration-skip-ink: none;
     text-underline-offset: 0.2em; /* Adjust the value as needed */
