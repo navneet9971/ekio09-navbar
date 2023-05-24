@@ -13,11 +13,6 @@ import axiosInstance from "../../../interceptors/axios";
 //import { ReactComponent as Thum6png } from "../../assets/bis-track-icons/Certificate.svg";
 import { ReactComponent as Wrong } from "../../assets/trckpg-rb/wrong.svg";
 import { ReactComponent as Right } from "../../assets/trckpg-rb/right.svg";
-import file1png from "../../assets/pdficon/Green01.png";
-import file2png from "../../assets/pdficon/Green02.png";
-import file3png from "../../assets/pdficon/Green03.png";
-import file4png from "../../assets/pdficon/Green04.png";
-import file5png from "../../assets/pdficon/Red01.png";
 import file6png from "../../assets/pdficon/Red02.png";
 
 
@@ -148,14 +143,14 @@ function Compdownload() {
     <div className="col doc-col">
           {docStatus['Signatory Authorization'] === 'success' ? <Right size={24} className="pdfico" /> : <Wrong size={24} className="pdfico" />}
           <div>
-            <img src={file1png} alt="" className="pdfico1" />
+            <img src={file6png} alt="" className="pdfico1" />
           </div>
           <h3 className="be">Manufacture authorization letter</h3>
     
 
               <div>
               {docStatus['OEM Authorization'] === 'success' ? <Right size={24} className="pdfico" /> : <Wrong size={24} className="pdfico" />}
-                <img src={file2png} alt="" className="pdfico1" />
+                <img src={file6png} alt="" className="pdfico1" />
               </div>
               <h3 className="be">Manufacture nomination form</h3>
             </div>
@@ -164,7 +159,7 @@ function Compdownload() {
             <div className="col doc-col">
             {docStatus['MOU'] === 'success' ? <Right size={24} className="pdfico" /> : <Wrong size={24} className="pdfico" />}
               <div>
-                <img src={file3png} alt="" className="pdfico1" />
+                <img src={file6png} alt="" className="pdfico1" />
               </div>
               <h3 className="be">AIR Affidavit Brand office
 </h3>
@@ -173,7 +168,7 @@ function Compdownload() {
 
             {docStatus['Shareholding Pattern'] === 'success' ? <Right size={24} className="pdfico" /> : <Wrong size={24} className="pdfico" />}
               <div>
-                <img src={file4png} alt="" className="pdfico1" />
+                <img src={file6png} alt="" className="pdfico1" />
               </div>
               <h3 className="be">
 AIR Afidavit Mfg branch office
@@ -186,7 +181,7 @@ AIR Afidavit Mfg branch office
             {docStatus['Annexure 1'] === 'success' ? <Right size={24} className="pdfico" /> : <Wrong size={24} className="pdfico" />}
 
               <div>
-                <img src={file5png} alt="" className="pdfico1" />
+                <img src={file6png} alt="" className="pdfico1" />
               </div>
               <h3 className="be">
 AIR authorization letter
