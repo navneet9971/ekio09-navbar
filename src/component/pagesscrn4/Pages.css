@@ -111,7 +111,7 @@ select#region-select22 {
 
 /* Custom side image styles */
 .custom-side-img {
-  width: 885px;
+  width: 825px;
   height: 451px;
   padding: 122px -4px;
   position: absolute;
@@ -575,6 +575,21 @@ td.clickable:hover{
   top: 340px;
   left: 20px;
 }
+
+@media screen and (max-width: 768px) {
+  .header-btn1 {
+      top: 250px;
+      left: 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header-btn1 {
+      top: 200px;
+      left: 5px;
+  }
+}
+
 
   .button7 {
     padding: 9px 30px;
