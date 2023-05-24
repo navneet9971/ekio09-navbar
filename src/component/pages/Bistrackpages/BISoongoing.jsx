@@ -15,11 +15,6 @@ import { ReactComponent as Thum5png } from "../../assets/bis-track-icons/apro.sv
 import { ReactComponent as Thum6png } from "../../assets/bis-track-icons/certi.svg";
 import { ReactComponent as Wrong } from "../../assets/trckpg-rb/wrong.svg";
 import { ReactComponent as Right } from "../../assets/trckpg-rb/right.svg";
-import file1png from "../../assets/pdficon/Green01.png";
-import file2png from "../../assets/pdficon/Green02.png";
-import file3png from "../../assets/pdficon/Green03.png";
-import file4png from "../../assets/pdficon/Green04.png";
-import file5png from "../../assets/pdficon/Red01.png";
 import file6png from "../../assets/pdficon/Red02.png";
 import pdflogo from "../../assets/icons/eikomp_logo.png"
 import StatusBar from "../../Statusbar";
@@ -812,10 +807,8 @@ logoImg.onload = function () {
       />
     </div>
 
-          
-  <div className="tecon">
-    <h2 className="steps-count">Steps To Be Completed</h2>
-   
+    <h2 className="steps-count">Steps To Be Completed</h2>  
+  <div className="tecon"> 
    <Message trigger={buttonPopup3} setTrigger={setButtonPopup3}>
   <h2>  Message :- 
    {docStep["1"] && docStep["1"][1]}</h2>
@@ -916,7 +909,7 @@ logoImg.onload = function () {
           <div className="col doc-col">
           {docStatus['Business License'] === 'sumbitted' ? ( <> <Right size={24} className="pdfico" />  </>) : (<Wrong size={24} className="pdfico" />) }
           <div>
-            <img src={file1png} alt="" className="pdfico1" />
+            <img src={file6png} alt="" className="pdfico1" />
           </div>
           <h3 className="be">Business License</h3>
     </div>
@@ -924,7 +917,7 @@ logoImg.onload = function () {
             <div className="col doc-col">
               {docStatus['ISO'] === 'sumbitted' ? (  <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" />)}
               <div>
-                <img src={file2png} alt="" className="pdfico1" />
+                <img src={file6png} alt="" className="pdfico1" />
               </div>
               <h3 className="be">ISO</h3>
             </div>
@@ -934,7 +927,7 @@ logoImg.onload = function () {
 
             {docStatus['Trademark Cetificate'] === 'sumbitted' ? ( <> <Right size={24} className="pdfico" /> </> )  : ( <Wrong size={24} className="pdfico" /> )}
               <div>
-                <img src={file3png} alt="" className="pdfico1" />
+                <img src={file6png} alt="" className="pdfico1" />
               </div>
               <h3 className="be">Trademark Cetificate</h3>
             </div>
@@ -945,7 +938,7 @@ logoImg.onload = function () {
             {docStatus['AdharCard'] === 'sumbitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
 
               <div>
-                <img src={file4png} alt="" className="pdfico1" />
+                <img src={file6png} alt="" className="pdfico1" />
               </div>
               <h3 className="be">AdharCard</h3>
             </div>
@@ -955,7 +948,7 @@ logoImg.onload = function () {
 {docStatus['PanCard'] === 'sumbitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
 
   <div>
-    <img src={file5png} alt="" className="pdfico1" />
+    <img src={file6png} alt="" className="pdfico1" />
   </div>
   <h3 className="be">PanCard</h3>
 </div>
@@ -975,7 +968,7 @@ logoImg.onload = function () {
   <div>
     <img src={file6png} alt="" className="pdfico1" />
   </div>
-  <h3 className="be">Employee ID/Visiting Card of Siging authority</h3>
+  <h3 className="be">Employee ID/Visiting Card </h3>
 </div>
 
 <div className="col doc-col">
@@ -1001,13 +994,13 @@ logoImg.onload = function () {
         </div>
       
 {/*------- LAST THREE BUTTON CODES HERE --------------------*/}
-<div class="box">
+
 <div className="dd-menu">
           <button className="reportbtn" onClick={handleDownloadreport}>Download Progress Report</button>
           <button className="reportbtn" onClick={ReportOptionClick} disabled={localStorage.getItem('report') === 'No'}>Download Test Report</button>
           <button className="reportbtn" onClick={CertificateOptionClick} disabled={localStorage.getItem('certificate') === 'No'}>Download Certificate</button>
         </div>
-        </div>
+
       
   {/* {startDate && endDate && (
     <div>

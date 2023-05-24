@@ -17,11 +17,6 @@ import { ReactComponent as Thum7png } from "../../assets/track-icon/final.svg";
 import { ReactComponent as Thum8png } from "../../assets/track-icon/certif.svg";
 import { ReactComponent as Wrong } from "../../assets/trckpg-rb/wrong.svg";
 import { ReactComponent as Right } from "../../assets/trckpg-rb/right.svg";
-import file1png from "../../assets/pdficon/Green01.png";
-import file2png from "../../assets/pdficon/Green02.png";
-import file3png from "../../assets/pdficon/Green03.png";
-import file4png from "../../assets/pdficon/Green04.png";
-import file5png from "../../assets/pdficon/Red01.png";
 import file6png from "../../assets/pdficon/Red02.png";
 import pdflogo from "../../assets/icons/eikomp_logo.png"
 import StatusBar from "../../Statusbar";
@@ -606,7 +601,7 @@ logoImg.onload = function () {
     return (
      <div className="bgchangecompleted">
       <div className="ongoing-applications">
-      <h1 className="ongo">TEC Ongoing Application:-</h1>
+      <h1 className="ongo">TEC Ongoing Application</h1>
       <div>
         <h1 className="type">Compliance Type: {complianceid} </h1>
         <h1 className="appli">Application Number:  {uniqueid}  </h1>
@@ -986,7 +981,7 @@ logoImg.onload = function () {
           </div>
           </Popup>
 
-{/*--------Ststus Bar CODE IS HERE --------------------*/}
+{/*--------Status Bar CODE IS HERE --------------------*/}
           <div>
       <StatusBar
         totalResponses={totalResponses}
@@ -994,10 +989,9 @@ logoImg.onload = function () {
       />
     </div>
 
-          
+    <h2 className="steps-count">Steps To Be Completed</h2>    
   <div className="tecon">
-    <h2 className="steps-count">Steps To Be Completed</h2>
-   
+  
    <Message trigger={buttonPopup3} setTrigger={setButtonPopup3}>
   <h2>  Message :- 
    {docStep["1"] && docStep["1"][1]}</h2>
@@ -1118,12 +1112,12 @@ logoImg.onload = function () {
   
   <h2 className="pdfstep-name"> Documents To Be Submitted</h2>  
         <div className="pdffilesup">
-          <div className="row">
+          <div className="row1">
            
           <div className="col doc-col">
           {docStatus['Authorized Signatory Letter'] === 'sumbitted' ? ( <> <Right size={24} className="pdfico" />  </>) : (<Wrong size={24} className="pdfico" />) }
           <div>
-            <img src={file1png} alt="" className="pdfico1" />
+            <img src={file6png} alt="" className="pdfico1" />
           </div>
           <h3 className="be">Authorized Signatory Letter</h3>
     </div>
@@ -1131,7 +1125,7 @@ logoImg.onload = function () {
             <div className="col doc-col">
               {docStatus['MOU'] === 'sumbitted' ? (  <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" />)}
               <div>
-                <img src={file2png} alt="" className="pdfico1" />
+                <img src={file6png} alt="" className="pdfico1" />
               </div>
               <h3 className="be">MOU</h3>
             </div>
@@ -1141,7 +1135,7 @@ logoImg.onload = function () {
 
             {docStatus['AOA'] === 'sumbitted' ? ( <> <Right size={24} className="pdfico" /> </> )  : ( <Wrong size={24} className="pdfico" /> )}
               <div>
-                <img src={file3png} alt="" className="pdfico1" />
+                <img src={file6png} alt="" className="pdfico1" />
               </div>
               <h3 className="be">AOA</h3>
             </div>
@@ -1152,7 +1146,7 @@ logoImg.onload = function () {
             {docStatus['OEM authorized to AIR'] === 'sumbitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
 
               <div>
-                <img src={file4png} alt="" className="pdfico1" />
+                <img src={file6png} alt="" className="pdfico1" />
               </div>
               <h3 className="be">OEM Authorized to AIR</h3>
             </div>
@@ -1162,7 +1156,7 @@ logoImg.onload = function () {
 {docStatus['MOA'] === 'sumbitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
 
   <div>
-    <img src={file5png} alt="" className="pdfico1" />
+    <img src={file6png} alt="" className="pdfico1" />
   </div>
   <h3 className="be">MOA</h3>
 </div>
@@ -1181,11 +1175,13 @@ logoImg.onload = function () {
         </div>
       
 {/*------- LAST THREE BUTTON CODES HERE --------------------*/}
+
 <div className="dd-menu">
           <button className="reportbtn" onClick={handleDownloadreport}>Download Progress Report</button>
           <button className="reportbtn" onClick={ReportOptionClick} disabled={localStorage.getItem('report') === 'No'}>Download Test Report</button>
           <button className="reportbtn" onClick={CertificateOptionClick} disabled={localStorage.getItem('certificate') === 'No'}>Download Certificate</button>
         </div>
+      
       
   {/* {startDate && endDate && (
     <div>

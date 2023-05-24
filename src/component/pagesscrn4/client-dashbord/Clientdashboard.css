@@ -3,7 +3,7 @@
   /* margin: 20px 0 40px; */
   font-weight: 600;
   font-size: 40px;
-  color: black;
+  color: #fff;
 }
 /* 
 .bg-clienttdash{
@@ -201,7 +201,25 @@ button.continue-button:hover{
 }
 
 /* ---------- MAINPAGE SVG AND TEXT CSS-------*/
-svg.mainsvg1 {
-  width: 182px;
-  height: 26em;
+.mainsvg1 {
+  display: initial;
+  /* grid-template-columns: repeat(auto-fill, minmax(15em, 1fr)); */
+  /* grid-gap: 25px; */
+  justify-items: center;
+  /* align-items: center; */
+  margin: 24px 24px 9px;
+  width: 14em;
+}
+
+
+.imges-svg {
+  margin: 0px 129px 0px;
+}
+
+
+.welcome {
+  background-image: url('../../assets/pages-bgimages/background.svg');
+  background-size: cover;
+  background-position: center;
+  height: 93vh; /* Set the height of the div to 100% of the viewport height */
 }

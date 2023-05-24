@@ -212,7 +212,7 @@ select:focus {
 }
 .table h5 {
   font-size: 30px;
-  color: black;
+  color: #fff;
   margin-top: 20px;
   margin-bottom: 40px;
 }

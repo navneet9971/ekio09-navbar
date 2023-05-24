@@ -17,9 +17,11 @@ h1.type {
 }
 
 h1.appli {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
   position: absolute;
   top: 275px;
-  right: 721px;
   color: #fff;
   padding-right: 30px;
 }
@@ -129,35 +131,41 @@ button.clidown {
 
 .pdfico {
   position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    margin-top: -17px;
-    margin-left: 5.7em;
+  top: 81%;
+  left: 141%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 63px;
+  height: 36px;
+  border-radius: 50%;
+  /* margin-top: -40px; */
+  /* margin-left: 5.699999999999999em; */
 }
 
 .clickedColor {
   background-color: red;
 }
 
-
 img.pdfico1 {
   /* position: absolute; */
-  width: 51px;
+  width: 106px;
   margin-top: -16.5px;
   margin-left: 115.8px;
+  margin-bottom: 17px;
 }
 
 .tc, .wp, .be, .bi, .ep, .legal, .isi, .management {
   text-align: center;
   font-size: 16px;
-  margin-bottom: 62px;
-  margin-top: 16px;
-  margin-left: 7em;
+  /* margin-bottom: 15px; */
+  margin-top: 4px;
+  margin-left: 8em;
   display: flex;
+  justify-content: flex-start;
+  /* align-items: baseline; */
+  color: #fff;
 }
 
 .pdf-container {
@@ -407,7 +415,7 @@ svg.thumb.track8 {
 
 svg.mainsvg2 {
   width: 19em;
-  height: 10em;
+  height: 17em;
   margin: 2em -2.2em;
 }
 
@@ -415,8 +423,9 @@ svg.mainsvg2 {
   position: absolute;
   width: 2.5%;
   height: auto;
-  margin-left: -45px;
-  margin-top: 55px;
+  margin-left: -136px;
+  margin-top: 226px;
+  /* height: 36px; */
   /* margin-right: 32px; */
   /* display: inline-block; */
 }
@@ -428,9 +437,11 @@ svg.mainsvg9 {
 }
 
 .tecon {
-  margin: 100px 144px;
+  margin: 282px 143px 50px 143px; /* Adjust the bottom margin value as desired */
   text-align: center;
+  outline: 2px solid white;
 }
+
 
 p.dt1 {
   position: absolute;
@@ -503,10 +514,23 @@ p.dt10 {
 
 .dd-menu {
   display: flex;
+  justify-content: center;
   /* flex-direction: column; */
   align-items: center;
+  width: 64em;
   outline: 2px solid #fff;
+  transform: translate(130px, 25px);
 }
+
+h2.steps-count {
+  position: relative;
+  transform: translate(-155px, 255px);
+  text-align: center;
+  color: #fff;
+}
+
+
+
 
 .reportbtn {
   margin-bottom: 10px;
@@ -514,25 +538,27 @@ p.dt10 {
 
 
 .reportbtn {
-  padding: 10px 10px;
-  border-radius: 20px;
+  padding: 13px 17px;
+  border-radius: 10px;
   /* border: none; */
-  background-color: #082a71;
-  color: white;
+  /* background-color: #082a71; */
+  color: #FF8025;
   cursor: pointer;
   font-size: 26px;
   font-weight: 600;
   margin-left: 20px;
+  margin-top: 10px;
 }
 
 .reportbtn:hover{
-  background-color: #55b700;
+  background-color: #55B600;
 }
 
 .reportbtn:disabled,
 .button7:disabled { 
  cursor: not-allowed; /* Change the cursor style when the button is disabled */
  background-color: #6c87c0;
+ color: #FF8025;
 }
 
 .reportbtn:disabled:hover,
@@ -553,6 +579,8 @@ p.dt10 {
 
 h2.pdfstep-name {
   text-align: center;
+  color: #fff;
+  margin-bottom: -10px;
 }
 
 
@@ -562,25 +590,28 @@ h1.statusbar {
   text-align: center;
 }
 
-.status-bar {
+/* .status-bar {
   display: flex;
   justify-content: flex-start;
   position: absolute;
   left: 428px;
   top: 180px;
-  width: 1920px; /* Assuming 1em = 16px, 120em = 1920px */
-}
+  width: 1920px;
+  overflow: hidden;
+} */
+
 p.status-percent {
   color: #fff;
   position: absolute;
-  top: 26px;
+  top: 210px;
+  left: 727px;
   font-size: 25px;
-  left: 246px;
 }
 
 
 /*----BIS oongoing CSS START HERE ------------*/
-.row1{
+.row1 {
   display: block;
+  margin-bottom: 25px;
   justify-content: center;
 }

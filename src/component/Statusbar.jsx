@@ -8,8 +8,13 @@ const StatusBar = ({ totalResponses, completedResponses }) => {
     <div className='status-bar'>
       <div
         style={{
-          width: '31%',
+          display: "flex",
+  justifyContent: "flex-start",
+  position: "absolute",
+          width: '51%',
           height: '20px',
+          left: "418px",
+          top: "180px",
           backgroundColor: '#fff',
           borderRadius: '50px',
         }}

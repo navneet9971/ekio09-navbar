@@ -302,7 +302,6 @@ axiosInstance
   const[buttonRegisterbis, setButtonRegisterbis] = useState(false);
   const[buttonRegisterPagebis, setButtonRegisterPagebis ] = useState(false);
   const [buttonPopup6bis, setButtonPopup6bis] = useState(false);
-  const [ buttonbisrqdetailsbis, setButtonbisrqdetailsbis] = useState(false);
   const [buttonautofilledbis, setButtonautofilledbis] = useState(false);
   const [buttonautofillpopupbis, setButtonautofillpopupbis] = useState(false);
   
@@ -312,7 +311,7 @@ axiosInstance
   const [hasRNumber, setHasRNumber] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [autofillform, setAutofillform] = useState(null);
-
+  const [hasBISReg, setHasBISReg] = useState(false);
 
 
 
@@ -369,7 +368,7 @@ console.log(updatedrnumberformData)
         console.log("R Number:");
       } else {
         // Logic when R number is not selected
-        setButtonbisrqdetailsbis(true);
+        setButtonPopup6bis(true);
         console.log("R Number not selected");
       }
       // setButtonRegisterPagebis(false);
@@ -378,6 +377,11 @@ console.log(updatedrnumberformData)
     const handleDropdownChange = (event) => {
       const { value } = event.target;
       setHasRNumber(value === "yes");
+    };
+
+    const handleBISprotelChange = (event) => {
+      const value = event.target.value === 'yes';
+      setHasBISReg(value);
     };
 
 
@@ -494,8 +498,8 @@ console.log(updatedrnumberformData)
  formData.append('Authorized_signatory_emailid', Authorized_signatory_emailid);
  formData.append('AIR_company_aadhar_card', AIR_company_aadhar_card);
  formData.append('AIR_company_pan_card', AIR_company_pan_card);
- formData.append('AIR_company_condition', AIR_signing_person);
- formData.append('Foreign_manufacturer_emailid', AIR_company_condition);
+ formData.append('AIR_signing_person', AIR_signing_person);
+ formData.append('AIR_company_condition', AIR_company_condition);
  formData.append ('Username_BISPortal', Username_BISPortal);
  formData.append ('Password_BISPortal', Password_BISPortal);
  // Add the selected file to the form data
@@ -582,7 +586,6 @@ console.log(data)
              confirmButtonText: 'OK',
            });
            setButtonPopup6bis(false);
-           setButtonbisrqdetailsbis(false);
          } else {
            Swal.fire({
              icon: 'error',
@@ -1442,235 +1445,7 @@ console.log(data)
 </Popup>
 
 
-{/*------------------ BIS REQUIRED DETAILS POPUP IF USER SELECTED NO PAGE CODE HERE-------------------------- */}
-<Popup trigger={buttonbisrqdetailsbis} setTrigger={setButtonbisrqdetailsbis}>
-<div style={{ height: "500px", width:"608px", overflow: "scroll" }}>
-          <form onSubmit={handleBISSubmit}>
 
-<h1 className='h802'>BIS PORTAL</h1>
-
-          <label className="st8012">
-           Username:
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) => setUsername_BISPortal(event.target.value)}
-
-              />
-            </label>
-
-            <label className="st8012">
-           Password:
-              <input
-                className="st805"
-                type="text"
-                onChange={(event) =>  setPassword_BISPortal(event.target.value)}
-
-              />
-            </label>
-
-   <h1 className='h802'>Brand</h1>
-
-            <label className="st8012">
-            Trademark:
-              <input
-                className="st805"
-                type="number"
-
-                onChange={(event) => setBrand_trademark(event.target.value)}
-
-              />
-            </label>
-          
-            <label className="st8012">
-            Owned by self or others:
-            <select className="st801" onChange={(event) =>  setBrand_owned_by(event.target.value)}>
-          <option value="self">Self</option>
-          <option value="others">Others</option>
-        </select>
-            </label>
-
-
-            <label className="st8012">
-            Is the Brand Name/Trade Mark Registered?:
-            <select className="st801" onChange={(event) =>  setBrand_registered(event.target.value)}>
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
-        </select>
-            </label>
-            <label className="st8012">
-            Brand Owner Company Name:
-              <input
-                className="st805"
-                type="text"
-
-                onChange={(event) => setBrand_owner_company_name(event.target.value)}
-
-              />
-            </label>
-            <label className="st8012">
-            Brand Owner Company Address:
-              <input
-                className="st805"
-                type="number"
-
-                onChange={(event) => setBrand_owner_company_address(event.target.value)}
-
-              />
-            </label>
-           
-  
-            <h1 className='h802'>AIR </h1>
-            <label className="st8012">
-            AIR company Name:
-              <input
-                className="st805"
-                type="text"
-
-                onChange={(event) => setName_of_the_AIR_company(event.target.value)}
-
-              />
-            </label>
-            <label className="st8012">
-            AIR company Address:
-              <input
-                className="st805"
-                type="text"
-
-                onChange={(event) => setAddress_of_the_AIR_company(event.target.value)}
-              />
-            </label>
-
-{/*----------------- Top Mangement Box here ------------------------- */}
-            <h3 className='techni'>Top management AIR </h3>
-            <div className="row">
-  <div className="name-row">
-    <div className="names">
-      <label className="st8012">
-        <input className="st805" type="text" 
-        placeholder="Name"
-        onChange={(event) => setTop_management_of_the_AIR_company_name(event.target.value)} 
-         />
-      </label>
-     
-      <label className="st8012">
-        <input className="st805" type="text" 
-         placeholder="Designation"
-        onChange={(event) => setTop_management_of_the_AIR_company_designation(event.target.value)} 
-         />
-      </label>
-      </div>
-      </div>
-      </div>
-
-    <div className="row">
-  <div className="name-row">
-    <div className="side-div">
-      
-    <label className="st8012">
-  <input
-    className="st805"
-    type="text"
-    placeholder="Contact Number"
-    onChange={(event) =>setTop_management_of_the_AIR_company_contact_number(event.target.value)}
-  />
-</label>
-     
-      <label className="st8012">
-        <input className="st805" type="text" 
-       placeholder="Email Id"
-        onChange={(event) => setTop_management_of_the_AIR_company_emailid(event.target.value)} 
-         />
-      </label>
-      </div>
-      </div>
-      </div>
-
- {/*---------------- Name of authorized Signatory -----------------------------*/}
-
-      <h3 className='techni'>Name of authorized Signatory</h3>
-            <div className="row">
-  <div className="name-row">
-    <div className="names">
-      <label className="st8012">
-        <input className="st805" type="text" 
-        placeholder="Name"
-        onChange={(event) => setAuthorized_signatory_name(event.target.value)} 
-         />
-      </label>
-     
-      <label className="st8012">
-        <input className="st805" type="text" 
-         placeholder="Designation"
-        onChange={(event) => setAuthorized_signatory_designation(event.target.value)} 
-         />
-      </label>
-      </div>
-      </div>
-      </div>
-
-    <div className="row">
-  <div className="name-row">
-    <div className="side-div">
-      
-    <label className="st8012">
-  <input
-    className="st805"
-    type="text"
-    placeholder="Contact Number"
-    onChange={(event) => setAuthorized_signatory_contact_number(event.target.value)}
-  />
-</label>
-     
-      <label className="st8012">
-        <input className="st805" type="text" 
-       placeholder="Email Id"
-        onChange={(event) => setAuthorized_signatory_emailid(event.target.value)} 
-         />
-      </label>
-      </div>
-      </div>
-      </div>
-
-
-            <label className="st8012">
-            Aadhar Card:
-              <input
-                className="st805"
-                type="text"
-
-                onChange={(event) => setAIR_company_aadhar_card(event.target.value)}
-
-              />
-            </label>
-            <label className="st8012">
-            PAN Card:
-              <input
-                className="st805"
-                type="text"
-
-                onChange={(event) => setAIR_company_pan_card(event.target.value)}
-
-              />
-            </label>
-
-  <select className="bisdrop" onChange={(event) => setAIR_signing_person(event.target.value)}>
-          <option value="TOPMANAGEMENT1">SIGNING PERSON  WILL BE FROM TOP MANAGEMENT </option>
-          <option value="SomeOne">SIGNING PERSON  WILL BE someone from the company </option>
-        </select>
-
- <div>
-        <select className="bisdrop" onChange={(event) => setAIR_company_condition(event.target.value)}>
-          <option value="a">If the AIR company is the sister company of the manufacturer and have office in India  </option>
-          <option value="b">If the AIR company is the Brandowner and have office in India  </option>
-          <option value="c">If the AIR company is the Brandowner </option>
-        </select>
-        </div>
-
-<button className='btn808' type="submit">Submit</button>
-</form>
-</div>
-</Popup>
 
 {/*---------------START NEW APPLICATION BIS REQUIRED DETAILS POPUP IF USER SELECTED YES PAGE CODE HERE  ----------------------*/}
 <Popup trigger={buttonPopup6bis} setTrigger={setButtonPopup6bis}>
@@ -1686,6 +1461,41 @@ console.log(data)
                 <p>Request For: certification</p>
               </div>
   </div> 
+
+  <label className="st8012">
+ Do you have BIS portal credentials? 
+        <select className='st804'
+          value={hasBISReg ? 'yes' : 'no'}
+          onChange={handleBISprotelChange}
+        >
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+      </label>
+
+      {hasBISReg && (
+        <div>
+
+          <label className="st8012">
+            Username:
+            <input
+              className="st805"
+              type="text"
+              onChange={(event) => setUsername_BISPortal(event.target.value)}
+            />
+          </label>
+
+          <label className="st8012">
+            Password:
+            <input
+              className="st805"
+              type="text"
+              onChange={(event) => setPassword_BISPortal(event.target.value)}
+            />
+          </label>
+        </div>
+      )}
+
   <h1 className='h802'>  Certification Process </h1>
 
 <label className="st8012">
@@ -1735,9 +1545,8 @@ console.log(data)
             </label>
 
             <select className="bisdrop" onChange={(event) => setFactory_signing_person(event.target.value)}>
-               <option value="">Choose signing person</option>
-          <option value="Top">SIGNING PERSON  WILL BE FROM TOP MANAGEMENT </option>
           <option value="Contact">SIGNING PERSON  WILL BE CONTACT PERSON</option>
+          <option value="Top">SIGNING PERSON  WILL BE FROM TOP MANAGEMENT </option>
         </select>
 
 
@@ -1822,7 +1631,7 @@ console.log(data)
 {Factory_signing_person === "Top" && (
         <div>
           {/* Render additional popup or options for signing person from top management */}
-          <select className="bisdrop" onChange={(event) => setWho_is_signing(event.target.value)}>
+          <select className="bisdrop" onChange={(event) => setWho_is_signing(event.target.value)} required>
             <option value="">Choose Signing Person from Top Management</option>
             <option value="1">Name 1</option>
             <option value="2">Name 2</option>
@@ -2115,15 +1924,15 @@ console.log(data)
             </label>
 
             <select className="bisdrop" onChange={(event) => setAIR_signing_person(event.target.value)}>
-          <option value="TOPMANAGEMENT1">SIGNING PERSON  WILL BE FROM TOP MANAGEMENT </option>
-          <option value="SomeOne">SIGNING PERSON  WILL BE someone from the company </option>
+          <option value="Top">SIGNING PERSON  WILL BE FROM TOP MANAGEMENT </option>
+          <option value="contact">SIGNING PERSON  WILL BE someone from the company </option>
         </select>
 
  <div>
         <select className="bisdrop" onChange={(event) => setAIR_company_condition(event.target.value)}>
-          <option value="a">If the AIR company is the sister company of the manufacturer and have office in India  </option>
-          <option value="b">If the AIR company is the Brandowner and have office in India  </option>
-          <option value="c">If the AIR company is the Brandowner </option>
+          <option value="1">If the AIR company is the sister company of the manufacturer and have office in India  </option>
+          <option value="2">If the AIR company is the Brandowner and have office in India  </option>
+          <option value="3">If the AIR company is the Brandowner </option>
         </select>
         </div>
 
