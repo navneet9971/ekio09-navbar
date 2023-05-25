@@ -218,13 +218,35 @@ axiosInstance
     request_for: 'certification',
   });
 
-  // console.log(tecformData)  //TecForm Data consolelog here and checkout
+   console.log(tecformData)  //TecForm Data consolelog here and checkout
 
   const handleSubmittecauto = (event) => {
     event.preventDefault();
 
-    const updatedTecformData = { ...tecformData, application: applicationId };
-
+    const updatedTecformData = { 
+      Applicant_company_CIN: tecformData.Applicant_company_CIN, 
+      Applicant_company_address: tecformData.Applicant_company_address,
+      Applicant_company_name: tecformData.Applicant_company_name,
+      Applicant_contact_number: tecformData.Applicant_contact_number,
+      Applicant_director_designation: tecformData.Applicant_director_designation,
+      Applicant_director_name: tecformData.Applicant_director_name,
+      Applicant_emailid: tecformData.Applicant_emailid,
+      Authorised_signatory_designation: tecformData.Authorised_signatory_designation,
+      Authorised_signatory_emailid: tecformData.Authorised_signatory_emailid,
+      Authorised_signatory_name: tecformData.Authorised_signatory_name,
+      Authorised_signatory_number: tecformData.Authorised_signatory_number,
+      Foreign_manufacturer_authorised_signatory_designation: tecformData.Foreign_manufacturer_authorised_signatory_designation,
+      Foreign_manufacturer_authorised_signatory_name: tecformData.Foreign_manufacturer_authorised_signatory_name,
+      Foreign_manufacturer_company_address: tecformData.Foreign_manufacturer_company_address,
+      Foreign_manufacturer_company_name: tecformData.Foreign_manufacturer_company_name,
+      Foreign_manufacturer_contact_number: tecformData.Foreign_manufacturer_contact_number,
+      Foreign_manufacturer_emailid: tecformData.Foreign_manufacturer_emailid,
+      Types_of_company: tecformData.Types_of_company,
+      compliance: localStorage.getItem("compliance_id"),
+    request_for: 'certification',
+    application: applicationId,
+    };
+    console.log(updatedTecformData)
     axiosInstance
       .post('/application/compliance/', updatedTecformData, {
         headers: {
@@ -260,12 +282,14 @@ axiosInstance
       });
   };
 
+
   const handleChange = (e) => {
     setTecformData({ ...tecformData, [e.target.name]: e.target.value });
   };
 
   const fetchData = async () => {
     try {
+
       const response = await axiosInstance.get(
         `application/inclusive/?compliance=${localStorage.getItem('compliance_name')}`
       );
@@ -281,7 +305,7 @@ axiosInstance
 
 
    //TEC DYNAMIC POPUP CHOOSE OPTION YES OR NO  function handle here-------------------------
-   function handleautofilledtec(event) {
+   function handletableautoform(event) {
     const value = event.target.value;
     
     if (autofillform === 'Yes' && value === 'Yesautofilledtec') {
@@ -294,6 +318,7 @@ axiosInstance
     }
     setButtonautofilledtec(false);
   }
+
   
 /*----------------------BIS FUNCTION CODE START HERE----------------*/
 
@@ -612,45 +637,45 @@ console.log(data)
  };
 
 
- //CALL APIs TO SEND A COMPLIANCE NAME ---------------------------
+ 
 
- axiosInstance.get(`application/inclusive/?compliance=${localStorage.getItem("compliance_name")}`)
- .then(response => {
-   const autofill = response.data["key"]
-   //console.log(autofill);
-   setAutofillform(autofill);
- })
+ const handleClick = async (complianceName, complianceId, event) => {
+  localStorage.setItem("compliance_id", complianceId);
+  localStorage.setItem("compliance_name", complianceName);
 
-// navigate to compliance page based on compliance name
- const handleClick = async (complianceName, complianceId) => {
- localStorage.setItem("compliance_id", complianceId);
- localStorage.setItem("compliance_name", complianceName);
+  try {
+    // Fetch data on button click
+    await fetchData();
 
- if (complianceName === "TEC") {
-   try {
-     await fetchData(); // Fetch data on button click
-     setButtonautofilledtec(true);
-   } catch (error) {
-     console.error(error);
-   }
- } else if (complianceName === "BIS") {
-   try {
-     await fetchData(); // Fetch data on button click
-     setButtonautofilledbis(true);
-   } catch (error) {
-     console.error(error);
-   }
- // } else if (complianceName === "WPS") {
- //   try {
- //     await fetchData(); // Fetch data on button click
- //     history.push(`/navbar/compliance/WPS`);
- //   } catch (error) {
- //     console.error(error);
- //   }
- } else {
-   // handle other compliance names
- }
+    // Call the API to get autofill information for the compliance
+    const response = await axiosInstance.get(`application/inclusive/?compliance=${localStorage.getItem("compliance_name")}`);
+    const autofill = response.data["key"];
+    setAutofillform(autofill);
+
+    if (complianceName === "TEC") {
+      if (autofill === 'Yes') {
+        // Call the function for registering
+        setButtonautofilledtec(true);
+        console.log(autofill);
+      } else if (autofill === 'No') {
+        // Call the function for unregistering
+        setButtonpopupform1tec(true);
+      }
+    } else if (complianceName === "BIS") {
+      if (autofill === 'Yes') {
+        // Call the function for registering
+        setButtonautofilledbis(true);
+        console.log(autofill);
+      } else if (autofill === 'No') {
+        // Call the function for unregistering
+        setButtonpopupform1tec(true); // Change with bis popupautofill form
+      }
+    }
+  } catch (error) {
+    console.error(error);
+  }
 };
+
 
 
   //BIS DYNAMIC POPUP CHOOSE OPTION YES OR NO  function handle here-------------------------
@@ -712,7 +737,7 @@ console.log(data)
       {/* <td>{compliance.id}</td> */}
       <td
         className="clickable"
-        onClick={() => handleClick(compliance.product_name, compliance.id)}
+      onClick={(event) => handleClick(compliance.product_name, compliance.id, event)}
       > 
         {compliance.product_name}
       </td>
@@ -743,7 +768,8 @@ console.log(data)
 
 
 {/*------------------------ TEC DYNAMIC FORM DATA POPUP CODE HERE------------------------ */}
-<Popup trigger={buttonautofilledtec} setTrigger={setButtonautofilledtec}>
+<Popup trigger={buttonautofilledtec} setTrigger={setButtonautofilledtec}
+>
 <h3 className="reg-popup-titlte">Continue with previous data?</h3>
 <div className="checkbox-container">
   <div className="bis-register">
@@ -754,7 +780,7 @@ console.log(data)
           type="checkbox"
           value="Yesautofilledtec"
           //checked={radioValue === 'Option 1'}
-          onChange={handleautofilledtec}
+          onChange={handletableautoform}
           onClick={() => setButtonautofilledtec(false)}
         />
        YES
@@ -770,7 +796,7 @@ console.log(data)
           type="checkbox"
           value="Noform1tec"
           //checked={radioValue === 'Unregister'}
-           onChange={handleautofilledtec}
+           onChange={handletableautoform}
            onClick={() => setButtonpopupform1tec(false)}
         />
         NO

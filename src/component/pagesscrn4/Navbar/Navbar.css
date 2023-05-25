@@ -1,8 +1,9 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto");
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;1,500&display=swap');
 
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: "Jost", sans-serif;
 }
+
 * {
   margin: 0;
   padding: 0;

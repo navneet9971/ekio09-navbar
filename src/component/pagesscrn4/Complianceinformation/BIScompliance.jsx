@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "../Pages.css";
-import bgimage from "../../assets/pages-bgimages/15.svg";
+import bgimage from "../../assets/pages-bgimages/background.svg";
 import axiosInstance from '../../../interceptors/axios';
 
 
@@ -44,7 +44,7 @@ function BIScompliance() {
   
     // Rendered components
     return (
-      <div style={{ backgroundImage: `url(${bgimage})` }}>
+      <div style={{ backgroundImage: `url(${bgimage})`, backgroundRepeat: 'no-repeat' }}>
       <div className="ftch data">
         {/* Middle section component */}
         {middleData && (

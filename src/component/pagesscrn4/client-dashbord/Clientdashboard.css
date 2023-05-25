@@ -56,11 +56,14 @@
   font-size: 51px;
   font-weight: bold;
   position: absolute;
-  color: white;
-  top: 19%;
+  color: black;
+  top: 33%;
   left: 50%;
   transform: translate(-50%, -50%);
+  text-shadow: 3px 2px 2px white;
 }
+
+
 
 
 a.option-box {

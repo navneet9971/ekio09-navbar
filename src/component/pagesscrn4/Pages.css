@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;1,500&display=swap');
+
+body {
+  font-family: "Jost", sans-serif;
+}
+
 *, *:before, *:after {
   box-sizing: border-box;
 }
@@ -290,17 +296,15 @@ h1.cont {
   transform: translateX(112px);
 }
 
-
-  img55{
-    margin-top: 5%;
-    margin-left: 10px;
-    margin-bottom: 30px;
-    max-width: 50%;
-  }
-
-
- 
-  
+img.imgback {
+  height: 900px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* position: absolute; */
+  transform: translate(19%, 0%);
+  margin-top: -80px;
+}
 
 
   /*---THird page Start application popup css------- */
@@ -637,6 +641,7 @@ h3.conte {
 }
 
 h3.regpro {
+  margin-top: 70px;
   font-size: 26px;
   font-weight: 600;
   color: #fff;

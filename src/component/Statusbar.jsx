@@ -9,12 +9,12 @@ const StatusBar = ({ totalResponses, completedResponses }) => {
       <div
         style={{
           display: "flex",
-  justifyContent: "flex-start",
-  position: "absolute",
+        justifyContent: "flex-start",
+        position: "absolute",
           width: '51%',
           height: '20px',
           left: "418px",
-          top: "180px",
+          top: "200px",
           backgroundColor: '#fff',
           borderRadius: '50px',
         }}

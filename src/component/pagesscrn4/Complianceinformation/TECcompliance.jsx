@@ -44,7 +44,7 @@ function MiddleSection() {
   
     // Rendered components
     return (
-      <div style={{ backgroundImage: `url(${bgimage})`}}>
+      <div style={{ backgroundImage: `url(${bgimage})`, backgroundRepeat: 'no-repeat' }}>
       <div className="ftch data">
         {/* Middle section component */}
         {middleData && (
