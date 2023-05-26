@@ -272,9 +272,28 @@ th {
   margin: 0 auto;
 }
 
-.search-bar {
+/* .search-bar {
   position: absolute;
   transform: translate(860px, -70px);
+} */
+
+.search-bar {
+  display: block;
+  position: absolute;
+  top: 120px;
+  right: 68px;
+}
+
+/* Apply responsive styles */
+@media (max-width: 768px) {
+  .search-bar {
+    position: static;
+    text-align: center;
+    margin-top: 10px; /* Adjust the margin-top value according to your needs */
+    margin-bottom: 10px; /* Adjust the margin-bottom value according to your needs */
+    right: auto;
+    left: 0;
+  }
 }
 
 
@@ -303,7 +322,9 @@ input[type="search-text"] {
 }
 
 .search-bar input {
-  width: 200px; /* Adjust the width as needed */
+  width: 200px;
+  padding: 10px;
+  height: 40px;
 }
 
 
@@ -321,19 +342,22 @@ input[type="date"]:hover{
 }
 
 /* Dropdown status css*/
-.dropon {
-  position: absolute;
-  transform: translate(0.5em, -2.3em);
-  width: 12px;
-  height: 1px;
-  padding: 10px;
-  background-color: #082a77;
-}
+/* .dropon {
+    position: absolute;
+    width: 12px;
+    height: 1px;
+    padding: 10px;
+    background-color: #082a77;
+    top: 21em;
+    right: 9em;
+    transform: none;
+} */
 
 
-select.dropon:hover {
+
+/* select.dropon:hover {
 background-color: #55b700;
-}
+} */
 
 
 /* Transaction Type Date Css*/
