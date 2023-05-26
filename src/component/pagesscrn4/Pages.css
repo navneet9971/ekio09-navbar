@@ -308,12 +308,13 @@ img.imgback {
 
 
   /*---THird page Start application popup css------- */
-
 .h802 {
-  font-size: 22px;
-  color: black;
-  margin: 5px 160px;
+    font-size: 33px;
+    color: black;
+    text-align: center;
+    margin-bottom: 0;
 }
+
 
 .h801 {
   color: black;
@@ -355,8 +356,10 @@ label.st8012 {
 input.st805 {
   margin-left: auto;
   width: 20em;
-  height: 15px;
-  padding: 2px;
+  height: 28px;
+  padding: 3px;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 label.st8017 {
@@ -378,8 +381,7 @@ label.st8017 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  max-width: 500px;
+  gap: 35px;
 }
 
 .names {
@@ -431,30 +433,34 @@ input[type="file"] {
 }
 
 button.btn808 {
-  width: 120px;
-  margin-top: 9px;
-  margin-left: 12em;
-  height: 30px;
-  background-color: skyblue;
+  width: 140px;
+  margin: 13px 283px;
+  height: 41px;
+  border-radius: 10px;
+  color: #FF9025;
   font-size: 20px;
   font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 
 button.btn808:hover{
-  background-color: green;
+  background-color: #55B700;
 }
 
 button.btn809 {
   width: 120px;
   margin-top: 9px;
   height: 30px;
-  background-color: skyblue;
+  color: #FF9025;
   font-size: 20px;
   font-weight: 600;
 }
 
 button.btn809:hover{
-  background-color: green;
+  background-color: #55B700;
 }
 
   /*------------WishList Button CSS-------------------*/
@@ -963,14 +969,25 @@ select.optionss {
 }
 
 /*--------DropDown of start Application form-------*/
-select.st804 {
-  width: 217px;
-  height: 28px;
-  margin: 10px 38px;
-  text-align: center;
-  padding: 0px;
-  font-size: 20px;
-  font-weight: 600;
+.st804 {
+  margin-top: 1px;
+  margin-left: auto;
+  width: 20em;
+  height: 43px;
+  padding: 9px 112px;
+  font-size: 16px;
+  font-weight: bolder;
+}
+
+.st804:focus {
+  margin-top: 1px;
+  margin-left: auto;
+  width: 20em;
+  height: 43px;
+  padding: 9px 112px;
+  font-size: 16px;
+  font-weight: bolder;
+  /* outline: 2px solid #55B600; */
 }
 
 /*-------StartApp Download Button CSS-----*/
@@ -995,7 +1012,9 @@ select.bisdrop {
   height: 32px;
   width: 29em;
   padding: 3px 7px;
-  margin: 10px;
+  margin: 14px 0px;
+  font-size: 20px;
+  font-weight: bolder;
   border-color: black;
 }
 
