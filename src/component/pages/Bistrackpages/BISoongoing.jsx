@@ -370,7 +370,7 @@ logoImg.onload = function () {
    ['GST', docStatus['GST']],
    ['Employee ID/Visiting Card of Siging authority', docStatus['Employee ID/Visiting Card of Siging authority']],
    ['MSME', docStatus['MSME']],
-     ['Form_3_Affidavit', docStatus['Form_3_Affidavit']],
+  ['Form_3_Affidavit', docStatus['Form_3_Affidavit']],
    ]
 
   

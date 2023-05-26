@@ -1173,7 +1173,7 @@ const handleSubmitBISauto = (event) => {
       value={tecformData.Types_of_company}
       onChange={handleChange}
       >
-              <option value="Foregin">Foreign</option>
+              <option value="Foreign">Foreign</option>
               <option value="Indian">Indian</option>
              </select>
       </label>
@@ -1203,7 +1203,7 @@ const handleSubmitBISauto = (event) => {
             <label className="st8012">
               Indian OEM/Foreign Manufacture:
              <select className='st804' onChange={(event) =>  setTypes_of_company(event.target.value)}>
-              <option value="Foregin">Foregin</option>
+              <option value="Foreign">Foreign</option>
               <option value="Indian">Indian</option>
              </select>
             </label>
@@ -1517,7 +1517,7 @@ const handleSubmitBISauto = (event) => {
        value={bisformData.Types_of_company}
        onChange={handleBISChange}
        >
-              <option value="Foregin">Foregin</option>
+              <option value="Foreign">Foreign</option>
               <option value="Indian">Indian</option>
              </select>
             </label>
@@ -2221,7 +2221,7 @@ onChange={handleBISChange}
 <label className="st8012">
             Manufacture:
              <select className='st804' onChange={(event) =>  setTypes_of_biscompany(event.target.value)}>
-              <option value="Foregin">Foregin</option>
+              <option value="Foreign">Foreign</option>
               <option value="Indian">Indian</option>
              </select>
             </label>
@@ -2260,9 +2260,21 @@ onChange={handleBISChange}
               <input
                 className="st805"
                 type="text"
-                onChange={(event) => setFactory_emailid(event.target.value)}
+                onChange={(event) => {
+                  const inputValue = event.target.value;
+                  const isValidEmail = inputValue.includes('@') && inputValue.includes('.');
+                  setFactory_emailid(inputValue);
+                  const errorElement = document.getElementById('bis-email-error');
+            
+                  if (isValidEmail) {
+                    errorElement.textContent = '';
+                  } else {
+                    errorElement.textContent = 'Please enter a valid email address. Use @ and .xyz';
+                  }
+                }}
               />
             </label>
+            <span id="bis-email-error" style={{ color: 'red' }}></span>
 
             <select className="bisdrop" onChange={(event) => setFactory_signing_person(event.target.value)}>
           <option value="Contact">SIGNING PERSON  WILL BE CONTACT PERSON</option>
@@ -2450,12 +2462,24 @@ onChange={handleBISChange}
       <label className="st8012">
         <input className="st805" type="text" 
        placeholder="Email Id"
-        onChange={(event) => setContact_person_of_the_manufacturing_unit_emailid(event.target.value)} 
-         />
+       onChange={(event) => {
+        const inputValue = event.target.value;
+        const isValidEmail = inputValue.includes('@') && inputValue.includes('.');
+        setContact_person_of_the_manufacturing_unit_emailid(inputValue);
+        const errorElement = document.getElementById('contact-email-error');
+  
+        if (isValidEmail) {
+          errorElement.textContent = '';
+        } else {
+          errorElement.textContent = 'Please enter a valid email address. Use @ and .xyz';
+        }
+      }}
+    />
       </label>
       </div>
       </div>
       </div>
+      <span id="contact-email-error" style={{ color: 'red' }}></span>
      
 
 
@@ -2568,12 +2592,24 @@ onChange={handleBISChange}
       <label className="st8012">
         <input className="st805" type="text" 
        placeholder="Email Id"
-        onChange={(event) => setTop_management_of_the_AIR_company_emailid(event.target.value)} 
-         />
+       onChange={(event) => {
+        const inputValue = event.target.value;
+        const isValidEmail = inputValue.includes('@') && inputValue.includes('.');
+        setTop_management_of_the_AIR_company_emailid(inputValue);
+        const errorElement = document.getElementById('top-email-error');
+  
+        if (isValidEmail) {
+          errorElement.textContent = '';
+        } else {
+          errorElement.textContent = 'Please enter a valid email address. Use @ and .xyz';
+        }
+      }}
+    />
       </label>
       </div>
       </div>
       </div>
+      <span id="top-email-error" style={{ color: 'red' }}></span>
 
  {/*---------------- Name of authorized Signatory -----------------------------*/}
 
@@ -2614,12 +2650,24 @@ onChange={handleBISChange}
       <label className="st8012">
         <input className="st805" type="text" 
        placeholder="Email Id"
-        onChange={(event) => setAuthorized_signatory_emailid(event.target.value)} 
-         />
+       onChange={(event) => {
+        const inputValue = event.target.value;
+        const isValidEmail = inputValue.includes('@') && inputValue.includes('.');
+        setAuthorized_signatory_emailid(inputValue);
+        const errorElement = document.getElementById('authorized-email-error');
+  
+        if (isValidEmail) {
+          errorElement.textContent = '';
+        } else {
+          errorElement.textContent = 'Please enter a valid email address. Use @ and .xyz';
+        }
+      }}
+    />
       </label>
       </div>
       </div>
       </div>
+      <span id="authorized-email-error" style={{ color: 'red' }}></span>
 
 
             <label className="st8012">

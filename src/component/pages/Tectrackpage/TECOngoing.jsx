@@ -31,7 +31,6 @@ function TECOngoing() {
   // const steps = ["Application Submitted", "Sample sent for testing", "Test report generated", "Document pending with authorities", "Final report generated"];
    // const [current, setCurrentStep] = useState(1);
  //   const [setComplete] = useState(false);
-  const [setSelectedOption] = useState('');
   const [docStatus, setDocStatus] = useState({});
   const [docStep, setdocStep] = useState({});
   //const [startDate, setStartDate] = useState('');
@@ -316,17 +315,26 @@ const handleSubmit = (event) => {
             const documentData = response.data.data;
             //console.log(response.data.key)
 
+           //store button APIS data here button name download report and download certificate 
            localStorage.setItem("report", response.data.report);
-           localStorage.setItem("certificate",response.data.certificate)
-         //  console.log(response.data.key)
+           localStorage.setItem("finalcertificate",response.data.certificate)
           
-            const docStatus = {};
-            for (let i = 0; i < documentData.length; i++) {
-              const statusData = documentData[i];
-              docStatus[statusData["document_type"]] = statusData["status"];
-            }
-            setDocStatus(docStatus);
-            console.log(docStatus)
+           const docStatus = {};
+           for (let i = 0; i < documentData.length; i++) {
+            const statusData = documentData[i];
+            docStatus[statusData["document_type"]] = statusData["status"];
+          
+            const documentType = statusData["document_type"];
+          
+            if (documentType === "report" || documentType === "invoice") {
+              // Download the file
+              // Perform the necessary actions to download the document
+            } 
+            console.log(documentType === "report")
+          }
+           
+           setDocStatus(docStatus);
+           console.log(docStatus);
           })
           .catch(error => {
             console.log(error);
@@ -477,22 +485,20 @@ logoImg.onload = function () {
 
 
 
-    /*-------handleOptions download report-----*/
+/*-------------------------------------------handleOptions download report----------------------------------*/
     const ReportOptionClick = (option) => {
-      const reportKey = localStorage.getItem("hell");
+      const reportKey = localStorage.getItem("report");
       console.log(reportKey);
       console.log("segbskhgks");
-      if (reportKey === 'Yes') {
-        setSelectedOption(option);
+      if (reportKey === 'Yes') {    
       }
     };
 
     const CertificateOptionClick = (option) => {
-      const certificateKey = localStorage.getItem("hell");
+      const certificateKey = localStorage.getItem("finalcertificate");
       console.log(certificateKey);
       console.log("nananananan");
       if (certificateKey === 'Yes') {
-        setSelectedOption(option);
       }
     };
 
@@ -1177,9 +1183,10 @@ logoImg.onload = function () {
 
 <div className="dd-menu">
           <button className="reportbtn" onClick={handleDownloadreport}>Download Progress Report</button>
-          <button className="reportbtn" onClick={ReportOptionClick} disabled={localStorage.getItem('report') === 'No'}>Download Test Report</button>
-          <button className="reportbtn" onClick={CertificateOptionClick} disabled={localStorage.getItem('certificate') === 'No'}>Download Certificate</button>
+          <button className="reportbtn" onClick={ReportOptionClick} disabled={localStorage.getItem("report") === 'No'}>Download Test Report</button>
+          <button className="reportbtn" onClick={CertificateOptionClick} disabled={localStorage.getItem("finalcertificate") === 'No'}>Download Certificate</button>                                      
         </div>
+      
       
       
   {/* {startDate && endDate && (

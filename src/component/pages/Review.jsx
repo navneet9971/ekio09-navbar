@@ -15,6 +15,8 @@ function formatDate(dateString) {
 }
 
 
+
+
 function Review() {
   const [tableData, setTableData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -234,7 +236,7 @@ console.log(latestStartDate)
         <td style={{ cursor: 'default' }}>{formatDate(data.startdate)}</td>
         <td style={{ cursor: 'default' }}>{data.estimated_date}</td>
         <td style={{ cursor: 'default' }}>{data.status}</td>
-        <td style={{ cursor: 'default' }}>{data.end_date}</td>
+        <td style={{cursor: 'default'}}>{(data.end_date)}</td>
       </tr>
     ))}
 </tbody>
