@@ -122,8 +122,8 @@ const handleSubmit = (event) => {
   event.preventDefault();
 
   const formData = new FormData();
-  formData.append('application', localStorage.getItem('newApplicationId'));
-  formData.append('compliance', localStorage.getItem("compliance_id"));
+  // formData.append('application', localStorage.getItem('newApplicationId'));
+  // formData.append('compliance', localStorage.getItem("compliance_id"));
   formData.append('request_for', 'lab_testing');
   formData.append("Product_name", testingProductName);
   formData.append("Model_number", testingModelNo);
@@ -182,7 +182,6 @@ const handleSubmit = (event) => {
     }
 
   console.log('Application ID:', localStorage.getItem('newApplicationId'));
-  console.log('Compliance ID:', localStorage.getItem("compliance_id"));
 
   // function to handle form submission
   axiosInstance.put(`/application/compliance/${idel}/`, formData, {
@@ -1115,7 +1114,7 @@ logoImg.onload = function () {
           <div className="row1">
            
           <div className="col doc-col">
-          {docStatus['Authorized Signatory Letter'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" />  </>) : (<Wrong size={24} className="pdfico" />) }
+          {docStatus['Authorized Signatory Letter'] === "Submitted" ? ( <> <Right size={24} className="pdfico" />  </>) : (<Wrong size={24} className="pdfico" />) }
           <div>
             <img src={file6png} alt="" className="pdfico1" />
           </div>
@@ -1123,7 +1122,7 @@ logoImg.onload = function () {
     </div>
 
             <div className="col doc-col">
-              {docStatus['MOU'] === 'Submitted' ? (  <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" />)}
+              {docStatus['MOU'] === "Submitted" ? (  <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" />)}
               <div>
                 <img src={file6png} alt="" className="pdfico1" />
               </div>
@@ -1133,7 +1132,7 @@ logoImg.onload = function () {
             <div className="col doc-col">
               
 
-            {docStatus['AOA'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> )  : ( <Wrong size={24} className="pdfico" /> )}
+            {docStatus['AOA'] === "Submitted" ? ( <> <Right size={24} className="pdfico" /> </> )  : ( <Wrong size={24} className="pdfico" /> )}
               <div>
                 <img src={file6png} alt="" className="pdfico1" />
               </div>
@@ -1143,7 +1142,7 @@ logoImg.onload = function () {
 
             <div className="col doc-col">
 
-            {docStatus['OEM authorized to AIR'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
+            {docStatus['OEM authorized to AIR'] === "Submitted" ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
 
               <div>
                 <img src={file6png} alt="" className="pdfico1" />
@@ -1163,7 +1162,7 @@ logoImg.onload = function () {
 
 <div className="col doc-col">
 
-{docStatus['Certificate of Incorporation'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
+{docStatus['Certificate of Incorporation'] === "Submitted" ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
   <div>
     <img src={file6png} alt="" className="pdfico1" />
   </div>

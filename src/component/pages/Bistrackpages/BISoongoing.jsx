@@ -73,11 +73,16 @@ const [buttonPopup11, setButtonPopup11] = useState(false);
    //LAB TESTING FROM CONST HERE ---------------------------------------
 const [buttonPopup2, setButtonPopup2] = useState(false);
   //const [buttonPopup1, setButtonPopup1] = useState(false);
-  const [testingProductName, setTestingProductName] = useState("");
-  const [testingModelNo, setTestingModelNo] = useState("");
-  const [testingBrand, setTestingBrand] = useState("");
-  const [testingSr, setTestingSr] = useState("");
-  const [testingElectrical, setTestingElectrical] = useState("");
+
+  const [Testing_type, setTesting_type] = useState("");
+  const [Product_name, setProduct_name] = useState("");
+  const [Model_number, setModel_number] = useState("");
+  const [Brand_name, setBrand_name] = useState("");
+  const [Series_model, setSeries_model] = useState("");
+  const [Electrical_rating, setElectrical_rating] = useState("");
+  const [Lab_name, setLab_name] = useState("");
+  const [Quantity, setQuantity] = useState("");
+  const [IS_standard, setIS_standard] = useState("");
   // const [manufacturingProductName, setManufacturingProductName] = useState("");
   // const [manufacturingModelNo, setManufacturingModelNo] = useState("");
   // const [manufacturingAssociatedModels, setManufacturingAssociatedModels] = useState("");
@@ -107,28 +112,19 @@ const handleSubmit = (event) => {
   event.preventDefault();
 
   const formData = new FormData();
-  formData.append('application', localStorage.getItem('newApplicationId'));
-  formData.append('compliance', localStorage.getItem("compliance_id"));
+  // formData.append('application', localStorage.getItem('newApplicationId'));
+  // formData.append('compliance', localStorage.getItem("compliance_id"));
   formData.append('request_for', 'lab_testing');
-  formData.append("Product_name", testingProductName);
-  formData.append("Model_number", testingModelNo);
-  formData.append("Brand", testingBrand);
-  formData.append("Serial_number", testingSr);
-  formData.append("Electrical_rating", testingElectrical);
- // formData.append("testingSoftware", testingSoftware);
-  // formData.append("manufacturingProductName", manufacturingProductName);
-  // formData.append("manufacturingModelNo", manufacturingModelNo);
-  // formData.append("manufacturingAssociatedModels", manufacturingAssociatedModels);
-  // formData.append("manufacturingManufacturingName", manufacturingManufacturingName);
-  // formData.append("manufacturingManufacturingAddress", manufacturingManufacturingAddress);
-  // formData.append("manufacturingManufacturingCountry", manufacturingManufacturingCountry);
-  // formData.append("manufacturingContactName", manufacturingContactName);
-  // formData.append("manufacturingContactNumber", manufacturingContactNumber);
-  // formData.append("manufacturingContactEmail", manufacturingContactEmail);
-  // formData.append("manufacturingOrigin", manufacturingOrigin);
-  // formData.append("manufacturingContract", manufacturingContract);
-
-
+  formData.append("Testing_type", Testing_type);
+  formData.append("Product_name", Product_name);
+  formData.append("Model_number", Model_number);
+  formData.append("Brand_name", Brand_name);  
+  formData.append("Series_model", Series_model);
+  formData.append("Electrical_rating", Electrical_rating);
+  formData.append("Lab_name", Lab_name);
+  formData.append("Quantity", Quantity);
+  formData.append("IS_standard", IS_standard);
+ 
     // Add file to form data
     
     if (cdfccl) {
@@ -616,7 +612,7 @@ logoImg.onload = function () {
 
           <label className="st8012">
               Testing:
-             <select className='st804' onChange={(event) =>  setTestingProductName(event.target.value)}>
+             <select className='st804' onChange={(event) =>  setTesting_type(event.target.value)}>
               <option value="Main">MAIN</option>
               <option value="Successive">SUCCESSIVE</option>
              </select>
@@ -627,7 +623,7 @@ logoImg.onload = function () {
               <input
                 className="st805"
                 type="text"
-                onChange={(event) => setTestingProductName(event.target.value)}
+                onChange={(event) => setProduct_name(event.target.value)}
 
               />
             </label>
@@ -636,7 +632,7 @@ logoImg.onload = function () {
               <input
                 className="st805"
                 type="text"
-                onChange={(event) => setTestingModelNo(event.target.value)}
+                onChange={(event) => setModel_number(event.target.value)}
 
               />
             </label>
@@ -646,7 +642,7 @@ logoImg.onload = function () {
               <input
                 className="st805"
                 type="text"
-                onChange={(event) => setTestingBrand(event.target.value)}
+                onChange={(event) => setBrand_name(event.target.value)}
 
               />
             </label>
@@ -655,7 +651,7 @@ logoImg.onload = function () {
               <input
                 className="st805"
                 type="text"
-                onChange={(event) => setTestingSr(event.target.value)}
+                onChange={(event) => setSeries_model(event.target.value)}
 
               />
             </label>
@@ -664,7 +660,7 @@ logoImg.onload = function () {
               <input
                 className="st805"
                 type="text"
-                onChange={(event) => setTestingElectrical(event.target.value)}
+                onChange={(event) =>  setElectrical_rating(event.target.value)}
 
               />
             </label>
@@ -674,7 +670,7 @@ logoImg.onload = function () {
               <input
                 className="st805"
                 type="text"
-                onChange={(event) => setTestingElectrical(event.target.value)}
+                onChange={(event) => setLab_name(event.target.value)}
 
               />
             </label>
@@ -685,7 +681,7 @@ logoImg.onload = function () {
               <input
                 className="st805"
                 type="text"
-                onChange={(event) => setTestingElectrical(event.target.value)}
+                onChange={(event) => setQuantity(event.target.value)}
 
               />
             </label>
@@ -696,7 +692,7 @@ logoImg.onload = function () {
               <input
                 className="st805"
                 type="text"
-                onChange={(event) => setTestingElectrical(event.target.value)}
+                onChange={(event) => setIS_standard(event.target.value)}
 
               />
             </label>
@@ -907,7 +903,7 @@ logoImg.onload = function () {
           <div className="row1">
            
           <div className="col doc-col">
-          {docStatus['Business License'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" />  </>) : (<Wrong size={24} className="pdfico" />) }
+          {docStatus['Business License'] === "Submitted" ? ( <> <Right size={24} className="pdfico" />  </>) : (<Wrong size={24} className="pdfico" />) }
           <div>
             <img src={file6png} alt="" className="pdfico1" />
           </div>
@@ -915,7 +911,7 @@ logoImg.onload = function () {
     </div>
 
             <div className="col doc-col">
-              {docStatus['ISO'] === 'Submitted' ? (  <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" />)}
+              {docStatus['ISO'] === "Submitted" ? (  <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" />)}
               <div>
                 <img src={file6png} alt="" className="pdfico1" />
               </div>
@@ -925,7 +921,7 @@ logoImg.onload = function () {
             <div className="col doc-col">
               
 
-            {docStatus['Trademark Cetificate'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> )  : ( <Wrong size={24} className="pdfico" /> )}
+            {docStatus['Trademark Cetificate'] === "Submitted" ? ( <> <Right size={24} className="pdfico" /> </> )  : ( <Wrong size={24} className="pdfico" /> )}
               <div>
                 <img src={file6png} alt="" className="pdfico1" />
               </div>
@@ -935,7 +931,7 @@ logoImg.onload = function () {
 
             <div className="col doc-col">
 
-            {docStatus['AdharCard'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
+            {docStatus['AdharCard'] === "Submitted" ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
 
               <div>
                 <img src={file6png} alt="" className="pdfico1" />
@@ -945,7 +941,7 @@ logoImg.onload = function () {
 
             <div className="col doc-col">
 
-{docStatus['PanCard'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
+{docStatus['PanCard'] === "Submitted" ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
 
   <div>
     <img src={file6png} alt="" className="pdfico1" />
@@ -955,7 +951,7 @@ logoImg.onload = function () {
 
 <div className="col doc-col">
 
-{docStatus['GST'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
+{docStatus['GST'] === "Submitted" ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
   <div>
     <img src={file6png} alt="" className="pdfico1" />
   </div>
@@ -973,7 +969,7 @@ logoImg.onload = function () {
 
 <div className="col doc-col">
 
-{docStatus['MSME'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
+{docStatus['MSME'] === "Submitted" ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
   <div>
     <img src={file6png} alt="" className="pdfico1" />
   </div>

@@ -151,18 +151,32 @@ console.log(latestStartDate)
                       <th className="header" style={{ cursor: 'default' }}>Associated Number/Family Model</th>
                       <th className="header" style={{ cursor: 'default' }}>Start Date</th>
                       <th className="header" style={{ cursor: 'default' }}>Estimated Completion Date</th>
-                      <th className="header" style={{ cursor: 'default' }}>
-                        Status{" "}
-                        <select
-                          className="dropon"
-                          value={selectedStatus}
-                          onChange={handleFilterStatusChange}
-                        >
-                          <option value="All">All</option>
-                          <option value="Ongoing">Ongoing</option>
-                          <option value="Completed">Completed</option>
-                        </select>
-                      </th>
+                      
+                      {/* STATUS ROW CSS AND FUNCTION ON LINE  */}
+                      <th className="header" style={{ cursor: 'default', position: 'relative' }}>
+                      Status{" "}
+                           <select
+                             className="dropon"
+                             value={selectedStatus}
+                             onChange={handleFilterStatusChange}
+                             style={{
+                              width: '72px',
+                              height: '1px',
+                              padding: '10px',
+                              // backgroundColor: '#082a77',
+                              position: 'absolute',
+                              top: '75%',
+                              right: '20%',
+                              transform: 'translate(0.5em, -2.3em)',
+                             }}
+                           >
+                             <option value="All">All</option>
+                             <option value="Ongoing">Ongoing</option>
+                             <option value="Completed">Completed</option>
+                           </select>
+                         </th>
+
+
                       <th className="header" style={{ cursor: 'default' }}>Actual End Date</th>
                     </tr>
                   </thead>
@@ -214,7 +228,9 @@ console.log(latestStartDate)
         </td>
         <td style={{ cursor: 'default' }}>{data.application_name}</td>
         <td style={{ cursor: 'default' }}>{data.fields['Model_number']}</td>
-        <td style={{ cursor: 'default' }}>{data.fields['Associate_models']}</td>
+        <td style={{ cursor: 'default' }}>
+          {data.fields['Associate_models']} {data.fields['Series_model']}
+        </td>
         <td style={{ cursor: 'default' }}>{formatDate(data.startdate)}</td>
         <td style={{ cursor: 'default' }}>{data.estimated_date}</td>
         <td style={{ cursor: 'default' }}>{data.status}</td>
