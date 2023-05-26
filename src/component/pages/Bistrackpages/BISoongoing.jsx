@@ -18,7 +18,7 @@ import { ReactComponent as Right } from "../../assets/trckpg-rb/right.svg";
 import file6png from "../../assets/pdficon/Red02.png";
 import pdflogo from "../../assets/icons/eikomp_logo.png"
 import StatusBar from "../../Statusbar";
-import Chatbot from "../../Chatbot/Chatbot";
+import BISChatbot from "../../Chatbot/BISChatbot";
 import Swal from 'sweetalert2';
 
 
@@ -1010,7 +1010,7 @@ logoImg.onload = function () {
       )}
     </div>
   )}  */}
-    <Chatbot /> 
+    <BISChatbot /> 
   
         </div>
        </div>

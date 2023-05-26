@@ -14,6 +14,7 @@ import axiosInstance from "../../../interceptors/axios";
 import { ReactComponent as Wrong } from "../../assets/trckpg-rb/wrong.svg";
 import { ReactComponent as Right } from "../../assets/trckpg-rb/right.svg";
 import file6png from "../../assets/pdficon/Red02.png";
+import BISChatbot from "../../Chatbot/BISChatbot";
 
 
 function Compdownload() {
@@ -198,10 +199,8 @@ AIR authorization letter
             </div>
 
           </div>
+          <BISChatbot /> 
         </div>
-  
-      
-
         </div>
 
         

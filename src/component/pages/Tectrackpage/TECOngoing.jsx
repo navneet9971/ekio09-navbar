@@ -319,19 +319,29 @@ const handleSubmit = (event) => {
            localStorage.setItem("report", response.data.report);
            localStorage.setItem("finalcertificate",response.data.certificate)
           
+                // const docReport = {};
+                // const docCertificate = {};
+
+                // response.data.data.forEach((item) => {
+                //   const documentType = item.document_type;
+                //   const fileType = item.document;
+                  
+                //   if (documentType.includes('report_')) {
+                //     docReport[documentType] = `https://eikomp-backend-media.s3.amazonaws.com/media/` + fileType;
+                //   }
+                  
+                //   if (documentType.includes('certificate_')) {
+                //     docCertificate[documentType] = `https://eikomp-backend-media.s3.amazonaws.com/media/` + fileType;
+                // }
+                // console.log(fileType)
+                // });
+
+                
            const docStatus = {};
            for (let i = 0; i < documentData.length; i++) {
-            const statusData = documentData[i];
-            docStatus[statusData["document_type"]] = statusData["status"];
-          
-            const documentType = statusData["document_type"];
-          
-            if (documentType === "report" || documentType === "invoice") {
-              // Download the file
-              // Perform the necessary actions to download the document
-            } 
-            console.log(documentType === "report")
-          }
+             const statusData = documentData[i];
+             docStatus[statusData["document_type"]] = statusData["status"];
+           }
            
            setDocStatus(docStatus);
            console.log(docStatus);

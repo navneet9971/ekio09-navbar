@@ -1251,15 +1251,17 @@ const handleSubmitBISauto = (event) => {
               />
             </label>
             <label className="st8012">
-              Contact Number:
-              <input
-                className="st805"
-                type="number"
+  Contact Number:
+  <input
+    className="st805"
+    onChange={(event) => setApplicantContactNumber(event.target.value)}
+    type="tel"
+    pattern="[0-9]{10}" // Specify the pattern for a 10-digit number
+    title="Please enter a 10-digit number" // Displayed as an error message if the pattern doesn't match
+    required // Make the field required to ensure a value is entered
+  />
+</label>
 
-                onChange={(event) => setApplicantContactNumber(event.target.value)}
-
-              />
-            </label>
           
             <label className="st8012">
   Email ID:
@@ -1317,9 +1319,11 @@ const handleSubmitBISauto = (event) => {
               Contact Number:
               <input
                 className="st805"
-                type="number"
-
                 onChange={(event) => setApplicantContactNumber1(event.target.value)}
+                type="tel"
+                pattern="[0-9]{10}" // Specify the pattern for a 10-digit number
+                title="Please enter a 10-digit number" // Displayed as an error message if the pattern doesn't match
+                required // Make the field required to ensure a value is entered
 
               />
             </label>
@@ -1391,9 +1395,11 @@ const handleSubmitBISauto = (event) => {
               Contact Number:
               <input
                 className="st805"
-                type="number"
-
                 onChange={(event) => setForeignContactNumber(event.target.value)}
+                type="tel"
+                pattern="[0-9]{10}" // Specify the pattern for a 10-digit number
+                title="Please enter a 10-digit number" // Displayed as an error message if the pattern doesn't match
+                required // Make the field required to ensure a value is entered
 
               />
             </label>
@@ -1548,10 +1554,13 @@ const handleSubmitBISauto = (event) => {
             Contact Number:
             <input
                 className="st805"
-                type="text"
                 name="Factory_contact_number"
                 value={bisformData.Factory_contact_number}
                 onChange={handleBISChange}
+                type="tel"
+                pattern="[0-9]{10}" // Specify the pattern for a 10-digit number
+                title="Please enter a 10-digit number" // Displayed as an error message if the pattern doesn't match
+                required // Make the field required to ensure a value is entered
               />
             </label>
 
@@ -1782,11 +1791,14 @@ const handleSubmitBISauto = (event) => {
     <label className="st8012">
   <input
     className="st805"
-    type="text"
     placeholder="Contact Number"
     name="Contact_person_of_the_manufacturing_unit_contact_number"
     value={bisformData.Contact_person_of_the_manufacturing_unit_contact_number}
     onChange={handleBISChange}
+    type="tel"
+    pattern="[0-9]{10}" // Specify the pattern for a 10-digit number
+    title="Please enter a 10-digit number" // Displayed as an error message if the pattern doesn't match
+    required // Make the field required to ensure a value is entered
   />
 </label>
      
@@ -1915,11 +1927,14 @@ name="Top_management_of_the_AIR_company_designation"
 <label className="st8012">
 <input
 className="st805"
-type="text"
 placeholder="Contact Number"
 name="Top_management_of_the_AIR_company_contact_number"
        value={bisformData.Top_management_of_the_AIR_company_contact_number}
        onChange={handleBISChange}
+       type="tel"
+       pattern="[0-9]{10}" // Specify the pattern for a 10-digit number
+       title="Please enter a 10-digit number" // Displayed as an error message if the pattern doesn't match
+       required // Make the field required to ensure a value is entered
 />
 </label>
 
@@ -1969,11 +1984,14 @@ name="Authorized_signatory_designation"
 <label className="st8012">
 <input
 className="st805"
-type="text"
 placeholder="Contact Number"
 name="Authorized_signatory_contact_number"
        value={bisformData.Authorized_signatory_contact_number}
        onChange={handleBISChange}
+       type="tel"
+       pattern="[0-9]{10}" // Specify the pattern for a 10-digit number
+       title="Please enter a 10-digit number" // Displayed as an error message if the pattern doesn't match
+       required // Make the field required to ensure a value is entered
 />
 </label>
 
@@ -2195,7 +2213,6 @@ onChange={handleBISChange}
 
       {hasBISReg && (
         <div>
-
           <label className="st8012">
             Username:
             <input
@@ -2203,15 +2220,24 @@ onChange={handleBISChange}
               type="text"
               onChange={(event) => setUsername_BISPortal(event.target.value)}
             />
+            <div>
+             
+      </div>
           </label>
 
           <label className="st8012">
             Password:
             <input
               className="st805"
-              type="text"
+              type={showPassword ? 'text' : 'password'}
               onChange={(event) => setPassword_BISPortal(event.target.value)}
             />
+            <div
+      className="password-toggle-icon"
+      onClick={() => setShowPassword(!showPassword)}
+    >
+       {showPassword ? '🙈' : '👁️'}
+    </div>
           </label>
         </div>
       )}
@@ -2250,8 +2276,11 @@ onChange={handleBISChange}
             Contact Number:
               <input
                 className="st805"
-                type="text"
                 onChange={(event) => setFactory_contact_number(event.target.value)}
+                type="tel"
+                pattern="[0-9]{10}" // Specify the pattern for a 10-digit number
+                title="Please enter a 10-digit number" // Displayed as an error message if the pattern doesn't match
+                required // Make the field required to ensure a value is entered
               />
             </label>
 
@@ -2259,7 +2288,7 @@ onChange={handleBISChange}
             Email id:
               <input
                 className="st805"
-                type="text"
+                type="email"
                 onChange={(event) => {
                   const inputValue = event.target.value;
                   const isValidEmail = inputValue.includes('@') && inputValue.includes('.');
@@ -2453,9 +2482,12 @@ onChange={handleBISChange}
     <label className="st8012">
   <input
     className="st805"
-    type="text"
     placeholder="Contact Number"
     onChange={(event) =>setContact_person_of_the_manufacturing_unit_contact_number(event.target.value)}
+    type="tel"
+    pattern="[0-9]{10}" // Specify the pattern for a 10-digit number
+    title="Please enter a 10-digit number" // Displayed as an error message if the pattern doesn't match
+    required // Make the field required to ensure a value is entered
   />
 </label>
      
@@ -2489,8 +2521,7 @@ onChange={handleBISChange}
             Trademark:
               <input
                 className="st805"
-                type="number"
-
+                type="tel"
                 onChange={(event) => setBrand_trademark(event.target.value)}
 
               />
@@ -2525,8 +2556,7 @@ onChange={handleBISChange}
             Brand Owner Company Address:
               <input
                 className="st805"
-                type="number"
-
+                type="text"
                 onChange={(event) => setBrand_owner_company_address(event.target.value)}
 
               />
@@ -2539,7 +2569,6 @@ onChange={handleBISChange}
               <input
                 className="st805"
                 type="text"
-
                 onChange={(event) => setName_of_the_AIR_company(event.target.value)}
 
               />
@@ -2549,7 +2578,6 @@ onChange={handleBISChange}
               <input
                 className="st805"
                 type="text"
-
                 onChange={(event) => setAddress_of_the_AIR_company(event.target.value)}
               />
             </label>
@@ -2583,9 +2611,12 @@ onChange={handleBISChange}
     <label className="st8012">
   <input
     className="st805"
-    type="text"
     placeholder="Contact Number"
     onChange={(event) =>setTop_management_of_the_AIR_company_contact_number(event.target.value)}
+    type="tel"
+    pattern="[0-9]{10}" // Specify the pattern for a 10-digit number
+    title="Please enter a 10-digit number" // Displayed as an error message if the pattern doesn't match
+    required // Make the field required to ensure a value is entered
   />
 </label>
      
@@ -2641,9 +2672,12 @@ onChange={handleBISChange}
     <label className="st8012">
   <input
     className="st805"
-    type="text"
     placeholder="Contact Number"
     onChange={(event) => setAuthorized_signatory_contact_number(event.target.value)}
+    type="tel"
+    pattern="[0-9]{10}" // Specify the pattern for a 10-digit number
+    title="Please enter a 10-digit number" // Displayed as an error message if the pattern doesn't match
+    required // Make the field required to ensure a value is entered
   />
 </label>
      
