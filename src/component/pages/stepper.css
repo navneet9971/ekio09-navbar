@@ -615,3 +615,14 @@ p.status-percent {
   margin-bottom: 25px;
   justify-content: center;
 }
+
+/* Upload Butoon POPUP SOME CSS */
+h4.showselectfiles {
+    margin-bottom: 20px;
+}
+
+button.showselectfiles {
+  margin-top: 15px;
+  margin-bottom: 35px;
+}
+
