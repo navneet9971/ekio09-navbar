@@ -25,11 +25,10 @@ import Swal from 'sweetalert2';
 
 
 function BISoongoing() {
-   // const [currentStep] = useState(1);
-  // const steps = ["Application Submitted", "Sample sent for testing", "Test report generated", "Document pending with authorities", "Final report generated"];
-   // const [current, setCurrentStep] = useState(1);
- //   const [setComplete] = useState(false);
-  const [setSelectedOption] = useState('');
+   //const [currentStep] = useState(1);
+  //const steps = ["Application Submitted", "Sample sent for testing", "Test report generated", "Document pending with authorities", "Final report generated"];
+   //const [current, setCurrentStep] = useState(1);
+ //const [setComplete] = useState(false);
   const [docStatus, setDocStatus] = useState({});
   const [docStep, setdocStep] = useState({});
   //const [startDate, setStartDate] = useState('');
@@ -44,6 +43,8 @@ function BISoongoing() {
   const [buttonPopup1, setButtonPopup1] = useState(false);
   const totalResponses = 6; 
   const completedResponses = localStorage.getItem('stepstatus');
+  const [docReport, setDocReport] = useState("");
+  const [docType, setDocType] = useState("");
   
  // const [document] = useState(null);
    // const [startDate, setStartDate] = useState(null);
@@ -59,6 +60,7 @@ function BISoongoing() {
    const [buttonPopup6, setButtonPopup6] = useState(false);
    const [buttonPopup7, setButtonPopup7] = useState(false);
    const [buttonPopup8, setButtonPopup8] = useState(false);
+   const [buttonPopupreport, setButtonPopupreport] = useState(false);
 
 
 //Notification Button Const Here all---------------
@@ -288,16 +290,31 @@ const handleSubmit = (event) => {
            localStorage.setItem("certificate",response.data.certificate)
          //  console.log(response.data.key)
           
-            // if (response.data.key) == 'No' {
-            //     download report 
-            //     download certificate
-            // }
-            // else
-            // {
-            //   for i in documentData:
-            //   if "report" in i['document_type'].lower():
-            //     download report -  button -name - i['document_type'] link - i['document']
-            // }
+       //store button APIS data here button name download report and download certificate 
+       localStorage.setItem("report", response.data.report);
+       localStorage.setItem("finalcertificate",response.data.certificate)
+      
+            const docReport = {};
+            const docCertificate = {};
+
+            response.data.data.forEach((item) => {
+              const documentType = item.document_type;
+              const fileType = item.document;
+              
+              if (documentType.includes('report_')) {
+                docReport[documentType] = fileType;
+              }
+              
+              if (documentType.includes('certificate_')) {
+                docCertificate[documentType] = fileType;
+            }
+            });
+
+            // Assuming you want to store these objects in the state variables 'setdocreport' and 'setdoctype'
+setDocReport(docReport);
+setDocType(docCertificate);
+
+
             const docStatus = {};
             for (let i = 0; i < documentData.length; i++) {
               const statusData = documentData[i];
@@ -456,24 +473,25 @@ logoImg.onload = function () {
 
 
 
-    /*-------handleOptions download report-----*/
-    const ReportOptionClick = (option) => {
-      const reportKey = localStorage.getItem("hell");
-      console.log(reportKey);
-      console.log("segbskhgks");
-      if (reportKey === 'Yes') {
-        setSelectedOption(option);
-      }
-    };
+  /*-------------------------------------------handleOptions download report----------------------------------*/
+  const ReportOptionClick = (option) => {
+    const reportKey = localStorage.getItem("report");
+    console.log(reportKey);
+    if (reportKey === 'Yes') { 
+    
+      // Create a popup window       
+    }
+  };
 
-    const CertificateOptionClick = (option) => {
-      const certificateKey = localStorage.getItem("hell");
-      console.log(certificateKey);
-      console.log("nananananan");
-      if (certificateKey === 'Yes') {
-        setSelectedOption(option);
-      }
-    };
+  const CertificateOptionClick = (option) => {
+    const certificateKey = localStorage.getItem("finalcertificate");
+    console.log(certificateKey);
+    if (certificateKey === 'Yes') {
+     console.log(docType)
+     var newWindow = window.open(docType.certificate_, '_blank');
+     newWindow.focus();
+    }
+  };
 
     
 
@@ -984,19 +1002,36 @@ logoImg.onload = function () {
   </div>
   <h3 className="be">Form 3 (AFFIDAVIT)</h3>
 </div>
-           
-
           </div>
         </div>
+
+
+         {/* POPUP OF LAST BUTTON OF DOWNLOAD REPORT FUNCTION AS WELL  */}
+ <Message trigger={buttonPopupreport} setTrigger={setButtonPopupreport}>
+  <h1 style={{ color: 'black', fontSize: '24px', textAlign: 'center' }}>Report Popup</h1>
+  <ul>
+    {Object.entries(docReport).map(([documentType, fileDownloadLink]) => (
+      <li key={documentType}>
+        <a href={fileDownloadLink} download={`${documentType}.${fileDownloadLink.split('.').pop()}`} target="_blank" rel="noopener noreferrer">
+          <button className="button7">{documentType}</button>
+        </a>
+      </li>
+    ))}
+  </ul>
+</Message>      
       
 {/*------- LAST THREE BUTTON CODES HERE --------------------*/}
 
 <div className="dd-menu">
-          <button className="reportbtn" onClick={handleDownloadreport}>Download Progress Report</button>
-          <button className="reportbtn" onClick={ReportOptionClick} disabled={localStorage.getItem('report') === 'No'}>Download Test Report</button>
-          <button className="reportbtn" onClick={CertificateOptionClick} disabled={localStorage.getItem('certificate') === 'No'}>Download Certificate</button>
-        </div>
+          <button className="reportbtn" onClick={handleDownloadreport} >Download Progress Report</button>
+          <button className="reportbtn" onClick={() => {
+  ReportOptionClick();
+  setButtonPopupreport(true);
+}} disabled={localStorage.getItem("report") === 'No'}>Download Test Report</button>
 
+          <button className="reportbtn" onClick={CertificateOptionClick} disabled={localStorage.getItem("finalcertificate") === 'No'}>Download Certificate
+          </button>                                      
+        </div>
       
   {/* {startDate && endDate && (
     <div>

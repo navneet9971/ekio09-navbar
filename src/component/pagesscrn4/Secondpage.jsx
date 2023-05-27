@@ -2174,8 +2174,6 @@ onChange={handleBISChange}
 </Popup>
 
 
-
-
 {/*---------------START NEW APPLICATION BIS REQUIRED DETAILS POPUP IF USER SELECTED YES PAGE CODE HERE  ----------------------*/}
 <Popup trigger={buttonPopup6bis} setTrigger={setButtonPopup6bis}>
         <div style={{ height: "500px", overflow: "scroll" }}>

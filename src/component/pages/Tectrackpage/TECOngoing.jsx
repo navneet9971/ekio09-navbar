@@ -40,12 +40,14 @@ function TECOngoing() {
   const [testingbtnkey, setTestingbtnkey] =useState("");
   const [documentType, setDocumentType] = useState('');
   const [uploades ,setUploades] = useState('');
-    const [buttonPopup, setButtonPopup] = useState(false);
+  const [buttonPopup, setButtonPopup] = useState(false);
   const [options] = useState(['Authorized Signatory Letter', 'MOU', 'AOA', 'OEM authorized to AIR', 'MOA', 'Certificate of Incorporation']); 
   const [buttonPopup1, setButtonPopup1] = useState(false);
   const totalResponses = 8;
   const completedResponses = localStorage.getItem('stepstatus');
-  
+  const [docReport, setDocReport] = useState("");
+  const [docType, setDocType] = useState("");
+
  // const [document] = useState(null);
    // const [startDate, setStartDate] = useState(null);
    // const [endDate, setEndDate] = useState(null);
@@ -62,6 +64,7 @@ function TECOngoing() {
    const [buttonPopup8, setButtonPopup8] = useState(false);
    const [buttonPopup9, setButtonPopup9] = useState(false);
    const [buttonPopup10, setButtonPopup10] = useState(false);
+   const [buttonPopupreport, setButtonPopupreport] = useState(false);
 
 
 //Notification Button Const Here all---------------
@@ -319,24 +322,27 @@ const handleSubmit = (event) => {
            localStorage.setItem("report", response.data.report);
            localStorage.setItem("finalcertificate",response.data.certificate)
           
-                // const docReport = {};
-                // const docCertificate = {};
+                const docReport = {};
+                const docCertificate = {};
 
-                // response.data.data.forEach((item) => {
-                //   const documentType = item.document_type;
-                //   const fileType = item.document;
+                response.data.data.forEach((item) => {
+                  const documentType = item.document_type;
+                  const fileType = item.document;
                   
-                //   if (documentType.includes('report_')) {
-                //     docReport[documentType] = `https://eikomp-backend-media.s3.amazonaws.com/media/` + fileType;
-                //   }
+                  if (documentType.includes('report_')) {
+                    docReport[documentType] = fileType;
+                  }
                   
-                //   if (documentType.includes('certificate_')) {
-                //     docCertificate[documentType] = `https://eikomp-backend-media.s3.amazonaws.com/media/` + fileType;
-                // }
-                // console.log(fileType)
-                // });
+                  if (documentType.includes('certificate_')) {
+                    docCertificate[documentType] = fileType;
+                }
+                });
 
-                
+                // Assuming you want to store these objects in the state variables 'setdocreport' and 'setdoctype'
+setDocReport(docReport);
+setDocType(docCertificate);
+
+              
            const docStatus = {};
            for (let i = 0; i < documentData.length; i++) {
              const statusData = documentData[i];
@@ -357,10 +363,10 @@ const handleSubmit = (event) => {
     
       return () => clearInterval(interval);
   }, [idel]);
-  
+
   
 
-    //Download Button Code handleOptionClick
+//Download Button Code handleOptionClick
 
 
     const handleDownloadreport = () => {
@@ -499,20 +505,21 @@ logoImg.onload = function () {
     const ReportOptionClick = (option) => {
       const reportKey = localStorage.getItem("report");
       console.log(reportKey);
-      console.log("segbskhgks");
-      if (reportKey === 'Yes') {    
+      if (reportKey === 'Yes') { 
+      
+        // Create a popup window       
       }
     };
 
     const CertificateOptionClick = (option) => {
       const certificateKey = localStorage.getItem("finalcertificate");
       console.log(certificateKey);
-      console.log("nananananan");
       if (certificateKey === 'Yes') {
+       console.log(docType)
+       var newWindow = window.open(docType.certificate_, '_blank');
+       newWindow.focus();
       }
     };
-
-    
 
     /*---------DOWNLOAD BUTTON APS CALLS------*/
     
@@ -613,6 +620,8 @@ logoImg.onload = function () {
   ];
 
 
+  
+
     return (
      <div className="bgchangecompleted">
       <div className="ongoing-applications">
@@ -650,9 +659,6 @@ logoImg.onload = function () {
   </div>
 </div>
 </Popup>
-
-
-
 
 {/*-----------LAB TESTING JSX CODE IS HERE----------*/}
 
@@ -736,7 +742,7 @@ logoImg.onload = function () {
             </label>
             <label className="st8012">
         Product Type:
-        <select className="st801" onChange={(event) => setTestingProductType(event.target.value)}>
+        <select className="st804" onChange={(event) => setTestingProductType(event.target.value)}>
           <option value="Fixed">Fixed</option>
           <option value="Industrial">Industrial</option>
           <option value="Portable">Portable</option>
@@ -755,7 +761,7 @@ logoImg.onload = function () {
           
             <label className="st8012">
               Product Use:
-              <select className="st801" onChange={(event) => setTestingProductUse(event.target.value)}>
+              <select className="st804" onChange={(event) => setTestingProductUse(event.target.value)}>
                 <option value="Indoor">Indoor</option>
                 <option value="Outdoor">Outdoor</option> 
                 <option valur="Other">Other</option>              
@@ -1189,12 +1195,32 @@ logoImg.onload = function () {
           </div>
         </div>
       
+
+
+ {/* POPUP OF LAST BUTTON OF DOWNLOAD REPORT FUNCTION AS WELL  */}
+ <Message trigger={buttonPopupreport} setTrigger={setButtonPopupreport}>
+  <h1 style={{ color: 'black', fontSize: '24px', textAlign: 'center' }}>Report Popup</h1>
+  <ul>
+    {Object.entries(docReport).map(([documentType, fileDownloadLink]) => (
+      <li key={documentType}>
+        <a href={fileDownloadLink} download={`${documentType}.${fileDownloadLink.split('.').pop()}`} target="_blank" rel="noopener noreferrer">
+          <button className="button7">{documentType}</button>
+        </a>
+      </li>
+    ))}
+  </ul>
+</Message>      
 {/*------- LAST THREE BUTTON CODES HERE --------------------*/}
 
 <div className="dd-menu">
-          <button className="reportbtn" onClick={handleDownloadreport}>Download Progress Report</button>
-          <button className="reportbtn" onClick={ReportOptionClick} disabled={localStorage.getItem("report") === 'No'}>Download Test Report</button>
-          <button className="reportbtn" onClick={CertificateOptionClick} disabled={localStorage.getItem("finalcertificate") === 'No'}>Download Certificate</button>                                      
+          <button className="reportbtn" onClick={handleDownloadreport} >Download Progress Report</button>
+          <button className="reportbtn" onClick={() => {
+  ReportOptionClick();
+  setButtonPopupreport(true);
+}} disabled={localStorage.getItem("report") === 'No'}>Download Test Report</button>
+
+          <button className="reportbtn" onClick={CertificateOptionClick} disabled={localStorage.getItem("finalcertificate") === 'No'}>Download Certificate
+          </button>                                      
         </div>
       
       

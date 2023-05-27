@@ -25,7 +25,6 @@ import Chatbot from "../../Chatbot/Chatbot";
 
 
 function TECOngoing() {
-  const [setSelectedOption] = useState('');
   const [docStatus, setDocStatus] = useState({});
   const [docStep, setdocStep] = useState({});
   //const [startDate, setStartDate] = useState('');
@@ -34,6 +33,8 @@ function TECOngoing() {
   const idel = localStorage.getItem('ide');
   const totalResponses = 8;
   const completedResponses = localStorage.getItem('stepstatus');
+  const [docReport, setDocReport] = useState("");
+  const [docType, setDocType] = useState("");
  
   
    //POPUP BUTTONS OF STEPS 
@@ -45,6 +46,7 @@ function TECOngoing() {
    const [buttonPopup8, setButtonPopup8] = useState(false);
    const [buttonPopup9, setButtonPopup9] = useState(false);
    const [buttonPopup10, setButtonPopup10] = useState(false);
+   const [buttonPopupreport, setButtonPopupreport] = useState(false);
 
 
 //Notification Button Const Here all---------------
@@ -106,20 +108,31 @@ const [buttonPopup11, setButtonPopup11] = useState(false);
             const documentData = response.data.data;
             //console.log(response.data.key)
 
-           localStorage.setItem("report", response.data.report);
-           localStorage.setItem("certificate",response.data.certificate)
-         //  console.log(response.data.key)
-          
-            // if (response.data.key) == 'No' {
-            //     download report 
-            //     download certificate
-            // }
-            // else
-            // {
-            //   for i in documentData:
-            //   if "report" in i['document_type'].lower():
-            //     download report -  button -name - i['document_type'] link - i['document']
-            // }
+       //store button APIS data here button name download report and download certificate 
+       localStorage.setItem("report", response.data.report);
+       localStorage.setItem("finalcertificate",response.data.certificate)
+      
+            const docReport = {};
+            const docCertificate = {};
+
+            response.data.data.forEach((item) => {
+              const documentType = item.document_type;
+              const fileType = item.document;
+              
+              if (documentType.includes('report_')) {
+                docReport[documentType] = fileType;
+              }
+              
+              if (documentType.includes('certificate_')) {
+                docCertificate[documentType] = fileType;
+            }
+            });
+
+            // Assuming you want to store these objects in the state variables 'setdocreport' and 'setdoctype'
+setDocReport(docReport);
+setDocType(docCertificate);
+
+
             const docStatus = {};
             for (let i = 0; i < documentData.length; i++) {
               const statusData = documentData[i];
@@ -209,22 +222,25 @@ logoImg.onload = function () {
 
     /*-------handleOptions download report-----*/
     const ReportOptionClick = (option) => {
-      const reportKey = localStorage.getItem("hell");
+      const reportKey = localStorage.getItem("report");
       console.log(reportKey);
-      console.log("segbskhgks");
-      if (reportKey === 'Yes') {
-        setSelectedOption(option);
+      if (reportKey === 'Yes') { 
+      
+        // Create a popup window       
       }
     };
 
     const CertificateOptionClick = (option) => {
-      const certificateKey = localStorage.getItem("hell");
+      const certificateKey = localStorage.getItem("finalcertificate");
       console.log(certificateKey);
-      console.log("nananananan");
       if (certificateKey === 'Yes') {
-        setSelectedOption(option);
+       console.log(docType)
+       var newWindow = window.open(docType.certificate_, '_blank');
+       newWindow.focus();
       }
     };
+
+
 
     
 
@@ -476,11 +492,29 @@ logoImg.onload = function () {
           </div>
         </div>
       
+
+       {/* POPUP OF LAST BUTTON OF DOWNLOAD REPORT FUNCTION AS WELL  */}
+ <Message trigger={buttonPopupreport} setTrigger={setButtonPopupreport}>
+  <h1 style={{ color: 'black', fontSize: '24px', textAlign: 'center' }}>Report Popup</h1>
+  <ul>
+    {Object.entries(docReport).map(([documentType, fileDownloadLink]) => (
+      <li key={documentType}>
+        <a href={fileDownloadLink} download={`${documentType}.${fileDownloadLink.split('.').pop()}`} target="_blank" rel="noopener noreferrer">
+          <button className="button7">{documentType}</button>
+        </a>
+      </li>
+    ))}
+  </ul>
+</Message>  
 {/*------- LAST THREE BUTTON CODES HERE --------------------*/}
 
 <div className="dd-menu">
           <button className="reportbtn" onClick={handleDownloadreport}>Download Progress Report</button>
-          <button className="reportbtn" onClick={ReportOptionClick} disabled={localStorage.getItem('report') === 'No'}>Download Test Report</button>
+          <button className="reportbtn" onClick={() => {
+  ReportOptionClick();
+  setButtonPopupreport(true);
+}} disabled={localStorage.getItem("report") === 'No'}>Download Test Report</button>
+
           <button className="reportbtn" onClick={CertificateOptionClick} disabled={localStorage.getItem('certificate') === 'No'}>Download Certificate</button>
         </div>
   
