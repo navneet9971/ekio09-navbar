@@ -732,8 +732,8 @@ const handleSubmitBISauto = (event) => {
     AIR_signing_person: bisformData.AIR_signing_person,
     AIR_company_condition: bisformData.AIR_company_condition,
     compliance: localStorage.getItem("compliance_id"),
-  request_for: 'certification',
-  application: applicationId,
+    request_for: 'certification',
+    application: applicationId,
   };
 
   console.log(updatedBISformData)
@@ -798,8 +798,6 @@ const handleSubmitBISauto = (event) => {
  };
 
 
- 
-
  const handleClick = async (complianceName, complianceId, event) => {
   localStorage.setItem("compliance_id", complianceId);
   localStorage.setItem("compliance_name", complianceName);
@@ -841,7 +839,6 @@ const handleSubmitBISauto = (event) => {
 };
 
 
-
   //BIS DYNAMIC POPUP CHOOSE OPTION YES OR NO  function handle here-------------------------
   function handleautofilled(event) {
     const value = event.target.value;
@@ -857,7 +854,6 @@ const handleSubmitBISauto = (event) => {
     setButtonautofilledbis(false)
   }
   
-
   
   // HandleChange of Registerbutton---------
   function handleRadioChange(event) {
@@ -875,8 +871,6 @@ const handleSubmitBISauto = (event) => {
 }
 
 //Handle signingpersonchange Dropdown Option ------------
-
-
 
   return (
     <div className="table-bgsconpage">
@@ -932,8 +926,7 @@ const handleSubmitBISauto = (event) => {
 
 
 {/*------------------------ TEC DYNAMIC FORM DATA POPUP CODE HERE------------------------ */}
-<Popup trigger={buttonautofilledtec} setTrigger={setButtonautofilledtec}
->
+<Popup trigger={buttonautofilledtec} setTrigger={setButtonautofilledtec}>
 <h3 className="reg-popup-titlte">Continue with previous data?</h3>
 <div className="checkbox-container">
   <div className="bis-register">
@@ -1048,15 +1041,28 @@ const handleSubmitBISauto = (event) => {
       </label> 
 
       <label className="st8012">
-      Applicant emailid
-   <input
-        className="st805"
-        type="text"
-        name="Applicant_emailid"
-        value={tecformData.Applicant_emailid}
-        onChange={handleChange}
-      />
-      </label> 
+  Applicant emailid:
+  <input
+    className="st805"
+    type="text"
+    name="Applicant_emailid"
+    value={tecformData.Applicant_emailid}
+    onChange={(event) => {
+      const inputValue = event.target.value;
+      const isValidEmail = inputValue.includes('@') && inputValue.includes('.');
+      handleChange(event); // Call the original handleChange function if needed
+      const errorElement = document.getElementById('applicant-email-error');
+
+      if (isValidEmail) {
+        errorElement.textContent = '';
+      } else {
+        errorElement.textContent = 'Please enter a valid email address. Use @ and .xyz';
+      }
+    }}
+  />
+</label>
+<span id="applicant-email-error" style={{ color: 'red' }}></span>
+
 
       <label className="st8012">
       Authorised signatory designation
@@ -1076,9 +1082,21 @@ const handleSubmitBISauto = (event) => {
         type="text"
         name="Authorised_signatory_emailid"
         value={tecformData.Authorised_signatory_emailid}
-        onChange={handleChange}
+        onChange={(event) => {
+          const inputValue = event.target.value;
+          const isValidEmail = inputValue.includes('@') && inputValue.includes('.');
+          handleChange(event); // Call the original handleChange function if needed
+          const errorElement = document.getElementById('applicant-email-error2');
+    
+          if (isValidEmail) {
+            errorElement.textContent = '';
+          } else {
+            errorElement.textContent = 'Please enter a valid email address. Use @ and .xyz';
+          }
+        }}
       />
-      </label> 
+    </label>
+    <span id="applicant-email-error2" style={{ color: 'red' }}></span>
 
       <label className="st8012">
       Authorised signatory name
@@ -1168,9 +1186,21 @@ const handleSubmitBISauto = (event) => {
         type="text"
         name="Foreign_manufacturer_emailid"
         value={tecformData.Foreign_manufacturer_emailid}
-        onChange={handleChange}
+        onChange={(event) => {
+          const inputValue = event.target.value;
+          const isValidEmail = inputValue.includes('@') && inputValue.includes('.');
+          handleChange(event); // Call the original handleChange function if needed
+          const errorElement = document.getElementById('applicant-email-error3');
+    
+          if (isValidEmail) {
+            errorElement.textContent = '';
+          } else {
+            errorElement.textContent = 'Please enter a valid email address. Use @ and .xyz';
+          }
+        }}
       />
-      </label>
+    </label>
+    <span id="applicant-email-error3" style={{ color: 'red' }}></span>
 
       <label className="st8012">
       Types of company
@@ -1577,9 +1607,21 @@ const handleSubmitBISauto = (event) => {
                 type="text"
                 name="Factory_emailid"
                 value={bisformData.Factory_emailid}
-                onChange={handleBISChange}
+                onChange={(event) => {
+                  const inputValue = event.target.value;
+                  const isValidEmail = inputValue.includes('@') && inputValue.includes('.');
+                  handleBISChange(event); // Call the original handleChange function if needed
+                  const errorElement = document.getElementById('applicant-email-error4');
+            
+                  if (isValidEmail) {
+                    errorElement.textContent = '';
+                  } else {
+                    errorElement.textContent = 'Please enter a valid email address. Use @ and .xyz';
+                  }
+                }}
               />
             </label>
+            <span id="applicant-email-error4" style={{ color: 'red' }}></span>
 
             <select className="bisdrop" name="Factory_signing_person"
        value={bisformData.Factory_signing_person}
@@ -1808,12 +1850,24 @@ const handleSubmitBISauto = (event) => {
        placeholder="Email Id"
        name="Contact_person_of_the_manufacturing_unit_emailid"
        value={bisformData.Contact_person_of_the_manufacturing_unit_emailid}
-       onChange={handleBISChange}
-         />
-      </label>
+       onChange={(event) => {
+        const inputValue = event.target.value;
+        const isValidEmail = inputValue.includes('@') && inputValue.includes('.');
+        handleBISChange(event); // Call the original handleChange function if needed
+        const errorElement = document.getElementById('applicant-email-error6');
+  
+        if (isValidEmail) {
+          errorElement.textContent = '';
+        } else {
+          errorElement.textContent = 'Please enter a valid email address. Use @ and .xyz';
+        }
+      }}
+    />
+  </label>
       </div>
       </div>
       </div>
+<span id="applicant-email-error6" style={{ color: 'red' }}></span>
      
       <h1 className='h802'>Brand</h1>
 
@@ -1939,12 +1993,24 @@ name="Top_management_of_the_AIR_company_contact_number"
 placeholder="Email Id"
 name="Top_management_of_the_AIR_company_emailid"
        value={bisformData.Top_management_of_the_AIR_company_emailid}
-       onChange={handleBISChange}
-/>
-</label>
+       onChange={(event) => {
+        const inputValue = event.target.value;
+        const isValidEmail = inputValue.includes('@') && inputValue.includes('.');
+        handleBISChange(event); // Call the original handleChange function if needed
+        const errorElement = document.getElementById('applicant-email-error7');
+  
+        if (isValidEmail) {
+          errorElement.textContent = '';
+        } else {
+          errorElement.textContent = 'Please enter a valid email address. Use @ and .xyz';
+        }
+      }}
+    />
+  </label>
 </div>
 </div>
 </div>
+<span id="applicant-email-error7" style={{ color: 'red' }}></span>
 
 {/*----------------Pervious Name of authorized Signatory -----------------------------*/}
 
@@ -1991,12 +2057,24 @@ name="Authorized_signatory_contact_number"
 placeholder="Email Id"
 name="Authorized_signatory_emailid"
        value={bisformData.Authorized_signatory_emailid}
-       onChange={handleBISChange}
-/>
-</label>
+       onChange={(event) => {
+        const inputValue = event.target.value;
+        const isValidEmail = inputValue.includes('@') && inputValue.includes('.');
+        handleBISChange(event); // Call the original handleChange function if needed
+        const errorElement = document.getElementById('applicant-email-error8');
+  
+        if (isValidEmail) {
+          errorElement.textContent = '';
+        } else {
+          errorElement.textContent = 'Please enter a valid email address. Use @ and .xyz';
+        }
+      }}
+    />
+  </label>
 </div>
 </div>
 </div>
+<span id="applicant-email-error8" style={{ color: 'red' }}></span>
 
 
 <label className="st8012">

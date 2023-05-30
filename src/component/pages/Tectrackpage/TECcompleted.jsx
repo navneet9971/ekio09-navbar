@@ -110,7 +110,7 @@ const [buttonPopup11, setButtonPopup11] = useState(false);
 
        //store button APIS data here button name download report and download certificate 
        localStorage.setItem("report", response.data.report);
-       localStorage.setItem("finalcertificate",response.data.certificate)
+       localStorage.setItem("certificate",response.data.certificate)
       
             const docReport = {};
             const docCertificate = {};
@@ -119,7 +119,7 @@ const [buttonPopup11, setButtonPopup11] = useState(false);
               const documentType = item.document_type;
               const fileType = item.document;
               
-              if (documentType.includes('report_')) {
+              if (documentType.toLowerCase().includes('report_')) {
                 docReport[documentType] = fileType;
               }
               
@@ -231,11 +231,11 @@ logoImg.onload = function () {
     };
 
     const CertificateOptionClick = (option) => {
-      const certificateKey = localStorage.getItem("finalcertificate");
+      const certificateKey = localStorage.getItem("certificate");
       console.log(certificateKey);
       if (certificateKey === 'Yes') {
        console.log(docType)
-       var newWindow = window.open(docType.certificate_, '_blank');
+       var newWindow = window.open(Object.values(docType)[0], '_blank');
        newWindow.focus();
       }
     };
@@ -311,9 +311,9 @@ logoImg.onload = function () {
   <div className="tecon">
   
    <Message trigger={buttonPopup3} setTrigger={setButtonPopup3}>
-  <h2>  Message :- 
+  <h2 className="pop-msg">    Message :- 
    {docStep["1"] && docStep["1"][1]}</h2>
-   <h2>Start Date :- 
+   <h2 className="pop-msg">  Start Date :- 
    {docStep["1"] && docStep["1"][2].slice(0,10)}</h2>
    </Message>
 
@@ -327,9 +327,9 @@ logoImg.onload = function () {
 
 
 <Message trigger={buttonPopup4} setTrigger={setButtonPopup4}>
-<h2>  Message :- 
+<h2 className="pop-msg">    Message :- 
    {docStep["2"] && docStep["2"][1]}</h2>
-   <h2>Start Date :-
+   <h2 className="pop-msg">  Start Date :-
    {docStep["2"] && docStep["2"][2].slice(0,10)}</h2>
    </Message>
 
@@ -342,9 +342,9 @@ logoImg.onload = function () {
 
 
 <Message trigger={buttonPopup5} setTrigger={setButtonPopup5}>
-<h2>  Message :- 
+<h2 className="pop-msg">    Message :- 
    {docStep["3"] && docStep["3"][1]}</h2>
-   <h2>Start Date :-
+   <h2 className="pop-msg">  Start Date :-
    {docStep["3"] && docStep["3"][2].slice(0,10)}</h2>
    </Message>
 
@@ -357,9 +357,9 @@ logoImg.onload = function () {
 
 
 <Message trigger={buttonPopup6} setTrigger={setButtonPopup6}>
-<h2>  Message :- 
+<h2 className="pop-msg">    Message :- 
    {docStep["4"] && docStep["4"][1]}</h2>
-   <h2>Start Date :-
+   <h2 className="pop-msg">  Start Date :-
    {docStep["4"] && docStep["4"][2].slice(0,10)}</h2>
    </Message>
 
@@ -371,9 +371,9 @@ logoImg.onload = function () {
   )}
 
 <Message trigger={buttonPopup7} setTrigger={setButtonPopup7}>
-<h2>  Message :- 
+<h2 className="pop-msg">    Message :- 
    {docStep["5"] && docStep["5"][1]}</h2>
-   <h2>Start Date :-
+   <h2 className="pop-msg">  Start Date :-
    {docStep["5"] && docStep["5"][2].slice(0,10)}</h2>
    </Message>
 
@@ -385,9 +385,9 @@ logoImg.onload = function () {
   )}
 
 <Message trigger={buttonPopup8} setTrigger={setButtonPopup8}>
-<h2>  Message :- 
+<h2 className="pop-msg">    Message :- 
    {docStep["6"] && docStep["6"][1]}</h2>
-   <h2>Start Date :-
+   <h2 className="pop-msg">  Start Date :-
    {docStep["6"] && docStep["6"][2].slice(0,10)}</h2>
    </Message>
 
@@ -399,9 +399,9 @@ logoImg.onload = function () {
   )}
 
 <Message trigger={buttonPopup9} setTrigger={setButtonPopup9}>
-<h2>  Message :- 
+<h2 className="pop-msg">    Message :- 
    {docStep["7"] && docStep["7"][1]}</h2>
-   <h2>Start Date :-
+   <h2 className="pop-msg">  Start Date :-
    {docStep["7"] && docStep["7"][2].slice(0,10)}</h2>
    </Message>
 
@@ -413,9 +413,9 @@ logoImg.onload = function () {
   )}
 
 <Message trigger={buttonPopup10} setTrigger={setButtonPopup10}>
-<h2>  Message :- 
+<h2 className="pop-msg">    Message :- 
    {docStep["8"] && docStep["8"][1]}</h2>
-   <h2>Start Date :-
+   <h2 className="pop-msg">  Start Date :-
    {docStep["8"] && docStep["8"][2].slice(0,10)}</h2>
    </Message>
 
@@ -433,7 +433,7 @@ logoImg.onload = function () {
           <div className="row1">
            
           <div className="col doc-col">
-          {docStatus['Authorized Signatory Letter'] === 'sumbitted' ? ( <> <Right size={24} className="pdfico" />  </>) : (<Wrong size={24} className="pdfico" />) }
+          {docStatus['Authorized Signatory Letter'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" />  </>) : (<Wrong size={24} className="pdfico" />) }
           <div>
             <img src={file6png} alt="" className="pdfico1" />
           </div>
@@ -441,7 +441,7 @@ logoImg.onload = function () {
     </div>
 
             <div className="col doc-col">
-              {docStatus['MOU'] === 'sumbitted' ? (  <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" />)}
+              {docStatus['MOU'] === 'Submitted' ? (  <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" />)}
               <div>
                 <img src={file6png} alt="" className="pdfico1" />
               </div>
@@ -451,7 +451,7 @@ logoImg.onload = function () {
             <div className="col doc-col">
               
 
-            {docStatus['AOA'] === 'sumbitted' ? ( <> <Right size={24} className="pdfico" /> </> )  : ( <Wrong size={24} className="pdfico" /> )}
+            {docStatus['AOA'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> )  : ( <Wrong size={24} className="pdfico" /> )}
               <div>
                 <img src={file6png} alt="" className="pdfico1" />
               </div>
@@ -461,7 +461,7 @@ logoImg.onload = function () {
 
             <div className="col doc-col">
 
-            {docStatus['OEM authorized to AIR'] === 'sumbitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
+            {docStatus['OEM authorized to AIR'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
 
               <div>
                 <img src={file6png} alt="" className="pdfico1" />
@@ -471,7 +471,7 @@ logoImg.onload = function () {
 
             <div className="col doc-col">
 
-{docStatus['MOA'] === 'sumbitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
+{docStatus['MOA'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
 
   <div>
     <img src={file6png} alt="" className="pdfico1" />
@@ -481,7 +481,7 @@ logoImg.onload = function () {
 
 <div className="col doc-col">
 
-{docStatus['Certificate of Incorporation'] === 'sumbitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
+{docStatus['Certificate of Incorporation'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
   <div>
     <img src={file6png} alt="" className="pdfico1" />
   </div>

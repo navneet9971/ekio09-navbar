@@ -1,5 +1,5 @@
 .message {
-    color: #fff;
+    color: black;
     z-index: 10;
     position: fixed;
     top: 0;
@@ -18,25 +18,23 @@
     padding: 56px;
     width: 100%;
     max-width: 577px;
-    background-color: #55B600;
+    background-color: #fff;
     border-radius: 24px;
     box-shadow: -4px 14px 16px 12px rgb(69 58 161 / 20%);
-    border: 5px solid #FFA500;
+    border: 5px solid #55B600;
     box-sizing: border-box;
 }
 
 
 .message-inner .close-btn{
-    color: #fff;
+    color: black;
     position: absolute;
     top: 3px;
     right: 4px;
 }
 .message-buttons-bottom{
     margin:10px;margin-top: 56px;
-
-   
-    color:#fff;
+    color:black;
 }
 .upload-files{
     margin-bottom: 30px;
@@ -44,4 +42,12 @@
 .file-change-button{
     width:50%;
     margin:20px;
+}
+
+
+/* POPUP MESSGAE CSS */
+h2.pop-msg {
+    margin-left: auto;
+    font-size: 25px;
+    margin-right: 328px;
 }

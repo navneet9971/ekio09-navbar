@@ -14,6 +14,27 @@ function formatDate(dateString) {
   return `${day}/${month}/${year}`;
 }
 
+function reverseDate(dateString) {
+  if (dateString) {
+    const parts = dateString.split("-");
+    const reversedDate = parts.reverse().join("-");
+    const year = reversedDate.slice(-2);
+    return reversedDate.replace(/\d{4}$/, year);
+  }
+  return dateString;
+}
+
+
+function getDateAfterDays(days) {
+  const currentDate = new Date();
+  const targetDate = new Date(currentDate.getTime() + days * 24 * 60 * 60 * 1000);
+  
+  const day = targetDate.getDate();
+  const month = targetDate.getMonth() + 1; // Months are zero-based
+  const year = targetDate.getFullYear();
+
+  return `${day}/${month}/${year}`;
+}
 
 
 
@@ -234,9 +255,9 @@ console.log(latestStartDate)
           {data.fields['Associate_models']} {data.fields['Series_model']}
         </td>
         <td style={{ cursor: 'default' }}>{formatDate(data.startdate)}</td>
-        <td style={{ cursor: 'default' }}>{data.estimated_date}</td>
+        <td style={{ cursor: 'default' }}>{reverseDate(getDateAfterDays(data.estimated_date))}</td>
         <td style={{ cursor: 'default' }}>{data.status}</td>
-        <td style={{cursor: 'default'}}>{(data.end_date)}</td>
+        <td style={{cursor: 'default'}}>{reverseDate(data.end_date)}</td>
       </tr>
     ))}
 </tbody>

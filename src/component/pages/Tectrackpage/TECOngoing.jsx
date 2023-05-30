@@ -35,11 +35,14 @@ function TECOngoing() {
   const [docStep, setdocStep] = useState({});
   //const [startDate, setStartDate] = useState('');
   const [uniqueid, setUniqueid] = useState("");
+  const [documentType, setDocumentType] = useState('');
+  const [uploades ,setUploades] = useState('');
   const [complianceid, setComplianceid] = useState("");
   const idel = localStorage.getItem('ide');
   const [testingbtnkey, setTestingbtnkey] =useState("");
   const [buttonPopup, setButtonPopup] = useState(false);
   const [buttonPopup1, setButtonPopup1] = useState(false);
+  const [options] = useState(['Authorized Signatory Letter', 'MOU', 'AOA', 'OEM authorized to AIR', 'MOA', 'Certificate of Incorporation']); 
   const totalResponses = 8;
   const completedResponses = localStorage.getItem('stepstatus');
   const [docReport, setDocReport] = useState("");
@@ -113,8 +116,8 @@ const [buttonPopup2, setButtonPopup2] = useState(false);
  
 
   //const useing APIS call from upload button 
-  // const [compliance_id, setCompliance_id1] = useState(null);
-  // const [application_id, setApplication_id1]=  useState(null);
+  const [compliance_id, setCompliance_id1] = useState(null);
+  const [application_id, setApplication_id1]=  useState(null);
 
 // LAB TESTING FROM DATA HANDLE HERE WITH APIS ------------------------------
 const handleSubmit = (event) => {
@@ -266,8 +269,8 @@ const handleSubmit = (event) => {
         const compliance_id = data["compliance"];
         const application_id = data["application"];
         const request_for = data["request_for"];
-        // setCompliance_id1(compliance_id);
-        // setApplication_id1(application_id);
+        setCompliance_id1(compliance_id);
+        setApplication_id1(application_id);
         console.log(compliance_id)
         console.log(application_id)
   
@@ -317,7 +320,7 @@ const handleSubmit = (event) => {
 
            //store button APIS data here button name download report and download certificate 
            localStorage.setItem("report", response.data.report);
-           localStorage.setItem("finalcertificate",response.data.certificate)
+           localStorage.setItem("certificate",response.data.certificate)
           
                 const docReport = {};
                 const docCertificate = {};
@@ -326,12 +329,13 @@ const handleSubmit = (event) => {
                   const documentType = item.document_type;
                   const fileType = item.document;
                   
-                  if (documentType.includes('report_')) {
+                  if (documentType.toLowerCase().includes('report_')) {
                     docReport[documentType] = fileType;
                   }
                   
                   if (documentType.includes('certificate_')) {
                     docCertificate[documentType] = fileType;
+                    console.log(docCertificate)
                 }
                 });
 
@@ -439,83 +443,61 @@ logoImg.onload = function () {
   */
 
     /*---- upload button APIS CALLS */
-    const [uploadedFiles, setUploadedFiles] = useState([]);
-  const [selectedDocumentTypes, setSelectedDocumentTypes] = useState([]);
-
-  const options = [
-    { label: 'Authorized Signatory Letter', value: 'authorized_signatory_letter' },
-    { label: 'MOU', value: 'mou' },
-    { label: 'AOA', value: 'aoa' },
-    { label: 'OEM authorized to AIR', value: 'oem_authorized' },
-    { label: 'MOA', value: 'moa' },
-    { label: 'Certificate of Incorporation', value: 'certificate_of_incorporation' }
-  ];
-
-  const handleFileChange = (e) => {
-    const files = Array.from(e.target.files);
-    setUploadedFiles((prevFiles) => [...prevFiles, ...files]);
-  };
-
-  const handleDocumentTypeChange = (selectedOptions) => {
-    setSelectedDocumentTypes(selectedOptions);
-  };
-
-  const handleRemoveFile = (file) => {
-    setUploadedFiles((prevFiles) => prevFiles.filter((f) => f !== file));
-  };
-
-
-  function handleUpload() {
-    const formData = new FormData();
-  
-    uploadedFiles.forEach((file) => {
-      formData.append('documents', file);
-    });
-  
-    axiosInstance.put(`application/compliance/${idel}/`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
+    function handleUpload() {
+      const formData = new FormData();
+    
+      for (let i = 0; i < uploades.length; i++) {
+        formData.append('document', uploades[i]);
       }
-    })
-      .then((res) => {
-        console.log(res);
-        setButtonPopup('status');
+      formData.append('application', application_id);
+      formData.append('compliance', compliance_id);
+      formData.append('document_type', documentType);
+      formData.append('status', 'Submitted');
   
-        const uploadStatus = 'status'; // Corrected the assignment statement
-  
-        if (uploadStatus) { // Assuming success status is available in uploadStatus
-          Swal.fire({
-            icon: 'success',
-            title: 'Upload Success',
-            text: 'Your documents have been uploaded successfully',
-            confirmButtonText: 'OK',
-          });
-          setButtonPopup(false);
-        } else {
+      console.log(application_id)
+      console.log(compliance_id)
+      console.log(documentType)
+    
+      axiosInstance.post('application/document/', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
+        .then((res) => {
+          console.log(res);
+          setButtonPopup('status');
+      
+          const uploadStatus = 'status'; // Corrected the assignment statement
+      
+          if (uploadStatus) { // Assuming success status is available in uploadStatus
+            Swal.fire({
+              icon: 'success',
+              title: 'Upload Success',
+              text: 'Your documents have been uploaded successfully',
+              confirmButtonText: 'OK',
+            });
+            setButtonPopup(false);
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Upload Failed',
+              text: 'Sorry, there was an error uploading your documents',
+              confirmButtonText: 'OK',
+            });
+          }
+        })
+        .catch((error) => {
+          // Handle error case here
           Swal.fire({
             icon: 'error',
             title: 'Upload Failed',
             text: 'Sorry, there was an error uploading your documents',
             confirmButtonText: 'OK',
           });
-        }
-      })
-      .catch((error) => {
-        // Handle error case here
-        Swal.fire({
-          icon: 'error',
-          title: 'Upload Failed',
-          text: 'Sorry, there was an error uploading your documents',
-          confirmButtonText: 'OK',
-        });
-      });
+        });      
     
-    console.log('Uploaded Files:', uploadedFiles);
-    console.log('Selected Document Types:', selectedDocumentTypes);
-    // setButtonPopup(false);
-  }
-
-
+     // setButtonPopup(false);
+    }
 
 
 /*-------------------------------------------handleOptions download report----------------------------------*/
@@ -529,11 +511,11 @@ logoImg.onload = function () {
     };
 
     const CertificateOptionClick = (option) => {
-      const certificateKey = localStorage.getItem("finalcertificate");
+      const certificateKey = localStorage.getItem("certificate");
       console.log(certificateKey);
       if (certificateKey === 'Yes') {
        console.log(docType)
-       var newWindow = window.open(docType.certificate_, '_blank');
+       var newWindow = window.open(Object.values(docType)[0], '_blank');
        newWindow.focus();
       }
     };
@@ -636,9 +618,6 @@ logoImg.onload = function () {
     { value: 'Annexure_3_MOU', label: 'Annexure 3 MOU'},
   ];
 
-
-  
-
     return (
      <div className="bgchangecompleted">
       <div className="ongoing-applications">
@@ -653,41 +632,18 @@ logoImg.onload = function () {
  <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
 <div>
   <div>
-  <h3>Upload Files</h3>
-      <input type="file" name="file" onChange={handleFileChange} multiple />
-</div>
-
-<div>
-        <Select
-          className="optionss"
-          value={selectedDocumentTypes}
-          onChange={handleDocumentTypeChange}
-          options={options}
-          isMulti
-          placeholder="Select Document Types"
-        />
-      </div>
- 
-      <div>
-        <h4 className="showselectfiles">Selected Files:</h4>
-        <ul>
-          {uploadedFiles.map((file, index) => (
-            <li key={index}>
-              <input
-                type="checkbox"
-                checked
-                onChange={() => handleRemoveFile(file)}
-              />
-              {file.name}
-            </li>
+  <h3>Upload a File</h3>
+  <input type ="file" name="file" onChange={(e) => setUploades(e.target.files)} />
+  </div>
+  <div>
+  <select className="optionss" value={documentType} onChange={(e) => setDocumentType(e.target.value)}>
+          
+          <option value="">Select Document Type</option>
+          {options.map((option, index) => (
+            <option key={index} value={option}>{option}</option>
           ))}
-        </ul>
-      </div>
-
-      {uploadedFiles.length > 0 && (
-        <button className="showselectfiles" onClick={() => setUploadedFiles([])}>Clear Files</button>
-      )}
-
+        </select>
+  </div>
   <div>
   <button className = "btn809" onClick={handleUpload}>UPLOAD</button>
   {/* {uploadStatus &&
@@ -1054,9 +1010,9 @@ logoImg.onload = function () {
   <div className="tecon">
   
    <Message trigger={buttonPopup3} setTrigger={setButtonPopup3}>
-  <h2>  Message :- 
+  <h2 className="pop-msg">  Message :- 
    {docStep["1"] && docStep["1"][1]}</h2>
-   <h2>Start Date :- 
+   <h2 className="pop-msg"> Start Date :- 
    {docStep["1"] && docStep["1"][2].slice(0,10)}</h2>
    </Message>
 
@@ -1070,9 +1026,9 @@ logoImg.onload = function () {
 
 
 <Message trigger={buttonPopup4} setTrigger={setButtonPopup4}>
-<h2>  Message :- 
+<h2 className="pop-msg">  Message :- 
    {docStep["2"] && docStep["2"][1]}</h2>
-   <h2>Start Date :-
+   <h2 className="pop-msg">Start Date :-
    {docStep["2"] && docStep["2"][2].slice(0,10)}</h2>
    </Message>
 
@@ -1085,9 +1041,9 @@ logoImg.onload = function () {
 
 
 <Message trigger={buttonPopup5} setTrigger={setButtonPopup5}>
-<h2>  Message :- 
+<h2 className="pop-msg">  Message :- 
    {docStep["3"] && docStep["3"][1]}</h2>
-   <h2>Start Date :-
+   <h2 className="pop-msg">Start Date :-
    {docStep["3"] && docStep["3"][2].slice(0,10)}</h2>
    </Message>
 
@@ -1100,9 +1056,9 @@ logoImg.onload = function () {
 
 
 <Message trigger={buttonPopup6} setTrigger={setButtonPopup6}>
-<h2>  Message :- 
+<h2 className="pop-msg">  Message :- 
    {docStep["4"] && docStep["4"][1]}</h2>
-   <h2>Start Date :-
+   <h2 className="pop-msg">Start Date :-
    {docStep["4"] && docStep["4"][2].slice(0,10)}</h2>
    </Message>
 
@@ -1114,9 +1070,9 @@ logoImg.onload = function () {
   )}
 
 <Message trigger={buttonPopup7} setTrigger={setButtonPopup7}>
-<h2>  Message :- 
+<h2 className="pop-msg">  Message :- 
    {docStep["5"] && docStep["5"][1]}</h2>
-   <h2>Start Date :-
+   <h2 className="pop-msg">Start Date :-
    {docStep["5"] && docStep["5"][2].slice(0,10)}</h2>
    </Message>
 
@@ -1128,9 +1084,9 @@ logoImg.onload = function () {
   )}
 
 <Message trigger={buttonPopup8} setTrigger={setButtonPopup8}>
-<h2>  Message :- 
+<h2 className="pop-msg">  Message :- 
    {docStep["6"] && docStep["6"][1]}</h2>
-   <h2>Start Date :-
+   <h2 className="pop-msg">Start Date :-
    {docStep["6"] && docStep["6"][2].slice(0,10)}</h2>
    </Message>
 
@@ -1142,9 +1098,9 @@ logoImg.onload = function () {
   )}
 
 <Message trigger={buttonPopup9} setTrigger={setButtonPopup9}>
-<h2>  Message :- 
+<h2 className="pop-msg">  Message :- 
    {docStep["7"] && docStep["7"][1]}</h2>
-   <h2>Start Date :-
+   <h2 className="pop-msg">Start Date :-
    {docStep["7"] && docStep["7"][2].slice(0,10)}</h2>
    </Message>
 
@@ -1156,9 +1112,9 @@ logoImg.onload = function () {
   )}
 
 <Message trigger={buttonPopup10} setTrigger={setButtonPopup10}>
-<h2>  Message :- 
+<h2 className="pop-msg">  Message :- 
    {docStep["8"] && docStep["8"][1]}</h2>
-   <h2>Start Date :-
+   <h2 className="pop-msg">Start Date :-
    {docStep["8"] && docStep["8"][2].slice(0,10)}</h2>
    </Message>
 
@@ -1176,7 +1132,7 @@ logoImg.onload = function () {
           <div className="row1">
            
           <div className="col doc-col">
-          {docStatus['Authorized Signatory Letter'] === "Submitted" ? ( <> <Right size={24} className="pdfico" />  </>) : (<Wrong size={24} className="pdfico" />) }
+          {docStatus['Authorized Signatory Letter'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" />  </>) : (<Wrong size={24} className="pdfico" />) }
           <div>
             <img src={file6png} alt="" className="pdfico1" />
           </div>
@@ -1184,7 +1140,7 @@ logoImg.onload = function () {
     </div>
 
             <div className="col doc-col">
-              {docStatus['MOU'] === "Submitted" ? (  <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" />)}
+              {docStatus['MOU'] === 'Submitted' ? (  <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" />)}
               <div>
                 <img src={file6png} alt="" className="pdfico1" />
               </div>
@@ -1194,7 +1150,7 @@ logoImg.onload = function () {
             <div className="col doc-col">
               
 
-            {docStatus['AOA'] === "Submitted" ? ( <> <Right size={24} className="pdfico" /> </> )  : ( <Wrong size={24} className="pdfico" /> )}
+            {docStatus['AOA'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> )  : ( <Wrong size={24} className="pdfico" /> )}
               <div>
                 <img src={file6png} alt="" className="pdfico1" />
               </div>
@@ -1204,7 +1160,7 @@ logoImg.onload = function () {
 
             <div className="col doc-col">
 
-            {docStatus['OEM authorized to AIR'] === "Submitted" ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
+            {docStatus['OEM authorized to AIR'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
 
               <div>
                 <img src={file6png} alt="" className="pdfico1" />
@@ -1224,7 +1180,7 @@ logoImg.onload = function () {
 
 <div className="col doc-col">
 
-{docStatus['Certificate of Incorporation'] === "Submitted" ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
+{docStatus['Certificate of Incorporation'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
   <div>
     <img src={file6png} alt="" className="pdfico1" />
   </div>
@@ -1259,7 +1215,7 @@ logoImg.onload = function () {
   setButtonPopupreport(true);
 }} disabled={localStorage.getItem("report") === 'No'}>Download Test Report</button>
 
-          <button className="reportbtn" onClick={CertificateOptionClick} disabled={localStorage.getItem("finalcertificate") === 'No'}>Download Certificate
+          <button className="reportbtn" onClick={CertificateOptionClick} disabled={localStorage.getItem("certificate") === 'No'}>Download Certificate
           </button>                                      
         </div>
       

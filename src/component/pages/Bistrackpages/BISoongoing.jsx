@@ -36,9 +36,10 @@ function BISoongoing() {
   const [complianceid, setComplianceid] = useState("");
   const idel = localStorage.getItem('ide');
   const [testingbtnkey, setTestingbtnkey] =useState("");
-  // const [documentType, setDocumentType] = useState('');
-  // const [uploades ,setUploades] = useState('');
+  const [documentType, setDocumentType] = useState('');
+  const [uploades ,setUploades] = useState('');
   const [buttonPopup, setButtonPopup] = useState(false);
+  const [options] = useState(['Business License', 'ISO', 'Trademark Cetificate', 'AdharCard', 'PanCard', 'GST', 'Employee ID/Visiting Card of Siging authority', 'MSME', 'Form 3 (AFFIDAVIT)']); 
   const [buttonPopup1, setButtonPopup1] = useState(false);
   const totalResponses = 6; 
   const completedResponses = localStorage.getItem('stepstatus');
@@ -105,8 +106,8 @@ const [buttonPopup2, setButtonPopup2] = useState(false);
  
 
   //const useing APIS call from upload button 
-  // const [compliance_id, setCompliance_id1] = useState(null);
-  // const [application_id, setApplication_id1]=  useState(null);
+  const [compliance_id, setCompliance_id1] = useState(null);
+  const [application_id, setApplication_id1]=  useState(null);
 
 // LAB TESTING FROM DATA HANDLE HERE WITH APIS ------------------------------
 const handleSubmit = (event) => {
@@ -237,8 +238,8 @@ const handleSubmit = (event) => {
         const compliance_id = data["compliance"];
         const application_id = data["application"];
         const request_for = data["request_for"];
-        // setCompliance_id1(compliance_id);
-        // setApplication_id1(application_id);
+        setCompliance_id1(compliance_id);
+        setApplication_id1(application_id);
         console.log(compliance_id)
         console.log(application_id)
   
@@ -290,8 +291,6 @@ const handleSubmit = (event) => {
          //  console.log(response.data.key)
           
        //store button APIS data here button name download report and download certificate 
-       localStorage.setItem("report", response.data.report);
-       localStorage.setItem("finalcertificate",response.data.certificate)
       
             const docReport = {};
             const docCertificate = {};
@@ -300,7 +299,7 @@ const handleSubmit = (event) => {
               const documentType = item.document_type;
               const fileType = item.document;
               
-              if (documentType.includes('report_')) {
+              if (documentType.toLowerCase().includes('report_')) {
                 docReport[documentType] = fileType;
               }
               
@@ -386,7 +385,7 @@ logoImg.onload = function () {
    ['GST', docStatus['GST']],
    ['Employee ID/Visiting Card of Siging authority', docStatus['Employee ID/Visiting Card of Siging authority']],
    ['MSME', docStatus['MSME']],
-  ['Form_3_Affidavit', docStatus['Form_3_Affidavit']],
+  ['Form 3 (AFFIDAVIT)', docStatus['Form 3 (AFFIDAVIT)']],
    ]
 
   
@@ -414,85 +413,62 @@ logoImg.onload = function () {
 
 
      /*---- upload button APIS CALLS */
-     const [uploadedFiles, setUploadedFiles] = useState([]);
-     const [selectedDocumentTypes, setSelectedDocumentTypes] = useState([]);
-   
-     const options = [
-       { label: 'Business License', value: 'business_license' },
-       { label: 'ISO', value: 'iso' },
-       { label: 'AOA', value: 'aoa' },
-       { label: 'Trademark Cetificate', value: 'trademark_cetificate' },
-       { label: 'AdharCard', value: 'adharcard' },
-       { label: 'PanCard', value: 'pancard' },
-       { label: 'GST', value: 'gst' },
-       { label: 'Employee ID/Visiting Card of Siging authority', value: 'employee_id/visiting_card_of_siging_authority' },
-       { label: 'MSME', value: 'msme' },
-       { label: 'Form 3 (AFFIDAVIT)', value: 'form_3_(affidavit)' }
-     ];
-   
-     const handleFileChange = (e) => {
-       const files = Array.from(e.target.files);
-       setUploadedFiles((prevFiles) => [...prevFiles, ...files]);
-     };
-   
-     const handleDocumentTypeChange = (selectedOptions) => {
-       setSelectedDocumentTypes(selectedOptions);
-     };
-   
-     const handleRemoveFile = (file) => {
-       setUploadedFiles((prevFiles) => prevFiles.filter((f) => f !== file));
-     };
-   
-   
      function handleUpload() {
-       const formData = new FormData();
-     
-       uploadedFiles.forEach((file) => {
-         formData.append('documents', file);
-       });
-     
-       axiosInstance.put(`application/compliance/${idel}/`, formData, {
-         headers: {
-           'Content-Type': 'multipart/form-data'
-         }
-       })
-         .then((res) => {
-           console.log(res);
-           setButtonPopup('status');
-     
-           const uploadStatus = 'status'; // Corrected the assignment statement
-     
-           if (uploadStatus) { // Assuming success status is available in uploadStatus
-             Swal.fire({
-               icon: 'success',
-               title: 'Upload Success',
-               text: 'Your documents have been uploaded successfully',
-               confirmButtonText: 'OK',
-             });
-             setButtonPopup(false);
-           } else {
-             Swal.fire({
-               icon: 'error',
-               title: 'Upload Failed',
-               text: 'Sorry, there was an error uploading your documents',
-               confirmButtonText: 'OK',
-             });
-           }
-         })
-         .catch((error) => {
-           // Handle error case here
-           Swal.fire({
-             icon: 'error',
-             title: 'Upload Failed',
-             text: 'Sorry, there was an error uploading your documents',
-             confirmButtonText: 'OK',
-           });
-         });
-       
-       console.log('Uploaded Files:', uploadedFiles);
-       console.log('Selected Document Types:', selectedDocumentTypes);
-       // setButtonPopup(false);
-     }
+      const formData = new FormData();
+    
+      for (let i = 0; i < uploades.length; i++) {
+        formData.append('document', uploades[i]);
+      }
+      formData.append('application', application_id);
+      formData.append('compliance', compliance_id);
+      formData.append('document_type', documentType);
+      formData.append('status', 'Submitted');
+  
+      console.log(application_id)
+      console.log(compliance_id)
+      console.log(documentType)
+    
+      axiosInstance.post('application/document/', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
+        .then((res) => {
+          console.log(res);
+          setButtonPopup('status');
+      
+          const uploadStatus = 'status'; // Corrected the assignment statement
+      
+          if (uploadStatus) { // Assuming success status is available in uploadStatus
+            Swal.fire({
+              icon: 'success',
+              title: 'Upload Success',
+              text: 'Your documents have been uploaded successfully',
+              confirmButtonText: 'OK',
+            });
+            setButtonPopup(false);
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Upload Failed',
+              text: 'Sorry, there was an error uploading your documents',
+              confirmButtonText: 'OK',
+            });
+          }
+        })
+        .catch((error) => {
+          // Handle error case here
+          Swal.fire({
+            icon: 'error',
+            title: 'Upload Failed',
+            text: 'Sorry, there was an error uploading your documents',
+            confirmButtonText: 'OK',
+          });
+        });      
+    
+     // setButtonPopup(false);
+    }
+
 
 
   /*-------------------------------------------handleOptions download report----------------------------------*/
@@ -506,11 +482,11 @@ logoImg.onload = function () {
   };
 
   const CertificateOptionClick = (option) => {
-    const certificateKey = localStorage.getItem("finalcertificate");
+    const certificateKey = localStorage.getItem("certificate");
     console.log(certificateKey);
     if (certificateKey === 'Yes') {
      console.log(docType)
-     var newWindow = window.open(docType.certificate_, '_blank');
+     var newWindow = window.open(Object.values(docType)[0], '_blank');
      newWindow.focus();
     }
   };
@@ -614,42 +590,26 @@ logoImg.onload = function () {
  <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
 <div>
   <div>
-  <h3>Upload Files</h3>
-      <input type="file" name="file" onChange={handleFileChange} multiple />
-</div>
-<div>
-        <Select
-          className="optionss"
-          value={selectedDocumentTypes}
-          onChange={handleDocumentTypeChange}
-          options={options}
-          isMulti
-          placeholder="Select Document Types"
-        />
-      </div>
- 
-      <div>
-        <h4 className="showselectfiles">Selected Files:</h4>
-        <ul>
-          {uploadedFiles.map((file, index) => (
-            <li key={index}>
-              <input
-                type="checkbox"
-                checked
-                onChange={() => handleRemoveFile(file)}
-              />
-              {file.name}
-            </li>
+  <h3>Upload a File</h3>
+  <input type ="file" name="file" onChange={(e) => setUploades(e.target.files)}/>
+  </div>
+  <div>
+  <select className="optionss" value={documentType} onChange={(e) => setDocumentType(e.target.value)}>
+          
+          <option value="">Select Document Type</option>
+          {options.map((option, index) => (
+            <option key={index} value={option}>{option}</option>
           ))}
-        </ul>
-      </div>
-
-      {uploadedFiles.length > 0 && (
-        <button className="showselectfiles" onClick={() => setUploadedFiles([])}>Clear Files</button>
-      )}
-
+        </select>
+  </div>
   <div>
   <button className = "btn809" onClick={handleUpload}>UPLOAD</button>
+  {/* {uploadStatus &&
+    <div className="submit-pop">
+      <p>{uploadStatus === 'status' ? 'Your documents have been uploaded successfully' : 'There was an error uploading your document.'}</p>
+      <button className="sumbitpop-btn" onClick={() => setUploadStatus('')}>OK</button>
+    </div>  
+  } */}
   </div>
 </div>
 </Popup>
@@ -862,9 +822,9 @@ logoImg.onload = function () {
     <h2 className="steps-count">Steps To Be Completed</h2>  
   <div className="tecon"> 
    <Message trigger={buttonPopup3} setTrigger={setButtonPopup3}>
-  <h2>  Message :- 
+  <h2 className="pop-msg">    Message :- 
    {docStep["1"] && docStep["1"][1]}</h2>
-   <h2>Start Date :- 
+   <h2 className="pop-msg">  Start Date :- 
    {docStep["1"] && docStep["1"][2].slice(0,10)}</h2>
    </Message>
 
@@ -878,9 +838,9 @@ logoImg.onload = function () {
 
 
 <Message trigger={buttonPopup4} setTrigger={setButtonPopup4}>
-<h2>  Message :- 
+<h2 className="pop-msg">    Message :- 
    {docStep["2"] && docStep["2"][1]}</h2>
-   <h2>Start Date :-
+   <h2 className="pop-msg">  Start Date :-
    {docStep["2"] && docStep["2"][2].slice(0,10)}</h2>
    </Message>
 
@@ -893,9 +853,9 @@ logoImg.onload = function () {
 
 
 <Message trigger={buttonPopup5} setTrigger={setButtonPopup5}>
-<h2>  Message :- 
+<h2 className="pop-msg">    Message :- 
    {docStep["3"] && docStep["3"][1]}</h2>
-   <h2>Start Date :-
+   <h2 className="pop-msg">  Start Date :-
    {docStep["3"] && docStep["3"][2].slice(0,10)}</h2>
    </Message>
 
@@ -908,9 +868,9 @@ logoImg.onload = function () {
 
 
 <Message trigger={buttonPopup6} setTrigger={setButtonPopup6}>
-<h2>  Message :- 
+<h2 className="pop-msg">    Message :- 
    {docStep["4"] && docStep["4"][1]}</h2>
-   <h2>Start Date :-
+   <h2 className="pop-msg">  Start Date :-
    {docStep["4"] && docStep["4"][2].slice(0,10)}</h2>
    </Message>
 
@@ -922,9 +882,9 @@ logoImg.onload = function () {
   )}
 
 <Message trigger={buttonPopup7} setTrigger={setButtonPopup7}>
-<h2>  Message :- 
+<h2 className="pop-msg">    Message :- 
    {docStep["5"] && docStep["5"][1]}</h2>
-   <h2>Start Date :-
+   <h2 className="pop-msg">  Start Date :-
    {docStep["5"] && docStep["5"][2].slice(0,10)}</h2>
    </Message>
 
@@ -936,9 +896,9 @@ logoImg.onload = function () {
   )}
 
 <Message trigger={buttonPopup8} setTrigger={setButtonPopup8}>
-<h2>  Message :- 
+<h2 className="pop-msg">    Message :- 
    {docStep["6"] && docStep["6"][1]}</h2>
-   <h2>Start Date :-
+   <h2 className="pop-msg">  Start Date :-
    {docStep["6"] && docStep["6"][2].slice(0,10)}</h2>
    </Message>
 
@@ -959,7 +919,7 @@ logoImg.onload = function () {
           <div className="row1">
            
           <div className="col doc-col">
-          {docStatus['Business License'] === "Submitted" ? ( <> <Right size={24} className="pdfico" />  </>) : (<Wrong size={24} className="pdfico" />) }
+          {docStatus['Business License'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" />  </>) : (<Wrong size={24} className="pdfico" />) }
           <div>
             <img src={file6png} alt="" className="pdfico1" />
           </div>
@@ -967,7 +927,7 @@ logoImg.onload = function () {
     </div>
 
             <div className="col doc-col">
-              {docStatus['ISO'] === "Submitted" ? (  <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" />)}
+              {docStatus['ISO'] === 'Submitted' ? (  <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" />)}
               <div>
                 <img src={file6png} alt="" className="pdfico1" />
               </div>
@@ -977,7 +937,7 @@ logoImg.onload = function () {
             <div className="col doc-col">
               
 
-            {docStatus['Trademark Cetificate'] === "Submitted" ? ( <> <Right size={24} className="pdfico" /> </> )  : ( <Wrong size={24} className="pdfico" /> )}
+            {docStatus['Trademark Cetificate'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> )  : ( <Wrong size={24} className="pdfico" /> )}
               <div>
                 <img src={file6png} alt="" className="pdfico1" />
               </div>
@@ -987,7 +947,7 @@ logoImg.onload = function () {
 
             <div className="col doc-col">
 
-            {docStatus['AdharCard'] === "Submitted" ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
+            {docStatus['AdharCard'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
 
               <div>
                 <img src={file6png} alt="" className="pdfico1" />
@@ -997,7 +957,7 @@ logoImg.onload = function () {
 
             <div className="col doc-col">
 
-{docStatus['PanCard'] === "Submitted" ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
+{docStatus['PanCard'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
 
   <div>
     <img src={file6png} alt="" className="pdfico1" />
@@ -1007,7 +967,7 @@ logoImg.onload = function () {
 
 <div className="col doc-col">
 
-{docStatus['GST'] === "Submitted" ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
+{docStatus['GST'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
   <div>
     <img src={file6png} alt="" className="pdfico1" />
   </div>
@@ -1025,7 +985,7 @@ logoImg.onload = function () {
 
 <div className="col doc-col">
 
-{docStatus['MSME'] === "Submitted" ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
+{docStatus['MSME'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
   <div>
     <img src={file6png} alt="" className="pdfico1" />
   </div>
@@ -1034,7 +994,7 @@ logoImg.onload = function () {
 
 <div className="col doc-col">
 
-{docStatus['Form_3_Affidavit'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
+{docStatus['Form 3 (AFFIDAVIT)'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
   <div>
     <img src={file6png} alt="" className="pdfico1" />
   </div>
@@ -1067,7 +1027,7 @@ logoImg.onload = function () {
   setButtonPopupreport(true);
 }} disabled={localStorage.getItem("report") === 'No'}>Download Test Report</button>
 
-          <button className="reportbtn" onClick={CertificateOptionClick} disabled={localStorage.getItem("finalcertificate") === 'No'}>Download Certificate
+          <button className="reportbtn" onClick={CertificateOptionClick} disabled={localStorage.getItem("certificate") === 'No'}>Download Certificate
           </button>                                      
         </div>
       

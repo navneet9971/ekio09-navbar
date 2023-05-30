@@ -106,7 +106,7 @@ const [buttonPopup11, setButtonPopup11] = useState(false);
 
        //store button APIS data here button name download report and download certificate 
        localStorage.setItem("report", response.data.report);
-       localStorage.setItem("finalcertificate",response.data.certificate)
+       localStorage.setItem("certificate",response.data.certificate)
       
             const docReport = {};
             const docCertificate = {};
@@ -115,7 +115,7 @@ const [buttonPopup11, setButtonPopup11] = useState(false);
               const documentType = item.document_type;
               const fileType = item.document;
               
-              if (documentType.includes('report_')) {
+              if (documentType.toLowerCase().includes('report_')) {
                 docReport[documentType] = fileType;
               }
               
@@ -229,11 +229,11 @@ logoImg.onload = function () {
     };
 
     const CertificateOptionClick = (option) => {
-      const certificateKey = localStorage.getItem("finalcertificate");
+      const certificateKey = localStorage.getItem("certificate");
       console.log(certificateKey);
       if (certificateKey === 'Yes') {
        console.log(docType)
-       var newWindow = window.open(docType.certificate_, '_blank');
+       var newWindow = window.open(Object.values(docType)[0], '_blank');
        newWindow.focus();
       }
     };
@@ -309,9 +309,9 @@ logoImg.onload = function () {
   <div className="tecon">
   
    <Message trigger={buttonPopup3} setTrigger={setButtonPopup3}>
-  <h2>  Message :- 
+  <h2 className="pop-msg">    Message :- 
    {docStep["1"] && docStep["1"][1]}</h2>
-   <h2>Start Date :- 
+   <h2 className="pop-msg">  Start Date :- 
    {docStep["1"] && docStep["1"][2].slice(0,10)}</h2>
    </Message>
 
@@ -325,9 +325,9 @@ logoImg.onload = function () {
 
 
 <Message trigger={buttonPopup4} setTrigger={setButtonPopup4}>
-<h2>  Message :- 
+<h2 className="pop-msg">    Message :- 
    {docStep["2"] && docStep["2"][1]}</h2>
-   <h2>Start Date :-
+   <h2 className="pop-msg">  Start Date :-
    {docStep["2"] && docStep["2"][2].slice(0,10)}</h2>
    </Message>
 
@@ -340,9 +340,9 @@ logoImg.onload = function () {
 
 
 <Message trigger={buttonPopup5} setTrigger={setButtonPopup5}>
-<h2>  Message :- 
+<h2 className="pop-msg">    Message :- 
    {docStep["3"] && docStep["3"][1]}</h2>
-   <h2>Start Date :-
+   <h2 className="pop-msg">  Start Date :-
    {docStep["3"] && docStep["3"][2].slice(0,10)}</h2>
    </Message>
 
@@ -355,9 +355,9 @@ logoImg.onload = function () {
 
 
 <Message trigger={buttonPopup6} setTrigger={setButtonPopup6}>
-<h2>  Message :- 
+<h2 className="pop-msg">    Message :- 
    {docStep["4"] && docStep["4"][1]}</h2>
-   <h2>Start Date :-
+   <h2 className="pop-msg">  Start Date :-
    {docStep["4"] && docStep["4"][2].slice(0,10)}</h2>
    </Message>
 
@@ -369,9 +369,9 @@ logoImg.onload = function () {
   )}
 
 <Message trigger={buttonPopup7} setTrigger={setButtonPopup7}>
-<h2>  Message :- 
+<h2 className="pop-msg">    Message :- 
    {docStep["5"] && docStep["5"][1]}</h2>
-   <h2>Start Date :-
+   <h2 className="pop-msg">  Start Date :-
    {docStep["5"] && docStep["5"][2].slice(0,10)}</h2>
    </Message>
 
@@ -383,9 +383,9 @@ logoImg.onload = function () {
   )}
 
 <Message trigger={buttonPopup8} setTrigger={setButtonPopup8}>
-<h2>  Message :- 
+<h2 className="pop-msg">    Message :- 
    {docStep["6"] && docStep["6"][1]}</h2>
-   <h2>Start Date :-
+   <h2 className="pop-msg">  Start Date :-
    {docStep["6"] && docStep["6"][2].slice(0,10)}</h2>
    </Message>
 
@@ -403,7 +403,7 @@ logoImg.onload = function () {
           <div className="row1">
            
           <div className="col doc-col">
-          {docStatus['Business License'] === "Submitted" ? ( <> <Right size={24} className="pdfico" />  </>) : (<Wrong size={24} className="pdfico" />) }
+          {docStatus['Business License'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" />  </>) : (<Wrong size={24} className="pdfico" />) }
           <div>
             <img src={file6png} alt="" className="pdfico1" />
           </div>
@@ -411,7 +411,7 @@ logoImg.onload = function () {
     </div>
 
             <div className="col doc-col">
-              {docStatus['ISO'] === "Submitted" ? (  <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" />)}
+              {docStatus['ISO'] === 'Submitted' ? (  <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" />)}
               <div>
                 <img src={file6png} alt="" className="pdfico1" />
               </div>
@@ -421,7 +421,7 @@ logoImg.onload = function () {
             <div className="col doc-col">
               
 
-            {docStatus['Trademark Cetificate'] === "Submitted" ? ( <> <Right size={24} className="pdfico" /> </> )  : ( <Wrong size={24} className="pdfico" /> )}
+            {docStatus['Trademark Cetificate'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> )  : ( <Wrong size={24} className="pdfico" /> )}
               <div>
                 <img src={file6png} alt="" className="pdfico1" />
               </div>
@@ -431,7 +431,7 @@ logoImg.onload = function () {
 
             <div className="col doc-col">
 
-            {docStatus['AdharCard'] === "Submitted" ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
+            {docStatus['AdharCard'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
 
               <div>
                 <img src={file6png} alt="" className="pdfico1" />
@@ -441,7 +441,7 @@ logoImg.onload = function () {
 
             <div className="col doc-col">
 
-{docStatus['PanCard'] === "Submitted" ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
+{docStatus['PanCard'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
 
   <div>
     <img src={file6png} alt="" className="pdfico1" />
@@ -451,7 +451,7 @@ logoImg.onload = function () {
 
 <div className="col doc-col">
 
-{docStatus['GST'] === "Submitted" ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
+{docStatus['GST'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
   <div>
     <img src={file6png} alt="" className="pdfico1" />
   </div>
@@ -469,7 +469,7 @@ logoImg.onload = function () {
 
 <div className="col doc-col">
 
-{docStatus['MSME'] === "Submitted" ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
+{docStatus['MSME'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
   <div>
     <img src={file6png} alt="" className="pdfico1" />
   </div>
@@ -510,7 +510,7 @@ logoImg.onload = function () {
   setButtonPopupreport(true);
 }} disabled={localStorage.getItem("report") === 'No'}>Download Test Report</button>
 
-          <button className="reportbtn" onClick={CertificateOptionClick} disabled={localStorage.getItem('finalcertificate') === 'No'}>Download finalCertificate</button>
+          <button className="reportbtn" onClick={CertificateOptionClick} disabled={localStorage.getItem('certificate') === 'No'}>Download finalCertificate</button>
         </div>
   
       
