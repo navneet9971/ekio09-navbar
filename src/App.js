@@ -32,6 +32,7 @@ import BIScompliance from "./component/pagesscrn4/Complianceinformation/BIScompl
 import FirstCompliance from "./component/pagesscrn4/Complianceinformation/Firstcompliance";
 import Secondcompliance from "./component/pagesscrn4/Complianceinformation/Secondcompliance";
 import MainPage from "./component/MainPages";
+// import Dashboard from "./component/Dashboard/Dashboard"
 //import Chatbot from "./component/Chatbot/Chatbot";
 //import RestPassword from "./component/ForgetPassword";
 //import SupportAdmin from "./component/SupportAdmin";
@@ -58,6 +59,10 @@ const App = () => {
         <Route path="/navbar">
          <Navbar /> 
         <Switch>
+
+        {/* <Route path="/navbar/dashbord">
+          <Dashboard />
+        </Route>  */}
 
           <Route path="/navbar/mainpage">
           <MainPage />

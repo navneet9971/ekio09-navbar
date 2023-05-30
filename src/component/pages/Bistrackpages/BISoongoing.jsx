@@ -65,12 +65,16 @@ function BISoongoing() {
 
 //Notification Button Const Here all---------------
 const [buttonPopup11, setButtonPopup11] = useState(false);
-  const [notifyData] = useState([
-    { "s.no": '1', category: 'Mobile', Title: 'SAMSUNG', external: 'In Progress', date: '02-12-2023' },
-    { "s.no": '2', category: 'Screen', Title: 'APPLE', external: 'Completed', date: '02-12-2023' },
-    { "s.no": '3', category: 'Chipset', Title: 'SAMSUNG', external: 'Pending', date: '02-12-2023' },
-  ]);
+const [notifiData, setNotifiData] = useState([]);
 
+//Notification Date Sequnce
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const year = date.getFullYear().toString();
+  return `${day}/${month}/${year}`;
+}
 
    //LAB TESTING FROM CONST HERE ---------------------------------------
 const [buttonPopup2, setButtonPopup2] = useState(false);
@@ -254,6 +258,12 @@ const handleSubmit = (event) => {
         const compliancename = data["compliance_name"]
         localStorage.setItem("compliance_name", compliancename)
   
+//Notification DATA SET HERE ----------------------------------------------------
+const notificationData = data["notifications"]
+console.log(notificationData)
+setNotifiData(notificationData)
+
+
         //status APIs used 
         axiosInstance.get(`application/status/?compliance=${compliance_id}&application=${application_id}&request_for=${request_for}`)
           .then(response => {
@@ -751,7 +761,7 @@ logoImg.onload = function () {
 
 {/*---------------Notification code Here------------------------*/}
 
-        <Popup trigger={buttonPopup11} setTrigger={setButtonPopup11}>
+<Popup trigger={buttonPopup11} setTrigger={setButtonPopup11}>
           <div>
             <h3 className='notif'>Notification</h3>
             <table>
@@ -765,21 +775,24 @@ logoImg.onload = function () {
                 </tr>
               </thead>
               <tbody>
-                {notifyData.map((data, index) => (
-                  <tr key={index}>
-                    <td>{data["s.no"]}</td>
-                    <td>{data.category}</td>
-                    <td>{data.Title}</td>
-                    <td onClick={() => window.open(data.external)} style={{ cursor: 'pointer' }}>{data.external}</td>
-                    <td>{data.date}</td>
-                  </tr>
-                ))}
-              </tbody>
+          {notifiData.map((data, index) => (
+            <tr key={index}>
+              <td style={{ cursor: 'default' }}>{index + 1}</td>
+              <td style={{ cursor: 'default' }}>{data.category}</td>
+              <td style={{ cursor: 'default' }}>{data.title}</td>
+              <td>
+              <a href={data.file} target="_blank" rel="noopener noreferrer" style={{ color: '#55B600', fontWeight: 'bold' }}>
+                 External File
+                </a>
+              </td>
+              <td style={{ cursor: 'default' }}>{formatDate(data.date)}</td>
+            </tr>
+          ))}
+        </tbody>
             </table>
 
           </div>
         </Popup>
-
 
 
 {/*------------------DOWNLOAD BUTTON CODE ----------------*/}
