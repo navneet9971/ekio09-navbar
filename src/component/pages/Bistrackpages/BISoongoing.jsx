@@ -782,7 +782,7 @@ logoImg.onload = function () {
               <td style={{ cursor: 'default' }}>{data.title}</td>
               <td>
               <a href={data.file} target="_blank" rel="noopener noreferrer" style={{ color: '#55B600', fontWeight: 'bold' }}>
-                 External File
+                 Download Document
                 </a>
               </td>
               <td style={{ cursor: 'default' }}>{formatDate(data.date)}</td>
