@@ -495,7 +495,7 @@ logoImg.onload = function () {
 
        {/* POPUP OF LAST BUTTON OF DOWNLOAD REPORT FUNCTION AS WELL  */}
  <Message trigger={buttonPopupreport} setTrigger={setButtonPopupreport}>
-  <h1 style={{ color: 'black', fontSize: '24px', textAlign: 'center' }}>Report Popup</h1>
+  <h1 style={{ color: 'black', fontSize: '24px', textAlign: 'center' }}>Download Test Report</h1>
   <ul>
     {Object.entries(docReport).map(([documentType, fileDownloadLink]) => (
       <li key={documentType}>
