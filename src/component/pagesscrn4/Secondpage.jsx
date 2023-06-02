@@ -73,12 +73,12 @@ const Secondpage = () => {
   const [foreignAuthorizedSignatoryDesignation, setForeignAuthorizedSignatoryDesignation] = useState("");
   const [foreignContactNumber, setForeignContactNumber] = useState("");
   const [foreignEmailID, setForeignEmailID] = useState("");
-  const [coiApplicant, setCoiApplicant] = useState("");
-  const [panCard, setPanCard] = useState("");
-  const [moa, setMoa] = useState("");
-  const [aoa, setAoa] = useState("");
-  const [shareholding, setShareholding] = useState("");
-  const [boardresolution, setBoardresolution] = useState("");
+  // const [coiApplicant, setCoiApplicant] = useState("");
+  // const [panCard, setPanCard] = useState("");
+  // const [moa, setMoa] = useState("");
+  // const [aoa, setAoa] = useState("");
+  // const [shareholding, setShareholding] = useState("");
+  // const [boardresolution, setBoardresolution] = useState("");
 
 
   //Handle TEC from Data here-----------------------------------------------------------------------
@@ -110,36 +110,36 @@ const Secondpage = () => {
   formData.append('Foreign_manufacturer_emailid', foreignEmailID);
 
   // Add the selected file to the form data
-  if (coiApplicant) {
-    for (let i = 0; i < coiApplicant.length; i++) {
-      formData.append('documents', coiApplicant[i]);
-    }
-  }
-  if (panCard) {
-    for (let i = 0; i < panCard.length; i++) {
-      formData.append('documents', panCard[i]);
-    }
-  }
-  if (moa) {
-    for (let i = 0; i < moa.length; i++) {
-      formData.append('documents', moa[i]);
-    }
-  }
-  if (aoa) {
-    for (let i = 0; i < aoa.length; i++) {
-      formData.append('documents', aoa[i]);
-    }
-  }
-  if (shareholding) {
-    for (let i = 0; i < shareholding.length; i++) {
-      formData.append('documents', shareholding[i]);
-  }
-  }
-  if (boardresolution) {
-    for (let i = 0; i < boardresolution.length; i++) {
-      formData.append('documents', boardresolution[i]);
-  }
-  }
+  // if (coiApplicant) {
+  //   for (let i = 0; i < coiApplicant.length; i++) {
+  //     formData.append('documents', coiApplicant[i]);
+  //   }
+  // }
+  // if (panCard) {
+  //   for (let i = 0; i < panCard.length; i++) {
+  //     formData.append('documents', panCard[i]);
+  //   }
+  // }
+  // if (moa) {
+  //   for (let i = 0; i < moa.length; i++) {
+  //     formData.append('documents', moa[i]);
+  //   }
+  // }
+  // if (aoa) {
+  //   for (let i = 0; i < aoa.length; i++) {
+  //     formData.append('documents', aoa[i]);
+  //   }
+  // }
+  // if (shareholding) {
+  //   for (let i = 0; i < shareholding.length; i++) {
+  //     formData.append('documents', shareholding[i]);
+  // }
+  // }
+  // if (boardresolution) {
+  //   for (let i = 0; i < boardresolution.length; i++) {
+  //     formData.append('documents', boardresolution[i]);
+  // }
+  // }
 
    console.log('Application ID:', localStorage.getItem('newApplicationId'));
    console.log('Compliance ID:', localStorage.getItem("compliance_id"));
@@ -158,7 +158,7 @@ axiosInstance
   console.log(data);
   Swal.fire({
     title: 'Success',
-    text: 'Form submitted successfully',
+    text: 'Form submitted successfully. Please head over to the "Track Application" Page to upload documents and review progress ',
     icon: 'success',
   });
 
@@ -258,7 +258,7 @@ axiosInstance
         console.log(data);
         Swal.fire({
           title: 'Success',
-          text: 'Form submitted successfully',
+          text: 'Form submitted successfully. Please head over to the "Track Application" Page to upload documents and review progress ',
           icon: 'success',
         });
 
@@ -368,7 +368,7 @@ console.log(updatedrnumberformData)
         console.log(data);
         Swal.fire({
           title: 'Success',
-          text: 'Form submitted successfully',
+          text: 'Form submitted successfully. Please head over to the "Track Application" Page to upload documents and review progress ',
           icon: 'success',
         });
       })
@@ -455,14 +455,14 @@ console.log(updatedrnumberformData)
  const [AIR_company_pan_card, setAIR_company_pan_card] = useState("");
  const [AIR_signing_person, setAIR_signing_person] = useState("");
  const [AIR_company_condition, setAIR_company_condition] = useState("");
- const [upload_business_license, setUpload_business_license] = useState("");
-  const [upload_iso, setUpload_iso] = useState("");
-  const [upload_trademark_cetificate, setUpload_trademark_cetificate] = useState("");
-  const [upload_adharcard, setUpload_adharcard] = useState("");
-  const [upload_pancard, setUpload_pancard] = useState("");
-  const [upload_gst, setUpload_gst] = useState("");
-  const [upload_employeeid_visitingcard, setUpload_employeeid_visitingcard] = useState("");
-  const [upload_msme, setUpload_msme] = useState("");
+//  const [upload_business_license, setUpload_business_license] = useState("");
+//   const [upload_iso, setUpload_iso] = useState("");
+//   const [upload_trademark_cetificate, setUpload_trademark_cetificate] = useState("");
+//   const [upload_adharcard, setUpload_adharcard] = useState("");
+//   const [upload_pancard, setUpload_pancard] = useState("");
+//   const [upload_gst, setUpload_gst] = useState("");
+//   const [upload_employeeid_visitingcard, setUpload_employeeid_visitingcard] = useState("");
+//   const [upload_msme, setUpload_msme] = useState("");
   const [Password_BISPortal, setPassword_BISPortal] = useState("");
   const [Username_BISPortal, setUsername_BISPortal] = useState("");
  
@@ -526,46 +526,46 @@ console.log(updatedrnumberformData)
  formData.append ('Username_BISPortal', Username_BISPortal);
  formData.append ('Password_BISPortal', Password_BISPortal);
  // Add the selected file to the form data
- if (upload_business_license) {
-   for (let i = 0; i < upload_business_license.length; i++) {
-     formData.append('documents', upload_business_license[i]);
-   }
- }
- if (upload_iso) {
-   for (let i = 0; i < upload_iso.length; i++) {
-     formData.append('documents', upload_iso[i]);
-   }
- }
- if (upload_trademark_cetificate) {
-   for (let i = 0; i < upload_trademark_cetificate.length; i++) {
-     formData.append('documents', upload_trademark_cetificate[i]);
-   }
- }
- if (upload_adharcard) {
-   for (let i = 0; i < upload_adharcard.length; i++) {
-     formData.append('documents', upload_adharcard[i]);
-   }
- }
- if (upload_pancard) {
-   for (let i = 0; i < upload_pancard.length; i++) {
-     formData.append('documents', upload_pancard[i]);
- }
- }
- if (upload_gst) {
-   for (let i = 0; i < upload_gst.length; i++) {
-     formData.append('documents', upload_gst[i]);
- }
- }
- if (upload_employeeid_visitingcard) {
-   for (let i = 0; i < upload_employeeid_visitingcard.length; i++) {
-     formData.append('documents', upload_employeeid_visitingcard[i]);
- }
- }
- if (upload_msme) {
-   for (let i = 0; i < upload_msme.length; i++) {
-     formData.append('documents', upload_msme[i]);
- }
- }
+//  if (upload_business_license) {
+//    for (let i = 0; i < upload_business_license.length; i++) {
+//      formData.append('documents', upload_business_license[i]);
+//    }
+//  }
+//  if (upload_iso) {
+//    for (let i = 0; i < upload_iso.length; i++) {
+//      formData.append('documents', upload_iso[i]);
+//    }
+//  }
+//  if (upload_trademark_cetificate) {
+//    for (let i = 0; i < upload_trademark_cetificate.length; i++) {
+//      formData.append('documents', upload_trademark_cetificate[i]);
+//    }
+//  }
+//  if (upload_adharcard) {
+//    for (let i = 0; i < upload_adharcard.length; i++) {
+//      formData.append('documents', upload_adharcard[i]);
+//    }
+//  }
+//  if (upload_pancard) {
+//    for (let i = 0; i < upload_pancard.length; i++) {
+//      formData.append('documents', upload_pancard[i]);
+//  }
+//  }
+//  if (upload_gst) {
+//    for (let i = 0; i < upload_gst.length; i++) {
+//      formData.append('documents', upload_gst[i]);
+//  }
+//  }
+//  if (upload_employeeid_visitingcard) {
+//    for (let i = 0; i < upload_employeeid_visitingcard.length; i++) {
+//      formData.append('documents', upload_employeeid_visitingcard[i]);
+//  }
+//  }
+//  if (upload_msme) {
+//    for (let i = 0; i < upload_msme.length; i++) {
+//      formData.append('documents', upload_msme[i]);
+//  }
+//  }
 
    console.log(formData)
    console.log('Application ID:', localStorage.getItem('newApplicationId'));
@@ -605,7 +605,7 @@ console.log(data)
            Swal.fire({
              icon: 'success',
              title: 'Form Submitted',
-             text: 'Your Application has been submitted successfully.You can track the progress in Track Application section',
+             text: 'Form submitted successfully. Please head over to the "Track Application" Page to upload documents and review progress ',
              confirmButtonText: 'OK',
            });
            setButtonPopup6bis(false);
@@ -748,7 +748,7 @@ const handleSubmitBISauto = (event) => {
         console.log(data);
         Swal.fire({
           title: 'Success',
-          text: 'Form submitted successfully',
+          text: 'Form submitted successfully. Please head over to the "Track Application" Page to upload documents and review progress ',
           icon: 'success',
         });
 
@@ -830,7 +830,7 @@ const handleSubmitBISauto = (event) => {
         console.log(autofill);
       } else if (autofill === 'No') {
         // Call the function for unregistering
-        setButtonpopupform1tec(true); // Change with bis popupautofill form
+        setButtonPopup6bis(true); // Change with bis popupautofill form
       }
     }
   } catch (error) {
@@ -1462,7 +1462,7 @@ const handleSubmitBISauto = (event) => {
 <span id="foreign-email-error" style={{ color: 'red' }}></span>
 
 
-            <h1 className='h802'>Document Required:</h1>
+            {/* <h1 className='h802'>Document Required:</h1>
             <label className="st8012">
   COI of Applicant Company:
   <input className="stup805" type="file" onChange={(event) => setCoiApplicant(event.target.files)}  />
@@ -1487,7 +1487,7 @@ const handleSubmitBISauto = (event) => {
             <label className="st8012">
               Board Resolution (If Director is not signing Authority):
               <input className="stup805" type="file"  onChange={(event) => setBoardresolution(event.target.files)} />
-            </label>
+            </label> */}
             <button className='btn808' type="submit">Submit</button>
             
             {/* {formSubmitted && (
@@ -2791,7 +2791,7 @@ onChange={handleBISChange}
         </select>
         </div>
 
-            <h1 className='h802'>Upload documents</h1>
+            {/* <h1 className='h802'>Upload documents</h1>
             <label className="st8012">
             Business License :
   <input className="stup805" type="file" onChange={(event) => setUpload_business_license(event.target.files)} />
@@ -2824,7 +2824,7 @@ onChange={handleBISChange}
             <label className="st8012">
             MSME:
               <input className="stup805" type="file"  onChange={(event) => setUpload_msme(event.target.files)}/>
-            </label>
+            </label> */}
             <button className='btn808' type="submit">Submit</button>
             
             {/* {formSubmitted && (

@@ -39,7 +39,7 @@ function BISoongoing() {
   const [documentType, setDocumentType] = useState('');
   const [uploades ,setUploades] = useState('');
   const [buttonPopup, setButtonPopup] = useState(false);
-  const [options] = useState(['Business License', 'ISO', 'Trademark Cetificate', 'AdharCard', 'PanCard', 'GST', 'Employee ID/Visiting Card of Siging authority', 'MSME', 'Form 3 (AFFIDAVIT)']); 
+  const [options] = useState(['Business License', 'ISO', 'Trademark Certificate', 'AadharCard', 'PanCard', 'GST', 'Employee ID/Visiting Card', 'MSME', 'Form 3 (AFFIDAVIT)']); 
   const [buttonPopup1, setButtonPopup1] = useState(false);
   const totalResponses = 6; 
   const completedResponses = localStorage.getItem('stepstatus');
@@ -843,10 +843,10 @@ logoImg.onload = function () {
 
   <Thum1png className="mainsvg2" />
   {docStep["1"] && docStep["1"][0] === "Completed" ? (
-    <Right className="mainsvg3" onClick={() => setButtonPopup3(true)} />
-  ) : (
-    <Wrong className="mainsvg3" onClick={() => setButtonPopup3(true)}/>
-  )}
+  <Right className="mainsvg3" onClick={() => setButtonPopup3(true)} />
+) : (
+  <Wrong className="mainsvg3" onClick={() => setButtonPopup3(true)}/>
+)}
 
 
 
@@ -950,22 +950,22 @@ logoImg.onload = function () {
             <div className="col doc-col">
               
 
-            {docStatus['Trademark Cetificate'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> )  : ( <Wrong size={24} className="pdfico" /> )}
+            {docStatus['Trademark Certificate'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> )  : ( <Wrong size={24} className="pdfico" /> )}
               <div>
                 <img src={file6png} alt="" className="pdfico1" />
               </div>
-              <h3 className="be">Trademark Cetificate</h3>
+              <h3 className="be">Trademark Certificate</h3>
             </div>
 
 
             <div className="col doc-col">
 
-            {docStatus['AdharCard'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
+            {docStatus['AadharCard'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
 
               <div>
                 <img src={file6png} alt="" className="pdfico1" />
               </div>
-              <h3 className="be">AdharCard</h3>
+              <h3 className="be">AadharCard</h3>
             </div>
 
             <div className="col doc-col">
@@ -989,11 +989,11 @@ logoImg.onload = function () {
 
 <div className="col doc-col">
 
-{docStatus['Employee ID/Visiting Card of Siging authority'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
+{docStatus['Employee ID/Visiting Card'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
   <div>
     <img src={file6png} alt="" className="pdfico1" />
   </div>
-  <h3 className="be">Employee ID/Visiting Card </h3>
+  <h3 className="be">Employee ID/Visiting Card</h3>
 </div>
 
 <div className="col doc-col">
@@ -1021,13 +1021,17 @@ logoImg.onload = function () {
  <Message trigger={buttonPopupreport} setTrigger={setButtonPopupreport}>
   <h1 style={{ color: 'black', fontSize: '24px', textAlign: 'center' }}>Download Test Report</h1>
   <ul>
-    {Object.entries(docReport).map(([documentType, fileDownloadLink]) => (
-      <li key={documentType}>
-        <a href={fileDownloadLink} download={`${documentType}.${fileDownloadLink.split('.').pop()}`} target="_blank" rel="noopener noreferrer">
-          <button className="button7">{documentType}</button>
-        </a>
-      </li>
-    ))}
+  {Object.entries(docReport).map(([documentType, fileDownloadLink]) => {
+  const modifiedDocumentType = documentType.replace(/report_/i, "");
+  return (
+    <li key={documentType}>
+      <a href={fileDownloadLink} download={`${documentType}.${fileDownloadLink.split('.').pop()}`} target="_blank" rel="noopener noreferrer">
+        <button className="button7">{modifiedDocumentType}</button>
+      </a>
+    </li>
+  );
+})}
+
   </ul>
 </Message>      
       

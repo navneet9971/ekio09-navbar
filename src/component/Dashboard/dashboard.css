@@ -1,0 +1,138 @@
+.container-piechart {
+  display: inline-block;
+  width: 50%;
+  padding: 6px 79px;
+  box-sizing: border-box;
+  vertical-align: top;
+}
+
+.col {
+  background-color: #f1f1f1;
+  padding: 10px;
+}
+
+@media (max-width: 768px) {
+  .container-piechart {
+    width: 100%;
+  }
+}
+
+.chart-container {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  width: 600px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.chart-bar-container {
+  background-color: transparent;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  width: 935px;
+  height: 502px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.chart-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.chart-js-container {
+  width: 100%;
+  height: 100%;
+}
+
+.labels-container {
+  margin-top: 20px;
+}
+
+.labels-container div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.labels-container div span {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.labels-container div span.label-color-A {
+  background-color: rgb(255, 99, 132);
+}
+
+.labels-container div span.label-color-B {
+  background-color: rgb(54, 162, 235);
+}
+
+.labels-container div span.label-color-C {
+  background-color: rgb(255, 205, 86);
+}
+
+.labels-container div span.label-color-D {
+  background-color: rgb(75, 192, 192);
+}
+
+.labels-container div span.label-color-E {
+  background-color: rgb(153, 102, 255);
+}
+
+.labels-container div span.label-color-F {
+  background-color: rgb(255, 159, 64);
+}
+
+.labels-container div span.label-color-G {
+  background-color: rgb(0, 128, 0);
+}
+
+.labels-container div span.label-color-H {
+  background-color: rgb(255, 0, 0);
+}
+
+.labels-container div span.label-color-I {
+  background-color: rgb(0, 0, 255);
+}
+
+.search-filter-container {
+  display: flex;
+  justify-content: flex-end;
+  padding: 32px 74px;
+  gap: 15px;
+}
+
+input[type="search-dashbo"] {
+  height: 40px;
+  border-radius: 20px;
+  padding: 8px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+select.search-dash {
+  width: 149px;
+  height: 38px;
+  padding: 6px 11px;
+  font-weight: bold;
+  border-radius: 12px;
+  margin: 0px;
+}
+
+.container-barchart {
+  display: flex;
+  justify-content: center;
+}
+
+

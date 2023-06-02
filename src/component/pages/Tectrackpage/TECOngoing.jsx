@@ -42,7 +42,7 @@ function TECOngoing() {
   const [testingbtnkey, setTestingbtnkey] =useState("");
   const [buttonPopup, setButtonPopup] = useState(false);
   const [buttonPopup1, setButtonPopup1] = useState(false);
-  const [options] = useState(['Authorized Signatory Letter', 'MOU', 'AOA', 'OEM authorized to AIR', 'MOA', 'Certificate of Incorporation']); 
+  const [options] = useState(['Authorized Signatory Letter', 'MOU', 'AOA', 'OEM authorized to AIR', 'MOA', 'Certificate of Incorporation', 'PAN Card of Applicant Company', 'Shareholding Pattern', 'Board Resolution (If required)']); 
   const totalResponses = 8;
   const completedResponses = localStorage.getItem('stepstatus');
   const [docReport, setDocReport] = useState("");
@@ -1200,6 +1200,33 @@ logoImg.onload = function () {
     <img src={file6png} alt="" className="pdfico1" />
   </div>
   <h3 className="be">Certificate of Incorporation</h3>
+</div>
+
+<div className="col doc-col">
+
+{docStatus['PAN Card of Applicant Company'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
+  <div>
+    <img src={file6png} alt="" className="pdfico1" />
+  </div>
+  <h3 className="be">PAN Card of Applicant Company</h3>
+</div>
+
+<div className="col doc-col">
+
+{docStatus['Shareholding Pattern'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
+  <div>
+    <img src={file6png} alt="" className="pdfico1" />
+  </div>
+  <h3 className="be">Shareholding Pattern</h3>
+</div>
+
+<div className="col doc-col">
+
+{docStatus['Board Resolution (If required)'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
+  <div>
+    <img src={file6png} alt="" className="pdfico1" />
+  </div>
+  <h3 className="be">Board Resolution</h3>
 </div>
            
 

@@ -5,6 +5,7 @@ import Thumb1png  from "../../assets/images/2.png";
 import Thumb2png  from "../../assets/images/4.png";
 import Thumb3png  from "../../assets/images/use.png";
 import Thumb4png from "../../assets/images/know.png";
+import Thumb5png from "../../assets/images/dash.png";
 import { ReactComponent as Mapbg } from "../../assets/client-map.svg";
 import axiosInstance from "../../../interceptors/axios";
 
@@ -52,11 +53,11 @@ const ClientDashboard = () => {
       route: "/navbar/mainpage",
     },
     // Uncomment the following option if needed
-    // {
-    //   thumb: <img src={Thumb5png} alt="" />,
-    //   title: "Add users",
-    //   route: "/navbar/add",
-    // },
+    {
+      thumb: <img src={Thumb5png} alt="" />,
+      // title: "Add users",
+      route: "/navbar/dashboard",
+    },
   ];
 
   return (

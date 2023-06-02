@@ -178,7 +178,7 @@ function SignUP() {
               <label className="signup-title">Mobile Number</label>
               <input
                 type="tel"
-                placeholder=""
+                placeholder="10 Digit Number Only"
                 name="mobile"
                 onChange={handleChange}
                 required
@@ -194,29 +194,33 @@ function SignUP() {
                 required
               />
             </Col>
+
              {/* Password Field */}
              <Col xs={24} md={24}>
               <label className="signup-title">Password</label>
               <div className="password-input">
                 <input
                   type={showPassword ? "text" : "password"}
-                  placeholder=""
+                  placeholder="At least 8 characters"
                   name="password"
                   onChange={handleChange}
                   required
                 />
+                
                 <div className="password-toggle" onClick={togglePasswordVisibility}>
                   {showPassword}
                 </div>
               </div>
             </Col>
+
+
             {/* Confirm Password Field */}
             <Col xs={24} md={24}>
               <label className="signup-title">Confirm Password</label>
               <div className="password-input">
                 <input
                   type={showPassword ? "text" : "password"}
-                  placeholder=""
+                  placeholder="At least 8 characters"
                   name="password2"
                   onChange={handleChange}
                   required
@@ -227,6 +231,8 @@ function SignUP() {
               </div>
             </Col>
           </Row>
+
+          
           <button onClick={handleSubmit} className="button">
             REGISTER NOW
           </button>

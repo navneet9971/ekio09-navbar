@@ -306,7 +306,7 @@ logoImg.onload = function () {
 
 
 {/*--------Status Bar CODE IS HERE --------------------*/}
-          <div>
+     <div>
       <StatusBar
         totalResponses={totalResponses}
         completedResponses={completedResponses}

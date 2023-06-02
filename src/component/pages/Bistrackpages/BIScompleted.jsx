@@ -462,11 +462,11 @@ logoImg.onload = function () {
 
 <div className="col doc-col">
 
-{docStatus['Employee ID/Visiting Card of Siging authority'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
+{docStatus['Employee ID/Visiting Card'] === 'Submitted' ? ( <> <Right size={24} className="pdfico" /> </> ) : ( <Wrong size={24} className="pdfico" /> )}
   <div>
     <img src={file6png} alt="" className="pdfico1" />
   </div>
-  <h3 className="be">Employee ID/Visiting Card </h3>
+  <h3 className="be">Employee ID/Visiting Card</h3>
 </div>
 
 <div className="col doc-col">

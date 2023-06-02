@@ -1,85 +1,287 @@
-// import React from 'react';
-// import { PieChart } from 'react-minimal-pie-chart';
-// import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import React, { useEffect, useState } from "react";
+import "./dashboard.css";
+import { Chart, ArcElement, CategoryScale, LinearScale, DoughnutController, Tooltip, Title, Legend,  BarController, BarElement, } from "chart.js";
+import { Doughnut, Bar } from "react-chartjs-2";
+import axiosInstance from "../../interceptors/axios";
+import Swal from 'sweetalert2';
+import BG from "../assets/pages-bgimages/background.svg";
+import { blue, green, orange } from "@mui/material/colors";
 
-// const DashboardPage = () => {
-//   // Dummy data for the pie charts
-//   const pieChartData = [
-//     { title: 'Category A', value: 200, date: '2023-05-30', complianceType: 'TEC' },
-//     { title: 'Category B', value: 300, date: '2023-05-30', complianceType: 'TEC' },
-//     { title: 'Category C', value: 100, date: '2023-05-30', complianceType: 'BIS' },
-//     { title: 'Category D', value: 400, date: '2023-05-30', complianceType: 'BIS' },
-//     { title: 'Category E', value: 150, date: '2023-05-30', complianceType: 'BIS' },
-//   ];
+Chart.register(ArcElement, CategoryScale, LinearScale, DoughnutController,BarController, BarElement, Tooltip, Title, Legend );
 
-//   // Dummy data for the bar chart
-//   const barChartData = [
-//     { name: 'Jan', value: 150, date: '2023-05-30', complianceType: 'TEC' },
-//     { name: 'Feb', value: 200, date: '2023-05-30', complianceType: 'TEC' },
-//     { name: 'Mar', value: 300, date: '2023-05-30', complianceType: 'BIS' },
-//     { name: 'Apr', value: 250, date: '2023-05-30', complianceType: 'BIS' },
-//     { name: 'May', value: 400, date: '2023-05-30', complianceType: 'BIS' },
-//   ];
+function DoughnutChart({ data }) {
+    const options = {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        tooltip: {
+          position: "nearest",
+          intersect: false,
+          callbacks: {
+            label: function (context) {
+              const label = context.label || "";
+              const value = context.raw || 0;
+              const percentage = Math.round((value / context.dataset.data.reduce((a, b) => a + b, 0)) * 100);
+              const tooltipText = `${label}: ${percentage}%`;
+              return `${tooltipText}`;
+            },
+          },
+        },
+        legend: {
+          display: true,
+          position: "bottom", // Display legend at the bottom
+        },
+      },
+    };
+    
+    return (
+      <div className="chart-container">
+        <Doughnut data={data} options={options} height={200} width={200} />
+      </div>
+    );
+  }
 
-//   // Filter pie chart data by date and compliance type
-//   const filteredPieChartData = pieChartData.filter(
-//     (data) => data.date === '2023-05-30' && data.complianceType === 'TEC'
-//   );
+  function BarChart({ data }) {
+    const options = {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        tooltip: {
+          position: "nearest",
+          intersect: false,
+        },
+   
+        legend: {
+          display: true,
+          position: "bottom",
+        },
+      },
+    };
+  
+    return (
+      <div className="chart-bar-container">
+        <Bar data={data} options={options} height={400} width={600} />
+      </div>
+    );
+  }
+  
+  
+function Dashboard() {
+  const [chartData, setChartData] = useState(null);
+  const [tecDash, setTecDash] = useState(null);
+  const [bisDash, setBisDash] = useState(null);
+  const [barChartData, setBarChartData] = useState(null);
+  const [searchText, setSearchText] = useState("");
+  const [filter, setFilter] = useState("");
+  const [fetchedData, setFetchedData] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
 
-//   // Filter bar chart data by date and compliance type
-//   const filteredBarChartData = barChartData.filter(
-//     (data) => data.date === '2023-05-30' && data.complianceType === 'TEC'
-//   );
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await axiosInstance.get("/dashboard", {
+          params: {
+            period: filter, // Include the dropdownValue in the request parameters
+            product: searchText,
+          },
+        });
+        const dashData = response.data.data;
+        console.log(response);
+  
+        // Update fetched data state
+        setFetchedData(dashData);
+  
+        // Process the data for the charts
+        const processedData = {
+          labels: ["TOTAL ON-GOING", "TOTAL COMPLETED"],
+          datasets: [
+            {
+              label: "Data 1",
+              data: [dashData.total_ongoing, dashData.total_completed],
+              backgroundColor: [orange[500], green[500]],
+              hoverOffset: 4,
+            },
+          ],
+        };
+  
+        const TECCompliancedash = {
+          labels: ["TEC ON-GOING", "TEC COMPLETED", "TEC APPLICATION"],
+          datasets: [
+            {
+              label: "Data 1",
+              data: [dashData.total_ongoing_tec, dashData.total_completed_tec, dashData.total_application_tec],
+              backgroundColor: [orange[500], green[500], blue[300]],
+              hoverOffset: 4,
+            },
+          ],
+        };
+  
+        const BISCompliancedash = {
+          labels: ["BIS ON-GOING", "BIS COMPLETED", "BIS APPLICATION"],
+          datasets: [
+            {
+              label: "Data 1",
+              data: [dashData.total_ongoing_bis, dashData.total_completed_bis, dashData.total_application_bis],
+              backgroundColor: [orange[500], green[500], blue[300]],
+              hoverOffset: 4,
+            },
+          ],
+        };
 
-//   // Custom colors for pie chart categories
-//   const pieChartColors = ['#8884d8', '#82ca9d', '#ffc658', '#ffc658', '#ffc658'];
+         // Process the data for the bar chart
+    const barData = {
+        labels: ["Total Application", "Total Application TEC", "Total Application BIS"],
+        datasets: [
+          {
+            label: "TOTAL APPLICATION",
+            data: [dashData.total_application, dashData.total_application_tec, dashData.total_application_bis],
+            backgroundColor: [orange[500], green[500], blue[300]],
+            hoverOffset: 4,
+          },
+        ],
+      };
+  
+        // Modify labels and background colors based on searchText
+        if (searchText !== "") {
+          // Update labels
+          processedData.labels = processedData.labels.map(label => `${searchText} ${label}`);
+          TECCompliancedash.labels = TECCompliancedash.labels.map(label => `${searchText} ${label}`);
+          BISCompliancedash.labels = BISCompliancedash.labels.map(label => `${searchText} ${label}`);
+          barData.labels = barData.labels.map((label) => `${searchText} ${label}`);
+  
+          // Update background colors
+          processedData.datasets[0].backgroundColor = [orange[500], green[500]];
+          TECCompliancedash.datasets[0].backgroundColor = [orange[500], green[500], blue[300]];
+          BISCompliancedash.datasets[0].backgroundColor = [orange[500], green[500], blue[300]];
+          barData.datasets[0].backgroundColor = [orange[500], green[500], blue[300]];
+        }
+  
+        setChartData(processedData);
+        setTecDash(TECCompliancedash);
+        setBisDash(BISCompliancedash);
+        setBarChartData(barData);
+  
+        // Check if all data points are zero
+        if (
+          dashData.total_ongoing === 0 &&
+          dashData.total_completed === 0 &&
+          dashData.total_ongoing_tec === 0 &&
+          dashData.total_completed_tec === 0 &&
+          dashData.total_application_tec === 0 &&
+          dashData.total_ongoing_bis === 0 &&
+          dashData.total_completed_bis === 0 &&
+          dashData.total_application_bis === 0
+        ) {
+          setShowPopup(true);
+        } else {
+          setShowPopup(false);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+  
+    fetchData();
+  }, [searchText, filter]);
+  
 
-//   return (
-//     <div className="dashboard-page">
-//       <div className="pie-charts">
-//         <h2>Pie Charts</h2>
-//         <div className="pie-chart-container">
-//           <PieChart
-//             data={filteredPieChartData}
-//             animate
-//             animationDuration={500}
-//             animationEasing="ease-out"
-//             radius={PieChart.defaultProps.radius - 10}
-//             lineWidth={50}
-//             segmentsShift={2}
-//           >
-//             {filteredPieChartData.map((entry, index) => (
-//               <text
-//                 key={`label-${index}`}
-//                 x={entry.x}
-//                 y={entry.y}
-//                 textAnchor="middle"
-//                 dominantBaseline="central"
-//                 style={{ fontFamily: 'sans-serif', fontSize: '5px' }}
-//               >
-//                 {entry.title}
-//               </text>
-//             ))}
-//           </PieChart>
-//         </div>
-//         {/* Render more pie charts */}
-//       </div>
+  const handleSearchTextChange = (event) => {
+    setSearchText(event.target.value);
+  };
 
-//       <div className="bar-chart">
-//         <h2>Bar Chart</h2>
-//         <div className="bar-chart-container">
-//           <BarChart width={600} height={300} data={filteredBarChartData}>
-//             <CartesianGrid strokeDasharray="3 3" />
-//             <XAxis dataKey="name" />
-//             <YAxis />
-//             <Tooltip />
-//             <Legend />
-//             <Bar dataKey="value" fill="#8884d8" />
-//           </BarChart>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
+  const handleFilterChange = (event) => {
+    setFilter(event.target.value);
+  };
 
-// export default DashboardPage;
+  const filteredChartData = filterData(chartData, searchText, filter);
+  const filteredTecDash = filterData(tecDash, searchText, filter);
+  const filteredBisDash = filterData(bisDash, searchText, filter);
+  const filteredBarChartData = filterData(barChartData, searchText, filter);
+
+  function filterData(dashData, searchText, filter) {
+    if (searchText === "" && filter === "") {
+      return dashData;
+    }
+
+    const filteredLabels = dashData.labels.filter((label) => label.toLowerCase().includes(searchText.toLowerCase()));
+    const filteredData = dashData.datasets.map((dataset) => ({
+      ...dataset,
+      dashData: dataset.data.slice(0, filteredLabels.length),
+    }));
+
+    return {
+      labels: filteredLabels,
+      datasets: filteredData,
+    };
+  }
+
+  if (!fetchedData) {
+    return (
+      <div style={{ textAlign: 'center', fontSize: '80px', marginTop: '100px' }}>
+       Page Loading...
+      </div>
+    );
+  }
+
+  if (showPopup && searchText.trim() !== "") {
+    Swal.fire({
+      title: 'Try another product',
+      icon: 'info',
+      confirmButtonText: 'OK',
+    }).then(() => {
+      setSearchText(""); // Reset searchText to empty string
+    });
+  }
+  
+  
+  return (
+    <div className="container-wrapper" style={{ backgroundImage: `url(${BG})` }}>
+      <h1 style={{ fontSize: '42px', padding: '10px 30px', fontWeight: 'bold', margin: '1px 0' }}>Analytics Dashboard</h1>
+
+      <div className="search-filter-container">
+        <input type="search-dashbo" placeholder="Search By Product Name" value={searchText} onChange={handleSearchTextChange} />
+        <select className ="search-dash" value={filter} onChange={handleFilterChange}>
+          <option value="">Filter By Days</option>
+          <option value="30">30 Days Ago</option>
+          <option value="60">60 Days Ago</option>
+          <option value="90">90 Days Ago</option>
+          <option value="120">120 Days Ago</option>
+          <option value="365">365 Days Ago</option>
+          
+        </select>
+      </div>
+
+      <div className="container-barchart">
+        <div className="col">
+          <h4 style={{ fontSize: "20px", textAlign: "center" }}>Total Application TEC and BIS</h4>
+          <BarChart data={filteredBarChartData} />
+        </div>
+      </div>
+
+      <div className="container-piechart">
+        <div className="col">
+          <h4 style={{ fontSize: "20px", textAlign: "center" }}>TOTAL On Going Vs TOTAL Completed</h4>
+          <DoughnutChart data={filteredChartData} />
+        </div>
+      </div>
+
+      <div className="container-piechart">
+        <div className="col">
+          <h4 style={{ fontSize: "20px", textAlign: "center" }}>TEC On Going Vs TEC Completed Vs TEC Application</h4>
+          <DoughnutChart data={filteredTecDash} />
+        </div>
+      </div>
+
+      <div className="container-piechart">
+        <div className="col">
+          <h4 style={{ fontSize: "20px", textAlign: "center" }}>BIS On Going Vs BIS Completed Vs BIS Application</h4>
+          <DoughnutChart data={filteredBisDash} />
+        </div>
+      </div>
+
+      
+    </div>
+  );
+}
+
+export default Dashboard;
