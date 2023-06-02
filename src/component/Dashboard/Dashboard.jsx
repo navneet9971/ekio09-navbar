@@ -236,7 +236,7 @@ function Dashboard() {
   
   return (
     <div className="container-wrapper" style={{ backgroundImage: `url(${BG})` }}>
-      <h1 style={{ fontSize: '42px', padding: '10px 30px', fontWeight: 'bold', margin: '1px 0' }}>Analytics Dashboard</h1>
+      <h1 style={{ fontSize: '42px', padding: '10px 30px', fontWeight: 'bold' }}>Analytics Dashboard</h1>
 
       <div className="search-filter-container">
         <input type="search-dashbo" placeholder="Search By Product Name" value={searchText} onChange={handleSearchTextChange} />
