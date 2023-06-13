@@ -826,11 +826,13 @@ const handleSubmitBISauto = (event) => {
 
       if (autofill === 'Yes') {
         // Call the function for registering
-        setButtonautofilledbis(true);
+        // setButtonautofilledbis(true);
+        setButtonRegisterbis(true);
         console.log(autofill);
       } else if (autofill === 'No') {
         // Call the function for unregistering
-        setButtonPopup6bis(true); // Change with bis popupautofill form
+        // setButtonPopup6bis(true);
+        setButtonRegisterbis(true); // Change with bis popupautofill form
       }
     }
   } catch (error) {
@@ -849,7 +851,8 @@ const handleSubmitBISauto = (event) => {
       console.log(autofillform);
     } else if (value === 'Noform1') {
       // Call the function for unregistering
-      setButtonRegisterbis(true);
+      // setButtonRegisterbis(true);
+      setButtonPopup6bis(true);
     }
     setButtonautofilledbis(false)
   }
@@ -865,7 +868,12 @@ const handleSubmitBISauto = (event) => {
     setButtonRegisterPagebis(true);
   } else if (value === 'unregister') {
     // Call the function for unregistering
-    setButtonPopup6bis(true);
+    // setButtonPopup6bis(true);
+    if (autofillform === 'Yes') {
+      setButtonautofilledbis(true);
+    } else if (autofillform === 'No') {
+      setButtonPopup6bis(true);
+    }
   }
   setButtonRegisterbis(false)
 }
@@ -2256,7 +2264,6 @@ onChange={handleBISChange}
 <Popup trigger={buttonPopup6bis} setTrigger={setButtonPopup6bis}>
         <div style={{ height: "500px", overflow: "scroll" }}>
           <form onSubmit={handleBISSubmit}>
-
 
           <div className="compliance-container" style={{ display: 'none' }}>
               <h2>Compliance Data</h2>
