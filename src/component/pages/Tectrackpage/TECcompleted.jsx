@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 //import jsPDF from 'jspdf';
 import "../stepper.css";
-import Popup from "../../pagesscrn4/popup/Popup";
+// import Popup from "../../pagesscrn4/popup/Popup";
 import Message from "../../pagesscrn4/popup/Message";
 import axiosInstance from "../../../interceptors/axios";
 import jsPDF from "jspdf";
@@ -49,17 +49,17 @@ function TECOngoing() {
 
 
 //Notification Button Const Here all---------------
-const [buttonPopup11, setButtonPopup11] = useState(false);
-const [notifiData, setNotifiData] = useState([]);
+// const [buttonPopup11, setButtonPopup11] = useState(false);
+// const [notifiData, setNotifiData] = useState([]);
 
-//Notification Date Sequnce
-function formatDate(dateString) {
-  const date = new Date(dateString);
-  const day = date.getDate().toString().padStart(2, '0');
-  const month = (date.getMonth() + 1).toString().padStart(2, '0');
-  const year = date.getFullYear().toString();
-  return `${day}/${month}/${year}`;
-}
+// //Notification Date Sequnce
+// function formatDate(dateString) {
+//   const date = new Date(dateString);
+//   const day = date.getDate().toString().padStart(2, '0');
+//   const month = (date.getMonth() + 1).toString().padStart(2, '0');
+//   const year = date.getFullYear().toString();
+//   return `${day}/${month}/${year}`;
+// }
 
   // API call to get document status
 
@@ -86,9 +86,9 @@ function formatDate(dateString) {
         localStorage.setItem("compliance_name", compliancename)
   
 //Notification DATA SET HERE ----------------------------------------------------
-const notificationData = data["notifications"]
-console.log(notificationData)
-setNotifiData(notificationData)
+// const notificationData = data["notifications"]
+// console.log(notificationData)
+// setNotifiData(notificationData)
 
 
         //status APIs used 
@@ -261,7 +261,7 @@ logoImg.onload = function () {
 
 {/*---------------Notification code Here------------------------*/}
 
-<Popup trigger={buttonPopup11} setTrigger={setButtonPopup11}>
+{/* <Popup trigger={buttonPopup11} setTrigger={setButtonPopup11}>
           <div>
             <h3 className='notif'>Notification</h3>
             <table>
@@ -292,7 +292,7 @@ logoImg.onload = function () {
             </table>
 
           </div>
-        </Popup>
+        </Popup> */}
 
 
 {/*------------------DOWNLOAD BUTTON CODE ----------------*/}
@@ -301,7 +301,7 @@ logoImg.onload = function () {
 <button className="button7"  disabled>Request Testing</button>
 <button className="button7"  disabled>Upload</button>
 <button className="button7"  disabled>Download</button>
-<button className='button7' onClick={() => setButtonPopup11(true)}>Notification</button>
+{/* <button className='button7' onClick={() => setButtonPopup11(true)}>Notification</button> */}
 </div>
 
 

@@ -68,18 +68,18 @@ function TECOngoing() {
 
 
 //Notification Button Const Here all---------------
-const [buttonPopup11, setButtonPopup11] = useState(false);
-const [notifiData, setNotifiData] = useState([]);
+// const [buttonPopup11, setButtonPopup11] = useState(false);
+// const [notifiData, setNotifiData] = useState([]);
 
 
-//Notification Date Sequnce
-function formatDate(dateString) {
-  const date = new Date(dateString);
-  const day = date.getDate().toString().padStart(2, '0');
-  const month = (date.getMonth() + 1).toString().padStart(2, '0');
-  const year = date.getFullYear().toString();
-  return `${day}/${month}/${year}`;
-}
+// //Notification Date Sequnce
+// function formatDate(dateString) {
+//   const date = new Date(dateString);
+//   const day = date.getDate().toString().padStart(2, '0');
+//   const month = (date.getMonth() + 1).toString().padStart(2, '0');
+//   const year = date.getFullYear().toString();
+//   return `${day}/${month}/${year}`;
+// }
 
    //LAB TESTING FROM CONST HERE ---------------------------------------
 const [buttonPopup2, setButtonPopup2] = useState(false);
@@ -292,9 +292,9 @@ const handleSubmit = (event) => {
   
 
 //Notification DATA SET HERE ----------------------------------------------------
-            const notificationData = data["notifications"]
-            console.log(notificationData)
-            setNotifiData(notificationData)
+            // const notificationData = data["notifications"]
+            // console.log(notificationData)
+            // setNotifiData(notificationData)
 
         //status APIs used 
         axiosInstance.get(`application/status/?compliance=${compliance_id}&application=${application_id}&request_for=${request_for}`)
@@ -949,7 +949,7 @@ logoImg.onload = function () {
 
 {/*---------------Notification code Here------------------------*/}
 
-        <Popup trigger={buttonPopup11} setTrigger={setButtonPopup11}>
+        {/* <Popup trigger={buttonPopup11} setTrigger={setButtonPopup11}>
           <div>
             <h3 className='notif'>Notification</h3>
             <table>
@@ -980,7 +980,7 @@ logoImg.onload = function () {
             </table>
 
           </div>
-        </Popup>
+        </Popup> */}
 
 
 
@@ -990,7 +990,7 @@ logoImg.onload = function () {
 <button className="button7" onClick={() => setButtonPopup2(true)} disabled={testingbtnkey === 'Yes'}>Request Testing</button>
 <button className="button7" onClick={() => setButtonPopup(true)}>Upload</button>
 <button className="button7" onClick={() => setButtonPopup1(true)}>Download</button>
-<button className='button7' onClick={() => setButtonPopup11(true)}>Notification</button>
+{/* <button className='button7' onClick={() => setButtonPopup11(true)}>Notification</button> */}
 </div>
 <Popup trigger={buttonPopup1} setTrigger={setButtonPopup1}>
         <h3>Download a File</h3>
