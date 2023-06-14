@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "../Pages.css";
 import bgimage from "../../assets/pages-bgimages/background.svg";
 import axiosInstance from '../../../interceptors/axios';
+import Notification from "../../../component/Notification/Notification";
 
 
 
@@ -62,6 +63,7 @@ function MiddleSection() {
           </>
         )}
       </div>
+      < Notification />
       </div>
     )
   };
