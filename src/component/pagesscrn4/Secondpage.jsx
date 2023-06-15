@@ -160,13 +160,11 @@ const Secondpage = () => {
 
         if (autofill === "Yes") {
           // Call the function for registering
-          // setButtonautofilledbis(true);
-          setButtonRegisterbis(true);
+          setButtonautofilledbis(true);
           console.log(autofill);
         } else if (autofill === "No") {
           // Call the function for unregistering
-          // setButtonPopup6bis(true);
-          setButtonRegisterbis(true); // Change with bis popupautofill form
+          setButtonPopup6bis(true); // Change with bis popupautofill form
         }
       }
     } catch (error) {
@@ -184,7 +182,7 @@ const Secondpage = () => {
       console.log(autofillform);
     } else if (value === "Noform1") {
       // Call the function for unregistering
-      setButtonPopup6bis(true);
+      setButtonRegisterbis(true);
     }
     setButtonautofilledbis(false);
   }
@@ -199,12 +197,7 @@ const Secondpage = () => {
       setButtonRegisterPagebis(true);
     } else if (value === "unregister") {
       // Call the function for unregistering
-      // setButtonPopup6bis(true);
-      if (autofillform === "Yes") {
-        setButtonautofilledbis(true);
-      } else if (autofillform === "No") {
-        setButtonPopup6bis(true);
-      }
+      setButtonPopup6bis(true);
     }
     setButtonRegisterbis(false);
   }
@@ -434,7 +427,7 @@ const Secondpage = () => {
 
         {/*---------------START NEW APPLICATION BIS REQUIRED DETAILS POPUP IF USER SELECTED YES PAGE CODE HERE  ----------------------*/}
         <Popup trigger={buttonPopup6bis} setTrigger={setButtonPopup6bis}>
-          <BISFreshForms onClose={handlePopupClose} />
+          <BISFreshForms  onClose={handlePopupClose}/>
         </Popup>
       </div>
     </div>

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "../Pages.css";
 import bgimage from "../../assets/pages-bgimages/background.svg";
-import axiosInstance from "../../../interceptors/axios";
+import axiosInstance from '../../../interceptors/axios';
+
+
 
 function BIScompliance() {
   // State variable
@@ -61,8 +63,8 @@ function BIScompliance() {
           </>
         )}
       </div>
-    </div>
-  );
-}
+      </div>
+    )
+  };
 
-export default BIScompliance;
+  export default BIScompliance;

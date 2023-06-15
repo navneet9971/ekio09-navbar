@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "../Pages.css";
 import bgimage from "../../assets/pages-bgimages/background.svg";
-import axiosInstance from "../../../interceptors/axios";
+import axiosInstance from '../../../interceptors/axios';
+
+
 
 function MiddleSection() {
   const [middleData, setMiddleData] = useState("");
@@ -37,8 +39,8 @@ function MiddleSection() {
           </>
         )}
       </div>
-    </div>
-  );
-}
+      </div>
+    )
+  };
 
-export default MiddleSection;
+  export default MiddleSection;
