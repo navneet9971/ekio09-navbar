@@ -158,13 +158,15 @@ const Secondpage = () => {
         // Fetch BIS data
         await fetchBISData();
 
-        if (autofill === "Yes") {
+        if (autofill === 'Yes') {
           // Call the function for registering
-          setButtonautofilledbis(true);
+          // setButtonautofilledbis(true);
+          setButtonRegisterbis(true);
           console.log(autofill);
-        } else if (autofill === "No") {
+        } else if (autofill === 'No') {
           // Call the function for unregistering
-          setButtonPopup6bis(true); // Change with bis popupautofill form
+          // setButtonPopup6bis(true);
+          setButtonRegisterbis(true); // Change with bis popupautofill form
         }
       }
     } catch (error) {
@@ -175,33 +177,38 @@ const Secondpage = () => {
   //BIS DYNAMIC POPUP CHOOSE OPTION YES OR NO  function handle here-------------------------
   function handleautofilled(event) {
     const value = event.target.value;
-
-    if (autofillform === "Yes" && value === "Yesautofilled") {
+    
+    if (autofillform === 'Yes' && value === 'Yesautofilled') {
       // Call the function for registering
       setButtonautofillpopupbis(true);
       console.log(autofillform);
-    } else if (value === "Noform1") {
+    } else if (value === 'Noform1') {
       // Call the function for unregistering
-      setButtonRegisterbis(true);
+      // setButtonRegisterbis(true);
+      setButtonPopup6bis(true);
     }
-    setButtonautofilledbis(false);
+    setButtonautofilledbis(false)
   }
+  
 
   // HandleChange of Registerbutton---------
   function handleRadioChange(event) {
-    // setFactory_signing_person(event.target.value);  //Signing Person DropDown Event Here---------
-    const value = event.target.value;
-
-    if (value === "register") {
-      // Call the function for registering
-      setButtonRegisterPagebis(true);
-    } else if (value === "unregister") {
-      // Call the function for unregistering
+  const value = event.target.value;
+  
+  if (value === 'register') {
+    // Call the function for registering
+    setButtonRegisterPagebis(true);
+  } else if (value === 'unregister') {
+    // Call the function for unregistering
+    // setButtonPopup6bis(true);
+    if (autofillform === 'Yes') {
+      setButtonautofilledbis(true);
+    } else if (autofillform === 'No') {
       setButtonPopup6bis(true);
     }
-    setButtonRegisterbis(false);
   }
-
+  setButtonRegisterbis(false)
+}
   //Auto close POPup after click Sumbit
   const handlePopupClose = () => {
     setButtonpopupform1tec(false);
