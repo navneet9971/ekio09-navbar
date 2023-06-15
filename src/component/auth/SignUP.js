@@ -187,26 +187,6 @@ function SignUp() {
             </Col>
 
             <Col xs={24} md={24}>
-  <label className="signup-title">Industry Name</label>
-  <select
-    name="industry"
-    value={formData.industry}
-    onChange={handleChange}
-    required
-  >
-    <option value="">Select Your Industry</option>
-    {options.map((option) => (
-      <option key={option.id} value={option.id}>
-        {option.name}
-      </option>
-    ))}
-  </select>
-  {formData.industry === '' && (
-    <p style={{ color: 'red' }}>Please select the industry</p>
-  )}
-</Col>
-
-            <Col xs={24} md={24}>
               <label className="signup-title">Email ID</label>
               <input
                 type="email"
