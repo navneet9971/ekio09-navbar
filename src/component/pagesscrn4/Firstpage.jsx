@@ -8,7 +8,6 @@ import { ReactComponent as Sideimg } from "../assets/from-images.svg";
 
 
 
-
 const Firstpage = () => {
   const [category, setCategory] = useState(''); // state for category input
   const [product, setProduct] = useState(''); // state for product input
