@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Popup from "../pagesscrn4/popup/Popup";
+import Popup from "../popup/Popup";
 import "./Table.css";
 
 function Download() {

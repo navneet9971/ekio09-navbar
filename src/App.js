@@ -11,15 +11,15 @@ import Download from "./component/pages/Download";
 import SignUP from "./component/auth/SignUP";
 import Firstpage from "./component/pagesscrn4/Firstpage";
 import Secondpage from "./component/pagesscrn4/Secondpage";
-import TECForms from "./component/pagesscrn4/ComplianceForms/TECForms";
-import BISForms from "./component/pagesscrn4/ComplianceForms/BISForms";
+// import TECForms from "./component/pagesscrn4/ComplianceForms/TECForms";
+// import BISForms from "./component/pagesscrn4/ComplianceForms/BISForms";
 import Fourthpage from "./component/pagesscrn4/Complianceinformation/TECcompliance";
 import ClientDashboard from "./component/pagesscrn4/client-dashbord/Clientdashboard";
 import Navbar from "./component/pagesscrn4/Navbar/Navbar";
-import BISongoing from "./component/pages/Bistrackpages/BISoongoing";
-import BIScompleted from "./component/pages/Bistrackpages/BIScompleted";
-import TECOnGoing from "./component/pages//Tectrackpage/TECOngoing";
-import TECcompleted from "./component/pages/Tectrackpage/TECcompleted";
+import BISongoing from "./component/Complianceforms/BIS/Bistrackpages/BISoongoing";
+import BIScompleted from "./component/Complianceforms/BIS/Bistrackpages/BIScompleted";
+import TECOnGoing from "./component/Complianceforms/TEC/Tectrackpage/TECOngoing";
+import TECcompleted from "./component/Complianceforms/TEC/Tectrackpage/TECcompleted";
 import Bookmarks from "./component/pages/account-pages/Bookmarks";
 import Editprofile from "./component/pages/account-pages/Editprofile";
 import Notifaction from "./component/pages/account-pages/Notifaction";
@@ -76,18 +76,19 @@ const App = () => {
           <Secondpage />
         </Route>
 
-        <Route path="/navbar/compliance/TEC">
+        {/* <Route path="/navbar/compliance/TEC">
           <TECForms />
         </Route> 
         <Route path="/navbar/compliance/BIS">
           <BISForms />
-        </Route> 
+        </Route>  */}
+
         <Route path="/navbar/compliance1/WPS">
           <Fourthpage />
         </Route>  
 
-        <Route path="/navbar/success/:fileName" component={TECForms} />  
-        <Route path="/navbar/success/:fileName" component={BISForms} /> 
+        {/* <Route path="/navbar/success/:fileName" component={TECForms} />  
+        <Route path="/navbar/success/:fileName" component={BISForms} />  */}
  
         <Route path="/navbar/firstpage">
               <Firstpage />

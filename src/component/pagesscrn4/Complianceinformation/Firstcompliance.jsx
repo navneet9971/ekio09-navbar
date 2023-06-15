@@ -1,17 +1,14 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import 'react-chatbot-kit/build/main.css';
-import Swal from 'sweetalert2';
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import "react-chatbot-kit/build/main.css";
+import Swal from "sweetalert2";
 import { ReactComponent as Sideimg } from "../../assets/from-images.svg";
-import axiosInstance from '../../../interceptors/axios';
-
-
-
+import axiosInstance from "../../../interceptors/axios";
 
 const Firstcompliance = () => {
-  const [category, setCategory] = useState(''); // state for category input
-  const [product, setProduct] = useState(''); // state for product input
-  const [region, setRegion] = useState(''); // state for selected region
+  const [category, setCategory] = useState(""); // state for category input
+  const [product, setProduct] = useState(""); // state for product input
+  const [region, setRegion] = useState(""); // state for selected region
   const history = useHistory();
 
   const handleCategoryChange = (event) => {
@@ -28,78 +25,102 @@ const Firstcompliance = () => {
 
   const handleGoClick = () => {
     if (!category && !product && !region) {
-      alert('Please fill in at least one field!');
+      alert("Please fill in at least one field!");
       return;
     }
-    localStorage.setItem('category', category);
-    localStorage.setItem('product', product);
-    localStorage.setItem('region', region);
-   // send the input data to the backend API using axios GET request
-axiosInstance.get(`/compliance/?category=${category}&product=${product}&region=${region}`, {
-  headers: {
-    Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-    'Content-Type': 'application/json',
-    accept: 'application/json',
-  }
-  })
-  .then((response) => {
-    if (response.data.data.length === 0) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Compliance Not Found',
-        text: ' Please check your input and try again',
-        confirmButtonText: 'OK',
+    localStorage.setItem("category", category);
+    localStorage.setItem("product", product);
+    localStorage.setItem("region", region);
+    // send the input data to the backend API using axios GET request
+    axiosInstance
+      .get(
+        `/compliance/?category=${category}&product=${product}&region=${region}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            "Content-Type": "application/json",
+            accept: "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        if (response.data.data.length === 0) {
+          Swal.fire({
+            icon: "error",
+            title: "Compliance Not Found",
+            text: " Please check your input and try again",
+            confirmButtonText: "OK",
+          });
+        } else {
+          console.log(response.data);
+          // redirect the user to the second page with the compliance data
+          history.push("/navbar/secondcompliance");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        alert("Something went wrong. Please try again later.");
       });
-    } else {
-      console.log(response.data);
-      // redirect the user to the second page with the compliance data
-      history.push('/navbar/secondcompliance');
-    }
-  })
-  .catch((error) => {
-    console.error(error);
-    alert('Something went wrong. Please try again later.');
-  });
-};
+  };
 
   return (
-    <div className='bgchange'>
-    <div className="first-container22">
-      
-      <div className='fist-title'>
-      <h3 style={{ color: 'white' }} className="firstpage-title">Please enter the following details to Start a new application:</h3>
-      <h4 className="red-warning">You need to fill at least 1 data point to see the list of compliance.</h4>
-      </div>
+    <div className="bgchange">
+      <div className="first-container22">
+        <div className="fist-title">
+          <h3 style={{ color: "white" }} className="firstpage-title">
+            Please enter the following details to Start a new application:
+          </h3>
+          <h4 className="red-warning">
+            You need to fill at least 1 data point to see the list of
+            compliance.
+          </h4>
+        </div>
 
-      <div className="form-group22">
-        <label className='firsttext-input'>Enter Industry:</label>
-        <input type="text" placeholder='Type Here..' id="category-input" value={category} onChange={handleCategoryChange} />
-      </div>
+        <div className="form-group22">
+          <label className="firsttext-input">Enter Industry:</label>
+          <input
+            type="text"
+            placeholder="Type Here.."
+            id="category-input"
+            value={category}
+            onChange={handleCategoryChange}
+          />
+        </div>
 
-      <div className="form-group22">
-        <label className='firsttext-input'>Enter Name of Product:</label>
-        <input type="text" placeholder='Type Here..' id="category-input" value={product} onChange={handleProductChange} />
-      </div>
+        <div className="form-group22">
+          <label className="firsttext-input">Enter Name of Product:</label>
+          <input
+            type="text"
+            placeholder="Type Here.."
+            id="category-input"
+            value={product}
+            onChange={handleProductChange}
+          />
+        </div>
 
-      <div className="region-group22">
-        <label className='firsttext-input'>Region:</label>
-          <select id="region-select22" value={region} onChange={handleRegionChange}>
+        <div className="region-group22">
+          <label className="firsttext-input">Region:</label>
+          <select
+            id="region-select22"
+            value={region}
+            onChange={handleRegionChange}
+          >
             <option value="">-- Select a region --</option>
             <option value="Europe">Europe</option>
             <option value="Africa">Africa</option>
             <option value="Asia">Asia</option>
             <option value="Americas">Americas</option>
           </select>
-      </div>
-      
-        <button className="first-go" onClick={handleGoClick}>GO</button>
+        </div>
+
+        <button className="first-go" onClick={handleGoClick}>
+          GO
+        </button>
 
         <div className="side-img">
-  <Sideimg className="custom-side-img" />
-</div>
-
-
-    </div>
+          <Sideimg className="custom-side-img" />
+        </div>
+      </div>
     </div>
   );
 };

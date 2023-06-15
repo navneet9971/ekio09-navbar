@@ -252,28 +252,28 @@ function Dashboard() {
       </div>
 
       <div className="container-barchart">
-        <div className="col">
+        <div className="col-dash">
           <h4 style={{ fontSize: "20px", textAlign: "center" }}>Total Application TEC and BIS</h4>
           <BarChart data={filteredBarChartData} />
         </div>
       </div>
 
       <div className="container-piechart">
-        <div className="col">
+        <div className="col-dash">
           <h4 style={{ fontSize: "20px", textAlign: "center" }}>TOTAL On Going Vs TOTAL Completed</h4>
           <DoughnutChart data={filteredChartData} />
         </div>
       </div>
 
       <div className="container-piechart">
-        <div className="col">
+        <div className="col-dash">
           <h4 style={{ fontSize: "20px", textAlign: "center" }}>TEC On Going Vs TEC Completed Vs TEC Application</h4>
           <DoughnutChart data={filteredTecDash} />
         </div>
       </div>
 
       <div className="container-piechart">
-        <div className="col">
+        <div className="col-dash">
           <h4 style={{ fontSize: "20px", textAlign: "center" }}>BIS On Going Vs BIS Completed Vs BIS Application</h4>
           <DoughnutChart data={filteredBisDash} />
         </div>

@@ -2,24 +2,22 @@ import React from 'react';
 
 const StatusBar = ({ totalResponses, completedResponses }) => {
   const percentage = ((completedResponses / totalResponses) * 100).toFixed(2);
-     
 
   return (
-    <div className='status-bar'>
+    <div className='status-bar-container'>
       <div
+        className='status-bar'
         style={{
-          display: "flex",
-        justifyContent: "flex-start",
-        position: "absolute",
-          width: '51%',
+          width: '100%',
           height: '20px',
-          left: "418px",
-          top: "200px",
+          top:'10px',
+          left: '90px',
           backgroundColor: '#fff',
           borderRadius: '50px',
         }}
       >
         <div
+          className='status-fill'
           style={{
             width: `${percentage}%`,
             height: '100%',
@@ -29,6 +27,72 @@ const StatusBar = ({ totalResponses, completedResponses }) => {
         />
       </div>
       <p className='status-percent'>{`${percentage}% `}</p>
+
+      <style jsx>{`
+        .status-bar-container {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          width: 60%;
+        }
+
+        .status-bar {
+          position: relative;
+          flex-grow: 1;
+        }
+
+        .status-fill {
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+
+        .status-percent {
+          margin-left: 10px;
+        }
+
+        @media (max-width: 576px) {
+          .status-bar-container {
+            flex-direction: column;
+          }
+
+          .status-bar {
+            width: 60%;
+            margin-bottom: 10px;
+          }
+
+          .status-percent {
+            margin-left: 0;
+          }
+        }
+
+        @media (min-width: 577px) and (max-width: 991px) {
+          .status-bar-container {
+            justify-content: center;
+          }
+        }
+
+        @media (min-width: 992px) and (max-width: 1199px) {
+          .status-bar-container {
+            justify-content: flex-start;
+          }
+        }
+
+        @media (min-width: 1200px) {
+          .status-bar-container {
+            justify-content: space-between;
+          }
+
+          .status-bar {
+            width: 70%;
+            margin-right: 10px;
+          }
+
+          .status-percent {
+            margin-left: 0;
+          }
+        }
+      `}</style>
     </div>
   );
 };

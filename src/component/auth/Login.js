@@ -3,7 +3,7 @@ import {  useHistory} from "react-router-dom";
 import { FaUserAlt, FaLock} from "react-icons/fa";
 import "../assets/css/global.css";
 import axiosInstance from "../../interceptors/axios";
-import Popup from "../pagesscrn4/popup/Popup";
+import Popup from "../popup/Popup";
 import Swal from 'sweetalert2';
 
 
@@ -17,11 +17,14 @@ function Login() {
   });
   const  [formData, updateFormData] = useState(initialFormData);
   const [showPassword, setShowPassword] = useState(false);
+  
 /*-------forget password handle-------------*/
 const handleforgetemail = (e) => {
   e.preventDefault();
   const formData = new FormData();
   formData.append('email', forgetemail);
+
+
 
   axiosInstance
     .post('password-reset/', formData, {
@@ -82,6 +85,18 @@ const handleforgetemail = (e) => {
       localStorage.setItem('access_token', res.data.access);
       localStorage.setItem('refresh_token', res.data.refresh);
       localStorage.setItem('user_id', res.data.profile.id);
+      localStorage.setItem("first_time", res.data.profile.first_time)
+
+      if (res.data.profile.first_time === true) {
+        axiosInstance.patch(`user/${res.data.profile.id}/`, {"first_time": false})
+        .then((patchRes) => {
+          // Handle the response if needed
+          console.log(patchRes)
+        })
+        .catch((patchError) => {
+          // Handle the error if needed
+        }); }
+
       history.push('/navbar/clientdashboard');
       //console.log(res);
       //console.log(res.data);

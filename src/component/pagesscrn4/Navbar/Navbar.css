@@ -13,9 +13,8 @@ i {
 }
 /*----------bootstrap-navbar--button---css------------*/
 .button99 {
-  margin-right:60px;
   position: absolute;
-  transform: translate(59%, -125%);
+  transform: translate(30%, -130%);
   margin-left: 86%;
   padding: 1em 1.5em;
   text-transform: uppercase;

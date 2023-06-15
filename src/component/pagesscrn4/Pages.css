@@ -306,28 +306,43 @@ img.imgback {
   margin-top: -80px;
 }
 
-
-  /*---THird page Start application popup css------- */
-.h802 {
-    font-size: 33px;
-    color: black;
-    text-align: center;
-    margin-bottom: 0;
+@media screen and (max-width: 1220px) {
+  img.imgback {
+    height: 820px;
+    transform: none;
+    margin-top: 0;
+  }
 }
 
+@media screen and (max-width: 768px) {
+  img.imgback {
+    height: 515px; /* Adjust the height as needed for smaller screens */
+    transform: none;
+    margin-top: 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  img.imgback {
+    height: 350px; /* Adjust the height as needed for even smaller screens */
+  }
+}
+
+
+  /*---THird page Start application popup css------- */
+/* Default styles for all screens */
+.h802 {
+  font-size: 33px;
+  color: black;
+  text-align: center;
+  margin-bottom: 0;
+}
 
 .h801 {
   color: black;
   margin: 12px auto;
   font-size: 24px;
   text-align: center;
-}
-
-
-h805 {
-  font-size: 25px;
-  font-weight: 600;
-  margin: 3em;
 }
 
 label.st8012 {
@@ -390,7 +405,8 @@ label.st8017 {
   align-items: flex-start;
 }
 
-.manufacunit, .manufacunit1 {
+.manufacunit,
+.manufacunit1 {
   margin: 0;
   margin-bottom: 10px;
 }
@@ -415,9 +431,9 @@ label.st8017 {
   margin-bottom: 10px;
 }
 
-.st805 {
+/* .st805 {
   margin-left: 5px;
-}
+} */
 
 h3.Contctprson,
 h3.topmang,
@@ -426,49 +442,72 @@ h3.model {
   color: red;
 }
 
-
 input[type="file"] {
   margin: 3px;
   margin-left: auto;
 }
 
-button.btn808 {
-  width: 140px;
-  margin: 13px 283px;
-  height: 41px;
-  border-radius: 10px;
-  color: #FF9025;
-  font-size: 20px;
-  font-weight: 600;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
+/* Media queries for different screen sizes */
+@media screen and (max-width: 768px) {
+  /* Styles for screens up to 768px wide */
+  .h802 {
+    font-size: 24px;
+  }
+  
+  .h801 {
+    font-size: 20px;
+  }
+  
+  label.st8012 {
+    font-size: 12px;
+  }
+  
+  input.st805 {
+    margin-left: auto;
+    width: auto;
+    border-radius: 5px;
+}
+  
+  .name-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .side-div {
+    margin-left: 0;
+  }
 }
 
-button.btn808:hover{
-  background-color: #55B700;
+@media screen and (max-width: 468px) {
+  /* Styles for screens up to 468px wide */
+  .h802 {
+    font-size: 20px;
+  }
+  
+  .h801 {
+    font-size: 18px;
+  }
+  
+  label.st8012 {
+    font-size: 10px;
+  }
+  
+  input.st805 {
+    margin-left: auto;
+    width: auto;
+    border-radius: 5px;
+}
+  
+  .name-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .side-div {
+    margin-left: 0;
+  }
 }
 
-button.btn809 {
-  width: 120px;
-  margin: 8px 293px;
-  height: 30px;
-  color: #FF9025;
-  font-size: 20px;
-  font-weight: 600;
-}
-
-button.btn809:hover{
-  background-color: #55B700;
-}
-
-  /*------------WishList Button CSS-------------------*/
-  button.wishlist {
-    position: absolute;
-    top: 32em;
-    left: 88em;
-}
 
 /*----------------Fourth Page CSS------------------*/
 
@@ -486,35 +525,6 @@ a.notify {
 .button10.rdrcbtn {
   left: 52em;
 }
-
-/* ----------ThirdPage popup lines set css---------- */
-  h90{
-    font-size: 18px;
-    font-weight: 600;
-  }
-
-  h32{
-    font-size: 22px;
-    font-weight: 600;position: absolute;
-    top: 3px;
-    left: 10px;
-  }
-
-  h98{
-    position: absolute;
-    left: 60px;
-    top: 70px;
-    font-size: 18px;
-    font-weight: 600;
-  }
-
-  h94{
-    font-size: 18px;
-    font-weight: 600;
-    position: absolute;
-    top: 70px;
-    left: 337px;
-  }
 
   /*---------Thirdpage popup on upload button---------------*/
   .searchWrapper {
@@ -686,10 +696,10 @@ video.videoBox {
   }
   
   input[type=text] {
-  width: 100%;
-  margin: 4px 0 10px 0;
-  border-radius: 5px;
-  }
+    width: auto;
+    margin-left: auto;
+    border-radius: 5px;
+}
   
   .form-group {
   font-size: 16px;
@@ -697,6 +707,7 @@ video.videoBox {
   }
   
   .region-group22 {
+   width: 100%;
   font-size: 16px;
   margin-bottom: 10px;
   }
@@ -726,11 +737,13 @@ video.videoBox {
   margin: 20px auto;
   }
   
-  input[type=text] {
-  width: 100%;
-  margin: 4px 0 10px 0;
-  border-radius: 5px;
+  input[type="text"],
+  input[type="tel"] {
+    margin-left: auto;
+    width: auto;
+    border-radius: 5px;
   }
+  
   
   .form-group22 {
   font-size: 18px;
@@ -949,16 +962,7 @@ select.optionss {
 }
 
 /*--------DropDown of start Application form-------*/
-.st804 {
-  margin-top: 1px;
-  margin-left: auto;
-  width: 20em;
-  height: 43px;
-  padding: 9px 112px;
-  font-size: 16px;
-  font-weight: bolder;
-}
-
+.st804,
 .st804:focus {
   margin-top: 1px;
   margin-left: auto;
@@ -967,11 +971,7 @@ select.optionss {
   padding: 9px 112px;
   font-size: 16px;
   font-weight: bolder;
-  /* outline: 2px solid #55B600; */
 }
-
-/*-------StartApp Download Button CSS-----*/
-
 
 .select-container {
   display: flex;
@@ -983,22 +983,21 @@ select.optionss {
 .select-container .select__option--is-selected {
   background-color: #f5f5f5;
 }
+
 .css-1fdsijx-ValueContainer {
   width: 20em;
 }
 
-/*-------------------BIS FROM DROP DOWN------------*/
 select.bisdrop {
   height: 32px;
   width: 29em;
   padding: 3px 7px;
-  margin: 14px 0px;
+  margin: 14px 0;
   font-size: 20px;
   font-weight: bolder;
   border-color: black;
 }
 
-/* BIS REGISTER AND UN REGISTER POPUP CSS */
 .checkbox-container {
   display: flex;
   justify-content: space-around;
@@ -1019,11 +1018,9 @@ h3.reg-popup-titlte {
   font-size: 25px;
 }
 
-/*---------- BIS register POPup page css--------- */
 .bis-userid {
   display: grid;
   justify-content: flex-start;
-  /* row-gap: 3px; */
   margin-bottom: 20px;
 }
 
@@ -1035,7 +1032,6 @@ select#has-r-number {
   padding: inherit;
   margin-bottom: 20px;
   border-color: black;
-  /* font-size: 15px; */
   font-weight: 600;
 }
 
@@ -1048,7 +1044,6 @@ input#password {
 }
 
 span.eye-icon-fun {
-  /* size: 1px; */
   cursor: pointer;
 }
 
@@ -1066,4 +1061,148 @@ button.bis-register {
 
 button.bis-register:hover {
   background-color: #55b700;
+}
+
+button.btn808 {
+  width: 140px;
+  margin: 13px 283px;
+  height: 41px;
+  border-radius: 10px;
+  color: #FF9025;
+  font-size: 20px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+button.btn808:hover{
+  background-color: #55B700;
+}
+
+button.btn809 {
+  width: 120px;
+  margin: 8px 293px;
+  height: 30px;
+  color: #FF9025;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+button.btn809:hover{
+  background-color: #55B700;
+}
+
+
+
+/* Styles for screen widths up to 600px */
+@media (max-width: 600px) {
+  .st804,
+  .st804:focus,
+  select.bisdrop,
+  .bis-register,
+  input.bis-register,
+  h3.reg-popup-titlte,
+  .bis-userid,
+  select#has-r-number,
+  input#user-id,
+  input#password,
+  button.bis-register {
+    width: auto;
+    margin-left: auto;
+    padding: 8px 62px;
+}
+  
+  .select-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .css-1fdsijx-ValueContainer {
+    width: 100%;
+  }
+  
+  select.bisdrop {
+    width: 100%;
+    margin: 14px 0;
+    padding: 0px;
+}
+
+  button.btn808,
+  button.btn809 {
+    width: 100%;
+    margin: 13px auto;
+  }
+  
+  button.btn809 {
+    width: 100%;
+    margin: 8px auto;
+  }
+}
+
+/* Styles for screen widths between 601px and 1024px */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .st804,
+  .st804:focus,
+  select.bisdrop,
+  .bis-register,
+  input.bis-register,
+  h3.reg-popup-titlte,
+  .bis-userid,
+  select#has-r-number,
+  input#user-id,
+  input#password,
+  button.bis-register {
+    width: auto;
+    margin-left: auto;
+    /* margin-right: auto; */
+    /* padding: 8px 63px; */
+}
+
+  button.btn808,
+  button.btn809 {
+    width: 50%;
+    margin: 13px auto;
+  }
+  
+  button.btn809 {
+    width: 50%;
+    margin: 8px auto;
+  }
+}
+
+/* Styles for screen widths larger than 1024px */
+@media (min-width: 1025px) {
+  /* Add your specific styles for larger screens here */
+}
+
+
+/* Bell icon of Notification use SeconCompliance page */
+.animated-bell {
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-name: shake;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-5px) rotate(-5deg);
+  }
+  40% {
+    transform: translateX(5px) rotate(5deg);
+  }
+  60% {
+    transform: translateX(-5px) rotate(-5deg);
+  }
+  80% {
+    transform: translateX(5px) rotate(5deg);
+  }
+  100% {
+    transform: translateX(0) rotate(0);
+  }
 }

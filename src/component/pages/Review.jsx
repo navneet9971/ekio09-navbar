@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import Popup from "../pagesscrn4/popup/Popup";
+import Popup from "../popup/Popup";
 import "./Table.css";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
@@ -52,6 +52,7 @@ function Review() {
       .then(response => {
         const tableData = response.data.data;
         setTableData(tableData);
+        console.log(tableData)
       })
       .catch(error => {
         console.log(error);
@@ -269,5 +270,5 @@ console.log(latestStartDate)
           );
         }
         
-        export default Review;
+ export default Review;
         

@@ -6,22 +6,16 @@
   vertical-align: top;
 }
 
-.col {
+.col-dash {
   background-color: #f1f1f1;
   padding: 10px;
-}
-
-@media (max-width: 768px) {
-  .container-piechart {
-    width: 100%;
-  }
 }
 
 .chart-container {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
-  width: 600px;
+  width: 662px;
   height: 400px;
   display: flex;
   flex-direction: column;
@@ -135,4 +129,60 @@ select.search-dash {
   justify-content: center;
 }
 
+@media (max-width: 1220px) {
+  .chart-container {
+    width: 100%;
+    max-width: 800px;
+  }
 
+  .chart-bar-container {
+    width: 101%;
+    max-width: 1000px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-piechart {
+    width: 100%;
+    padding: 6px 10px;
+  }
+
+  .chart-container {
+    width: 100%;
+    max-width: 550px;
+    height: 300px;
+    padding: 10px;
+  }
+
+  .chart-bar-container {
+    width: 100%;
+    max-width: 603px;
+    height: 400px;
+    padding: 10px;
+}
+}
+
+@media (max-width: 468px) {
+  .container-piechart {
+    width: 100%;
+    padding: 6px 8px;
+  }
+
+  .chart-container {
+    width: 100%;
+    max-width: 400px;
+    height: 200px;
+    padding: 10px;
+  }
+
+  .chart-bar-container {
+    width: 100%;
+    max-width: 370px;
+    height: 300px;
+    padding: 10px;
+}
+
+  .search-filter-container {
+    padding: 2px;
+  }
+}

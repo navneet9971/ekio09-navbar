@@ -26,15 +26,141 @@ h1.appli {
   padding-right: 30px;
 }
 
+.header-btn1 {
+  display: flex;
+  position: absolute;
+  top: 340px;
+  left: 20px;
+}
+
+p.status-percent {
+  color: #fff;
+  position: absolute;
+  top: 224px;
+  left: 727px;
+  font-size: 25px;
+}
+
+/* Responsive styles */
+
+/* Apply responsive styles for screen sizes smaller than or equal to 468px */
+@media (max-width: 468px) {
+  h1.type {
+    float: none;
+    font-size: 26px;
+    text-align: center;
+  }
+
+  h1.appli {
+    position: static;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 0;
+  }
+
+  .header-btn1 {
+    position: static;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  p.status-percent {
+    position: static;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Adjustments for small screens */
+@media (max-width: 767px) {
+  h1.type {
+    font-size: 24px;
+    float: none;
+    text-align: center;
+  }
+
+  h1.appli {
+    position: static;
+    justify-content: center;
+    padding-right: 0;
+  }
+
+  .header-btn1 {
+    position: static;
+    top: auto;
+    left: auto;
+    margin-top: 10px;
+  }
+
+  p.status-percent {
+    position: static;
+    top: auto;
+    left: auto;
+    text-align: center;
+  }
+}
+
+/* Adjustments for medium screens */
+@media (min-width: 768px) and (max-width: 991px) {
+  h1.type {
+    font-size: 28px;
+    float: none;
+    text-align: center;
+  }
+
+  h1.appli {
+    position: static;
+    justify-content: center;
+    padding-right: 0;
+  }
+
+  .header-btn1 {
+    position: static;
+    top: auto;
+    left: auto;
+    margin-top: 10px;
+  }
+
+  p.status-percent {
+    position: static;
+    translate: -127px 38px;
+    margin: 27px -110px;
+    text-align: center;
+}
+}
+
+/* Adjustments for large screens */
+@media (min-width: 992px) and (max-width: 1199px) {
+  h1.type {
+    font-size: 30px;
+  }
+}
+
+/* Adjustments for extra-large screens */
+@media (min-width: 1200px) and (max-width: 1399px) {
+  h1.type {
+    font-size: 32px;
+  }
+}
+
+/* Adjustments for screens larger than 1400px */
+@media (min-width: 1400px) {
+  h1.type {
+    font-size: 35px;
+  }
+}
 
 
-p.stdate{
+/* Default styles */
+p.stdate {
   text-align: inherit;
   font-size: 20px;
   font-weight: 600;
 }
 
-p.enddate{
+p.enddate {
   text-align: end;
   font-size: 20px;
   font-weight: 600;
@@ -45,13 +171,53 @@ h1.ongo {
   font-size: 30px;
   color: #fff;
   text-align: center;
-  /* margin-top: -30px; */
-  /* margin-bottom: 40px; */
 }
 
 button.clidown {
   margin-left: 34em;
 }
+
+/* Responsive styles */
+@media only screen and (max-width: 600px) {
+  /* Styles for screens up to 600px wide */
+  p.stdate {
+    font-size: 16px;
+  }
+
+  p.enddate {
+    font-size: 16px;
+  }
+
+  h1.ongo {
+    font-size: 24px;
+  }
+
+  button.clidown {
+    margin-left: 16em;
+  }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  /* Styles for screens between 601px and 1024px wide */
+  p.stdate {
+    font-size: 18px;
+  }
+
+  p.enddate {
+    font-size: 18px;
+  }
+
+  h1.ongo {
+    font-size: 28px;
+  }
+
+  button.clidown {
+    margin-left: 26em;
+  }
+}
+
+/* Add more media queries for other screen sizes if needed */
+
 
 /*.arrow-right {
   background: linear-gradient(90deg, #f12400 0%, #f72d0a 50%, #f52e0a 100%);
@@ -70,15 +236,6 @@ button.clidown {
   margin-top: 10em;
 }
 
-/*.circle23 {
-  margin-top: 25px;
-  width: 25px;
-  height: 25px;
-  border-radius: 100%;
-  background-color: red
-  margin-left: 4.1em;
-} */
-
 .circle24 {
   position: absolute;
   width: 25px;
@@ -89,6 +246,48 @@ button.clidown {
   margin-left: 1.1em;
   top: 28em;
 }
+
+/* Responsive styles */
+@media only screen and (max-width: 600px) {
+  /* Styles for screens up to 600px wide */
+  .arrow-right1 {
+    width: 100px;
+    height: 65px;
+    margin-top: 5em;
+  }
+
+  .circle24 {
+    top: 18em;
+    margin-left: 0.6em;
+  }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  /* Styles for screens between 601px and 1024px wide */
+  .arrow-right1 {
+    width: 120px;
+    height: 75px;
+    margin-top: 7em;
+  }
+
+  .circle24 {
+    top: 23em;
+    margin-left: 0.8em;
+  }
+}
+
+/* Add more media queries for other screen sizes if needed */
+
+
+
+/*.circle23 {
+  margin-top: 25px;
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  background-color: red
+  margin-left: 4.1em;
+} */
 
 /*-------ARROWS ACTIVE COLOR CHANGE--------------*/
 
@@ -113,7 +312,9 @@ button.clidown {
   transform: rotateZ(90deg);
 } */
 
-.trck1 {
+/* Default styles */
+
+.tr1 {
   width: 96px;
   height: 120px;
   margin-left: 14px;
@@ -121,56 +322,58 @@ button.clidown {
 }
 
 .ryt {
-    width: 21px;
-    height: 50px; /* adjust as needed */
-    position: absolute;
-    margin-top: 28px; /* half of the height */
-    margin-left: -32px; /* half of the width */
-    padding: 0;
+  width: 21px;
+  height: 50px;
+  position: absolute;
+  margin-top: 28px;
+  margin-left: -32px;
 }
 
 .pdfico {
   position: relative;
-  top: 81%;
-  left: 141%;
-  transform: translate(-50%, -50%);
+  bottom: -67%;
+  left: 122%;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 63px;
   height: 36px;
   border-radius: 50%;
-  /* margin-top: -40px; */
-  /* margin-left: 5.699999999999999em; */
 }
 
 .clickedColor {
   background-color: red;
 }
 
-img.pdfico1 {
-  /* position: absolute; */
+.pdfico1 {
   width: 106px;
   margin-top: -16.5px;
   margin-left: 115.8px;
   margin-bottom: 17px;
 }
 
-.tc, .wp, .be, .bi, .ep, .legal, .isi, .management {
+.tc,
+.wp,
+.be,
+.bi,
+.ep,
+.legal,
+.isi,
+.management {
   text-align: center;
   font-size: 16px;
-  /* margin-bottom: 15px; */
   margin-top: 4px;
   margin-left: 8em;
   display: flex;
   justify-content: flex-start;
-  /* align-items: baseline; */
   color: #fff;
 }
 
-.pdf-container {
+.pdf-container,
+.container {
   position: relative;
   display: inline-block;
+  text-align: center;
 }
 
 .tick-mark {
@@ -178,11 +381,6 @@ img.pdfico1 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
-
-
-.container {
-  text-align: center;
 }
 
 .row {
@@ -210,20 +408,19 @@ img.pdfico1 {
   margin-left: 5.7em;
 }
 
-
 .stepWrapper {
   overflow-y: hidden;
   overflow-x: auto;
-  /* width:90%; */
   display: inline-flex;
   margin-bottom: 20px;
-  height:100%;
+  height: 100%;
 }
 
 .stepBlock .circleWrapper {
   padding: 18px 78px;
   position: relative;
 }
+
 .selected .circle {
   color: black;
   background-color: white;
@@ -231,10 +428,136 @@ img.pdfico1 {
 }
 
 .ste {
-  height:30px;
+  height: 30px;
   margin-top: 40px;
-  padding:10px;
+  padding: 10px;
 }
+
+/* Responsive styles */
+
+/* Apply responsive styles for screen sizes larger than 800px */
+@media (min-width: 801px) {
+  .pdfico {
+    left: 178px;
+    top: 96px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .tr1 {
+    width: 70px; /* Adjust the width for smaller screens */
+    height: 90px; /* Adjust the height for smaller screens */
+    margin-left: 8px; /* Adjust the margin-left for smaller screens */
+    margin-top: 8px; /* Adjust the margin-top for smaller screens */
+  }
+
+  .ryt {
+    width: 16px; /* Adjust the width for smaller screens */
+    height: 40px; /* Adjust the height for smaller screens */
+    margin-top: 20px; /* Adjust the margin-top for smaller screens */
+    margin-left: -24px; /* Adjust the margin-left for smaller screens */
+  }
+
+  .pdfico {
+    width: 37px;
+    height: 33px;
+    left: 90%;
+    top: 54%;
+}
+
+  .pdfico1 {
+    width: 80px; /* Adjust the width for smaller screens */
+    margin-top: -10px; /* Adjust the margin-top for smaller screens */
+    margin-left: 80px; /* Adjust the margin-left for smaller screens */
+    margin-bottom: 10px; /* Adjust the margin-bottom for smaller screens */
+  }
+
+  .tc,
+  .wp,
+  .be,
+  .bi,
+  .ep,
+  .legal,
+  .isi,
+  .management {
+    margin-left: 6em; /* Adjust the margin-left for smaller screens */
+  }
+
+  .col {
+    margin-top: 10px; /* Adjust the margin-top for smaller screens */
+  }
+
+  .circle12 {
+    width: 20px; /* Adjust the width for smaller screens */
+    height: 20px; /* Adjust the height for smaller screens */
+    margin-top: -12px; /* Adjust the margin-top for smaller screens */
+    margin-left: 3.5em; /* Adjust the margin-left for smaller screens */
+  }
+
+  .ste {
+    margin-top: 20px; /* Adjust the margin-top for smaller screens */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .tr1 {
+    width: 60px; /* Adjust the width for even smaller screens */
+    height: 80px; /* Adjust the height for even smaller screens */
+    margin-left: 6px; /* Adjust the margin-left for even smaller screens */
+    margin-top: 6px; /* Adjust the margin-top for even smaller screens */
+  }
+
+  .ryt {
+    width: 14px; /* Adjust the width for even smaller screens */
+    height: 30px; /* Adjust the height for even smaller screens */
+    margin-top: 14px; /* Adjust the margin-top for even smaller screens */
+    margin-left: -20px; /* Adjust the margin-left for even smaller screens */
+  }
+
+  .pdfico {
+    width: 50px;
+    height: 30px;
+    left: 67%;
+    top: 41%;
+}
+
+  .pdfico1 {
+    width: 60px; /* Adjust the width for even smaller screens */
+    margin-top: -6.5px; /* Adjust the margin-top for even smaller screens */
+    margin-left: 70px; /* Adjust the margin-left for even smaller screens */
+    margin-bottom: 7px; /* Adjust the margin-bottom for even smaller screens */
+  }
+
+  .tc,
+  .wp,
+  .be,
+  .bi,
+  .ep,
+  .legal,
+  .isi,
+  .management {
+      margin-left: 3em;
+      font-size: 14px;
+      justify-content: center;
+  }
+
+  .col {
+    margin-top: 6px; /* Adjust the margin-top for even smaller screens */
+  }
+
+  .circle12 {
+    width: 15px; /* Adjust the width for even smaller screens */
+    height: 15px; /* Adjust the height for even smaller screens */
+    margin-top: -9px; /* Adjust the margin-top for even smaller screens */
+    margin-left: 3em; /* Adjust the margin-left for even smaller screens */
+  }
+
+  .ste {
+    margin-top: 10px; /* Adjust the margin-top for even smaller screens */
+  }
+}
+
+
 
 /* --------------Thumbnail/ name/datetime css-----------------  */
 /*svg.trck-aplicat {
@@ -337,18 +660,57 @@ button120.btn {
   text-align: center;
 }
 
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+  .button120.btn {
+    width: 100%; /* Adjust the width to fit the screen */
+    margin-top: 20px; /* Adjust the margin-top value as needed */
+    font-size: 16px; /* Adjust the font size as needed */
+  }
+
+  .stepBlock {
+    width: 100%; /* Adjust the width to fit the screen */
+  }
+
+  .ongoing-applications {
+    padding: 20px;
+    padding-top: 40px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .button120.btn {
+    margin-top: 10px; /* Adjust the margin-top value as needed */
+    font-size: 14px; /* Adjust the font size as needed */
+  }
+}
+
+
 /*.complete .circle23, .complete .line, .complete .rightWrapper .arrow-right{
   background: rgb(85, 214, 85);
 } */
 
-.doc-col{
-  width:150px;
-  height:150px;
-}
-.doc-col .be{
-  height:30px;
+p.dt1, p.dt5 {
+  position: absolute;
+  margin-top: -2em;
+  font-weight: bold;
+  margin-left: 5em;
 }
 
+.tecon {
+  margin: 282px 143px 50px 143px;
+}
+
+
+.doc-col {
+  width: 150px;
+  height: 150px;
+}
+
+.doc-col .be {
+  height: 30px;
+}
 
 svg.thumb.trck1 {
   margin-left: -51em;
@@ -370,7 +732,6 @@ svg.thumb.track3 {
 }
 
 svg.thumb.track4 {
-  /* display: flex; */
   margin-left: 26em;
   margin-top: -50.5em;
   width: 9em;
@@ -395,7 +756,6 @@ svg.thumb.track7 {
 }
 
 svg.thumb.track8 {
-  /* display: flex; */
   margin-left: 46em;
   margin-top: -83.8em;
   width: 9em;
@@ -404,8 +764,8 @@ svg.thumb.track8 {
 .mee-container,
 .mee-container1 {
   display: flex;
-  justify-content: center; /* optional: center the container horizontally */
-  gap: 20px; /* add some space between the child elements */
+  justify-content: center;
+  gap: 20px;
 }
 
 .mee1 {
@@ -425,9 +785,6 @@ svg.mainsvg2 {
   height: auto;
   margin-left: -136px;
   margin-top: 226px;
-  /* height: 36px; */
-  /* margin-right: 32px; */
-  /* display: inline-block; */
 }
 
 svg.mainsvg9 {
@@ -437,54 +794,54 @@ svg.mainsvg9 {
 }
 
 .tecon {
-  margin: 282px 143px 50px 143px; /* Adjust the bottom margin value as desired */
+  margin: 251px 30px 40px 55px;
   text-align: center;
   outline: 2px solid white;
 }
 
-
-p.dt1 {
-  position: absolute;
-  margin-top: -2em;
-  font-weight: bold;
-  margin-left: 5em;
-}
-p.dt2 {
-  position: absolute;
-  margin-left: 20em;
-  margin-top: -2em;
-  font-weight: bold;
-}
-p.dt3 {
-  position: absolute;
-  margin-left: 35em;
-  margin-top: -2em;
-  font-weight: bold;
-}
-p.dt4 {
-  position: absolute;
-  margin-left: 50em;
-  margin-top: -2em;
-  font-weight: bold;
-}
+p.dt1,
 p.dt5 {
   position: absolute;
   margin-top: -2em;
   font-weight: bold;
   margin-left: 5em;
 }
+
+p.dt2 {
+  position: absolute;
+  margin-left: 20em;
+  margin-top: -2em;
+  font-weight: bold;
+}
+
+p.dt3 {
+  position: absolute;
+  margin-left: 35em;
+  margin-top: -2em;
+  font-weight: bold;
+}
+
+p.dt4 {
+  position: absolute;
+  margin-left: 50em;
+  margin-top: -2em;
+  font-weight: bold;
+}
+
 p.dt6 {
   position: absolute;
   margin-left: 20em;
   margin-top: -2em;
   font-weight: bold;
 }
+
 p.dt7 {
   position: absolute;
   margin-left: 35em;
   margin-top: -2em;
   font-weight: bold;
 }
+
 p.dt8 {
   position: absolute;
   margin-left: 50em;
@@ -499,49 +856,31 @@ p.dt10 {
   font-weight: bold;
 }
 
-/*-----Download button Css of Forms---*/
-/* .box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  outline: 2px solid black;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-} */
+/* CHNAGE */
+
+h2.steps-count {
+  position: relative;
+  transform: translate(-129px, 245px);
+  text-align: center;
+  color: #fff;
+}
 
 .dd-menu {
   display: flex;
   justify-content: center;
-  /* flex-direction: column; */
   align-items: center;
   width: 64em;
   outline: 2px solid #fff;
   transform: translate(130px, 25px);
 }
 
-h2.steps-count {
-  position: relative;
-  transform: translate(-155px, 255px);
-  text-align: center;
-  color: #fff;
-}
-
-
-
-
 .reportbtn {
   margin-bottom: 10px;
 }
 
-
 .reportbtn {
   padding: 13px 17px;
   border-radius: 10px;
-  /* border: none; */
-  /* background-color: #082a71; */
   color: #FF8025;
   cursor: pointer;
   font-size: 26px;
@@ -550,24 +889,120 @@ h2.steps-count {
   margin-top: 10px;
 }
 
-.reportbtn:hover{
+.reportbtn:hover {
   background-color: #55B600;
 }
 
 .reportbtn:disabled,
-.button7:disabled { 
- cursor: not-allowed; /* Change the cursor style when the button is disabled */
- background-color: #6c87c0;
- color: #FF8025;
+.button7:disabled {
+  cursor: not-allowed;
+  background-color: #6c87c0;
+  color: #FF8025;
 }
 
 .reportbtn:disabled:hover,
 .button7:disabled:hover {
-  background-color: #6c87c0; /* Remove background color on hover */ /* Change text color on hover */
-  text-decoration: none; /* Remove underline on hover */
-  /* Add any other styles you want to remove or modify on hover */
+  background-color: #6c87c0;
+  text-decoration: none;
 }
 
+/* Responsive Styles */
+
+/* For screens up to 468px */
+@media screen and (max-width: 468px) {
+  .dd-menu {
+    display: block;
+    width: auto;
+    transform: none;
+  }
+
+  .header-btn1 {
+    display: block;
+    position: static;
+    top: auto;
+    left: auto;
+    margin-bottom: 20px;
+  }
+
+  .reportbtn {
+    padding: 8px;
+    font-size: 16px;
+  }
+
+  svg.mainsvg2 {
+    width: 100%;
+    height: auto;
+    margin: 0.1em 0;
+  }
+
+  h2.steps-count {
+    transform: none;
+    margin-bottom: -231px;
+}
+
+  .mainsvg3 {
+    position: static;
+    width: 40%;
+    height: auto;
+    margin: 0;
+  }
+}
+
+/* For screens between 468px and 800px */
+@media screen and (min-width: 469px) and (max-width: 800px) {
+  .dd-menu {
+    width: auto;
+    transform: none;
+  }
+
+  .header-btn1 {
+    display: block;
+    position: static;
+    top: auto;
+    left: auto;
+    margin-bottom: 20px;
+  }
+
+  h2.steps-count {
+    transform: none;
+    margin-bottom: -230px;
+    margin-top: 54px;
+}
+
+  .reportbtn {
+    font-size: 20px;
+    margin: 10px 0;
+  }
+}
+
+/* For screens between 801px and 1280px */
+@media screen and (min-width: 801px) and (max-width: 1280px) {
+  .dd-menu {
+    width: auto;
+    transform: none;
+    gap:20px
+  }
+
+
+  .reportbtn {
+    font-size: 24px;
+    margin: 12px 0;
+  }
+}
+
+/* For screens larger than 1280px */
+@media screen and (min-width: 1281px) {
+  .dd-menu {
+    width: 64em;
+    transform: translate(130px, 25px);
+    gap:20px;
+  }
+
+  .reportbtn {
+    font-size: 26px;
+    margin: 10px 0;
+  }
+}
 
 .pdffilesup {
   margin: 0 8em;
@@ -590,29 +1025,13 @@ h1.statusbar {
   text-align: center;
 }
 
-/* .status-bar {
-  display: flex;
-  justify-content: flex-start;
-  position: absolute;
-  left: 428px;
-  top: 180px;
-  width: 1920px;
-  overflow: hidden;
-} */
-
-p.status-percent {
-  color: #fff;
-  position: absolute;
-  top: 224px;
-  left: 727px;
-  font-size: 25px;
-}
 
 
 /*----BIS oongoing CSS START HERE ------------*/
 .row1 {
   display: block;
-  margin-bottom: 25px;
+  margin-bottom: 37px;
+  margin: 3px -82px 100px;
   justify-content: center;
 }
 
