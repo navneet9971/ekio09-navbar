@@ -20,7 +20,7 @@ function Onboarding() {
           },
           {
             element: ".second",
-            intro: "These are some options you can explore.",
+            intro: "Show all COmpliance Forms Here",
           },
           {
             element: ".third",
