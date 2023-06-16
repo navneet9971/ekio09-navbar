@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import introJs from "intro.js";
+import "intro.js/introjs.css"; // Import intro.js CSS
 
 function Onboarding() {
   useEffect(() => {
@@ -10,17 +11,13 @@ function Onboarding() {
           {
             intro: "Welcome to the Platform!",
           },
-          //   {
-          //     element: ".option-box",
-          //     intro: "This is your Compliance Dashboard.",
-          //   },
           {
             element: ".first",
             intro: "These are some options you can explore.",
           },
           {
             element: ".second",
-            intro: "Show all COmpliance Forms Here",
+            intro: "These are some options you can explore.",
           },
           {
             element: ".third",
@@ -42,12 +39,17 @@ function Onboarding() {
       });
       intro.start();
 
-       // Set "first_time" to "false" to prevent onboarding from showing again
-       localStorage.setItem("first_time", "false");
+      // Set "first_time" to "false" to prevent onboarding from showing again
+      localStorage.setItem("first_time", "false");
     }
   }, []);
 
-  return <div></div>;
+  console.log("navneet")
+
+  return (
+    <div>
+    </div>
+  );
 }
 
 export default Onboarding;
