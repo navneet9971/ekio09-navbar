@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import axiosInstance from "../../../interceptors/axios";
-import BISfreshForm from "./BISfreashform";
+import BISFreshForm from "./BISfreashform";
 
 function BisRNumberPopup({onClose}) {
   const [hasRNumber, setHasRNumber] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [showBISfreshForm, setShowBISfreshForm] = useState(false);
+  const [showBISFreshForm, setShowBISFreshForm] = useState(false);
 
   const applicationId = localStorage.getItem("applicationId");
 
@@ -61,14 +61,14 @@ function BisRNumberPopup({onClose}) {
       handleRnumberRegisterSubmit(event);
       console.log("R Number:");
     } else {
-      setShowBISfreshForm(true);
+      setShowBISFreshForm(true);
       console.log("R Number not selected");
     }
   };
 
   return (
     <>
-      {!showBISfreshForm ? (
+      {!showBISFreshForm ? (
         <form onSubmit={handleRNumbersubmit}>
           <div className="bis-userid">
             <label htmlFor="has-r-number">Do you have an R number?</label>
@@ -151,7 +151,7 @@ function BisRNumberPopup({onClose}) {
           </button>
         </form>
       ) : (
-        <BISfreshForm />
+        <BISFreshForm />
       )}
     </>
   );

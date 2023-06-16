@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 import axiosInstance from "../../../interceptors/axios";
 
-const BISFormComponent = ({onClose}) => {
+const BISFormComponent = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [hasBISReg, setHasBISReg] = useState(false);
   const storedApplicationId = localStorage.getItem("applicationId");
@@ -113,7 +113,7 @@ const BISFormComponent = ({onClose}) => {
               'Form submitted successfully. Please head over to the "Track Application" Page to upload documents and review progress ',
             confirmButtonText: "OK",
           }).then(() => {
-            history.push('/navbar/review')
+            history.push('/navbar/review');
           })
           //    setButtonPopup6bis(false);
         } else {
@@ -124,7 +124,6 @@ const BISFormComponent = ({onClose}) => {
             confirmButtonText: "OK",
           });
         }
-        onClose(); //Close POPUP AFTE SUBmitted
       })
       .catch((error) => {
         // Handle error case here
