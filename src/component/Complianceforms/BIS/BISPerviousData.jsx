@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 import axiosInstance from "../../../interceptors/axios";
 
@@ -6,6 +7,7 @@ function BISPerviousData ({ onClose }) {
  
     const autofillBisData = localStorage.getItem('bisdata');
 // console.log(localStorage.getItem('bisdata'))
+    const history = useHistory();
 
     //BIS PERVIOUS DATA FETCH HERE ITS CODE ------------------------------------------
   const [bisformData, setBisformData] = useState({
@@ -166,7 +168,9 @@ function BISPerviousData ({ onClose }) {
           text:
             'Form submitted successfully. Please head over to the "Track Application" Page to upload documents and review progress ',
           icon: "success",
-        });
+        }).then(() => {
+          history.push('/navbar/review');
+        })
         onClose(); // Close the popup after download is complete
 
         for (const [formName, formData] of Object.entries(data.data.forms)) {

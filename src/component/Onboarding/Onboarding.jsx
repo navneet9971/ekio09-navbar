@@ -42,6 +42,9 @@ function Onboarding() {
         keyboardNavigation: true,
       });
       intro.start();
+
+       // Set "first_time" to "false" to prevent onboarding from showing again
+       localStorage.setItem("first_time", "false");
     }
   }, []);
 

@@ -388,7 +388,7 @@ const Secondpage = () => {
         {/*--------------BIS REGSITER AND UNREGISTER CODES HERE ------------------------------- */}
         <Popup trigger={buttonRegisterbis} setTrigger={setButtonRegisterbis}>
           <h3 className="reg-popup-titlte">
-            Are You Registered On The BIS Portal?{" "}
+            Are You Registered On The BIS Portal?
           </h3>
           <div className="checkbox-container">
             <div className="bis-register">

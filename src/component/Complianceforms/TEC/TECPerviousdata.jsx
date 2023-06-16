@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
+import { useHistory } from "react-router-dom";
 import axiosInstance from "../../../interceptors/axios";
 
 function TECPerviousData({ onClose }) {
   const applicationId = localStorage.getItem("applicationId");
   const autofillTecData = localStorage.getItem("tecdata");
+  const history = useHistory();
 
   const [tecformData, setTecformData] = useState({
     Applicant_company_CIN: "",
@@ -87,7 +89,9 @@ function TECPerviousData({ onClose }) {
           text:
             'Form submitted successfully. Please head over to the "Track Application" Page to upload documents and review progress ',
           icon: "success",
-        });
+        }).then(() => {
+          history.push('/navbar/review');
+        })
         onClose(); // Close the popup after download is complete
 
         for (const [formName, formData] of Object.entries(data.data.forms)) {

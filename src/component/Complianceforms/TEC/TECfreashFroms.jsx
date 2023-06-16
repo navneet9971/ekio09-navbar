@@ -1,8 +1,12 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2"; // Import Swal from sweetalert2 library
 import axiosInstance from "../../../interceptors/axios";
 
 const TECFormComponent = ({ onClose }) => {
+      
+  const history = useHistory();
+
   const [tecformData, setTecformData] = useState({
     Types_of_company: "",
     Applicant_company_name: "",
@@ -53,6 +57,8 @@ const TECFormComponent = ({ onClose }) => {
           text:
             'Form submitted successfully. Please head over to the "Track Application" Page to upload documents and review progress ',
           icon: "success",
+        }).then(() => {
+          history.push('/navbar/review');
         });
 
         // Loop through each form in the "forms" field
