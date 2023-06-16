@@ -216,7 +216,7 @@ function TECPerviousData({ onClose }) {
             }}
           />
         </label>
-        <span id="applicant-email-error" style={{ color: "red" }}></span>
+        <span className ="email-warning" id="applicant-email-error" style={{ color: "red" }}></span>
 
         <label className="st8012">
           Authorised signatory designation
@@ -254,7 +254,7 @@ function TECPerviousData({ onClose }) {
             }}
           />
         </label>
-        <span id="applicant-email-error2" style={{ color: "red" }}></span>
+        <span className ="email-warning" id="applicant-email-error2" style={{ color: "red" }}></span>
 
         <label className="st8012">
           Authorised signatory name
@@ -364,7 +364,7 @@ function TECPerviousData({ onClose }) {
             }}
           />
         </label>
-        <span id="applicant-email-error3" style={{ color: "red" }}></span>
+        <span className ="email-warning" id="applicant-email-error3" style={{ color: "red" }}></span>
 
         <label className="st8012">
           Types of company
@@ -374,6 +374,7 @@ function TECPerviousData({ onClose }) {
             value={tecformData.Types_of_company}
             onChange={handleChange}
           >
+            <option value="">Select Your Company</option>
             <option value="Foreign">Foreign</option>
             <option value="Indian">Indian</option>
           </select>

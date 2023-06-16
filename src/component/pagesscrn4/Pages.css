@@ -471,6 +471,7 @@ input[type="file"] {
   .name-row {
     flex-direction: column;
     gap: 10px;
+    align-items: baseline;
   }
   
   .side-div {
@@ -501,6 +502,7 @@ input[type="file"] {
   .name-row {
     flex-direction: column;
     gap: 8px;
+    align-items: baseline;
   }
   
   .side-div {
@@ -962,13 +964,12 @@ select.optionss {
 }
 
 /*--------DropDown of start Application form-------*/
-.st804,
-.st804:focus {
+.st804, .st804:focus {
   margin-top: 1px;
   margin-left: auto;
   width: 20em;
   height: 43px;
-  padding: 9px 112px;
+  padding: 8px;
   font-size: 16px;
   font-weight: bolder;
 }
@@ -1111,8 +1112,7 @@ button.btn809:hover{
   button.bis-register {
     width: auto;
     margin-left: auto;
-    padding: 8px 62px;
-}
+  }
   
   .select-container {
     flex-direction: column;

@@ -101,6 +101,7 @@ const TECFormComponent = ({ onClose }) => {
           value={tecformData.Types_of_company}
           onChange={handleChange}
         >
+          <option value="">Select Your Company</option>
           <option value="Foreign">Foreign</option>
           <option value="Indian">Indian</option>
         </select>
@@ -187,7 +188,7 @@ const TECFormComponent = ({ onClose }) => {
           }}
         />
       </label>
-      <span id="applicant-email-error1" style={{ color: "red" }}></span>
+      <span className ="email-warning" id="applicant-email-error1" style={{ color: "red" }}></span>
 
       <label className="st8012">
         Company CIN:
@@ -258,7 +259,7 @@ const TECFormComponent = ({ onClose }) => {
           }}
         />
       </label>
-      <span id="applicant-email-error" style={{ color: "red" }}></span>
+      <span className ="email-warning" id="applicant-email-error" style={{ color: "red" }}></span>
 
       <h1 className="h802">Foreign Manufacture:</h1>
       <label className="st8012">
@@ -342,7 +343,7 @@ const TECFormComponent = ({ onClose }) => {
           }}
         />
       </label>
-      <span id="applicant-email-error2" style={{ color: "red" }}></span>
+      <span className ="email-warning" id="applicant-email-error2" style={{ color: "red" }}></span>
 
       <button className="btn808" type="submit">
         Submit

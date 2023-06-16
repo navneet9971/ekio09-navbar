@@ -220,6 +220,7 @@ const BISFormComponent = () => {
             value={bisFormData.Types_of_company}
             onChange={handleChange}
           >
+            <option value="">Select your Company</option>
             <option value="Foreign">Foreign</option>
             <option value="Indian">Indian</option>
           </select>
@@ -284,7 +285,7 @@ const BISFormComponent = () => {
             }}
           />
         </label>
-        <span id="applicant-email-error1" style={{ color: "red" }}></span>
+        <span className ="email-warning" id="applicant-email-error1" style={{ color: "red" }}></span>
 
         <select
           className="bisdrop"
@@ -292,6 +293,7 @@ const BISFormComponent = () => {
           value={bisFormData.Factory_signing_person}
           onChange={handleChange}
         >
+          <option value="">Choose Signing Person</option>
           <option value="Contact">SIGNING PERSON WILL BE CONTACT PERSON</option>
           <option value="Top">
             SIGNING PERSON WILL BE FROM TOP MANAGEMENT{" "}
@@ -621,7 +623,7 @@ const BISFormComponent = () => {
             </div>
           </div>
         </div>
-        <span id="applicant-email-error2" style={{ color: "red" }}></span>
+        <span className ="email-warning" id="applicant-email-error2" style={{ color: "red" }}></span>
 
         <h1 className="h802">Brand</h1>
 
@@ -644,6 +646,7 @@ const BISFormComponent = () => {
             value={bisFormData.Brand_owned_by}
             onChange={handleChange}
           >
+            <option value="">Choose Brand Ownd By</option>
             <option value="self">Self</option>
             <option value="others">Others</option>
           </select>
@@ -657,6 +660,7 @@ const BISFormComponent = () => {
             value={bisFormData.Brand_registered}
             onChange={handleChange}
           >
+            <option value="">Select Brand Registered</option>
             <option value="yes">Yes</option>
             <option value="no">No</option>
           </select>
@@ -779,7 +783,7 @@ const BISFormComponent = () => {
             </div>
           </div>
         </div>
-        <span id="applicant-email-error3" style={{ color: "red" }}></span>
+        <span className ="email-warning" id="applicant-email-error3" style={{ color: "red" }}></span>
 
         {/*---------------- Name of authorized Signatory -----------------------------*/}
 
@@ -853,7 +857,7 @@ const BISFormComponent = () => {
             </div>
           </div>
         </div>
-        <span id="applicant-email-error4" style={{ color: "red" }}></span>
+        <span className ="email-warning" id="applicant-email-error4" style={{ color: "red" }}></span>
 
         <label className="st8012">
           Aadhar Card:
@@ -882,6 +886,7 @@ const BISFormComponent = () => {
           value={bisFormData.AIR_signing_person}
           onChange={handleChange}
         >
+          <option value="">Choose AIR Signing Person</option>
           <option value="Top">
             SIGNING PERSON WILL BE FROM TOP MANAGEMENT{" "}
           </option>
@@ -897,6 +902,7 @@ const BISFormComponent = () => {
             value={bisFormData.AIR_company_condition}
             onChange={handleChange}
           >
+            <option value="">Choose Condition for Nomination</option>
             <option value="1">
               If the AIR company is the sister company of the manufacturer and
               have office in India{" "}

@@ -212,6 +212,7 @@ function BISPerviousData ({ onClose }) {
               value={bisformData.Types_of_company}
               onChange={handleBISChange}
             >
+              <option value="">Select your Company</option>
               <option value="Foreign">Foreign</option>
               <option value="Indian">Indian</option>
             </select>
@@ -278,7 +279,7 @@ function BISPerviousData ({ onClose }) {
               }}
             />
           </label>
-          <span id="applicant-email-error4" style={{ color: "red" }}></span>
+          <span className ="email-warning" id="applicant-email-error4" style={{ color: "red" }}></span>
 
           <select
             className="bisdrop"
@@ -286,6 +287,7 @@ function BISPerviousData ({ onClose }) {
             value={bisformData.Factory_signing_person}
             onChange={handleBISChange}
           >
+            <option value="">Choose Signing Person</option>
             <option value="Contact">
               SIGNING PERSON WILL BE CONTACT PERSON
             </option>
@@ -616,7 +618,7 @@ function BISPerviousData ({ onClose }) {
               </div>
             </div>
           </div>
-          <span id="applicant-email-error6" style={{ color: "red" }}></span>
+          <span className ="email-warning" id="applicant-email-error6" style={{ color: "red" }}></span>
 
           <h1 className="h802">Brand</h1>
 
@@ -639,6 +641,7 @@ function BISPerviousData ({ onClose }) {
               value={bisformData.Brand_owned_by}
               onChange={handleBISChange}
             >
+              <option value="">Choose Brand Ownd By</option>
               <option value="self">Self</option>
               <option value="others">Others</option>
             </select>
@@ -652,6 +655,7 @@ function BISPerviousData ({ onClose }) {
               value={bisformData.Brand_registered}
               onChange={handleBISChange}
             >
+              <option value="">Select Brand Registered</option>
               <option value="yes">Yes</option>
               <option value="no">No</option>
             </select>
@@ -779,7 +783,7 @@ function BISPerviousData ({ onClose }) {
               </div>
             </div>
           </div>
-          <span id="applicant-email-error7" style={{ color: "red" }}></span>
+          <span className ="email-warning" id="applicant-email-error7" style={{ color: "red" }}></span>
 
           {/*----------------Pervious Name of authorized Signatory -----------------------------*/}
 
@@ -854,7 +858,7 @@ function BISPerviousData ({ onClose }) {
               </div>
             </div>
           </div>
-          <span id="applicant-email-error8" style={{ color: "red" }}></span>
+          <span className ="email-warning" id="applicant-email-error8" style={{ color: "red" }}></span>
 
           <label className="st8012">
             Aadhar Card:
@@ -883,6 +887,7 @@ function BISPerviousData ({ onClose }) {
             value={bisformData.AIR_signing_person}
             onChange={handleBISChange}
           >
+            <option value="">Choose AIR Signing Person</option>
             <option value="Top">
               SIGNING PERSON WILL BE FROM TOP MANAGEMENT{" "}
             </option>
@@ -898,6 +903,7 @@ function BISPerviousData ({ onClose }) {
               value={bisformData.AIR_company_condition}
               onChange={handleBISChange}
             >
+              <option value="">Choose Condition for Nomination</option>
               <option value="1">
                 If the AIR company is the sister company of the manufacturer
                 and have office in India{" "}
