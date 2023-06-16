@@ -44,8 +44,6 @@ function Onboarding() {
     }
   }, []);
 
-  console.log("navneet")
-
   return (
     <div>
     </div>
