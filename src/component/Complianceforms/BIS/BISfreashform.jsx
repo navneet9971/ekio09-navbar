@@ -113,7 +113,7 @@ const BISFormComponent = ({onClose}) => {
               'Form submitted successfully. Please head over to the "Track Application" Page to upload documents and review progress ',
             confirmButtonText: "OK",
           }).then(() => {
-            history.push('./navbar/review')
+            history.push('/navbar/review')
           })
           //    setButtonPopup6bis(false);
         } else {
