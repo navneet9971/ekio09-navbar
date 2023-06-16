@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 import axiosInstance from "../../../interceptors/axios";
 
@@ -6,7 +7,7 @@ const BISFormComponent = ({onClose}) => {
   const [showPassword, setShowPassword] = useState(false);
   const [hasBISReg, setHasBISReg] = useState(false);
   const storedApplicationId = localStorage.getItem("applicationId");
- 
+  const history = useHistory();
 
   const [bisFormData, setBisFormData] = useState({
     Types_of_company: "",
@@ -111,6 +112,8 @@ const BISFormComponent = ({onClose}) => {
             text:
               'Form submitted successfully. Please head over to the "Track Application" Page to upload documents and review progress ',
             confirmButtonText: "OK",
+          }).then(() => {
+            history.push('./navbar/review')
           })
           //    setButtonPopup6bis(false);
         } else {
