@@ -144,8 +144,9 @@ const Navbar = () => {
       <button className="nav-btn" onClick={handleToggle}>
         <FaBars />
       </button>
-        <FaPowerOff className="button99" onClick={handleLogout}/>
-     
+      <button className="button99" onClick={handleLogout}>
+        <span className="span99"><FaPowerOff /></span>
+      </button>
       {open && <div className="nav-layer" onClick={handleToggle} />}
     </nav>
   );
