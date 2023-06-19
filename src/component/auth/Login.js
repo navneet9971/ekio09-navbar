@@ -5,12 +5,13 @@ import "../assets/css/global.css";
 import axiosInstance from "../../interceptors/axios";
 import Popup from "../popup/Popup";
 import Swal from 'sweetalert2';
+import ForgetPassword from "./Forgetpassword";
+// import PricingCard from "../PricingCard/PricingCard";
 
 
 function Login() {
   const history = useHistory();
   const [linkPopup, setLinkPopup] = useState(false);
-  const [forgetemail, setForgetemail] = useState("");
   const initialFormData = Object.freeze({
     username: '',
     password: '',
@@ -19,50 +20,6 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
   
 /*-------forget password handle-------------*/
-const handleforgetemail = (e) => {
-  e.preventDefault();
-  const formData = new FormData();
-  formData.append('email', forgetemail);
-
-
-
-  axiosInstance
-    .post('password-reset/', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    })
-    .then((res) => {
-      // Handle successful registration
-      history.push('/'); // Navigate to the homepage
-      console.log(res);
-      console.log(res.data);
-
-      // Check the success status directly from the response
-      const success = res.status === 200; // Modify this condition based on the actual success status returned by the API
-
-      // Open file browser popup if registration is successful
-      if (success) {
-        Swal.fire({
-          icon: 'success',
-          title: 'Link Send',
-          text: 'Password Reset Link Sent to Your Email ID',
-          confirmButtonText: 'OK',
-        });
-        setLinkPopup(false);
-      }
-    })
-    .catch((error) => {
-      if (error.response && error.response.status === 400) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Email Not Registered',
-          text: 'Please enter a registered email address.',
-          confirmButtonText: 'OK',
-        });
-      }
-    });
-};
 
  
 /*----------LOGIN HANDLE ------------*/
@@ -124,6 +81,7 @@ const handleforgetemail = (e) => {
 
  
   return (
+   
     <div className="auth-box">
       <div className="login">
         <div className="form">
@@ -135,7 +93,6 @@ const handleforgetemail = (e) => {
               height={150}
               alt="logo"
             />
-            <p>Don't have an account?</p>
             <button className="button1" onClick={signUpButton} style={{ cursor: "pointer" }}>
               Sign up
             </button>
@@ -169,19 +126,16 @@ const handleforgetemail = (e) => {
            style={{ cursor: 'pointer', margin: '15px' }}
           >Forgot Password?</span>
            <Popup trigger={linkPopup} setTrigger={setLinkPopup}>
-            <h3 className="email-popup">ENTER YOU EMAIL ID</h3>
-            <label className="forget-email">
-              Enter your email:
-              <input
-              className="forgetinput"
-              type="text"
-              onChange={(event) => setForgetemail(event.target.value)} />
-            </label>
-          <button className="forgetbtn" onClick={handleforgetemail}>Send</button>
+            <ForgetPassword />
           </Popup>
         </div>
       </div>
+        {/* <PricingCard /> */}
     </div>
+    
+   
+
+    
   );
 }
 

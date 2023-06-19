@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 import { NavLink, useHistory, useLocation } from "react-router-dom";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaPowerOff } from "react-icons/fa";
 import $ from "jquery";
 import axiosInstance from 'axios';
 
@@ -144,9 +144,8 @@ const Navbar = () => {
       <button className="nav-btn" onClick={handleToggle}>
         <FaBars />
       </button>
-      <button className="button99" onClick={handleLogout}>
-        <span className="span99">Logout</span>
-      </button>
+        <FaPowerOff className="button99" onClick={handleLogout}/>
+     
       {open && <div className="nav-layer" onClick={handleToggle} />}
     </nav>
   );

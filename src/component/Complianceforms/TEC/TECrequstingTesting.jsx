@@ -89,6 +89,7 @@ function TECLabTesting({ onClose }) {
     console.log("Application ID:", localStorage.getItem("newApplicationId"));
 
     // function to handle form submission
+  
     axiosInstance
       .put(`/application/compliance/${idel}/`, formData, {
         headers: {
@@ -97,13 +98,10 @@ function TECLabTesting({ onClose }) {
         },
       })
       .then((response) => {
-        // form submission successful
         console.log(response.data);
-
-        const formSubmitted = true; // Corrected the assignment statement
+        const formSubmitted = true;
 
         if (formSubmitted) {
-          // Assuming success status is available in uploadStatus
           Swal.fire({
             icon: "success",
             title: "Form Submitted",
@@ -119,17 +117,16 @@ function TECLabTesting({ onClose }) {
           });
         }
 
-        onClose(); // Close the popup after download is complete
+        onClose();
       })
       .catch((error) => {
-        // Handle error case here
         Swal.fire({
           icon: "error",
           title: "Form Submitted Failed",
-          text: "Sorry, there was an error Submitted your form",
+          text: "Sorry, there was an error submitting your form",
           confirmButtonText: "OK",
         });
-      });
+      })
   };
 
   return (
@@ -304,10 +301,10 @@ function TECLabTesting({ onClose }) {
             }
           />
         </label>
+          <button className="btn809" type="submit">
+            Submit
+          </button>
 
-        <button className="btn809" type="submit">
-          Submit
-        </button>
       </form>
     </div>
   );

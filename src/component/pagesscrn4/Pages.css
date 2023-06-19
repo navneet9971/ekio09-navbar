@@ -8,12 +8,12 @@ body {
   box-sizing: border-box;
 }
 
-.tble-reviewbg{
+/* .tble-reviewbg{
   background-image: url("../assets/pages-bgimages/background.svg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-}
+} */
 
 .table-bgsconpage{
   background-image: url("../assets/pages-bgimages/background.svg");
@@ -191,11 +191,11 @@ button.first-go {
     color: white;
   }
   
-  th,
-  td {
+  th, td {
     text-align: center;
     padding: 8px;
-  }
+    font-size: 15px;
+}
   
   th:first-child,
   td:first-child {
@@ -1084,7 +1084,7 @@ button.btn808:hover{
 
 button.btn809 {
   width: 120px;
-  margin: 8px 293px;
+  margin: 8px 213px;
   height: 30px;
   color: #FF9025;
   font-size: 20px;

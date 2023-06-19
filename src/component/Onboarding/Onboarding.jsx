@@ -13,23 +13,23 @@ function Onboarding() {
           },
           {
             element: ".first",
-            intro: "These are some options you can explore.",
+            intro: "Get to know the compliance applicable on your product and the process to get the certificate for that compliance.",
           },
           {
             element: ".second",
-            intro: "These are some options you can explore.",
+            intro: "Start a new project with Eikomp respective to your product",
           },
           {
             element: ".third",
-            intro: "These are some options you can explore.",
+            intro: "Track the status of your applications from this page.",
           },
           {
             element: ".four",
-            intro: "These are some options you can explore.",
+            intro: "Helps in understanding each and every step of the portal.",
           },
           {
             element: ".five",
-            intro: "These are some options you can explore.",
+            intro: "Shows you the overall stats of the filed applications",
           },
         ],
         showBullets: false,

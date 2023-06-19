@@ -1,6 +1,6 @@
 .container-piechart {
   display: inline-block;
-  width: 50%;
+  width: 33%;
   padding: 6px 28px;
   box-sizing: border-box;
   vertical-align: top;
@@ -15,15 +15,15 @@
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
-  width: 662px;
-  height: 400px;
+  width: 416px;
+  height: 377px;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
 }
 
-.chart-bar-container {
+/* .chart-bar-container {
   background-color: transparent;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
@@ -33,7 +33,7 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
-}
+} */
 
 .chart-title {
   font-size: 24px;
@@ -103,15 +103,15 @@
 .search-filter-container {
   display: flex;
   justify-content: flex-end;
-  padding: 32px 74px;
-  gap: 15px;
+  padding: 4px 66px;
+  gap: 6px;
 }
 
 input[type="search-dashbo"] {
-  height: 40px;
-  border-radius: 20px;
+  height: 35px;
+  border-radius: 11px;
   padding: 8px;
-  font-size: 15px;
+  font-size: 12px;
   font-weight: bold;
 }
 

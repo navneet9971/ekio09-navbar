@@ -52,6 +52,7 @@ axiosInstance.get(`/compliance/?category=${category}&product=${product}&region=$
       });
     } else {
       console.log(response.data);
+      console.log(category);
       // redirect the user to the second page with the compliance data
       history.push('/navbar/secondpage');
     }
@@ -72,8 +73,13 @@ axiosInstance.get(`/compliance/?category=${category}&product=${product}&region=$
       </div>
 
       <div className="form-group22">
-        <label className='firsttext-input'>Enter Industry:</label>
-        <input type="text" placeholder='Type Here..' id="category-input" value={category} onChange={handleCategoryChange} />
+        {/* <label className='firsttext-input'>Enter Industry:</label> */}
+        <select id="category-input" value={category} onChange={handleCategoryChange} >
+          <option value="">Choose Your Industry</option>
+          <option value="telecom"> Telecom </option>
+          <option value="it/electronics"> IT/Electronics </option>
+          <option value="paper industry"> Paper Industry </option>
+          </select>
       </div>
 
       <div className="form-group22">

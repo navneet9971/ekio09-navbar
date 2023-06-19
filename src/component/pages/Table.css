@@ -22,7 +22,6 @@
 textarea,
 select {
   position: relative;
-  
   outline: none;
   box-sizing: border-box;
   width: 100%;
@@ -30,7 +29,7 @@ select {
   border: 1px solid #ccc;
   padding: 1em;
   color: #555;
-  font: 95% Arial, Helvetica, sans-serif;
+  font-family: 'Roboto', sans-serif;
   margin-top: 25px;
 }
 
@@ -54,7 +53,7 @@ select {
   border: 1px solid #ccc;
   padding: 1em;
   color: #555;
-  font: 95% Arial, Helvetica, sans-serif;
+  font-family: 'Roboto', sans-serif;
   margin-top: 25px;
 }
 
@@ -78,7 +77,7 @@ select {
   border: 1px solid #ccc;
   padding: 1em;
   color: #555;
-  font: 95% Arial, Helvetica, sans-serif;
+  font-family: 'Roboto', sans-serif;
   margin-top: 25px;
 }
 
@@ -94,15 +93,16 @@ input#industry,
 textarea,
 select{
   position: relative;
-
   outline: none;
   box-sizing: border-box;
   width: 98%;
   background: #fff;
   border: 1px solid #ccc;
+  border-radius: 10px;
   padding: 1em;
   color: #555;
-  font: 95% Arial, Helvetica, sans-serif;
+  font-family: 'Roboto', sans-serif;
+  /* font: 95% Arial, Helvetica, sans-serif; */
   margin-top: 25px;
 }
 
@@ -211,11 +211,14 @@ select:focus {
   padding: 30px;
 }
 .table h5 {
-  font-size: 30px;
-  color: #fff;
+  font-weight: 100;
+  font-size: 22px;
+  color: black;
   margin-top: 20px;
   margin-bottom: 40px;
+  margin-left: 53px;
 }
+
 @media screen and (max-width: 768px) {
   .table h5 {
     font-size: 20px;
@@ -235,7 +238,7 @@ tr:nth-child(even) td {
 }
 
 th {
-  background-color: #FF8025;
+  background-color: #082a71;
   color: #fff;
   text-align: center;
   padding: 0.7em 0.7em;
@@ -313,6 +316,7 @@ input[type="search-text"] {
   display: inline-block;
   /* vertical-align: middle; */
   margin-right: 4px;
+  font-size: 14px;
   /* width: 1em; */
   padding: 0.4em;
 }
@@ -322,9 +326,9 @@ input[type="search-text"] {
 }
 
 .search-bar input {
-  width: 200px;
-  padding: 10px;
-  height: 40px;
+  width: 155px;
+  padding: 7px;
+  height: 27px;
 }
 
 
@@ -468,14 +472,13 @@ select.form {
   justify-content: flex-end;
 }
 
-
 .revbtn {
-  background-color: #007bff;
+  background-color: #082a71;
   color: #fff;
   border: none;
   border-radius: 34px;
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 13px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }

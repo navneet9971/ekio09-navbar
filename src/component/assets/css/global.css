@@ -12,7 +12,7 @@ body {
   background-size: cover;
  /* min-height: 100vh; */
   background-attachment: fixed;
-  font-family: "Jost", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 #root{
   position: sticky;
@@ -48,7 +48,7 @@ body {
 
 .form h2 {
   font-size: 3rem;
-  font-family: Avenir;
+  font-family: 'Roboto', sans-serif;
   margin: 45px;
   color: white;
 }
@@ -57,7 +57,11 @@ body {
   font-size: 25px;
   /* margin: 25px; */
   margin-top: 35px;
-  font-family: Avenir;
+  font-family: 'Roboto', sans-serif;
+}
+
+.hello{
+  display: block;
 }
 
 #submit {

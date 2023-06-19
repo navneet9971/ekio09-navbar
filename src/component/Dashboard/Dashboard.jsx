@@ -4,7 +4,6 @@ import { Chart, ArcElement, CategoryScale, LinearScale, DoughnutController, Tool
 import { Doughnut, Bar } from "react-chartjs-2";
 import axiosInstance from "../../interceptors/axios";
 import Swal from 'sweetalert2';
-import BG from "../assets/pages-bgimages/background.svg";
 import { blue, green, orange } from "@mui/material/colors";
 
 Chart.register(ArcElement, CategoryScale, LinearScale, DoughnutController,BarController, BarElement, Tooltip, Title, Legend );
@@ -235,8 +234,8 @@ function Dashboard() {
   
   
   return (
-    <div className="container-wrapper" style={{ backgroundImage: `url(${BG})` }}>
-      <h1 style={{ fontSize: '42px', padding: '10px 30px', fontWeight: 'bold' }}>Analytics Dashboard</h1>
+    <div className="container-wrapper">
+      <h1 style={{ fontSize: '29px', padding: '22px 79px', fontWeight: '100', color: "black" }}>Analytics Dashboard</h1>
 
       <div className="search-filter-container">
         <input type="search-dashbo" placeholder="Search By Product Name" value={searchText} onChange={handleSearchTextChange} />
@@ -251,30 +250,30 @@ function Dashboard() {
         </select>
       </div>
 
-      <div className="container-barchart">
+      <div className="container-piechart">
         <div className="col-dash">
-          <h4 style={{ fontSize: "20px", textAlign: "center" }}>Total Application TEC and BIS</h4>
+          <h4 style={{ fontSize: "18px", textAlign: "center", fontWeight: 100 }}>Total Application TEC and BIS</h4>
           <BarChart data={filteredBarChartData} />
         </div>
       </div>
 
       <div className="container-piechart">
         <div className="col-dash">
-          <h4 style={{ fontSize: "20px", textAlign: "center" }}>TOTAL On Going Vs TOTAL Completed</h4>
+          <h4 style={{ fontSize: "18px", textAlign: "center", fontWeight: 100 }}>TOTAL On Going Vs TOTAL Completed</h4>
           <DoughnutChart data={filteredChartData} />
         </div>
       </div>
 
       <div className="container-piechart">
         <div className="col-dash">
-          <h4 style={{ fontSize: "20px", textAlign: "center" }}>TEC On Going Vs TEC Completed Vs TEC Application</h4>
+          <h4 style={{ fontSize: "18px", textAlign: "center", fontWeight: 100 }}>TEC On Going Vs TEC Completed Vs TEC Application</h4>
           <DoughnutChart data={filteredTecDash} />
         </div>
       </div>
 
       <div className="container-piechart">
         <div className="col-dash">
-          <h4 style={{ fontSize: "20px", textAlign: "center" }}>BIS On Going Vs BIS Completed Vs BIS Application</h4>
+          <h4 style={{ fontSize: "18px", textAlign: "center", fontWeight: 100 }}>BIS On Going Vs BIS Completed Vs BIS Application</h4>
           <DoughnutChart data={filteredBisDash} />
         </div>
       </div>
