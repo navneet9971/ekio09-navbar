@@ -255,6 +255,7 @@ function Review() {
                       borderRadius: "0px",
                       backgroundColor: "rgb(8, 42, 119)",
                       border:"blue",
+                      boxShadow: "none"
                     }}
                   >
                     <option value="All">All</option>

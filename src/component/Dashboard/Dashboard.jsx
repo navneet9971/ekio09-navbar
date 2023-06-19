@@ -58,7 +58,7 @@ function DoughnutChart({ data }) {
     };
   
     return (
-      <div className="chart-bar-container">
+      <div className="chart-container">
         <Bar data={data} options={options} height={400} width={600} />
       </div>
     );
@@ -235,7 +235,7 @@ function Dashboard() {
   
   return (
     <div className="container-wrapper">
-      <h1 style={{ fontSize: '29px', padding: '22px 79px', fontWeight: '100', color: "black" }}>Analytics Dashboard</h1>
+      <h1 style={{ fontSize: '29px', padding: '4px 27px', fontWeight: '100', color: "black" }}>Analytics Dashboard</h1>
 
       <div className="search-filter-container">
         <input type="search-dashbo" placeholder="Search By Product Name" value={searchText} onChange={handleSearchTextChange} />
@@ -259,7 +259,7 @@ function Dashboard() {
 
       <div className="container-piechart">
         <div className="col-dash">
-          <h4 style={{ fontSize: "18px", textAlign: "center", fontWeight: 100 }}>TOTAL On Going Vs TOTAL Completed</h4>
+          <h4 style={{ fontSize: "18px", textAlign: "center", fontWeight: 100 }}>Total On Going Vs Total Completed</h4>
           <DoughnutChart data={filteredChartData} />
         </div>
       </div>

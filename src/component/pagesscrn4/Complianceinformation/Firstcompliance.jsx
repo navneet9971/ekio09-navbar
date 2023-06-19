@@ -67,7 +67,7 @@ const Firstcompliance = () => {
     <div className="bgchange">
       <div className="first-container22">
         <div className="fist-title">
-          <h3 style={{ color: "white" }} className="firstpage-title">
+          <h3 style={{ color: "black" }} className="firstpage-title">
             Please enter the following details to Start a new application:
           </h3>
           <h4 className="red-warning">
@@ -77,15 +77,14 @@ const Firstcompliance = () => {
         </div>
 
         <div className="form-group22">
-          <label className="firsttext-input">Enter Industry:</label>
-          <input
-            type="text"
-            placeholder="Type Here.."
-            id="category-input"
-            value={category}
-            onChange={handleCategoryChange}
-          />
-        </div>
+        {/* <label className='firsttext-input'>Enter Industry:</label> */}
+        <select id="category-input" value={category} onChange={handleCategoryChange} >
+          <option value="">Choose Your Industry</option>
+          <option value="telecom"> Telecom </option>
+          <option value="it/electronics"> IT/Electronics </option>
+          <option value="paper industry"> Paper Industry </option>
+          </select>
+      </div>
 
         <div className="form-group22">
           <label className="firsttext-input">Enter Name of Product:</label>

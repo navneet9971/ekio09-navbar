@@ -15,20 +15,20 @@ body {
   background-position: center;
 } */
 
-.table-bgsconpage{
+/* .table-bgsconpage{
   background-image: url("../assets/pages-bgimages/background.svg");
   background-repeat: no-repeat;
   background-size: cover;
   align-items: center;
   justify-content: center;
   min-height: 91vh;
-}
+} */
 
 
 .bgchange{
-  background-image: url("../assets/pages-bgimages/background.svg");
+  /* background-image: url("../assets/pages-bgimages/background.svg");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -79,11 +79,6 @@ body {
   padding: 3px;
 }
 
-/* White color for first text input label */
-label.firsttext-input {
-  color: white;
-}
-
 /* Category input styles */
 input#category-input {
   width: 22em;
@@ -92,7 +87,7 @@ input#category-input {
   font-weight: 700;
   border-radius: 7px;
   font-size: 15px;
-  border-style: none;
+  
 }
 
 /* Region select styles */
@@ -137,6 +132,7 @@ button.first-go {
   cursor: pointer;
   width: 80px;
   border-style: none;
+  background: #082a71;
 }
 
 /* Media queries for responsiveness */
@@ -176,10 +172,12 @@ button.first-go {
   }
   
   h1 {
-    font-size: 32px;
+    font-size: 27px;
     margin-bottom: 25px;
-    color: #fff;
-  }
+    margin-left: 55px;
+    color: black;
+    font-weight: 100;
+}
   
   table {
     border-collapse: collapse;

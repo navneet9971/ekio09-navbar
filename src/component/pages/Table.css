@@ -322,13 +322,17 @@ input[type="search-text"] {
 }
 
 .search-bar select {
-  width: 150px; /* Adjust the width as needed */
+  width: 150px;
+  font-weight: 100;
+  font-size: 13px;
 }
 
 .search-bar input {
   width: 155px;
   padding: 7px;
   height: 27px;
+  font-size: 13px;
+  font-weight: 100;
 }
 
 

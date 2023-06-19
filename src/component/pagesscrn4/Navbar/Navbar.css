@@ -11,7 +11,7 @@ i {
   transform: translate(340%, -146%);
   margin-left: 86%;
   font-size: 30px;
-  color: green;
+  color: #55b700;
   transition: all 0.3s ease 0s;
   cursor: pointer;
 }
