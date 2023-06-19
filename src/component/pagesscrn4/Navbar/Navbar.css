@@ -8,12 +8,14 @@ i {
 /*----------bootstrap-navbar--button---css------------*/
 .button99 {
   position: absolute;
-  transform: translate(340%, -146%);
+  transform: translate(351%, -113%);
   margin-left: 86%;
   font-size: 30px;
   color: #55b700;
   transition: all 0.3s ease 0s;
   cursor: pointer;
+  background-color: white;
+  border: none;
 }
 
 
