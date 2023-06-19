@@ -65,7 +65,7 @@ i {
 
 #navbarSupportedContent > ul > li.active > a,
 #navbarSupportedContent > ul > li > a.active {
-    color: #fff;
+    color: black;
     font-size: 19px;
     text-decoration: underline;
     text-decoration-skip-ink: none;
