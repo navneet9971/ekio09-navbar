@@ -8,7 +8,7 @@ i {
 /*----------bootstrap-navbar--button---css------------*/
 .button99 {
   position: absolute;
-  transform: translate(351%, -113%);
+  transform: translate(351%, -148%);
   margin-left: 86%;
   font-size: 30px;
   color: #55b700;
@@ -134,6 +134,11 @@ i {
   bottom: 0;
   left: -25px;
 }
+
+a.nav-know {
+  transform: translate(850px, -6px);
+}
+
 
 @media (min-width: 992px) {
   .navbar-expand-custom {

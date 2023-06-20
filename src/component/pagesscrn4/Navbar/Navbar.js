@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 import { NavLink, useHistory, useLocation } from "react-router-dom";
 import { FaBars, FaPowerOff } from "react-icons/fa";
+import { GrCompliance } from "react-icons/gr";
 import $ from "jquery";
 import axiosInstance from 'axios';
 
@@ -137,6 +138,19 @@ const Navbar = () => {
              Add Users
             </NavLink>
           </li> */}
+
+          <li 
+          className={
+            pathname === "/navbar/firstcompliance" ? "active nav-item" : "nav-item"
+          }>
+            <NavLink
+            className="nav-know"
+            to="/navbar/firstcompliance"
+            >
+              <GrCompliance />
+             <h3 style={{fontSize: "12px", fontWeight:"100"}}> Know Your Compliance</h3>
+            </NavLink>
+          </li>
 
         </ul>
       </div>
