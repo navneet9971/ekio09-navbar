@@ -241,27 +241,27 @@ function Review() {
                   style={{ cursor: "default", position: "relative" }}
                 >
                   <select
-                    className="dropon"
-                    value={selectedStatus}
-                    onChange={handleFilterStatusChange}
-                    style={{
-                      width: "101px",
-                      height: "58px",
-                      position: "absolute",
-                      color: "#fff",
-                      top: "-17%",
-                      right: "1%",
-                      padding: "3px",
-                      borderRadius: "0px",
-                      backgroundColor: "rgb(8, 42, 119)",
-                      border:"blue",
-                      boxShadow: "none"
-                    }}
-                  >
-                    <option value="All">All</option>
-                    <option value="Ongoing">Ongoing</option>
-                    <option value="Completed">Completed</option>
-                  </select>
+    value={selectedStatus}
+    onChange={handleFilterStatusChange}
+    style={{
+      width: "100%",
+      maxWidth: "200px",
+      height: "40px",
+      position: "absolute",
+      color: "#fff",
+      top: "-17%",
+      right: "0%",
+      padding: "3px",
+      borderRadius: "0px",
+      backgroundColor: "rgb(8, 42, 119)",
+      border: "blue",
+      boxShadow: "none"
+    }}
+  >
+    <option value="All">All</option>
+    <option value="Ongoing">Ongoing</option>
+    <option value="Completed">Completed</option>
+  </select>
                 </th>
 
                 <th className="header" style={{ cursor: "default" }}>
