@@ -89,31 +89,6 @@ select:focus {
   border: 1px solid #43d1af;
 }
 
-input#industry,
-textarea,
-select{
-  position: relative;
-  outline: none;
-  box-sizing: border-box;
-  width: 98%;
-  background: #fff;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  padding: 1em;
-  color: #555;
-  font-family: 'Roboto', sans-serif;
-  /* font: 95% Arial, Helvetica, sans-serif; */
-  margin-top: 25px;
-}
-
-input#industry:focus,
-textarea:focus,
-select:focus {
-  box-shadow: 0 0 5px #43d1af;
-  padding: 1em;
-  border: 1px solid #43d1af;
-}
-
 .rights {
   width: 100%;
   user-select: none;
