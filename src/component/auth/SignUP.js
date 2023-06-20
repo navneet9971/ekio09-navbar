@@ -134,10 +134,10 @@ function SignUp() {
         <div className="left-box">
           <Row gutter={[24, 0]}>
             <Col xs={24} md={12}>
-              <label className="signup-title">First Name</label>
+              {/* <label className="signup-title">First Name</label> */}
               <input
                 type="text"
-                placeholder=""
+                placeholder="First Name"
                 name="first_name"
                 value={formData.first_name}
                 onChange={handleChange}
@@ -145,10 +145,10 @@ function SignUp() {
               />
             </Col>
             <Col xs={24} md={12}>
-              <label className="signup-title">Last Name</label>
+              {/* <label className="signup-title">Last Name</label> */}
               <input
                 type="text"
-                placeholder=""
+                placeholder="Last Name"
                 name="last_name"
                 value={formData.last_name}
                 onChange={handleChange}
@@ -156,18 +156,18 @@ function SignUp() {
               />
             </Col>
             <Col xs={24} md={24}>
-              <label className="signup-title">Company Name</label>
+              {/* <label className="signup-title">Company Name</label> */}
               <input
                 type="text"
-                placeholder=""
+                placeholder="Company Name"
                 name="organization_name"
                 value={formData.organization_name}
                 onChange={handleChange}
                 required
               />
-            </Col>
-                        <Col xs={24} md={24}>
-              <label className="signup-title">Industry Name</label>
+            {/* </Col>
+                        <Col xs={24} md={24}> */}
+              {/* <label className="signup-title">Industry Name</label> */}
               <select
                 name="industry"
                 value={formData.industry}
@@ -184,20 +184,20 @@ function SignUp() {
               {formData.industry === '' && (
                 <p style={{ color: 'red' }}>Please select the industry</p>
               )}
-            </Col>
+            {/* </Col>
 
-            <Col xs={24} md={24}>
-              <label className="signup-title">Email ID</label>
+            <Col xs={24} md={24}> */}
+              {/* <label className="signup-title">Email ID</label> */}
               <input
                 type="email"
-                placeholder=""
+                placeholder="Email ID"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
                 required
               />
-            </Col>
-            <Col xs={24} md={24}>
+            {/* </Col>
+            <Col xs={24} md={24}> */}
               <label className="signup-title">Mobile Number</label>
               <input
                 type="tel"
@@ -209,10 +209,10 @@ function SignUp() {
               />
             </Col>
             <Col xs={24} md={24}>
-              <label className="signup-title">Username</label>
+              {/* <label className="signup-title">Username</label> */}
               <input
                 type="text"
-                placeholder=""
+                placeholder="Username"
                 name="username"
                 value={formData.username}
                 onChange={handleChange}
@@ -220,11 +220,11 @@ function SignUp() {
               />
             </Col>
             <Col xs={24} md={24}>
-              <label className="signup-title">Password</label>
+              {/* <label className="signup-title">Password</label> */}
               <div className="password-input">
                 <input
                   type={showPassword ? "text" : "password"}
-                  placeholder="At least 8 characters"
+                  placeholder="Password"
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
@@ -239,6 +239,9 @@ function SignUp() {
                 </div>
               </div>
             </Col>
+            {formData.password === '' && (
+                <p style={{ color: 'red' }}>Please select the industry</p>
+              )}
             <Col xs={24} md={24}>
               <label className="signup-title">Confirm Password</label>
               <div className="password-input">

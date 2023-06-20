@@ -1,28 +1,54 @@
-import React, {useState} from "react";
-import {  useHistory} from "react-router-dom";
-import { FaUserAlt, FaLock} from "react-icons/fa";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import "../assets/css/global.css";
 import axiosInstance from "../../interceptors/axios";
 import Popup from "../popup/Popup";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 import ForgetPassword from "./Forgetpassword";
-// import PricingCard from "../PricingCard/PricingCard";
-
+import loginimage from "../assets/login-page.png";
+import img1 from "../assets/login-page-icons/1.png";
+import img2 from "../assets/login-page-icons/2.png";
+import img3 from "../assets/login-page-icons/3.png";
+import img4 from "../assets/login-page-icons/4.png";
+import img5 from "../assets/login-page-icons/5.png";
+import img6 from "../assets/login-page-icons/6.png";
 
 function Login() {
   const history = useHistory();
   const [linkPopup, setLinkPopup] = useState(false);
   const initialFormData = Object.freeze({
-    username: '',
-    password: '',
+    username: "",
+    password: "",
   });
-  const  [formData, updateFormData] = useState(initialFormData);
+  const [formData, updateFormData] = useState(initialFormData);
   const [showPassword, setShowPassword] = useState(false);
-  
-/*-------forget password handle-------------*/
 
- 
-/*----------LOGIN HANDLE ------------*/
+  const SIDE_SLIDE = [
+    {
+      thumb: <img src={img1} alt="" />,
+      title: "Know Your Compliance",
+    },
+    {
+      thumb: <img src={img2} alt="" />,
+      title: "Application Progress and Tracking",
+    },
+    {
+      thumb: <img src={img3} alt="" />,
+      title: "Analytics",
+    },
+    {
+      thumb: <img src={img4} alt="" />,
+      title: "Lab Testing",
+    },
+    {
+      thumb: <img src={img5} alt="" />,
+      title: "Advisory Services",
+    },
+    {
+      thumb: <img src={img6} alt="" />,
+      title: "Logistics Support",
+    },
+  ];
 
   const handleChange = (e) => {
     updateFormData({
@@ -30,58 +56,54 @@ function Login() {
       [e.target.name]: e.target.value.trim(),
     });
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
 
-    axiosInstance.post(`login`, {
-      username: formData.username,
-      password: formData.password,
-    }, {  })
-    .then(async res => {
-      localStorage.setItem('access_token', res.data.access);
-      localStorage.setItem('refresh_token', res.data.refresh);
-      localStorage.setItem('user_id', res.data.profile.id);
-      localStorage.setItem("first_time", res.data.profile.first_time)
+    axiosInstance
+      .post(`login`, {
+        username: formData.username,
+        password: formData.password,
+      })
+      .then(async (res) => {
+        localStorage.setItem("access_token", res.data.access);
+        localStorage.setItem("refresh_token", res.data.refresh);
+        localStorage.setItem("user_id", res.data.profile.id);
+        localStorage.setItem("first_time", res.data.profile.first_time);
 
-      if (res.data.profile.first_time === true) {
-        axiosInstance.patch(`user/${res.data.profile.id}/`, {"first_time": false})
-        .then((patchRes) => {
-          // Handle the response if needed
-          console.log(patchRes)
-        })
-        .catch((patchError) => {
-          // Handle the error if needed
-        }); }
+        if (res.data.profile.first_time === true) {
+          axiosInstance
+            .patch(`user/${res.data.profile.id}/`, { first_time: false })
+            .then((patchRes) => {
+              console.log(patchRes);
+            })
+            .catch((patchError) => {
+              console.error(patchError);
+            });
+        }
 
-      history.push('/navbar/clientdashboard');
-      //console.log(res);
-      //console.log(res.data);
-    })
-    .catch((error) => {
-      // handle error during login
-      console.error(error);
-        // show a generic error message
+        history.push("/navbar/clientdashboard");
+      })
+      .catch((error) => {
+        console.error(error);
         Swal.fire({
-          icon: 'error',
-          title: 'Please try again later',
-          text: 'Incorrect username or password. Please try again.',
+          icon: "error",
+          title: "Please try again later",
+          text: "Incorrect username or password. Please try again.",
         });
-    });
-};
+      });
+  };
 
   const signUpButton = () => {
     history.push("/signup");
   };
 
-
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
- 
   return (
-   
     <div className="auth-box">
       <div className="login">
         <div className="form">
@@ -93,51 +115,87 @@ function Login() {
               height={150}
               alt="logo"
             />
-           
-            <h3 style={{ padding: 0 }}>WELCOME</h3>
+
+            <h3
+              style={{
+                padding: 0,
+                fontSize: "25px",
+                marginTop: "15px",
+                color: "#082A71",
+              }}
+            >
+              WELCOME
+            </h3>
           </div>
           <div className="input-box">
-            <FaUserAlt />
             <input
               name="username"
               placeholder="Username"
               onChange={handleChange}
-              />
+            />
           </div>
           <div className="input-box">
-            <FaLock />
             <input
               name="password"
               type={showPassword ? "text" : "password"}
               placeholder="Password"
               onChange={handleChange}
-                          />
-                          <span className = "login-showpass" onClick={togglePasswordVisibility} style={{ cursor: 'pointer' , margin: '1px'}}>
-                  {showPassword ? '🙈' : '👁️'}
-                  </span>
-                        </div>
-         
+            />
+            <span
+              className="login-showpass"
+              onClick={togglePasswordVisibility}
+              style={{ cursor: "pointer", margin: "1px" }}
+            >
+              {showPassword ? "🙈" : "👁️"}
+            </span>
+          </div>
 
-          <button className="button1" onClick={handleSubmit}>Login</button>
-          
-          <span onClick = {() => setLinkPopup(true)} 
-           style={{ cursor: 'pointer', margin: '15px' }}
-          >Forgot Password?</span>
-           <Popup trigger={linkPopup} setTrigger={setLinkPopup}>
+          <span
+            onClick={() => setLinkPopup(true)}
+            style={{
+              cursor: "pointer",
+              margin: "7px 188px 0px 0px",
+              fontWeight: "400",
+              fontSize: "17px",
+              color: "#19ABFE",
+            }}
+          >
+            Forgot Password?
+          </span>
+          <Popup trigger={linkPopup} setTrigger={setLinkPopup}>
             <ForgetPassword />
           </Popup>
 
-          <button className="button1" onClick={signUpButton} style={{ cursor: "pointer" }}>
-              Sign up
-            </button>
+          <button className="button1" onClick={handleSubmit}>
+            Login
+          </button>
+
+          <button
+            className="sign-upbtn"
+            onClick={signUpButton}
+            style={{ cursor: "pointer" }}
+          >
+            GET STARTED FOR FREE!
+          </button>
         </div>
       </div>
-        {/* <PricingCard /> */}
-    </div>
-    
-   
+      <img src={loginimage} alt="" className="login-img" />
 
-    
+      <div class="container-line">
+        <div class="line"></div>
+        </div>
+
+        <div className="side-bar">
+  <h2 style={{ fontSize: "20px", margin: "33px -30px" }}>FEATURED APPS</h2>
+  {SIDE_SLIDE.map((item, index) => (
+    <div key={index} style={{ display: "flex", alignItems: "center", marginBottom: "28px" }}>
+      {item.thumb}
+      <p style={{ marginLeft: "15px" }}>{item.title}</p>
+    </div>
+  ))}
+</div>
+
+    </div>
   );
 }
 

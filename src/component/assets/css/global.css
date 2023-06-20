@@ -23,14 +23,16 @@ body {
   height: 100%;
   width: 100%;
 }
+
 .auth-box {
-  /* background-image: url("../pages-bgimages/background.svg"); */
+  /* background-image: url(../pages-bgimages/background.svg); */
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  min-height: 76vh;
+  margin-top: -64px;
 }
 
 .form {
@@ -38,8 +40,6 @@ body {
   flex-direction: column;
   width: 100%;
   align-items: center;
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
 }
 
 .form p {
@@ -53,12 +53,6 @@ body {
   color: white;
 }
 
-.form h3 {
-  font-size: 25px;
-  /* margin: 25px; */
-  margin-top: 35px;
-  font-family: 'Roboto', sans-serif;
-}
 
 .hello{
   display: block;
@@ -107,15 +101,15 @@ body {
   width: 439px;
   max-width: 95%;
   margin-right: 520px;
-  background-color: bisque;
+  /* background-color: bisque; */
   overflow: hidden;
   border-radius: 10px;
   padding-bottom: 60px;
 }
 
 img.eikomp_logo {
-  height: 93px;
-  width: 131px;
+  height: 113px;
+  width: 179px;
 }
 
 .login .top-sec {
@@ -125,7 +119,7 @@ img.eikomp_logo {
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-bottom: 20px;
+  margin-bottom: -25px;
 }
 
 .login .top-sec p {
@@ -159,36 +153,80 @@ img.eikomp_logo {
   left: 15px;
 }
 .login .input-box input {
-  color: #fff;
+  color: #000;
   font-size: 15px;
-  border: none;
-  background: transparent;
-  padding: 10px 50px;
-  text-align: center;
-  outline-color: #fff;
+  /* border: none; */
+  background: #DCE7FF;
+  padding: 9px 65px;
+  /* text-align: revert; */
+  /* outline-color: #fff; */
 }
 
 .login .input-box input::placeholder {
-  color: #fff;
+  color: 222222;
+  opacity: 0.5;
 }
 
 .login .button1 {
-  background: #006091;
+  background: #55B700;
   color: #fff;
   font-size: 18px;
-  font-weight: 300;
-  padding: 6px 25px;
-  border-radius: 20px;
-  border: none;
+  /* font-weight: 300; */
+  padding: 10px 134px;
+  border-radius: 10px;
+  /* border: none; */
   text-transform: uppercase;
   margin-top: 20px;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 }
 
 .login-showpass {
   position: absolute;
   top: 19.5%;
   right: 2.5%;
+}
+
+.sign-upbtn{
+  background: #082A71;
+  color: #fff;
+  font-size: 18px;
+  /* font-weight: 300; */
+  padding: 13px 47px;
+  border-radius: 10px;
+  border: 1px solid #000000;
+  text-transform: uppercase;
+  margin-top: 20px;
+  margin-bottom: 42px;
+}
+
+.login-img {
+  position: absolute;
+  width: 400px;
+  height: 236.51px;
+  left: 161px;
+  top: 511px;
+}
+
+
+.container-line{
+      /* width: 100%; */
+      height: 70vh;
+      /* background: linear-gradient(to left, #1d335a, #142748, #0e1d3a); */
+      /* display: flex; */
+      justify-content: center;
+      align-items: center;
+      transform: translate(-74px, 73px);
+}
+
+.line {
+  width: 1px;
+  height: 125%;
+  background-color: black;
+  transform: translate(-185px, -59px);
+}
+
+.side-bar {
+  transform: translate(-139px, 62px);
 }
 
 /*------------SINGUP PAGE CSS ------------*/
@@ -214,7 +252,7 @@ img.eikomp_logo {
 .signup .left-box input {
   width: 100%;
   padding: 10px 3px 15px;
-  margin-bottom: 30px;
+  margin-bottom: 12px;
   border: none;
   font-weight: 600;
   border-bottom: 1px solid #9dabae;
@@ -228,7 +266,7 @@ img.eikomp_logo {
 .signup .left-box button {
   background: #006091;
   display: block;
-  margin: 20px auto;
+  /* margin: 20px auto; */
   color: #fff;
   border: none;
   font-weight: 600;
@@ -251,6 +289,31 @@ img.eikomp_logo {
 
 label.signup-title {
   font-size: 15px;
+}
+
+input#industry,
+textarea,
+select{
+  position: relative;
+  outline: none;
+  box-sizing: border-box;
+  width: 98%;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 1em;
+  color: #555;
+  font-family: 'Roboto', sans-serif;
+  /* font: 95% Arial, Helvetica, sans-serif; */
+  margin-top: 10px;
+}
+
+input#industry:focus,
+textarea:focus,
+select:focus {
+  box-shadow: 0 0 5px #43d1af;
+  padding: 1em;
+  border: 1px solid #43d1af;
 }
 
 @media screen and (max-width: 768px) {

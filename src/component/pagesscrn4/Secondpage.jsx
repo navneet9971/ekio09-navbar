@@ -224,7 +224,7 @@ const Secondpage = () => {
     <div className="table-bgsconpage">
       <div className="table">
         <h1 style={{ display: "none" }}>Application Number: {applicationId}</h1>
-        <h1>List of Compliance</h1>
+        <h1 style={{fontWeight: "100", padding: "0px 50px", fontSize: "26px"}}>List of Compliance</h1>
         <div className="table-wrapper">
           <table className="Review">
             <thead>
