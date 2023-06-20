@@ -209,25 +209,23 @@ img.eikomp_logo {
 }
 
 
-.container-line{
-      /* width: 100%; */
-      height: 70vh;
-      /* background: linear-gradient(to left, #1d335a, #142748, #0e1d3a); */
-      /* display: flex; */
-      justify-content: center;
-      align-items: center;
-      transform: translate(-74px, 73px);
+.container-line {
+  height: 70vh;
+  justify-content: center;
+  align-items: center;
+  transform: translate(-74px, 73px);
+  padding: 0;
 }
 
 .line {
   width: 1px;
   height: 125%;
   background-color: black;
-  transform: translate(-185px, -59px);
+  transform: translate(-268px, -76px);
 }
 
 .side-bar {
-  transform: translate(-139px, 41px);
+  transform: translate(-154px, 41px);
 }
 
 /*------------SINGUP PAGE CSS ------------*/
