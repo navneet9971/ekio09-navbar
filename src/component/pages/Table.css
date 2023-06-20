@@ -74,7 +74,7 @@ select {
   box-sizing: border-box;
   width: 98%;
   background: #fff;
-  border: 1px solid #ccc;
+  border: 3px solid #082a71;
   padding: 1em;
   color: #555;
   font-family: 'Roboto', sans-serif;
@@ -190,10 +190,9 @@ select:focus {
   font-size: 22px;
   color: black;
   margin-top: 17px;
-  margin-bottom: 5px;
+  margin-bottom: 12px;
   margin-left: 53px;
 }
-
 @media screen and (max-width: 768px) {
   .table h5 {
     font-size: 20px;
@@ -308,6 +307,7 @@ input[type="search-text"] {
   height: 27px;
   font-size: 13px;
   font-weight: 100;
+  border: 3px solid #082a71;
 }
 
 

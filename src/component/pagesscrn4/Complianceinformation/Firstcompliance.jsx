@@ -89,6 +89,7 @@ const Firstcompliance = () => {
         <div className="form-group22">
           {/* <label className="firsttext-input">Enter Name of Product:</label> */}
           <input
+          className="from-22"
             type="text"
             placeholder="Enter Name of Product"
             id="category-input"

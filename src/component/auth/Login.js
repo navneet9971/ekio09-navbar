@@ -188,7 +188,7 @@ function Login() {
         <div className="side-bar">
   <h2 style={{ fontSize: "20px", margin: "33px -30px" }}>FEATURED APPS</h2>
   {SIDE_SLIDE.map((item, index) => (
-    <div key={index} style={{ display: "flex", alignItems: "center", marginBottom: "28px" }}>
+    <div key={index} style={{ display: "flex", alignItems: "center", marginBottom: "18px" }}>
       {item.thumb}
       <p style={{ marginLeft: "15px" }}>{item.title}</p>
     </div>

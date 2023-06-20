@@ -32,7 +32,7 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 76vh;
-  margin-top: -64px;
+  margin-top: -37px;
 }
 
 .form {
@@ -40,6 +40,7 @@ body {
   flex-direction: column;
   width: 100%;
   align-items: center;
+  margin-left: 100px;
 }
 
 .form p {
@@ -170,7 +171,7 @@ img.eikomp_logo {
 .login .button1 {
   background: #55B700;
   color: #fff;
-  font-size: 18px;
+  font-size: 15px;
   /* font-weight: 300; */
   padding: 10px 134px;
   border-radius: 10px;
@@ -186,12 +187,12 @@ img.eikomp_logo {
   right: 2.5%;
 }
 
-.sign-upbtn{
+.sign-upbtn {
   background: #082A71;
   color: #fff;
-  font-size: 18px;
+  font-size: 15px;
   /* font-weight: 300; */
-  padding: 13px 47px;
+  padding: 13px 61px;
   border-radius: 10px;
   border: 1px solid #000000;
   text-transform: uppercase;
@@ -201,10 +202,10 @@ img.eikomp_logo {
 
 .login-img {
   position: absolute;
-  width: 400px;
-  height: 236.51px;
-  left: 161px;
-  top: 511px;
+  width: 310px;
+  height: 175.51px;
+  left: 147px;
+  top: 476px;
 }
 
 
@@ -226,7 +227,7 @@ img.eikomp_logo {
 }
 
 .side-bar {
-  transform: translate(-139px, 62px);
+  transform: translate(-139px, 41px);
 }
 
 /*------------SINGUP PAGE CSS ------------*/

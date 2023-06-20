@@ -66,7 +66,7 @@ function DoughnutChart({ data }) {
   
   
 function Dashboard() {
-  const [chartData, setChartData] = useState(null);
+  // const [chartData, setChartData] = useState(null);
   const [tecDash, setTecDash] = useState(null);
   const [bisDash, setBisDash] = useState(null);
   const [barChartData, setBarChartData] = useState(null);
@@ -155,7 +155,7 @@ function Dashboard() {
           barData.datasets[0].backgroundColor = [orange[500], green[500], blue[300]];
         }
   
-        setChartData(processedData);
+        // setChartData(processedData);
         setTecDash(TECCompliancedash);
         setBisDash(BISCompliancedash);
         setBarChartData(barData);
@@ -192,7 +192,7 @@ function Dashboard() {
     setFilter(event.target.value);
   };
 
-  const filteredChartData = filterData(chartData, searchText, filter);
+  // const filteredChartData = filterData(chartData, searchText, filter);
   const filteredTecDash = filterData(tecDash, searchText, filter);
   const filteredBisDash = filterData(bisDash, searchText, filter);
   const filteredBarChartData = filterData(barChartData, searchText, filter);
@@ -257,12 +257,12 @@ function Dashboard() {
         </div>
       </div>
 
-      <div className="container-piechart">
+      {/* <div className="container-piechart">
         <div className="col-dash">
           <h4 style={{ fontSize: "18px", textAlign: "center", fontWeight: 100 }}>Total On Going Vs Total Completed</h4>
           <DoughnutChart data={filteredChartData} />
         </div>
-      </div>
+      </div> */}
 
       <div className="container-piechart">
         <div className="col-dash">

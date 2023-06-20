@@ -112,6 +112,7 @@ input[type="search-dashbo"] {
   padding: 8px;
   font-size: 12px;
   font-weight: bold;
+  border: 3px solid #082a71;
 }
 
 select.search-dash {
