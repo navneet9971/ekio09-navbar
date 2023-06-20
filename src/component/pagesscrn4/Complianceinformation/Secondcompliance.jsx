@@ -67,7 +67,7 @@ const Secondpage = () => {
   return (
     <div className="table-bgsconpage">
       <div className="table">
-        <h1>List of Compliance</h1>
+        <h1 style={{fontWeight: "100", padding: "0px 50px"}}>List of Compliance</h1>
         <div className="table-wrapper">
           <table className="Review">
             <thead>

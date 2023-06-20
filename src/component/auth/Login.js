@@ -93,9 +93,7 @@ function Login() {
               height={150}
               alt="logo"
             />
-            <button className="button1" onClick={signUpButton} style={{ cursor: "pointer" }}>
-              Sign up
-            </button>
+           
             <h3 style={{ padding: 0 }}>WELCOME</h3>
           </div>
           <div className="input-box">
@@ -128,6 +126,10 @@ function Login() {
            <Popup trigger={linkPopup} setTrigger={setLinkPopup}>
             <ForgetPassword />
           </Popup>
+
+          <button className="button1" onClick={signUpButton} style={{ cursor: "pointer" }}>
+              Sign up
+            </button>
         </div>
       </div>
         {/* <PricingCard /> */}

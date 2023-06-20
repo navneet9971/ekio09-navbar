@@ -214,8 +214,8 @@ select:focus {
   font-weight: 100;
   font-size: 22px;
   color: black;
-  margin-top: 20px;
-  margin-bottom: 40px;
+  margin-top: 17px;
+  margin-bottom: 5px;
   margin-left: 53px;
 }
 
@@ -283,7 +283,7 @@ th {
 .search-bar {
   display: block;
   position: absolute;
-  top: 120px;
+  top: 87px;
   right: 68px;
 }
 

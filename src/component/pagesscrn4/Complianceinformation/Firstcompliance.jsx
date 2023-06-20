@@ -67,10 +67,10 @@ const Firstcompliance = () => {
     <div className="bgchange">
       <div className="first-container22">
         <div className="fist-title">
-          <h3 style={{ color: "black" }} className="firstpage-title">
+          <h3 style={{ color: "black", fontWeight:"100" }} className="firstpage-title">
             Please enter the following details to Start a new application:
           </h3>
-          <h4 className="red-warning">
+          <h4 style={{ color: "red", fontWeight: "100", padding: "3px"}} >
             You need to fill at least 1 data point to see the list of
             compliance.
           </h4>
@@ -87,10 +87,10 @@ const Firstcompliance = () => {
       </div>
 
         <div className="form-group22">
-          <label className="firsttext-input">Enter Name of Product:</label>
+          {/* <label className="firsttext-input">Enter Name of Product:</label> */}
           <input
             type="text"
-            placeholder="Type Here.."
+            placeholder="Enter Name of Product"
             id="category-input"
             value={product}
             onChange={handleProductChange}
@@ -98,7 +98,7 @@ const Firstcompliance = () => {
         </div>
 
         <div className="region-group22">
-          <label className="firsttext-input">Region:</label>
+          {/* <label className="firsttext-input">Region:</label> */}
           <select
             id="region-select22"
             value={region}

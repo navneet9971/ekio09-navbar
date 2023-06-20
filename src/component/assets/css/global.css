@@ -24,7 +24,7 @@ body {
   width: 100%;
 }
 .auth-box {
-  background-image: url("../pages-bgimages/background.svg");
+  /* background-image: url("../pages-bgimages/background.svg"); */
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
@@ -104,13 +104,18 @@ body {
 /*------------ LOGIN PAGE CSS -------------- */
 .login {
   display: flex;
-  width: 450px;
+  width: 439px;
   max-width: 95%;
-  margin: 0 auto;
-  background-color: white;
+  margin-right: 520px;
+  background-color: bisque;
   overflow: hidden;
   border-radius: 10px;
   padding-bottom: 60px;
+}
+
+img.eikomp_logo {
+  height: 93px;
+  width: 131px;
 }
 
 .login .top-sec {

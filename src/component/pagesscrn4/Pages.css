@@ -70,13 +70,9 @@ body {
 /* Title with flex display and padding */
 .fist-title {
   display: flex;
-  padding: 20px;
-}
-
-/* Red warning text color */
-.red-warning {
-  color: red;
-  padding: 3px;
+  /* padding: 20px; */
+  margin-bottom: 1px;
+  transform: translate(0px, -110px);
 }
 
 /* Category input styles */
@@ -114,10 +110,10 @@ select#region-select22 {
 .custom-side-img {
   width: 825px;
   height: 451px;
-  padding: 122px -4px;
+  /* padding: 122px -4px; */
   position: absolute;
   left: 325px;
-  transform: translateY(-103%);
+  transform: translateY(-92%);
 }
 
 /* Responsive styles for button */
@@ -127,7 +123,7 @@ button.first-go {
   padding: 8px 22px;
   font-size: 22px;
   font-weight: 600;
-  color: #FF8025;
+  color: white;
   border-radius: 10px;
   cursor: pointer;
   width: 80px;
@@ -171,13 +167,13 @@ button.first-go {
     margin: 20px;
   }
   
-  h1 {
+  /* h1 {
     font-size: 27px;
     margin-bottom: 25px;
     margin-left: 55px;
     color: black;
     font-weight: 100;
-}
+} */
   
   table {
     border-collapse: collapse;

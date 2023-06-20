@@ -235,7 +235,7 @@ function Dashboard() {
   
   return (
     <div className="container-wrapper">
-      <h1 style={{ fontSize: '29px', padding: '4px 27px', fontWeight: '100', color: "black" }}>Analytics Dashboard</h1>
+      <h1 style={{ fontSize: '29px', marginTop: "40px", marginBottom: "-46px", padding:"0px 25px", fontWeight: '100', color: "black" }}>Analytics Dashboard</h1>
 
       <div className="search-filter-container">
         <input type="search-dashbo" placeholder="Search By Product Name" value={searchText} onChange={handleSearchTextChange} />
