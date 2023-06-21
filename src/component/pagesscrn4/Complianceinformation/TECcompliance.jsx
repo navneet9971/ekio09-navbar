@@ -26,22 +26,21 @@ function MiddleSection() {
     //     backgroundRepeat: "no-repeat",
     //   }}
     // >
+    <div style={{ display: "flex" }}>
+    <div className="ftch-data" style={{ flex: "1", textAlign: "left" }}>
+      {middleData && (
+        <>
+          <h3 style={{ fontSize: "15px", textAlign: "center",     transform: "translate(-35px, 149px)" }}>{middleData.product_name} - Introduction</h3>
+          <h2 style={{ fontSize: "15px", textAlign: "center", padding: "26px 72px", transform: "translate(-45px, 139px)" }}>{middleData.details}</h2>
+        </>
+      )}
+    </div>
     <div>
-      <div className="ftch-data">
-        {middleData && (
-          <>
-            <h3 style={{fontSize:"15px", textAlign: "center"}}>{middleData.product_name} - Introduction</h3>
-            <h2 style={{fontSize:"15px", textAlign: "center"}}>{middleData.content}</h2>
-
-            <h3 style={{fontSize:"15px", textAlign: "center"}}>
-              {middleData.product_name} - Registration Process
-            </h3>
-
-          </>
-        )}
-      </div>
-                  <img className="imgback" alt="flowchart" src={middleData.flowchart} />
-                  </div>
+    <h3 style={{ fontSize: "15px", textAlign: "center", transform: "translate(-101px, 2px)" }}>{middleData.product_name} - Registration Process</h3>
+      <img className="imgback" alt="flowchart" src={middleData.flowchart} />
+    </div>
+  </div>
+  
     )
   };
 

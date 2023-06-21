@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Thumb1png from "../../assets/images/2.png";
 import Thumb2png from "../../assets/images/4.png";
 // import Thumb3png from "../../assets/images/use.png";
-// import Thumb4png from "../../assets/images/know.png";
+import Thumb4png from "../../assets/images/lab.png";
 import Thumb5png from "../../assets/images/dash.png";
 import { ReactComponent as Mapbg } from "../../assets/client-map.svg";
 import axiosInstance from "../../../interceptors/axios";
@@ -38,18 +38,13 @@ const ClientDashboard = () => {
   
 
   const WELCOME_OPTIONS = [
-    // {
-    //   thumb: <img src={Thumb4png} alt ="" className="first" />,
-    //   title: "Know Your Compliance",
-    //   route: "/navbar/firstcompliance",
-    // },
     {
-      thumb: <img src={Thumb1png} alt= "" className="second" />,
+      thumb: <img src={Thumb1png} alt= "" className="one" />,
       title: "Start New Project",
       route: "/navbar/firstpage",
     },
     {
-      thumb: <img src={Thumb2png} alt ="" className="third" />,
+      thumb: <img src={Thumb2png} alt ="" className="second" />,
       title: "Application Progress & Reporting",
       route: "/navbar/review",
     },
@@ -59,10 +54,20 @@ const ClientDashboard = () => {
     //   route: "/navbar/mainpage",
     // },
     {
-      thumb: <img src={Thumb5png} alt ="" className="five" />,
+      thumb: <img src={Thumb5png} alt ="" className="third" />,
       title: "Analytics",
       route: "/navbar/dashboard",
     },
+    // {
+    //   thumb: <img src={Thumb4png} alt="" className="four" style={{ width: "63px", cursor: "default" }} />,
+    //   title: "Lab Testing (Coming Soon)",
+    //   // route: "/navbar/firstcompliance",
+    //   onClick: (event) => {
+    //     event.preventDefault(); // Prevent the default behavior of the link
+    //   }
+    // }
+    
+    
   ];
 
   return (
@@ -78,15 +83,27 @@ const ClientDashboard = () => {
           <div className="dash-titlebg">Your Compliance Dashboard</div>
 
           <Row gutter={[16, 16]}>
-            {WELCOME_OPTIONS.map((item, index) => (
-              <Col xs={24} sm={12} md={6} key={index}>
-                <Link to={item.route} className="option-box">
-                  {item.thumb}
-                  <h4 style={{color: "black", fontWeight: "100"}}>{item.title}</h4>
-                </Link>
-              </Col>
-            ))}
-          </Row>
+  {WELCOME_OPTIONS.map((item, index) => (
+    <Col xs={24} sm={15} md={6} key={index}>
+      <Link to={item.route} className="option-box">
+        {item.thumb}
+        <h4 style={{ color: "black", fontWeight: "100" }}>{item.title}</h4>
+      </Link>
+    </Col>
+  ))}
+  <Col xs={24} sm={15} md={6}>
+    <Link to="#" className="option-box1">
+      <img
+        src={Thumb4png}
+        alt=""
+        className="four"
+        style={{ width: "63px", cursor: "not-allowed" }}
+      />
+      <h4 style={{ color: "black", fontWeight: "100" }}>Lab Testing (Coming Soon)</h4>
+    </Link>
+  </Col>
+</Row>
+
         </div>
       </div>
       <Onboarding />

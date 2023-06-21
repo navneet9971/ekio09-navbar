@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 import { NavLink, useHistory, useLocation } from "react-router-dom";
 import { FaBars, FaPowerOff } from "react-icons/fa";
-import { GrCompliance } from "react-icons/gr";
 import $ from "jquery";
 import axiosInstance from 'axios';
+import know from "../../assets/login-page-icons/1.png";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -147,7 +147,7 @@ const Navbar = () => {
             className="nav-know"
             to="/navbar/firstcompliance"
             >
-              <GrCompliance />
+             <img src={know} alt ="" style={{width: "35px"}} />
              <h3 style={{fontSize: "12px", fontWeight:"100"}}> Know Your Compliance</h3>
             </NavLink>
           </li>

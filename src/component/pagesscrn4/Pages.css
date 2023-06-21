@@ -287,15 +287,13 @@ h1.cont {
 }
 
 img.imgback {
-  height: 484px;
+  height: 519px;
   display: flex;
-  width: 599px;
+  width: 519px;
   justify-content: center;
   align-items: center;
-  /* position: absolute; */
-  transform: translate(68%, 12%);
+  transform: translate(-19%, 12%);
   margin-top: -82px;
-  /* color: black; */
 }
 
 @media screen and (max-width: 1220px) {

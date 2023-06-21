@@ -220,7 +220,7 @@ img.eikomp_logo {
 .line {
   width: 1px;
   height: 125%;
-  background-color: black;
+  background-color: #d3d3d3;
   transform: translate(-268px, -76px);
 }
 

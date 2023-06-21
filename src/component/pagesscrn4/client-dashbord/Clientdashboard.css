@@ -49,8 +49,18 @@
   margin: -60px 0px;
 }
 
-img.five {
+/* img.five {
   width: 100px;
+} */
+
+img.second {
+  width: 64px;
+}
+
+.four{
+  width: 63px;
+  pointer-events: none;
+  cursor: not-allowed;
 }
 
 .upper-name {
@@ -64,28 +74,63 @@ img.five {
   text-shadow: 3px 2px 2px white;
 }
 
-.option-box {
+/* a.option-box {
   margin: 20px;
   gap: 20px;
   background-color: #F5F5F5;
   padding: 12px 2px;
   transform: translate(146px, 10px);
+  cursor: pointer;
+} */
+
+a.option-box {
+  display: flex;
+  align-items: center;
+  margin: 17px;
+  gap: 20px;
+  background-color: #F5F5F5;
+  padding: 9px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a.option-box:hover {
+  background-color: #E0E0E0;
+}
+
+a.option-box h4 {
+  color: black;
+  font-weight: 100;
+  margin: 0;
+}
+
+.option-box1{
+  display: flex;
+  align-items: center;
+  margin: 17px;
+  gap: 20px;
+  background-color: #F5F5F5;
+  padding: 9px;
+  cursor: not-allowed;
+  text-decoration: none;
 }
 
 
-.welcome .welcome-options .option-box * {
+
+/* .welcome .welcome-options .option-box * {
   transition: 0.3s all;
-}
+} */
 
-.welcome .welcome-options .option-box h4 {
+/* .welcome .welcome-options .option-box h4 {
   font-size: 20px;
   width: 134px;
   max-width: 100%;
   margin-top: 20px;
   color: #898989;
-}
+  cursor: pointer;
+} */
 
-a.option-box:hover * {
+.option-box:hover * {
   transform: scale(1);
   animation: shining 2s infinite;
 }
