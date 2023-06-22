@@ -66,6 +66,7 @@ function BisInclusionForm() {
             name="Username_BISPortal"
             value={rnumberformData.Username_BISPortal}
             onChange={handleInputChange}
+            required
           />
         </div>
 
@@ -78,6 +79,7 @@ function BisInclusionForm() {
               name="Password_BISPortal"
               value={rnumberformData.Password_BISPortal}
               onChange={handleInputChange}
+              required
             />
             <span
               className="eye-icon-fun"
@@ -98,6 +100,7 @@ function BisInclusionForm() {
             name="Rnumber_BISPortal"
             value={rnumberformData.Rnumber_BISPortal}
             onChange={handleInputChange}
+            required
           />
         </div>
 
