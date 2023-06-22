@@ -6,6 +6,8 @@ import Message from "../../../popup/Message";
 import axiosInstance from "../../../../interceptors/axios";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import { FcDocument } from "react-icons/fc";
+import { FiUpload, FiDownload } from "react-icons/fi";
 import { ReactComponent as Wrong } from "../../../assets/trckpg-rb/wrong.svg";
 import { ReactComponent as Right } from "../../../assets/trckpg-rb/right.svg";
 import file6png from "../../../assets/pdficon/Red02.png";
@@ -306,13 +308,16 @@ function TECOngoing() {
         {/*------------------DOWNLOAD BUTTON CODE ----------------*/}
 
         <div className="header-btn1">
-          <button className="button7" disabled>
+          <button className="testreq-btn" disabled>
+          < FcDocument />
             Request Testing
           </button>
-          <button className="button7" disabled>
+          <button className="upload-btn" disabled>
+          < FiUpload />
             Upload
           </button>
-          <button className="button7" disabled>
+          <button className="download-btn" disabled>
+          <FiDownload />
             Download
           </button>
           {/* <button className="button7" onClick={() => setButtonPopup11(true)}>

@@ -8,12 +8,13 @@ const StatusBar = ({ totalResponses, completedResponses }) => {
       <div
         className='status-bar'
         style={{
+          margin: "-3px 104px",
           width: '100%',
-          height: '20px',
-          top:'10px',
-          left: '90px',
-          backgroundColor: '#fff',
-          borderRadius: '50px',
+          height: '22px',
+          // top:'85px',
+          left: '596px',
+          backgroundColor: ' #D9D9D9',
+          // borderRadius: '50px',
         }}
       >
         <div
@@ -22,11 +23,11 @@ const StatusBar = ({ totalResponses, completedResponses }) => {
             width: `${percentage}%`,
             height: '100%',
             backgroundColor: '#55B600',
-            borderRadius: '50px',
+            // borderRadius: '50px',
           }}
         />
       </div>
-      <p className='status-percent'>{`${percentage}% `}</p>
+      {/* <p className='status-percent'>{`${percentage}% `}</p> */}
 
       <style jsx>{`
         .status-bar-container {
@@ -83,10 +84,7 @@ const StatusBar = ({ totalResponses, completedResponses }) => {
             justify-content: space-between;
           }
 
-          .status-bar {
-            width: 70%;
-            margin-right: 10px;
-          }
+        
 
           .status-percent {
             margin-left: 0;

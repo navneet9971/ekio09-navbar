@@ -2,21 +2,24 @@
   box-sizing: border-box;
 }
 
-.bgchangecompleted{
+/* .bgchangecompleted{
   background-image: url("../assets/pages-bgimages//background.svg");
   background-repeat: no-repeat;
   background-size: cover;
-}
+} */
 
 .email-warning{
   display: block;
 }
 
 h1.type {
-  float: left;
-  color: #fff;
+  float: right;
+  text-align: center;
+  transform: translate(-209px, -44px);
+  /* color: #fff; */
   font-size: 33px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 100;
 }
 
 h1.appli {
@@ -24,16 +27,19 @@ h1.appli {
   align-items: flex-start;
   justify-content: flex-end;
   position: absolute;
-  top: 275px;
-  color: #fff;
-  padding-right: 30px;
+  top: 134px;
+  right: 941px;
+  font-size: 20px;
+  font-weight: 100;
+  /* color: #fff; */
 }
 
 .header-btn1 {
   display: flex;
   position: absolute;
-  top: 340px;
-  left: 20px;
+  top: 180px;
+  left: 70px;
+  gap: 10px;
 }
 
 p.status-percent {
@@ -142,18 +148,18 @@ p.status-percent {
 }
 
 /* Adjustments for extra-large screens */
-@media (min-width: 1200px) and (max-width: 1399px) {
+/* @media (min-width: 1200px) and (max-width: 1399px) {
   h1.type {
     font-size: 32px;
   }
-}
+} */
 
 /* Adjustments for screens larger than 1400px */
-@media (min-width: 1400px) {
+/* @media (min-width: 1400px) {
   h1.type {
     font-size: 35px;
   }
-}
+} */
 
 
 /* Default styles */
@@ -171,9 +177,10 @@ p.enddate {
 }
 
 h1.ongo {
-  font-size: 30px;
-  color: #fff;
+  font-size: 20px;
+  /* color: #fff; */
   text-align: center;
+  transform: translate(-497px, -62px);
 }
 
 button.clidown {
@@ -334,14 +341,15 @@ button.clidown {
 
 .pdfico {
   position: relative;
-  bottom: -67%;
+  /* bottom: -67%; */
   left: 122%;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 63px;
-  height: 36px;
+  height: 23px;
   border-radius: 50%;
+  transform: translate(-70px, -78px);
 }
 
 .clickedColor {
@@ -349,27 +357,23 @@ button.clidown {
 }
 
 .pdfico1 {
-  width: 106px;
+  width: 126px;
   margin-top: -16.5px;
-  margin-left: 115.8px;
-  margin-bottom: 17px;
+  margin-left: 29px;
+  /* margin-bottom: -2px; */
+  background-color: white;
+  padding: 15px 23px;
 }
 
-.tc,
-.wp,
-.be,
-.bi,
-.ep,
-.legal,
-.isi,
-.management {
+.tc, .wp, .be, .bi, .ep, .legal, .isi, .management {
   text-align: center;
   font-size: 16px;
-  margin-top: 4px;
-  margin-left: 8em;
+  margin-top: -4px;
+  margin-left: 4.5em;
   display: flex;
   justify-content: flex-start;
-  color: #fff;
+  font-weight: 100;
+  font-size: 16px;
 }
 
 .pdf-container,
@@ -594,24 +598,6 @@ svg.ryt2 {
 } */
 
 
-button120.btn {
-  background-color: #083f81;
-  border: 0;
-  box-shadow: rgba(1, 60, 136, 0.5) 0 -1px 3px 0 inset, rgba(0, 44, 97, 0.1) 0 3px 6px 0;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
-  display: inherit;
-  font-family: "Space Grotesk";
-  font-size: 18px;
-  min-height: 21px;
-  width: 10%;
-  margin-top: 45px;
-  position: relative;
-  text-align: center;
-  touch-action: manipulation;
-}
-
 .stepBlock:not(:last-child) > .circleWrapper::after {
   content: '';
   width: 100%;
@@ -705,9 +691,8 @@ p.dt1, p.dt5 {
   margin: 282px 143px 50px 143px;
 }
 
-
 .doc-col {
-  width: 150px;
+  width: 121px;
   height: 150px;
 }
 
@@ -777,17 +762,19 @@ svg.thumb.track8 {
 }
 
 svg.mainsvg2 {
-  width: 19em;
-  height: 17em;
-  margin: 2em -2.2em;
+  width: 10em;
+  height: 9em;
+  margin: 1em 1em;
+  padding: 5px 26px;
+  background-color: white;
 }
 
 .mainsvg3 {
   position: absolute;
   width: 2.5%;
-  height: auto;
-  margin-left: -136px;
-  margin-top: 226px;
+  /* height: auto; */
+  margin-left: -50px;
+  margin-top: -319px;
 }
 
 svg.mainsvg9 {
@@ -797,9 +784,10 @@ svg.mainsvg9 {
 }
 
 .tecon {
-  margin: 251px 30px 40px 55px;
+  margin: 154px 30px 40px 55px;
   text-align: center;
-  outline: 2px solid white;
+  /* outline: 2px solid white; */
+  background: #F2F6FD;
 }
 
 p.dt1,
@@ -863,9 +851,13 @@ p.dt10 {
 
 h2.steps-count {
   position: relative;
-  transform: translate(-129px, 245px);
+  transform: translate(22px, 131px);
+  margin: -71px 23px 15px 16px;
   text-align: center;
-  color: #fff;
+  /* text-decoration: underline; */
+  font-size: 20px;
+  font-weight: 100;
+  /* color: #fff; */
 }
 
 .dd-menu {
@@ -883,13 +875,14 @@ h2.steps-count {
 
 .reportbtn {
   padding: 13px 17px;
-  border-radius: 10px;
-  color: #FF8025;
+  border-radius: 5px;
+  color: #fff;
   cursor: pointer;
-  font-size: 26px;
-  font-weight: 600;
+  font-size: 15px;
   margin-left: 20px;
-  margin-top: 10px;
+  margin-top: -45px;
+  background: #4BAE4F;
+  border: none;
 }
 
 .reportbtn:hover {
@@ -897,18 +890,47 @@ h2.steps-count {
 }
 
 .reportbtn:disabled,
-.button7:disabled {
+.testreq-btn:disabled {
   cursor: not-allowed;
   background-color: #6c87c0;
-  color: #FF8025;
+  color: #fff;
 }
 
 .reportbtn:disabled:hover,
-.button7:disabled:hover {
+.testreq-btn:disabled:hover {
   background-color: #6c87c0;
   text-decoration: none;
 }
 
+.testreq-btn{
+box-sizing: border-box;
+width: 217px;
+height: 48px;
+background: #525DC8;
+border-radius: 5px;
+cursor: pointer;
+border: none;
+}
+
+.upload-btn{
+box-sizing: border-box;
+width: 134px;
+height: 48px;
+background: rgba(244, 179, 9, 0.88);
+border-radius: 5px;
+cursor: pointer;
+border: none;
+}
+
+.download-btn{
+box-sizing: border-box;
+width: 165px;
+height: 48px;
+background: #4BAE4F;
+border-radius: 5px;
+cursor: pointer;
+border: none;
+}
 /* Responsive Styles */
 
 /* For screens up to 468px */
@@ -1001,10 +1023,10 @@ h2.steps-count {
     gap:20px;
   }
 
-  .reportbtn {
+  /* .reportbtn {
     font-size: 26px;
     margin: 10px 0;
-  }
+  } */
 }
 
 .pdffilesup {
@@ -1017,8 +1039,10 @@ h2.steps-count {
 
 h2.pdfstep-name {
   text-align: center;
-  color: #fff;
+  /* color: #fff; */
   margin-bottom: -10px;
+  font-size: 22px;
+  font-weight: 100;
 }
 
 

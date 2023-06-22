@@ -84,6 +84,7 @@ return (
       ) : (
         <Wrong className="mainsvg3" onClick={() => setButtonPopup3(true)}/>
       )}
+      {/* <h3 className="setp-bis">BIS Portal Registration</h3> */}
       
       
       
@@ -100,6 +101,7 @@ return (
         ) : (
           <Wrong className="mainsvg3" onClick={() => setButtonPopup4(true)}/>
         )}
+        {/* <h3 className="setp-bis">Sample Testing</h3> */}
       
       
       <Message trigger={buttonPopup5} setTrigger={setButtonPopup5}>
@@ -115,6 +117,7 @@ return (
         ) : (
           <Wrong className="mainsvg3" onClick={() => setButtonPopup5(true)}/>
         )}
+        {/* <h3 className="setp-bis">Documentation</h3> */}
       
       
       <Message trigger={buttonPopup6} setTrigger={setButtonPopup6}>
@@ -130,6 +133,7 @@ return (
         ) : (
           <Wrong className="mainsvg3" onClick={() => setButtonPopup6(true)}/>
         )}
+        {/* <h3 className="setp-bis">Filing Application</h3> */}
       
       <Message trigger={buttonPopup7} setTrigger={setButtonPopup7}>
       <h2 className="pop-msg">    Message :- 
@@ -144,6 +148,7 @@ return (
         ) : (
           <Wrong className="mainsvg3" onClick={() => setButtonPopup7(true)}/>
         )}
+        {/* <h3 className="setp-bis">Approval</h3> */}
       
       <Message trigger={buttonPopup8} setTrigger={setButtonPopup8}>
       <h2 className="pop-msg">    Message :- 
@@ -158,6 +163,7 @@ return (
         ) : (
           <Wrong className="mainsvg3" onClick={() => setButtonPopup8(true)}/>
         )}
+        {/* <h3 className="setp-bis">Issuance of Certificate</h3> */}
       
       </div>
       </div>
