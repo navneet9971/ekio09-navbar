@@ -27,7 +27,7 @@ const StatusBar = ({ totalResponses, completedResponses }) => {
           }}
         />
       </div>
-      {/* <p className='status-percent'>{`${percentage}% `}</p> */}
+      <p className='status-percent'>{`(${percentage}%) `}</p>
 
       <style jsx>{`
         .status-bar-container {

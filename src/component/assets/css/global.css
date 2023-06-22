@@ -230,30 +230,37 @@ img.eikomp_logo {
 
 /*------------SINGUP PAGE CSS ------------*/
 .signup {
-  position: relative;
   display: flex;
-  width: 950px;
-  max-width: 95%;
-  margin: 0 auto;
-  background-color: white;
-  overflow: hidden;
-  border-radius: 10px;
-  flex-direction: row;
 }
+
+img.signup-logo {
+  height: 116px;
+  width: 174px;
+}
+
 .signup .left-box {
+  flex-basis: 55%;
+  padding: 0px 15px 0px;
+  /* background: #d3d3d3; */
+  transform: translate(350px, 48px);
+}
+
+/* .signup .left-box {
   width: 55%;
   padding: 70px 50px 30px;
-}
+} */
 .signup .left-box label {
   display: block;
   color: #737373;
 }
+
 .signup .left-box input {
   width: 100%;
-  padding: 10px 3px 15px;
-  margin-bottom: 12px;
+  padding: 16px 3px 15px;
+  margin-bottom: 23px;
   border: none;
-  font-weight: 600;
+  /* font-weight: 100; */
+  font-size: 12px;
   border-bottom: 1px solid #9dabae;
 }
 
@@ -265,26 +272,16 @@ img.eikomp_logo {
 .signup .left-box button {
   background: #006091;
   display: block;
-  /* margin: 20px auto; */
+  margin: 10px auto;
   color: #fff;
   border: none;
-  font-weight: 600;
-  font-size: 22px;
+  font-weight: 100;
+  font-size: 18px;
   padding: 8px 25px;
   border-radius: 20px;
   cursor: pointer;
 }
-.signup .right-box {
-  width: 45%;
-  background: #fff;
-  height: 100%;
-  position: absolute;
-  right: 0;
-  border-bottom-left-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 
 label.signup-title {
   font-size: 15px;
@@ -307,13 +304,26 @@ select{
   margin-top: 10px;
 }
 
-input#industry:focus,
+input#email, textarea, select {
+  position: relative;
+  outline: none;
+  box-sizing: border-box;
+  width: 98%;
+  background: #fff;
+  border: 3px solid #082a71;
+  padding: 0.7em;
+  color: #555;
+  font-family: 'Roboto', sans-serif;
+  margin-top: -2px;
+}
+
+/* input#industry:focus,
 textarea:focus,
 select:focus {
   box-shadow: 0 0 5px #43d1af;
   padding: 1em;
   border: 1px solid #43d1af;
-}
+} */
 
 @media screen and (max-width: 768px) {
   .signup .left-box {
@@ -389,7 +399,8 @@ label.pasword-forget {
 .password-input {
   display: flex;
   justify-content: center;
-  padding: 24px;
+  width: 25.1em;
+  padding: 0px;
   margin: 1px;
 }
 

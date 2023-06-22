@@ -597,6 +597,14 @@ svg.ryt2 {
   margin-top: -20em;
 } */
 
+p.status-percent {
+  left: 1117px;
+  position: absolute;
+  top: 138px;
+  color: black;
+  font-size: 20px;
+}
+
 
 .stepBlock:not(:last-child) > .circleWrapper::after {
   content: '';

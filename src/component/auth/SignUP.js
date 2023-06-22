@@ -132,6 +132,14 @@ function SignUp() {
     <div className="auth-box">
       <div className="signup">
         <div className="left-box">
+        <img
+            src={require("../assets/icons/eikomp_logo.png")}
+            width={230}
+            height={200}
+            alt="logo"
+            className="signup-logo"
+          />
+        <h3 style={{textAlign: "center", transform: "translate(0px, -56px)"}}>REGISTER FOR FREE</h3>
           <Row gutter={[24, 0]}>
             <Col xs={24} md={12}>
               {/* <label className="signup-title">First Name</label> */}
@@ -165,8 +173,8 @@ function SignUp() {
                 onChange={handleChange}
                 required
               />
-            {/* </Col>
-                        <Col xs={24} md={24}> */}
+            </Col>
+                        <Col xs={24} md={12}>
               {/* <label className="signup-title">Industry Name</label> */}
               <select
                 name="industry"
@@ -184,9 +192,9 @@ function SignUp() {
               {formData.industry === '' && (
                 <p style={{ color: 'red' }}>Please select the industry</p>
               )}
-            {/* </Col>
+            </Col>
 
-            <Col xs={24} md={24}> */}
+            <Col xs={24} md={12}>
               {/* <label className="signup-title">Email ID</label> */}
               <input
                 type="email"
@@ -196,8 +204,8 @@ function SignUp() {
                 onChange={handleChange}
                 required
               />
-            {/* </Col>
-            <Col xs={24} md={24}> */}
+            </Col>
+            <Col xs={24} md={12}>
               <label className="signup-title">Mobile Number</label>
               <input
                 type="tel"
@@ -208,18 +216,18 @@ function SignUp() {
                 required
               />
             </Col>
-            <Col xs={24} md={24}>
-              {/* <label className="signup-title">Username</label> */}
+            <Col xs={24} md={12}>
+              <label className="signup-title">Username</label>
               <input
                 type="text"
-                placeholder="Username"
+                placeholder=""
                 name="username"
                 value={formData.username}
                 onChange={handleChange}
                 required
               />
             </Col>
-            <Col xs={24} md={24}>
+            <Col xs={24} md={12}>
               {/* <label className="signup-title">Password</label> */}
               <div className="password-input">
                 <input
@@ -239,15 +247,13 @@ function SignUp() {
                 </div>
               </div>
             </Col>
-            {formData.password === '' && (
-                <p style={{ color: 'red' }}>Please select the industry</p>
-              )}
-            <Col xs={24} md={24}>
-              <label className="signup-title">Confirm Password</label>
+           
+            <Col xs={24} md={12}>
+              {/* <label className="signup-title">Confirm Password</label> */}
               <div className="password-input">
                 <input
                   type={showPassword ? "text" : "password"}
-                  placeholder="At least 8 characters"
+                  placeholder="Confirm Password"
                   name="password2"
                   value={formData.password2}
                   onChange={handleChange}
@@ -263,18 +269,22 @@ function SignUp() {
               </div>
             </Col>
           </Row>
+          <div style={{color: "red", margin: "-13px auto"}}>
+          [NOTE:- At least 8 characters long but 12 or more is better. A combination of uppercase letters, lowercase letters, numbers, and symbols.]
+          </div>
+
           <button onClick={handleSubmit} className="button">
             REGISTER NOW
           </button>
         </div>
-        <div className="right-box">
+        {/* <div className="right-box">
           <img
             src={require("../assets/icons/eikomp_logo.png")}
             width={230}
             height={200}
             alt="logo"
           />
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -18,7 +18,7 @@
   padding: 40px 30px;
 }
 
-.firstname input[type="text"],
+/* .firstname input[type="text"],
 textarea,
 select {
   position: relative;
@@ -31,17 +31,17 @@ select {
   color: #555;
   font-family: 'Roboto', sans-serif;
   margin-top: 25px;
-}
+} */
 
-.firstname input[type="text"]:focus,
+/* .firstname input[type="text"]:focus,
 textarea:focus,
 select:focus {
   box-shadow: 0 0 5px #43d1af;
   padding: 1em;
   border: 1px solid #43d1af;
-}
+} */
 
-.lastname input[type="text"],
+/* .lastname input[type="text"],
 textarea,
 select {
   position: relative;
@@ -55,39 +55,23 @@ select {
   color: #555;
   font-family: 'Roboto', sans-serif;
   margin-top: 25px;
-}
+} */
 
-.lastname input[type="text"]:focus,
+/* .lastname input[type="text"]:focus,
 textarea:focus,
 select:focus {
   box-shadow: 0 0 5px #43d1af;
   padding: 1em;
   border: 1px solid #43d1af;
-}
+} */
 
-input#email,
-textarea,
-select {
-  position: relative;
-  
-  outline: none;
-  box-sizing: border-box;
-  width: 98%;
-  background: #fff;
-  border: 3px solid #082a71;
-  padding: 1em;
-  color: #555;
-  font-family: 'Roboto', sans-serif;
-  margin-top: 25px;
-}
-
-input#email:focus,
+/* input#email:focus,
 textarea:focus,
 select:focus {
   box-shadow: 0 0 5px #43d1af;
   padding: 1em;
   border: 1px solid #43d1af;
-}
+} */
 
 .rights {
   width: 100%;
