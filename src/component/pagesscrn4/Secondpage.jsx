@@ -8,6 +8,7 @@ import TECPerviousData from "../Complianceforms/TEC/TECPerviousdata";
 import BISFreshForms from "../Complianceforms/BIS/BISfreashform";
 import BisRNumberPopup from "../Complianceforms/BIS/BisRNumberPOPUP";
 import BISPerviousData from "../Complianceforms/BIS/BISPerviousData";
+import BisInclusionForm from "../Complianceforms/BIS/BisInclusionPage";
 
 const Secondpage = () => {
   // const history = useHistory();
@@ -101,6 +102,8 @@ const Secondpage = () => {
   const [buttonPopup6bis, setButtonPopup6bis] = useState(false);
   const [buttonautofilledbis, setButtonautofilledbis] = useState(false);
   const [buttonautofillpopupbis, setButtonautofillpopupbis] = useState(false);
+  const [buttonBisInclusionPopup, setButtonBisInclusionPopup] = useState(false);
+  const [openBisInclusionForm, setOpenBisInclusionForm] = useState(false);
 
   //BIS Register POPUP box Filled Const Data here--------------------------------------------------
   const [autofillform, setAutofillform] = useState(null);
@@ -160,13 +163,13 @@ const Secondpage = () => {
 
         if (autofill === 'Yes') {
           // Call the function for registering
-          // setButtonautofilledbis(true);
-          setButtonRegisterbis(true);
+          // setButtonRegisterbis(true);
+          setButtonBisInclusionPopup(true)
           console.log(autofill);
         } else if (autofill === 'No') {
-          // Call the function for unregistering
-          // setButtonPopup6bis(true);
-          setButtonRegisterbis(true); // Change with bis popupautofill form
+          // Call the function for unregistering   
+          // setButtonRegisterbis(true); 
+          setButtonBisInclusionPopup(true)// Change with bis popupautofill form
         }
       }
     } catch (error) {
@@ -209,6 +212,21 @@ const Secondpage = () => {
   }
   setButtonRegisterbis(false)
 }
+
+//handleinclusiondropdwn HERE-----------
+
+const handleInclusionOptionChange = (event) => {
+
+  // Perform any necessary actions based on the selected option immediately
+  if (event.target.value === 'inclusion') {
+    setOpenBisInclusionForm(true);
+  } else if (event.target.value === 'newform') {
+    setButtonRegisterbis(true); // Navigate to the new application page
+  }
+  setButtonBisInclusionPopup(false);
+};
+
+
   //Auto close POPup after click Sumbit
   const handlePopupClose = () => {
     setButtonpopupform1tec(false);
@@ -280,11 +298,13 @@ const Secondpage = () => {
           trigger={buttonautofilledtec}
           setTrigger={setButtonautofilledtec}
         >
-          <h3 className="reg-popup-titlte">Continue with previous data?</h3>
+         <h3 className="reg-popup-titlte">
+  We have got your company details saved with us. <br /> Do you want to use the saved data and save time?
+</h3>
           <div className="checkbox-container">
             <div className="bis-register">
               <div>
-                <label>
+                <label className="pop-opt">
                   <input
                     className="bis-register"
                     type="checkbox"
@@ -300,7 +320,7 @@ const Secondpage = () => {
 
             <div className="bis-register">
               <div>
-                <label>
+              <label className="pop-opt">
                   <input
                     className="bis-register"
                     type="checkbox"
@@ -336,16 +356,37 @@ const Secondpage = () => {
 
         {/*----------------- TEC END HERE AND START BIS FROMS CODE HERE ---------------------- */}
 
+         {/* --------------BIS Inclusion POPUP CODE IS HERE----------------------------------  */}
+         <Popup trigger= {buttonBisInclusionPopup} setTrigger= { setButtonBisInclusionPopup}> 
+         <h3 className="reg-popup-titlte" >
+         What do you want to do today?
+         </h3>
+         <select
+  onChange={handleInclusionOptionChange}
+>
+  <option value="">Choose the Option:-</option> 
+  <option value="inclusion">Include details in an existing product</option>
+  <option value="newform">Start a new application</option>
+</select>
+         </Popup>
+
+        {/* -------------Inclusion Form Rendere code here---------------------------------------  */}
+        <Popup trigger = {openBisInclusionForm} setTrigger = {setOpenBisInclusionForm}>
+          <BisInclusionForm />
+        </Popup>
         {/*------------------------ BIS DYNAMIC FORM DATA POPUP CODE HERE------------------------ */}
         <Popup
           trigger={buttonautofilledbis}
           setTrigger={setButtonautofilledbis}
         >
-          <h3 className="reg-popup-titlte">Continue with previous data?</h3>
+<h3 className="reg-popup-titlte">
+  We have got your company details saved with us. <br /> Do you want to use the saved data and save time?
+</h3>
+
           <div className="checkbox-container">
             <div className="bis-register">
               <div>
-                <label>
+              <label className="pop-opt">
                   <input
                     className="bis-register"
                     type="checkbox"
@@ -361,7 +402,7 @@ const Secondpage = () => {
 
             <div className="bis-register">
               <div>
-                <label>
+              <label className="pop-opt">
                   <input
                     className="bis-register"
                     type="checkbox"
@@ -388,12 +429,12 @@ const Secondpage = () => {
         {/*--------------BIS REGSITER AND UNREGISTER CODES HERE ------------------------------- */}
         <Popup trigger={buttonRegisterbis} setTrigger={setButtonRegisterbis}>
           <h3 className="reg-popup-titlte">
-            Are You Registered On The BIS Portal?
+          Have you registered yourself on the BIS portal?
           </h3>
           <div className="checkbox-container">
             <div className="bis-register">
               <div>
-                <label>
+              <label className="pop-opt">
                   <input
                     className="bis-register"
                     type="checkbox"
@@ -408,7 +449,7 @@ const Secondpage = () => {
             </div>
             <div className="bis-register">
               <div>
-                <label>
+              <label className="pop-opt">
                   <input
                     className="bis-register"
                     type="checkbox"

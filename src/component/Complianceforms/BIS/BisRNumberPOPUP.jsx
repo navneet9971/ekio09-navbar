@@ -69,9 +69,9 @@ function BisRNumberPopup({onClose}) {
   return (
     <>
       {!showBISFreshForm ? (
-        <form onSubmit={handleRNumbersubmit}>
+        <form className= "bisreg" onSubmit={handleRNumbersubmit}>
           <div className="bis-userid">
-            <label htmlFor="has-r-number">Do you have an R number?</label>
+          <label className="pop-opt" style={{margin: "7px"}}>Do you have an R number?</label>
             <select
               id="has-r-number"
               value={hasRNumber ? "yes" : "no"}

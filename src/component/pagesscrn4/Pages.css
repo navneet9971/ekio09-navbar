@@ -1,8 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;1,500&display=swap');
 
-body {
-  font-family: "Jost", sans-serif;
-}
 
 *, *:before, *:after {
   box-sizing: border-box;
@@ -322,10 +319,11 @@ img.imgback {
   /*---THird page Start application popup css------- */
 /* Default styles for all screens */
 .h802 {
-  font-size: 33px;
+  font-size: 22px;
   color: black;
   text-align: center;
-  margin-bottom: 0;
+  margin-bottom: 8px;
+  font-weight: 100;
 }
 
 .h801 {
@@ -342,6 +340,7 @@ label.st8012 {
   align-items: center;
   margin-bottom: 10px;
   font-size: 15px;
+  font-weight: 100;
 }
 
 label.st8012 > span.st805 {
@@ -363,8 +362,7 @@ input.st805 {
   width: 20em;
   height: 28px;
   padding: 3px;
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 15px;
 }
 
 label.st8017 {
@@ -386,7 +384,7 @@ label.st8017 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 25px;
+  gap: 64px;
 }
 
 .names {
@@ -425,11 +423,11 @@ label.st8017 {
   margin-left: 5px;
 } */
 
-h3.Contctprson,
-h3.topmang,
-h3.techni,
-h3.model {
+h3.Contctprson, h3.topmang, h3.techni, h3.model {
+  font-size: 17px;
   color: red;
+  font-weight: 100;
+  margin: 2px;
 }
 
 input[type="file"] {
@@ -957,7 +955,7 @@ select.optionss {
 .st804, .st804:focus {
   margin-top: 1px;
   margin-left: auto;
-  width: 20em;
+  width: 18.7em;
   height: 43px;
   padding: 8px;
   font-size: 16px;
@@ -984,8 +982,8 @@ select.bisdrop {
   width: 29em;
   padding: 3px 7px;
   margin: 14px 0;
-  font-size: 20px;
-  font-weight: bolder;
+  font-size: 17px;
+  /* font-weight: bolder; */
   border-color: black;
 }
 
@@ -999,14 +997,21 @@ select.bisdrop {
 }
 
 input.bis-register {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 15px;
+}
+
+
+label.pop-opt {
+  font-size: 15px;
+  font-weight: 100;
 }
 
 h3.reg-popup-titlte {
   text-align: center;
-  margin-bottom: 30px;
-  font-size: 25px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: 100;
 }
 
 .bis-userid {
@@ -1027,7 +1032,8 @@ select#has-r-number {
 }
 
 input#user-id,
-input#password {
+input#password,
+input#rnumber {
   padding: 4px 3px;
   width: 15em;
   font-size: 20px;
@@ -1145,7 +1151,7 @@ button.btn809:hover{
   input#password,
   button.bis-register {
     width: auto;
-    margin-left: auto;
+    /* margin-left: auto; */
     /* margin-right: auto; */
     /* padding: 8px 63px; */
 }

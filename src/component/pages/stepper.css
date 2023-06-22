@@ -27,7 +27,7 @@ h1.appli {
   align-items: flex-start;
   justify-content: flex-end;
   position: absolute;
-  top: 134px;
+  top: 122px;
   right: 941px;
   font-size: 20px;
   font-weight: 100;
@@ -600,7 +600,7 @@ svg.ryt2 {
 p.status-percent {
   left: 1117px;
   position: absolute;
-  top: 138px;
+  top: 124px;
   color: black;
   font-size: 20px;
 }
