@@ -1,9 +1,10 @@
 .container-piechart {
   display: inline-block;
   width: 33%;
-  padding: 6px 28px;
+  padding: 0px 80px;
   box-sizing: border-box;
   vertical-align: top;
+  margin: 13px -63px;
 }
 
 .col-dash {
@@ -14,14 +15,13 @@
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
-  width: 416px;
-  height: 377px;
+  width: 250px;
+  height: 324px;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
 }
-
 /* .chart-bar-container {
   background-color: transparent;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
