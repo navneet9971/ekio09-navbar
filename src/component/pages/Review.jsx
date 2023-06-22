@@ -249,7 +249,7 @@ function Review() {
       height: "40px",
       position: "absolute",
       color: "#fff",
-      top: "-17%",
+      top: "24%",
       right: "0%",
       padding: "3px",
       borderRadius: "0px",
