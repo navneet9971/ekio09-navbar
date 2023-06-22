@@ -771,10 +771,12 @@ svg.mainsvg2 {
 
 .mainsvg3 {
   position: absolute;
+  /* display: contents; */
   width: 2.5%;
-  /* height: auto; */
+  /* height: 4.5%; */
+  height: auto;
   margin-left: -50px;
-  margin-top: -319px;
+  margin-top: 14px;
 }
 
 svg.mainsvg9 {
