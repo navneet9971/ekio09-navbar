@@ -8,9 +8,9 @@ import jsPDF from "jspdf";
 import 'jspdf-autotable';
 import { FcDocument } from "react-icons/fc";
 import { FiUpload, FiDownload } from "react-icons/fi";
-import { ReactComponent as Wrong } from "../../../assets/trckpg-rb/wrong.svg";
-import { ReactComponent as Right } from "../../../assets/trckpg-rb/right.svg";
-import file6png from "../../../assets/pdficon/Red02.png";
+// import { ReactComponent as Wrong } from "../../../assets/trckpg-rb/wrong.svg";
+// import { ReactComponent as Right } from "../../../assets/trckpg-rb/right.svg";
+// import file6png from "../../../assets/pdficon/Red02.png";
 import pdflogo from "../../../assets/icons/eikomp_logo.png"
 import StatusBar from "../../../Statusbar";
 import BISChatbot from "../../../Chatbot/BISChatbot";
@@ -25,7 +25,7 @@ function Completed() {
   const [uniqueid, setUniqueid] = useState("");
   const [complianceid, setComplianceid] = useState("");
   const idel = localStorage.getItem('ide');
-  const totalResponses = 8;
+  const totalResponses = 6;
   const completedResponses = localStorage.getItem('stepstatus');
   const [docReport, setDocReport] = useState("");
   const [docType, setDocType] = useState("");
@@ -302,7 +302,7 @@ logoImg.onload = function () {
 {/* BIS STEPS CODE HERE 6 STeps */}
 <BISSteps />
 
-  <h2 className="pdfstep-name"> Documents To Be Submitted</h2>  
+  {/* <h2 className="pdfstep-name"> Documents To Be Submitted</h2>  
         <div className="pdffilesup">
           <div className="row1">
            
@@ -389,7 +389,7 @@ logoImg.onload = function () {
   <h3 className="be">Form 3 (AFFIDAVIT)</h3>
 </div>
           </div>
-        </div>
+        </div> */}
       
 
        {/* POPUP OF LAST BUTTON OF DOWNLOAD REPORT FUNCTION AS WELL  */}

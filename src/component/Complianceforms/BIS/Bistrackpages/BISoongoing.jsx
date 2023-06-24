@@ -7,9 +7,9 @@ import jsPDF from "jspdf";
 import "jspdf-autotable";
 import { FcDocument } from "react-icons/fc";
 import { FiUpload, FiDownload } from "react-icons/fi";
-import { ReactComponent as Wrong } from "../../../assets/trckpg-rb/wrong.svg";
-import { ReactComponent as Right } from "../../../assets/trckpg-rb/right.svg";
-import file6png from "../../../assets/pdficon/Red02.png";
+// import { ReactComponent as Wrong } from "../../../assets/trckpg-rb/wrong.svg";
+// import { ReactComponent as Right } from "../../../assets/trckpg-rb/right.svg";
+// import file6png from "../../../assets/pdficon/Red02.png";
 import pdflogo from "../../../assets/icons/eikomp_logo.png";
 import StatusBar from "../../../Statusbar";
 import BISChatbot from "../../../Chatbot/BISChatbot";
@@ -352,7 +352,7 @@ function BISoongoing() {
         {/* BIS STEPS SET HER MESSAGE AND ALL */}
         <BISSteps />
 
-        <h2 className="pdfstep-name"> Documents To Be Submitted</h2>
+        {/* <h2 className="pdfstep-name"> Documents To Be Submitted</h2>
         <div className="pdffilesup">
           <div className="row1">
             <div className="col doc-col">
@@ -492,7 +492,7 @@ function BISoongoing() {
               <h3 className="be">Form 3 (AFFIDAVIT)</h3>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* POPUP OF LAST BUTTON OF DOWNLOAD REPORT FUNCTION AS WELL  */}
         <Message trigger={buttonPopupreport} setTrigger={setButtonPopupreport}>

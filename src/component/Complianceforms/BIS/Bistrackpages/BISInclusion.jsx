@@ -1,31 +1,36 @@
 import React, { useState, useEffect } from "react";
-//import jsPDF from 'jspdf';
 import "../../../pages/stepper.css";
-// import Popup from "../../../pagesscrn4/popup/Popup";
+import Popup from "../../../popup/Popup";
 import Message from "../../../popup/Message";
 import axiosInstance from "../../../../interceptors/axios";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import { FcDocument } from "react-icons/fc";
-import { FiUpload, FiDownload } from "react-icons/fi";
+import {  FiDownload } from "react-icons/fi";
 // import { ReactComponent as Wrong } from "../../../assets/trckpg-rb/wrong.svg";
 // import { ReactComponent as Right } from "../../../assets/trckpg-rb/right.svg";
 // import file6png from "../../../assets/pdficon/Red02.png";
 import pdflogo from "../../../assets/icons/eikomp_logo.png";
 import StatusBar from "../../../Statusbar";
-import Chatbot from "../../../Chatbot/Chatbot";
-import TECSteps from "../TECSteps";
+import BISChatbot from "../../../Chatbot/BISChatbot";
 
-function TECOngoing() {
+import BISrequsting from "../BISrequsting";
+import BISInclusionSteps from "../BISInclusionPageStep";
+
+
+function BISInclusion() {
   const [docStatus, setDocStatus] = useState({});
   const [uniqueid, setUniqueid] = useState("");
   const [complianceid, setComplianceid] = useState("");
   const idel = localStorage.getItem("ide");
-  const totalResponses = 8;
+  const [testingbtnkey, setTestingbtnkey] = useState("");
+  // const [buttonPopup, setButtonPopup] = useState(false);
+  // const [buttonPopup1, setButtonPopup1] = useState(false);
+  const totalResponses = 6;
   const completedResponses = localStorage.getItem("stepstatus");
   const [docReport, setDocReport] = useState("");
   const [docType, setDocType] = useState("");
-  const storedDocStep = JSON.parse(localStorage.getItem("docStep"));
+  const bisDocStep = JSON.parse(localStorage.getItem("bisdocStep"));
 
   //POPUP BUTTONS OF STEPS
   const [buttonPopupreport, setButtonPopupreport] = useState(false);
@@ -37,14 +42,15 @@ function TECOngoing() {
   // //Notification Date Sequnce
   // function formatDate(dateString) {
   //   const date = new Date(dateString);
-  //   const day = date
-  //     .getDate()
-  //     .toString()
-  //     .padStart(2, "0");
-  //   const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  //   const day = date.getDate().toString().padStart(2, '0');
+  //   const month = (date.getMonth() + 1).toString().padStart(2, '0');
   //   const year = date.getFullYear().toString();
   //   return `${day}/${month}/${year}`;
   // }
+
+  //LAB TESTING FROM CONST HERE ---------------------------------------
+  const [buttonPopup2, setButtonPopup2] = useState(false);
+  //const [buttonPopup1, setButtonPopup1] = useState(false);
 
   // API call to get document status
 
@@ -56,36 +62,47 @@ function TECOngoing() {
         .get(`application/compliance/${idel}/`)
         .then((response) => {
           const data = response.data.data;
-          const compliance_id = data["compliance"];
-          const application_id = data["application"];
-          // const request_for = data["request_for"];
-          console.log(compliance_id);
-          console.log(application_id);
+          const biscompliance_id = data["compliance"];
+          const bisapplication_id = data["application"];
+          const bisrequest_for = data["request_for"];
+          // setCompliance_id1(compliance_id);
+          // setApplication_id1(application_id);
+          console.log(biscompliance_id);
+          console.log(bisapplication_id);
 
           console.log(data);
           // store local storage then show the values
           setUniqueid(data["uniqueid"]);
           setComplianceid(data["compliance_name"]);
+          setTestingbtnkey(data["testing"]);
+          console.log(data["testing"]);
 
           const compliancename = data["compliance_name"];
           localStorage.setItem("compliance_name", compliancename);
 
+          //IMPORTANT COMMENT    //Store Compliance ID and Application ID BIS USE FOR TEC UPLOAD LOCALSTORAGE FOR TEC UPLOAD DOC
+          localStorage.setItem("biscompliance_id", biscompliance_id);
+          localStorage.setItem("bisapplication_id", bisapplication_id);
+          localStorage.setItem("bisrequest_for", bisrequest_for);
+
           //Notification DATA SET HERE ----------------------------------------------------
-          // const notificationData = data["notifications"];
-          // console.log(notificationData);
-          // setNotifiData(notificationData);
+          // const notificationData = data["notifications"]
+          // console.log(notificationData)
+          // setNotifiData(notificationData)
 
           axiosInstance
             .get(
-              `application/document/?compliance=${compliance_id}&application=${application_id}`
+              `application/document/?compliance=${biscompliance_id}&application=${bisapplication_id}`
             )
             .then((response) => {
-              const documentData = response.data.data;
+              const bisdocumentData = response.data.data;
               //console.log(response.data.key)
 
-              //store button APIS data here button name download report and download certificate
               localStorage.setItem("report", response.data.report);
               localStorage.setItem("certificate", response.data.certificate);
+              //  console.log(response.data.key)
+
+              //store button APIS data here button name download report and download certificate
 
               const docReport = {};
               const docCertificate = {};
@@ -108,8 +125,8 @@ function TECOngoing() {
               setDocType(docCertificate);
 
               const docStatus = {};
-              for (let i = 0; i < documentData.length; i++) {
-                const statusData = documentData[i];
+              for (let i = 0; i < bisdocumentData.length; i++) {
+                const statusData = bisdocumentData[i];
                 docStatus[statusData["document_type"]] = statusData["status"];
               }
               setDocStatus(docStatus);
@@ -150,44 +167,34 @@ function TECOngoing() {
       const columns = ["Step Name", "Start Date", "Status"];
       const rows = [
         [
-          "Portal Registration",
-          storedDocStep["1"] && storedDocStep["1"][2].slice(0, 10),
-          storedDocStep["1"] && storedDocStep["1"][0],
+          "BIS Portal Registration",
+          bisDocStep["1"] && bisDocStep["1"][2].slice(0, 10),
+          bisDocStep["1"] && bisDocStep["1"][0],
         ],
         [
-          "Initiation of Testing",
-          storedDocStep["2"] && storedDocStep["2"][2].slice(0, 10),
-          storedDocStep["2"] && storedDocStep["2"][0],
+          "Sample Testing",
+          bisDocStep["2"] && bisDocStep["2"][2].slice(0, 10),
+          bisDocStep["2"] && bisDocStep["2"][0],
         ],
         [
-          "AIR registration",
-          storedDocStep["3"] && storedDocStep["3"][2].slice(0, 10),
-          storedDocStep["3"] && storedDocStep["3"][0],
+          "Documentation",
+          bisDocStep["3"] && bisDocStep["3"][2].slice(0, 10),
+          bisDocStep["3"] && bisDocStep["3"][0],
         ],
         [
-          "Foreign OEM Registration",
-          storedDocStep["4"] && storedDocStep["4"][2].slice(0, 10),
-          storedDocStep["4"] && storedDocStep["4"][0],
+          "Filling Application",
+          bisDocStep["4"] && bisDocStep["4"][2].slice(0, 10),
+          bisDocStep["4"] && bisDocStep["4"][0],
         ],
         [
-          "BOM Submission ",
-          storedDocStep["5"] && storedDocStep["5"][2].slice(0, 10),
-          storedDocStep["5"] && storedDocStep["5"][0],
+          "Approval",
+          bisDocStep["5"] && bisDocStep["5"][2].slice(0, 10),
+          bisDocStep["5"] && bisDocStep["5"][0],
         ],
         [
-          "Application Payment",
-          storedDocStep["6"] && storedDocStep["6"][2].slice(0, 10),
-          storedDocStep["6"] && storedDocStep["6"][0],
-        ],
-        [
-          "Final Submission",
-          storedDocStep["7"] && storedDocStep["7"][2].slice(0, 10),
-          storedDocStep["7"] && storedDocStep["7"][0],
-        ],
-        [
-          "Issuance of certification",
-          storedDocStep["8"] && storedDocStep["8"][2].slice(0, 10),
-          storedDocStep["8"] && storedDocStep["8"][0],
+          "Issuance of certificate",
+          bisDocStep["6"] && bisDocStep["6"][2].slice(0, 10),
+          bisDocStep["6"] && bisDocStep["6"][0],
         ],
       ];
 
@@ -201,27 +208,15 @@ function TECOngoing() {
       //SECOND TABLE DATA
       const columns1 = ["Step Name", "Status"];
       const rows1 = [
-        [
-          "Authorized Signatory Letter",
-          docStatus["Authorized Signatory Letter"],
-        ],
-        ["MOU", docStatus["MOU"]],
-        ["AOA", docStatus["AOA"]],
-        ["OEM authorized to AIR", docStatus["OEM authorized to AIR"]],
-        ["MOA", docStatus["MOA"]],
-        [
-          "Certificate of Incorporation",
-          docStatus["Certificate of Incorporation"],
-        ],
-        [
-          "PAN Card of Applicant Company",
-          docStatus["PAN Card of Applicant Company"],
-        ],
-        ["Shareholding Pattern", docStatus["Shareholding Pattern"]],
-        [
-          "Board Resolution (If required)",
-          docStatus["Board Resolution (If required)"],
-        ],
+        ["Business License", docStatus["Business License"]],
+        ["ISO", docStatus["ISO"]],
+        ["Trademark Certificate", docStatus["Trademark Certificate"]],
+        ["AadharCard", docStatus["AadharCard"]],
+        ["PanCard", docStatus["PanCard"]],
+        ["GST", docStatus["GST"]],
+        ["Employee ID/Visiting Card", docStatus["Employee ID/Visiting Card"]],
+        ["MSME", docStatus["MSME"]],
+        ["Form 3 (AFFIDAVIT)", docStatus["Form 3 (AFFIDAVIT)"]],
       ];
 
       // Generate the table using jspdf-autotable
@@ -235,7 +230,7 @@ function TECOngoing() {
     };
   };
 
-  /*-------handleOptions download report-----*/
+  /*-------------------------------------------handleOptions download report----------------------------------*/
   const ReportOptionClick = (option) => {
     const reportKey = localStorage.getItem("report");
     console.log(reportKey);
@@ -254,21 +249,43 @@ function TECOngoing() {
     }
   };
 
+
+   //Auto close POPup after click Sumbit
+   const handlePopupClose = () => { 
+    // setButtonPopup(false);
+    setButtonPopup2(false);
+    // setButtonPopup1(false);
+   }
+
+
   return (
     <div className="bgchangecompleted">
       <div className="ongoing-applications">
-        <h1 className="ongo">TEC Completed Application:-</h1>
-        <div>
+        <h1 className="ongo">BIS Inclusion Application</h1>
+        <div className="ongoing-title">
           <h1 className="type">Compliance Type: {complianceid} </h1>
           <h1 className="appli">Application Number: {uniqueid} </h1>
           {/* <button className="clidown" onClick={handleDownload}>Download</button> */}
+        </div>
+
+        {/*----------------UPLOAD BUTTON CODE ------------*/}
+        {/* <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+          <BISUploadDoc  onClose={handlePopupClose} />
+        </Popup> */}
+
+        {/*-----------LAB TESTING JSX CODE IS HERE----------*/}
+
+        <div className="lab-testing-box">
+          <Popup trigger={buttonPopup2} setTrigger={setButtonPopup2}>
+            <BISrequsting onClose={handlePopupClose} />
+          </Popup>
         </div>
 
         {/*---------------Notification code Here------------------------*/}
 
         {/* <Popup trigger={buttonPopup11} setTrigger={setButtonPopup11}>
           <div>
-            <h3 className="notif">Notification</h3>
+            <h3 className='notif'>Notification</h3>
             <table>
               <thead>
                 <tr>
@@ -280,67 +297,65 @@ function TECOngoing() {
                 </tr>
               </thead>
               <tbody>
-                {notifiData.map((data, index) => (
-                  <tr key={index}>
-                    <td style={{ cursor: "default" }}>{index + 1}</td>
-                    <td style={{ cursor: "default" }}>{data.category}</td>
-                    <td style={{ cursor: "default" }}>{data.title}</td>
-                    <td>
-                      <a
-                        href={data.file}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{ color: "#55B600", fontWeight: "bold" }}
-                      >
-                        Download Document
-                      </a>
-                    </td>
-                    <td style={{ cursor: "default" }}>
-                      {formatDate(data.date)}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
+          {notifiData.map((data, index) => (
+            <tr key={index}>
+              <td style={{ cursor: 'default' }}>{index + 1}</td>
+              <td style={{ cursor: 'default' }}>{data.category}</td>
+              <td style={{ cursor: 'default' }}>{data.title}</td>
+              <td>
+              <a href={data.file} target="_blank" rel="noopener noreferrer" style={{ color: '#55B600', fontWeight: 'bold' }}>
+                 Download Document
+                </a>
+              </td>
+              <td style={{ cursor: 'default' }}>{formatDate(data.date)}</td>
+            </tr>
+          ))}
+        </tbody>
             </table>
+
           </div>
         </Popup> */}
 
         {/*------------------DOWNLOAD BUTTON CODE ----------------*/}
 
         <div className="header-btn1">
-          <button className="testreq-btn" disabled>
-          < FcDocument />
+          <button
+            className="testreq-btn"
+            onClick={() => setButtonPopup2(true)}
+            disabled={testingbtnkey === "Yes"}
+          >< FcDocument />
             Request Testing
           </button>
-          <button className="upload-btn" disabled>
+          {/* <button className="upload-btn" onClick={() => setButtonPopup(true)}>
           < FiUpload />
             Upload
           </button>
-          <button className="download-btn" disabled>
+          <button className="download-btn" onClick={() => setButtonPopup1(true)}>
           <FiDownload />
             Download
-          </button>
-          {/* <button className="button7" onClick={() => setButtonPopup11(true)}>
-            Notification
           </button> */}
+          {/* <button className='button7' onClick={() => setButtonPopup11(true)}>Notification</button> */}
         </div>
 
-        {/*--------Status Bar CODE IS HERE --------------------*/}
+        {/* <Popup trigger={buttonPopup1} setTrigger={setButtonPopup1}>
+          <BISDownloadDeoc onClose={handlePopupClose} />
+        </Popup> */}
+
+        {/*--------Ststus Bar CODE IS HERE --------------------*/}
         <div>
           <StatusBar
             totalResponses={totalResponses}
             completedResponses={completedResponses}
           />
         </div>
-
-{/* TEC STEPS HERE 8STEPS CODE */}
-        <TECSteps />
+        {/* BIS STEPS SET HER MESSAGE AND ALL */}
+        <BISInclusionSteps />
 
         {/* <h2 className="pdfstep-name"> Documents To Be Submitted</h2>
         <div className="pdffilesup">
           <div className="row1">
             <div className="col doc-col">
-              {docStatus["Authorized Signatory Letter"] === "Submitted" ? (
+              {docStatus["Business License"] === "Submitted" ? (
                 <>
                   {" "}
                   <Right size={24} className="pdfico" />{" "}
@@ -351,11 +366,11 @@ function TECOngoing() {
               <div>
                 <img src={file6png} alt="" className="pdfico1" />
               </div>
-              <h3 className="be">Authorized Signatory Letter</h3>
+              <h3 className="be">Business License</h3>
             </div>
 
             <div className="col doc-col">
-              {docStatus["MOU"] === "Submitted" ? (
+              {docStatus["ISO"] === "Submitted" ? (
                 <>
                   {" "}
                   <Right size={24} className="pdfico" />{" "}
@@ -366,11 +381,11 @@ function TECOngoing() {
               <div>
                 <img src={file6png} alt="" className="pdfico1" />
               </div>
-              <h3 className="be">MOU</h3>
+              <h3 className="be">ISO</h3>
             </div>
 
             <div className="col doc-col">
-              {docStatus["AOA"] === "Submitted" ? (
+              {docStatus["Trademark Certificate"] === "Submitted" ? (
                 <>
                   {" "}
                   <Right size={24} className="pdfico" />{" "}
@@ -381,11 +396,11 @@ function TECOngoing() {
               <div>
                 <img src={file6png} alt="" className="pdfico1" />
               </div>
-              <h3 className="be">AOA</h3>
+              <h3 className="be">Trademark Certificate</h3>
             </div>
 
             <div className="col doc-col">
-              {docStatus["OEM authorized to AIR"] === "Submitted" ? (
+              {docStatus["AadharCard"] === "Submitted" ? (
                 <>
                   {" "}
                   <Right size={24} className="pdfico" />{" "}
@@ -397,11 +412,11 @@ function TECOngoing() {
               <div>
                 <img src={file6png} alt="" className="pdfico1" />
               </div>
-              <h3 className="be">OEM Authorized to AIR</h3>
+              <h3 className="be">AadharCard</h3>
             </div>
 
             <div className="col doc-col">
-              {docStatus["MOA"] === "Submitted" ? (
+              {docStatus["PanCard"] === "Submitted" ? (
                 <>
                   {" "}
                   <Right size={24} className="pdfico" />{" "}
@@ -413,11 +428,11 @@ function TECOngoing() {
               <div>
                 <img src={file6png} alt="" className="pdfico1" />
               </div>
-              <h3 className="be">MOA</h3>
+              <h3 className="be">PanCard</h3>
             </div>
 
             <div className="col doc-col">
-              {docStatus["Certificate of Incorporation"] === "Submitted" ? (
+              {docStatus["GST"] === "Submitted" ? (
                 <>
                   {" "}
                   <Right size={24} className="pdfico" />{" "}
@@ -428,11 +443,11 @@ function TECOngoing() {
               <div>
                 <img src={file6png} alt="" className="pdfico1" />
               </div>
-              <h3 className="be">Certificate of Incorporation</h3>
+              <h3 className="be">GST</h3>
             </div>
 
             <div className="col doc-col">
-              {docStatus["PAN Card of Applicant Company"] === "Submitted" ? (
+              {docStatus["Employee ID/Visiting Card"] === "Submitted" ? (
                 <>
                   {" "}
                   <Right size={24} className="pdfico" />{" "}
@@ -443,11 +458,11 @@ function TECOngoing() {
               <div>
                 <img src={file6png} alt="" className="pdfico1" />
               </div>
-              <h3 className="be">PAN Card of Applicant Company</h3>
+              <h3 className="be">Employee ID/Visiting Card</h3>
             </div>
 
             <div className="col doc-col">
-              {docStatus["Shareholding Pattern"] === "Submitted" ? (
+              {docStatus["MSME"] === "Submitted" ? (
                 <>
                   {" "}
                   <Right size={24} className="pdfico" />{" "}
@@ -458,11 +473,11 @@ function TECOngoing() {
               <div>
                 <img src={file6png} alt="" className="pdfico1" />
               </div>
-              <h3 className="be">Shareholding Pattern</h3>
+              <h3 className="be">MSME</h3>
             </div>
 
             <div className="col doc-col">
-              {docStatus["Board Resolution (If required)"] === "Submitted" ? (
+              {docStatus["Form 3 (AFFIDAVIT)"] === "Submitted" ? (
                 <>
                   {" "}
                   <Right size={24} className="pdfico" />{" "}
@@ -473,7 +488,7 @@ function TECOngoing() {
               <div>
                 <img src={file6png} alt="" className="pdfico1" />
               </div>
-              <h3 className="be">Board Resolution</h3>
+              <h3 className="be">Form 3 (AFFIDAVIT)</h3>
             </div>
           </div>
         </div> */}
@@ -485,27 +500,37 @@ function TECOngoing() {
           </h1>
           <ul>
             {Object.entries(docReport).map(
-              ([documentType, fileDownloadLink]) => (
-                <li key={documentType}>
-                  <a
-                    href={fileDownloadLink}
-                    download={`${documentType}.${fileDownloadLink
-                      .split(".")
-                      .pop()}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <button className="button7">{documentType}</button>
-                  </a>
-                </li>
-              )
+              ([documentType, fileDownloadLink]) => {
+                const modifiedDocumentType = documentType.replace(
+                  /report_/i,
+                  ""
+                );
+                return (
+                  <li key={documentType}>
+                    <a
+                      href={fileDownloadLink}
+                      download={`${documentType}.${fileDownloadLink
+                        .split(".")
+                        .pop()}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <button className="button7">
+                        {modifiedDocumentType}
+                      </button>
+                    </a>
+                  </li>
+                );
+              }
             )}
           </ul>
         </Message>
+
         {/*------- LAST THREE BUTTON CODES HERE --------------------*/}
 
         <div className="dd-menu">
           <button className="reportbtn" onClick={handleDownloadreport}>
+          <FiDownload />
             Download Progress Report
           </button>
           <button
@@ -516,6 +541,7 @@ function TECOngoing() {
             }}
             disabled={localStorage.getItem("report") === "No"}
           >
+               <FiDownload />
             Download Test Report
           </button>
 
@@ -524,14 +550,15 @@ function TECOngoing() {
             onClick={CertificateOptionClick}
             disabled={localStorage.getItem("certificate") === "No"}
           >
+               <FiDownload />
             Download Certificate
           </button>
         </div>
 
-        <Chatbot />
+        <BISChatbot />
       </div>
     </div>
   );
 }
 
-export default TECOngoing;
+export default BISInclusion;

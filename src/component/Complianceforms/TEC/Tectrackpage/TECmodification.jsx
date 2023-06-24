@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-//import jsPDF from 'jspdf';
 import "../../../pages/stepper.css";
-// import Popup from "../../../pagesscrn4/popup/Popup";
+import Popup from "../../../popup/Popup";
 import Message from "../../../popup/Message";
 import axiosInstance from "../../../../interceptors/axios";
 import jsPDF from "jspdf";
@@ -14,51 +13,43 @@ import { FiUpload, FiDownload } from "react-icons/fi";
 import pdflogo from "../../../assets/icons/eikomp_logo.png";
 import StatusBar from "../../../Statusbar";
 import Chatbot from "../../../Chatbot/Chatbot";
+import TECRequstPerviousdatapage from "../TECRequstPerviousdatapage";
+import TecHandleUpload from "../TECUploadDoc";
+import TECDownloadDoc from "../TECDownloadDoc";
 import TECSteps from "../TECSteps";
 
-function TECOngoing() {
+function TECmodification() {
   const [docStatus, setDocStatus] = useState({});
   const [uniqueid, setUniqueid] = useState("");
   const [complianceid, setComplianceid] = useState("");
-  const idel = localStorage.getItem("ide");
-  const totalResponses = 8;
-  const completedResponses = localStorage.getItem("stepstatus");
+//   const [testingbtnkey, setTestingbtnkey] = useState("");
+  const [buttonPopup, setButtonPopup] = useState(false);
+  const [buttonPopup1, setButtonPopup1] = useState(false);
   const [docReport, setDocReport] = useState("");
   const [docType, setDocType] = useState("");
+  const totalResponses = 8;
+  const idel = localStorage.getItem("ide");
+  const completedResponses = localStorage.getItem("stepstatus");
   const storedDocStep = JSON.parse(localStorage.getItem("docStep"));
 
   //POPUP BUTTONS OF STEPS
   const [buttonPopupreport, setButtonPopupreport] = useState(false);
 
-  //Notification Button Const Here all---------------
-  // const [buttonPopup11, setButtonPopup11] = useState(false);
-  // const [notifiData, setNotifiData] = useState([]);
-
-  // //Notification Date Sequnce
-  // function formatDate(dateString) {
-  //   const date = new Date(dateString);
-  //   const day = date
-  //     .getDate()
-  //     .toString()
-  //     .padStart(2, "0");
-  //   const month = (date.getMonth() + 1).toString().padStart(2, "0");
-  //   const year = date.getFullYear().toString();
-  //   return `${day}/${month}/${year}`;
-  // }
+  //LAB TESTING FROM CONST HERE ---------------------------------------
+  const [buttonPopup2, setButtonPopup2] = useState(false);
 
   // API call to get document status
-
   useEffect(() => {
     const interval = setInterval(() => {
       axiosInstance.get(`application/compliance/${idel}/`);
-      console.log("Refreshing Data..!!");
+      // console.log('Refreshing Data..!!');
       axiosInstance
         .get(`application/compliance/${idel}/`)
         .then((response) => {
           const data = response.data.data;
           const compliance_id = data["compliance"];
           const application_id = data["application"];
-          // const request_for = data["request_for"];
+          const request_for = data["request_for"];
           console.log(compliance_id);
           console.log(application_id);
 
@@ -66,9 +57,16 @@ function TECOngoing() {
           // store local storage then show the values
           setUniqueid(data["uniqueid"]);
           setComplianceid(data["compliance_name"]);
+        //   setTestingbtnkey(data["testing"]);
+          console.log(data["testing"]);
 
           const compliancename = data["compliance_name"];
           localStorage.setItem("compliance_name", compliancename);
+
+          //Store Compliance ID and Application ID
+          localStorage.setItem("compliance_id", compliance_id);
+          localStorage.setItem("application_id", application_id);
+          localStorage.setItem("request_for", request_for);
 
           //Notification DATA SET HERE ----------------------------------------------------
           // const notificationData = data["notifications"];
@@ -100,6 +98,7 @@ function TECOngoing() {
 
                 if (documentType.includes("certificate_")) {
                   docCertificate[documentType] = fileType;
+                  console.log(docCertificate);
                 }
               });
 
@@ -112,6 +111,7 @@ function TECOngoing() {
                 const statusData = documentData[i];
                 docStatus[statusData["document_type"]] = statusData["status"];
               }
+
               setDocStatus(docStatus);
               console.log(docStatus);
             })
@@ -128,7 +128,6 @@ function TECOngoing() {
   }, [idel]);
 
   //Download Button Code handleOptionClick
-
   const handleDownloadreport = () => {
     // create a new instance of jsPDF
     const doc = new jsPDF();
@@ -235,12 +234,11 @@ function TECOngoing() {
     };
   };
 
-  /*-------handleOptions download report-----*/
+  /*-------------------------------------------handleOptions download report----------------------------------*/
   const ReportOptionClick = (option) => {
     const reportKey = localStorage.getItem("report");
     console.log(reportKey);
     if (reportKey === "Yes") {
-      // Create a popup window
     }
   };
 
@@ -254,18 +252,36 @@ function TECOngoing() {
     }
   };
 
+  //Auto close POPup after click Sumbit
+  const handlePopupClose = () => {
+    setButtonPopup(false);
+    // setButtonPopup1(false);
+    setButtonPopup2(false);
+  };
+
   return (
     <div className="bgchangecompleted">
       <div className="ongoing-applications">
-        <h1 className="ongo">TEC Completed Application:-</h1>
+        <h1 className="ongo">TEC Modification Application</h1>
         <div>
           <h1 className="type">Compliance Type: {complianceid} </h1>
           <h1 className="appli">Application Number: {uniqueid} </h1>
           {/* <button className="clidown" onClick={handleDownload}>Download</button> */}
         </div>
 
-        {/*---------------Notification code Here------------------------*/}
+        {/*----------------UPLOAD BUTTON CODE ------------*/}
+        <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+          <TecHandleUpload onClose={handlePopupClose} />
+        </Popup>
 
+        {/*-----------LAB TESTING JSX CODE IS HERE----------*/}
+        <div className="lab-testing-box">
+          <Popup trigger={buttonPopup2} setTrigger={setButtonPopup2}>
+            <TECRequstPerviousdatapage onClose={handlePopupClose} />
+          </Popup>
+        </div>
+
+        {/*---------------Notification code Here------------------------*/}
         {/* <Popup trigger={buttonPopup11} setTrigger={setButtonPopup11}>
           <div>
             <h3 className="notif">Notification</h3>
@@ -306,24 +322,29 @@ function TECOngoing() {
         </Popup> */}
 
         {/*------------------DOWNLOAD BUTTON CODE ----------------*/}
-
         <div className="header-btn1">
-          <button className="testreq-btn" disabled>
-          < FcDocument />
+          <button
+            className="testreq-btn"
+            onClick={() => setButtonPopup2(true)}
+          >< FcDocument />
             Request Testing
           </button>
-          <button className="upload-btn" disabled>
-          < FiUpload />
+          <button className="upload-btn" onClick={() => setButtonPopup(true)}>
+            < FiUpload />
             Upload
-          </button>
-          <button className="download-btn" disabled>
-          <FiDownload />
+          </button> 
+           <button className="download-btn" onClick={() => setButtonPopup1(true)}>
+            <FiDownload />
             Download
           </button>
           {/* <button className="button7" onClick={() => setButtonPopup11(true)}>
             Notification
           </button> */}
         </div>
+
+        <Popup trigger={buttonPopup1} setTrigger={setButtonPopup1}>
+          <TECDownloadDoc onClose={handlePopupClose} />
+        </Popup>
 
         {/*--------Status Bar CODE IS HERE --------------------*/}
         <div>
@@ -333,8 +354,9 @@ function TECOngoing() {
           />
         </div>
 
-{/* TEC STEPS HERE 8STEPS CODE */}
         <TECSteps />
+
+        {/*---------------------- PDF DATA WRITE OR WRONG CODE HERE ------------------------------------------------ */}
 
         {/* <h2 className="pdfstep-name"> Documents To Be Submitted</h2>
         <div className="pdffilesup">
@@ -534,4 +556,4 @@ function TECOngoing() {
   );
 }
 
-export default TECOngoing;
+export default TECmodification;

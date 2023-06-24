@@ -5,6 +5,8 @@ import axiosInstance from "../../../interceptors/axios";
 
 function BISPerviousData ({ onClose }) {
  
+  const [showPassword, setShowPassword] = useState(false);
+  const [hasBISReg, setHasBISReg] = useState(false);
     const autofillBisData = localStorage.getItem('bisdata');
 // console.log(localStorage.getItem('bisdata'))
     const history = useHistory();
@@ -57,6 +59,8 @@ function BISPerviousData ({ onClose }) {
     AIR_company_pan_card: "",
     AIR_signing_person: "",
     AIR_company_condition: "",
+    Username_BISPortal: "",
+    Password_BISPortal: "",
   });
 
   const applicationId = localStorage.getItem("applicationId");
@@ -145,6 +149,8 @@ function BISPerviousData ({ onClose }) {
         AIR_company_pan_card: bisformData.AIR_company_pan_card,
         AIR_signing_person: bisformData.AIR_signing_person,
         AIR_company_condition: bisformData.AIR_company_condition,
+        Username_BISPortal: bisformData.Username_BISPortal,
+        Password_BISPortal: bisformData.Password_BISPortal,
         compliance: localStorage.getItem("compliance_id"),
         request_for: "certification",
         application: applicationId,
@@ -197,12 +203,66 @@ function BISPerviousData ({ onClose }) {
     setBisformData({ ...bisformData, [e.target.name]: e.target.value });
   };
 
-
+  const handleBISprotelChange = (event) => {
+    const value = event.target.value === "yes";
+    setHasBISReg(value);
+    setBisformData((prevState) => ({
+      ...prevState,
+      Factory_signing_person: event.target.value,
+    }));
+  };
 
     return (
 
         <div style={{ height: "500px", overflow: "scroll" }}>
         <form onSubmit={handleSubmitBISauto}>
+
+        <label className="st8012">
+          Do you have BIS portal credentials?
+          <select
+            className="st804"
+            value={hasBISReg ? "yes" : "no"}
+            onChange={handleBISprotelChange}
+          >
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </label>
+
+        {hasBISReg && (
+          <div>
+            <label className="st8012">
+              Username:
+              <input
+                className="st805"
+                type="text"
+                name="Username_BISPortal"
+                value={bisformData.Username_BISPortal}
+                onChange={handleBISChange}
+              />
+              <div></div>
+            </label>
+
+            <label className="st8012">
+              Password:
+              <input
+                className="st805"
+                type={showPassword ? "text" : "password"}
+                name="Password_BISPortal"
+                value={bisformData.Password_BISPortal}
+                onChange={handleBISChange}
+              />
+              <div
+                className="password-toggle-icon"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? "🙈" : "👁️"}
+              </div>
+            </label>
+          </div>
+        )}
+
+
           <h1 className="h802"> Certification Process </h1>
           <label className="st8012">
             Manufacture:

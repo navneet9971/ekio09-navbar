@@ -23,21 +23,23 @@ h1.type {
 }
 
 h1.appli {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-end;
-  position: absolute;
-  top: 122px;
-  right: 941px;
-  font-size: 20px;
+  /* display: flex; */
+  /* align-items: flex-start; */
+  /* justify-content: flex-end; */
+  /* position: absolute; */
+  float: left;
+  /* top: 122px; */
+  /* right: 941px; */
+  font-size: 15px;
   font-weight: 100;
   /* color: #fff; */
+  transform: translate(41px, -49px);
 }
 
 .header-btn1 {
   display: flex;
   position: absolute;
-  top: 180px;
+  top: 140px;
   left: 70px;
   gap: 10px;
 }
@@ -177,10 +179,10 @@ p.enddate {
 }
 
 h1.ongo {
-  font-size: 20px;
+  font-size: 15px;
   /* color: #fff; */
   text-align: center;
-  transform: translate(-497px, -62px);
+  transform: translate(-516px, -62px);
 }
 
 button.clidown {
@@ -598,9 +600,10 @@ svg.ryt2 {
 } */
 
 p.status-percent {
-  left: 1117px;
+  /* left: 1117px; */
   position: absolute;
-  top: 124px;
+  transform: translate(407px, -105px);
+  /* top: 124px; */
   color: black;
   font-size: 20px;
 }
@@ -771,7 +774,7 @@ svg.thumb.track8 {
 
 svg.mainsvg2 {
   width: 10em;
-  height: 9em;
+  height: 7em;
   margin: 1em 1em;
   padding: 5px 26px;
   background-color: white;
@@ -861,8 +864,8 @@ p.dt10 {
 
 h2.steps-count {
   position: relative;
-  transform: translate(22px, 131px);
-  margin: -71px 23px 15px 16px;
+  transform: translate(15px, 154px);
+  margin: -128px 23px 15px 17px;
   text-align: center;
   /* text-decoration: underline; */
   font-size: 20px;
@@ -914,8 +917,9 @@ h2.steps-count {
 
 .testreq-btn{
 box-sizing: border-box;
-width: 217px;
-height: 48px;
+padding: 13px 17px;
+/* width: 217px;
+height: 48px; */
 background: #525DC8;
 border-radius: 5px;
 cursor: pointer;
@@ -924,8 +928,9 @@ border: none;
 
 .upload-btn{
 box-sizing: border-box;
-width: 134px;
-height: 48px;
+padding: 13px 17px;
+/* width: 134px;
+height: 48px; */
 background: rgba(244, 179, 9, 0.88);
 border-radius: 5px;
 cursor: pointer;
@@ -934,8 +939,9 @@ border: none;
 
 .download-btn{
 box-sizing: border-box;
-width: 165px;
-height: 48px;
+padding: 13px 17px;
+/* width: 165px;
+height: 48px; */
 background: #4BAE4F;
 border-radius: 5px;
 cursor: pointer;

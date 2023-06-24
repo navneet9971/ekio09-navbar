@@ -14,6 +14,7 @@ function BisInclusionForm() {
     application: applicationId,
     compliance: complianceId,
     request_for: "certification",
+    status: "Inclusion",
   });
 
   const handleRnumberRegisterSubmit = async (event) => {

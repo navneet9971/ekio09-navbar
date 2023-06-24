@@ -18,8 +18,10 @@ import ClientDashboard from "./component/pagesscrn4/client-dashbord/Clientdashbo
 import Navbar from "./component/pagesscrn4/Navbar/Navbar";
 import BISongoing from "./component/Complianceforms/BIS/Bistrackpages/BISoongoing";
 import BIScompleted from "./component/Complianceforms/BIS/Bistrackpages/BIScompleted";
+import BISinclusion from "./component/Complianceforms/BIS/Bistrackpages/BISInclusion";
 import TECOnGoing from "./component/Complianceforms/TEC/Tectrackpage/TECOngoing";
 import TECcompleted from "./component/Complianceforms/TEC/Tectrackpage/TECcompleted";
+import TECmodification from "./component/Complianceforms/TEC/Tectrackpage/TECmodification";
 import Bookmarks from "./component/pages/account-pages/Bookmarks";
 import Editprofile from "./component/pages/account-pages/Editprofile";
 import Notifaction from "./component/pages/account-pages/Notifaction";
@@ -36,6 +38,7 @@ import Dashboard from "./component/Dashboard/Dashboard";
 //import Chatbot from "./component/Chatbot/Chatbot";
 //import RestPassword from "./component/ForgetPassword";
 //import SupportAdmin from "./component/SupportAdmin";
+import TECtableModification from "./component/Complianceforms/TEC/TECtableModificationpage";
 
 
 const App = () => {
@@ -115,6 +118,10 @@ const App = () => {
               <BIScompleted />
             </Route>
 
+            <Route path="/navbar/BISInclusion/:id">
+              <BISinclusion/>
+            </Route>
+
             <Route path="/navbar/TECOngoing/:id"> 
               <TECOnGoing /> 
             </Route>
@@ -123,6 +130,14 @@ const App = () => {
               <TECcompleted /> 
             </Route>
 
+            <Route path="/navbar/TECmodification/:id">
+              <TECmodification /> 
+            </Route>
+
+
+            <Route path="/navbar/TECModification">
+              <TECtableModification  /> 
+            </Route>
 
             <Route path="/navbar/download">
               <Download />

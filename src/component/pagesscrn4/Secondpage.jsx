@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
-// import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import axiosInstance from "../../interceptors/axios";
 import Popup from "../popup/Popup";
 import "./Pages.css";
 import TECFreshForms from "../Complianceforms/TEC/TECfreashFroms";
 import TECPerviousData from "../Complianceforms/TEC/TECPerviousdata";
+import TECtableModification from "../Complianceforms/TEC/TECtableModificationpage";
 import BISFreshForms from "../Complianceforms/BIS/BISfreashform";
-import BisRNumberPopup from "../Complianceforms/BIS/BisRNumberPOPUP";
+// import BisRNumberPopup from "../Complianceforms/BIS/BisRNumberPOPUP";
 import BISPerviousData from "../Complianceforms/BIS/BISPerviousData";
-import BisInclusionForm from "../Complianceforms/BIS/BisInclusionPage";
+import BisInclusionForm from "../Complianceforms/BIS/BisInclusionDropDownPage";
 
 const Secondpage = () => {
-  // const history = useHistory();
+  const history = useHistory();
   const [complianceData, setComplianceData] = useState([]);
   const [applicationId, setNewApplicationId] = useState();
 
@@ -61,6 +62,8 @@ const Secondpage = () => {
   const [buttonpopupform1tec, setButtonpopupform1tec] = useState(false);
   const [buttonautofillpopuptec, setButtonautofillpopuptec] = useState(false);
   const [buttonautofilledtec, setButtonautofilledtec] = useState(false);
+  const [tecModificationpopup, settecModificationpopup] = useState(false);
+  const [tecModificationPagepopup, setTecModificationPagepopup ] = useState(false);
 
   //TEC PERVIOUS DATA FETCH APIS -----------------
   const fetchData = async () => {
@@ -97,8 +100,8 @@ const Secondpage = () => {
   /*----------------------BIS FUNCTION CODE START HERE----------------*/
 
   //Start BIS New Application Form const Code Here ------------------------------------------------
-  const [buttonRegisterbis, setButtonRegisterbis] = useState(false);
-  const [buttonRegisterPagebis, setButtonRegisterPagebis] = useState(false);
+  // const [buttonRegisterbis, setButtonRegisterbis] = useState(false);
+  // const [buttonRegisterPagebis, setButtonRegisterPagebis] = useState(false);
   const [buttonPopup6bis, setButtonPopup6bis] = useState(false);
   const [buttonautofilledbis, setButtonautofilledbis] = useState(false);
   const [buttonautofillpopupbis, setButtonautofillpopupbis] = useState(false);
@@ -151,16 +154,15 @@ const Secondpage = () => {
       if (complianceName === "TEC") {
         if (autofill === "Yes") {
           // Call the function for registering
-          setButtonautofilledtec(true);
+          settecModificationpopup(true);
           console.log(autofill);
         } else if (autofill === "No") {
           // Call the function for unregistering
-          setButtonpopupform1tec(true);
+          settecModificationpopup(true);
         }
       } else if (complianceName === "BIS") {
         // Fetch BIS data
         await fetchBISData();
-
         if (autofill === 'Yes') {
           // Call the function for registering
           // setButtonRegisterbis(true);
@@ -195,23 +197,17 @@ const Secondpage = () => {
   
 
   // HandleChange of Registerbutton---------
-  function handleRadioChange(event) {
-  const value = event.target.value;
+//   function handleRadioChange(event) {
+//   const value = event.target.value;
+//     // setButtonPopup6bis(true);
+//     if (autofillform === 'Yes' && value === 'autofillformbis') {
+//       setButtonautofilledbis(true);
+//     } else if (autofillform === 'No' && value === 'unregister') {
+//       setButtonPopup6bis(true);
+//     }
   
-  if (value === 'register') {
-    // Call the function for registering
-    setButtonRegisterPagebis(true);
-  } else if (value === 'unregister') {
-    // Call the function for unregistering
-    // setButtonPopup6bis(true);
-    if (autofillform === 'Yes') {
-      setButtonautofilledbis(true);
-    } else if (autofillform === 'No') {
-      setButtonPopup6bis(true);
-    }
-  }
-  setButtonRegisterbis(false)
-}
+//   setButtonRegisterbis(false)
+// }
 
 //handleinclusiondropdwn HERE-----------
 
@@ -221,18 +217,29 @@ const handleInclusionOptionChange = (event) => {
   if (event.target.value === 'inclusion') {
     setOpenBisInclusionForm(true);
   } else if (event.target.value === 'newform') {
-    setButtonRegisterbis(true); // Navigate to the new application page
+    setButtonautofilledbis(true); // Navigate to the new application page
   }
   setButtonBisInclusionPopup(false);
 };
 
+//TEC MODIFICATION CODE HERE
+const handleModificationTecOptionChange = (event) => {
+
+  // Perform any necessary actions based on the selected option immediately
+  if (event.target.value === 'modification') {
+    history.push('/navbar/TECModification'); // Redirect to the new application page
+  } else if (event.target.value === 'tecnewform') {
+    setButtonautofilledtec(true); // Navigate to the new application page
+  }
+  settecModificationpopup(false);
+};
 
   //Auto close POPup after click Sumbit
   const handlePopupClose = () => {
     setButtonpopupform1tec(false);
     setButtonautofillpopuptec(false);
     setButtonautofillpopupbis(false);
-    setButtonRegisterPagebis(false);
+    // setButtonRegisterPagebis(false);
     setButtonPopup6bis(false);
   };
 
@@ -292,6 +299,27 @@ const handleInclusionOptionChange = (event) => {
             </tbody>
           </table>
         </div>
+
+         {/* --------------TEC Modification POPUP CODE IS HERE----------------------------------  */}
+         <Popup trigger= {tecModificationpopup} setTrigger= { settecModificationpopup}> 
+         <h3 className="reg-popup-titlte" >
+         What do you want to do today?
+         </h3>
+         <select
+          onChange={handleModificationTecOptionChange}
+>
+  <option value="">Choose the Option:-</option> 
+  <option value="modification">Modification</option>
+  <option value="tecnewform">Start a new application</option>
+</select>
+         </Popup>
+
+        {/*----------- MODIFICATIONTABLEPAGE CODE HERE ------------------------------------------ */}
+        <Popup trigger= {tecModificationPagepopup} setTrigger={setTecModificationPagepopup}>
+        <div style={{ height: "500px", overflow: "scroll" }}>
+        <TECtableModification />
+        </div>
+        </Popup>
 
         {/*------------------------ TEC DYNAMIC FORM DATA POPUP CODE HERE------------------------ */}
         <Popup
@@ -409,7 +437,7 @@ const handleInclusionOptionChange = (event) => {
                     value="Noform1"
                     //checked={radioValue === 'Unregister'}
                     onChange={handleautofilled}
-                    onClick={() => setButtonRegisterbis(false)}
+                    // onClick={() => setButtonRegisterbis(false)}
                   />
                   NO
                 </label>
@@ -427,7 +455,7 @@ const handleInclusionOptionChange = (event) => {
         </Popup>
 
         {/*--------------BIS REGSITER AND UNREGISTER CODES HERE ------------------------------- */}
-        <Popup trigger={buttonRegisterbis} setTrigger={setButtonRegisterbis}>
+        {/* <Popup trigger={buttonRegisterbis} setTrigger={setButtonRegisterbis}>
           <h3 className="reg-popup-titlte">
           Have you registered yourself on the BIS portal?
           </h3>
@@ -438,7 +466,7 @@ const handleInclusionOptionChange = (event) => {
                   <input
                     className="bis-register"
                     type="checkbox"
-                    value="register"
+                    value="autofillformbis"
                     //checked={radioValue === 'Option 1'}
                     onChange={handleRadioChange}
                     onClick={() => setButtonRegisterbis(false)}
@@ -463,15 +491,15 @@ const handleInclusionOptionChange = (event) => {
               </div>
             </div>
           </div>
-        </Popup>
+        </Popup> */}
 
         {/*---------------- BIS REGISTER POPUP R number PAGE CODE HERE----------------------------------- */}
-        <Popup
+        {/* <Popup
           trigger={buttonRegisterPagebis}
           setTrigger={setButtonRegisterPagebis}
         >
           <BisRNumberPopup onClose={handlePopupClose} />
-        </Popup>
+        </Popup> */}
 
         {/*---------------START NEW APPLICATION BIS REQUIRED DETAILS POPUP IF USER SELECTED YES PAGE CODE HERE  ----------------------*/}
         <Popup trigger={buttonPopup6bis} setTrigger={setButtonPopup6bis}>
