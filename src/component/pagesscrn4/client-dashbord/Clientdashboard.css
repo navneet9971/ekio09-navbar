@@ -131,21 +131,23 @@ a.option-box h4 {
 } */
 
 .option-box:hover * {
-  transform: scale(1);
-  animation: shining 2s infinite;
+  font-size: 12px;
+  transform: scale(1.2); /* Change the value to adjust the zoom level */
 }
 
 @keyframes shining {
   0% {
-    opacity: 6;
+    opacity: 1;
   }
   50% {
     opacity: 0.5;
   }
   100% {
-    opacity: 6;
+    opacity: 1;
   }
 }
+
+
 
 
 .welcome .welcome-options .view-report {

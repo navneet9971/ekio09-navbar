@@ -4,15 +4,25 @@ import { NavLink, useHistory, useLocation } from "react-router-dom";
 import { FaBars, FaPowerOff } from "react-icons/fa";
 import $ from "jquery";
 import axiosInstance from 'axios';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBell } from "@fortawesome/free-solid-svg-icons";
 import know from "../../assets/login-page-icons/1.png";
+import NavbarNotification from "../../Notification/NavbarNotification";
+import Popup from "../../popup/Popup";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [notificationIcon, setNotificationIcon] =useState(false);
   const history = useHistory(); // initialize useHistory hook
   const { pathname } = useLocation();
 
   const handleToggle = () => {
     setOpen(!open);
+  };
+
+  const handleIconClick = (event) => {
+    event.preventDefault(); // Prevent default navigation behavior
+    setNotificationIcon(true);
   };
 
   function animation() {
@@ -152,6 +162,14 @@ const Navbar = () => {
             </NavLink>
           </li>
 
+          <li>
+          <NavLink className="nav-bell" to="" onClick={handleIconClick}>
+        <FontAwesomeIcon icon={faBell} size="2x" style={{ color: "green" }} className="animated-bell shake" 
+        />
+        <h3 style={{ fontSize: "12px", fontWeight: "100" , textDecoration: "none" }}>Notification</h3>
+      </NavLink>
+    </li>
+
         </ul>
       </div>
       
@@ -162,6 +180,10 @@ const Navbar = () => {
         <span className="span99"><FaPowerOff /></span>
       </button>
       {open && <div className="nav-layer" onClick={handleToggle} />}
+
+      <Popup trigger = {notificationIcon} setTrigger = {setNotificationIcon}>
+        < NavbarNotification />
+         </Popup>
     </nav>
   );
 };

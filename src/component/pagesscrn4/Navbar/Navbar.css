@@ -136,8 +136,14 @@ i {
 }
 
 a.nav-know {
-  transform: translate(850px, -6px);
+  transform: translate(756px, -6px);
 }
+
+a.nav-bell {
+  transform: translate(697px, -6px);
+  text-decoration: none;
+}
+
 
 
 @media (min-width: 992px) {

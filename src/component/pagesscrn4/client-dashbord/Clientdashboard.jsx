@@ -82,7 +82,7 @@ const ClientDashboard = () => {
         <div className="bg-clientdash">
           <div className="dash-titlebg">Your Compliance Dashboard</div>
 
-          <Row gutter={[16, 16]}>
+          <Row gutter={[0, 16]}>
   {WELCOME_OPTIONS.map((item, index) => (
     <Col xs={24} sm={15} md={6} key={index}>
       <Link to={item.route} className="option-box">
