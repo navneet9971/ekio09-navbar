@@ -231,7 +231,7 @@ return (
       <form onSubmit={handleSubmittecauto}>
        <div>
 <label className="st8012">
-  HardWare Number
+  Hardware Number
   <input
     className="st805"
     type="text"
@@ -242,7 +242,7 @@ return (
 </label>
 
 <label className="st8012">
-  SoftWare Number
+  Software Number
   <input
     className="st805"
     type="text"
@@ -264,15 +264,26 @@ return (
 </label>
 </div>
 
-<button className="btn808" type="submit">
-          Submit
-        </button>
+<div style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
+ 
+  <button className="reportbtn" style={{ margin: "10px", padding: "9px 14px" }} onClick={handleDownload}>
+    Download Manufacturing Details
+  </button>
+
+  <button className="btn808" type="submit" style={{ marginRight: "10px" }}>
+    Submit
+  </button>
+
+  <button className="reportbtn" style={{ margin: "10px", padding: "9px 14px" }} onClick={handleDownload}>
+    Interface Addition/Deletion
+  </button>
+</div>
+
 </form>
 
-<div>
-      <button className= "reportbtn" style={{ margin: "10px", padding: "9px 14px"}} onClick={handleDownload}>Download Manufacturing Details</button>
-      <button className= "reportbtn" style={{ margin: "10px", padding: "9px 14px"}} onClick={handleDownload}>Interface Addition/Deletion</button>
-    </div>
+
+ 
+  
 
 </div>
             {/* <TECModfiEditBtnPage /> */}

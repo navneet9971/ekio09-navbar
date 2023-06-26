@@ -924,6 +924,7 @@ background: #525DC8;
 border-radius: 5px;
 cursor: pointer;
 border: none;
+color: #fff;
 }
 
 .upload-btn{
@@ -935,6 +936,7 @@ background: rgba(244, 179, 9, 0.88);
 border-radius: 5px;
 cursor: pointer;
 border: none;
+color: #fff;
 }
 
 .download-btn{
@@ -946,6 +948,7 @@ background: #4BAE4F;
 border-radius: 5px;
 cursor: pointer;
 border: none;
+color: #fff;
 }
 /* Responsive Styles */
 

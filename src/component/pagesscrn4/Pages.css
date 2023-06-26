@@ -205,7 +205,6 @@ button.first-go {
   a {
     display: flex;
     align-items: center;
-    justify-content: center;
   }
   
   .video-banner {
@@ -1062,7 +1061,7 @@ button.bis-register:hover {
 
 button.btn808 {
   width: 140px;
-  margin: 13px 283px;
+  margin: 12px 0px;
   height: 41px;
   border-radius: 10px;
   color: #FF9025;

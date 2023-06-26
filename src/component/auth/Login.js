@@ -4,6 +4,7 @@ import "../assets/css/global.css";
 import axiosInstance from "../../interceptors/axios";
 import Popup from "../popup/Popup";
 import Swal from "sweetalert2";
+// import { Link } from "react-router-dom";
 import ForgetPassword from "./Forgetpassword";
 import loginimage from "../assets/login-page.png";
 import img1 from "../assets/login-page-icons/1.png";
@@ -12,10 +13,14 @@ import img3 from "../assets/login-page-icons/3.png";
 import img4 from "../assets/login-page-icons/4.png";
 import img5 from "../assets/login-page-icons/5.png";
 import img6 from "../assets/login-page-icons/6.png";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faBell } from "@fortawesome/free-solid-svg-icons";
+// import NavbarNotification from "../Notification/NavbarNotification";
 
 function Login() {
   const history = useHistory();
   const [linkPopup, setLinkPopup] = useState(false);
+  // const [notificationIcon, setNotificationIcon] =useState(false);
   const initialFormData = Object.freeze({
     username: "",
     password: "",
@@ -23,10 +28,15 @@ function Login() {
   const [formData, updateFormData] = useState(initialFormData);
   const [showPassword, setShowPassword] = useState(false);
 
+  // const handleNotificationClick = () => {
+  //   setNotificationIcon(true);
+  // };
+
   const SIDE_SLIDE = [
     {
       thumb: <img src={img1} alt="" />,
       title: "Know Your Compliance",
+      route: "/navbar/firstcompliance"
     },
     {
       thumb: <img src={img2} alt="" />,
@@ -36,6 +46,18 @@ function Login() {
       thumb: <img src={img3} alt="" />,
       title: "Analytics",
     },
+    // {
+    //   thumb: (
+    //     <FontAwesomeIcon
+    //       icon={faBell}
+    //       size="2x"
+    //       style={{ color: "green" }}
+    //       className="animated-bell shake"
+    //       onClick={handleNotificationClick} // Update this line
+    //     />
+    //   ),
+    //   title: "Notification",
+    // },
     {
       thumb: <img src={img4} alt="" />,
       title: "Lab Testing",
@@ -46,7 +68,7 @@ function Login() {
     },
     {
       thumb: <img src={img6} alt="" />,
-      title: "Logistics Support",
+      title: "Logistic",
     },
   ];
 
@@ -185,15 +207,19 @@ function Login() {
         <div class="line"></div>
         </div>
 
-        <div className="side-bar">
+        <div className="side-bar" style={{ display: "flex", flexDirection: "column" }}>
   <h2 style={{ fontSize: "20px", margin: "33px -30px" }}>FEATURED APPS</h2>
   {SIDE_SLIDE.map((item, index) => (
-    <div key={index} style={{ display: "flex", alignItems: "center", marginBottom: "18px" }}>
+    <div to={item.route} key={index} className={item.className} style={{ display: "flex", alignItems: "center",  marginBottom: "18px" }}>
       {item.thumb}
       <p style={{ marginLeft: "15px" }}>{item.title}</p>
     </div>
   ))}
 </div>
+
+{/* <Popup trigger = {notificationIcon} setTrigger = {setNotificationIcon}>
+        < NavbarNotification />
+         </Popup> */}
 
     </div>
   );

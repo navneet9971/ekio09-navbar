@@ -163,10 +163,10 @@ const Navbar = () => {
           </li>
 
           <li>
-          <NavLink className="nav-bell" to="" onClick={handleIconClick}>
+          <NavLink className="nav-bell" to="" onClick={handleIconClick} style={{textDecoration: "none"}}>
         <FontAwesomeIcon icon={faBell} size="2x" style={{ color: "green" }} className="animated-bell shake" 
         />
-        <h3 style={{ fontSize: "12px", fontWeight: "100" , textDecoration: "none" }}>Notification</h3>
+        <h3 style={{ fontSize: "12px", fontWeight: "100"}}>Notification</h3>
       </NavLink>
     </li>
 
