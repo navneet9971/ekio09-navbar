@@ -11,6 +11,7 @@ import { ReactComponent as Thum8png } from "../../assets/track-icon/certif.svg";
 import { ReactComponent as Wrong } from "../../assets/trckpg-rb/wrong.svg";
 import { ReactComponent as Right } from "../../assets/trckpg-rb/right.svg";
 import axiosInstance from "../../../interceptors/axios";
+import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 
 function TECSteps() {
   const [buttonPopup3, setButtonPopup3] = useState(false);
@@ -22,6 +23,7 @@ function TECSteps() {
   const [buttonPopup9, setButtonPopup9] = useState(false);
   const [buttonPopup10, setButtonPopup10] = useState(false);
   const [docStep, setdocStep] = useState({});
+  const [showRemainingSteps, setShowRemainingSteps] = useState(false);
 
   localStorage.setItem("docStep", JSON.stringify(docStep));
 
@@ -66,6 +68,10 @@ function TECSteps() {
       clearInterval(interval);
     };
   }, []);
+
+  const handleButtonClick = () => {
+    setShowRemainingSteps(!showRemainingSteps);
+  };
 
   return (
     <div>
@@ -176,6 +182,8 @@ function TECSteps() {
           </h2>
         </Message>
 
+{showRemainingSteps && (
+  <>
         <Thum7png className="mainsvg2" />
         {docStep["7"] && docStep["7"][0] === "Completed" ? (
           <Right className="mainsvg3" onClick={() => setButtonPopup9(true)} />
@@ -198,6 +206,17 @@ function TECSteps() {
         ) : (
           <Wrong className="mainsvg3" onClick={() => setButtonPopup10(true)} />
         )}
+          </>
+)}
+
+<div>
+      {showRemainingSteps ? (
+        <AiFillCaretUp onClick={handleButtonClick} />
+      ) : (
+        <AiFillCaretDown onClick={handleButtonClick} />
+      )}
+    </div>
+   
       </div>
     </div>
   );

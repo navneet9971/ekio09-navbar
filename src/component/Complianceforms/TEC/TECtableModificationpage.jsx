@@ -61,7 +61,7 @@ function TECtableModification() {
     Hardware_number: "",
     Software_number: "",
     Associate_models:"",
-    status : "modification",
+    status : "Modification",
   })
 
   useEffect(() => {
@@ -80,7 +80,7 @@ const handleSubmittecauto = (event) => {
         Hardware_number: tecformData.Hardware_number,
         Software_number: tecformData.Software_number,
         Associate_models: tecformData.Associate_models,
-        status: "modification",
+        status: "Modification",
         compliance: localStorage.getItem("compliance_id"),
       request_for: "certification",
       application: localStorage.getItem("applicationId"),

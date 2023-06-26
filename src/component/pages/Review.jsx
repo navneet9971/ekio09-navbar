@@ -85,7 +85,7 @@ function Review() {
       ? "completed"
       : selectedItem.status === "Inclusion"
       ? "Inclusion"
-      : "modification"
+      : "Modification"
 
   
     if (selectedItem.compliance_name === "BIS") {
@@ -101,7 +101,7 @@ function Review() {
         history.push(`/navbar/TECOngoing/id=${id}`);
       } else if (selectedStatus === "completed") {
         history.push(`/navbar/TECcompleted/id=${id}`);
-      }else if (selectedStatus === "modification"){
+      }else if (selectedStatus === "Modification"){
         history.push(`/navbar/TECmodification/id=${id}`)
       }
     }
@@ -274,6 +274,8 @@ function Review() {
     <option value="All">All</option>
     <option value="Ongoing">Ongoing</option>
     <option value="Completed">Completed</option>
+    <option value="Inclusion">Inclusion</option>
+    <option value="Modification">Modification</option>
   </select>
                 </th>
 
@@ -290,7 +292,11 @@ function Review() {
                     (selectedStatus === "Ongoing" &&
                       data.status !== "Ongoing") ||
                     (selectedStatus === "Completed" &&
-                      data.status !== "Completed")
+                      data.status !== "Completed")||
+                      (selectedStatus === "Inclusion" &&
+                      data.status !== "Inclusion")||
+                      (selectedStatus === "Modification" &&
+                      data.status !== "Modification")
                   ) {
                     return false; // Skip this row
                   }
