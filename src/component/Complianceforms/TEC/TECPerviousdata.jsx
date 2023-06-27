@@ -5,7 +5,7 @@ import axiosInstance from "../../../interceptors/axios";
 
 function TECPerviousData({ onClose }) {
   const applicationId = localStorage.getItem("applicationId");
-  const autofillTecData = localStorage.getItem("tecdata");
+  const autofillTecData = localStorage.getItem("tecdata");  //this setitem show on Secondpage.jsx
   const history = useHistory();
 
   const [tecformData, setTecformData] = useState({

@@ -10,6 +10,9 @@ import BISFreshForms from "../Complianceforms/BIS/BISfreashform";
 // import BisRNumberPopup from "../Complianceforms/BIS/BisRNumberPOPUP";
 import BISPerviousData from "../Complianceforms/BIS/BISPerviousData";
 import BisInclusionForm from "../Complianceforms/BIS/BisInclusionDropDownPage";
+import WPCFormComponent from "../Complianceforms/WPC/WPCfreashForms";
+import WPCPerviousData from "../Complianceforms/WPC/WPCPerviousDataform";
+
 
 const Secondpage = () => {
   const history = useHistory();
@@ -173,6 +176,16 @@ const Secondpage = () => {
           // setButtonRegisterbis(true); 
           setButtonBisInclusionPopup(true)// Change with bis popupautofill form
         }
+      } else if (complianceName === "WPC") {
+        // Fetch WPC DATA
+        await fetchWPCData();
+        if (autofill === 'Yes') {
+          //call the function for registering
+          setButtonautofilledwpc(true);
+        } else if (autofill === 'No') {
+          //call the function for unregistering
+          setWpcPopupButton(true);
+        }
       }
     } catch (error) {
       console.error(error);
@@ -241,9 +254,49 @@ const handleModificationTecOptionChange = (event) => {
     setButtonautofillpopupbis(false);
     // setButtonRegisterPagebis(false);
     setButtonPopup6bis(false);
+    setWpcPopupButton(false);
+    setWpcPopupButton(false);
   };
 
-  //Handle signingpersonchange Dropdown Option ------------
+//WPC FORM COMPONENT STARTS HERE----------------------------------
+
+const [wpcPopupButton, setWpcPopupButton] = useState("");
+const [buttonautofilledwpc, setButtonautofilledwpc] = useState("");
+const [wpcperviousdataPop, setWpcperviousdataPop] = useState("")
+
+  //WPC PERVIOUS DATA FETCH APIS HERE--------------
+  const fetchWPCData = async () => {
+    try {
+      const response = await axiosInstance.get(
+        `application/inclusive/?compliance=${localStorage.getItem(
+          "compliance_name"
+        )}`
+      );
+      const wpcdata = response.data["fields"];
+      console.log(wpcdata);
+      localStorage.setItem("wpcdata", JSON.stringify(wpcdata));
+      // setBisformData({ ...bisformData, ...bisdata });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
+   //WPC DYNAMIC POPUP CHOOSE OPTION YES OR NO  function handle here-------------------------
+   function handletableautoformWPC(event) {
+    const value = event.target.value;
+
+    if (autofillform === "Yes" && value === "Yesautofilledwpc") {
+      // Call the function for registering
+      setWpcperviousdataPop(true);
+      console.log(autofillform);
+    } else if (value === "Noform1wpc") {
+      // Call the function for unregistering
+      setWpcPopupButton(true);
+    }
+    setButtonautofilledwpc(false);
+  }
+
 
   return (
     <div className="table-bgsconpage">
@@ -505,6 +558,68 @@ const handleModificationTecOptionChange = (event) => {
         <Popup trigger={buttonPopup6bis} setTrigger={setButtonPopup6bis}>
           <BISFreshForms  onClose={handlePopupClose}/>
         </Popup>
+
+
+             {/*------------------------ WPC DYNAMIC FORM DATA POPUP CODE HERE------------------------ */}
+             <Popup
+          trigger={buttonautofilledwpc}
+          setTrigger={setButtonautofilledwpc}
+        >
+         <h3 className="reg-popup-titlte">
+  We have got your company details saved with us. <br /> Do you want to use the saved data and save time?
+</h3>
+          <div className="checkbox-container">
+            <div className="bis-register">
+              <div>
+                <label className="pop-opt">
+                  <input
+                    className="bis-register"
+                    type="checkbox"
+                    value="Yesautofilledwpc"
+                    //checked={radioValue === 'Option 1'}
+                    onChange={handletableautoformWPC}
+                    onClick={() => setWpcperviousdataPop(false)}
+                  />
+                  YES
+                </label>
+              </div>
+            </div>
+
+            <div className="bis-register">
+              <div>
+              <label className="pop-opt">
+                  <input
+                    className="bis-register"
+                    type="checkbox"
+                    value="Noform1wpc"
+                    //checked={radioValue === 'Unregister'}
+                    onChange={handletableautoformWPC}
+                    onClick={() => setWpcperviousdataPop(false)}
+                  />
+                  NO
+                </label>
+              </div>
+            </div>
+          </div>
+        </Popup>
+
+
+     {/* -----------------------------WPC PERVIOUS DATA FORM NO 1 ----------------------- */}
+
+   <Popup trigger={wpcperviousdataPop} setTrigger={setWpcperviousdataPop}>
+          <WPCPerviousData onClose={handlePopupClose} />
+   </Popup>
+   
+
+        {/* ------------------------WPC START NEW APPLICATION HERE------------------------------------------------------ */}
+
+        <Popup trigger={wpcPopupButton} setTrigger={setWpcPopupButton}>
+        <div style={{ height: "500px", overflow: "scroll" }}>
+          <WPCFormComponent onClose={handlePopupClose} />
+          </div>
+        </Popup>
+
+
       </div>
     </div>
   );

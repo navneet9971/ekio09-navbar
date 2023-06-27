@@ -104,8 +104,14 @@ function Review() {
       }else if (selectedStatus === "Modification"){
         history.push(`/navbar/TECmodification/id=${id}`)
       }
-    }
-  };
+    }else if (selectedItem.compliance_name === "WPC") {
+      if (selectedStatus === "Ongoing") {
+        history.push(`/navbar/WPCOngoing/id=${id}`);
+      } else if (selectedStatus === "completed") {
+        history.push(`/navbar/WPCcompleted/id=${id}`);
+      }
+  }
+};
   
   
 

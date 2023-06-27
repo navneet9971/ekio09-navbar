@@ -353,6 +353,7 @@ label.st8012 > input.stup806 {
 label.st8012 {
   border: 1px solid black;
   padding: 5px;
+  gap: 20px;
   margin: 0px;
 }
 

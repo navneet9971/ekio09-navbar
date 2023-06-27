@@ -16,12 +16,19 @@ import Secondpage from "./component/pagesscrn4/Secondpage";
 import Fourthpage from "./component/pagesscrn4/Complianceinformation/TECcompliance";
 import ClientDashboard from "./component/pagesscrn4/client-dashbord/Clientdashboard";
 import Navbar from "./component/pagesscrn4/Navbar/Navbar";
+
+// COMPLIANCE IMPORTS HERE--------------------
+
 import BISongoing from "./component/Complianceforms/BIS/Bistrackpages/BISoongoing";
 import BIScompleted from "./component/Complianceforms/BIS/Bistrackpages/BIScompleted";
 import BISinclusion from "./component/Complianceforms/BIS/Bistrackpages/BISInclusion";
 import TECOnGoing from "./component/Complianceforms/TEC/Tectrackpage/TECOngoing";
 import TECcompleted from "./component/Complianceforms/TEC/Tectrackpage/TECcompleted";
 import TECmodification from "./component/Complianceforms/TEC/Tectrackpage/TECmodification";
+import WPCOngoing from "./component/Complianceforms/WPC/WPCTrackPages/WPCOngoing";
+import WPCcompleted from "./component/Complianceforms/WPC/WPCTrackPages/WPCcompleted";
+// -------------END Compliance Import ------------
+
 import Bookmarks from "./component/pages/account-pages/Bookmarks";
 import Editprofile from "./component/pages/account-pages/Editprofile";
 import Notifaction from "./component/pages/account-pages/Notifaction";
@@ -137,6 +144,14 @@ const App = () => {
 
             <Route path="/navbar/TECModification">
               <TECtableModification  /> 
+            </Route>
+
+            <Route path="/navbar/WPCOngoing/:id"> 
+              <WPCOngoing /> 
+            </Route>
+
+            <Route path="/navbar/WPCcompleted/:id"> 
+              <WPCcompleted /> 
             </Route>
 
             <Route path="/navbar/download">
