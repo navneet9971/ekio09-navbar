@@ -68,6 +68,8 @@ const Secondpage = () => {
   const [tecModificationpopup, settecModificationpopup] = useState(false);
   const [tecModificationPagepopup, setTecModificationPagepopup ] = useState(false);
 
+  const [tecautofillform, setTecautofillform] = useState(null);
+
   //TEC PERVIOUS DATA FETCH APIS -----------------
   const fetchData = async () => {
     try {
@@ -77,9 +79,11 @@ const Secondpage = () => {
         )}`
       );
       const tecdata = response.data["fields"];
-      console.log(tecdata);
+      console.log(response.data["fields"]);
       localStorage.setItem("tecdata", JSON.stringify(tecdata));
       // setTecformData({ ...tecformData, ...tecdata });
+      const tecautofill = response.data["key"];
+      setTecautofillform(tecautofill);
     } catch (error) {
       console.error(error);
     }
@@ -89,7 +93,7 @@ const Secondpage = () => {
   function handletableautoform(event) {
     const value = event.target.value;
 
-    if (autofillform === "Yes" && value === "Yesautofilledtec") {
+    if (tecautofillform === "Yes" && value === "Yesautofilledtec") {
       // Call the function for registering
       setButtonautofillpopuptec(true);
       console.log(autofillform);
@@ -125,6 +129,7 @@ const Secondpage = () => {
       const bisdata = response.data["fields"];
       console.log(bisdata);
       localStorage.setItem("bisdata", JSON.stringify(bisdata));
+     
       // setBisformData({ ...bisformData, ...bisdata });
     } catch (error) {
       console.error(error);
@@ -155,14 +160,16 @@ const Secondpage = () => {
       setAutofillform(autofill);
 
       if (complianceName === "TEC") {
-        if (autofill === "Yes") {
+        if (tecautofillform === "Yes") {
           // Call the function for registering
           settecModificationpopup(true);
-          console.log(autofill);
-        } else if (autofill === "No") {
+          console.log(tecautofillform);
+
+        } else if (tecautofillform === "No") {
           // Call the function for unregistering
-          settecModificationpopup(true);
+          setButtonpopupform1tec(true);
         }
+
       } else if (complianceName === "BIS") {
         // Fetch BIS data
         await fetchBISData();
@@ -225,15 +232,21 @@ const Secondpage = () => {
 //handleinclusiondropdwn HERE-----------
 
 const handleInclusionOptionChange = (event) => {
+  const value = event.target.value;
 
   // Perform any necessary actions based on the selected option immediately
-  if (event.target.value === 'inclusion') {
+  if (value === 'inclusion') {
     setOpenBisInclusionForm(true);
-  } else if (event.target.value === 'newform') {
-    setButtonautofilledbis(true); // Navigate to the new application page
+  } else {
+    if (autofillform === "Yes" && value === 'newform') {
+      setButtonautofilledbis(true); // Navigate to the new application page
+    } else {
+      setButtonPopup6bis(true);
+    }
   }
   setButtonBisInclusionPopup(false);
 };
+
 
 //TEC MODIFICATION CODE HERE
 const handleModificationTecOptionChange = (event) => {
@@ -241,9 +254,13 @@ const handleModificationTecOptionChange = (event) => {
   // Perform any necessary actions based on the selected option immediately
   if (event.target.value === 'modification') {
     history.push('/navbar/TECModification'); // Redirect to the new application page
-  } else if (event.target.value === 'tecnewform') {
+  } else{
+      if( tecautofillform === "Yes" && event.target.value === 'tecnewform') {
     setButtonautofilledtec(true); // Navigate to the new application page
+  }else {
+    setButtonpopupform1tec(true);
   }
+}
   settecModificationpopup(false);
 };
 

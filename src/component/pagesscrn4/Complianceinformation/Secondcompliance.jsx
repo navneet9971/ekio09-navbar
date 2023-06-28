@@ -50,11 +50,11 @@ const Secondpage = () => {
     localStorage.setItem("compliance_id", complianceId);
     if (complianceName === "TEC") {
       history.push(`/navbar/TECcompliance`);
-    } else if (complianceName === "WPS") {
-      history.push(`/navbar/compliance/WPS`);
+    } else if (complianceName === "WPC") {
+      history.push(`/navbar/WPCcompliance`);
     } else if (complianceName === "BIS") {
       history.push(`/navbar/BIScompliance`);
-    } else {
+    } else  {
       // handle other compliance names
     }
   };

@@ -203,8 +203,8 @@ function Login() {
       </div>
       <img src={loginimage} alt="" className="login-img" />
 
-      <div class="container-line">
-        <div class="line"></div>
+      <div className="container-line">
+        <div className="line"></div>
         </div>
 
         <div className="side-bar" style={{ display: "flex", flexDirection: "column" }}>

@@ -1202,3 +1202,15 @@ button.btn809:hover{
     transform: translateX(0) rotate(0);
   }
 }
+
+.compliance-redirct {
+  /* margin: 8px 20px; */
+  transform: translate(184px, 20px);
+  background-color: #082a71;
+  color: #fff;
+  border-radius: 7px;
+  padding: 8px 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}

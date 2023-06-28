@@ -8,6 +8,8 @@ function TECPerviousData({ onClose }) {
   const autofillTecData = localStorage.getItem("tecdata");  //this setitem show on Secondpage.jsx
   const history = useHistory();
 
+  // console.log(localStorage.getItem("tecdata"));
+
   const [tecformData, setTecformData] = useState({
     Applicant_company_CIN: "",
     Applicant_company_address: "",
@@ -27,9 +29,6 @@ function TECPerviousData({ onClose }) {
     Foreign_manufacturer_contact_number: "",
     Foreign_manufacturer_emailid: "",
     Types_of_company: "",
-    application: "",
-    compliance: "compliance_id",
-    request_for: "certification",
   });
 
   useEffect(() => {
@@ -74,6 +73,9 @@ function TECPerviousData({ onClose }) {
       request_for: "certification",
       application: applicationId,
     };
+
+    setTecformData(updatedTecformData);
+
     console.log(updatedTecformData);
     axiosInstance
       .post("/application/compliance/", updatedTecformData, {

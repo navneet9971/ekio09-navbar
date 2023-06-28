@@ -25,6 +25,8 @@ function BISrequsting({onClose}) {
     event.preventDefault();
 
     const formData = new FormData();
+    // formData.append("application",  localStorage.getItem("newApplicationId"));
+    // formData.append("compliance",   localStorage.getItem("compliance_id"));
     formData.append("request_for", "lab_testing");
     formData.append("Testing_type", Testing_type);
     formData.append("Product_name", Product_name);
@@ -35,7 +37,6 @@ function BISrequsting({onClose}) {
     formData.append("Lab_name", Lab_name);
     formData.append("Quantity", Quantity);
     formData.append("IS_standard", IS_standard);
-
     // Add file to form data
     if (cdfccl) {
       for (let i = 0; i < cdfccl.length; i++) {

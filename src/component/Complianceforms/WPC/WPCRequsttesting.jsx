@@ -30,7 +30,7 @@ function WPCLabTesting({ onClose }) {
     setTestingOperatingChannelwidths,
   ] = useState("");
 
-  const [testingRadioButton, setTestingRadioButton] = useState([]);
+  // const [testingRadioButton, setTestingRadioButton] = useState([]);
 
   // LAB TESTING FORM DATA HANDLE HERE WITH APIS ------------------------------
   const handleSubmit = (event) => {
@@ -62,7 +62,7 @@ function WPCLabTesting({ onClose }) {
       "Technical_support_person_contact_number",
       testingOperatingChannelwidths
     );
-    formData.append("Radiobutton", testingRadioButton.join(","));
+    // formData.append("Radiobutton", testingRadioButton.join(","));
 
     console.log("Application ID:", localStorage.getItem("newApplicationId"));
 
@@ -106,22 +106,10 @@ function WPCLabTesting({ onClose }) {
       });
   };
 
-  const handleRadioButtonChange = (event) => {
-    const selectedOptions = [...testingRadioButton];
-    if (event.target.checked) {
-      selectedOptions.push(event.target.value);
-    } else {
-      const index = selectedOptions.indexOf(event.target.value);
-      if (index !== -1) {
-        selectedOptions.splice(index, 1);
-      }
-    }
-    setTestingRadioButton(selectedOptions);
-  };
-
   return (
     <div style={{ height: "500px", overflow: "scroll" }}>
       <h1 className="h801">Testing Information Required</h1>
+      <h1 className="h801" style={{fontSize: "14px"}}>If you already have previous Test Reports, please go and Upload them through the Upload button. You don't need to fill out the Request Testing Form.</h1>
       <form onSubmit={handleSubmit}>
         <label className="st8012">
           Applicant Name:
@@ -268,75 +256,6 @@ function WPCLabTesting({ onClose }) {
             }
           />
         </label>
-
-
-        <label className="st8012">
-  Packet Type:
-  <div className="checkbox-container">
-    <div className="column">
-      <label>
-        <input
-          type="checkbox"
-          value="2.4GHz BLE"
-          checked={testingRadioButton.includes("Option 1")}
-          onChange={handleRadioButtonChange}
-        />
-        <h1 className="wbctest">2.4GHz BLE</h1>
-      </label>
-      <label>
-        <input
-          type="checkbox"
-          value="2.4GHz Bluetooth"
-          checked={testingRadioButton.includes("Option 2")}
-          onChange={handleRadioButtonChange}
-        />
-        <h1 className="wbctest">2.4GHz Bluetooth</h1>
-      </label>
-    </div>
-    <div className="column">
-      <label>
-        <input
-          type="checkbox"
-          value="2.4GHz WIFI"
-          checked={testingRadioButton.includes("Option 3")}
-          onChange={handleRadioButtonChange}
-        />
-        <h1 className="wbctest">2.4GHz WIFI</h1>
-      </label>
-      <label>
-        <input
-          type="checkbox"
-          value="5 GHz WIFI"
-          checked={testingRadioButton.includes("Option 4")}
-          onChange={handleRadioButtonChange}
-        />
-        <h1 className="wbctest">5 GHz WIFI</h1>
-      </label>
-    </div>
-    <div className="column">
-      <label>
-        <input
-          type="checkbox"
-          value="5.8 GHz WIFI"
-          checked={testingRadioButton.includes("Option 4")}
-          onChange={handleRadioButtonChange}
-        />
-        <h1 className="wbctest">5.8 GHz WIFI</h1>
-      </label>
-      <label>
-        <input
-          type="checkbox"
-          value="SRD"
-          checked={testingRadioButton.includes("Option 4")}
-          onChange={handleRadioButtonChange}
-        />
-        <h1 className="wbctest">SRD</h1>
-      </label>
-    </div>
-  </div>
-</label>
-
-
 
    
 

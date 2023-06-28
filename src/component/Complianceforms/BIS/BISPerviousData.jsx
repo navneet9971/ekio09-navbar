@@ -7,7 +7,7 @@ function BISPerviousData ({ onClose }) {
  
   const [showPassword, setShowPassword] = useState(false);
   const [hasBISReg, setHasBISReg] = useState(false);
-    const autofillBisData = localStorage.getItem('bisdata');
+  const autofillBisData = localStorage.getItem('bisdata');
 // console.log(localStorage.getItem('bisdata'))
     const history = useHistory();
 

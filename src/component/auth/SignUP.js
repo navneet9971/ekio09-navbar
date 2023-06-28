@@ -18,7 +18,9 @@ function SignUp() {
     organization_name: "",
     mobile: "",
     industry: "", // Add the industry field to the initial form data
+    user_type: "",
   };
+  console.log(initialFormData)
   const [formData, setFormData] = useState(initialFormData);
   const [options, setOptions] = useState([]);
 
@@ -163,7 +165,7 @@ function SignUp() {
                 required
               />
             </Col>
-            <Col xs={24} md={24}>
+            <Col xs={24} md={12}>
               {/* <label className="signup-title">Company Name</label> */}
               <input
                 type="text"
@@ -174,6 +176,22 @@ function SignUp() {
                 required
               />
             </Col>
+
+            <Col xs={24} md={12}>
+              {/* <label className="signup-title">Company Name</label> */}
+              
+          <select
+            name="user_type"
+            value={formData.user_type}
+            onChange={handleChange}
+          >
+            <option value="corporate">Corporate</option>
+            <option value="individual_consultant">Individual Consultant</option>
+            <option value="lab">Labs</option>
+            <option value="student">Student</option>
+          </select>
+            </Col>
+          
                         <Col xs={24} md={12}>
               {/* <label className="signup-title">Industry Name</label> */}
               <select

@@ -38,6 +38,7 @@ import Track from "./component/pages/account-pages/Track";
 import Transaction from "./component/pages/account-pages/Transaction";
 import TECcompliance from "./component/pagesscrn4/Complianceinformation/TECcompliance";
 import BIScompliance from "./component/pagesscrn4/Complianceinformation/BIScompliance";
+import WPCcompliance from "./component/pagesscrn4/Complianceinformation/WPCcompliance";
 import FirstCompliance from "./component/pagesscrn4/Complianceinformation/Firstcompliance";
 import Secondcompliance from "./component/pagesscrn4/Complianceinformation/Secondcompliance";
 import MainPage from "./component/MainPages";
@@ -179,6 +180,10 @@ const App = () => {
 
             <Route path="/navbar/BIScompliance">
               <BIScompliance />
+            </Route>
+
+            <Route path="/navbar/WPCcompliance">
+              <WPCcompliance />
             </Route>
 
       
