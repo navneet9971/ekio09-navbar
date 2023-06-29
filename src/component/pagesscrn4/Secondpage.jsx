@@ -53,13 +53,16 @@ const Secondpage = () => {
       .then((response) => {
         const id = response.data.data["id"];
         setNewApplicationId(id);
+        console.log(id);
         localStorage.setItem("newApplicationId", id); // store id in localStorage
-        console.log(localStorage.getItem("newApplicationId"));
+        
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
+
+  
 
   //Start TEC New Application Form const Code Here ---------------------------------
   const [buttonpopupform1tec, setButtonpopupform1tec] = useState(false);
