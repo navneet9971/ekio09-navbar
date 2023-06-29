@@ -8,7 +8,7 @@ import axiosInstance from "../../../interceptors/axios";
 const Firstcompliance = () => {
   const [category, setCategory] = useState(""); // state for category input
   const [product, setProduct] = useState(""); // state for product input
-  const [region, setRegion] = useState(""); // state for selected region
+  const [countries, setCountries] = useState(''); // state for selected region
   const history = useHistory();
 
   const handleCategoryChange = (event) => {
@@ -19,22 +19,23 @@ const Firstcompliance = () => {
     setProduct(event.target.value);
   };
 
+
   const handleRegionChange = (event) => {
-    setRegion(event.target.value);
+    setCountries(event.target.value);
   };
 
   const handleGoClick = () => {
-    if (!category && !product && !region) {
+    if (!category && !product && !countries) {
       alert("Please fill in at least one field!");
       return;
     }
     localStorage.setItem("category", category);
     localStorage.setItem("product", product);
-    localStorage.setItem("region", region);
+    localStorage.setItem("region", countries);
     // send the input data to the backend API using axios GET request
     axiosInstance
       .get(
-        `/compliance/?category=${category}&product=${product}&region=${region}`,
+        `/compliance/?category=${category}&product=${product}&countries=${countries}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("access_token")}`,
@@ -99,19 +100,10 @@ const Firstcompliance = () => {
         </div>
 
         <div className="region-group22">
-          {/* <label className="firsttext-input">Region:</label> */}
-          <select
-            id="region-select22"
-            value={region}
-            onChange={handleRegionChange}
-          >
-            <option value="">-- Select a region --</option>
-            <option value="Europe">Europe</option>
-            <option value="Africa">Africa</option>
-            <option value="Asia">Asia</option>
-            <option value="Americas">Americas</option>
+          <select id="category-input" value={countries} onChange={handleRegionChange}>
+            <option value="india">India</option>
           </select>
-        </div>
+      </div>
 
         <button className="first-go" onClick={handleGoClick}>
           GO

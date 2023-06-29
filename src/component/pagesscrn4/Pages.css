@@ -1204,13 +1204,31 @@ button.btn809:hover{
 }
 
 .compliance-redirct {
-  /* margin: 8px 20px; */
-  transform: translate(184px, 20px);
+  margin: 0;
+  padding: 6px 12px;
+  transform: translate(-324px, 54px);
   background-color: #082a71;
   color: #fff;
   border-radius: 7px;
-  padding: 8px 10px;
   cursor: pointer;
+  /* display: flex; */
+  /* align-items: center; */
+}
+
+
+#imagback {
+  height: 340px;
   display: flex;
+  width: 340px;
+  justify-content: center;
   align-items: center;
+  transform: translate(-10%, 10%);
+  margin-top: -12px;
+}
+
+.img_section {
+  /* display: flex; */
+  /* justify-content: flex-start; */
+  margin: 21px 56px;
+  padding: 47px 87px;
 }

@@ -293,19 +293,22 @@ function Review() {
 
             <tbody>
               {tableData
-                .filter((data) => {
-                  if (
-                    (selectedStatus === "Ongoing" &&
-                      data.status !== "Ongoing") ||
-                    (selectedStatus === "Completed" &&
-                      data.status !== "Completed")||
-                      (selectedStatus === "Inclusion" &&
-                      data.status !== "Inclusion")||
-                      (selectedStatus === "Modification" &&
-                      data.status !== "Modification")
-                  ) {
-                    return false; // Skip this row
-                  }
+             .filter((data) => {
+              if (!selectedStatus || !data.status) {
+                return false; // Skip this row if either selectedStatus or data.status is null
+              }
+            
+              const lowerSelectedStatus = selectedStatus.toLowerCase();
+              const lowerDataStatus = data.status.toLowerCase();
+            
+              if (
+                (lowerSelectedStatus === "ongoing" && lowerDataStatus !== "ongoing") ||
+                (lowerSelectedStatus === "completed" && lowerDataStatus !== "completed") ||
+                (lowerSelectedStatus === "inclusion" && lowerDataStatus !== "inclusion") ||
+                (lowerSelectedStatus === "modification" && lowerDataStatus !== "modification")
+              ) {
+                return false; // Skip this row
+              }
 
                   let displayData = tableData;
 
