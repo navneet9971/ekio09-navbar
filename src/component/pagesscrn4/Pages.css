@@ -1215,20 +1215,63 @@ button.btn809:hover{
   /* align-items: center; */
 }
 
-
-#imagback {
-  height: 340px;
+.wpcimg {
+  height: 819px;
   display: flex;
-  width: 340px;
+  width: 630px;
   justify-content: center;
   align-items: center;
-  transform: translate(-10%, 10%);
-  margin-top: -12px;
+  transform: translate(-7%, 12%);
+  margin-top: -82px;
 }
 
-.img_section {
-  /* display: flex; */
-  /* justify-content: flex-start; */
-  margin: 21px 56px;
-  padding: 47px 87px;
+button.wpc-btn {
+  padding: 6px 12px;
+  border-radius: 7px;
+  transform: translate(146px, -37px);
+  cursor: POINTER;
+  background-color: #082a71;
+  color: #fff;
 }
+
+
+
+/* ComplianceTrackPage Css */
+.container-compliance{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap:120px;
+  padding: 70px;
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.blue {
+  background-image: linear-gradient(to bottom, #0000ff, #00ffff);
+  color: #fff;
+  border-radius: 24px;
+}
+
+.red {
+  background-image: linear-gradient(to bottom, #ff0000, #ff00ff);
+  color: #fff;
+  border-radius: 24px;
+}
+
+.green {
+  background-image: linear-gradient(to bottom, #00ff00, #00ffff);
+  color: #fff;
+  border-radius: 24px;
+}
+
+
+
+

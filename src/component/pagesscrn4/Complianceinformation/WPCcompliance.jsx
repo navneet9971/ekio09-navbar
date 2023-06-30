@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "../Pages.css";
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+// import bgimage from "../../assets/pages-bgimages/background.svg";
 import axiosInstance from "../../../interceptors/axios";
-import ReactImageMagnify from "react-image-magnify";
 
-function MiddleSection() {
+function WPCcompliance() {
   const [middleData, setMiddleData] = useState("");
   const history = useHistory();
 
@@ -24,41 +24,14 @@ function MiddleSection() {
   };
 
   return (
+    // <div
+    //   style={{
+    //     backgroundImage: `url(${bgimage})`,
+    //     backgroundRepeat: "no-repeat",
+    //   }}
+    // >
     <div style={{ display: "flex" }}>
-      <div className= "img_section" style={{ position: "relative" }}>
-        <h3
-          style={{
-            fontSize: "15px",
-            textAlign: "center",
-            transform: "translate(-22px, -57px)",
-          }}
-        >
-          {middleData.product_name} - Registration Process
-        </h3>
-        <div id="imagback" style={{zIndex: 1, position: "absolute" }}>
-          {middleData && (
-            <ReactImageMagnify
-              {...{
-                smallImage: {
-                  alt: "flowchart",
-                  src: middleData.flowchart,
-                  width: "100%",
-                },
-                largeImage: {
-                  src: middleData.flowchart,
-                  width: 550,
-                  height: 940,
-                },
-              }}
-            />
-          )}
-        </div>
-      </div>
-
-      <div
-        className="ftch-data"
-        style={{ flex: "1", textAlign: "left", marginLeft: "20px" }}
-      >
+      <div className="ftch-data" style={{ flex: "1", textAlign: "left" }}>
         {middleData && (
           <>
             <h3
@@ -83,26 +56,37 @@ function MiddleSection() {
           </>
         )}
 
-<div className="compliance-redir" style={{ position: "absolute", transform: "translate(118px, 145px)" }}>
-  <h1
-    className="wpc"
-    style={{
-      fontSize: "15px",
-      textAlign: "center",
-      position: "relative",
-    }}
-  >
-    If you want to start your application process, please click the button below
-  </h1>
-  <button className="compliance-redirct" onClick={handleButtonClick}>
-    Start Project
-  </button>
-</div>
+        <div
+          className="compliance-redir"
+          style={{ transform: "translate(120px, 200px)" }}
+        >
+          <h1
+            style={{ fontSize: "14px", transform: "translate(-75px, -63px)" }}
+          >
+            If you want to start your application process, please click on the
+            button below
+          </h1>
+          <button className="wpc-btn" onClick={handleButtonClick}>
+            {" "}
+            Start Project
+          </button>
+        </div>
+      </div>
 
-
+      <div>
+        <h3
+          style={{
+            fontSize: "15px",
+            textAlign: "center",
+            transform: "translate(-101px, 2px)",
+          }}
+        >
+          {middleData.product_name} - Registration Process
+        </h3>
+        <img className="wpcimg" alt="flowchart" src={middleData.flowchart} />
       </div>
     </div>
   );
 }
 
-export default MiddleSection;
+export default WPCcompliance;

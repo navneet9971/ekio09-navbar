@@ -13,7 +13,6 @@ import BisInclusionForm from "../Complianceforms/BIS/BisInclusionDropDownPage";
 import WPCFormComponent from "../Complianceforms/WPC/WPCfreashForms";
 import WPCPerviousData from "../Complianceforms/WPC/WPCPerviousDataform";
 
-
 const Secondpage = () => {
   const history = useHistory();
   const [complianceData, setComplianceData] = useState([]);
@@ -23,13 +22,7 @@ const Secondpage = () => {
   // Calls APIs HERE ---------------------------------------------------------
   useEffect(() => {
     axiosInstance
-      .get(
-        `/compliance/?category=${localStorage.getItem(
-          "category"
-        )}&product=${localStorage.getItem(
-          "product"
-        )}&region=${localStorage.getItem("region")}`
-      )
+      .get(`/compliance/?category=${localStorage.getItem("category")}&product=${localStorage.getItem("product")}&region=${localStorage.getItem("region")}`)
       .then((res) => {
         const uniqueComplianceData = [];
         res?.data?.data.forEach((compliance) => {
@@ -44,7 +37,7 @@ const Secondpage = () => {
         alert("Something went wrong.");
       });
 
-    //New form Application Create New ID APIS Call HERE  here ---------------
+    // New form Application Create New ID APIS Call HERE
     axiosInstance
       .post(`application/form/`, {
         category: localStorage.getItem("category"),
@@ -55,13 +48,11 @@ const Secondpage = () => {
         setNewApplicationId(id);
         console.log(id);
         localStorage.setItem("newApplicationId", id); // store id in localStorage
-        
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
-
   
 
   //Start TEC New Application Form const Code Here ---------------------------------
@@ -69,7 +60,9 @@ const Secondpage = () => {
   const [buttonautofillpopuptec, setButtonautofillpopuptec] = useState(false);
   const [buttonautofilledtec, setButtonautofilledtec] = useState(false);
   const [tecModificationpopup, settecModificationpopup] = useState(false);
-  const [tecModificationPagepopup, setTecModificationPagepopup ] = useState(false);
+  const [tecModificationPagepopup, setTecModificationPagepopup] = useState(
+    false
+  );
 
   const [tecautofillform, setTecautofillform] = useState(null);
 
@@ -132,7 +125,7 @@ const Secondpage = () => {
       const bisdata = response.data["fields"];
       console.log(bisdata);
       localStorage.setItem("bisdata", JSON.stringify(bisdata));
-     
+
       // setBisformData({ ...bisformData, ...bisdata });
     } catch (error) {
       console.error(error);
@@ -167,32 +160,30 @@ const Secondpage = () => {
           // Call the function for registering
           settecModificationpopup(true);
           console.log(tecautofillform);
-
         } else if (tecautofillform === "No") {
           // Call the function for unregistering
           setButtonpopupform1tec(true);
         }
-
       } else if (complianceName === "BIS") {
         // Fetch BIS data
         await fetchBISData();
-        if (autofill === 'Yes') {
+        if (autofill === "Yes") {
           // Call the function for registering
           // setButtonRegisterbis(true);
-          setButtonBisInclusionPopup(true)
+          setButtonBisInclusionPopup(true);
           console.log(autofill);
-        } else if (autofill === 'No') {
-          // Call the function for unregistering   
-          // setButtonRegisterbis(true); 
-          setButtonBisInclusionPopup(true)// Change with bis popupautofill form
+        } else if (autofill === "No") {
+          // Call the function for unregistering
+          // setButtonRegisterbis(true);
+          setButtonBisInclusionPopup(true); // Change with bis popupautofill form
         }
       } else if (complianceName === "WPC") {
         // Fetch WPC DATA
         await fetchWPCData();
-        if (autofill === 'Yes') {
+        if (autofill === "Yes") {
           //call the function for registering
           setButtonautofilledwpc(true);
-        } else if (autofill === 'No') {
+        } else if (autofill === "No") {
           //call the function for unregistering
           setWpcPopupButton(true);
         }
@@ -205,67 +196,64 @@ const Secondpage = () => {
   //BIS DYNAMIC POPUP CHOOSE OPTION YES OR NO  function handle here-------------------------
   function handleautofilled(event) {
     const value = event.target.value;
-    
-    if (autofillform === 'Yes' && value === 'Yesautofilled') {
+
+    if (autofillform === "Yes" && value === "Yesautofilled") {
       // Call the function for registering
       setButtonautofillpopupbis(true);
       console.log(autofillform);
-    } else if (value === 'Noform1') {
+    } else if (value === "Noform1") {
       // Call the function for unregistering
       // setButtonRegisterbis(true);
       setButtonPopup6bis(true);
     }
-    setButtonautofilledbis(false)
+    setButtonautofilledbis(false);
   }
-  
 
   // HandleChange of Registerbutton---------
-//   function handleRadioChange(event) {
-//   const value = event.target.value;
-//     // setButtonPopup6bis(true);
-//     if (autofillform === 'Yes' && value === 'autofillformbis') {
-//       setButtonautofilledbis(true);
-//     } else if (autofillform === 'No' && value === 'unregister') {
-//       setButtonPopup6bis(true);
-//     }
-  
-//   setButtonRegisterbis(false)
-// }
+  //   function handleRadioChange(event) {
+  //   const value = event.target.value;
+  //     // setButtonPopup6bis(true);
+  //     if (autofillform === 'Yes' && value === 'autofillformbis') {
+  //       setButtonautofilledbis(true);
+  //     } else if (autofillform === 'No' && value === 'unregister') {
+  //       setButtonPopup6bis(true);
+  //     }
 
-//handleinclusiondropdwn HERE-----------
+  //   setButtonRegisterbis(false)
+  // }
 
-const handleInclusionOptionChange = (event) => {
-  const value = event.target.value;
+  //handleinclusiondropdwn HERE-----------
 
-  // Perform any necessary actions based on the selected option immediately
-  if (value === 'inclusion') {
-    setOpenBisInclusionForm(true);
-  } else {
-    if (autofillform === "Yes" && value === 'newform') {
-      setButtonautofilledbis(true); // Navigate to the new application page
+  const handleInclusionOptionChange = (event) => {
+    const value = event.target.value;
+
+    // Perform any necessary actions based on the selected option immediately
+    if (value === "inclusion") {
+      setOpenBisInclusionForm(true);
     } else {
-      setButtonPopup6bis(true);
+      if (autofillform === "Yes" && value === "newform") {
+        setButtonautofilledbis(true); // Navigate to the new application page
+      } else {
+        setButtonPopup6bis(true);
+      }
     }
-  }
-  setButtonBisInclusionPopup(false);
-};
+    setButtonBisInclusionPopup(false);
+  };
 
-
-//TEC MODIFICATION CODE HERE
-const handleModificationTecOptionChange = (event) => {
-
-  // Perform any necessary actions based on the selected option immediately
-  if (event.target.value === 'modification') {
-    history.push('/navbar/TECModification'); // Redirect to the new application page
-  } else{
-      if( tecautofillform === "Yes" && event.target.value === 'tecnewform') {
-    setButtonautofilledtec(true); // Navigate to the new application page
-  }else {
-    setButtonpopupform1tec(true);
-  }
-}
-  settecModificationpopup(false);
-};
+  //TEC MODIFICATION CODE HERE
+  const handleModificationTecOptionChange = (event) => {
+    // Perform any necessary actions based on the selected option immediately
+    if (event.target.value === "modification") {
+      history.push("/navbar/TECModification"); // Redirect to the new application page
+    } else {
+      if (tecautofillform === "Yes" && event.target.value === "tecnewform") {
+        setButtonautofilledtec(true); // Navigate to the new application page
+      } else {
+        setButtonpopupform1tec(true);
+      }
+    }
+    settecModificationpopup(false);
+  };
 
   //Auto close POPup after click Sumbit
   const handlePopupClose = () => {
@@ -278,11 +266,11 @@ const handleModificationTecOptionChange = (event) => {
     setWpcPopupButton(false);
   };
 
-//WPC FORM COMPONENT STARTS HERE----------------------------------
+  //WPC FORM COMPONENT STARTS HERE----------------------------------
 
-const [wpcPopupButton, setWpcPopupButton] = useState("");
-const [buttonautofilledwpc, setButtonautofilledwpc] = useState("");
-const [wpcperviousdataPop, setWpcperviousdataPop] = useState("")
+  const [wpcPopupButton, setWpcPopupButton] = useState("");
+  const [buttonautofilledwpc, setButtonautofilledwpc] = useState("");
+  const [wpcperviousdataPop, setWpcperviousdataPop] = useState("");
 
   //WPC PERVIOUS DATA FETCH APIS HERE--------------
   const fetchWPCData = async () => {
@@ -301,9 +289,8 @@ const [wpcperviousdataPop, setWpcperviousdataPop] = useState("")
     }
   };
 
-
-   //WPC DYNAMIC POPUP CHOOSE OPTION YES OR NO  function handle here-------------------------
-   function handletableautoformWPC(event) {
+  //WPC DYNAMIC POPUP CHOOSE OPTION YES OR NO  function handle here-------------------------
+  function handletableautoformWPC(event) {
     const value = event.target.value;
 
     if (autofillform === "Yes" && value === "Yesautofilledwpc") {
@@ -317,12 +304,15 @@ const [wpcperviousdataPop, setWpcperviousdataPop] = useState("")
     setButtonautofilledwpc(false);
   }
 
-
   return (
     <div className="table-bgsconpage">
       <div className="table">
         <h1 style={{ display: "none" }}>Application Number: {applicationId}</h1>
-        <h1 style={{fontWeight: "100", padding: "0px 50px", fontSize: "26px"}}>List of Compliance</h1>
+        <h1
+          style={{ fontWeight: "100", padding: "0px 50px", fontSize: "26px" }}
+        >
+          List of Compliance
+        </h1>
         <div className="table-wrapper">
           <table className="Review">
             <thead>
@@ -373,25 +363,27 @@ const [wpcperviousdataPop, setWpcperviousdataPop] = useState("")
           </table>
         </div>
 
-         {/* --------------TEC Modification POPUP CODE IS HERE----------------------------------  */}
-         <Popup trigger= {tecModificationpopup} setTrigger= { settecModificationpopup}> 
-         <h3 className="reg-popup-titlte" >
-         What do you want to do today?
-         </h3>
-         <select
-          onChange={handleModificationTecOptionChange}
->
-  <option value="">Choose the Option:-</option> 
-  <option value="modification">Modify exsisting application</option>
-  <option value="tecnewform">Start a new application</option>
-</select>
-         </Popup>
+        {/* --------------TEC Modification POPUP CODE IS HERE----------------------------------  */}
+        <Popup
+          trigger={tecModificationpopup}
+          setTrigger={settecModificationpopup}
+        >
+          <h3 className="reg-popup-titlte">What do you want to do today?</h3>
+          <select onChange={handleModificationTecOptionChange}>
+            <option value="">Choose the Option:-</option>
+            <option value="modification">Modify exsisting application</option>
+            <option value="tecnewform">Start a new application</option>
+          </select>
+        </Popup>
 
         {/*----------- MODIFICATIONTABLEPAGE CODE HERE ------------------------------------------ */}
-        <Popup trigger= {tecModificationPagepopup} setTrigger={setTecModificationPagepopup}>
-        <div style={{ height: "500px", overflow: "scroll" }}>
-        <TECtableModification />
-        </div>
+        <Popup
+          trigger={tecModificationPagepopup}
+          setTrigger={setTecModificationPagepopup}
+        >
+          <div style={{ height: "500px", overflow: "scroll" }}>
+            <TECtableModification />
+          </div>
         </Popup>
 
         {/*------------------------ TEC DYNAMIC FORM DATA POPUP CODE HERE------------------------ */}
@@ -399,9 +391,10 @@ const [wpcperviousdataPop, setWpcperviousdataPop] = useState("")
           trigger={buttonautofilledtec}
           setTrigger={setButtonautofilledtec}
         >
-         <h3 className="reg-popup-titlte">
-  We have got your company details saved with us. <br /> Do you want to use the saved data and save time?
-</h3>
+          <h3 className="reg-popup-titlte">
+            We have got your company details saved with us. <br /> Do you want
+            to use the saved data and save time?
+          </h3>
           <div className="checkbox-container">
             <div className="bis-register">
               <div>
@@ -421,7 +414,7 @@ const [wpcperviousdataPop, setWpcperviousdataPop] = useState("")
 
             <div className="bis-register">
               <div>
-              <label className="pop-opt">
+                <label className="pop-opt">
                   <input
                     className="bis-register"
                     type="checkbox"
@@ -457,22 +450,26 @@ const [wpcperviousdataPop, setWpcperviousdataPop] = useState("")
 
         {/*----------------- TEC END HERE AND START BIS FROMS CODE HERE ---------------------- */}
 
-         {/* --------------BIS Inclusion POPUP CODE IS HERE----------------------------------  */}
-         <Popup trigger= {buttonBisInclusionPopup} setTrigger= { setButtonBisInclusionPopup}> 
-         <h3 className="reg-popup-titlte" >
-         What do you want to do today?
-         </h3>
-         <select
-  onChange={handleInclusionOptionChange}
->
-  <option value="">Choose the Option:-</option> 
-  <option value="inclusion">Include details in an existing product</option>
-  <option value="newform">Start a new application</option>
-</select>
-         </Popup>
+        {/* --------------BIS Inclusion POPUP CODE IS HERE----------------------------------  */}
+        <Popup
+          trigger={buttonBisInclusionPopup}
+          setTrigger={setButtonBisInclusionPopup}
+        >
+          <h3 className="reg-popup-titlte">What do you want to do today?</h3>
+          <select onChange={handleInclusionOptionChange}>
+            <option value="">Choose the Option:-</option>
+            <option value="inclusion">
+              Include details in an existing product
+            </option>
+            <option value="newform">Start a new application</option>
+          </select>
+        </Popup>
 
         {/* -------------Inclusion Form Rendere code here---------------------------------------  */}
-        <Popup trigger = {openBisInclusionForm} setTrigger = {setOpenBisInclusionForm}>
+        <Popup
+          trigger={openBisInclusionForm}
+          setTrigger={setOpenBisInclusionForm}
+        >
           <BisInclusionForm />
         </Popup>
         {/*------------------------ BIS DYNAMIC FORM DATA POPUP CODE HERE------------------------ */}
@@ -480,14 +477,15 @@ const [wpcperviousdataPop, setWpcperviousdataPop] = useState("")
           trigger={buttonautofilledbis}
           setTrigger={setButtonautofilledbis}
         >
-<h3 className="reg-popup-titlte">
-  We have got your company details saved with us. <br /> Do you want to use the saved data and save time?
-</h3>
+          <h3 className="reg-popup-titlte">
+            We have got your company details saved with us. <br /> Do you want
+            to use the saved data and save time?
+          </h3>
 
           <div className="checkbox-container">
             <div className="bis-register">
               <div>
-              <label className="pop-opt">
+                <label className="pop-opt">
                   <input
                     className="bis-register"
                     type="checkbox"
@@ -503,7 +501,7 @@ const [wpcperviousdataPop, setWpcperviousdataPop] = useState("")
 
             <div className="bis-register">
               <div>
-              <label className="pop-opt">
+                <label className="pop-opt">
                   <input
                     className="bis-register"
                     type="checkbox"
@@ -576,18 +574,18 @@ const [wpcperviousdataPop, setWpcperviousdataPop] = useState("")
 
         {/*---------------START NEW APPLICATION BIS REQUIRED DETAILS POPUP IF USER SELECTED YES PAGE CODE HERE  ----------------------*/}
         <Popup trigger={buttonPopup6bis} setTrigger={setButtonPopup6bis}>
-          <BISFreshForms  onClose={handlePopupClose}/>
+          <BISFreshForms onClose={handlePopupClose} />
         </Popup>
 
-
-             {/*------------------------ WPC DYNAMIC FORM DATA POPUP CODE HERE------------------------ */}
-             <Popup
+        {/*------------------------ WPC DYNAMIC FORM DATA POPUP CODE HERE------------------------ */}
+        <Popup
           trigger={buttonautofilledwpc}
           setTrigger={setButtonautofilledwpc}
         >
-         <h3 className="reg-popup-titlte">
-  We have got your company details saved with us. <br /> Do you want to use the saved data and save time?
-</h3>
+          <h3 className="reg-popup-titlte">
+            We have got your company details saved with us. <br /> Do you want
+            to use the saved data and save time?
+          </h3>
           <div className="checkbox-container">
             <div className="bis-register">
               <div>
@@ -607,7 +605,7 @@ const [wpcperviousdataPop, setWpcperviousdataPop] = useState("")
 
             <div className="bis-register">
               <div>
-              <label className="pop-opt">
+                <label className="pop-opt">
                   <input
                     className="bis-register"
                     type="checkbox"
@@ -623,23 +621,19 @@ const [wpcperviousdataPop, setWpcperviousdataPop] = useState("")
           </div>
         </Popup>
 
+        {/* -----------------------------WPC PERVIOUS DATA FORM NO 1 ----------------------- */}
 
-     {/* -----------------------------WPC PERVIOUS DATA FORM NO 1 ----------------------- */}
-
-   <Popup trigger={wpcperviousdataPop} setTrigger={setWpcperviousdataPop}>
+        <Popup trigger={wpcperviousdataPop} setTrigger={setWpcperviousdataPop}>
           <WPCPerviousData onClose={handlePopupClose} />
-   </Popup>
-   
+        </Popup>
 
         {/* ------------------------WPC START NEW APPLICATION HERE------------------------------------------------------ */}
 
         <Popup trigger={wpcPopupButton} setTrigger={setWpcPopupButton}>
-        <div style={{ height: "500px", overflow: "scroll" }}>
-          <WPCFormComponent onClose={handlePopupClose} />
+          <div style={{ height: "500px", overflow: "scroll" }}>
+            <WPCFormComponent onClose={handlePopupClose} />
           </div>
         </Popup>
-
-
       </div>
     </div>
   );

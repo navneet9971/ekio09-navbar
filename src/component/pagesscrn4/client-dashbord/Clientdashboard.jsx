@@ -46,7 +46,7 @@ const ClientDashboard = () => {
     {
       thumb: <img src={Thumb2png} alt ="" className="second" />,
       title: "Application Progress & Reporting",
-      route: "/navbar/review",
+      route: "/navbar/compliancetrack",
     },
     // {
     //   thumb: <img src={Thumb3png} alt ="" className="four" />,
