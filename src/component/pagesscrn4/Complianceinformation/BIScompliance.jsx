@@ -2,11 +2,9 @@ import React, { useState, useEffect } from "react";
 import "../Pages.css";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 // import bgimage from "../../assets/pages-bgimages/background.svg";
-import axiosInstance from '../../../interceptors/axios';
+import axiosInstance from "../../../interceptors/axios";
 
-
-
-function MiddleSection() {
+function BIScompliance() {
   const [middleData, setMiddleData] = useState("");
   const history = useHistory();
 
@@ -22,7 +20,7 @@ function MiddleSection() {
   }, []);
 
   const handleButtonClick = () => {
-    history.push('/navbar/secondpage'); // Replace '/new-application' with your desired URL
+    history.push("/navbar/secondpage"); // Replace '/new-application' with your desired URL
   };
 
   return (
@@ -33,31 +31,62 @@ function MiddleSection() {
     //   }}
     // >
     <div style={{ display: "flex" }}>
-    <div className="ftch-data" style={{ flex: "1", textAlign: "left" }}>
-      {middleData && (
-        <>
-          <h3 style={{ fontSize: "15px", textAlign: "center",     transform: "translate(-35px, 149px)" }}>{middleData.product_name} - Introduction</h3>
-          <h2 style={{ fontSize: "15px", textAlign: "center", padding: "26px 72px", transform: "translate(-45px, 139px)" }}>{middleData.details}</h2>
-        </>
-      )}
+      <div className="ftch-data" style={{ flex: "1", textAlign: "left" }}>
+        {middleData && (
+          <>
+            <h3
+              style={{
+                fontSize: "15px",
+                textAlign: "center",
+                transform: "translate(-35px, 149px)",
+              }}
+            >
+              {middleData.product_name} - Introduction
+            </h3>
+            <h2
+              style={{
+                fontSize: "15px",
+                textAlign: "center",
+                padding: "26px 72px",
+                transform: "translate(-45px, 139px)",
+              }}
+            >
+              {middleData.details}
+            </h2>
+          </>
+        )}
 
-<div className="compliance-redir" style={{transform: "translate(120px, 200px)"}}>
-  <h1 style={{fontSize: "14px"}}>If you want to start your application process, please click on the button below</h1>
-<button className="compliance-redirct" onClick={handleButtonClick}> Start Project</button>
+        <div
+          className="compliance-redir"
+          style={{ transform: "translate(120px, 200px)" }}
+        >
+          <h1
+            style={{ fontSize: "14px", transform: "translate(-75px, -63px)" }}
+          >
+            If you want to start your application process, please click on the
+            button below
+          </h1>
+          <button className="wpc-btn" onClick={handleButtonClick}>
+            {" "}
+            Start Project
+          </button>
+        </div>
+      </div>
 
-</div>
+      <div>
+        <h3
+          style={{
+            fontSize: "15px",
+            textAlign: "center",
+            transform: "translate(-101px, 2px)",
+          }}
+        >
+          {middleData.product_name} - Registration Process
+        </h3>
+        <img className="wpcimg" alt="flowchart" src={middleData.flowchart} />
+      </div>
     </div>
+  );
+}
 
-
-
-
-    <div>
-    <h3 style={{ fontSize: "15px", textAlign: "center", transform: "translate(-101px, 2px)" }}>{middleData.product_name} - Registration Process</h3>
-      <img className="imgback" alt="flowchart" src={middleData.flowchart} />
-    </div>
-  </div>
-  
-    )
-  };
-
-  export default MiddleSection;
+export default BIScompliance;
