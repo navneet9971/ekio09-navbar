@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import Popup from "../../../popup/Popup";
+import Popup from "../popup/Popup";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import axiosInstance from "../../interceptors/axios";
 
 function formatDate(dateString) {
   const date = new Date(dateString);
@@ -41,22 +42,27 @@ function getDateAfterDays(days) {
   return `${day}/${month}/${year}`;
 }
 
-function WPCTableReview() {
+function BISTableReview() {
   const [tableData, setTableData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
   const [showPopup, setShowPopup] = useState(false);
   const [selectedStatus, setSelectedStatus] = useState("All");
   const history = useHistory();
+  const idel = localStorage.getItem("ide");
 
- 
-    useEffect(() => {
-      const storedWPCTableData = localStorage.getItem('WPCtableData');
-      const WPCTableData = JSON.parse(storedWPCTableData);
-      if (WPCTableData) {
-        setTableData(WPCTableData);
-      }
-    }, []);
+  useEffect(() => {
+    axiosInstance
+      .get(`application/compliance/`)
+      .then((response) => {
+        const tableData = response.data.data;
+        setTableData(tableData);
+        console.log(tableData);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [idel]);
 
 
   // Sort the tableData array based on startdate in descending order
@@ -376,4 +382,4 @@ function WPCTableReview() {
   );
 }
 
-export default WPCTableReview;
+export default BISTableReview;

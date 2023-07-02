@@ -5,7 +5,7 @@ import Login from "./component/auth/Login";
 import ErrorPage from "./component/errorPage";
 import View from "./component/pages/View";
 //import Add from "./component/pages/Add";
-// import Review from "./component/pages/Review";
+import Review from "./component/pages/review";
 // import Myaccount from "./component/pages/Myaccount";
 import Download from "./component/pages/Download";
 import SignUP from "./component/auth/SignUP";
@@ -16,12 +16,12 @@ import Secondpage from "./component/pagesscrn4/Secondpage";
 import Fourthpage from "./component/pagesscrn4/Complianceinformation/TECcompliance";
 import ClientDashboard from "./component/pagesscrn4/client-dashbord/Clientdashboard";
 import Navbar from "./component/pagesscrn4/Navbar/Navbar";
-import ComplianceTrackChoose from "./component/pagesscrn4/ComplianceTrackChoose";
+// import ComplianceTrackChoose from "./component/pagesscrn4/ComplianceTrackChoose";
 
 //COMPLIANCE REVIEW PAGE CHANGE INTO SEPRATE PAGES BISTABLE, TECTabel, WPCTable
-import BISTableReview from "./component/Complianceforms/BIS/Bistrackpages/BISTablePage";
-import TECTableReview from "./component/Complianceforms/TEC/Tectrackpage/TECTableReview";
-import WPCTableReview from "./component/Complianceforms/WPC/WPCTrackPages/WPCTableReview";
+// import BISTableReview from "./component/Complianceforms/BIS/Bistrackpages/BISTablePage";
+// import TECTableReview from "./component/Complianceforms/TEC/Tectrackpage/TECTableReview";
+// import WPCTableReview from "./component/Complianceforms/WPC/WPCTrackPages/WPCTableReview";
 
 // COMPLIANCE IMPORTS HERE--------------------
 
@@ -94,9 +94,9 @@ const App = () => {
         </Route>
 
 
-        <Route path="/navbar/compliancetrack">
+        {/* <Route path="/navbar/compliancetrack">
           <ComplianceTrackChoose />
-        </Route>
+        </Route> */}
 
         {/* <Route path="/navbar/compliance/TEC">
           <TECForms />
@@ -125,9 +125,9 @@ const App = () => {
             </Route>
             */}
 
-            {/* <Route path="/navbar/review">
+            <Route path="/navbar/review">
               <Review />
-            </Route> */}
+            </Route>
 
             <Route path="/navbar/BISoongoing/:id">
               <BISongoing />
@@ -177,7 +177,7 @@ const App = () => {
 
             {/* COMPLIANCE REVIEW PAGE CHANGE INTO SEPRATE PAGES BISTABLE, TECTabel, WPCTable  */}
 
-     <Route path="/navbar/BISTable">
+     {/* <Route path="/navbar/BISTable">
       <BISTableReview />
      </Route>
 
@@ -187,7 +187,7 @@ const App = () => {
 
      <Route path="/navbar/WPCTable">
       <WPCTableReview />
-     </Route>
+     </Route> */}
 
 {/*-----------------Compliance Information page redirct here----------------*/}
 
