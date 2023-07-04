@@ -53,6 +53,7 @@ import Dashboard from "./component/Dashboard/Dashboard";
 //import RestPassword from "./component/ForgetPassword";
 //import SupportAdmin from "./component/SupportAdmin";
 import TECtableModification from "./component/Complianceforms/TEC/TECtableModificationpage";
+import ProfilePage from "./component/Profile Dashboard/ProfilePage";
 
 
 const App = () => {
@@ -172,6 +173,11 @@ const App = () => {
 
             <Route path="/navbar/view">
               <View />
+            </Route>
+
+
+            <Route path="/navbar/profile">
+              <ProfilePage />
             </Route>
 
 

@@ -245,13 +245,26 @@ th {
   right: 68px;
 }
 
+
 /* Apply responsive styles */
 @media (max-width: 768px) {
   .search-bar {
     position: static;
     text-align: center;
-    margin-top: 10px; /* Adjust the margin-top value according to your needs */
-    margin-bottom: 10px; /* Adjust the margin-bottom value according to your needs */
+    display: contents;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    right: auto;
+    left: 0;
+}
+}
+@media (min-width: 812px) and (max-width: 912px) {
+  .search-bar {
+    position: static;
+    text-align: center;
+    display: contents;
+    margin-top: 10px;
+    margin-bottom: 50px;
     right: auto;
     left: 0;
   }
@@ -448,6 +461,14 @@ select.form {
 
 .revbtn:hover {
   background-color: #0062cc;
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .revbtn {
+    font-size: 14px;
+    padding: 12px 24px;
+    margin: 10px;
+  }
 }
 
 /*---LAB TESTING DROP DOWN OPTION------*/

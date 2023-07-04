@@ -15,7 +15,6 @@ const StatusBar = ({ totalResponses, completedResponses }) => {
         />
       </div>
       <p className='status-percent'>{`(${percentage}%)`}</p>
-      {console.log(percentage)}
 
       <style jsx>{`
         .status-bar-container {
@@ -24,10 +23,11 @@ const StatusBar = ({ totalResponses, completedResponses }) => {
         }
 
         .status-bar {
-          width: 60%;
+          width: 35%;
           height: 22px;
           background-color: #D9D9D9;
-          transform: translate(520px, -8px);
+          position: absolute;
+          right: 89px;
         }
 
         .status-fill {
@@ -36,7 +36,24 @@ const StatusBar = ({ totalResponses, completedResponses }) => {
         }
 
         .status-percent {
-          margin-left: 10px;
+          position: absolute;
+          right: 89px;
+        }
+
+        @media (max-width: 768px) {
+          .status-bar {
+            position: relative;
+            width: 100%;
+            right: -2px;
+        }
+        @media (min-width: 821px) and (max-width: 1023px) {
+          .status-bar {
+            position: relative;
+            width: 85%;
+          }
+        }
+        
+        }
         }
       `}</style>
     </div>

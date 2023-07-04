@@ -1,0 +1,52 @@
+.home-profile-container {
+    width: 1030px;
+    /* height: 445px; */
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 9px;
+    position: relative;
+    background-color: #F2F6FD;
+    margin: 10px 20px;
+}
+
+  .column {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    right: 140px;
+}
+  
+  .HomeProfile-label {
+    font-size: 18px;
+    font-weight: 100;
+    margin-bottom: 4px;
+  }
+  
+  .center {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+  }
+
+  input.HomeProfile-text {
+    width: 70%;
+    height: 30px;
+    margin: 0px 32px;
+    padding: 0px 5px;
+}
+
+.homeprofile-btn {
+    width: 108px;
+    height: 43px;
+    margin: 38px 422px;
+    background-color: #082A71;
+    color: #fff;
+    border-radius: 7px;
+    border: none;
+    cursor: pointer;
+}
+
+.homeprofile-btn:hover{
+    background-color: #2e69e7;
+}
+  

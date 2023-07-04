@@ -207,7 +207,7 @@ function Login() {
         <div className="line"></div>
         </div>
 
-        <div className="side-bar" style={{ display: "flex", flexDirection: "column" }}>
+        <div className="side-bar" style={{ }}>
   <h2 style={{ fontSize: "20px", margin: "33px -30px" }}>FEATURED APPS</h2>
   {SIDE_SLIDE.map((item, index) => (
     <div to={item.route} key={index} className={item.className} style={{ display: "flex", alignItems: "center",  marginBottom: "18px" }}>

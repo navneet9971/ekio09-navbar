@@ -68,8 +68,8 @@ axiosInstance.get(`/compliance/?category=${category}&product=${product}&countrie
     <div className="first-container22">
       
       <div className='fist-title'>
-      <h3 style={{ color: 'black', fontWeight:"100"}} className="firstpage-title">Please enter the following details to Start a new application:</h3>
-      <h4 style={{ color: "red", fontWeight: "100", padding: "3px"}} >You need to fill at least 1 data point to see the list of compliance.</h4>
+      <h3 style={{ color: 'black', fontWeight:"100", transform: "translate(14px, 60px)"}} className="firstpage-title">Please enter the following details to Start a new application:</h3>
+      <h4 style={{ color: "red", fontWeight: "100", padding: "3px",     transform: "translate(14px, 60px)"}} >You need to fill at least 1 data point to see the list of compliance.</h4>
       </div>
 
       <div className="form-group22">

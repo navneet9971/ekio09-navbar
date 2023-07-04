@@ -6,15 +6,15 @@
   padding: 0;
 }
 
-body {
+/* body {
   background-image: url("../pages-bgimages/background.svg");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
  /* min-height: 100vh; */
-  background-attachment: fixed;
+  /* background-attachment: fixed;
   font-family: 'Roboto', sans-serif;
-}
-#root{
+} */
+#root {
   position: sticky;
   top: 0;
   left: 0;
@@ -25,7 +25,6 @@ body {
 }
 
 .auth-box {
-  /* background-image: url(../pages-bgimages/background.svg); */
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
@@ -54,11 +53,6 @@ body {
   color: white;
 }
 
-
-.hello{
-  display: block;
-}
-
 #submit {
   padding: 8px 20px;
   width: 25%;
@@ -76,6 +70,7 @@ body {
   color: black;
   margin-top: 20px;
 }
+
 .efficient {
   position: relative;
   bottom: 59px;
@@ -83,17 +78,73 @@ body {
   font-size: 14px;
 }
 
-
-.form a {
-  text-decoration: none;
-  color: black;
-  margin-top: 20px;
-}
 .p_signup {
   margin-top: -3%;
   margin-left: 105px;
   color: white;
 }
+
+/* Responsive Styles */
+
+@media (max-width: 768px) {
+  .form {
+    margin-left: -143px;
+}
+
+  .auth-box {
+    min-height: auto;
+    height: 100vh;
+    padding: 20px;
+  }
+
+  .form h2 {
+    font-size: 2rem;
+    margin: 30px;
+  }
+
+  #submit {
+    width: 50%;
+  }
+
+  .efficient {
+    left: 20px;
+  }
+
+  .p_signup {
+    margin-left: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form {
+    margin-left: 10px;
+  }
+
+  .auth-box {
+    min-height: auto;
+    height: 96vh;
+    padding: 10px;
+}
+
+  .form h2 {
+    font-size: 1.5rem;
+    margin: 20px;
+  }
+
+  #submit {
+    width: 70%;
+  }
+
+  .efficient {
+    left: 10px;
+  }
+
+  .p_signup {
+    margin-left: 10px;
+  }
+}
+
+
 
 
 /*------------ LOGIN PAGE CSS -------------- */
@@ -208,6 +259,88 @@ img.eikomp_logo {
   top: 476px;
 }
 
+/* Responsive Styles */
+
+@media (max-width: 768px) {
+  .login {
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    margin-right: 0;
+  }
+
+  img.eikomp_logo {
+    margin-bottom: 20px;
+  }
+
+  .login .top-sec p {
+    margin: 20px 0;
+    font-size: 16px;
+  }
+
+  .login .top-sec .button1 {
+    font-size: 15px;
+  }
+
+  .login .button1,
+  .sign-upbtn {
+    padding: 10px 40px;
+  }
+
+  .login .input-box input {
+    padding: 7px 45px;
+  }
+
+  .login-img {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .login {
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    margin-right: 0;
+  }
+
+  img.eikomp_logo {
+    margin-bottom: 20px;
+  }
+
+  .login .top-sec p {
+    margin: 20px 0;
+    font-size: 14px;
+  }
+
+  .login .top-sec .button1 {
+    font-size: 14px;
+  }
+
+  .login .button1,
+  .sign-upbtn {
+    padding: 10px 30px;
+  }
+
+  .login .input-box input {
+    padding: 6px 40px;
+  }
+
+  .login .input-box input::placeholder {
+    font-size: 12px;
+  }
+
+  .login-showpass {
+    top: 22%;
+    right: 5%;
+  }
+
+  .login-img {
+    display: none;
+  }
+}
+
+
 
 .container-line {
   height: 70vh;
@@ -225,10 +358,92 @@ img.eikomp_logo {
 }
 
 .side-bar {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Default styles */
+.side-bar {
   transform: translate(-154px, 41px);
 }
 
-/*------------SINGUP PAGE CSS ------------*/
+/* Responsive styles */
+@media (max-width: 468px) {
+  .side-bar  {
+    transform: none;
+    margin-top: 998px;
+    margin-left: -250px;
+}
+
+.line{
+  display: none;
+}
+}
+
+@media (min-width: 469px) and (max-width: 767px) {
+  .side-bar  {
+    transform: none;
+    margin-top: 998px;
+    margin-left: -250px;
+}
+
+.line{
+  display: none;
+}
+.login-img {
+  width: 100%; /* Set width to 100% for smaller screens */
+  height: auto; /* Maintain aspect ratio by setting height to auto */
+  left: 10px; /* Adjust the left position for smaller screens */
+  top: 50%; /* Adjust the top position for smaller screens */
+  transform: translateY(-50%); /* Center vertically using transform */
+}
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .side-bar {
+    transform: translate(-100px, 20px); /* Adjust the translation for medium-sized screens */
+  }
+  
+  .line{
+    display: none;
+  }
+  .login-img {
+    top: 85%;
+    transform: translateX(-50%) translateY(-50%);
+}
+}
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .side-bar {
+    transform: translate(-154px, 41px); /* Keep the original translation for screens between 1024px and 1439px */
+  }
+}
+
+@media (min-width: 1440px) {
+  .side-bar {
+    transform: translate(-200px, 60px); /* Adjust the translation for larger screens */
+  }
+  .line{
+    display: none;
+  }
+}
+
+@media (min-width: 1024px){
+.login-img {
+    width: 275px;
+    height: 157.51px;
+    left: 53px;
+    top: 493px;
+    transform: none;
+}
+
+.form {
+  margin-left: 80px; /* Keep the original margin for larger screens */
+}
+}
+
+
+/* ------------SINGUP PAGE CSS ------------ */
 .signup {
   display: flex;
 }
@@ -245,16 +460,14 @@ img.signup-logo {
   transform: translate(350px, 48px);
 }
 
-/* .signup .left-box {
-  width: 55%;
-  padding: 70px 50px 30px;
-} */
 .signup .left-box label {
   display: block;
   color: #737373;
 }
 
-.signup .left-box input {
+.signup .left-box input,
+.signup .left-box textarea,
+.signup .left-box select {
   width: 100%;
   padding: 16px 3px 15px;
   margin-bottom: 23px;
@@ -282,14 +495,13 @@ img.signup-logo {
   cursor: pointer;
 }
 
-
 label.signup-title {
   font-size: 15px;
 }
 
 input#industry,
 textarea,
-select{
+select {
   position: relative;
   outline: none;
   box-sizing: border-box;
@@ -304,7 +516,9 @@ select{
   margin-top: 10px;
 }
 
-input#email, textarea, select {
+input#email,
+textarea,
+select {
   position: relative;
   outline: none;
   box-sizing: border-box;
@@ -317,23 +531,33 @@ input#email, textarea, select {
   margin-top: -2px;
 }
 
-/* input#industry:focus,
-textarea:focus,
-select:focus {
-  box-shadow: 0 0 5px #43d1af;
-  padding: 1em;
-  border: 1px solid #43d1af;
-} */
-
 @media screen and (max-width: 768px) {
   .signup .left-box {
     width: 100%;
     padding: 50px 20px 30px;
-  }
-  .signup .right-box {
-    display: none;
+    transform: none;
   }
 }
+
+/* Responsive Styles */
+
+@media screen and (max-width: 480px) {
+  .signup .left-box {
+    padding: 30px 10px;
+  }
+
+  img.signup-logo {
+    width: 100px;
+    height: 66px;
+  }
+
+  .signup .left-box input,
+  .signup .left-box textarea,
+  .signup .left-box select {
+    font-size: 14px;
+  }
+}
+
 
 /*------ Forget Password POPUP CSS-----------*/
 h3.email-popup {
@@ -353,7 +577,7 @@ button.forgetbtn {
   background-color: #082a71;
 }
 
-button.forgetbtn:hover{
+button.forgetbtn:hover {
   background-color: #55b700;
 }
 
@@ -382,19 +606,11 @@ h2.rest-pass {
   justify-content: center;
 }
 
-
 label.pasword-forget {
   text-align: center;
   display: flex;
   justify-content: center;
 }
-
-.password-input {
-  display: flex;
-  padding: 24px;
-  margin: 1px 550px;
-}
-
 
 .password-input {
   display: flex;
@@ -404,9 +620,8 @@ label.pasword-forget {
   margin: 1px;
 }
 
-
-  input.pasword {
-    padding: 2px 20px;
+input.pasword {
+  padding: 2px 20px;
 }
 
 button.submit-forget {
@@ -419,11 +634,109 @@ button.submit-forget {
   display: block;
 }
 
-button.submit-forget:hover{
+button.submit-forget:hover {
   background-color: #55b700;
 }
 
-.password-toggle-icon{
+.password-toggle-icon {
   padding: 5px 10px;
 }
+
+/* Responsive Styles */
+
+@media screen and (max-width: 768px) {
+  h3.email-popup {
+    font-size: 24px;
+  }
+
+  button.forgetbtn {
+    font-size: 20px;
+    padding: 1px 10px;
+  }
+
+  input.forgetinput {
+    font-size: 14px;
+  }
+
+  img.forgotlogo {
+    width: 180px;
+    margin: 38px auto;
+  }
+
+  h2.rest-pass {
+    font-size: 24px;
+  }
+
+  label.pasword-forget {
+    font-size: 16px;
+  }
+
+  .password-input {
+    width: 100%;
+    margin: 0;
+  }
+
+  input.pasword {
+    width: 100%;
+  }
+
+  button.submit-forget {
+    font-size: 14px;
+    padding: 6px 8px;
+  }
+
+  .password-toggle-icon {
+    padding: 3px 6px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  h3.email-popup {
+    font-size: 20px;
+    margin: 18px;
+  }
+
+  button.forgetbtn {
+    font-size: 18px;
+    padding: 1px 8px;
+  }
+
+  input.forgetinput {
+    font-size: 12px;
+    margin: 10px 12px;
+    padding: 4px 20px;
+  }
+
+  img.forgotlogo {
+    width: 160px;
+    margin: 28px auto;
+  }
+
+  h2.rest-pass {
+    font-size: 20px;
+  }
+
+  label.pasword-forget {
+    font-size: 14px;
+  }
+
+  .password-input {
+    padding: 12px;
+    margin: 0;
+  }
+
+  input.pasword {
+    padding: 2px 16px;
+  }
+
+  button.submit-forget {
+    font-size: 12px;
+    padding: 6px 6px;
+  }
+
+  .password-toggle-icon {
+    padding: 2px 4px;
+  }
+}
+
 

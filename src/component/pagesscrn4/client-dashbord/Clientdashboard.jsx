@@ -39,7 +39,7 @@ const ClientDashboard = () => {
 
   const WELCOME_OPTIONS = [
     {
-      thumb: <img src={Thumb1png} alt= "" className="one" />,
+      thumb: <img src={Thumb1png} alt= "" className="first" />,
       title: "Start New Project",
       route: "/navbar/firstpage",
     },

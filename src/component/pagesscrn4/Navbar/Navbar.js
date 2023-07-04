@@ -12,7 +12,7 @@ import Popup from "../../popup/Popup";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const [notificationIcon, setNotificationIcon] =useState(false);
+  const [notificationIcon, setNotificationIcon] = useState(false);
   const history = useHistory(); // initialize useHistory hook
   const { pathname } = useLocation();
 
@@ -72,107 +72,51 @@ const Navbar = () => {
     axiosInstance.defaults.headers['Authorization'] = null;
     history.push('/');
   }
-  // const isStartApplicationActive =
-  // pathname === "/navbar/firstpage" ||
-  // pathname === "/navbar/secondpage" ||
-  // pathname.includes("navbar/compliance");
 
   return (
     <nav className="navbar navbar-expand-lg navbar-mainbg">
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className={`navbar-nav ml-auto ${open ? "active" : ""}`}>
-          {/* <div className="hori-selector">
-            <div className="left"></div>
-            <div className="right"></div>
-          </div> */}
-
-          <li
-            className={pathname === "/navbar/clientdashboard" ? "active" : ""}>
-            <NavLink
-              to="/navbar/clientdashboard"
-              className="nav-link"
-              // onClick={handleToggle}
-            >
+          <li className={pathname === "/navbar/clientdashboard" ? "active" : ""}>
+            <NavLink to="/navbar/clientdashboard" className="nav-link">
               Home
             </NavLink>
           </li>
 
-          {/* <li
-            className={
-              isStartApplicationActive ? "active nav-item" : "nav-item"
-            }>
-            <NavLink
-              className="nav-link"
-              to="/navbar/firstpage"
-              // onClick={handleToggle}
-            >
-              Start New Project
-            </NavLink>
-          </li> */}
-
-          {/* <li
-            className={
-              pathname === "/navbar/review" ? "active nav-item" : "nav-item"
-            }>
-            <NavLink
-              className="nav-link"
-              to="/navbar/review"
-              // onClick={handleToggle}
-            >
-             Track Application
-            </NavLink>
-          </li> */}
-
-       {/*   <li
-            className={
-              pathname === "/navbar/myaccount" ? "active nav-item" : "nav-item"
-            }>
-            <NavLink
-              className="nav-link"
-              to="/navbar/myaccount"
-              // onClick={handleToggle}
-            >
-             My Account
+          <li className={pathname === "/navbar/clientdashboard" ? "active" : ""}>
+            <NavLink to="/navbar/clientdashboard" className="nav-link">
+          
             </NavLink>
           </li>
 
-          <li
-            className={
-              pathname === "/navbar/add" ? "active nav-item" : "nav-item"
-            }>
-            <NavLink
-              className="nav-link"
-              to="/navbar/add"
-              // onClick={handleToggle}
-            >
-             Add Users
+          <li className={pathname === "/navbar/clientdashboard" ? "active" : ""}>
+            <NavLink to="/navbar/clientdashboard" className="nav-link">
+          
             </NavLink>
-          </li> */}
+          </li>
 
-          <li 
-          className={
-            pathname === "/navbar/firstcompliance" ? "active nav-item" : "nav-item"
-          }>
-            <NavLink
-            className="nav-know"
-            to="/navbar/firstcompliance"
-            >
-             <img src={know} alt ="" style={{width: "35px"}} />
-             <h3 style={{fontSize: "12px", fontWeight:"100"}}> Know Your Compliance</h3>
+          <li className={pathname === "/navbar/clientdashboard" ? "active" : ""}>
+            <NavLink to="/navbar/clientdashboard" className="nav-link">
+          
+            </NavLink>
+          </li>
+
+          <li className={pathname === "/navbar/firstcompliance" ? "active nav-item" : "nav-item"}>
+            <NavLink className="nav-link" to="/navbar/firstcompliance">
+              <img src={know} alt="" style={{ width: "35px", margin: "0px 178px" }} />
+              <h3 style={{ fontSize: "12px", fontWeight: "100", transform: "translate(125px, 1px)" }}>Know Your Compliance</h3>
             </NavLink>
           </li>
 
           <li>
-          <NavLink className="nav-bell" to="" onClick={handleIconClick} style={{textDecoration: "none"}}>
-        <FontAwesomeIcon icon={faBell} size="2x" style={{ color: "green" }} className="animated-bell shake" 
-        />
-        <h3 style={{ fontSize: "12px", fontWeight: "100"}}>Notification</h3>
-      </NavLink>
-    </li>
-
+            <NavLink className="nav-link" to="" onClick={handleIconClick} style={{ textDecoration: "none" }}>
+              <FontAwesomeIcon icon={faBell} size="2x" style={{ color: "green", margin: "0px 170px" }} className="animated-bell shake" />
+              <h3 style={{ fontSize: "12px", fontWeight: "100", transform: "translate(107px, 1px)"  }}>Notification</h3>
+            </NavLink>
+          </li>
         </ul>
       </div>
-      
+
       <button className="nav-btn" onClick={handleToggle}>
         <FaBars />
       </button>
@@ -181,9 +125,9 @@ const Navbar = () => {
       </button>
       {open && <div className="nav-layer" onClick={handleToggle} />}
 
-      <Popup trigger = {notificationIcon} setTrigger = {setNotificationIcon}>
-        < NavbarNotification />
-         </Popup>
+      <Popup trigger={notificationIcon} setTrigger={setNotificationIcon}>
+        <NavbarNotification />
+      </Popup>
     </nav>
   );
 };

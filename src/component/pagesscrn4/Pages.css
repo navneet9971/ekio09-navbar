@@ -26,7 +26,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 89vh;
+  min-height: 76vh;
 }
 
 
@@ -101,12 +101,11 @@ select#region-select22 {
 
 /* Custom side image styles */
 .custom-side-img {
-  width: 800px;
-  height: 451px;
-  /* padding: 122px -4px; */
+  width: 655px;
+  height: 405px;
   position: absolute;
-  left: 325px;
-  transform: translateY(-92%);
+  left: 228px;
+  transform: translate(166px, -361px);
 }
 
 /* Responsive styles for button */
@@ -152,6 +151,7 @@ button.first-go {
     flex-basis: 100%;
   }
 }
+
 
 
 

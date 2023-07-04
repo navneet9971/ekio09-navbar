@@ -15,7 +15,10 @@
 h1.type {
   float: right;
   text-align: center;
-  transform: translate(-209px, -44px);
+  position: relative;
+  top: -50px;
+  left: -183px;
+  /* transform: translate(-209px, -44px); */
   /* color: #fff; */
   font-size: 33px;
   font-size: 20px;
@@ -28,29 +31,44 @@ h1.appli {
   /* justify-content: flex-end; */
   /* position: absolute; */
   float: left;
-  /* top: 122px; */
-  /* right: 941px; */
+  top: -47px;
+  right: 163px;
   font-size: 15px;
   font-weight: 100;
+  position: relative;
   /* color: #fff; */
-  transform: translate(41px, -49px);
+  /* transform: translate(41px, -49px); */
 }
 
 .header-btn1 {
   display: flex;
   position: absolute;
-  top: 140px;
+  top: 152px;
   left: 70px;
   gap: 10px;
 }
 
-p.status-percent {
-  color: #fff;
+/* p.status-percent {
   position: absolute;
-  top: 224px;
-  left: 727px;
-  font-size: 25px;
+  color: black;
+  font-size: 20px;
+  transform: translate(407px, -105px);
+} */
+
+/* Responsive CSS for screens smaller than 768px */
+@media (max-width: 768px) {
+  p.status-percent {
+    display: none;
+  }
 }
+
+/* Responsive CSS for screens smaller than 480px */
+@media (max-width: 480px) {
+  p.status-percent {
+  display: none;
+  }
+}
+
 
 /* Responsive styles */
 
@@ -60,12 +78,12 @@ p.status-percent {
     float: none;
     font-size: 26px;
     text-align: center;
+    transform: translate(-15px, -54px);
   }
 
   h1.appli {
     position: static;
     justify-content: center;
-    margin-top: 20px;
     padding: 0;
   }
 
@@ -75,22 +93,19 @@ p.status-percent {
     margin-left: auto;
     margin-right: auto;
   }
-
-  p.status-percent {
-    position: static;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-  }
 }
 
 /* Adjustments for small screens */
 @media (max-width: 767px) {
   h1.type {
     font-size: 24px;
-    float: none;
+    float: left;
     text-align: center;
-  }
+    position: relative;
+    /* transform: translate(-15px, -54px); */
+    left: 17px;
+    top: 40px;
+}
 
   h1.appli {
     position: static;
@@ -103,13 +118,6 @@ p.status-percent {
     top: auto;
     left: auto;
     margin-top: 10px;
-  }
-
-  p.status-percent {
-    position: static;
-    top: auto;
-    left: auto;
-    text-align: center;
   }
 }
 
@@ -117,9 +125,12 @@ p.status-percent {
 @media (min-width: 768px) and (max-width: 991px) {
   h1.type {
     font-size: 28px;
-    float: none;
-    text-align: center;
-  }
+    position: relative;
+    /* text-align: center; */
+    float: left;
+    top: -7px;
+    left: -390px;
+}
 
   h1.appli {
     position: static;
@@ -133,13 +144,6 @@ p.status-percent {
     left: auto;
     margin-top: 10px;
   }
-
-  p.status-percent {
-    position: static;
-    translate: -127px 38px;
-    margin: 27px -110px;
-    text-align: center;
-}
 }
 
 /* Adjustments for large screens */
@@ -182,8 +186,12 @@ h1.ongo {
   font-size: 15px;
   /* color: #fff; */
   text-align: center;
-  transform: translate(-516px, -62px);
+  float: left;
+  position: relative;
+  top: -81px; /* Adjust the value as needed */
+  right: -41px;
 }
+
 
 button.clidown {
   margin-left: 34em;
@@ -202,7 +210,10 @@ button.clidown {
 
   h1.ongo {
     font-size: 24px;
-  }
+    position: relative;
+    top: -25px;
+    right: 0px;
+}
 
   button.clidown {
     margin-left: 16em;
@@ -221,7 +232,10 @@ button.clidown {
 
   h1.ongo {
     font-size: 28px;
-  }
+    position: relative;
+    top: -50px;
+    left: -4px;
+}
 
   button.clidown {
     margin-left: 26em;
@@ -599,14 +613,12 @@ svg.ryt2 {
   margin-top: -20em;
 } */
 
-p.status-percent {
-  /* left: 1117px; */
+/* p.status-percent {
   position: absolute;
   transform: translate(407px, -105px);
-  /* top: 124px; */
   color: black;
   font-size: 20px;
-}
+} */
 
 
 .stepBlock:not(:last-child) > .circleWrapper::after {
@@ -799,9 +811,32 @@ svg.mainsvg9 {
 .tecon {
   margin: 154px 30px 26px 55px;
   text-align: center;
-  /* outline: 2px solid white; */
   background: #F2F6FD;
 }
+
+@media screen and (max-width: 767px) {
+  /* Styles for screens up to 767px wide */
+  .tecon {
+    /* margin: 395px 13px; */
+    margin-top: 393px;
+}
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  /* Styles for screens between 768px and 1023px wide */
+  .tecon {
+    margin: 244px 120px 20px 0px;
+    /* margin-top: 393px; */
+}
+}
+
+@media screen and (min-width: 1024px) {
+  /* Styles for screens larger than 1024px wide */
+  .tecon {
+    margin: 154px 30px 26px 55px;
+  }
+}
+
 
 p.dt1,
 p.dt5 {
@@ -878,7 +913,7 @@ h2.steps-count {
   justify-content: center;
   align-items: center;
   width: 64em;
-  outline: 2px solid #fff;
+  /* outline: 2px solid #fff; */
   transform: translate(130px, 25px);
 }
 
@@ -981,7 +1016,8 @@ color: #fff;
 
   h2.steps-count {
     transform: none;
-    margin-bottom: -231px;
+    margin-bottom: -382px;
+    margin-top: 56px;
 }
 
   .mainsvg3 {
@@ -994,18 +1030,19 @@ color: #fff;
 
 /* For screens between 468px and 800px */
 @media screen and (min-width: 469px) and (max-width: 800px) {
-  .dd-menu {
+ .dd-menu {
     width: auto;
     transform: none;
-  }
+    display: grid;
+}
 
   .header-btn1 {
     display: block;
-    position: static;
-    top: auto;
-    left: auto;
-    margin-bottom: 20px;
-  }
+    position: relative;
+    top: 10px;
+    left: -251px;
+    /* bottom: 19px; */
+}
 
   h2.steps-count {
     transform: none;
