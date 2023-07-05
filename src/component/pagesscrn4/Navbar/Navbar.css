@@ -259,3 +259,28 @@ a.nav-bell {
     left: -25px;
   }
 }
+
+
+/* Responsive Styles */
+@media (min-width: 469px) and (max-width: 767px) {
+  .animated-bell{
+    transform: none;
+    margin-top: 998px;
+    margin-left: -456px;
+}
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .side-bar {
+    position: absolute;
+    /* transform: translate(-100px, 20px); */
+    top: -21px;
+    right: -123px;
+}
+}
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .side-bar {
+    transform: translate(-154px, 41px); /* Keep the original translation for screens between 1024px and 1439px */
+  }
+}
