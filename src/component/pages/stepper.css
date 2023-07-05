@@ -15,14 +15,15 @@
 h1.type {
   float: right;
   text-align: center;
-  position: relative;
-  top: -50px;
-  left: -183px;
+  /* position: relative; */
+  top: 101px;
+  right: 225px;
   /* transform: translate(-209px, -44px); */
   /* color: #fff; */
   font-size: 33px;
   font-size: 20px;
   font-weight: 100;
+  position: fixed;
 }
 
 h1.appli {
@@ -63,11 +64,7 @@ h1.appli {
 }
 
 /* Responsive CSS for screens smaller than 480px */
-@media (max-width: 480px) {
-  p.status-percent {
-  display: none;
-  }
-}
+
 
 
 /* Responsive styles */
@@ -82,10 +79,12 @@ h1.appli {
   }
 
   h1.appli {
-    position: static;
-    justify-content: center;
-    padding: 0;
-  }
+    position: absolute;
+    top: 150px;
+    left: 22px;
+    /* justify-content: center; */
+    /* padding-right: 0; */
+}
 
   .header-btn1 {
     position: static;
@@ -95,56 +94,8 @@ h1.appli {
   }
 }
 
-/* Adjustments for small screens */
-@media (max-width: 767px) {
-  h1.type {
-    font-size: 24px;
-    float: left;
-    text-align: center;
-    position: relative;
-    /* transform: translate(-15px, -54px); */
-    left: 17px;
-    top: 40px;
-}
 
-  h1.appli {
-    position: static;
-    justify-content: center;
-    padding-right: 0;
-  }
 
-  .header-btn1 {
-    position: static;
-    top: auto;
-    left: auto;
-    margin-top: 10px;
-  }
-}
-
-/* Adjustments for medium screens */
-@media (min-width: 768px) and (max-width: 991px) {
-  h1.type {
-    font-size: 28px;
-    position: relative;
-    /* text-align: center; */
-    float: left;
-    top: -7px;
-    left: -390px;
-}
-
-  h1.appli {
-    position: static;
-    justify-content: center;
-    padding-right: 0;
-  }
-
-  .header-btn1 {
-    position: static;
-    top: auto;
-    left: auto;
-    margin-top: 10px;
-  }
-}
 
 /* Adjustments for large screens */
 @media (min-width: 992px) and (max-width: 1199px) {
@@ -685,10 +636,10 @@ svg.ryt2 {
     width: 100%; /* Adjust the width to fit the screen */
   }
 
-  .ongoing-applications {
+  /* .ongoing-applications {
     padding: 20px;
     padding-top: 40px;
-  }
+  } */
 }
 
 @media screen and (max-width: 480px) {
@@ -818,7 +769,7 @@ svg.mainsvg9 {
   /* Styles for screens up to 767px wide */
   .tecon {
     /* margin: 395px 13px; */
-    margin-top: 393px;
+    margin-top: 94px;
 }
 }
 
@@ -833,8 +784,8 @@ svg.mainsvg9 {
 @media screen and (min-width: 1024px) {
   /* Styles for screens larger than 1024px wide */
   .tecon {
-    margin: 154px 30px 26px 55px;
-  }
+    margin: -19px 30px 26px 55px;
+}
 }
 
 
@@ -899,8 +850,7 @@ p.dt10 {
 
 h2.steps-count {
   position: relative;
-  transform: translate(15px, 154px);
-  margin: -128px 23px 15px 17px;
+  margin: 43px 0px 20px 0px;
   text-align: center;
   /* text-decoration: underline; */
   font-size: 20px;
@@ -985,6 +935,19 @@ cursor: pointer;
 border: none;
 color: #fff;
 }
+
+.status-bar {
+    width: 35%;
+    height: 22px;
+    background-color: #D9D9D9;
+    position: absolute;
+    right: 89px;
+}
+
+ .status-percent {
+          position: absolute;
+          right: 89px;
+        }
 /* Responsive Styles */
 
 /* For screens up to 468px */
@@ -1028,62 +991,184 @@ color: #fff;
   }
 }
 
-/* For screens between 468px and 800px */
 @media screen and (min-width: 469px) and (max-width: 800px) {
- .dd-menu {
+  .dd-menu {
     width: auto;
     transform: none;
     display: grid;
-}
+  }
+
+  h1.type {
+    font-size: 24px;
+    text-align: center;
+    position: relative;
+    top: -16px;
+    margin: 23px -95px 2px 0px;
+    left: -295px;
+  }
 
   .header-btn1 {
-    display: block;
     position: relative;
-    top: 10px;
-    left: -251px;
-    /* bottom: 19px; */
+    top: 6px;
+    left: -239px;
+  }
+
+  h1.appli {
+    top: 2px;
+    left: 5px;
+    font-size: 15px;
+    font-weight: 100;
+    position: relative;
 }
 
   h2.steps-count {
     transform: none;
     margin-bottom: -230px;
     margin-top: 54px;
-}
+  }
 
   .reportbtn {
-    font-size: 20px;
+    font-size: 12px;
     margin: 10px 0;
   }
 }
+
+@media (max-width: 480px) {
+  .status-bar {
+    width: 68%;
+    height: 25px;
+    background-color: #D9D9D9;
+    position: absolute;
+    top: 298px;
+    right: 178px;
+  }
+
+  .status-percent {
+    position: absolute;
+    top: 298px;
+    right: 180px;
+  }
+}
+
+@media (max-width: 800px) {
+  /* Add your styles for 722px screen size here */
+
+  .dd-menu {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  h1.type {
+    /* font-size: 20px; */
+    margin-top: 24px;
+    left: -354px;
+  }
+
+  .tecon {
+    margin-top: 94px;
+  }
+
+  .header-btn1 {
+    position: relative;
+    top: 40px;
+    left: -290px;
+  }
+
+  /* h1.appli {
+    font-size: 14px;
+    left: 0;
+    top: 0;
+  } */
+
+  h2.steps-count {
+    margin-bottom: -97px;
+    margin-top: 75px;
+  }
+
+  .reportbtn {
+    font-size: 14px;
+    margin: 5px 0;
+  }
+
+  .status-bar {
+    width: 50%;
+    top: 53px;
+    right: 50px;
+  }
+
+  .status-percent {
+    top: 150px;
+    right: 52px;
+  }
+}
+
+
+@media (max-width: 992px) {
+  /* Add your styles for 992px screen size here */
+
+  .dd-menu {
+    /* Example style */
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  h1.type {
+    /* font-size: 20px; */
+    margin-top: 20px;
+    left: -290px;
+    /* margin-left: 11px; */
+}
+
+.tecon {
+  /* margin: 395px 13px; */
+  margin-top: 94px;
+}
+
+  .header-btn1 {
+    /* Example style */
+    position: relative;
+    top: 40px;
+    left: -290px;
+  }
+
+  /* h1.appli {
+    font-size: 14px;
+    left: 0;
+    top: 0;
+  } */
+
+  h2.steps-count {
+    margin-bottom: -97px;
+    margin-top: 75px;
+}
+
+  .reportbtn {
+    /* Example style */
+    font-size: 14px;
+    margin: 5px 0;
+  }
+
+  .status-bar {
+    width: 50%;
+    top: 53px;
+    right: 50px;
+}
+
+  .status-percent {
+    /* Example style */
+    top: 150px;
+    right: 52px;
+  }
+}
+
+
+
+
 
 /* For screens between 801px and 1280px */
-@media screen and (min-width: 801px) and (max-width: 1280px) {
-  .dd-menu {
-    width: auto;
-    transform: none;
-    gap:20px
-  }
 
-
-  .reportbtn {
-    font-size: 24px;
-    margin: 12px 0;
-  }
-}
-
-/* For screens larger than 1280px */
-@media screen and (min-width: 1281px) {
-  .dd-menu {
-    width: 64em;
-    transform: translate(130px, 25px);
-    gap:20px;
-  }
-
-  /* .reportbtn {
-    font-size: 26px;
-    margin: 10px 0;
-  } */
-}
 
 .pdffilesup {
   margin: 0 8em;

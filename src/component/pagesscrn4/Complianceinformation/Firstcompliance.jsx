@@ -65,19 +65,15 @@ const Firstcompliance = () => {
   };
 
   return (
-    <div className="bgchange">
-      <div className="first-container22">
-        <div className="fist-title">
-          <h3 style={{ color: "black", fontWeight:"100" }} className="firstpage-title">
-            Please enter the following details to Start a new application:
-          </h3>
-          <h4 style={{ color: "red", fontWeight: "100", padding: "3px"}} >
-            You need to fill at least 1 data point to see the list of
-            compliance.
-          </h4>
-        </div>
+    <div className='bgchange'>
+    <div className="first-container22">
+      
+      <div className='fist-title'>
+      <h3 style={{ color: 'black', fontWeight:"100", transform: "translate(14px, 60px)"}} className="firstpage-title">Please enter the following details to Start a new application:</h3>
+      <h4 style={{ color: "red", fontWeight: "100", padding: "3px",     transform: "translate(14px, 60px)"}} >You need to fill at least 1 data point to see the list of compliance.</h4>
+      </div>
 
-        <div className="form-group22">
+      <div className="form-group22">
         {/* <label className='firsttext-input'>Enter Industry:</label> */}
         <select id="category-input" value={category} onChange={handleCategoryChange} >
           <option value="">Choose Your Industry</option>
@@ -87,32 +83,24 @@ const Firstcompliance = () => {
           </select>
       </div>
 
-        <div className="form-group22">
-          {/* <label className="firsttext-input">Enter Name of Product:</label> */}
-          <input
-          className="from-22"
-            type="text"
-            placeholder="Enter Name of Product"
-            id="category-input"
-            value={product}
-            onChange={handleProductChange}
-          />
-        </div>
+      <div className="form-group22">
+        <input type="text" placeholder='Enter Name of Product' id="category-input" value={product} onChange={handleProductChange} />
+      </div>
 
-        <div className="region-group22">
+      <div className="region-group22">
           <select id="category-input" value={countries} onChange={handleRegionChange}>
             <option value="india">India</option>
           </select>
       </div>
-
-        <button className="first-go" onClick={handleGoClick}>
-          GO
-        </button>
+      
+        <button className="first-go" onClick={handleGoClick}>GO</button>
 
         <div className="side-img">
-          <Sideimg className="custom-side-img" />
-        </div>
-      </div>
+  <Sideimg className="custom-side-img" />
+</div>
+
+
+    </div>
     </div>
   );
 };

@@ -101,11 +101,12 @@ select#region-select22 {
 
 /* Custom side image styles */
 .custom-side-img {
-  width: 655px;
-  height: 405px;
+  width: 666px;
+  height: 363px;
   position: absolute;
-  left: 228px;
-  transform: translate(166px, -361px);
+  left: 286px;
+  top: -350px;
+  /* transform: translate(166px, -361px); */
 }
 
 /* Responsive styles for button */
@@ -126,13 +127,13 @@ button.first-go {
 /* Media queries for responsiveness */
 @media only screen and (max-width: 600px) {
   /* Adjust width for form groups and side image */
-  .form-group22,
-  .custom-side-img {
+  .form-group22, .custom-side-img {
     width: 100%;
     padding: 12px;
     left: 0;
-    transform: translateY(0);
-  }
+    top: -72px;
+    transform: translateY(28);
+}
 
   /* Adjust width for category input */
   input#category-input {
@@ -151,6 +152,44 @@ button.first-go {
     flex-basis: 100%;
   }
 }
+
+/* Styles for screens between 601px and 767px */
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .form-group22, .custom-side-img {
+    width: 100%;
+    padding: 12px;
+    left: 0;
+    top: -105px;
+    transform: translateY(28);
+}
+
+  /* Adjust width for category input */
+  input#category-input {
+    width: 100%;
+  }
+
+  /* Adjust width for region select */
+  select#region-select22 {
+    width: 100%;
+  }
+
+  /* Adjust flex-basis for form groups, regions, and go button */
+  .form-group22,
+  .region-group22,
+  .gobutton22 {
+    flex-basis: 100%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .custom-side-img {
+    width: 100%;
+    padding: 12px;
+    left: 0;
+    top: -46px;
+    /* transform: translateY(0); */
+}
+  }
 
 
 
@@ -668,11 +707,10 @@ video.videoBox {
 /*----- First Page Responsive------------*/
 
 @media screen and (max-width: 576px) {
-  /* Styles for screens smaller than 576px */
   .first-container22 {
-  margin: 30px auto;
-  width: 90%;
-  padding: 20px;
+      margin: 30px auto;
+      width: 90%;
+      padding: 20px;
   }
   
   select#region-select22 {
@@ -729,7 +767,6 @@ video.videoBox {
   
   input[type="text"],
   input[type="tel"] {
-    margin-left: auto;
     width: auto;
     border-radius: 5px;
   }
@@ -745,6 +782,43 @@ video.videoBox {
   margin-bottom: 15px;
   }
   }
+
+  
+@media (min-width: 768px) and (max-width: 1023px) {
+  .first-container22 {
+    margin: 50px auto;
+    width: 90%;
+    padding: 30px;
+    }
+    
+    select#region-select22 {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 10px;
+    }
+    
+    button {
+    margin: 20px auto;
+    }
+    
+    input[type="text"],
+    input[type="tel"] {
+      width: auto;
+      border-radius: 5px;
+    }
+    
+    
+    .form-group22 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    }
+    
+    .region-group22 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    }
+
+}
 
 
   /*------ThirdPage Responsive-----------*/
@@ -1141,7 +1215,6 @@ button.btn809:hover{
 @media (min-width: 601px) and (max-width: 1024px) {
   .st804,
   .st804:focus,
-  select.bisdrop,
   .bis-register,
   input.bis-register,
   h3.reg-popup-titlte,

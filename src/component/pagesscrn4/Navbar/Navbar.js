@@ -103,15 +103,15 @@ const Navbar = () => {
 
           <li className={pathname === "/navbar/firstcompliance" ? "active nav-item" : "nav-item"}>
             <NavLink className="nav-link" to="/navbar/firstcompliance">
-              <img src={know} alt="" style={{ width: "35px", margin: "0px 178px" }} />
-              <h3 style={{ fontSize: "12px", fontWeight: "100", transform: "translate(125px, 1px)" }}>Know Your Compliance</h3>
+              <img src={know} alt="" style={{ width: "35px" }} />
+              <h3 style={{ fontSize: "12px", fontWeight: "100" }}>Know Your Compliance</h3>
             </NavLink>
           </li>
 
           <li>
             <NavLink className="nav-link" to="" onClick={handleIconClick} style={{ textDecoration: "none" }}>
-              <FontAwesomeIcon icon={faBell} size="2x" style={{ color: "green", margin: "0px 170px" }} className="animated-bell shake" />
-              <h3 style={{ fontSize: "12px", fontWeight: "100", transform: "translate(107px, 1px)"  }}>Notification</h3>
+              <FontAwesomeIcon icon={faBell} size="2x" style={{ color: "green"}} className="animated-bell" />
+              <h3 style={{ fontSize: "12px", fontWeight: "100" }}>Notification</h3>
             </NavLink>
           </li>
         </ul>

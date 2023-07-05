@@ -258,7 +258,18 @@ th {
     left: 0;
 }
 }
-@media (min-width: 812px) and (max-width: 912px) {
+@media (min-width: 769px) and (max-width: 811px) {
+  .search-bar {
+    position: static;
+    text-align: center;
+    display: contents;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    right: auto;
+    left: 0;
+}
+}
+@media (min-width: 812px) and (max-width: 991px) {
   .search-bar {
     position: static;
     text-align: center;

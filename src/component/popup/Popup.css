@@ -54,8 +54,8 @@
 
 @media (max-width: 768px) {
     .popup-inner {
-        padding: 29px;
-        max-width: 709px;
+        padding: 25px;
+        max-width: 476px;
     }
   
     .file-change-button {

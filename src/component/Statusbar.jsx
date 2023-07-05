@@ -22,23 +22,12 @@ const StatusBar = ({ totalResponses, completedResponses }) => {
           align-items: center;
         }
 
-        .status-bar {
-          width: 35%;
-          height: 22px;
-          background-color: #D9D9D9;
-          position: absolute;
-          right: 89px;
-        }
-
         .status-fill {
           height: 100%;
           background-color: #55B600;
         }
 
-        .status-percent {
-          position: absolute;
-          right: 89px;
-        }
+       
 
         @media (max-width: 768px) {
           .status-bar {
