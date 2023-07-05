@@ -185,6 +185,7 @@ function SignUp() {
             value={formData.user_type}
             onChange={handleChange}
           >
+            <option value="">Select Your Type</option>
             <option value="corporate">Corporate</option>
             <option value="individual_consultant">Individual Consultant</option>
             <option value="lab">Labs</option>

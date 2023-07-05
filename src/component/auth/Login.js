@@ -176,7 +176,7 @@ function Login() {
             onClick={() => setLinkPopup(true)}
             style={{
               cursor: "pointer",
-              margin: "7px 188px 0px 0px",
+              margin: "5px 140px 0px 0px",
               fontWeight: "400",
               fontSize: "17px",
               color: "#19ABFE",

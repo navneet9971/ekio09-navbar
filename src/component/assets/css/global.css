@@ -39,7 +39,9 @@
   flex-direction: column;
   width: 100%;
   align-items: center;
-  margin-left: 100px;
+  top: 36px;
+  margin-left: -400px;
+  position: absolute;
 }
 
 .form p {
@@ -117,9 +119,8 @@
 
 @media (max-width: 480px) {
   .form {
-    margin-left: 10px;
-  }
-
+    margin-left: 0px;
+}
   .auth-box {
     min-height: auto;
     height: 96vh;
@@ -369,22 +370,24 @@ img.eikomp_logo {
 
 /* Responsive styles */
 @media (max-width: 468px) {
-  .side-bar  {
+  .side-bar {
     transform: none;
-    margin-top: 998px;
-    margin-left: -250px;
+    /* margin-top: 918px; */
+    /* margin-left: -249px; */
+    position: absolute;
+    top: 500px;
+    left: 43px;
 }
-
 .line{
   display: none;
 }
 }
 
 @media (min-width: 469px) and (max-width: 767px) {
-  .side-bar  {
+  .side-bar {
     transform: none;
     margin-top: 998px;
-    margin-left: -250px;
+    margin-left: -456px;
 }
 
 .line{
@@ -401,15 +404,25 @@ img.eikomp_logo {
 
 @media (min-width: 768px) and (max-width: 1023px) {
   .side-bar {
-    transform: translate(-100px, 20px); /* Adjust the translation for medium-sized screens */
-  }
+    position: absolute;
+    /* transform: translate(-100px, 20px); */
+    top: -21px;
+    right: -123px;
+}
+
+  .form {
+    margin-left: -203px;
+    margin-top: 0px;
+}
   
   .line{
     display: none;
   }
   .login-img {
-    top: 85%;
-    transform: translateX(-50%) translateY(-50%);
+    top: 100%;
+    left: 21px;
+    /* right: 44px; */
+    /* transform: translateX(-50%) translateY(-50%); */
 }
 }
 
@@ -417,6 +430,18 @@ img.eikomp_logo {
   .side-bar {
     transform: translate(-154px, 41px); /* Keep the original translation for screens between 1024px and 1439px */
   }
+  .form {
+    top: 36px;
+    left: 93px;
+    position: absolute;
+}
+.login-img {
+  width: 275px;
+  height: 157.51px;
+  left: 197px;
+  top: 492px;
+  transform: none;
+}
 }
 
 @media (min-width: 1440px) {
@@ -427,21 +452,6 @@ img.eikomp_logo {
     display: none;
   }
 }
-
-@media (min-width: 1024px){
-.login-img {
-    width: 275px;
-    height: 157.51px;
-    left: 53px;
-    top: 493px;
-    transform: none;
-}
-
-.form {
-  margin-left: 80px; /* Keep the original margin for larger screens */
-}
-}
-
 
 /* ------------SINGUP PAGE CSS ------------ */
 .signup {

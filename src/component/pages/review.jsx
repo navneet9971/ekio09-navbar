@@ -78,40 +78,33 @@ function BISTableReview() {
   const handleClick = (id) => {
     localStorage.setItem("ide", id);
     const selectedItem = tableData.find((data) => data.id === id);
-   const selectedStatus =
-  selectedItem.status === "Ongoing" 
-    ? "Ongoing"
-    : selectedItem.status === "Completed"
-      ? "completed"
-      : selectedItem.status === "Inclusion"
-      ? "Inclusion"
-      : "Modification"
-
+  
+    const selectedStatus = selectedItem.status.toLowerCase(); // Convert to lowercase for case-insensitive comparison
   
     if (selectedItem.compliance_name === "BIS") {
-      if (selectedStatus === "Ongoing") {
+      if (selectedStatus === "ongoing") {
         history.push(`/navbar/BISoongoing/id=${id}`);
       } else if (selectedStatus === "completed") {
         history.push(`/navbar/BIScompleted/id=${id}`);
-      } else if (selectedStatus === "Inclusion") {
-        history.push(`/navbar/BISInclusion/id=${id}`);
+      } else if (selectedStatus === "inclusion") {
+        history.push(`/navbar/BISinclusion/id=${id}`);
       }
     } else if (selectedItem.compliance_name === "TEC") {
-      if (selectedStatus === "Ongoing") {
-        history.push(`/navbar/TECOngoing/id=${id}`);
+      if (selectedStatus === "ongoing") {
+        history.push(`/navbar/TECongoing/id=${id}`);
       } else if (selectedStatus === "completed") {
         history.push(`/navbar/TECcompleted/id=${id}`);
-      }else if (selectedStatus === "Modification"){
-        history.push(`/navbar/TECmodification/id=${id}`)
+      } else if (selectedStatus === "modification") {
+        history.push(`/navbar/TECmodification/id=${id}`);
       }
-    }else if (selectedItem.compliance_name === "WPC") {
-      if (selectedStatus === "Ongoing") {
-        history.push(`/navbar/WPCOngoing/id=${id}`);
+    } else if (selectedItem.compliance_name === "WPC") {
+      if (selectedStatus === "ongoing") {
+        history.push(`/navbar/WPCongoing/id=${id}`);
       } else if (selectedStatus === "completed") {
         history.push(`/navbar/WPCcompleted/id=${id}`);
       }
-  }
-};
+    }
+  };
   
   
 
