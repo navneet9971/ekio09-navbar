@@ -45,6 +45,8 @@ import Transaction from "./component/pages/account-pages/Transaction";
 import TECcompliance from "./component/pagesscrn4/Complianceinformation/TECcompliance";
 import BIScompliance from "./component/pagesscrn4/Complianceinformation/BIScompliance";
 import WPCcompliance from "./component/pagesscrn4/Complianceinformation/WPCcompliance";
+import BISISIcompliance from "./component/pagesscrn4/Complianceinformation/BIS-ISIcompliance";
+import EPRcompliance from "./component/pagesscrn4/Complianceinformation/EPRcompliance";
 import FirstCompliance from "./component/pagesscrn4/Complianceinformation/Firstcompliance";
 import Secondcompliance from "./component/pagesscrn4/Complianceinformation/Secondcompliance";
 import MainPage from "./component/MainPages";
@@ -216,6 +218,16 @@ const App = () => {
             <Route path="/navbar/WPCcompliance">
               <WPCcompliance />
             </Route>
+
+            <Route path="/navbar/BIS-ISIcompliance">
+              <BISISIcompliance />
+            </Route>
+
+            <Route path="/navbar/EPRcompliance">
+              <EPRcompliance />
+            </Route>
+
+            
 
       
 {/*--------------------------My account pages Path inside of navbar-----------------------------------*/}

@@ -1,0 +1,50 @@
+/* Order.css */
+.home-profile-container {
+    position: relative;
+  }
+  
+  .order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .order-title {
+    text-align: left;
+  }
+
+  .order-date {
+    text-align: left;
+  }
+  
+  .toggle-button {
+    text-align: right;
+  }
+  
+  .expanded-section {
+    background-color: red;
+    padding: 10px;
+   margin-top: 10px;
+  }
+
+  .order-container {
+    background-color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .order-details {
+    margin-top: 10px;
+  }
+  
+  .order-data {
+    color: white;
+  }
+
+  .pagination {
+    display: flex;
+    gap: 11px;
+    justify-content: flex-end;
+}
+  
+  

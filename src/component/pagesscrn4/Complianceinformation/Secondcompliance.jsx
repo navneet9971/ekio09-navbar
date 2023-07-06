@@ -54,6 +54,10 @@ const Secondpage = () => {
       history.push(`/navbar/WPCcompliance`);
     } else if (complianceName === "BIS") {
       history.push(`/navbar/BIScompliance`);
+    } else if (complianceName === "EPR") {
+      history.push(`/navbar/EPRcompliance`);
+    } else if (complianceName === "BIS - ISI") {
+      history.push(`/navbar/BIS-ISIcompliance`);
     } else  {
       // handle other compliance names
     }
