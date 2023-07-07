@@ -47,6 +47,7 @@ import BIScompliance from "./component/pagesscrn4/Complianceinformation/BIScompl
 import WPCcompliance from "./component/pagesscrn4/Complianceinformation/WPCcompliance";
 import BISISIcompliance from "./component/pagesscrn4/Complianceinformation/BIS-ISIcompliance";
 import EPRcompliance from "./component/pagesscrn4/Complianceinformation/EPRcompliance";
+import BEEcompliance from "./component/pagesscrn4/Complianceinformation/BEEcompliance";
 import FirstCompliance from "./component/pagesscrn4/Complianceinformation/Firstcompliance";
 import Secondcompliance from "./component/pagesscrn4/Complianceinformation/Secondcompliance";
 import MainPage from "./component/MainPages";
@@ -227,6 +228,9 @@ const App = () => {
               <EPRcompliance />
             </Route>
 
+            <Route path="/navbar/BEEcompliance">
+              <BEEcompliance />
+            </Route>
             
 
       

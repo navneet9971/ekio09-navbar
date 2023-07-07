@@ -93,31 +93,32 @@ const Firstpage = () => {
   //component for product dropdown
   const ProductDropdown = (props) => {
     return (
-      <div classname="" style={{ maxHeight: "15rem", width: "" }}>
-        {props.dropDownData.slice(0, 5).map((item, index) => {
-          return (
-            <button
-              key={index}
-              value={item}
-              style={{
-                all: "unset",
-                width: "100%",
-                marginBottom: "0.5rem",
-                paddingBlock: "0.5rem",
-                paddingLeft: "0.8rem",
-                color: "black",
-                fontSize: "0.85rem",
-                display: "block",
-              }}
-              onClick={() => handleProductDropdownClick(item.name)}
-            >
-              {item.name.length > 100
-                ? item.name.slice(0, 100) + "..."
-                : item.name}
-            </button>
-          );
-        })}
-      </div>
+      <div className="" style={{ maxHeight: "15rem", width: "" }}>
+      {props.dropDownData.slice(0, 5).map((item, index) => {
+        return (
+          <button
+            key={index}
+            value={item}
+            style={{
+              all: "unset",
+              width: "100%",
+              marginBottom: "0.5rem",
+              paddingBlock: "0.5rem",
+              paddingLeft: "0.8rem",
+              color: "black",
+              fontSize: "0.85rem",
+              display: "absolute",
+              overflow: "hidden",
+              whiteSpace: "nowrap",
+              textOverflow: "ellipsis",
+            }}
+            onClick={() => handleProductDropdownClick(item.name)}
+          >
+            {item.name}
+          </button>
+        );
+      })}
+    </div>    
     );
   };
 
@@ -163,13 +164,14 @@ const Firstpage = () => {
         </div>
 
         <div className="form-group22">
-          <input
-            type="text"
-            placeholder="Enter Name of Product"
-            id="category-input"
-            value={product}
-            onChange={handleProductChange}
-          />
+        <input
+  type="text"
+  placeholder="Enter Name of Product"
+  id="category-input"
+  value={product}
+  onChange={handleProductChange}
+  autoComplete="off" // Add this line to disable autocomplete
+/>
           {productDropdown.length > 0 && (
             <ProductDropdown dropDownData={productDropdown} />
           )}

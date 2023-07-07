@@ -58,7 +58,9 @@ const Secondpage = () => {
       history.push(`/navbar/EPRcompliance`);
     } else if (complianceName === "BIS - ISI") {
       history.push(`/navbar/BIS-ISIcompliance`);
-    } else  {
+    } else if (complianceName === "BEE") {
+      history.push(`/navbar/BEEcompliance`);
+    }  else  {
       // handle other compliance names
     }
   };
