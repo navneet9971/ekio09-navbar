@@ -11,20 +11,25 @@
   
   .order-title {
     text-align: left;
+    font-size: 14px;
   }
 
   .order-date {
-    text-align: left;
+   display: flex;
+   justify-content: flex-end;
+    font-size: 14px;
   }
   
   .toggle-button {
     text-align: right;
+    font-size: 18px;
   }
   
   .expanded-section {
-    background-color: red;
-    padding: 10px;
-   margin-top: 10px;
+    background-color:#DCE7FF;
+    padding: 4px;
+   margin-top: 0px;
+   font-size: 14px;
   }
 
   .order-container {
@@ -37,14 +42,41 @@
     margin-top: 10px;
   }
   
-  .order-data {
+  /* .order-data {
     color: white;
-  }
+  } */
 
   .pagination {
     display: flex;
     gap: 11px;
     justify-content: flex-end;
 }
+  
+.page {
+    /* Styles for regular page links */
+    color: blue;
+    text-decoration: none;
+    margin-right: 5px;
+  }
+  
+  .number {
+    /* Styles for active page link */
+    text-decoration: underline;
+  }
+
+  .order-reot{
+   margin-right: auto;
+   width: 120px;
+   height: 25px;
+   font-size: 12px;
+   background-color: #55b700;
+   border-radius: 7px;
+   border: none;
+   cursor: pointer;
+  }
+
+  .order-reot:hover{
+    background-color: #a5f75d;
+  }
   
   

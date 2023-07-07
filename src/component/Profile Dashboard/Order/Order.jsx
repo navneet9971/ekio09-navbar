@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./Order.css";
+import { Link } from 'react-router-dom';
+import { FiDownload } from "react-icons/fi";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 
 function Order() {
   const [orders, setOrders] = useState([]);
@@ -135,6 +139,23 @@ function Order() {
     }
   };
 
+  // Function to handle the click download pdf 
+  const handleOrderPDF = () => {
+    const doc = new jsPDF();
+    let y = 20;
+  
+    orders.forEach((order) => {
+      doc.text(`Order ${order.id}`, 20, y);
+      doc.text(`Date: ${order.date}`, 20, y + 10);
+      doc.text(`Name: ${order.clientName}`, 20, y + 20);
+      y += 40;
+    });
+  
+    doc.save("order_report.pdf");
+  };
+  
+  
+
   // Logic to calculate the current page orders
   const indexOfLastOrder = currentPage * ordersPerPage;
   const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
@@ -145,17 +166,18 @@ function Order() {
 
   return (
     <div className="home-profile-container">
+        <h1 style={{ fontSize: "20px"}}>Order</h1>
       {currentOrders.map((order, index) => (
         <div key={order.id} className="order-container">
           <div className="order-header">
             <span className="order-title">Order {order.id}</span>
             <span className="order-date">{order.date}</span>
-            <button
+            <Link
               className="toggle-button"
               onClick={() => handleToggleOrders(index)}
             >
               {expandedOrder === index ? "-" : "+"}
-            </button>
+            </Link>
           </div>
           {expandedOrder === index && (
             <div className="expanded-section">
@@ -168,26 +190,29 @@ function Order() {
         </div>
       ))}
       <div className="pagination">
+      <button className="order-reot" onClick={handleOrderPDF}>
+  <FiDownload />Download Report
+</button>
         {currentPage > 1 && (
-          <button className="previous-button" onClick={handlePreviousPage}>
+          <Link className="previous-button" onClick={handlePreviousPage}>
             Previous
-          </button>
+          </Link>
         )}
         {Array.from({ length: totalPages }, (_, i) => i + 1).map(
           (pageNumber) => (
-            <button
-              key={pageNumber}
-              className={currentPage === pageNumber ? "active page" : ""}
-              onClick={() => handlePageChange(pageNumber)}
-            >
-              {pageNumber}
-            </button>
+            <Link
+  key={pageNumber}
+  className={`page ${currentPage === pageNumber ? "number" : ""}`}
+  onClick={() => handlePageChange(pageNumber)}
+>
+  {pageNumber}
+</Link>
           )
         )}
         {currentPage < totalPages && (
-          <button className="next-button" onClick={handleNextPage}>
+          <Link className="next-button" onClick={handleNextPage}>
             Next
-          </button>
+          </Link>
         )}
       </div>
     </div>
