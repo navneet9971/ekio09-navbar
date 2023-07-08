@@ -6,6 +6,7 @@ import "react-chatbot-kit/build/main.css";
 import Swal from "sweetalert2";
 import { ReactComponent as Sideimg } from "../assets/from-images.svg";
 
+
 const Firstpage = () => {
   const [category, setCategory] = useState(""); // state for category input
   const [product, setProduct] = useState(""); // state for product input
@@ -64,6 +65,7 @@ const Firstpage = () => {
         }
       )
       .then((response) => {
+        console.log(response)
         if (response.data.data.length === 0) {
           Swal.fire({
             icon: "error",
@@ -93,29 +95,52 @@ const Firstpage = () => {
   //component for product dropdown
   const ProductDropdown = (props) => {
     return (
-      <div className="" style={{ maxHeight: "15rem", width: "" }}>
+    <div
+  className=""
+  style={{
+    width: "97%",
+    backgroundColor: "#fff",
+    display: "flex",
+    flexDirection: "column",
+    boxShadow: "0px 0px 8px #ddd",
+    borderRadius: "10px",
+    marginLeft: "-0.2rem",
+    marginTop: "-0.7rem",
+    maxHeight: "90px",
+    overflow: "hidden",
+    padding: "0px 14px",
+    border: "#7bdcb5 solid 2px"
+  }}
+  onMouseEnter={(e) => {
+    e.currentTarget.style.overflowY = "scroll";
+  }}
+  onMouseLeave={(e) => {
+    e.currentTarget.style.overflowY = "hidden";
+  }}
+>
       {props.dropDownData.slice(0, 5).map((item, index) => {
         return (
-          <button
-            key={index}
-            value={item}
-            style={{
-              all: "unset",
-              width: "100%",
-              marginBottom: "0.5rem",
-              paddingBlock: "0.5rem",
-              paddingLeft: "0.8rem",
-              color: "black",
-              fontSize: "0.85rem",
-              display: "absolute",
-              overflow: "hidden",
-              whiteSpace: "nowrap",
-              textOverflow: "ellipsis",
-            }}
-            onClick={() => handleProductDropdownClick(item.name)}
-          >
-            {item.name}
-          </button>
+        <span
+
+  key={index}
+  value={item}
+  style={{
+    animationDuration: '300ms',
+    opacity: 1,
+    // display: 'block',
+    height: 'auto',
+    visibility: 'visible',
+    // width: '500px',
+    // top: '892px',
+    // left: '299px',
+    color: "black",
+    cursor: "pointer",
+  }}
+  onClick={() => handleProductDropdownClick(item.name)}
+>
+  {item.name}
+</span>
+
         );
       })}
     </div>    
@@ -163,19 +188,20 @@ const Firstpage = () => {
           </select>
         </div>
 
-        <div className="form-group22">
-        <input
-  type="text"
-  placeholder="Enter Name of Product"
-  id="category-input"
-  value={product}
-  onChange={handleProductChange}
-  autoComplete="off" // Add this line to disable autocomplete
-/>
-          {productDropdown.length > 0 && (
-            <ProductDropdown dropDownData={productDropdown} />
-          )}
-        </div>
+      <div className="form-group22">
+  <input
+    type="text"
+    placeholder="Enter Name of Product"
+    id="category-input"
+    value={product}
+    onChange={handleProductChange}
+    autoComplete="off" // Add this line to disable autocomplete
+  />
+  {product && productDropdown.length > 0 && (
+    <ProductDropdown dropDownData={productDropdown} />
+  )}
+</div>
+
 
         <div className="region-group22">
           <select
