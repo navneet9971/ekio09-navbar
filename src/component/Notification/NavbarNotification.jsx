@@ -5,6 +5,29 @@ function NavbarNotification() {
   const [productName, setProductName] = useState("");
   const [notifiData, setNotifiData] = useState([]);
   const [showTable, setShowTable] = useState(false);
+  const [productDropdown, setProductDropdown] = useState([]); // state for product dropdown
+
+  const handleProductChange = (event) => {
+    const value = event.target.value;
+    setProductName(value);
+
+    // send the product input by the user to the backend to get product recommendations
+    axiosInstance
+      .get(`/products?product=${value}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          "Content-Type": "application/json",
+          accept: "application/json",
+        },
+      })
+      .then((response) => {
+        setProductDropdown(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+        alert("Something went wrong. Please try again later.");
+      });
+  };
 
   useEffect(() => {
     if (showTable) {
@@ -34,6 +57,64 @@ function NavbarNotification() {
     setProductName("");
   };
 
+  // Function to handle the product dropdown click
+  const handleProductDropdownClick = (product) => {
+    setProductName(product);
+    setProductDropdown([]);
+  };
+
+  // Component for product dropdown
+ // Component for product dropdown
+const ProductDropdown = (props) => {
+  return (
+    <div
+      className=""
+      style={{
+        width: "97%",
+        backgroundColor: "#fff",
+        display: "flex",
+        flexDirection: "column",
+        boxShadow: "0px 0px 8px #ddd",
+        borderRadius: "10px",
+        marginLeft: "-0.2rem",
+        marginTop: "1rem", // Update marginTop to position the dropdown below the input box
+        maxHeight: "90px",
+        overflow: "hidden",
+        padding: "0px 14px",
+        border: "#7bdcb5 solid 2px",
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.overflowY = "scroll";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.overflowY = "hidden";
+      }}
+    >
+      {props.dropDownData.slice(0, 5).map((item, index) => {
+        return (
+          <span
+            key={index}
+            value={item}
+            style={{
+              animationDuration: "300ms",
+              opacity: 1,
+              height: "auto",
+              visibility: "visible",
+              color: "black",
+              cursor: "pointer",
+            }}
+            onClick={() => handleProductDropdownClick(item.name)}
+          >
+            {item.name}
+            {console.log(item.name)}
+          </span>
+        );
+      })}
+    </div>
+  );
+};
+
+
   return (
     <div>
       {showTable ? (
@@ -50,7 +131,7 @@ function NavbarNotification() {
           >
             Back
           </button>
-          <h3 style={{textAlign: "center"}}>Notification</h3>
+          <h3 style={{ textAlign: "center" }}>Notification</h3>
           <table>
             <thead>
               <tr>
@@ -92,7 +173,7 @@ function NavbarNotification() {
           </table>
         </div>
       ) : (
-        <div style={{ display: "flex", gap: "12px" }}>
+        <div style={{ display: "grid", gap: "5px" }}>
           <input
             style={{
               padding: "10px 6px",
@@ -103,16 +184,20 @@ function NavbarNotification() {
             type="text"
             placeholder="Enter Name of Product"
             value={productName}
-            onChange={(e) => setProductName(e.target.value)}
+            onChange={handleProductChange}
           />
+          {productName && productDropdown.length > 0 && (
+            <ProductDropdown dropDownData={productDropdown} />
+          )}
           <button
             style={{
-              padding: "10px 12px",
+              padding: "10px 0px",
               fontSize: "15px",
               fontWeight: "600",
               color: "#fff",
               background: "#082a71",
               borderRadius: "7px",
+              cursor: "pointer",
             }}
             onClick={handleGoButtonClick}
           >
