@@ -49,8 +49,9 @@ function CortButton({ onClose }) {
   return (
     <>
       <div style={{ display: "flex", flexWrap: "wrap" }}>
+        <h3>Choose which compliances do you want to know the rates for :-</h3>
         {complianceData.map((compliance, index) => (
-          <div key={index} style={{ width: "50%", padding: "3px" }}>
+          <div key={index} style={{ width: "35%" }}>
             <label>
               <input
                 type="checkbox"
@@ -85,7 +86,6 @@ function CortButton({ onClose }) {
           cursor: "pointer",
           transition: "all 0.2s ease-in-out",
           marginTop: "20px",
-          marginLeft: "51px",
         }}
         onClick={handleSubmit}
       >

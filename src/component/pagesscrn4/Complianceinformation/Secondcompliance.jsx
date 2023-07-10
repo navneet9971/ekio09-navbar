@@ -150,7 +150,7 @@ const Secondpage = () => {
 
 
       <button className="revbtn" onClick={() => setCotpopupbutton(true)}>
-        Compliance Rate 
+      Request Quote
         </button>
 
   <Popup trigger={cotpopupbutton} setTrigger={setCotpopupbutton}>
