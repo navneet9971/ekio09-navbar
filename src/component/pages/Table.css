@@ -474,6 +474,13 @@ select.form {
   background-color: #0062cc;
 }
 
+button.revbtn {
+  display: block;
+  position: absolute;
+  top: 107px;
+  right: 68px;
+}
+
 @media (min-width: 481px) and (max-width: 768px) {
   .revbtn {
     font-size: 14px;

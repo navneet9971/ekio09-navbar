@@ -6,11 +6,13 @@ import "../Pages.css";
 import axiosInstance from "../../../interceptors/axios";
 import Notification from "../../Notification/Notification";
 import Popup from "../../popup/Popup";
+import CortButton from "./CortButton";
 
 const Secondpage = () => {
   const history = useHistory();
   const [complianceData, setComplianceData] = useState([]);
   const [notifiButton, setNotifiButton] = useState("");
+  const [cotpopupbutton, setCotpopupbutton] = useState(false);
 
   // Calls APIs HERE ---------------------------------------------------------
 
@@ -69,6 +71,13 @@ const Secondpage = () => {
     // Implement the desired behavior when the notification is clicked
     setNotifiButton(true);
   };
+
+  //After click sumbit button popup is disable 
+  const handlePopupClose = () => { 
+    // setButtonPopup(false);
+    setCotpopupbutton(false);
+    // setButtonPopup1(false);
+   }
 
   return (
     <div className="table-bgsconpage">
@@ -138,6 +147,16 @@ const Secondpage = () => {
       <Popup trigger={notifiButton} setTrigger={setNotifiButton}>
         <Notification />
       </Popup>
+
+
+      <button className="revbtn" onClick={() => setCotpopupbutton(true)}>
+        Compliance Rate 
+        </button>
+
+  <Popup trigger={cotpopupbutton} setTrigger={setCotpopupbutton}>
+  <CortButton  onClose={handlePopupClose}/>
+  </Popup>
+
     </div>
   );
 };
