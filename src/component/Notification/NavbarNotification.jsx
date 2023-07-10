@@ -64,34 +64,45 @@ function NavbarNotification() {
   };
 
   // Component for product dropdown
- // Component for product dropdown
-const ProductDropdown = (props) => {
-  return (
-    <div
-      className=""
-      style={{
-        width: "97%",
-        backgroundColor: "#fff",
-        display: "flex",
-        flexDirection: "column",
-        boxShadow: "0px 0px 8px #ddd",
-        borderRadius: "10px",
-        marginLeft: "-0.2rem",
-        marginTop: "1rem", // Update marginTop to position the dropdown below the input box
-        maxHeight: "90px",
-        overflow: "hidden",
-        padding: "0px 14px",
-        border: "#7bdcb5 solid 2px",
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.overflowY = "scroll";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.overflowY = "hidden";
-      }}
-    >
-      {props.dropDownData.slice(0, 5).map((item, index) => {
-        return (
+  const ProductDropdown = (props) => {
+    const { dropDownData, inputValue } = props;
+  
+    // Filter the product names based on the input value
+    const filteredProducts = dropDownData.filter((item) =>
+      item.name.toLowerCase().includes(inputValue.toLowerCase())
+    );
+  
+    // Function to highlight the search term in the product name
+    const highlightSearchTerm = (productName) => {
+      const regex = new RegExp(`(${inputValue})`, "gi");
+      return productName.replace(regex, "<mark>$1</mark>");
+    };
+  
+    return (
+      <div
+        className=""
+        style={{
+          width: "100%",
+          backgroundColor: "#fff",
+          display: "flex",
+          flexDirection: "column",
+          boxShadow: "0px 0px 8px #ddd",
+          borderRadius: "10px",
+          marginLeft: "0rem",
+          marginTop: "0.2rem",
+          maxHeight: "90px",
+          overflow: "hidden",
+          padding: "0px 14px",
+          border: "#7bdcb5 solid 2px",
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.overflowY = "scroll";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.overflowY = "hidden";
+        }}
+      >
+        {filteredProducts.slice(0, 5).map((item, index) => (
           <span
             key={index}
             value={item}
@@ -104,15 +115,16 @@ const ProductDropdown = (props) => {
               cursor: "pointer",
             }}
             onClick={() => handleProductDropdownClick(item.name)}
-          >
-            {item.name}
-            {console.log(item.name)}
-          </span>
-        );
-      })}
-    </div>
-  );
-};
+            dangerouslySetInnerHTML={{
+              __html: highlightSearchTerm(item.name),
+            }}
+          />
+        ))}
+      </div>
+    );
+  };
+  
+
 
 
   return (
@@ -186,9 +198,9 @@ const ProductDropdown = (props) => {
             value={productName}
             onChange={handleProductChange}
           />
-          {productName && productDropdown.length > 0 && (
-            <ProductDropdown dropDownData={productDropdown} />
-          )}
+         {productName && productDropdown.length > 0 && (
+  <ProductDropdown dropDownData={productDropdown} inputValue={productName} />
+)}
           <button
             style={{
               padding: "10px 0px",

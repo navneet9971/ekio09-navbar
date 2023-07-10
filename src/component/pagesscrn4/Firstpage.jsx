@@ -94,58 +94,65 @@ const Firstpage = () => {
 
   //component for product dropdown
   const ProductDropdown = (props) => {
+    const { dropDownData, inputValue } = props;
+  
+    // Filter the product names based on the input value
+    const filteredProducts = dropDownData.filter((item) =>
+      item.name.toLowerCase().includes(inputValue.toLowerCase())
+    );
+  
+    // Function to highlight the search term in the product name
+    const highlightSearchTerm = (productName) => {
+      const regex = new RegExp(`(${inputValue})`, "gi");
+      return productName.replace(regex, "<mark>$1</mark>");
+    };
+  
     return (
-    <div
-  className=""
-  style={{
-    width: "97%",
-    backgroundColor: "#fff",
-    display: "flex",
-    flexDirection: "column",
-    boxShadow: "0px 0px 8px #ddd",
-    borderRadius: "10px",
-    marginLeft: "-0.2rem",
-    marginTop: "-0.7rem",
-    maxHeight: "90px",
-    overflow: "hidden",
-    padding: "0px 14px",
-    border: "#7bdcb5 solid 2px"
-  }}
-  onMouseEnter={(e) => {
-    e.currentTarget.style.overflowY = "scroll";
-  }}
-  onMouseLeave={(e) => {
-    e.currentTarget.style.overflowY = "hidden";
-  }}
->
-      {props.dropDownData.slice(0, 5).map((item, index) => {
-        return (
-        <span
-
-  key={index}
-  value={item}
-  style={{
-    animationDuration: '300ms',
-    opacity: 1,
-    // display: 'block',
-    height: 'auto',
-    visibility: 'visible',
-    // width: '500px',
-    // top: '892px',
-    // left: '299px',
-    color: "black",
-    cursor: "pointer",
-  }}
-  onClick={() => handleProductDropdownClick(item.name)}
->
-  {item.name}
-</span>
-
-        );
-      })}
-    </div>    
+      <div
+        className=""
+        style={{
+          width: "97%",
+          backgroundColor: "#fff",
+          display: "flex",
+          flexDirection: "column",
+          boxShadow: "0px 0px 8px #ddd",
+          borderRadius: "10px",
+          marginLeft: "-0.2rem",
+          marginTop: "-0.7rem",
+          maxHeight: "90px",
+          overflow: "hidden",
+          padding: "0px 14px",
+          border: "#7bdcb5 solid 2px",
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.overflowY = "scroll";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.overflowY = "hidden";
+        }}
+      >
+        {filteredProducts.slice(0, 5).map((item, index) => (
+          <span
+            key={index}
+            value={item}
+            style={{
+              animationDuration: "300ms",
+              opacity: 1,
+              height: "auto",
+              visibility: "visible",
+              color: "black",
+              cursor: "pointer",
+            }}
+            onClick={() => handleProductDropdownClick(item.name)}
+            dangerouslySetInnerHTML={{
+              __html: highlightSearchTerm(item.name),
+            }}
+          />
+        ))}
+      </div>
     );
   };
+  
 
   return (
     <div className="bgchange">
@@ -197,9 +204,9 @@ const Firstpage = () => {
     onChange={handleProductChange}
     autoComplete="off" // Add this line to disable autocomplete
   />
-  {product && productDropdown.length > 0 && (
-    <ProductDropdown dropDownData={productDropdown} />
-  )}
+   {product && productDropdown.length > 0 && (
+  <ProductDropdown dropDownData={productDropdown} inputValue={product} />
+)}
 </div>
 
 
