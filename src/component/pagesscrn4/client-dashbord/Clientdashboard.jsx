@@ -29,7 +29,7 @@ const ClientDashboard = () => {
         // setFirstName(res.data.first_name);
         // setLastName(res.data.last_name);
         // Send the firstTime value in the PATCH request
-        
+        localStorage.setItem("cortEmail", res.data.email)  //USe for CortButton Page
       })
       .catch((error) => {
         console.log(error);

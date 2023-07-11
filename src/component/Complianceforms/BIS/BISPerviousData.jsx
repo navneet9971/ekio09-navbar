@@ -973,7 +973,7 @@ function BISPerviousData ({ onClose }) {
                 India{" "}
               </option>
               <option value="3">
-                If the AIR company is the Brandowner{" "}
+              If the 3rd party will be the AIR{" "}
               </option>
             </select>
           </div>

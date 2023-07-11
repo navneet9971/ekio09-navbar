@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
+import emailjs from "emailjs-com";
 import axiosInstance from "../../../interceptors/axios";
 import Swal from "sweetalert2";
 
 function CortButton({ onClose }) {
   const [complianceData, setComplianceData] = useState([]);
   const [selectedCompliance, setSelectedCompliance] = useState([]);
+//   const user_id = localStorage.getItem("user_id");
+   const userEmail = localStorage.getItem("cortEmail")
 
+   console.log(userEmail);
   useEffect(() => {
     axiosInstance
       .get(
@@ -17,6 +21,7 @@ function CortButton({ onClose }) {
         const uniqueComplianceData = res?.data?.data.reduce((acc, compliance) => {
           if (!acc.some((item) => item.id === compliance.id)) {
             acc.push(compliance);
+            console.log(res.data)
           }
           return acc;
         }, []);
@@ -29,30 +34,54 @@ function CortButton({ onClose }) {
       });
   }, []);
 
-  const handleSubmit = () => {
-    // Send the selected compliance names to your desired endpoint
-    console.log(selectedCompliance);
-
+  const handleSubmit = async () => {
     // Simulating success or failure
     const isSuccess = true; // Change this based on your logic
-
+  
     if (isSuccess) {
-      Swal.fire("Success!", "Submission was successful.", "success");
+      // Send email using emailjs
+      const templateParams = {
+        // to_email: ["EikompRequestQuote@gmail.com"], // Update with the email addresses
+        subject: "Selected Products",
+        to_name: `${userEmail}`,
+        message: `Compliance Names: ${selectedCompliance.join(", ")}.`,
+      };
+  
+      emailjs.init("zJR8dp8Ouz9a-jdDu"); // Replace "YOUR_PUBLIC_KEY" with your actual Public Key
+  
+      try {
+        const response = await emailjs.send(
+          "service_xk0xuzm",
+          "template_n73azeg",
+          templateParams
+        );
+        console.log("Email sent successfully!", response);
+        Swal.fire("Success!", "Submission was successful.", "success");
+      } catch (error) {
+        console.error("Error sending email:", error);
+        Swal.fire("Error!", "Submission failed.", "error");
+      }
     } else {
       Swal.fire("Error!", "Submission failed.", "error");
     }
-
+  
     onClose();
     // Perform any other action with the data
   };
+  
+  
+  
+  
+  
+  
 
   return (
     <>
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
-        <h3>Choose which compliances do you want to know the rates for :-</h3>
+     <h3>Choose which compliances do you want to know the rates for:</h3>
+      <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between" }}>
         {complianceData.map((compliance, index) => (
           <div key={index} style={{ width: "35%" }}>
-            <label>
+            <label style={{display: "flex", gap:"10px"}}>
               <input
                 type="checkbox"
                 value={compliance.id}
