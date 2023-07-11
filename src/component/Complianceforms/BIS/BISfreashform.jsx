@@ -910,7 +910,7 @@ const BISFormComponent = () => {
             <option value="2">
               If the AIR company is the Brandowner and have office in India{" "}
             </option>
-            <option value="3">If the AIR company is the Brandowner </option>
+            <option value="3">If the 3rd party will be the AIR </option>
           </select>
         </div>
 
