@@ -3,6 +3,7 @@ import { FaBell, FaAngleRight } from "react-icons/fa";
 import eikomplogo from "../assets/icons/eikomp_logo.png";
 import HomeProfile from "./HomeProfile/HomeProfile";
 import Order from "./Order/Order";
+import LabAnalytics from "./LabAnalytics/LabAnalytics";
 
 function ProfilePage() {
   const [activeContent, setActiveContent] = useState("HomeProfile");
@@ -71,6 +72,14 @@ function ProfilePage() {
           {/* Render the content based on activeContent state */}
           {activeContent === "HomeProfile" && <HomeProfile />}
           {activeContent === "Order" && <Order />}
+
+      
+          {activeContent === "Analytics" && 
+          <div className="home-profile-container">
+          <LabAnalytics /> </div>}
+
+
+
         </div>
       </div>
     </>

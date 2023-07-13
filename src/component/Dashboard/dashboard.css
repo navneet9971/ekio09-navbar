@@ -7,6 +7,15 @@
   margin: 13px -63px;
 }
 
+.LabAnalytics_container-piechart{
+  display: inline-block;
+  width: 37%;
+  padding: 0px 61px;
+  box-sizing: border-box;
+  vertical-align: top;
+  margin: 13px -65px;
+}
+
 .col-dash {
   background-color: #f1f1f1;
   padding: 10px;

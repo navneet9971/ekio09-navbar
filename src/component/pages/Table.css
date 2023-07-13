@@ -474,12 +474,24 @@ select.form {
   background-color: #0062cc;
 }
 
-button.revbtn {
+button.revbtn1 {
   display: block;
   position: absolute;
   top: 107px;
   right: 68px;
+  background-color: #082a71;
+  color: #fff;
+  border: none;
+  border-radius: 34px;
+  padding: 10px 20px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
 }
+
+button.revbtn1:hover{
+  background-color: #0062cc;
+};
 
 @media (min-width: 481px) and (max-width: 768px) {
   .revbtn {

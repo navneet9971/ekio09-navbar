@@ -70,6 +70,12 @@ const App = () => {
           <SignUP />
         </Route>
 
+           {/* // Lab TEsting Redirect code here */}
+
+    <Route path="/navbar/profile">
+    <ProfilePage />
+  </Route>
+
         {/* <Route path="/chatbot">
           <Chatbot />
         </Route> */}
@@ -177,13 +183,6 @@ const App = () => {
             <Route path="/navbar/view">
               <View />
             </Route>
-
-
-            <Route path="/navbar/profile">
-              <ProfilePage />
-            </Route>
-
-
             {/* COMPLIANCE REVIEW PAGE CHANGE INTO SEPRATE PAGES BISTABLE, TECTabel, WPCTable  */}
 
      {/* <Route path="/navbar/BISTable">
@@ -265,7 +264,10 @@ const App = () => {
           <ErrorPage />
         </Route>
       </Switch>
+
     </BrowserRouter>
+
+
   );
 
   return router;

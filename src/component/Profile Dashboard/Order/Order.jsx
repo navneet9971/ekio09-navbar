@@ -9,7 +9,7 @@ function Order() {
   const [orders, setOrders] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [expandedOrder, setExpandedOrder] = useState(null);
-  const ordersPerPage = 6;
+  const ordersPerPage = 7;
 
   useEffect(() => {
     // Fetch orders from APIs and update the 'orders' state
@@ -142,19 +142,22 @@ function Order() {
   // Function to handle the click download pdf 
   const handleOrderPDF = () => {
     const doc = new jsPDF();
-    let y = 20;
-  
-    orders.forEach((order) => {
-      doc.text(`Order ${order.id}`, 20, y);
-      doc.text(`Date: ${order.date}`, 20, y + 10);
-      doc.text(`Name: ${order.clientName}`, 20, y + 20);
-      y += 40;
+
+    const allOrders = orders.map((order) => {
+      return [
+        order.id,
+        order.date,
+        order.clientName
+      ];
     });
-  
-    doc.save("order_report.pdf");
+
+    doc.autoTable({
+      head: [['ID', 'Date', 'Client Name']],
+      body: allOrders,
+    });
+
+    doc.save("Order Data.pdf");
   };
-  
-  
 
   // Logic to calculate the current page orders
   const indexOfLastOrder = currentPage * ordersPerPage;
@@ -163,8 +166,7 @@ function Order() {
 
   // Logic to calculate the total number of pages
   const totalPages = Math.ceil(orders.length / ordersPerPage);
-
-  return (
+ return (
     <div className="home-profile-container">
         <h1 style={{ fontSize: "20px"}}>Order</h1>
       {currentOrders.map((order, index) => (

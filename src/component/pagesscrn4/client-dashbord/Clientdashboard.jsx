@@ -9,7 +9,7 @@ import Thumb5png from "../../assets/images/dash.png";
 import { ReactComponent as Mapbg } from "../../assets/client-map.svg";
 import axiosInstance from "../../../interceptors/axios";
 import Onboarding from "../../Onboarding/Onboarding";
-
+import MainChatbot from "../../Chatbot/MainChatbot";
 
 const ClientDashboard = () => {
   // const [firstName, setFirstName] = useState("");
@@ -107,6 +107,7 @@ const ClientDashboard = () => {
         </div>
       </div>
       <Onboarding />
+      <MainChatbot />
     </div>
   );
 };

@@ -149,7 +149,7 @@ const Secondpage = () => {
       </Popup>
 
 
-      <button className="revbtn" onClick={() => setCotpopupbutton(true)}>
+      <button className="revbtn1" onClick={() => setCotpopupbutton(true)}>
       Request Quote
         </button>
 
