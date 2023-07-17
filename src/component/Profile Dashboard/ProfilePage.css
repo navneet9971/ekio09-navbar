@@ -1,0 +1,19 @@
+span.span-logout--btn {
+    position: initial;
+    font-size: 27px;
+    color: #55b700;
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    border: none;
+}
+
+button.logout_btn {
+    position: initial;
+    margin-right: 1rem;
+    font-size: 27px;
+    color: #55b700;
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}

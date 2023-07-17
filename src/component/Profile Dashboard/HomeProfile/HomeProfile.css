@@ -49,4 +49,10 @@
 .homeprofile-btn:hover{
     background-color: #2e69e7;
 }
+
+.profile-header{
+  float: right;
+  cursor: pointer;
+  width: 1.5rem;
+}
   

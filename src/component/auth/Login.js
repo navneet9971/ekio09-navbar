@@ -4,7 +4,6 @@ import "../assets/css/global.css";
 import axiosInstance from "../../interceptors/axios";
 import Popup from "../popup/Popup";
 import Swal from "sweetalert2";
-// import { Link } from "react-router-dom";
 import ForgetPassword from "./Forgetpassword";
 import loginimage from "../assets/login-page.png";
 import img1 from "../assets/login-page-icons/1.png";
@@ -13,14 +12,11 @@ import img3 from "../assets/login-page-icons/3.png";
 import img4 from "../assets/login-page-icons/4.png";
 import img5 from "../assets/login-page-icons/5.png";
 import img6 from "../assets/login-page-icons/6.png";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faBell } from "@fortawesome/free-solid-svg-icons";
-// import NavbarNotification from "../Notification/NavbarNotification";
 
 function Login() {
   const history = useHistory();
   const [linkPopup, setLinkPopup] = useState(false);
-  // const [notificationIcon, setNotificationIcon] =useState(false);
+  const [userType, setUserType] = useState();
   const initialFormData = Object.freeze({
     username: "",
     password: "",
@@ -28,47 +24,36 @@ function Login() {
   const [formData, updateFormData] = useState(initialFormData);
   const [showPassword, setShowPassword] = useState(false);
 
-  // const handleNotificationClick = () => {
-  //   setNotificationIcon(true);
-  // };
-
   const SIDE_SLIDE = [
     {
       thumb: <img src={img1} alt="" />,
       title: "Know Your Compliance",
-      route: "/navbar/firstcompliance"
+      route: "/navbar/firstcompliance",
     },
     {
       thumb: <img src={img2} alt="" />,
       title: "Application Progress and Tracking",
+      route: "/navbar/application",
     },
     {
       thumb: <img src={img3} alt="" />,
       title: "Analytics",
+      route: "/navbar/analytics",
     },
-    // {
-    //   thumb: (
-    //     <FontAwesomeIcon
-    //       icon={faBell}
-    //       size="2x"
-    //       style={{ color: "green" }}
-    //       className="animated-bell shake"
-    //       onClick={handleNotificationClick} // Update this line
-    //     />
-    //   ),
-    //   title: "Notification",
-    // },
     {
       thumb: <img src={img4} alt="" />,
       title: "Lab Testing",
+      route: "/navbar/lab",
     },
     {
       thumb: <img src={img5} alt="" />,
       title: "Advisory Services",
+      route: "/navbar/advisory",
     },
     {
       thumb: <img src={img6} alt="" />,
       title: "Logistic",
+      route: "/navbar/logistic",
     },
   ];
 
@@ -93,6 +78,9 @@ function Login() {
         localStorage.setItem("refresh_token", res.data.refresh);
         localStorage.setItem("user_id", res.data.profile.id);
         localStorage.setItem("first_time", res.data.profile.first_time);
+        const user_type = res.data.profile.user_type;
+        setUserType(user_type);
+        console.log(userType);
 
         if (res.data.profile.first_time === true) {
           axiosInstance
@@ -105,7 +93,13 @@ function Login() {
             });
         }
 
-        history.push("/navbar/clientdashboard");
+        if (user_type === "corporate") {
+          history.push("/navbar/clientdashboard");
+        } else if (user_type === "lab") {
+          history.push("/navbar/profile");
+        } else {
+          console.log("Invalid user_type or handling other cases");
+        }
       })
       .catch((error) => {
         console.error(error);
@@ -205,22 +199,28 @@ function Login() {
 
       <div className="container-line">
         <div className="line"></div>
-        </div>
+      </div>
 
-        <div className="side-bar" style={{ }}>
-  <h2 style={{ fontSize: "20px", margin: "33px -30px" }}>FEATURED APPS</h2>
-  {SIDE_SLIDE.map((item, index) => (
-    <div to={item.route} key={index} className={item.className} style={{ display: "flex", alignItems: "center",  marginBottom: "18px" }}>
-      {item.thumb}
-      <p style={{ marginLeft: "15px" }}>{item.title}</p>
-    </div>
-  ))}
-</div>
-
-{/* <Popup trigger = {notificationIcon} setTrigger = {setNotificationIcon}>
-        < NavbarNotification />
-         </Popup> */}
-
+      <div className="side-bar">
+        <h2 style={{ fontSize: "20px", margin: "33px -30px" }}>
+          FEATURED APPS
+        </h2>
+        {SIDE_SLIDE.map((item, index) => (
+          <div
+            key={index}
+            className={item.className}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              marginBottom: "18px",
+            }}
+            onClick={() => history.push(item.route)}
+          >
+            {item.thumb}
+            <p style={{ marginLeft: "15px" }}>{item.title}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

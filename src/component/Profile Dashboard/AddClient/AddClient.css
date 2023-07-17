@@ -1,0 +1,16 @@
+.addclient-submit{
+display: block;
+    margin-left: 29rem;
+    margin-top: .2rem;
+    background-color: #082A71;
+    color: #fff;
+    border-radius: 7px;
+    border: none;
+    cursor: pointer;
+    padding: 10px 10px;
+}
+
+.Add-client_input {
+    display: flex;
+    margin: 0rem 8rem;
+}

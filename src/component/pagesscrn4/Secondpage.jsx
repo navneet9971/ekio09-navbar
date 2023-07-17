@@ -12,6 +12,7 @@ import BISPerviousData from "../Complianceforms/BIS/BISPerviousData";
 import BisInclusionForm from "../Complianceforms/BIS/BisInclusionDropDownPage";
 import WPCFormComponent from "../Complianceforms/WPC/WPCfreashForms";
 import WPCPerviousData from "../Complianceforms/WPC/WPCPerviousDataform";
+import BISISIFreashForm from "../Complianceforms/BIS-ISI/BIS-ISIFreashForm";
 
 const Secondpage = () => {
   const history = useHistory();
@@ -187,6 +188,16 @@ const Secondpage = () => {
           //call the function for unregistering
           setWpcPopupButton(true);
         }
+      }else if (complianceName === "BIS - ISI") {
+        // Fetch WPC DATA
+        await fetchWPCData();
+        if (autofill === "Yes") {
+          //call the function for registering
+          setButtonautofilledwpc(true);
+        } else if (autofill === "No") {
+          //call the function for unregistering
+          setBisIsipopupFreshForm(true);
+        }
       }
     } catch (error) {
       console.error(error);
@@ -303,6 +314,10 @@ const Secondpage = () => {
     }
     setButtonautofilledwpc(false);
   }
+
+
+  //BIS-ISI APIS AND CONST START HERE -----------------------------------
+  const [bisIsipopupFreshForm, setBisIsipopupFreshForm] = useState("")
 
   return (
     <div className="table-bgsconpage">
@@ -525,53 +540,6 @@ const Secondpage = () => {
           <BISPerviousData onClose={handlePopupClose} />
         </Popup>
 
-        {/*--------------BIS REGSITER AND UNREGISTER CODES HERE ------------------------------- */}
-        {/* <Popup trigger={buttonRegisterbis} setTrigger={setButtonRegisterbis}>
-          <h3 className="reg-popup-titlte">
-          Have you registered yourself on the BIS portal?
-          </h3>
-          <div className="checkbox-container">
-            <div className="bis-register">
-              <div>
-              <label className="pop-opt">
-                  <input
-                    className="bis-register"
-                    type="checkbox"
-                    value="autofillformbis"
-                    //checked={radioValue === 'Option 1'}
-                    onChange={handleRadioChange}
-                    onClick={() => setButtonRegisterbis(false)}
-                  />
-                  YES
-                </label>
-              </div>
-            </div>
-            <div className="bis-register">
-              <div>
-              <label className="pop-opt">
-                  <input
-                    className="bis-register"
-                    type="checkbox"
-                    value="unregister"
-                    //checked={radioValue === 'Unregister'}
-                    onChange={handleRadioChange}
-                    onClick={() => setButtonRegisterbis(false)}
-                  />
-                  NO
-                </label>
-              </div>
-            </div>
-          </div>
-        </Popup> */}
-
-        {/*---------------- BIS REGISTER POPUP R number PAGE CODE HERE----------------------------------- */}
-        {/* <Popup
-          trigger={buttonRegisterPagebis}
-          setTrigger={setButtonRegisterPagebis}
-        >
-          <BisRNumberPopup onClose={handlePopupClose} />
-        </Popup> */}
-
         {/*---------------START NEW APPLICATION BIS REQUIRED DETAILS POPUP IF USER SELECTED YES PAGE CODE HERE  ----------------------*/}
         <Popup trigger={buttonPopup6bis} setTrigger={setButtonPopup6bis}>
           <BISFreshForms onClose={handlePopupClose} />
@@ -633,6 +601,11 @@ const Secondpage = () => {
           <div style={{ height: "500px", overflow: "scroll" }}>
             <WPCFormComponent onClose={handlePopupClose} />
           </div>
+        </Popup>
+
+        {/*----------------------- BIS-ISI FreashForm Start Here--------------------------------------  */}
+        <Popup trigger={bisIsipopupFreshForm} setTrigger ={setBisIsipopupFreshForm}>
+          <BISISIFreashForm />
         </Popup>
       </div>
     </div>
