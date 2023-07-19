@@ -13,6 +13,8 @@ import BisInclusionForm from "../Complianceforms/BIS/BisInclusionDropDownPage";
 import WPCFormComponent from "../Complianceforms/WPC/WPCfreashForms";
 import WPCPerviousData from "../Complianceforms/WPC/WPCPerviousDataform";
 import BISISIFreashForm from "../Complianceforms/BIS-ISI/BIS-ISIFreashForm";
+import BISISIPerviousData from "../Complianceforms/BIS-ISI/BIS-ISIPerviousData";
+import BisIsiInclusion from "../Complianceforms/BIS-ISI/BIS-ISIInclusionForm";
 
 const Secondpage = () => {
   const history = useHistory();
@@ -190,13 +192,13 @@ const Secondpage = () => {
         }
       }else if (complianceName === "BIS - ISI") {
         // Fetch WPC DATA
-        await fetchWPCData();
+        await fetchBisISIData();
         if (autofill === "Yes") {
           //call the function for registering
-          setButtonautofilledwpc(true);
+          setBisIsiPopupButton(true);
         } else if (autofill === "No") {
           //call the function for unregistering
-          setBisIsipopupFreshForm(true);
+          setBisIsiPopupButton(true);
         }
       }
     } catch (error) {
@@ -317,7 +319,63 @@ const Secondpage = () => {
 
 
   //BIS-ISI APIS AND CONST START HERE -----------------------------------
-  const [bisIsipopupFreshForm, setBisIsipopupFreshForm] = useState("")
+  const [bisIsiPopupButton, setBisIsiPopupButton] = useState("");
+  const [bisIsiAutofillPopup, setBisIsiAutofillPopup] = useState("");
+  const [bisIsipopupFreshForm, setBisIsipopupFreshForm] = useState("");
+  const [bisIsiPerviousdataPoPup, setBisIsiPerviousdataPoPup] = useState("");
+  const [bisIsiInclusionFormPopup, setBisIsiInclusionFormPopup] = useState("");
+
+
+    //WPC PERVIOUS DATA FETCH APIS HERE--------------
+    const fetchBisISIData = async () => {
+      try {
+        const response = await axiosInstance.get(
+          `application/inclusive/?compliance=${localStorage.getItem(
+            "compliance_name"
+          )}`
+        );
+        const bisisiData = response.data["fields"];
+        console.log(bisisiData);
+        localStorage.setItem("bisIsidata", JSON.stringify(bisisiData));
+        // setBisformData({ ...bisformData, ...bisdata });
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    //BISISI First Popup Handle Here 
+    const handleInclusionOptionChangeBISISI = (event) => {
+      const value = event.target.value;
+  
+      // Perform any necessary actions based on the selected option immediately
+      if (value === "inclusionBisIsi") {
+        setBisIsiInclusionFormPopup(true);
+      } else {
+        if (autofillform === "Yes" && value === "newformBisIsi") {
+          setBisIsiAutofillPopup(true); // Navigate to the new application page
+        } else {
+          setBisIsipopupFreshForm(true);
+        }
+      }
+      setBisIsiPopupButton(false);
+    };
+
+    //BISISI DYNAMIC POPUP CHOOSE OPTION YES OR NO  function handle here-------------------------
+    function handleautofilledBisISI(event) {
+      const value = event.target.value;
+  
+      if (autofillform === "Yes" && value === "YesautofilledBISISI") {
+        // Call the function for registering
+        setBisIsiPerviousdataPoPup(true);
+        console.log(autofillform);
+      } else if (value === "Noform1BisIsi") {
+        // Call the function for unregistering
+        // setButtonRegisterbis(true);
+        setBisIsipopupFreshForm(true);
+      }
+      setBisIsiAutofillPopup(false);
+    }
+
 
   return (
     <div className="table-bgsconpage">
@@ -603,9 +661,83 @@ const Secondpage = () => {
           </div>
         </Popup>
 
+
+         {/*------------------------ BIS-ISI DYNAMIC FORM DATA POPUP CODE HERE------------------------ */}
+         <Popup
+          trigger={bisIsiPopupButton}
+          setTrigger={setBisIsiPopupButton}
+        >
+          <h3 className="reg-popup-titlte">What do you want to do today?</h3>
+          <select onChange={handleInclusionOptionChangeBISISI}>
+            <option value="">Choose the Option:-</option>
+            <option value="inclusionBisIsi">
+              Include details in an existing product
+            </option>
+            <option value="newformBisIsi">Start a new application</option>
+          </select>
+        </Popup>
+
+
+   {/*------------------------ BIS-ISI DYNAMIC FORM DATA POPUP CODE HERE------------------------ */}
+   <Popup
+          trigger={bisIsiAutofillPopup}
+          setTrigger={setBisIsiAutofillPopup}
+        >
+          <h3 className="reg-popup-titlte">
+            We have got your company details saved with us. <br /> Do you want
+            to use the saved data and save time?
+          </h3>
+
+          <div className="checkbox-container">
+            <div className="bis-register">
+              <div>
+                <label className="pop-opt">
+                  <input
+                    className="bis-register"
+                    type="checkbox"
+                    value="YesautofilledBISISI"
+                    //checked={radioValue === 'Option 1'}
+                    onChange={handleautofilledBisISI}
+                    onClick={() => setButtonautofilledbis(false)}
+                  />
+                  YES
+                </label>
+              </div>
+            </div>
+
+            <div className="bis-register">
+              <div>
+                <label className="pop-opt">
+                  <input
+                    className="bis-register"
+                    type="checkbox"
+                    value="Noform1BisIsi"
+                    //checked={radioValue === 'Unregister'}
+                    onChange={handleautofilledBisISI}
+                    // onClick={() => setButtonRegisterbis(false)}
+                  />
+                  NO
+                </label>
+              </div>
+            </div>
+          </div>
+        </Popup>
+
+        {/*---------------- BIS-ISI Inclusion Form Data Here------------------------------ */}
+      
+        <Popup trigger={bisIsiInclusionFormPopup} setTrigger={setBisIsiInclusionFormPopup}>
+          <BisIsiInclusion />
+        </Popup>
+    
+
         {/*----------------------- BIS-ISI FreashForm Start Here--------------------------------------  */}
         <Popup trigger={bisIsipopupFreshForm} setTrigger ={setBisIsipopupFreshForm}>
           <BISISIFreashForm />
+        </Popup>
+
+        {/*---------------------- BIS-ISI Pervious Data Form Code Here------------------------------------ */}
+        <Popup trigger={bisIsiPerviousdataPoPup} setTrigger= {setBisIsiPerviousdataPoPup}>
+          <BISISIPerviousData />
         </Popup>
       </div>
     </div>

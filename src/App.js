@@ -33,6 +33,11 @@ import TECcompleted from "./component/Complianceforms/TEC/Tectrackpage/TECcomple
 import TECmodification from "./component/Complianceforms/TEC/Tectrackpage/TECmodification";
 import WPCOngoing from "./component/Complianceforms/WPC/WPCTrackPages/WPCOngoing";
 import WPCcompleted from "./component/Complianceforms/WPC/WPCTrackPages/WPCcompleted";
+import BisIsiCompleted from "./component/Complianceforms/BIS-ISI/BIS-ISITrackPages/BIS-ISICompleted";
+import BisIsiOnGoing from "./component/Complianceforms/BIS-ISI/BIS-ISITrackPages/BIS-ISIOngoing";
+import BisIsiInclusion from "./component/Complianceforms/BIS-ISI/BIS-ISITrackPages/BIS-IsiInclusion";
+import BisIsiSimplfiyOnGoing from "./component/Complianceforms/BIS-ISI/BIS-ISISimplifyTrack/BIS-ISISimplifyOngoing";
+import BisIsiSimplfiyCompleted from "./component/Complianceforms/BIS-ISI/BIS-ISISimplifyTrack/BIS-ISISimplifyCompleted";
 // -------------END Compliance Import ------------
 
 import Bookmarks from "./component/pages/account-pages/Bookmarks";
@@ -171,10 +176,32 @@ const App = () => {
             <Route path="/navbar/WPCOngoing/:id"> 
               <WPCOngoing /> 
             </Route>
-
+            
             <Route path="/navbar/WPCcompleted/:id"> 
               <WPCcompleted /> 
             </Route>
+
+            <Route path="/navbar/BisIsiOngoing/:id"> 
+              <BisIsiOnGoing /> 
+            </Route>
+
+            <Route path="/navbar/BisIsicompleted/:id"> 
+              <BisIsiCompleted /> 
+            </Route>
+
+            <Route path="/navbar/BisIsiInclusion/:id"> 
+              <BisIsiInclusion /> 
+            </Route>
+
+            <Route path="/navbar/BisIsiSimplifyOngoing/:id"> 
+              <BisIsiSimplfiyOnGoing /> 
+            </Route>
+
+            <Route path="/navbar/BisIsiSimplifyCompleted/:id"> 
+              <BisIsiSimplfiyCompleted /> 
+            </Route>
+
+          
 
             <Route path="/navbar/download">
               <Download />

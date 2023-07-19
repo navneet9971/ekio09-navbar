@@ -16,14 +16,14 @@ h1.type {
   float: right;
   text-align: center;
   /* position: relative; */
-  top: 101px;
+  top: -45px;
   right: 225px;
   /* transform: translate(-209px, -44px); */
   /* color: #fff; */
   font-size: 33px;
   font-size: 20px;
   font-weight: 100;
-  position: fixed;
+  position: relative;
 }
 
 h1.appli {

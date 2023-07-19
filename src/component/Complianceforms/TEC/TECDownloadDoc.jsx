@@ -64,7 +64,7 @@ function TECDownloadDoc({ onClose }) {
           const url = URL.createObjectURL(blob);
           const a = document.createElement("a");
           a.href = url;
-          a.download = `${selectedOptions[index].label}.docx`;
+          a.download = `${selectedOptions[index].label}`;
           document.body.appendChild(a);
           a.click();
           a.remove();

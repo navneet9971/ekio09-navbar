@@ -1,46 +1,43 @@
-import React, { useState, useEffect } from "react";
-import "../../../pages/stepper.css";
-import Popup from "../../../popup/Popup";
-import Message from "../../../popup/Message";
+import React, { useEffect, useState } from "react";
 import axiosInstance from "../../../../interceptors/axios";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import { FcDocument } from "react-icons/fc";
 import { FiUpload, FiDownload } from "react-icons/fi";
-// import { ReactComponent as Wrong } from "../../../assets/trckpg-rb/wrong.svg";
-// import { ReactComponent as Right } from "../../../assets/trckpg-rb/right.svg";
-// import file6png from "../../../assets/pdficon/Red02.png";
 import pdflogo from "../../../assets/icons/eikomp_logo.png";
+import Popup from "../../../popup/Popup";
+import Message from "../../../popup/Message";
+import BISISISteps from "../BIS-ISISteps";
+import BisIsiDownload from "../BIS-ISIDownload";
+import BisIsiUploadDoc from "../BIS-ISIUploadDoc";
 import StatusBar from "../../../Statusbar";
-import BISChatbot from "../../../Chatbot/BISChatbot";
-import BISDownloadDeoc from "../BISDownloaddpc";
-import BISUploadDoc from "../BISUploadDoc";
-import BISrequsting from "../BISrequsting";
-import BISSteps from "../BISSteps";
+import BisIsiProduction from "../BIS-ISIProduction";
 
 
-function BISoongoing() {
-  const [docStatus, setDocStatus] = useState({});
-  const [uniqueid, setUniqueid] = useState("");
-  const [complianceid, setComplianceid] = useState("");
-  const idel = localStorage.getItem("ide");
-  const [testingbtnkey, setTestingbtnkey] = useState("");
-  const [buttonPopup, setButtonPopup] = useState(false);
-  const [buttonPopup1, setButtonPopup1] = useState(false);
-  const totalResponses = 6;
-  const completedResponses = localStorage.getItem("stepstatus");
-  const [docReport, setDocReport] = useState("");
-  const [docType, setDocType] = useState("");
-  const bisDocStep = JSON.parse(localStorage.getItem("bisdocStep"));
+function BisIsiOnGoing () {
 
-  //POPUP BUTTONS OF STEPS
-  const [buttonPopupreport, setButtonPopupreport] = useState(false);
+    const [docStatus, setDocStatus] = useState({});
+    const [uniqueid, setUniqueid] = useState("");
+    const [complianceid, setComplianceid] = useState("");
+    const idel = localStorage.getItem("ide");
+    const [testingbtnkey, setTestingbtnkey] = useState("");
+    const [buttonPopup, setButtonPopup] = useState(false);
+    const [buttonPopup1, setButtonPopup1] = useState(false);
+    const totalResponses = 6;
+    const completedResponses = localStorage.getItem("stepstatus");
+    const [docReport, setDocReport] = useState("");
+    const [docType, setDocType] = useState("");
+    const bisDocStep = JSON.parse(localStorage.getItem("bisdocStep"));
+  
+    //POPUP BUTTONS OF STEPS
+    const [buttonPopupreport, setButtonPopupreport] = useState(false);
+  
+    //LAB TESTING FROM CONST HERE ---------------------------------------
+    const [buttonPopup2, setButtonPopup2] = useState(false);
+    //const [buttonPopup1, setButtonPopup1] = useState(false);
 
-  //LAB TESTING FROM CONST HERE ---------------------------------------
-  const [buttonPopup2, setButtonPopup2] = useState(false);
-  //const [buttonPopup1, setButtonPopup1] = useState(false);
-
-  // API call to get document status
+    
+    // API call to get document status
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -50,13 +47,13 @@ function BISoongoing() {
         .get(`application/compliance/${idel}/`)
         .then((response) => {
           const data = response.data.data;
-          const biscompliance_id = data["compliance"];
-          const bisapplication_id = data["application"];
-          const bisrequest_for = data["request_for"];
+          const bisIsicompliance_id = data["compliance"];
+          const bisIsiapplication_id = data["application"];
+          const bisIsirequest_for = data["request_for"];
           // setCompliance_id1(compliance_id);
           // setApplication_id1(application_id);
-          console.log(biscompliance_id);
-          console.log(bisapplication_id);
+          console.log(bisIsicompliance_id);
+          console.log(bisIsiapplication_id);
 
           console.log(data);
           // store local storage then show the values
@@ -68,10 +65,10 @@ function BISoongoing() {
           const compliancename = data["compliance_name"];
           localStorage.setItem("compliance_name", compliancename);
 
-          //IMPORTANT COMMENT    //Store Compliance ID and Application ID BIS USE FOR TEC UPLOAD LOCALSTORAGE FOR TEC UPLOAD DOC
-          localStorage.setItem("biscompliance_id", biscompliance_id);
-          localStorage.setItem("bisapplication_id", bisapplication_id);
-          localStorage.setItem("bisrequest_for", bisrequest_for);
+          //IMPORTANT COMMENT    //Store Compliance ID and Application ID BISISI USE FOR BISISI UPLOAD LOCALSTORAGE FOR BISISI UPLOAD DOC
+          localStorage.setItem("bisIsicompliance_id", bisIsicompliance_id);
+          localStorage.setItem("bisIsiapplication_id", bisIsiapplication_id);
+          localStorage.setItem("bisIsirequest_for", bisIsirequest_for);
 
           //Notification DATA SET HERE ----------------------------------------------------
           // const notificationData = data["notifications"]
@@ -80,10 +77,10 @@ function BISoongoing() {
 
           axiosInstance
             .get(
-              `application/document/?compliance=${biscompliance_id}&application=${bisapplication_id}`
+              `application/document/?compliance=${bisIsicompliance_id}&application=${bisIsiapplication_id}`
             )
             .then((response) => {
-              const bisdocumentData = response.data.data;
+              const bisIsidocumentData = response.data.data;
               //console.log(response.data.key)
 
               localStorage.setItem("report", response.data.report);
@@ -113,8 +110,8 @@ function BISoongoing() {
               setDocType(docCertificate);
 
               const docStatus = {};
-              for (let i = 0; i < bisdocumentData.length; i++) {
-                const statusData = bisdocumentData[i];
+              for (let i = 0; i < bisIsidocumentData.length; i++) {
+                const statusData = bisIsidocumentData[i];
                 docStatus[statusData["document_type"]] = statusData["status"];
               }
               setDocStatus(docStatus);
@@ -132,7 +129,28 @@ function BISoongoing() {
     return () => clearInterval(interval);
   }, [idel]);
 
-  //Download Button Code handleOptionClick
+
+    /*-------------------------------------------handleOptions download report----------------------------------*/
+    const ReportOptionClick = (option) => {
+        const reportKey = localStorage.getItem("report");
+        console.log(reportKey);
+        if (reportKey === "Yes") {
+          // Create a popup window
+        }
+      };
+    
+      const CertificateOptionClick = (option) => {
+        const certificateKey = localStorage.getItem("certificate");
+        console.log(certificateKey);
+        if (certificateKey === "Yes") {
+          console.log(docType);
+          var newWindow = window.open(Object.values(docType)[0], "_blank");
+          newWindow.focus();
+        }
+      };
+
+
+        //Download Button Code handleOptionClick
 
   const handleDownloadreport = () => {
     // create a new instance of jsPDF
@@ -218,27 +236,8 @@ function BISoongoing() {
     };
   };
 
-  /*-------------------------------------------handleOptions download report----------------------------------*/
-  const ReportOptionClick = (option) => {
-    const reportKey = localStorage.getItem("report");
-    console.log(reportKey);
-    if (reportKey === "Yes") {
-      // Create a popup window
-    }
-  };
 
-  const CertificateOptionClick = (option) => {
-    const certificateKey = localStorage.getItem("certificate");
-    console.log(certificateKey);
-    if (certificateKey === "Yes") {
-      console.log(docType);
-      var newWindow = window.open(Object.values(docType)[0], "_blank");
-      newWindow.focus();
-    }
-  };
-
-
-   //Auto close POPup after click Sumbit
+       //Auto close POPup after click Sumbit
    const handlePopupClose = () => { 
     setButtonPopup(false);
     setButtonPopup2(false);
@@ -246,10 +245,11 @@ function BISoongoing() {
    }
 
 
-  return (
-    <div className="bgchangecompleted">
+
+    return(
+<div className="bgchangecompleted">
       <div className="ongoing-applications">
-        <h1 className="ongo">BIS Ongoing Application</h1>
+        <h1 className="ongo">BIS-ISI Ongoing Application</h1>
         <div className="ongoing-title">
           <h1 className="type">Compliance Type: {complianceid} </h1>
           <h1 className="appli">Application Number: {uniqueid} </h1>
@@ -258,14 +258,14 @@ function BISoongoing() {
 
         {/*----------------UPLOAD BUTTON CODE ------------*/}
         <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-          <BISUploadDoc  onClose={handlePopupClose} />
+          <BisIsiUploadDoc  onClose={handlePopupClose} />
         </Popup>
 
         {/*-----------LAB TESTING JSX CODE IS HERE----------*/}
 
         <div className="lab-testing-box">
           <Popup trigger={buttonPopup2} setTrigger={setButtonPopup2}>
-            <BISrequsting onClose={handlePopupClose} />
+            <BisIsiProduction onClose={handlePopupClose} />
           </Popup>
         </div>
 
@@ -291,7 +291,7 @@ function BISoongoing() {
         </div>
 
         <Popup trigger={buttonPopup1} setTrigger={setButtonPopup1}>
-          <BISDownloadDeoc onClose={handlePopupClose} />
+          <BisIsiDownload onClose={handlePopupClose} />
         </Popup>
 
         {/*--------Ststus Bar CODE IS HERE --------------------*/}
@@ -302,149 +302,8 @@ function BISoongoing() {
           />
         </div>
         {/* BIS STEPS SET HER MESSAGE AND ALL */}
-        <BISSteps />
+        <BISISISteps />
 
-        {/* <h2 className="pdfstep-name"> Documents To Be Submitted</h2>
-        <div className="pdffilesup">
-          <div className="row1">
-            <div className="col doc-col">
-              {docStatus["Business License"] === "Submitted" ? (
-                <>
-                  {" "}
-                  <Right size={24} className="pdfico" />{" "}
-                </>
-              ) : (
-                <Wrong size={24} className="pdfico" />
-              )}
-              <div>
-                <img src={file6png} alt="" className="pdfico1" />
-              </div>
-              <h3 className="be">Business License</h3>
-            </div>
-
-            <div className="col doc-col">
-              {docStatus["ISO"] === "Submitted" ? (
-                <>
-                  {" "}
-                  <Right size={24} className="pdfico" />{" "}
-                </>
-              ) : (
-                <Wrong size={24} className="pdfico" />
-              )}
-              <div>
-                <img src={file6png} alt="" className="pdfico1" />
-              </div>
-              <h3 className="be">ISO</h3>
-            </div>
-
-            <div className="col doc-col">
-              {docStatus["Trademark Certificate"] === "Submitted" ? (
-                <>
-                  {" "}
-                  <Right size={24} className="pdfico" />{" "}
-                </>
-              ) : (
-                <Wrong size={24} className="pdfico" />
-              )}
-              <div>
-                <img src={file6png} alt="" className="pdfico1" />
-              </div>
-              <h3 className="be">Trademark Certificate</h3>
-            </div>
-
-            <div className="col doc-col">
-              {docStatus["AadharCard"] === "Submitted" ? (
-                <>
-                  {" "}
-                  <Right size={24} className="pdfico" />{" "}
-                </>
-              ) : (
-                <Wrong size={24} className="pdfico" />
-              )}
-
-              <div>
-                <img src={file6png} alt="" className="pdfico1" />
-              </div>
-              <h3 className="be">AadharCard</h3>
-            </div>
-
-            <div className="col doc-col">
-              {docStatus["PanCard"] === "Submitted" ? (
-                <>
-                  {" "}
-                  <Right size={24} className="pdfico" />{" "}
-                </>
-              ) : (
-                <Wrong size={24} className="pdfico" />
-              )}
-
-              <div>
-                <img src={file6png} alt="" className="pdfico1" />
-              </div>
-              <h3 className="be">PanCard</h3>
-            </div>
-
-            <div className="col doc-col">
-              {docStatus["GST"] === "Submitted" ? (
-                <>
-                  {" "}
-                  <Right size={24} className="pdfico" />{" "}
-                </>
-              ) : (
-                <Wrong size={24} className="pdfico" />
-              )}
-              <div>
-                <img src={file6png} alt="" className="pdfico1" />
-              </div>
-              <h3 className="be">GST</h3>
-            </div>
-
-            <div className="col doc-col">
-              {docStatus["Employee ID/Visiting Card"] === "Submitted" ? (
-                <>
-                  {" "}
-                  <Right size={24} className="pdfico" />{" "}
-                </>
-              ) : (
-                <Wrong size={24} className="pdfico" />
-              )}
-              <div>
-                <img src={file6png} alt="" className="pdfico1" />
-              </div>
-              <h3 className="be">Employee ID/Visiting Card</h3>
-            </div>
-
-            <div className="col doc-col">
-              {docStatus["MSME"] === "Submitted" ? (
-                <>
-                  {" "}
-                  <Right size={24} className="pdfico" />{" "}
-                </>
-              ) : (
-                <Wrong size={24} className="pdfico" />
-              )}
-              <div>
-                <img src={file6png} alt="" className="pdfico1" />
-              </div>
-              <h3 className="be">MSME</h3>
-            </div>
-
-            <div className="col doc-col">
-              {docStatus["Form 3 (AFFIDAVIT)"] === "Submitted" ? (
-                <>
-                  {" "}
-                  <Right size={24} className="pdfico" />{" "}
-                </>
-              ) : (
-                <Wrong size={24} className="pdfico" />
-              )}
-              <div>
-                <img src={file6png} alt="" className="pdfico1" />
-              </div>
-              <h3 className="be">Form 3 (AFFIDAVIT)</h3>
-            </div>
-          </div>
-        </div> */}
 
         {/* POPUP OF LAST BUTTON OF DOWNLOAD REPORT FUNCTION AS WELL  */}
         <Message trigger={buttonPopupreport} setTrigger={setButtonPopupreport}>
@@ -508,10 +367,10 @@ function BISoongoing() {
           </button>
         </div>
 
-        <BISChatbot />
+        {/* <BISChatbot /> */}
       </div>
     </div>
-  );
-}
+    );
+};
 
-export default BISoongoing;
+export default BisIsiOnGoing;

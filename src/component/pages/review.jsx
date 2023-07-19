@@ -75,11 +75,12 @@ function BISTableReview() {
     sortedTableData.length > 0 ? sortedTableData[0].startdate : "";
   console.log(latestStartDate);
 
+
   const handleClick = (id) => {
     localStorage.setItem("ide", id);
     const selectedItem = tableData.find((data) => data.id === id);
   
-    const selectedStatus = selectedItem.status.toLowerCase(); // Convert to lowercase for case-insensitive comparison
+    const selectedStatus = selectedItem.status.toLowerCase();
   
     if (selectedItem.compliance_name === "BIS") {
       if (selectedStatus === "ongoing") {
@@ -103,8 +104,30 @@ function BISTableReview() {
       } else if (selectedStatus === "completed") {
         history.push(`/navbar/WPCcompleted/id=${id}`);
       }
+    } else if (selectedItem.compliance_name === "BIS - ISI") {
+      if (selectedStatus.includes("simplify")) {
+        // Check if selectedStatus contains "simplify" (case-insensitive check)
+        if (selectedStatus.includes("ongoing")) {
+          // Redirect to another page when selectedStatus contains "ongoing" and "simplify"
+          history.push(`/navbar/BisIsiSimplifyOngoing/id=${id}`);
+        } else if (selectedStatus.includes("completed")) {
+          // Redirect to another page when selectedStatus contains "completed" and "simplify"
+          history.push(`/navbar/BisIsiSimplifyCompleted/id=${id}`);
+        }
+      } else if (selectedStatus === "ongoing") {
+        history.push(`/navbar/BisIsiOngoing/id=${id}`);
+      } else if (selectedStatus === "completed") {
+        history.push(`/navbar/BisIsicompleted/id=${id}`);
+      } else if (selectedStatus === "inclusion") {
+        history.push(`/navbar/BisIsiInclusion/id=${id}`);
+      }
+    } else {
+      // Fallback for unknown cases
+      console.log("Unknown compliance name or status:", selectedItem.compliance_name, selectedStatus);
     }
   };
+  
+  
   
   
 

@@ -1132,11 +1132,12 @@ select#has-r-number {
 
 input#user-id,
 input#password,
-input#rnumber {
+input#rnumber,
+textarea#rnumber {
   padding: 4px 3px;
   width: 15em;
   font-size: 20px;
-  border-color: black;
+  border-color: black; 
 }
 
 span.eye-icon-fun {

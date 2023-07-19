@@ -1,33 +1,34 @@
-import React, {useState, useEffect} from "react";
+import React, { useEffect, useState } from "react";
+import axiosInstance from "../../../interceptors/axios";
 import Select from 'react-select';
 import Swal from "sweetalert2";
-import axiosInstance from "../../../interceptors/axios";
 
-function BISDownloadDeoc ({onClose}) {
 
+function BisIsiDownload ({onClose}) {
+    
     useEffect(() => {
         axiosInstance
-          .get(`compliance-form/?compliance=BIS`)
+          .get(`compliance-form/?compliance=BIS-ISI`)
           .then((response) => {
             const downloadData = response.data;
+            console.log(downloadData);
             localStorage.setItem("myKey", JSON.stringify(downloadData));
           })
           .catch((error) => {
             console.log(error);
           });
       }, []);
-  
+
       
       const [selectedOptions, setSelectedOptions] = useState([]);
   
+
       //LINK CHANGE TEC FORMS TO BIS FORMS---------------------------------------------------------------------------
       const docDownload = {
-        SELF_DECLARATION_FACTORY: 'https://eikomp-backend-media.s3.amazonaws.com/media/compliance/form/Shareholding_Pattern.docx ',
-        Authorization_Form_top_management: 'https://eikomp-backend-media.s3.amazonaws.com/media/compliance/form/Manufacturing_details_tfyJoOx.xlsx',
-        Brand_Authorization: 'https://eikomp-backend-media.s3.amazonaws.com/media/compliance/form/CDF-CCL_Format_TMdRsOP.docx',
-        Brand_Declaration: 'https://eikomp-backend-media.s3.ap-south-1.amazonaws.com/media/compliance/form/Annex_1_Signatory_authorization.docx', 
-        SELF_Declaration_AIR: 'https://eikomp-backend-media.s3.ap-south-1.amazonaws.com/media/compliance/form/Annexure_2_OEM_authorized_to_AIR.docx', 
-        Authorization_from_top_Management_AIR: 'https://eikomp-backend-media.s3.ap-south-1.amazonaws.com/media/compliance/form/Annexure_3_MOU.docx',
+        Raw_Material: 'https://eikomp-backend-media.s3.ap-south-1.amazonaws.com/media/compliance/form/Raw_material_list.xlsx',
+        Equipment: 'https://eikomp-backend-media.s3.ap-south-1.amazonaws.com/media/compliance/form/Equipment_list.xlsx',
+        Machinery: 'https://eikomp-backend-media.s3.ap-south-1.amazonaws.com/media/compliance/form/Machinery_list.xlsx',
+        Process_Flow_Chart_Sample: 'https://eikomp-backend-media.s3.ap-south-1.amazonaws.com/media/compliance/form/Process_flow_chart_NEW_QC.pdf', 
         Undertaking:"",
       };
     
@@ -84,17 +85,17 @@ function BISDownloadDeoc ({onClose}) {
       };
     
     const options1 = [
-      { value: 'SELF_DECLARATION_FACTORY', label: 'SELF-Declaration-Factory'},
-      { value: 'Authorization_Form_top_management', label: 'Authorization from top management (Factory' },
-      { value: 'Brand_Authorization', label: 'Brand Authorization' },
-      { value: 'Brand_Declaration', label: 'Brand Declaration'},
-      { value: 'SELF_Declaration(AIR)', label: 'SELF-Declaration(AIR)'},
-      { value: 'Authorization_from_top_Management(AIR)', label: 'Authorization from top Management(AIR)'},
-      { value: 'Undertaking', label: 'Undertaking'},
+      { value: 'Raw_Material', label: 'Raw Material'},
+      { value: 'Equipment', label: 'Equipment' },
+      { value: 'Machinery', label: 'Machinery' },
+      { value: 'Process_Flow_Chart_Sample', label: 'Process Flow Chart Sample'},
     ];
 
-  return (
-    <>
+
+
+
+    return (
+ <>
     <h3>Download a File</h3>
     <label>
 <h4>Select file(s) to download:</h4>
@@ -115,7 +116,7 @@ function BISDownloadDeoc ({onClose}) {
       </div>
       </>
 
-  );
+    );
 };
 
-export default BISDownloadDeoc;
+export default BisIsiDownload;
