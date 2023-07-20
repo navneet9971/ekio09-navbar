@@ -48,8 +48,8 @@ function HomeProfilePreviousData() {
   return (
     <>
       <div className="home-profile-container">
-        <h2>
-          Home Profile
+        <h2 style={{ fontSize: '20px'}}>
+          Profile
           <FaPencilAlt className="profile-header" onClick={handleEditClick} />
         </h2>
         {isEditing ? ( // Render HPprevDataEdit component when isEditing is true

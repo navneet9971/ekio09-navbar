@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import "../Pages.css";
 import axiosInstance from "../../../interceptors/axios";
@@ -8,16 +8,34 @@ import { ReactComponent as Sideimg } from "../../assets/from-images.svg";
 
 
 const Firstcompliance = () => {
-  const [category, setCategory] = useState(""); // state for category input
+  const [category, setCategory] = useState([]); // state for category input
+  const [selectedCategory, setSelectedCategory] = useState('');
   const [product, setProduct] = useState(""); // state for product input
   const [countries, setCountries] = useState(""); // state for selected region
   const [productDropdown, setProductDropdown] = useState([]); // state for product dropdown
   const history = useHistory();
 
-  const handleCategoryChange = (event) => {
-    setCategory(event.target.value);
+  useEffect(() => {
+    // Fetch data from the 'industry' endpoint when the component mounts
+    handleCategoryChange();
+  }, []);
+
+  const handleCategoryChange = () => {
+    axiosInstance
+      .get('industry')
+      .then((response) => {
+        // Update the options state with the fetched data
+        setCategory(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching dropdown data:', error);
+      });
   };
 
+  const handleChange = (event) => {
+    // Update the selected category when the user selects an option
+    setSelectedCategory(event.target.value);
+  };
   const handleProductChange = (event) => {
     const inputValue = event.target.value;
   
@@ -51,18 +69,18 @@ const Firstcompliance = () => {
   };
 
   const handleGoClick = () => {
-    if (!category && !product && !countries) {
+    if (!selectedCategory && !product && !countries) {
       alert("Please fill in at least one field!");
       return;
     }
-    localStorage.setItem("category", category);
+    localStorage.setItem("category", selectedCategory);
     localStorage.setItem("product", product);
     localStorage.setItem("region", countries);
 
     // send the input data to the backend API using axios GET request
     axiosInstance
       .get(
-        `/compliance/?category=${category}&product=${product}&countries=${countries}`,
+        `/compliance/?category=${selectedCategory}&product=${product}&countries=${countries}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("access_token")}`,
@@ -149,7 +167,11 @@ const Firstcompliance = () => {
               visibility: "visible",
               color: "black",
               cursor: "pointer",
-            }}
+              display: "block",
+              borderTop: "2px solid black",
+              borderBottom: "2px solid black", // Setting the borderBottom color to light blue (#ADD8E6 is the hexadecimal representation of light blue)
+               // marginBottom: ".2rem",
+             }}
             onClick={() => handleProductDropdownClick(item.name)}
             dangerouslySetInnerHTML={{
               __html: highlightSearchTerm(item.name),
@@ -193,16 +215,14 @@ const Firstcompliance = () => {
 
         <div className="form-group22">
           {/* <label className='firsttext-input'>Enter Industry:</label> */}
-          <select
-            id="category-input"
-            value={category}
-            onChange={handleCategoryChange}
-          >
-            <option value="">Choose Your Industry</option>
-            <option value="telecom"> Telecom </option>
-            <option value="it/electronics"> IT/Electronics </option>
-            <option value="paper industry"> Paper Industry </option>
-          </select>
+          <select id="category-input" value={selectedCategory} onChange={handleChange}>
+      <option value="">Select Your Industry</option>
+      {category.map((option) => (
+        <option value={option.name}>
+          {option.name}
+        </option>
+      ))}
+    </select>
         </div>
 
       <div className="form-group22">

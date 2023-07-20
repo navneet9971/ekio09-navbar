@@ -126,10 +126,6 @@ function BISTableReview() {
       console.log("Unknown compliance name or status:", selectedItem.compliance_name, selectedStatus);
     }
   };
-  
-  
-  
-  
 
   function handleFilterStatusChange(event) {
     const selectedStatus = event.target.value;

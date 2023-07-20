@@ -61,7 +61,7 @@ function HomeProfile() {
   return (
     <>
     <div className="home-profile-container">
-      <h2>Home Profile</h2>
+      <h2 style={{ fontSize: '20px'}}>Profile</h2>
       
       <form onSubmit={handleSubmit}>
         <Row gutter={[24, 0]}>

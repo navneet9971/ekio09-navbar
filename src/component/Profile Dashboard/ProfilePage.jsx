@@ -27,34 +27,32 @@ function ProfilePage() {
     history.push("/");
   }
 
-  //LabProfile Home Section Key API and If Key Yes Show Fill Form If Key is NO Show Fresh Form
   useEffect(() => {
     const interval = setInterval(() => {
-    axiosInstance
-      .get("profile/section/")
-      .then((response) => {
-        const keyData = response.data["key"];
-        setKey(keyData);
-        console.log(keyData);
-        const [labPreviousdata] = response.data.data;
-        console.log(labPreviousdata);
-        // Check if labPreviousdata is defined and valid JSON
-        if (labPreviousdata) {
-          try {
-            const jsonData = JSON.stringify(labPreviousdata);
-            localStorage.setItem("labhomeprofile", jsonData);
-          } catch (error) {
-            console.error("Invalid JSON data:", error);
+      axiosInstance
+        .get("profile/section/")
+        .then((response) => {
+          const keyData = response.data["key"];
+          setKey(keyData);
+          console.log(keyData);
+          const [labPreviousdata] = response.data.data;
+          console.log(labPreviousdata);
+          // Check if labPreviousdata is defined and valid JSON
+          if (labPreviousdata) {
+            try {
+              const jsonData = JSON.stringify(labPreviousdata);
+              localStorage.setItem("labhomeprofile", jsonData);
+            } catch (error) {
+              console.error("Invalid JSON data:", error);
+            }
           }
-        }
-      })
-      .catch((error) => {
-        // Handle error
-      });
-  }, 2000);
-  return () => clearInterval(interval);
-}, []);
-
+        })
+        .catch((error) => {
+          // Handle error
+        });
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     if (key === "Yes") {
@@ -77,9 +75,7 @@ function ProfilePage() {
       {/* Container */}
       <div style={{ display: "flex", marginTop: "20px" }}>
         {/* Sidebar */}
-        <div
-          style={{ backgroundColor: "lightblue", width: "300px", height: "100%" }}
-        >
+        <div style={{ backgroundColor: "lightblue", width: "300px", height: "100%" }}>
           {key === "Yes" ? (
             <SidebarItem
               icon={<FaAngleRight />}
@@ -96,7 +92,7 @@ function ProfilePage() {
           <hr style={{ margin: "8px 0" }} />
           <SidebarItem
             icon={<FaAngleRight />}
-            text="ManageClients"
+            text="Manage Clients"
             onClick={() => handleSidebarItemClick("ManageClients")}
           />
           <hr style={{ margin: "8px 0" }} />
@@ -139,6 +135,7 @@ function ProfilePage() {
             </div>
             {/* User LogoutButton */}
             <div>
+              {/* Use the existing button */}
               <button className="logout_btn" onClick={handleLogout}>
                 <span className="span-logout--btn">
                   <FaPowerOff />
@@ -152,11 +149,11 @@ function ProfilePage() {
           {activeContent === "HomeProfile" && <HomeProfile />}
           {activeContent === "ManageClients" && <ManageClients />}
           {activeContent === "Order" && <Order />}
-          {activeContent === "Analytics" && 
-          <div className="home-profile-container">
-          <LabAnalytics />
-          </div>}
-
+          {activeContent === "Analytics" && (
+            <div className="home-profile-container">
+              <LabAnalytics />
+            </div>
+          )}
         </div>
       </div>
     </>

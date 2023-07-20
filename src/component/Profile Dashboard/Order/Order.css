@@ -50,6 +50,7 @@
     display: flex;
     gap: 11px;
     justify-content: flex-end;
+    cursor: pointer;
 }
   
 .page {
