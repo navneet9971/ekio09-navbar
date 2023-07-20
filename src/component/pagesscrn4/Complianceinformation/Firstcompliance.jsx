@@ -168,9 +168,8 @@ const Firstcompliance = () => {
               color: "black",
               cursor: "pointer",
               display: "block",
-              borderTop: "2px solid black",
-              borderBottom: "2px solid black", // Setting the borderBottom color to light blue (#ADD8E6 is the hexadecimal representation of light blue)
-               // marginBottom: ".2rem",
+              borderBottom: "1px solid #7bdcb5 ", // Setting the borderBottom color to light blue (#ADD8E6 is the hexadecimal representation of light blue)
+              marginBottom: ".4rem",
              }}
             onClick={() => handleProductDropdownClick(item.name)}
             dangerouslySetInnerHTML={{
