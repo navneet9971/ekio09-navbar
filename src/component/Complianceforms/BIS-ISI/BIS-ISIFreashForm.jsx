@@ -16,7 +16,7 @@ const BISISIFreashForm = () => {
     Factory_Address: "", 
     Factory_emailid: "",
     Factory_mobile_number: "",
-    Type: "",
+    Scale: "",
     Factory_weekly_off: "",
     Top_management_name_1: "",
     Top_management_designation_1: "",
@@ -219,11 +219,11 @@ const BISISIFreashForm = () => {
         </label>
 
         <label className="st8012">
-  Type:
+  Scale:
   <select
     className="st804"
-    name="Type"
-    value={bisIsiFormData.Type}
+    name="Scale"
+    value={bisIsiFormData.Scale}
     onChange={handleChange}
   >
     <option value="">Choose Brand Owned By</option>

@@ -20,7 +20,7 @@ function BISISIPerviousData ({ onClose }) {
         Factory_Address: "",
         Factory_emailid: "",
         Factory_mobile_number: "",
-        Type: "",
+        Scale: "",
         Factory_weekly_off: "",
         Top_management_name_1: "",
         Top_management_designation_1: "",
@@ -61,7 +61,7 @@ function BISISIPerviousData ({ onClose }) {
     Factory_Address: bisIsiPrevFormData.Factory_Address,
     Factory_emailid: bisIsiPrevFormData.Factory_emailid,
     Factory_mobile_number: bisIsiPrevFormData.Factory_mobile_number,
-    Type: bisIsiPrevFormData.Type,
+    Scale: bisIsiPrevFormData.Scale,
     Factory_weekly_off: bisIsiPrevFormData.Factory_weekly_off,
     Top_management_name_1: bisIsiPrevFormData.Top_management_name_1,
     Top_management_designation_1: bisIsiPrevFormData.Top_management_designation_1,
@@ -255,11 +255,11 @@ function BISISIPerviousData ({ onClose }) {
         </label>
 
         <label className="st8012">
-  Type:
+        Scale:
   <select
     className="st804"
-    name="Type"
-    value={bisIsiPrevFormData.Type}
+    name="Scale"
+    value={bisIsiPrevFormData.Scale}
     onChange={handleBisIsiPrevChange}
   >
     <option value="">Choose Brand Owned By</option>
