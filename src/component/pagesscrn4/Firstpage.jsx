@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect  } from "react";
 import { useHistory } from "react-router-dom";
 import "./Pages.css";
 import axiosInstance from "../../interceptors/axios";
@@ -41,24 +41,38 @@ const Firstpage = () => {
 
   const handleProductChange = (event) => {
     setProduct(event.target.value);
-
-    // send the product input be user to the backend whenever user inputs products to get the product recommendations
-    axiosInstance
-      .get(`/products?product=${event.target.value}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-          "Content-Type": "application/json",
-          accept: "application/json",
-        },
-      })
-      .then((response) => {
-        setProductDropdown(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-        alert("Something went wrong. Please try again later.");
-      });
+  
+    // Add a delay of 1 second (1000 milliseconds) before making the API call
+    const delay = 1000;
+  
+    // Clear the timeout if the user keeps changing the product selection quickly
+    if (typeof handleProductChange.timeoutId === "number") {
+      clearTimeout(handleProductChange.timeoutId);
+    }
+  
+    // Set a new timeout for the API call
+    handleProductChange.timeoutId = setTimeout(() => {
+      axiosInstance
+        .get(`/products?product=${event.target.value}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            "Content-Type": "application/json",
+            accept: "application/json",
+          },
+        })
+        .then((response) => {
+          setProductDropdown(response.data);
+          console.log(response.data); // You can log the response data if you want to see it in the console.
+        })
+        .catch((error) => {
+          console.error(error);
+          alert("Something went wrong. Please try again later.");
+        });
+    }, delay);
   };
+  
+  
+
 
   const handleRegionChange = (event) => {
     setCountries(event.target.value);
@@ -115,19 +129,8 @@ const Firstpage = () => {
 
   //component for product dropdown
   const ProductDropdown = (props) => {
-    const { dropDownData, inputValue } = props;
-  
-    // Filter the product names based on the input value
-    const filteredProducts = dropDownData.filter((item) =>
-      item.name.toLowerCase().includes(inputValue.toLowerCase())
-    );
-  
-    // Function to highlight the search term in the product name
-    const highlightSearchTerm = (productName) => {
-      const regex = new RegExp(`(${inputValue})`, "gi");
-      return productName.replace(regex, "<mark>$1</mark>");
-    };
-  
+    const { dropDownData } = props;
+
     return (
       <div
         className=""
@@ -152,31 +155,30 @@ const Firstpage = () => {
           e.currentTarget.style.overflowY = "hidden";
         }}
       >
-        {filteredProducts.slice(0, 5).map((item, index) => (
- <span
- key={index}
- value={item}
- style={{
-  animationDuration: "300ms",
-  opacity: 1,
-  height: "auto",
-  visibility: "visible",
-  color: "black",
-  cursor: "pointer",
-  display: "block",
-  borderBottom: "1px solid #7bdcb5 ", // Setting the borderBottom color to light blue (#ADD8E6 is the hexadecimal representation of light blue)
-   marginBottom: ".5rem",
- }}
- onClick={() => handleProductDropdownClick(item.name)}
- dangerouslySetInnerHTML={{
-   __html: highlightSearchTerm(item.name),
- }}
-/>
-))}
+        {dropDownData.map((item, index) => (
+          <span
+            key={index + 1}
+            value={item}
+            style={{
+              animationDuration: "300ms",
+              opacity: 1,
+              height: "auto",
+              visibility: "visible",
+              color: "black",
+              cursor: "pointer",
+              display: "block",
+              borderBottom: "1px solid #7bdcb5",
+              marginBottom: ".5rem",
+            }}
+            onClick={() => handleProductDropdownClick(item.name)}
+          >
+            {item.name}
+          </span>
+        ))}
       </div>
     );
   };
-  
+
 
   return (
     <div className="bgchange">
@@ -210,27 +212,26 @@ const Firstpage = () => {
           <select id="category-input" value={selectedCategory} onChange={handleChange}>
       <option value="">Select Your Industry</option>
       {category.map((option) => (
-        <option value={option.name}>
+        <option key = {option.id} value={option.name}>
           {option.name}
         </option>
       ))}
     </select>
         </div>
 
-      <div className="form-group22">
-  <input
-    type="text"
-    placeholder="Enter Name of Product"
-    id="category-input"
-    value={product}
-    onChange={handleProductChange}
-    autoComplete="off" // Add this line to disable autocomplete
-  />
-   {product && productDropdown.length > 0 && (
-  <ProductDropdown dropDownData={productDropdown} inputValue={product} />
-)}
-</div>
-
+        <div className="form-group22">
+        <input
+          type="text"
+          placeholder="Enter Name of Product"
+          id="category-input"
+          value={product}
+          onChange={handleProductChange}
+          autoComplete="off"
+        />
+        {product && productDropdown.length > 0 && (
+          <ProductDropdown dropDownData={productDropdown} />
+        )}
+      </div>
 
         <div className="region-group22">
           <select

@@ -36,15 +36,22 @@ const Firstcompliance = () => {
     // Update the selected category when the user selects an option
     setSelectedCategory(event.target.value);
   };
+  
   const handleProductChange = (event) => {
-    const inputValue = event.target.value;
+    setProduct(event.target.value);
   
-    setProduct(inputValue);
+    // Add a delay of 1 second (1000 milliseconds) before making the API call
+    const delay = 1000;
   
-    if (inputValue.length >= 1) {
-      // send the product input by the user to the backend whenever the user inputs products to get the product recommendations
+    // Clear the timeout if the user keeps changing the product selection quickly
+    if (typeof handleProductChange.timeoutId === "number") {
+      clearTimeout(handleProductChange.timeoutId);
+    }
+  
+    // Set a new timeout for the API call
+    handleProductChange.timeoutId = setTimeout(() => {
       axiosInstance
-        .get(`/products?product=${inputValue}`, {
+        .get(`/products?product=${event.target.value}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             "Content-Type": "application/json",
@@ -53,15 +60,15 @@ const Firstcompliance = () => {
         })
         .then((response) => {
           setProductDropdown(response.data);
+          console.log(response.data); // You can log the response data if you want to see it in the console.
         })
         .catch((error) => {
           console.error(error);
           alert("Something went wrong. Please try again later.");
         });
-    } else {
-      setProductDropdown([]);
-    }
+    }, delay);
   };
+  
   
 
   const handleRegionChange = (event) => {
@@ -119,19 +126,8 @@ const Firstcompliance = () => {
 
   //component for product dropdown
   const ProductDropdown = (props) => {
-    const { dropDownData, inputValue } = props;
-  
-    // Filter the product names based on the input value
-    const filteredProducts = dropDownData.filter((item) =>
-      item.name.toLowerCase().includes(inputValue.toLowerCase())
-    );
-  
-    // Function to highlight the search term in the product name
-    const highlightSearchTerm = (productName) => {
-      const regex = new RegExp(`(${inputValue})`, "gi");
-      return productName.replace(regex, "<mark>$1</mark>");
-    };
-  
+    const { dropDownData } = props;
+
     return (
       <div
         className=""
@@ -156,9 +152,9 @@ const Firstcompliance = () => {
           e.currentTarget.style.overflowY = "hidden";
         }}
       >
-        {filteredProducts.slice(0, 5).map((item, index) => (
+        {dropDownData.map((item, index) => (
           <span
-            key={index}
+            key={index + 1}
             value={item}
             style={{
               animationDuration: "300ms",
@@ -168,23 +164,20 @@ const Firstcompliance = () => {
               color: "black",
               cursor: "pointer",
               display: "block",
-              borderBottom: "1px solid #7bdcb5 ", // Setting the borderBottom color to light blue (#ADD8E6 is the hexadecimal representation of light blue)
-              marginBottom: ".4rem",
-             }}
-            onClick={() => handleProductDropdownClick(item.name)}
-            dangerouslySetInnerHTML={{
-              __html: highlightSearchTerm(item.name),
+              borderBottom: "1px solid #7bdcb5",
+              marginBottom: ".5rem",
             }}
-          />
+            onClick={() => handleProductDropdownClick(item.name)}
+          >
+            {item.name}
+          </span>
         ))}
       </div>
     );
   };
   
   
-  
-  
-  
+
   return (
     <div className="bgchange">
       <div className="first-container22">
@@ -217,26 +210,26 @@ const Firstcompliance = () => {
           <select id="category-input" value={selectedCategory} onChange={handleChange}>
       <option value="">Select Your Industry</option>
       {category.map((option) => (
-        <option value={option.name}>
+         <option key = {option.id} value={option.name}>
           {option.name}
         </option>
       ))}
     </select>
         </div>
 
-      <div className="form-group22">
-  <input
-    type="text"
-    placeholder="Enter Name of Product"
-    id="category-input"
-    value={product}
-    onChange={handleProductChange}
-    autoComplete="off" // Add this line to disable autocomplete
-  />
-  {product && productDropdown.length > 0 && (
-  <ProductDropdown dropDownData={productDropdown} inputValue={product} />
-)}
-</div>
+        <div className="form-group22">
+        <input
+          type="text"
+          placeholder="Enter Name of Product"
+          id="category-input"
+          value={product}
+          onChange={handleProductChange}
+          autoComplete="off"
+        />
+        {product && productDropdown.length > 0 && (
+          <ProductDropdown dropDownData={productDropdown} />
+        )}
+      </div>
 
 
         <div className="region-group22">
