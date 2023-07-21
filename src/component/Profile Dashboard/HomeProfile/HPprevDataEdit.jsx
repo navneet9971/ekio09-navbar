@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 
 
 function HPprevDataEdit({ onClose }) {
-  const UserId = localStorage.getItem("storeLabUserID");
+  const UserId = localStorage.getItem("profileKey");
 
   const [labPreviousForm, setLabPreviousForm] = useState({
     compliance: "",
@@ -18,7 +18,7 @@ function HPprevDataEdit({ onClose }) {
 
   useEffect(() => {
     axiosInstance
-      .get(`profile/section/${localStorage.getItem("storeLabUserID")}`)
+      .get(`profile/section/${UserId}`)
       .then((response) => {
         const responseData = response.data;
         setLabPreviousForm(responseData);

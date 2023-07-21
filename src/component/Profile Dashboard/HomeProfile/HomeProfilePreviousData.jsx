@@ -3,11 +3,11 @@ import { Row, Col } from "antd";
 import { FaPencilAlt } from 'react-icons/fa';
 import AddClient from "../AddClient/AddClient";
 import HPprevDataEdit from "./HPprevDataEdit";
+import axiosInstance from "../../../interceptors/axios";
 
 function HomeProfilePreviousData() {
-  const LabHomePreviousData = localStorage.getItem("labhomeprofile"); //
-  const [isEditing, setIsEditing] = useState(false); // State variable for controlling edit mode
-
+  // const LabHomePreviousData = localStorage.getItem("labhomeprofile");
+  const [isEditing, setIsEditing] = useState(false);
   const [labPreviousForm, setLabPreviousForm] = useState({
     compliance: "",
     product: "",
@@ -17,33 +17,28 @@ function HomeProfilePreviousData() {
     website: "",
   });
 
-
   useEffect(() => {
-    const interval = setInterval(() => {
-    if (LabHomePreviousData) {
-      try {
-        const parsedData = JSON.parse(LabHomePreviousData);
-        setLabPreviousForm((prevForm) => ({
-          ...prevForm,
-          ...parsedData,
-        }));
-      } catch (error) {
-        console.error("Error parsing LabHomePreviousData:", error);
-        // Handle the parsing error, e.g., set default form values or show an error message.
-      }
-    }
-  },  1000);
-
-  return () => clearInterval(interval);
-}, [LabHomePreviousData]);
+    axiosInstance
+      .get(`profile/section/`)
+      .then((response) => {
+        const data = response.data.data[0];
+        console.log(data);
+        setLabPreviousForm(data);
+        localStorage.setItem("profileKey", data.id)
+        console.log(data.id);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []); // Add an empty dependency array to run the effect only once during component mount
 
   const handleEditClick = () => {
-    setIsEditing((prevState) => !prevState);  // Set isEditing to true when the pencil icon is clicked
+    setIsEditing((prevState) => !prevState);
   };
 
   const handlePopupClose = () => {
     setIsEditing(false);
-  }
+  };
 
   return (
     <>
@@ -52,48 +47,48 @@ function HomeProfilePreviousData() {
           Profile
           <FaPencilAlt className="profile-header" onClick={handleEditClick} />
         </h2>
-        {isEditing ? ( // Render HPprevDataEdit component when isEditing is true
+        {isEditing ? (
           <HPprevDataEdit onClose={handlePopupClose}/>
         ) : (
           <form>
             <Row gutter={[24, 0]}>
-            <Col xs={24} md={12}>
-              <div className="column">
-                <label className="HomeProfile-label">Compliance: {labPreviousForm.compliance}</label>
-              </div>
-            </Col>
-            <Col xs={24} md={12}>
-              <div className="column">
-                <label className="HomeProfile-label">Product: {labPreviousForm.product}</label>
-              </div>
-            </Col>
-          </Row>
+              <Col xs={24} md={12}>
+                <div className="column">
+                  <label className="HomeProfile-label">Compliance: {labPreviousForm.compliance}</label>
+                </div>
+              </Col>
+              <Col xs={24} md={12}>
+                <div className="column">
+                  <label className="HomeProfile-label">Product: {labPreviousForm.product}</label>
+                </div>
+              </Col>
+            </Row>
 
-          <Row gutter={[24, 0]}>
-            <Col xs={24} md={12}>
-              <div className="column">
-                <label className="HomeProfile-label">Region: {labPreviousForm.region}</label>
-              </div>
-            </Col>
-            <Col xs={24} md={12}>
-              <div className="column">
-                <label className="HomeProfile-label">Address: {labPreviousForm.address}</label>
-              </div>
-            </Col>
-          </Row>
+            <Row gutter={[24, 0]}>
+              <Col xs={24} md={12}>
+                <div className="column">
+                  <label className="HomeProfile-label">Region: {labPreviousForm.region}</label>
+                </div>
+              </Col>
+              <Col xs={24} md={12}>
+                <div className="column">
+                  <label className="HomeProfile-label">Address: {labPreviousForm.address}</label>
+                </div>
+              </Col>
+            </Row>
 
-          <Row gutter={[24, 0]}>
-            <Col xs={24} md={12}>
-              <div className="column">
-                <label className="HomeProfile-label">Capacity: {labPreviousForm.capacity}</label>
-              </div>
-            </Col>
-            <Col xs={24} md={12}>
-              <div className="column">
-                <label className="HomeProfile-label">Website: {labPreviousForm.website}</label>
-              </div>
-            </Col>
-          </Row>
+            <Row gutter={[24, 0]}>
+              <Col xs={24} md={12}>
+                <div className="column">
+                  <label className="HomeProfile-label">Capacity: {labPreviousForm.capacity}</label>
+                </div>
+              </Col>
+              <Col xs={24} md={12}>
+                <div className="column">
+                  <label className="HomeProfile-label">Website: {labPreviousForm.website}</label>
+                </div>
+              </Col>
+            </Row>
           </form>
         )}
       </div>
