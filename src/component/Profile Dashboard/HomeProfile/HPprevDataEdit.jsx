@@ -4,10 +4,8 @@ import axiosInstance from "../../../interceptors/axios";
 import Swal from "sweetalert2";
 
 
-function HPprevDataEdit({onClose}) {
-  // const LabHomePreviousData = localStorage.getItem("labhomeprofile");
+function HPprevDataEdit({ onClose }) {
   const UserId = localStorage.getItem("storeLabUserID");
-  
 
   const [labPreviousForm, setLabPreviousForm] = useState({
     compliance: "",
@@ -18,44 +16,23 @@ function HPprevDataEdit({onClose}) {
     website: "",
   });
 
-
-
-  // useEffect(() => {
-  //   if (LabHomePreviousData) {
-  //     try {
-  //       const parsedData = JSON.parse(LabHomePreviousData);
-  //       setLabPreviousForm((prevForm) => ({
-  //         ...prevForm,
-  //         ...parsedData,
-  //       }));
-  //     } catch (error) {
-  //       console.error("Error parsing LabHomePreviousData:", error);
-  //       // Handle the parsing error, e.g., set default form values or show an error message.
-  //     }
-  //   }
-  // }, [LabHomePreviousData]);
-
-  const UpdatedLabHomeData = true; // Replace this with your actual condition
-
   useEffect(() => {
-    if (UpdatedLabHomeData) {
-      axiosInstance.get(`profile/section/${UserId}`)
-        .then((response) => {
-          // Assuming the response data is an object containing the fields you mentioned
-          const responseData = response.data;
-          setLabPreviousForm(responseData);
-        })
-        .catch((error) => {
-          // Handle any errors that occur during the API request
-          console.error("Error fetching data:", error);
-        });
-    }
-  }, [UserId, UpdatedLabHomeData]);
+    axiosInstance
+      .get(`profile/section/${UserId}`)
+      .then((response) => {
+        const responseData = response.data;
+        setLabPreviousForm(responseData);
+        console.log(responseData);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, [UserId]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const UpdatedLabHomeData = {
+    const updatedLabHomeData = {
       compliance: labPreviousForm.compliance,
       product: labPreviousForm.product,
       region: labPreviousForm.region,
@@ -65,30 +42,29 @@ function HPprevDataEdit({onClose}) {
     };
 
     axiosInstance
-  .put(`profile/section/${UserId}/`, UpdatedLabHomeData, {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-  })
-  .then((response) => {
-    const data = response.data;
-    console.log(data);
-    Swal.fire({
-      title: "Success",
-      text: "Form Submitted",
-      icon: "success",
-    });
-    onClose();
-  })
-  .catch((error) => {
-    console.error(error);
-    Swal.fire({
-      title: "Error",
-      text: "Failed to submit form",
-      icon: "error",
-    });
-  });
-
+      .put(`profile/section/${UserId}/`, updatedLabHomeData, {
+        headers: {
+          "Content-Type": "application/json", // Change "multipart/form-data" to "application/json" since we are sending JSON data
+        },
+      })
+      .then((response) => {
+        const data = response.data;
+        console.log(data);
+        Swal.fire({
+          title: "Success",
+          text: "Form Submitted",
+          icon: "success",
+        });
+        onClose();
+      })
+      .catch((error) => {
+        console.error(error);
+        Swal.fire({
+          title: "Error",
+          text: "Failed to submit form",
+          icon: "error",
+        });
+      });
   };
 
   const handleChange = (e) => {

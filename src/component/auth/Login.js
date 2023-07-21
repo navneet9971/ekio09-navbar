@@ -140,7 +140,7 @@ function Login() {
                 color: "#082A71",
               }}
             >
-              WELCOME Heelo
+              WELCOME
             </h3>
           </div>
           <div className="input-box">
