@@ -42,10 +42,10 @@ const Secondpage = () => {
   }, []);
 
   // open compliance video in new window
-  const handleVideoClick = (e, videoUrl) => {
-    e.preventDefault();
-    window.open(videoUrl, "Compliance Video", "width=800,height=600");
-  };
+  // const handleVideoClick = (e, videoUrl) => {
+  //   e.preventDefault();
+  //   window.open(videoUrl, "Compliance Video", "width=800,height=600");
+  // };
 
   // navigate to compliance page based on compliance name
   const handleClick = (complianceName, complianceId) => {
@@ -89,7 +89,7 @@ const Secondpage = () => {
               <tr>
                 <th style={{ cursor: "default" }}>Compliance Name</th>
                 <th style={{ cursor: "default" }}>Description</th>
-                <th style={{ cursor: "default" }}>Video</th>
+                {/* <th style={{ cursor: "default" }}>Video</th> */}
                 <th style={{ cursor: "default" }}>Notification</th>
                 {/* Added notification column */}
               </tr>
@@ -106,8 +106,8 @@ const Secondpage = () => {
                     {compliance.product_name}
                   </td>
                   <td style={{ cursor: "default" }}>{compliance.details}</td>
-                  <td>
-                    {/* display compliance video */}
+                  {/* <td>
+                    
                     <a
                       href={compliance.video}
                       onClick={(e) => handleVideoClick(e, compliance.video)}
@@ -123,7 +123,7 @@ const Secondpage = () => {
                         </div>
                       </div>
                     </a>
-                  </td>
+                  </td> */}
                   <td>
                     {/* display animated bell icon */}
                     <span

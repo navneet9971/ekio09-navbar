@@ -136,10 +136,10 @@ const Secondpage = () => {
   };
 
   // open compliance video in new window
-  const handleVideoClick = (e, videoUrl) => {
-    e.preventDefault();
-    window.open(videoUrl, "Compliance Video", "width=800,height=600");
-  };
+  // const handleVideoClick = (e, videoUrl) => {
+  //   e.preventDefault();
+  //   window.open(videoUrl, "Compliance Video", "width=800,height=600");
+  // };
 
   const handleClick = async (complianceName, complianceId, event) => {
     localStorage.setItem("compliance_id", complianceId);
@@ -395,7 +395,7 @@ const Secondpage = () => {
                 {/*<th>S.no</th>*/}
                 <th style={{ cursor: "default" }}>Compliance Name</th>
                 <th style={{ cursor: "default" }}>Description</th>
-                <th style={{ cursor: "default" }}>Video</th>
+                {/* <th style={{ cursor: "default" }}>Video</th> */}
               </tr>
             </thead>
             <tbody>
@@ -411,8 +411,7 @@ const Secondpage = () => {
                     {compliance.product_name}
                   </td>
                   <td style={{ cursor: "default" }}>{compliance.details}</td>
-                  <td>
-                    {/* display compliance video */}
+                  {/* <td>
                     <a
                       href={compliance.video}
                       onClick={(e) => handleVideoClick(e, compliance.video)}
@@ -428,7 +427,7 @@ const Secondpage = () => {
                         </div>
                       </div>
                     </a>
-                  </td>
+                  </td> */}
                   {/* <td 
                  onClick={() => handleClick(compliance.product_name, compliance.id)}>
                 </td> */}

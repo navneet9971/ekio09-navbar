@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from "react";
 import Message from "../../popup/Message";
 import axiosInstance from "../../../interceptors/axios";
-import { ReactComponent as Thum1png } from "../../assets/BisIsiSteps/document.svg";
-import { ReactComponent as Thum2png } from "../../assets/BisIsiSteps/labstep.svg";
-import { ReactComponent as Thum3png } from "../../assets/BisIsiSteps/submissionappli.svg";
-import { ReactComponent as Thum4png } from "../../assets/BisIsiSteps/audit.svg";
-import { ReactComponent as Thum5png } from "../../assets/BisIsiSteps/testingsample.svg";
-import { ReactComponent as Thum6png } from "../../assets/BisIsiSteps/licen.svg";
+import { ReactComponent as Thum1png } from "../../assets/bis-track-icons/regi.svg";
+import { ReactComponent as Thum2png } from "../../assets/bis-track-icons/testi.svg";
+import { ReactComponent as Thum3png } from "../../assets/bis-track-icons/doc.svg";
+import { ReactComponent as Thum4png } from "../../assets/bis-track-icons/appi.svg";
+import { ReactComponent as Thum5png } from "../../assets/bis-track-icons/apro.svg";
+import { ReactComponent as Thum6png } from "../../assets/bis-track-icons/certi.svg";
 import { ReactComponent as Wrong } from "../../assets/trckpg-rb/wrong.svg";
 import { ReactComponent as Right } from "../../assets/trckpg-rb/right.svg";
 

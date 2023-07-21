@@ -1,17 +1,19 @@
 import React, {useState, useEffect} from "react";
-import Message from "../../popup/Message";
-import axiosInstance from "../../../interceptors/axios";
-import { ReactComponent as Thum1png } from "../../assets/BisIsiSteps/document.svg";
-import { ReactComponent as Thum2png } from "../../assets/BisIsiSteps/labstep.svg";
-import { ReactComponent as Thum3png } from "../../assets/BisIsiSteps/submissionappli.svg";
-import { ReactComponent as Thum4png } from "../../assets/BisIsiSteps/audit.svg";
-import { ReactComponent as Thum5png } from "../../assets/BisIsiSteps/testingsample.svg";
-import { ReactComponent as Thum6png } from "../../assets/BisIsiSteps/licen.svg";
-import { ReactComponent as Wrong } from "../../assets/trckpg-rb/wrong.svg";
-import { ReactComponent as Right } from "../../assets/trckpg-rb/right.svg";
+import Message from "../../../popup/Message";
+import axiosInstance from "../../../../interceptors/axios";
+import { ReactComponent as Thum1png } from "../../../assets/BisIsiSteps/document.svg";
+import { ReactComponent as Thum2png } from "../../../assets/BisIsiSteps/testingsample.svg";
+import { ReactComponent as Thum3png } from "../../../assets/BisIsiSteps/labstep.svg";
+import { ReactComponent as Thum4png } from "../../../assets/BisIsiSteps/submissionappli.svg";
+import { ReactComponent as Thum5png } from "../../../assets/BisIsiSteps/audit.svg";
+import { ReactComponent as Thum6png } from "../../../assets/BisIsiSteps/licen.svg";
+import { ReactComponent as Thum7png } from "../../../assets/BisIsiSteps/testingsample.svg";
+import { ReactComponent as Wrong } from "../../../assets/trckpg-rb/wrong.svg";
+import { ReactComponent as Right } from "../../../assets/trckpg-rb/right.svg";
 
 
-function BISISISteps () {
+
+function BISISISimplifySteps () {
 
 
     const [docStep, setdocStep] = useState({});
@@ -23,6 +25,7 @@ function BISISISteps () {
     const [buttonPopup6, setButtonPopup6] = useState(false);
     const [buttonPopup7, setButtonPopup7] = useState(false);
     const [buttonPopup8, setButtonPopup8] = useState(false);
+    const [buttonPopup9, setButtonPopup9] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -165,9 +168,26 @@ return (
         )}
         {/* <h3 className="setp-bis">Issuance of Certificate</h3> */}
       
+      
+        <Message trigger={buttonPopup9} setTrigger={setButtonPopup9}>
+      <h2 className="pop-msg">    Message :- 
+         {docStep["7"] && docStep["7"][1]}</h2>
+         <h2 className="pop-msg">  Start Date :-
+         {docStep["7"] && docStep["7"][2].slice(0,10)}</h2>
+         </Message>
+      
+        <Thum7png className="mainsvg2" />
+        {docStep["7"] && docStep["7"][0] === "Completed" ? (
+          <Right className="mainsvg3" onClick={() => setButtonPopup9(true)}/>
+        ) : (
+          <Wrong className="mainsvg3" onClick={() => setButtonPopup9(true)}/>
+        )}
+        {/* <h3 className="setp-bis">Issuance of Certificate</h3> */}
+      
+
       </div>
       </div>
     );
 };
 
-export default BISISISteps;
+export default BISISISimplifySteps;

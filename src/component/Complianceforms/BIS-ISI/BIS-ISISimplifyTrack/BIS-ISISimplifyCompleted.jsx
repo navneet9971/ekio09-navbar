@@ -7,7 +7,7 @@ import { FiUpload, FiDownload } from "react-icons/fi";
 import pdflogo from "../../../assets/icons/eikomp_logo.png";
 import Popup from "../../../popup/Popup";
 import Message from "../../../popup/Message";
-import BISISISteps from "../BIS-ISISteps";
+import BISISISimplifySteps from "./BIS-ISISimplifySetps";
 import BisIsiDownload from "../BIS-ISIDownload";
 import BisIsiUploadDoc from "../BIS-ISIUploadDoc";
 import StatusBar from "../../../Statusbar";
@@ -302,7 +302,7 @@ function BisIsiSimplfiyCompleted () {
           />
         </div>
         {/* BIS STEPS SET HER MESSAGE AND ALL */}
-        <BISISISteps />
+        <BISISISimplifySteps />
 
 
         {/* POPUP OF LAST BUTTON OF DOWNLOAD REPORT FUNCTION AS WELL  */}
