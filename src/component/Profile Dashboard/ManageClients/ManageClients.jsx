@@ -12,6 +12,7 @@ function ManageClients() {
   const clientPerPage = 8;
 
   useEffect(() => {
+    const interval = setInterval(() => {
     axiosInstance
       .get("profile/clients/")
       .then((response) => {
@@ -23,6 +24,8 @@ function ManageClients() {
       .catch((error) => {
         console.error("Error retrieving client list:", error);
       });
+    }, 2000);
+    return () => clearInterval(interval);
   }, []);
 
   const handlePageChange = (pageNumber) => {
@@ -56,7 +59,9 @@ function ManageClients() {
     localStorage.setItem("storeClientID", clientId); // USe this Store is ClientDataUpdate Page
   }
 
-
+const handlePopupClose = () => {
+  setActionButton(false);
+}
   return (
     <div className="home-profile-container">
       <h2 style={{margin: "0", fontSize: "20px"}}>Clients List</h2>
@@ -88,11 +93,11 @@ function ManageClients() {
               </td>
               <td>
                 {/* Pass the client ID to the handleEditButtonClick function */}
-                <button onClick={() => handleEditButtonClick(client.id)}>Edit</button>
+                <span style= {{color: "blue"}} onClick={() => handleEditButtonClick(client.id)}>Edit</span>
                 {/* Popup component to show the ClientDataUpdate component */}
                 <Popup trigger={actionButton} setTrigger={setActionButton}>
                   {/* Pass the selected client ID to the ClientDataUpdate component */}
-                  <ClientDataUpdate clientId={selectedClientId} />
+                  <ClientDataUpdate clientId={selectedClientId}  onClose={handlePopupClose} />
                 </Popup>
               </td>
             </tr>

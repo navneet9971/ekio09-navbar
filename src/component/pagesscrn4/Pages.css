@@ -103,10 +103,10 @@ select#region-select22 {
 
 /* Custom side image styles */
 .custom-side-img {
-  width: 666px;
+  width: 697px;
   height: 363px;
   position: absolute;
-  left: 286px;
+  left: 363px;
   top: -350px;
   /* transform: translate(166px, -361px); */
 }

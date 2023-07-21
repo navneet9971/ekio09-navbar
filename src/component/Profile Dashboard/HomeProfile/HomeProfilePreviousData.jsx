@@ -38,7 +38,7 @@ function HomeProfilePreviousData() {
 }, [LabHomePreviousData]);
 
   const handleEditClick = () => {
-    setIsEditing(true); // Set isEditing to true when the pencil icon is clicked
+    setIsEditing((prevState) => !prevState);  // Set isEditing to true when the pencil icon is clicked
   };
 
   const handlePopupClose = () => {

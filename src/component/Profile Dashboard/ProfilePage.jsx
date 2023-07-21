@@ -34,9 +34,9 @@ function ProfilePage() {
         .then((response) => {
           const keyData = response.data["key"];
           setKey(keyData);
-          console.log(keyData);
+          // console.log(keyData);
           const [labPreviousdata] = response.data.data;
-          console.log(labPreviousdata);
+          // console.log(labPreviousdata);
           // Check if labPreviousdata is defined and valid JSON
           if (labPreviousdata) {
             try {

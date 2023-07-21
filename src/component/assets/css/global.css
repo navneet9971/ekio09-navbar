@@ -539,6 +539,7 @@ select {
   color: #555;
   font-family: 'Roboto', sans-serif;
   margin-top: -2px;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {

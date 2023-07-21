@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axiosInstance from "../../../../interceptors/axios";
+import Swal from "sweetalert2";
 
-function ClientDataUpdate() {
+
+function ClientDataUpdate({ onClose }) {
   const clientSendID = localStorage.getItem("storeClientID");
   const [clientData, setClientData] = useState({
     name: "",
@@ -51,14 +53,14 @@ function ClientDataUpdate() {
 
   const handleClientDataUpdate = (event) => {
     event.preventDefault();
-
+  
     // Create a FormData object to handle file data
     const formData = new FormData();
     formData.append("name", clientData.name);
     if (clientData.logo) {
       formData.append("logo", clientData.logo, clientData.logo.name);
     }
-
+  
     axiosInstance
       .put(`profile/clients/${clientSendID}/`, formData, {
         headers: {
@@ -69,12 +71,26 @@ function ClientDataUpdate() {
         const updatedClientData = response.data;
         setClientData(updatedClientData);
         console.log("Updated client data:", updatedClientData);
+  
+        // Show success message using swal
+        Swal.fire({
+          title: "Success", // or "Error" for the error case
+          text: "Client data updated successfully!", // or "Failed to update client data. 😢" for the error case
+          icon: "success", // or "error" for the error case
+        });
+        onClose();
       })
       .catch((error) => {
         console.log("Error updating client data:", error);
+        // Show error message using swal
+        Swal.fire({
+          title: "Error",
+          text: "Failed to update client data.",
+          icon: "error",
+        });
       });
   };
-
+  
   return (
     <div>
       <form onSubmit={handleClientDataUpdate} encType="multipart/form-data">
