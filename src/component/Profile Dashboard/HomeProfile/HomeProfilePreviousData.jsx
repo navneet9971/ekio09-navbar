@@ -21,16 +21,17 @@ function HomeProfilePreviousData() {
     axiosInstance
       .get(`profile/section/`)
       .then((response) => {
-        const data = response.data.data[0];
-        console.log(data);
-        setLabPreviousForm(data);
-        localStorage.setItem("profileKey", data.id)
-        console.log(data.id);
+        const profiledata = response.data.data[0];
+        console.log(profiledata);
+        setLabPreviousForm(profiledata);
+        localStorage.setItem("profileKey", profiledata.id)
+        console.log(profiledata.id);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
   }, []); // Add an empty dependency array to run the effect only once during component mount
+
 
   const handleEditClick = () => {
     setIsEditing((prevState) => !prevState);
