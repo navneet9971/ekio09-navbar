@@ -34,6 +34,13 @@ function BISISIPerviousData ({ onClose }) {
         Authorised_signatory_emailid: "",
         Scope_as_per_is: "",
         Scope_requested_by_client: "",
+        Total_installed_capacity_for_particular_product: "",
+    Quantity_produced_last_year: "",
+    Value_of_quantity_produced_last_year: "",
+    Cost_per_unit: "",
+    Brand_name: "",
+    Details_of_pervious_license: "",
+    Registered_as_startup: "",
         request_for: "certification",
         application: storedApplicationId,
         compliance: localStorage.getItem("compliance_id"),
@@ -75,6 +82,13 @@ function BISISIPerviousData ({ onClose }) {
     Authorised_signatory_emailid: bisIsiPrevFormData.Authorised_signatory_emailid,
     Scope_as_per_is: bisIsiPrevFormData.Scope_as_per_is,
     Scope_requested_by_client: bisIsiPrevFormData.Scope_requested_by_client,
+    Total_installed_capacity_for_particular_product: bisIsiPrevFormData.Total_installed_capacity_for_particular_product,
+    Quantity_produced_last_year: bisIsiPrevFormData.Quantity_produced_last_year,
+    Value_of_quantity_produced_last_year: bisIsiPrevFormData.Value_of_quantity_produced_last_year,
+    Cost_per_unit: bisIsiPrevFormData.Cost_per_unit,
+    Brand_name: bisIsiPrevFormData.Brand_name,
+    Details_of_pervious_license: bisIsiPrevFormData.Details_of_pervious_license,
+    Registered_as_startup: bisIsiPrevFormData.Registered_as_startup,
     compliance: localStorage.getItem("compliance_id"),
     request_for: "certification",
     application: applicationId,
@@ -101,7 +115,7 @@ function BISISIPerviousData ({ onClose }) {
         }).then(() => {
           history.push('/navbar/review');
         })
-        onClose(); // Close the popup after download is complete
+        // onClose(); // Close the popup after download is complete
       })
       .catch((error) => {
         console.error(error);
@@ -116,7 +130,6 @@ function BISISIPerviousData ({ onClose }) {
   const handleBisIsiPrevChange = (e) => {
     setBisIsiPrevFormData({ ...bisIsiPrevFormData, [e.target.name]: e.target.value });
   };
-
 
     return (
 
@@ -481,6 +494,89 @@ function BISISIPerviousData ({ onClose }) {
             onChange={handleBisIsiPrevChange}
           />
         </label>
+
+        <h1 className="h802">Production</h1>
+
+        <label className="st8012">
+        Total Installed Capacity for particular product:
+          <input
+            className="st805"
+            type="text"
+            name="Total_installed_capacity_for_particular_product"
+            value={bisIsiPrevFormData.Total_installed_capacity_for_particular_product}
+            onChange={handleBisIsiPrevChange}
+          />
+        </label>
+
+        <label className="st8012">
+        Quantity produced last year:
+          <input
+            className="st805"
+            type="text"
+            name="Quantity_produced_last_year"
+            value={bisIsiPrevFormData.Quantity_produced_last_year}
+            onChange={handleBisIsiPrevChange}
+          />
+        </label>
+
+
+        <label className="st8012">
+        Value of quantity produced last year:
+          <input
+            className="st805"
+            type="text"
+            name="Value_of_quantity_produced_last_year"
+            value={bisIsiPrevFormData.Value_of_quantity_produced_last_year}
+            onChange={handleBisIsiPrevChange}
+          />
+        </label>
+
+        <label className="st8012">
+        Cost per unit:
+          <input
+            className="st805"
+            type="text"
+            name="Cost_per_unit"
+            value={bisIsiPrevFormData.Cost_per_unit}
+            onChange={handleBisIsiPrevChange}
+          />
+        </label>
+
+        <label className="st8012">
+        Brand name:
+          <input
+            className="st805"
+            type="text"
+            name="Brand_name"
+            value={bisIsiPrevFormData.Brand_name}
+            onChange={handleBisIsiPrevChange}
+          />
+        </label>
+
+        <label className="st8012">
+        Details of pervious license:
+          <input
+            className="st805"
+            type="text"
+            name="Details_of_pervious_license"
+            value={bisIsiPrevFormData.Details_of_pervious_license}
+            onChange={handleBisIsiPrevChange}
+          />
+        </label>
+
+        <label className="st8012">
+        Registered as startup:
+  <select
+    className="st804"
+    name="Registered_as_startup"
+    value={bisIsiPrevFormData.Registered_as_startup}
+    onChange={handleBisIsiPrevChange}
+  >
+    <option value="">Choose Option</option>
+    <option value="yes">Yes</option>
+    <option value="no">No</option>
+  </select>
+</label>
 
         <button className="btn808" type="submit">
           Submit

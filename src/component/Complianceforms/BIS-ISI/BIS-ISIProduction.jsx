@@ -7,13 +7,18 @@ function BisIsiProduction({ onClose }) {
   const idel = localStorage.getItem("ide");
 
   const [formData, setFormData] = useState({
-    Total_installed_capacity_for_particular_product: "",
-    Quantity_produced_last_year: "",
-    Value_of_quantity_produced_last_year: "",
-    Cost_per_unit: "",
-    Brand_name: "",
-    Details_of_pervious_license: "",
-    Registered_as_startup: "",
+    Indian_standard: "",
+    Date_of_manufacturing: "",
+    Shelf: "",
+    Batch_number: "",
+    Quantity: "",
+    Model_of_disposal: "",
+    Serial_number: "",
+    Grade_type: "",
+    Declared_value:"",
+    Test_required:"",
+    Sample_description:"",
+    Additional_information:"",
   });
 
   const handleChange = (event) => {
@@ -24,17 +29,31 @@ function BisIsiProduction({ onClose }) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const { Total_installed_capacity_for_particular_product, Quantity_produced_last_year, Value_of_quantity_produced_last_year, Cost_per_unit, Brand_name, Details_of_pervious_license,  Registered_as_startup } = formData;
+    const { Indian_standard, Date_of_manufacturing, Shelf, Batch_number, 
+      Quantity,
+      Model_of_disposal,
+      Serial_number,
+      Grade_type,
+      Declared_valu,
+      Test_require,
+      Sample_descriptio,
+      Additional_informatio,
+    } = formData;
 
     const requestData = {
       request_for: "lab_testing",
-      Total_installed_capacity_for_particular_product,
-      Quantity_produced_last_year,
-      Value_of_quantity_produced_last_year,
-      Cost_per_unit,
-      Brand_name,
-      Details_of_pervious_license,
-      Registered_as_startup,
+      Indian_standard,
+      Date_of_manufacturing,
+      Shelf,
+      Batch_number,
+      Quantity,
+      Model_of_disposal,
+      Serial_number,
+      Grade_type,
+      Declared_valu,
+      Test_require,
+      Sample_descriptio,
+      Additional_informatio,
     };
 
     console.log("Application ID:", localStorage.getItem("newApplicationId"));
@@ -85,82 +104,159 @@ function BisIsiProduction({ onClose }) {
       <h1 className="h801">Production</h1>
       <form onSubmit={handleSubmit}>
         <label className="st8012">
-           Total Installed Capacity For Particular Product:
+        Indian Standard:
            <input
             className="st805"
             type="text"
-            name="Total_installed_capacity_for_particular_product"
-            value={formData.Total_installed_capacity_for_particular_product}
+            name="Indian_standard"
+            value={formData.Indian_standard}
             onChange={handleChange}
           />
         </label>
 
         <label className="st8012">
-         Quantity Produced Last Year:
+        Date of manufacturing:
           <input
             className="st805"
             type="text"
-            name="Quantity_produced_last_year"
-            value={formData.Quantity_produced_last_year}
+            name="Date_of_manufacturing"
+            value={formData.Date_of_manufacturing}
             onChange={handleChange}
           />
         </label>
 
         <label className="st8012">
-          Value of Quantity Produced Last Year(Approximate)(in INR):
+          Shelf Life/Expiry/Best Before:
           <input
             className="st805"
             type="text"
-            name="Value_of_quantity_produced_last_year"
-            value={formData.Value_of_quantity_produced_last_year}
+            name="Shelf"
+            value={formData.Shelf}
             onChange={handleChange}
           />
         </label>
 
         <label className="st8012">
-          Cost Per Unit (in INR):
+        Batch Number/Control Unit Number:
           <input
             className="st805"
             type="text"
-            name="Cost_per_unit"
-            value={formData.Cost_per_unit}
+            name="Batch_number"
+            value={formData.Batch_number}
             onChange={handleChange}
           />
         </label>
         <label className="st8012">
-          Brand Name(Registered/Unregistered):
+        Quantity:
           <input
             className="st805"
             type="text"
-            name="Brand_name"
-            value={formData.Brand_name}
-            onChange={handleChange}
-          />
-        </label>
-        <label className="st8012">
-          Details of Pervious License if any:
-          <input
-            className="st805"
-            type="text"
-            name="Details_of_pervious_license"
-            value={formData.Details_of_pervious_license}
+            name="Quantity"
+            value={formData.Quantity}
             onChange={handleChange}
           />
         </label>
 
+
         <label className="st8012">
-        Registered as Startup(Govt. of India):
+        Model of Disposal:
           <select
             className="st804"
-            name="Registered_as_startup"
-            value={formData.Registered_as_startup}
+            name="Model_of_disposal"
+            value={formData.Model_of_disposal}
             onChange={handleChange}
           >
-            <option value="">Select a Option</option>
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
+            <option value="">Select Model of Disposal</option>
+            <option value="to_be_disposed_off">To be disposed off</option>
+            <option value="return_back_to_manufacture">Return back to manufacture</option>
           </select>
         </label>
+
+        <label className="st8012">
+        Serial Number:
+          <input
+            className="st805"
+            type="text"
+            name="Serial_number"
+            value={formData.Serial_number}
+            onChange={handleChange}
+          />
+        </label>
+
+        <label className="st8012">
+        Grade/Type/Veriety/Size:
+        <textarea
+          style={{
+            width: "45%",
+            marginLeft: "9rem",
+            height: "7rem"
+          }}
+            type="text"
+            name="Grade_type"
+            value={formData.Grade_type}
+            onChange={handleChange}
+          />
+        </label>
+
+        <label className="st8012">
+        Declared Value:
+          <input
+            className="st805"
+            type="text"
+            name="Declared_value"
+            value={formData.Declared_value}
+            onChange={handleChange}
+          />
+        </label>
+
+        <label className="st8012">
+        Test Required:
+          <select
+            className="st804"
+            name="Test_required"
+            value={formData.Test_required}
+            onChange={handleChange}
+          >
+            <option value="">Select Test Required</option>
+            <option value="all">All</option>
+            <option value="chemical">Chemical Test</option>
+            <option value="mechanical">Mechanical Test</option>
+            <option value="electrical">Electrical Test</option>
+            <option value="microbiological">Micro Biological</option>
+            <option value="radioactive">Radioactive</option>
+          </select>
+        </label>
+
+        <label className="st8012">
+        Sample Description:
+        <textarea
+          style={{
+            width: "45%",
+            marginLeft: "10rem",
+            height: "7rem"
+          }}
+            type="text"
+            name="Sample_description"
+            value={formData.Sample_description}
+            onChange={handleChange}
+          />
+        </label>
+
+        <label className="st8012">
+        Additional Information:
+         <textarea
+          style={{
+            width: "45%",
+            marginLeft: "9rem",
+            height: "7rem"
+          }}
+            type="text"
+            name="Additional_information"
+            value={formData.Additional_information}
+            onChange={handleChange}
+          />
+        </label>
+
 
     
 

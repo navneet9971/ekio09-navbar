@@ -30,6 +30,13 @@ const BISISIFreashForm = () => {
     Authorised_signatory_emailid: "",
     Scope_as_per_is: "",
     Scope_requested_by_client: "",
+    Total_installed_capacity_for_particular_product: "",
+    Quantity_produced_last_year: "",
+    Value_of_quantity_produced_last_year: "",
+    Cost_per_unit: "",
+    Brand_name: "",
+    Details_of_pervious_license: "",
+    Registered_as_startup: "",
     request_for: "certification",
     application: storedApplicationId,
     compliance: localStorage.getItem("compliance_id"),
@@ -444,6 +451,90 @@ const BISISIFreashForm = () => {
             onChange={handleChange}
           />
         </label>
+
+        <h1 className="h802">Production</h1>
+        
+        <label className="st8012">
+        Total Installed Capacity for particular product:
+          <input
+            className="st805"
+            type="text"
+            name="Total_installed_capacity_for_particular_product"
+            value={bisIsiFormData.Total_installed_capacity_for_particular_product}
+            onChange={handleChange}
+          />
+        </label>
+
+        
+        <label className="st8012">
+        Quantity produced last year:
+          <input
+            className="st805"
+            type="text"
+            name="Quantity_produced_last_year"
+            value={bisIsiFormData.Quantity_produced_last_year}
+            onChange={handleChange}
+          />
+        </label>
+
+        <label className="st8012">
+        Value of quantity produced last year:
+          <input
+            className="st805"
+            type="text"
+            name="Value_of_quantity_produced_last_year"
+            value={bisIsiFormData.Value_of_quantity_produced_last_year}
+            onChange={handleChange}
+          />
+        </label>
+
+        <label className="st8012">
+        Cost per unit:
+          <input
+            className="st805"
+            type="text"
+            name="Cost_per_unit"
+            value={bisIsiFormData.Cost_per_unit}
+            onChange={handleChange}
+          />
+        </label>
+
+        <label className="st8012">
+        Brand name:
+          <input
+            className="st805"
+            type="text"
+            name="Brand_name"
+            value={bisIsiFormData.Brand_name}
+            onChange={handleChange}
+          />
+        </label>
+
+        <label className="st8012">
+        Details of pervious license:
+          <input
+            className="st805"
+            type="text"
+            name="Details_of_pervious_license"
+            value={bisIsiFormData.Details_of_pervious_license}
+            onChange={handleChange}
+          />
+        </label>
+
+        <label className="st8012">
+        Registered as startup:
+  <select
+    className="st804"
+    name="Registered_as_startup"
+    value={bisIsiFormData.Registered_as_startup}
+    onChange={handleChange}
+  >
+    <option value="">Choose Option</option>
+    <option value="yes">Yes</option>
+    <option value="no">No</option>
+  </select>
+</label>
+        
 
         <button className="btn808" type="submit">
           Submit

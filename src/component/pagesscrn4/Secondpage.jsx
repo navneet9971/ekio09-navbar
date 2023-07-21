@@ -268,16 +268,6 @@ const Secondpage = () => {
     settecModificationpopup(false);
   };
 
-  //Auto close POPup after click Sumbit
-  const handlePopupClose = () => {
-    setButtonpopupform1tec(false);
-    setButtonautofillpopuptec(false);
-    setButtonautofillpopupbis(false);
-    // setButtonRegisterPagebis(false);
-    setButtonPopup6bis(false);
-    setWpcPopupButton(false);
-    setWpcPopupButton(false);
-  };
 
   //WPC FORM COMPONENT STARTS HERE----------------------------------
 
@@ -376,6 +366,18 @@ const Secondpage = () => {
       setBisIsiAutofillPopup(false);
     }
 
+
+     //Auto close POPup after click Sumbit
+  const handlePopupClose = () => {
+    setButtonpopupform1tec(false);
+    setButtonautofillpopuptec(false);
+    setButtonautofillpopupbis(false);
+    // setButtonRegisterPagebis(false);
+    setButtonPopup6bis(false);
+    setWpcPopupButton(false);
+    setWpcPopupButton(false);
+    setBisIsiPerviousdataPoPup(false);
+  };
 
   return (
     <div className="table-bgsconpage">
