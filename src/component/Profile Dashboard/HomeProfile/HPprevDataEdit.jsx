@@ -23,11 +23,13 @@ function HPprevDataEdit({ onClose }) {
         const responseData = response.data;
         setLabPreviousForm(responseData);
         console.log(responseData);
+        console.log(UserId);  
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
   }, [UserId]);
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
