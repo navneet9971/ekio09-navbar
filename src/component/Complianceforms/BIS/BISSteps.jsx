@@ -72,10 +72,16 @@ return (
         <h2 className="steps-count">Steps To Be Completed</h2>  
         <div className="tecon"> 
          <Message trigger={buttonPopup3} setTrigger={setButtonPopup3}>
-        <h2 className="pop-msg">    Message :- 
-         {docStep["1"] && docStep["1"][1]}</h2>
-         <h2 className="pop-msg">  Start Date :- 
-         {docStep["1"] && docStep["1"][2].slice(0,10)}</h2>
+         <table>
+  <tr>
+    <td>Message:</td>
+    <td>{ docStep["1"] && docStep["1"][1] }</td>
+  <td>Start Date:</td>
+    <td>{ docStep["1"] && docStep["1"][2].slice(0, 10) }</td>
+  </tr>
+</table>
+
+
          </Message>
       
         <Thum1png className="mainsvg2" />

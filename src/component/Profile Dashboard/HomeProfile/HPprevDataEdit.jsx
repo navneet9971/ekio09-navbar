@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Row, Col } from "antd";
 import axiosInstance from "../../../interceptors/axios";
 import Swal from "sweetalert2";
 
 
 function HPprevDataEdit({onClose}) {
-  const LabHomePreviousData = localStorage.getItem("labhomeprofile");
+  // const LabHomePreviousData = localStorage.getItem("labhomeprofile");
   const UserId = localStorage.getItem("storeLabUserID");
   
 
@@ -18,20 +18,39 @@ function HPprevDataEdit({onClose}) {
     website: "",
   });
 
+
+
+  // useEffect(() => {
+  //   if (LabHomePreviousData) {
+  //     try {
+  //       const parsedData = JSON.parse(LabHomePreviousData);
+  //       setLabPreviousForm((prevForm) => ({
+  //         ...prevForm,
+  //         ...parsedData,
+  //       }));
+  //     } catch (error) {
+  //       console.error("Error parsing LabHomePreviousData:", error);
+  //       // Handle the parsing error, e.g., set default form values or show an error message.
+  //     }
+  //   }
+  // }, [LabHomePreviousData]);
+
+  const UpdatedLabHomeData = true; // Replace this with your actual condition
+
   useEffect(() => {
-    if (LabHomePreviousData) {
-      try {
-        const parsedData = JSON.parse(LabHomePreviousData);
-        setLabPreviousForm((prevForm) => ({
-          ...prevForm,
-          ...parsedData,
-        }));
-      } catch (error) {
-        console.error("Error parsing LabHomePreviousData:", error);
-        // Handle the parsing error, e.g., set default form values or show an error message.
-      }
+    if (UpdatedLabHomeData) {
+      axiosInstance.get(`profile/section/${UserId}`)
+        .then((response) => {
+          // Assuming the response data is an object containing the fields you mentioned
+          const responseData = response.data;
+          setLabPreviousForm(responseData);
+        })
+        .catch((error) => {
+          // Handle any errors that occur during the API request
+          console.error("Error fetching data:", error);
+        });
     }
-  }, [LabHomePreviousData]);
+  }, [UserId, UpdatedLabHomeData]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
