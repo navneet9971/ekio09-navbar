@@ -18,7 +18,7 @@ function HPprevDataEdit({ onClose }) {
 
   useEffect(() => {
     axiosInstance
-      .get(`profile/section/${UserId}`)
+      .get(`profile/section/${localStorage.getItem("storeLabUserID")}`)
       .then((response) => {
         const responseData = response.data;
         setLabPreviousForm(responseData);
