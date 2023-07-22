@@ -18,6 +18,7 @@ function HomeProfilePreviousData() {
   });
 
   useEffect(() => {
+    const interval = setInterval(() => {
     axiosInstance
       .get(`profile/section/`)
       .then((response) => {
@@ -30,7 +31,9 @@ function HomeProfilePreviousData() {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, []); // Add an empty dependency array to run the effect only once during component mount
+  }, 2000);
+  return () => clearInterval(interval);
+}, []); // Add an empty dependency array to run the effect only once during component mount
 
 
   const handleEditClick = () => {
