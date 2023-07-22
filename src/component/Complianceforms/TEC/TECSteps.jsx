@@ -78,12 +78,16 @@ function TECSteps() {
       <h2 className="steps-count">Steps To Be Completed</h2>
       <div className="tecon">
         <Message trigger={buttonPopup3} setTrigger={setButtonPopup3}>
-          <h2 className="pop-msg">
-            Message: {docStep["1"] && docStep["1"][1]}
-          </h2>
-          <h2 className="pop-msg">
-            Start Date: {docStep["1"] && docStep["1"][2].slice(0, 10)}
-          </h2>
+        <table>  
+  <tr>
+  <th>Start Date:</th>
+  <th>Message: </th>
+  </tr>
+<tbody style={{color: "black"}}>
+    <td>{ docStep["1"] && docStep["1"][2].slice(0, 10) }</td>
+    <td>{ docStep["1"] && docStep["1"][1] }</td>
+    </tbody>
+</table>
         </Message>
 
         <Thum1png className="mainsvg2" />
@@ -94,12 +98,16 @@ function TECSteps() {
         )}
 
         <Message trigger={buttonPopup4} setTrigger={setButtonPopup4}>
-          <h2 className="pop-msg">
-            Message: {docStep["2"] && docStep["2"][1]}
-          </h2>
-          <h2 className="pop-msg">
-            Start Date: {docStep["2"] && docStep["2"][2].slice(0, 10)}
-          </h2>
+        <table>  
+  <tr>
+  <th>Start Date:</th>
+  <th>Message: </th>
+  </tr>
+<tbody style={{color: "black"}}>
+    <td>{ docStep["2"] && docStep["2"][2].slice(0, 10) }</td>
+    <td>{ docStep["2"] && docStep["2"][1] }</td>
+    </tbody>
+</table>
         </Message>
 
         <Thum2png className="mainsvg2" />
@@ -110,12 +118,16 @@ function TECSteps() {
         )}
 
         <Message trigger={buttonPopup5} setTrigger={setButtonPopup5}>
-          <h2 className="pop-msg">
-            Message: {docStep["3"] && docStep["3"][1]}
-          </h2>
-          <h2 className="pop-msg">
-            Start Date: {docStep["3"] && docStep["3"][2].slice(0, 10)}
-          </h2>
+        <table>  
+  <tr>
+  <th>Start Date:</th>
+  <th>Message: </th>
+  </tr>
+<tbody style={{color: "black"}}>
+    <td>{ docStep["3"] && docStep["3"][2].slice(0, 10) }</td>
+    <td>{ docStep["3"] && docStep["3"][1] }</td>
+    </tbody>
+</table>
         </Message>
 
         <Thum3png className="mainsvg2" />
@@ -126,12 +138,16 @@ function TECSteps() {
         )}
 
         <Message trigger={buttonPopup6} setTrigger={setButtonPopup6}>
-          <h2 className="pop-msg">
-            Message: {docStep["4"] && docStep["4"][1]}
-          </h2>
-          <h2 className="pop-msg">
-            Start Date: {docStep["4"] && docStep["4"][2].slice(0, 10)}
-          </h2>
+          <table>  
+  <tr>
+  <th>Start Date:</th>
+  <th>Message: </th>
+  </tr>
+<tbody style={{color: "black"}}>
+    <td>{ docStep["4"] && docStep["4"][2].slice(0, 10) }</td>
+    <td>{ docStep["4"] && docStep["4"][1] }</td>
+    </tbody>
+</table>
         </Message>
 
         <Thum4png className="mainsvg2" />
@@ -142,12 +158,16 @@ function TECSteps() {
         )}
 
         <Message trigger={buttonPopup7} setTrigger={setButtonPopup7}>
-          <h2 className="pop-msg">
-            Message: {docStep["5"] && docStep["5"][1]}
-          </h2>
-          <h2 className="pop-msg">
-            Start Date: {docStep["5"] && docStep["5"][2].slice(0, 10)}
-          </h2>
+        <table>  
+  <tr>
+  <th>Start Date:</th>
+  <th>Message: </th>
+  </tr>
+<tbody style={{color: "black"}}>
+    <td>{ docStep["5"] && docStep["5"][2].slice(0, 10) }</td>
+    <td>{ docStep["5"] && docStep["5"][1] }</td>
+    </tbody>
+</table>
         </Message>
 
         <Thum5png className="mainsvg2" />
@@ -158,12 +178,16 @@ function TECSteps() {
         )}
 
         <Message trigger={buttonPopup8} setTrigger={setButtonPopup8}>
-          <h2 className="pop-msg">
-            Message: {docStep["6"] && docStep["6"][1]}
-          </h2>
-          <h2 className="pop-msg">
-            Start Date: {docStep["6"] && docStep["6"][2].slice(0, 10)}
-          </h2>
+        <table>  
+  <tr>
+  <th>Start Date:</th>
+  <th>Message: </th>
+  </tr>
+<tbody style={{color: "black"}}>
+    <td>{ docStep["6"] && docStep["6"][2].slice(0, 10) }</td>
+    <td>{ docStep["6"] && docStep["6"][1] }</td>
+    </tbody>
+</table>
         </Message>
 
         <Thum6png className="mainsvg2" />
@@ -174,12 +198,16 @@ function TECSteps() {
         )}
 
         <Message trigger={buttonPopup9} setTrigger={setButtonPopup9}>
-          <h2 className="pop-msg">
-            Message: {docStep["7"] && docStep["7"][1]}
-          </h2>
-          <h2 className="pop-msg">
-            Start Date: {docStep["7"] && docStep["7"][2].slice(0, 10)}
-          </h2>
+        <table>  
+  <tr>
+  <th>Start Date:</th>
+  <th>Message: </th>
+  </tr>
+<tbody style={{color: "black"}}>
+    <td>{ docStep["7"] && docStep["7"][2].slice(0, 10) }</td>
+    <td>{ docStep["7"] && docStep["7"][1] }</td>
+    </tbody>
+</table>
         </Message>
 
 {showRemainingSteps && (
@@ -192,12 +220,16 @@ function TECSteps() {
         )}
 
         <Message trigger={buttonPopup10} setTrigger={setButtonPopup10}>
-          <h2 className="pop-msg">
-            Message: {docStep["8"] && docStep["8"][1]}
-          </h2>
-          <h2 className="pop-msg">
-            Start Date: {docStep["8"] && docStep["8"][2].slice(0, 10)}
-          </h2>
+        <table>  
+  <tr>
+  <th>Start Date:</th>
+  <th>Message: </th>
+  </tr>
+<tbody style={{color: "black"}}>
+    <td>{ docStep["8"] && docStep["8"][2].slice(0, 10) }</td>
+    <td>{ docStep["8"] && docStep["8"][1] }</td>
+    </tbody>
+</table>
         </Message>
 
         <Thum8png className="mainsvg2" />
