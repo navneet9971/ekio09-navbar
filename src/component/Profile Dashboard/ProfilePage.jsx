@@ -10,6 +10,7 @@ import LabAnalytics from "./LabAnalytics/LabAnalytics";
 import LabNotification from "./LabNotification/LabNotification";
 import HomeProfilePreviousData from "./HomeProfile/HomeProfilePreviousData";
 import ManageClients from "./ManageClients/ManageClients";
+import Disposebtn from "./DesposeBtn/DisposeBtn";
 
 function ProfilePage() {
   const [activeContent, setActiveContent] = useState("HomeProfile");
@@ -120,6 +121,7 @@ function ProfilePage() {
             top: "-85px",
           }}
         >
+
           {/* User Profile Navigation */}
           <div
             style={{
@@ -129,6 +131,12 @@ function ProfilePage() {
               gap: "40px",
             }}
           >
+            {/* Despose Button here */}
+            
+              <div>
+                < Disposebtn />
+              </div>
+
             {/* Bell Icon */}
             <div style={{ marginRight: "10px" }}>
               <LabNotification />
@@ -168,6 +176,7 @@ function SidebarItem({ icon, text, onClick }) {
     >
       <div style={{ marginRight: "10px" }}>{icon}</div>
       <div>{text}</div>
+      
     </div>
   );
 }

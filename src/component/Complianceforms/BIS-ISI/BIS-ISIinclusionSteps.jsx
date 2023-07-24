@@ -1,18 +1,17 @@
 import React, {useState, useEffect} from "react";
 import Message from "../../popup/Message";
-import axiosInstance from "../../../interceptors/axios";
-import { ReactComponent as Thum1png } from "../../assets/bis-track-icons/regi.svg";
-import { ReactComponent as Thum2png } from "../../assets/bis-track-icons/testi.svg";
-import { ReactComponent as Thum3png } from "../../assets/bis-track-icons/doc.svg";
-import { ReactComponent as Thum4png } from "../../assets/bis-track-icons/appi.svg";
-import { ReactComponent as Thum5png } from "../../assets/bis-track-icons/apro.svg";
-import { ReactComponent as Thum6png } from "../../assets/bis-track-icons/certi.svg";
+
+import { ReactComponent as Thum1png } from "../../assets/BisIsiSteps/testingsample.svg";
+import { ReactComponent as Thum2png } from "../../assets/BisIsiSteps/document.svg";
+import { ReactComponent as Thum3png } from "../../assets/BisIsiSteps/submissionappli.svg";
+import { ReactComponent as Thum4png } from "../../assets/BisIsiSteps/dealingofc.svg";
+import { ReactComponent as Thum5png } from "../../assets/BisIsiSteps/hod.svg";
 import { ReactComponent as Wrong } from "../../assets/trckpg-rb/wrong.svg";
 import { ReactComponent as Right } from "../../assets/trckpg-rb/right.svg";
+import axiosInstance from "../../../interceptors/axios";
 
 
-function BISISISteps () {
-
+function BISISIInclusionSteps () {
 
     const [docStep, setdocStep] = useState({});
     localStorage.setItem("bisdocStep", JSON.stringify(docStep));
@@ -22,7 +21,6 @@ function BISISISteps () {
     const [buttonPopup5, setButtonPopup5] = useState(false);
     const [buttonPopup6, setButtonPopup6] = useState(false);
     const [buttonPopup7, setButtonPopup7] = useState(false);
-    const [buttonPopup8, setButtonPopup8] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -72,10 +70,16 @@ return (
         <h2 className="steps-count">Steps To Be Completed</h2>  
         <div className="tecon"> 
          <Message trigger={buttonPopup3} setTrigger={setButtonPopup3}>
-        <h2 className="pop-msg">    Message :- 
-         {docStep["1"] && docStep["1"][1]}</h2>
-         <h2 className="pop-msg">  Start Date :- 
-         {docStep["1"] && docStep["1"][2].slice(0,10)}</h2>
+         <table>  
+  <tr>
+  <th>Start Date:</th>
+  <th>Message: </th>
+  </tr>
+<tbody style={{color: "black"}}>
+    <td>{ docStep["1"] && docStep["1"][2].slice(0, 10) }</td>
+    <td>{ docStep["1"] && docStep["1"][1] }</td>
+    </tbody>
+</table>
          </Message>
       
         <Thum1png className="mainsvg2" />
@@ -89,10 +93,16 @@ return (
       
       
       <Message trigger={buttonPopup4} setTrigger={setButtonPopup4}>
-      <h2 className="pop-msg">    Message :- 
-         {docStep["2"] && docStep["2"][1]}</h2>
-         <h2 className="pop-msg">  Start Date :-
-         {docStep["2"] && docStep["2"][2].slice(0,10)}</h2>
+      <table>  
+  <tr>
+  <th>Start Date:</th>
+  <th>Message: </th>
+  </tr>
+<tbody style={{color: "black"}}>
+    <td>{ docStep["2"] && docStep["2"][2].slice(0, 10) }</td>
+    <td>{ docStep["2"] && docStep["2"][1] }</td>
+    </tbody>
+</table>
          </Message>
       
         <Thum2png className="mainsvg2" />
@@ -105,10 +115,16 @@ return (
       
       
       <Message trigger={buttonPopup5} setTrigger={setButtonPopup5}>
-      <h2 className="pop-msg">    Message :- 
-         {docStep["3"] && docStep["3"][1]}</h2>
-         <h2 className="pop-msg">  Start Date :-
-         {docStep["3"] && docStep["3"][2].slice(0,10)}</h2>
+      <table>  
+  <tr>
+  <th>Start Date:</th>
+  <th>Message: </th>
+  </tr>
+<tbody style={{color: "black"}}>
+    <td>{ docStep["3"] && docStep["3"][2].slice(0, 10) }</td>
+    <td>{ docStep["3"] && docStep["3"][1] }</td>
+    </tbody>
+</table>
          </Message>
       
         <Thum3png className="mainsvg2" />
@@ -121,10 +137,16 @@ return (
       
       
       <Message trigger={buttonPopup6} setTrigger={setButtonPopup6}>
-      <h2 className="pop-msg">    Message :- 
-         {docStep["4"] && docStep["4"][1]}</h2>
-         <h2 className="pop-msg">  Start Date :-
-         {docStep["4"] && docStep["4"][2].slice(0,10)}</h2>
+      <table>  
+  <tr>
+  <th>Start Date:</th>
+  <th>Message: </th>
+  </tr>
+<tbody style={{color: "black"}}>
+    <td>{ docStep["4"] && docStep["4"][2].slice(0, 10) }</td>
+    <td>{ docStep["4"] && docStep["4"][1] }</td>
+    </tbody>
+</table>
          </Message>
       
         <Thum4png className="mainsvg2" />
@@ -136,10 +158,16 @@ return (
         {/* <h3 className="setp-bis">Filing Application</h3> */}
       
       <Message trigger={buttonPopup7} setTrigger={setButtonPopup7}>
-      <h2 className="pop-msg">    Message :- 
-         {docStep["5"] && docStep["5"][1]}</h2>
-         <h2 className="pop-msg">  Start Date :-
-         {docStep["5"] && docStep["5"][2].slice(0,10)}</h2>
+      <table>  
+  <tr>
+  <th>Start Date:</th>
+  <th>Message: </th>
+  </tr>
+<tbody style={{color: "black"}}>
+    <td>{ docStep["5"] && docStep["5"][2].slice(0, 10) }</td>
+    <td>{ docStep["5"] && docStep["5"][1] }</td>
+    </tbody>
+</table>
          </Message>
       
         <Thum5png className="mainsvg2" />
@@ -150,24 +178,9 @@ return (
         )}
         {/* <h3 className="setp-bis">Approval</h3> */}
       
-      <Message trigger={buttonPopup8} setTrigger={setButtonPopup8}>
-      <h2 className="pop-msg">    Message :- 
-         {docStep["6"] && docStep["6"][1]}</h2>
-         <h2 className="pop-msg">  Start Date :-
-         {docStep["6"] && docStep["6"][2].slice(0,10)}</h2>
-         </Message>
-      
-        <Thum6png className="mainsvg2" />
-        {docStep["6"] && docStep["6"][0] === "Completed" ? (
-          <Right className="mainsvg3" onClick={() => setButtonPopup8(true)}/>
-        ) : (
-          <Wrong className="mainsvg3" onClick={() => setButtonPopup8(true)}/>
-        )}
-        {/* <h3 className="setp-bis">Issuance of Certificate</h3> */}
-      
       </div>
       </div>
     );
 };
 
-export default BISISISteps;
+export default BISISIInclusionSteps;

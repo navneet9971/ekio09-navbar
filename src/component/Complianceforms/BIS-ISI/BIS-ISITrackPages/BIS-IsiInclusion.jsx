@@ -7,7 +7,7 @@ import { FiUpload, FiDownload } from "react-icons/fi";
 import pdflogo from "../../../assets/icons/eikomp_logo.png";
 import Popup from "../../../popup/Popup";
 import Message from "../../../popup/Message";
-import BISISISteps from "../BIS-ISISteps";
+import BISISIInclusionSteps from "../BIS-ISIinclusionSteps";
 import BisIsiDownload from "../BIS-ISIDownload";
 import BisIsiUploadDoc from "../BIS-ISIUploadDoc";
 import StatusBar from "../../../Statusbar";
@@ -20,7 +20,7 @@ function BisIsiInclusion () {
     const [uniqueid, setUniqueid] = useState("");
     const [complianceid, setComplianceid] = useState("");
     const idel = localStorage.getItem("ide");
-    const [testingbtnkey, setTestingbtnkey] = useState("");
+    // const [testingbtnkey, setTestingbtnkey] = useState("");
     const [buttonPopup, setButtonPopup] = useState(false);
     const [buttonPopup1, setButtonPopup1] = useState(false);
     const totalResponses = 6;
@@ -59,7 +59,7 @@ function BisIsiInclusion () {
           // store local storage then show the values
           setUniqueid(data["uniqueid"]);
           setComplianceid(data["compliance_name"]);
-          setTestingbtnkey(data["testing"]);
+          // setTestingbtnkey(data["testing"]);
           console.log(data["testing"]);
 
           const compliancename = data["compliance_name"];
@@ -275,7 +275,7 @@ function BisIsiInclusion () {
           <button
             className="testreq-btn"
             onClick={() => setButtonPopup2(true)}
-            disabled={testingbtnkey === "Yes"}
+            // disabled={testingbtnkey === "Yes"}
           >< FcDocument />
             Request Testing
           </button>
@@ -301,8 +301,8 @@ function BisIsiInclusion () {
             completedResponses={completedResponses}
           />
         </div>
-        {/* BIS STEPS SET HER MESSAGE AND ALL */}
-        <BISISISteps />
+        {/* BISISIInclusion STEPS SET HER MESSAGE AND ALL */}
+        <BISISIInclusionSteps />
 
 
         {/* POPUP OF LAST BUTTON OF DOWNLOAD REPORT FUNCTION AS WELL  */}

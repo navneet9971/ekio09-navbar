@@ -27,6 +27,9 @@ function HomeProfilePreviousData() {
         setLabPreviousForm(profiledata);
         localStorage.setItem("profileKey", profiledata.id)
         console.log(profiledata.id);
+
+        //PrdouctName send the With Despose Mail they where to use is DesposeBtn.jsx component
+        localStorage.setItem("productName", profiledata.product);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);

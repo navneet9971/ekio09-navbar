@@ -20,7 +20,7 @@ function BisIsiOnGoing () {
     const [uniqueid, setUniqueid] = useState("");
     const [complianceid, setComplianceid] = useState("");
     const idel = localStorage.getItem("ide");
-    const [testingbtnkey, setTestingbtnkey] = useState("");
+    // const [testingbtnkey, setTestingbtnkey] = useState("");
     const [buttonPopup, setButtonPopup] = useState(false);
     const [buttonPopup1, setButtonPopup1] = useState(false);
     const totalResponses = 6;
@@ -59,7 +59,7 @@ function BisIsiOnGoing () {
           // store local storage then show the values
           setUniqueid(data["uniqueid"]);
           setComplianceid(data["compliance_name"]);
-          setTestingbtnkey(data["testing"]);
+          // setTestingbtnkey(data["testing"]);
           console.log(data["testing"]);
 
           const compliancename = data["compliance_name"];
@@ -275,7 +275,7 @@ function BisIsiOnGoing () {
           <button
             className="testreq-btn"
             onClick={() => setButtonPopup2(true)}
-            disabled={testingbtnkey === "Yes"}
+            // disabled={testingbtnkey === "Yes"}
           >< FcDocument />
             Request Testing
           </button>
