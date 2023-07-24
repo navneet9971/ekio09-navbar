@@ -1,6 +1,7 @@
-import React, {  useEffect } from "react";
+import React, {  useEffect,useState } from "react";
 import { Row, Col } from "antd";
 import { Link } from "react-router-dom";
+import Popup from "../../popup/Popup";
 import Thumb1png from "../../assets/images/2.png";
 import Thumb2png from "../../assets/images/4.png";
 // import Thumb3png from "../../assets/images/use.png";
@@ -10,10 +11,17 @@ import { ReactComponent as Mapbg } from "../../assets/client-map.svg";
 import axiosInstance from "../../../interceptors/axios";
 import Onboarding from "../../Onboarding/Onboarding";
 import MainChatbot from "../../Chatbot/MainChatbot";
+import LabTestBtnDash from "../LabTestDash/LabTestBtnDash";
 
 const ClientDashboard = () => {
   // const [firstName, setFirstName] = useState("");
   // const [lastName, setLastName] = useState("");
+  const [labTestPop, setLabTestPop] = useState (false);
+
+  //Lab Test Icon Click Handle 
+  const handleLabTest = () => {
+    setLabTestPop(true); 
+  };
 
 
   useEffect(() => {
@@ -35,6 +43,7 @@ const ClientDashboard = () => {
         console.log(error);
       });
   }, []);
+  
   
 
   const WELCOME_OPTIONS = [
@@ -58,15 +67,12 @@ const ClientDashboard = () => {
       title: "Analytics",
       route: "/navbar/dashboard",
     },
-    // {
-    //   thumb: <img src={Thumb4png} alt="" className="four" style={{ width: "63px", cursor: "default" }} />,
-    //   title: "Lab Testing (Coming Soon)",
-    //   // route: "/navbar/firstcompliance",
-    //   onClick: (event) => {
-    //     event.preventDefault(); // Prevent the default behavior of the link
-    //   }
-    // }
-    
+    {
+      thumb: <img src={Thumb4png} alt="" className="four" />,
+      title: "Lab Testing",
+      onclick : handleLabTest,
+      route :"#"
+    }, 
     
   ];
 
@@ -85,13 +91,13 @@ const ClientDashboard = () => {
           <Row gutter={[0, 16]}>
   {WELCOME_OPTIONS.map((item, index) => (
     <Col xs={24} sm={15} md={6} key={index}>
-      <Link to={item.route} className="option-box">
+      <Link to={item.route} className="option-box" onClick={handleLabTest}>
         {item.thumb}
         <h4 style={{ color: "black", fontWeight: "100" }}>{item.title}</h4>
       </Link>
     </Col>
   ))}
-  <Col xs={24} sm={15} md={6}>
+  {/* <Col xs={24} sm={15} md={6}>
     <Link to="#" className="option-box1">
       <img
         src={Thumb4png}
@@ -101,10 +107,15 @@ const ClientDashboard = () => {
       />
       <h4 style={{ color: "black", fontWeight: "100" }}>Lab Testing (Coming Soon)</h4>
     </Link>
-  </Col>
+  </Col> */}
 </Row>
 
         </div>
+
+        <Popup trigger={labTestPop} setTrigger= {setLabTestPop}>
+          <LabTestBtnDash />
+        </Popup>
+
       </div>
       <Onboarding />
       <MainChatbot />

@@ -62,6 +62,7 @@ import Dashboard from "./component/Dashboard/Dashboard";
 //import SupportAdmin from "./component/SupportAdmin";
 import TECtableModification from "./component/Complianceforms/TEC/TECtableModificationpage";
 import ProfilePage from "./component/Profile Dashboard/ProfilePage";
+import LabTestTableData from "./component/pagesscrn4/LabTestDash/LabTestTable/LabTestTableData";
 
 
 const App = () => {
@@ -201,7 +202,9 @@ const App = () => {
               <BisIsiSimplfiyCompleted /> 
             </Route>
 
-          
+            <Route path="/navbar/labtest">
+              <LabTestTableData/>
+            </Route>
 
             <Route path="/navbar/download">
               <Download />
