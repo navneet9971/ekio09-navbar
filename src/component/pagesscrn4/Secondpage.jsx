@@ -30,11 +30,12 @@ const Secondpage = () => {
         const uniqueComplianceData = [];
         res?.data?.data.forEach((compliance) => {
           // check if the compliance id already exists in the array
-          if (!uniqueComplianceData.some((item) => item.id === compliance.id)) {
+          if (!uniqueComplianceData.some((item) => item.compliance.id === compliance.compliance.id)) {
             uniqueComplianceData.push(compliance);
           }
         });
         setComplianceData(uniqueComplianceData);
+        console.log(uniqueComplianceData);
       })
       .catch((err) => {
         alert("Something went wrong.");
@@ -405,12 +406,13 @@ const Secondpage = () => {
                   <td
                     className="clickable"
                     onClick={(event) =>
-                      handleClick(compliance.product_name, compliance.id, event)
+                      handleClick(compliance.compliance.product_name, compliance.compliance.id, event)
                     }
                   >
-                    {compliance.product_name}
+                    {console.log(compliance)}
+                    {compliance.compliance.product_name}
                   </td>
-                  <td style={{ cursor: "default" }}>{compliance.details}</td>
+                  <td style={{ cursor: "default" }}>{compliance.compliance.details}</td>
                   {/* <td>
                     <a
                       href={compliance.video}

@@ -110,7 +110,6 @@ const Firstpage = () => {
           });
         } else {
           console.log(response.data);
-          console.log(selectedCategory);
           // redirect the user to the second page with the compliance data
           history.push("/navbar/secondpage");
         }

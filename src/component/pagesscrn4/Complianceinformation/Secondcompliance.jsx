@@ -29,7 +29,7 @@ const Secondpage = () => {
         const uniqueComplianceData = [];
         res?.data?.data.forEach((compliance) => {
           // check if the compliance id already exists in the array
-          if (!uniqueComplianceData.some((item) => item.id === compliance.id)) {
+          if (!uniqueComplianceData.some((item) => item.compliance.id === compliance.compliance.id)) {
             uniqueComplianceData.push(compliance);
           }
         });
@@ -100,12 +100,12 @@ const Secondpage = () => {
                   <td
                     className="clickable"
                     onClick={() =>
-                      handleClick(compliance.product_name, compliance.id)
+                      handleClick(compliance.compliance.product_name, compliance.id)
                     }
                   >
-                    {compliance.product_name}
+                    {compliance.compliance.product_name}
                   </td>
-                  <td style={{ cursor: "default" }}>{compliance.details}</td>
+                  <td style={{ cursor: "default" }}>{compliance.compliance.details}</td>
                   {/* <td>
                     
                     <a
