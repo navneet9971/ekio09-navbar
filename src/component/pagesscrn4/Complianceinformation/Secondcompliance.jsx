@@ -23,7 +23,7 @@ const Secondpage = () => {
           "category"
         )}&product=${localStorage.getItem(
           "product"
-        )}&region=${localStorage.getItem("region")}`
+        )}&countries=${localStorage.getItem("region")}`
       )
       .then((res) => {
         const uniqueComplianceData = [];
