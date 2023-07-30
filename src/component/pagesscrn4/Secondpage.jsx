@@ -25,7 +25,7 @@ const Secondpage = () => {
   // Calls APIs HERE ---------------------------------------------------------
   useEffect(() => {
     axiosInstance
-      .get(`/compliance/?category=${localStorage.getItem("category")}&product=${localStorage.getItem("product")}&region=${localStorage.getItem("region")}`)
+      .get(`/compliance/?category=${localStorage.getItem("category")}&product=${localStorage.getItem("product")}&countries=${localStorage.getItem("region")}`)
       .then((res) => {
         const uniqueComplianceData = [];
         res?.data?.data.forEach((compliance) => {

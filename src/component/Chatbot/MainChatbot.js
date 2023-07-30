@@ -1,15 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ChatBot from 'react-simple-chatbot';
 
 const MainChatbot = () => {
   const [isOpen, setIsOpen] = useState(false); // State to track if the chatbot is open or closed
- 
-  
 
   const handleToggleFloating = () => {
     setIsOpen(!isOpen);
   };
 
+  useEffect(() => {
+    const observer = new MutationObserver((mutationsList) => {
+      for (const mutation of mutationsList) {
+        if (mutation.type === 'childList') {
+          // Handle the DOM changes here (if needed)
+        }
+      }
+    });
+
+    const chatbotContainer = document.querySelector('.rsc-container'); // Adjust the selector based on the class name of the chatbot container
+
+    observer.observe(chatbotContainer, { childList: true });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []); // Make sure to include an empty dependency array to ensure this effect runs only once
 
   const steps = [
     {
@@ -103,12 +118,14 @@ const MainChatbot = () => {
   return (
     <div>
       {/* Render chatbot component if isOpen is true */}
-       <ChatBot className="chatbot" steps={steps} 
-       isOpen={isOpen}
-       onToggleFloating={handleToggleFloating}
-      headerTitle="Eikomp ChatBot"
-      floating={true}
-    //   botAvatar={<img src={Botface} alt="" />}
+      <ChatBot
+        className="chatbot"
+        steps={steps}
+        isOpen={isOpen}
+        onToggleFloating={handleToggleFloating}
+        headerTitle="Eikomp ChatBot"
+        floating={true}
+        //   botAvatar={<img src={Botface} alt="" />}
       />
 
       {/* Add the iframe element */}

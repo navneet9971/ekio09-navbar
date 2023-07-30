@@ -11,10 +11,27 @@ const Firstpage = () => {
   const [category, setCategory] = useState([]); // state for category input
   const [selectedCategory, setSelectedCategory] = useState('');
   const [product, setProduct] = useState(""); // state for product input
-  const [countries, setCountries] = useState(""); // state for selected region
+  const [selectedCountry, setSelectedCountry] = useState('');// state for selected region
   const [productDropdown, setProductDropdown] = useState([]); // state for product dropdown
   const history = useHistory();
 
+
+  const options = [
+    'India',
+    'Europe',
+    'China',
+    'Bangladesh',
+    'Indonesia',
+    'Japan',
+    'Korea',
+    'Malaysia',
+    'Saudi Arabia',
+    'Sri Lanka',
+    'Taiwan',
+    'Thailand',
+    'UAE (United Arab Emirates)',
+    'USA (United States)',
+  ];
 
   useEffect(() => {
     // Fetch data from the 'industry' endpoint when the component mounts
@@ -53,7 +70,9 @@ const Firstpage = () => {
     // Set a new timeout for the API call
     handleProductChange.timeoutId = setTimeout(() => {
       axiosInstance
-        .get(`/products?product=${event.target.value}`, {
+        // .get(`/products?product=${event.target.value}`, 
+        .get(
+          `/compliance/?category=${selectedCategory}&product=${product}&countries=${selectedCountry}`,{
           headers: {
             Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             "Content-Type": "application/json",
@@ -61,8 +80,8 @@ const Firstpage = () => {
           },
         })
         .then((response) => {
-          setProductDropdown(response.data);
-          console.log(response.data); // You can log the response data if you want to see it in the console.
+          setProductDropdown(response.data.data);
+          console.log(response.data.data); // You can log the response data if you want to see it in the console.
         })
         .catch((error) => {
           console.error(error);
@@ -71,26 +90,24 @@ const Firstpage = () => {
     }, delay);
   };
   
-  
-
-
   const handleRegionChange = (event) => {
-    setCountries(event.target.value);
+    setSelectedCountry(event.target.value);
+    // console.log(selectedCountry);
   };
 
   const handleGoClick = () => {
-    if (!selectedCategory && !product && !countries) {
+    if (!selectedCategory && !product && !selectedCountry) {
       alert("Please fill in at least one field!");
       return;
     }
     localStorage.setItem("category", selectedCategory);
     localStorage.setItem("product", product);
-    localStorage.setItem("region", countries);
+    localStorage.setItem("region", selectedCountry);
   
     // send the input data to the backend API using axios GET request
     axiosInstance
       .get(
-        `/compliance/?category=${selectedCategory}&product=${product}&countries=${countries}`,
+        `/compliance/?category=${selectedCategory}&product=${product}&countries=${selectedCountry}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("access_token")}`,
@@ -100,7 +117,7 @@ const Firstpage = () => {
         }
       )
       .then((response) => {
-        console.log(response)
+        console.log(response.data)
         if (response.data.data.length === 0) {
           Swal.fire({
             icon: "error",
@@ -169,9 +186,9 @@ const Firstpage = () => {
               borderBottom: "1px solid #7bdcb5",
               marginBottom: ".5rem",
             }}
-            onClick={() => handleProductDropdownClick(item.name)}
+            onClick={() => handleProductDropdownClick(item.product.name)}
           >
-            {item.name}
+            {item.product.name}
           </span>
         ))}
       </div>
@@ -233,13 +250,18 @@ const Firstpage = () => {
       </div>
 
         <div className="region-group22">
-          <select
-            id="category-input"
-            value={countries}
-            onChange={handleRegionChange}
-          >
-            <option value="india">India</option>
-          </select>
+        <select
+      id="category-input"
+      value={selectedCountry}
+      onChange={handleRegionChange}
+    >
+      <option value="">Select Your Country</option>
+      {options.map((option, index) => (
+        <option key={index} value={option}>
+          {option}
+        </option>
+      ))}
+    </select>
         </div>
 
         <button className="first-go" onClick={handleGoClick}>
