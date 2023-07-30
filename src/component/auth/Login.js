@@ -97,6 +97,8 @@ function Login() {
           history.push("/navbar/clientdashboard");
         } else if (user_type === "lab") {
           history.push("/navbar/profile");
+        }else if (user_type === "individual_consultant") {
+          history.push("/navbar/profile");
         } else {
           console.log("Invalid user_type or handling other cases");
         }

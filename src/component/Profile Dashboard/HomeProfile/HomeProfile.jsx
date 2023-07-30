@@ -3,6 +3,7 @@ import { Row, Col } from "antd";
 import "./HomeProfile.css"; // Import the CSS file containing the styles
 import axiosInstance from "../../../interceptors/axios";
 import Swal from "sweetalert2";
+import AddClient from "../AddClient/AddClient";
 
 function HomeProfile() {
   const [labForm, setLabForm] = useState({
@@ -55,24 +56,24 @@ function HomeProfile() {
   };
   
 
-  const handleAddBox = () => {
-    setLabForm({
-      ...labForm,
-      products_and_success: [
-        ...labForm.products_and_success,
-        { product: "", success: "" }, // Add a new empty pair of input boxes
-      ],
-    });
-  };
+  // const handleAddBox = () => {
+  //   setLabForm({
+  //     ...labForm,
+  //     products_and_success: [
+  //       ...labForm.products_and_success,
+  //       { product: "", success: "" }, // Add a new empty pair of input boxes
+  //     ],
+  //   });
+  // };
 
-  const handleChangeBox = (index, field, value) => {
-    const updatedProductsAndSuccess = [...labForm.products_and_success];
-    updatedProductsAndSuccess[index][field] = value === "" ? null : value;
-    setLabForm((prevLabForm) => ({
-      ...prevLabForm,
-      products_and_success: updatedProductsAndSuccess,
-    }));
-  };
+  // const handleChangeBox = (index, field, value) => {
+  //   const updatedProductsAndSuccess = [...labForm.products_and_success];
+  //   updatedProductsAndSuccess[index][field] = value === "" ? null : value;
+  //   setLabForm((prevLabForm) => ({
+  //     ...prevLabForm,
+  //     products_and_success: updatedProductsAndSuccess,
+  //   }));
+  // };
   
 
   return (
@@ -162,7 +163,7 @@ function HomeProfile() {
             </Col>
           </Row>
 
-          <Row gutter={[24, 0]}>
+          {/* <Row gutter={[24, 0]}>
       <Col xs={24} md={12}>
         <div className="column">
           {labForm.products_and_success.map((product, index) => (
@@ -188,12 +189,16 @@ function HomeProfile() {
           </button>
         </div>
       </Col>
-    </Row>
+    </Row> */}
 
           <button className="homeprofile-btn" type="submit">
             Submit
           </button>
         </form>
+      </div>
+
+      <div className="home-profile-container">
+        <AddClient />
       </div>
     </>
   );
