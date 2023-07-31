@@ -93,7 +93,6 @@ const Firstpage = () => {
               // Convert the Set back to an array
               uniqueValues = Array.from(uniqueSet);
             }
-    
             setProductDropdown(uniqueValues);
             console.log(uniqueValues); // You can log the response data if you want to see it in the console.
           } else {
