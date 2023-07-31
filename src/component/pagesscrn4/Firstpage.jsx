@@ -15,7 +15,6 @@ const Firstpage = () => {
   const [productDropdown, setProductDropdown] = useState([]); // state for product dropdown
   const history = useHistory();
 
-
   const options = [
     'India',
     'Europe',
@@ -61,34 +60,55 @@ const Firstpage = () => {
   
     // Add a delay of 1 second (1000 milliseconds) before making the API call
     const delay = 1000;
-  
     // Clear the timeout if the user keeps changing the product selection quickly
     if (typeof handleProductChange.timeoutId === "number") {
       clearTimeout(handleProductChange.timeoutId);
     }
-  
+
+    console.log(selectedCategory);
     // Set a new timeout for the API call
     handleProductChange.timeoutId = setTimeout(() => {
       axiosInstance
-        // .get(`/products?product=${event.target.value}`, 
-        .get(
-          `/compliance/?category=${selectedCategory}&product=${product}&countries=${selectedCountry}`,{
+        .get(`/compliance/?category=${selectedCategory}&products&product=${event.target.value}`, {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            Authorization: `Bearer ${localStorage.getItem("access_token") || ""}`,
             "Content-Type": "application/json",
             accept: "application/json",
           },
-        })
+        })        
         .then((response) => {
-          setProductDropdown(response.data.data);
-          console.log(response.data.data); // You can log the response data if you want to see it in the console.
+          if (response.data && response.data.data) {
+            const responseData = response.data.data;
+            let uniqueValues = [];
+    
+            if (Array.isArray(responseData)) {
+              // Use a Set to store unique values
+              const uniqueSet = new Set();
+    
+              // Add unique values to the Set
+              responseData.forEach((item) => {
+                uniqueSet.add(item);
+              });
+    
+              // Convert the Set back to an array
+              uniqueValues = Array.from(uniqueSet);
+            }
+    
+            setProductDropdown(uniqueValues);
+            console.log(uniqueValues); // You can log the response data if you want to see it in the console.
+          } else {
+            // Handle empty or invalid response data
+            setProductDropdown([]);
+          }
         })
         .catch((error) => {
           console.error(error);
           alert("Something went wrong. Please try again later.");
+          setProductDropdown([]); // Set an empty array to clear the dropdown in case of an error.
         });
     }, delay);
-  };
+      
+  }
   
   const handleRegionChange = (event) => {
     setSelectedCountry(event.target.value);
@@ -146,7 +166,10 @@ const Firstpage = () => {
   //component for product dropdown
   const ProductDropdown = (props) => {
     const { dropDownData } = props;
-
+  
+    // Create a new array with unique product names using Set
+    const uniqueProductNames = Array.from(new Set(dropDownData.map(item => item.product && item.product.name)));
+  
     return (
       <div
         className=""
@@ -171,10 +194,9 @@ const Firstpage = () => {
           e.currentTarget.style.overflowY = "hidden";
         }}
       >
-        {dropDownData.map((item, index) => (
+        {uniqueProductNames.map((name, index) => (
           <span
             key={index + 1}
-            value={item}
             style={{
               animationDuration: "300ms",
               opacity: 1,
@@ -186,14 +208,17 @@ const Firstpage = () => {
               borderBottom: "1px solid #7bdcb5",
               marginBottom: ".5rem",
             }}
-            onClick={() => handleProductDropdownClick(item.product.name)}
+            onClick={() => {
+              handleProductDropdownClick(name);
+            }}
           >
-            {item.product.name}
+            {name}
           </span>
         ))}
       </div>
     );
   };
+  
 
 
   return (
