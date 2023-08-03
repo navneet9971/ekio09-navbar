@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import axiosInstance from "../../../interceptors/axios";
 import ReactLoading from "react-loading";
 
+
 function TECPerviousData({ onClose }) {
   const applicationId = localStorage.getItem("applicationId");
   const autofillTecData = localStorage.getItem("tecdata");  //this setitem show on Secondpage.jsx
