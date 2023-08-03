@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import axiosInstance from "../../../interceptors/axios";
 import Swal from "sweetalert2";
+import ReactLoading from "react-loading";
 
 function WPCLabTesting({ onClose }) {
+  
+  const [isLoading, setIsLoading] = useState(false);  
   const idel = localStorage.getItem("ide");
 
   const [testingApplicantname, setTestingApplicantname] = useState("");
@@ -35,6 +38,7 @@ function WPCLabTesting({ onClose }) {
   // LAB TESTING FORM DATA HANDLE HERE WITH APIS ------------------------------
   const handleSubmit = (event) => {
     event.preventDefault();
+    setIsLoading(true); // Start loading animation
 
     const formData = new FormData();
     formData.append("request_for", "lab_testing");
@@ -85,6 +89,7 @@ function WPCLabTesting({ onClose }) {
             text: "Your request for testing has been successfully submitted",
             confirmButtonText: "OK",
           });
+          setIsLoading(false); // Stop loading animation
         } else {
           Swal.fire({
             icon: "error",
@@ -93,7 +98,7 @@ function WPCLabTesting({ onClose }) {
             confirmButtonText: "OK",
           });
         }
-
+        setIsLoading(false); // Stop loading animation
         onClose();
       })
       .catch((error) => {
@@ -103,10 +108,12 @@ function WPCLabTesting({ onClose }) {
           text: "Sorry, there was an error submitting your form",
           confirmButtonText: "OK",
         });
+        setIsLoading(false); // Stop loading animation
       });
   };
 
   return (
+    <>
     <div style={{ height: "500px", overflow: "scroll" }}>
       <h1 className="h801">Testing Information Required</h1>
       <h1 className="h801" style={{fontSize: "14px"}}>If you already have previous Test Reports, please go and Upload them through the Upload button. You don't need to fill out the Request Testing Form.</h1>
@@ -264,6 +271,13 @@ function WPCLabTesting({ onClose }) {
         </button>
       </form>
     </div>
+
+    {isLoading && (
+        <div className="loading-overlay">
+          <ReactLoading type="spin" color="#fff" height={50} width={50} />
+        </div>
+      )}
+    </>
   );
 }
 

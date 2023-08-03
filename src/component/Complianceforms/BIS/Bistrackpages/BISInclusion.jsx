@@ -5,6 +5,7 @@ import Message from "../../../popup/Message";
 import axiosInstance from "../../../../interceptors/axios";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import ReactLoading from "react-loading";
 import { FcDocument } from "react-icons/fc";
 import {  FiDownload } from "react-icons/fi";
 // import { ReactComponent as Wrong } from "../../../assets/trckpg-rb/wrong.svg";
@@ -26,6 +27,7 @@ function BISInclusion() {
   const [testingbtnkey, setTestingbtnkey] = useState("");
   // const [buttonPopup, setButtonPopup] = useState(false);
   // const [buttonPopup1, setButtonPopup1] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); 
   const totalResponses = 6;
   const completedResponses = localStorage.getItem("stepstatus");
   const [docReport, setDocReport] = useState("");
@@ -147,6 +149,8 @@ function BISInclusion() {
   //Download Button Code handleOptionClick
 
   const handleDownloadreport = () => {
+
+    setIsLoading(true); // Start loading animation
     // create a new instance of jsPDF
     const doc = new jsPDF();
 
@@ -227,6 +231,7 @@ function BISInclusion() {
       });
       // Save the PDF
       doc.save("Progress Tracker.pdf");
+      setIsLoading(false); // Stop loading animation
     };
   };
 
@@ -557,6 +562,11 @@ function BISInclusion() {
 
         <BISChatbot />
       </div>
+      {isLoading && (
+        <div className="loading-overlay">
+          <ReactLoading type="spin" color="#fff" height={50} width={50} />
+        </div>
+      )}
     </div>
   );
 }

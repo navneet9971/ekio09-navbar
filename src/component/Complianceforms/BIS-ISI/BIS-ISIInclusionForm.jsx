@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import axiosInstance from "../../../interceptors/axios";
+import ReactLoading from "react-loading";
 
 function BisIsiInclusion() {
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); 
   const [showAdditionalFields, setShowAdditionalFields] = useState(false);
   const applicationId = localStorage.getItem("applicationId");
   const complianceId = localStorage.getItem("compliance_id");
@@ -23,6 +25,7 @@ function BisIsiInclusion() {
 
   const handleRnumberRegisterSubmit = async (event) => {
     event.preventDefault();
+    setIsLoading(true); // Start loading animation
 
     try {
       const response = await axiosInstance.post(
@@ -36,6 +39,7 @@ function BisIsiInclusion() {
       );
       const data = response.data;
       console.log(data);
+      setIsLoading(false); // Stop loading animation
       Swal.fire({
         title: "Success",
         text:
@@ -49,6 +53,7 @@ function BisIsiInclusion() {
         text: "Failed to submit form",
         icon: "error",
       });
+      setIsLoading(false); // Stop loading animation
     }
   };
 
@@ -164,6 +169,11 @@ function BisIsiInclusion() {
           Submit
         </button>
       </form>
+      {isLoading && (
+        <div className="loading-overlay">
+          <ReactLoading type="spin" color="#fff" height={50} width={50} />
+        </div>
+      )}
     </div>
   );
 }

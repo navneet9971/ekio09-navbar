@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import Swal from "sweetalert2";
 import axiosInstance from "../../../interceptors/axios";
 import BISFreshForm from "./BISfreashform";
+import ReactLoading from "react-loading";
 
 function BisRNumberPopup({onClose}) {
   const [hasRNumber, setHasRNumber] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showBISFreshForm, setShowBISFreshForm] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const applicationId = localStorage.getItem("applicationId");
 
@@ -26,6 +28,7 @@ function BisRNumberPopup({onClose}) {
 
   const handleRnumberRegisterSubmit = (event) => {
     event.preventDefault();
+    setIsLoading(true); // Start loading animation
 
     axiosInstance
       .post("application/compliance/", rnumberformData, {
@@ -42,6 +45,7 @@ function BisRNumberPopup({onClose}) {
             "Form submitted successfully. Please head over to the 'Track Application' Page to upload documents and review progress",
           icon: "success",
         });
+        setIsLoading(false); // Stop loading animation
         onClose(); //Close POPUP AFTER SUMBIT
       })
       .catch((error) => {
@@ -51,6 +55,7 @@ function BisRNumberPopup({onClose}) {
           text: "Failed to submit form",
           icon: "error",
         });
+        setIsLoading(false); // Stop loading animation
       });
   };
 
@@ -152,6 +157,12 @@ function BisRNumberPopup({onClose}) {
         </form>
       ) : (
         <BISFreshForm />
+      )}
+
+{isLoading && (
+        <div className="loading-overlay">
+          <ReactLoading type="spin" color="#fff" height={50} width={50} />
+        </div>
       )}
     </>
   );

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axiosInstance from "../../../../interceptors/axios";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import ReactLoading from "react-loading";
 import { FcDocument } from "react-icons/fc";
 import { FiUpload, FiDownload } from "react-icons/fi";
 import pdflogo from "../../../assets/icons/eikomp_logo.png";
@@ -23,6 +24,7 @@ function BisIsiSimplfiyCompleted () {
     const [testingbtnkey, setTestingbtnkey] = useState("");
     const [buttonPopup, setButtonPopup] = useState(false);
     const [buttonPopup1, setButtonPopup1] = useState(false);
+    const [isLoading, setIsLoading] = useState(false); 
     const totalResponses = 6;
     const completedResponses = localStorage.getItem("stepstatus");
     const [docReport, setDocReport] = useState("");
@@ -153,6 +155,8 @@ function BisIsiSimplfiyCompleted () {
         //Download Button Code handleOptionClick
 
   const handleDownloadreport = () => {
+
+    setIsLoading(true); // Start loading animation
     // create a new instance of jsPDF
     const doc = new jsPDF();
 
@@ -233,6 +237,7 @@ function BisIsiSimplfiyCompleted () {
       });
       // Save the PDF
       doc.save("Progress Tracker.pdf");
+      setIsLoading(false); // Stop loading animation
     };
   };
 
@@ -243,8 +248,6 @@ function BisIsiSimplfiyCompleted () {
     setButtonPopup2(false);
     setButtonPopup1(false);
    }
-
-
 
     return(
 <div className="bgchangecompleted">
@@ -369,6 +372,12 @@ function BisIsiSimplfiyCompleted () {
 
         {/* <BISChatbot /> */}
       </div>
+
+      {isLoading && (
+        <div className="loading-overlay">
+          <ReactLoading type="spin" color="#fff" height={50} width={50} />
+        </div>
+      )}
     </div>
     );
 };

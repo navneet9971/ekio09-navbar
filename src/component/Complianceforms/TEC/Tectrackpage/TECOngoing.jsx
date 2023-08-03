@@ -5,6 +5,7 @@ import Message from "../../../popup/Message";
 import axiosInstance from "../../../../interceptors/axios";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import ReactLoading from "react-loading";
 import { FcDocument } from "react-icons/fc";
 import { FiUpload, FiDownload } from "react-icons/fi";
 // import { ReactComponent as Wrong } from "../../../assets/trckpg-rb/wrong.svg";
@@ -27,6 +28,7 @@ function TECOngoing() {
   const [buttonPopup1, setButtonPopup1] = useState(false);
   const [docReport, setDocReport] = useState("");
   const [docType, setDocType] = useState("");
+  const [isLoading, setIsLoading] = useState(false); 
   const totalResponses = 8;
   const idel = localStorage.getItem("ide");
   const completedResponses = localStorage.getItem("stepstatus");
@@ -145,6 +147,8 @@ function TECOngoing() {
 
   //Download Button Code handleOptionClick
   const handleDownloadreport = () => {
+
+    setIsLoading(true); // Start loading animation
     // create a new instance of jsPDF
     const doc = new jsPDF();
 
@@ -247,6 +251,7 @@ function TECOngoing() {
       });
       // Save the PDF
       doc.save("Progress Tracker.pdf");
+      setIsLoading(false); // Stop loading animation
     };
   };
 
@@ -569,6 +574,12 @@ function TECOngoing() {
 
         <Chatbot />
       </div>
+
+      {isLoading && (
+        <div className="loading-overlay">
+          <ReactLoading type="spin" color="#fff" height={50} width={50} />
+        </div>
+      )}
     </div>
   );
 }

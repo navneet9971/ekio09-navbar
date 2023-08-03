@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
-import { useHistory } from "react-router-dom";
 import axiosInstance from "../../../interceptors/axios";
+import ReactLoading from "react-loading";
 
 function TECRequstPerviousdatapage({ onClose }) {
   const applicationId = localStorage.getItem("applicationId");
   const tecmodificationData = localStorage.getItem("tecmodificationData");
-  const history = useHistory();
+  const [isLoading, setIsLoading] = useState(false); 
 
   const [tecformData, setTecformData] = useState({
     Product_name:"",
@@ -39,6 +39,7 @@ function TECRequstPerviousdatapage({ onClose }) {
 
   const handleSubmittecauto = (event) => {
     event.preventDefault();
+    setIsLoading(true); // Start loading animation
 
     const updatedTecformData = {
     Product_name: tecformData.Product_name,
@@ -75,12 +76,10 @@ function TECRequstPerviousdatapage({ onClose }) {
         console.log(data);
         Swal.fire({
           title: "Success",
-          text:
-            'Form submitted successfully. Please head over to the "Track Application" Page to upload documents and review progress ',
+          text: "Your request for testing has been successfully submitted",
           icon: "success",
-        }).then(() => {
-          history.push('/navbar/review');
         })
+        setIsLoading(false); // Stop loading animation
         onClose(); // Close the popup after download is complete
       })
       .catch((error) => {
@@ -90,11 +89,16 @@ function TECRequstPerviousdatapage({ onClose }) {
           text: "Failed to submit form",
           icon: "error",
         });
+        setIsLoading(false); // Stop loading animation
       });
   };
 
   const handleChange = (e) => {
-    setTecformData({ ...tecformData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setTecformData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   return (
@@ -231,7 +235,7 @@ function TECRequstPerviousdatapage({ onClose }) {
           >
             <option value="Indoor">Indoor</option>
             <option value="Outdoor">Outdoor</option>
-            <option valur="Other">Other</option>
+            <option value="Other">Other</option>
           </select>
         </label>
 
@@ -272,6 +276,12 @@ function TECRequstPerviousdatapage({ onClose }) {
           Submit
         </button>
       </form>
+      
+      {isLoading && (
+        <div className="loading-overlay">
+          <ReactLoading type="spin" color="#fff" height={50} width={50} />
+        </div>
+      )}
     </div>
   );
 }

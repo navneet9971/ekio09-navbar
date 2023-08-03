@@ -83,11 +83,6 @@ function HandleUpload({ onClose }) {
   return (
     <div>
       <div>
-        {isLoading && (
-          <div className="loading-overlay">
-            <ReactLoading type="spin" color="#fff" height={50} width={50} />
-          </div>
-        )}
         <h3>Upload a File</h3>
         <input type="file" name="file" onChange={handleFileChange} />
       </div>
@@ -110,6 +105,12 @@ function HandleUpload({ onClose }) {
           UPLOAD
         </button>
       </div>
+
+      {isLoading && (
+          <div className="loading-overlay">
+            <ReactLoading type="spin" color="#fff" height={50} width={50} />
+          </div>
+        )}
     </div>
   );
 }

@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 import axiosInstance from "../../../interceptors/axios";
+import ReactLoading from "react-loading";
 
 const BISISIFreashForm = () => {
   const storedApplicationId = localStorage.getItem("applicationId");
+  const [isLoading, setIsLoading] = useState(false);   
   const history = useHistory();
 
   const [bisIsiFormData, setBisIsiFormData] = useState({
@@ -49,6 +51,7 @@ const BISISIFreashForm = () => {
 
   const handleBISSubmit = (event) => {
     event.preventDefault();
+    setIsLoading(true); // Start loading animation
 
     axiosInstance
       .post("/application/compliance/", bisIsiFormData, {
@@ -70,6 +73,7 @@ const BISISIFreashForm = () => {
             confirmButtonText: "OK",
           }).then(() => {
             history.push("/navbar/review");
+            setIsLoading(false); // Stop loading animation
           });
         } else {
           Swal.fire({
@@ -78,6 +82,7 @@ const BISISIFreashForm = () => {
             text: "Form submission failed. Please try again.",
             confirmButtonText: "OK",
           });
+          setIsLoading(false); // Stop loading animation
         }
       })
       .catch((error) => {
@@ -87,6 +92,7 @@ const BISISIFreashForm = () => {
           text: "Sorry, there was an error submitting your form",
           confirmButtonText: "OK",
         });
+        setIsLoading(false); // Stop loading animation
       });
   };
 
@@ -540,6 +546,11 @@ const BISISIFreashForm = () => {
           Submit
         </button>
       </form>
+      {isLoading && (
+        <div className="loading-overlay">
+          <ReactLoading type="spin" color="#fff" height={50} width={50} />
+        </div>
+      )}
     </div>
   );
 };

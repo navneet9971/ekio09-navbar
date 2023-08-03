@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import axiosInstance from "../../../interceptors/axios";
 import Select from 'react-select';
 import Swal from "sweetalert2";
-
+import ReactLoading from "react-loading";
 
 function BisIsiDownload ({onClose}) {
+  const [isLoading, setIsLoading] = useState(false); 
     
     useEffect(() => {
         axiosInstance
@@ -49,6 +50,7 @@ function BisIsiDownload ({onClose}) {
   
       const handleDownload = (event) => {
         event.preventDefault();
+        setIsLoading(true); // Start loading animation
   
            // Build the URLs based on the selected options and the docStatus data
            const urls = [];
@@ -76,12 +78,13 @@ function BisIsiDownload ({onClose}) {
                 text: "Your documents have been downloaded successfully",
                 confirmButtonText: "OK",
               });
-      
+              setIsLoading(false); // Stop loading animation
               onClose(); // Close the popup after download is complete
             })
           .catch(error => {
             console.error('There was an error downloading the file:', error);
           });
+          setIsLoading(false); // Stop loading animation
       };
     
     const options1 = [
@@ -114,6 +117,12 @@ function BisIsiDownload ({onClose}) {
       <div>
       <button className="btn809" type="submit" onClick={handleDownload}>Download</button>
       </div>
+
+      {isLoading && (
+        <div className="loading-overlay">
+          <ReactLoading type="spin" color="#fff" height={50} width={50} />
+        </div>
+      )}
       </>
 
     );

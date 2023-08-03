@@ -2,8 +2,11 @@ import React, {useState, useEffect} from "react";
 import Select from 'react-select';
 import Swal from "sweetalert2";
 import axiosInstance from "../../../interceptors/axios";
+import ReactLoading from "react-loading";
 
 function BISDownloadDeoc ({onClose}) {
+  const [isLoading, setIsLoading] = useState(false); 
+
 
     useEffect(() => {
         axiosInstance
@@ -48,6 +51,7 @@ function BISDownloadDeoc ({onClose}) {
   
       const handleDownload = (event) => {
         event.preventDefault();
+        setIsLoading(true); // Start loading animation
   
            // Build the URLs based on the selected options and the docStatus data
            const urls = [];
@@ -75,11 +79,19 @@ function BISDownloadDeoc ({onClose}) {
                 text: "Your documents have been downloaded successfully",
                 confirmButtonText: "OK",
               });
-      
+              setIsLoading(false); // Stop loading animation
               onClose(); // Close the popup after download is complete
             })
           .catch(error => {
             console.error('There was an error downloading the file:', error);
+
+            Swal.fire({
+              icon: "error",
+              title: "Download Failed",
+              text: "Sorry, there was an error downloading your documents",
+              confirmButtonText: "OK",
+            });
+            setIsLoading(false); // Stop loading animation
           });
       };
     
@@ -113,6 +125,12 @@ function BISDownloadDeoc ({onClose}) {
       <div>
       <button className="btn809" type="submit" onClick={handleDownload}>Download</button>
       </div>
+
+      {isLoading && (
+        <div className="loading-overlay">
+          <ReactLoading type="spin" color="#fff" height={50} width={50} />
+        </div>
+      )}
       </>
 
   );

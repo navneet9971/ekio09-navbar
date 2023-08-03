@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import axiosInstance from "../../../interceptors/axios";
 import Swal from "sweetalert2";
+import ReactLoading from "react-loading";
 
 
 function BisIsiProduction({ onClose }) {
+  const [isLoading, setIsLoading] = useState(false);    
   const idel = localStorage.getItem("ide");
 
   const [formData, setFormData] = useState({
@@ -28,6 +30,7 @@ function BisIsiProduction({ onClose }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setIsLoading(true); // Start loading animation
 
     const { Indian_standard, Date_of_manufacturing, Shelf, Batch_number, 
       Quantity,
@@ -78,6 +81,7 @@ function BisIsiProduction({ onClose }) {
             text: "Your request for testing has been successfully submitted",
             confirmButtonText: "OK",
           });
+          setIsLoading(false); // Stop loading animation
         } else {
           Swal.fire({
             icon: "error",
@@ -86,7 +90,7 @@ function BisIsiProduction({ onClose }) {
             confirmButtonText: "OK",
           });
         }
-
+        setIsLoading(false); // Stop loading animation
         onClose();
       })
       .catch((error) => {
@@ -96,6 +100,7 @@ function BisIsiProduction({ onClose }) {
           text: "Sorry, there was an error submitting your form",
           confirmButtonText: "OK",
         });
+        setIsLoading(false); // Stop loading animation
       });
   };
 
@@ -264,6 +269,11 @@ function BisIsiProduction({ onClose }) {
           Submit
         </button>
       </form>
+      {isLoading && (
+        <div className="loading-overlay">
+          <ReactLoading type="spin" color="#fff" height={50} width={50} />
+        </div>
+      )}
     </div>
   );
 }

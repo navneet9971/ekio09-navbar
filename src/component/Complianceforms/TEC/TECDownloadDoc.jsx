@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import axiosInstance from "../../../interceptors/axios";
 import Swal from "sweetalert2";
+import ReactLoading from "react-loading";
 
 function TECDownloadDoc({ onClose }) {
+  const [isLoading, setIsLoading] = useState(false); 
+
   useEffect(() => {
     axiosInstance
       .get(`compliance-form/?compliance=TEC`)
@@ -51,6 +54,7 @@ function TECDownloadDoc({ onClose }) {
 
   const handleDownload = (event) => {
     event.preventDefault();
+    setIsLoading(true); // Start loading animation
 
     const urls = selectedOptions.map((option) => docDownload[option.value]);
 
@@ -76,7 +80,7 @@ function TECDownloadDoc({ onClose }) {
           text: "Your documents have been downloaded successfully",
           confirmButtonText: "OK",
         });
-
+        setIsLoading(false); // Stop loading animation
         onClose(); // Close the popup after download is complete
       })
       .catch((error) => {
@@ -88,6 +92,7 @@ function TECDownloadDoc({ onClose }) {
           text: "Sorry, there was an error downloading your documents",
           confirmButtonText: "OK",
         });
+        setIsLoading(false); // Stop loading animation
       });
   };
 
@@ -130,6 +135,11 @@ function TECDownloadDoc({ onClose }) {
           </button>
         </div>
       </div>
+      {isLoading && (
+        <div className="loading-overlay">
+          <ReactLoading type="spin" color="#fff" height={50} width={50} />
+        </div>
+      )}
     </div>
   );
 }

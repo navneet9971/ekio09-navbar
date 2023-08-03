@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import axiosInstance from "../../../interceptors/axios";
+import ReactLoading from "react-loading";
 
 function BisInclusionForm() {
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const applicationId = localStorage.getItem("applicationId");
   const complianceId = localStorage.getItem("compliance_id");
 
@@ -19,6 +21,7 @@ function BisInclusionForm() {
 
   const handleRnumberRegisterSubmit = async (event) => {
     event.preventDefault();
+    setIsLoading(true); // Start loading animation
 
     try {
       const response = await axiosInstance.post(
@@ -38,6 +41,7 @@ function BisInclusionForm() {
           "Form submitted successfully. Please head over to the 'Track Application' Page to upload documents and review progress",
         icon: "success",
       });
+      setIsLoading(false); // Stop loading animation
     } catch (error) {
       console.error(error);
       Swal.fire({
@@ -45,6 +49,7 @@ function BisInclusionForm() {
         text: "Failed to submit form",
         icon: "error",
       });
+      setIsLoading(false); // Stop loading animation
     }
   };
 
@@ -109,6 +114,12 @@ function BisInclusionForm() {
           Submit
         </button>
       </form>
+
+      {isLoading && (
+        <div className="loading-overlay">
+          <ReactLoading type="spin" color="#fff" height={50} width={50} />
+        </div>
+      )}
     </>
   );
 }

@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { useHistory } from "react-router-dom";
 import axiosInstance from "../../../interceptors/axios";
+import ReactLoading from "react-loading";
 
 function WPCPerviousData({ onClose }) {
   const applicationId = localStorage.getItem("applicationId");
   const autofillWpcData = localStorage.getItem("wpcdata"); // this setItem show on Secondpage.jsx
+  const [isLoading, setIsLoading] = useState(false);  
   const history = useHistory();
 
   const [wpcformData, setWpcformData] = useState({
@@ -63,6 +65,8 @@ function WPCPerviousData({ onClose }) {
 
   const handleSubmitwpcauto = (event) => {
     event.preventDefault();
+    setIsLoading(true); // Start loading animation
+
 
     const updatedTecformData = {
       Registration_type: wpcformData.Registration_type,
@@ -130,8 +134,7 @@ function WPCPerviousData({ onClose }) {
           history.push('/navbar/review');
         })
         onClose(); // Close the popup after download is complete
-
-
+        setIsLoading(false); // Stop loading animation
         // if you are any auto download form then use this code and  un comment down load codes
 
         // for (const [formName, formData] of Object.entries(data.data.forms)) {
@@ -151,6 +154,7 @@ function WPCPerviousData({ onClose }) {
           text: "Failed to submit form",
           icon: "error",
         });
+        setIsLoading(false); // Stop loading animation
       });
   };
 
@@ -160,6 +164,8 @@ function WPCPerviousData({ onClose }) {
   };
 
   return (
+    <>
+
     <div style={{ height: "500px", overflow: "scroll" }}>
       <form onSubmit={handleSubmitwpcauto}>
          <h1 className="h802">WPC Portal regsitration</h1>
@@ -647,6 +653,13 @@ function WPCPerviousData({ onClose }) {
       </button>
     </form>
     </div>
+
+    {isLoading && (
+        <div className="loading-overlay">
+          <ReactLoading type="spin" color="#fff" height={50} width={50} />
+        </div>
+      )}
+    </>
   );
 }
 

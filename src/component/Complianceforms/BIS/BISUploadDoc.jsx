@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import axiosInstance from "../../../interceptors/axios";
+import ReactLoading from "react-loading";
 
-function BISUploadDoc({onClose}) {
+function BISUploadDoc({ onClose }) {
   const bisApplicationId = localStorage.getItem('bisapplication_id');
   const bisComplianceId = localStorage.getItem('biscompliance_id');
-
+  const [isLoading, setIsLoading] = useState(false);
   const [documentType, setDocumentType] = useState('');
-  const [uploades, setUploades] = useState([]);
+  const [uploads, setUploads] = useState([]);
 
   const options = [
     'Business License',
@@ -22,9 +23,11 @@ function BISUploadDoc({onClose}) {
   ];
 
   function handleUpload() {
+    setIsLoading(true); // Start loading animation
+
     const formData = new FormData();
-    for (let i = 0; i < uploades.length; i++) {
-      formData.append('document', uploades[i]);
+    for (let i = 0; i < uploads.length; i++) {
+      formData.append('document', uploads[i]);
     }
     formData.append('application', bisApplicationId);
     formData.append('compliance', bisComplianceId);
@@ -56,8 +59,6 @@ function BISUploadDoc({onClose}) {
             confirmButtonText: 'OK'
           });
         }
-
-        onClose(); // Close the popup after download is complete
       })
       .catch((error) => {
         console.error(error);
@@ -67,6 +68,10 @@ function BISUploadDoc({onClose}) {
           text: 'Sorry, there was an error uploading your documents',
           confirmButtonText: 'OK'
         });
+      })
+      .finally(() => {
+        setIsLoading(false); // Stop loading animation
+        onClose(); // Close the popup after download is complete or there was an error
       });
   }
 
@@ -74,7 +79,7 @@ function BISUploadDoc({onClose}) {
     <div>
       <div>
         <h3>Upload a File</h3>
-        <input type="file" name="file" multiple onChange={(e) => setUploades(e.target.files)} />
+        <input type="file" name="file" multiple onChange={(e) => setUploads(e.target.files)} />
       </div>
       <div>
         <select className="optionss" value={documentType} onChange={(e) => setDocumentType(e.target.value)}>
@@ -87,6 +92,12 @@ function BISUploadDoc({onClose}) {
       <div>
         <button className="btn809" onClick={handleUpload}>UPLOAD</button>
       </div>
+
+      {isLoading && (
+        <div className="loading-overlay">
+          <ReactLoading type="spin" color="#fff" height={50} width={50} />
+        </div>
+      )}
     </div>
   );
 }

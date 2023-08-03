@@ -137,11 +137,6 @@ function TECLabTesting({ onClose }) {
 
   return (
     <div style={{ height: "500px", overflow: "scroll" }}>
-         {isLoading && (
-        <div className="loading-overlay">
-          <ReactLoading type="spin" color="#fff" height={50} width={50} />
-        </div>
-      )}
       <h1 className="h801">Testing Information Required </h1>
       <form onSubmit={handleSubmit}>
         <label className="st8012">
@@ -238,7 +233,7 @@ function TECLabTesting({ onClose }) {
           >
             <option value="Indoor">Indoor</option>
             <option value="Outdoor">Outdoor</option>
-            <option valur="Other">Other</option>
+            <option value="Other">Other</option>
           </select>
         </label>
 
@@ -317,6 +312,12 @@ function TECLabTesting({ onClose }) {
           </button>
 
       </form>
+
+      {isLoading && (
+        <div className="loading-overlay">
+          <ReactLoading type="spin" color="#fff" height={50} width={50} />
+        </div>
+      )}
     </div>
   );
 }

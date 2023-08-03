@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import axiosInstance from "../../../interceptors/axios";
+import ReactLoading from "react-loading";
 
 function BISrequsting({onClose}) {
+  const [isLoading, setIsLoading] = useState(false); 
   const idel = localStorage.getItem("ide");
 
   const [Testing_type, setTesting_type] = useState("");
@@ -23,6 +25,7 @@ function BISrequsting({onClose}) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setIsLoading(true); // Start loading animation
 
     const formData = new FormData();
     // formData.append("application",  localStorage.getItem("newApplicationId"));
@@ -94,7 +97,7 @@ function BISrequsting({onClose}) {
             text: "Your request for testing has been successfully submitted",
             confirmButtonText: "OK",
           });
-          // setButtonPopup2(false);
+          setIsLoading(false); // Stop loading animation
         } else {
           Swal.fire({
             icon: "error",
@@ -103,7 +106,7 @@ function BISrequsting({onClose}) {
             confirmButtonText: "OK",
           });
         }
-
+        setIsLoading(false); // Stop loading animation
         onClose(); // Close the popup after download is complete
       })
       .catch((error) => {
@@ -114,6 +117,7 @@ function BISrequsting({onClose}) {
           text: "Sorry, there was an error Submitted your form",
           confirmButtonText: "OK",
         });
+        setIsLoading(false); // Stop loading animation
       });
   };
 
@@ -254,6 +258,12 @@ function BISrequsting({onClose}) {
           Submit
         </button>
       </form>
+
+      {isLoading && (
+        <div className="loading-overlay">
+          <ReactLoading type="spin" color="#fff" height={50} width={50} />
+        </div>
+      )}
     </div>
   );
 }

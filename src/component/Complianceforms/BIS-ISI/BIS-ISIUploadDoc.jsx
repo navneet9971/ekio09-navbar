@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import axiosInstance from "../../../interceptors/axios";
+import ReactLoading from "react-loading";
 
 function BisIsiUploadDoc ({onClose}) {
 
@@ -9,6 +10,7 @@ function BisIsiUploadDoc ({onClose}) {
   
     const [documentType, setDocumentType] = useState('');
     const [uploades, setUploades] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const options = [
         'Premises document',
@@ -30,6 +32,8 @@ function BisIsiUploadDoc ({onClose}) {
       ];
 
       function handleUpload() {
+        setIsLoading(true); // Start loading animation
+
         const formData = new FormData();
         for (let i = 0; i < uploades.length; i++) {
           formData.append('document', uploades[i]);
@@ -64,8 +68,6 @@ function BisIsiUploadDoc ({onClose}) {
                 confirmButtonText: 'OK'
               });
             }
-    
-            onClose(); // Close the popup after download is complete
           })
           .catch((error) => {
             console.error(error);
@@ -75,6 +77,10 @@ function BisIsiUploadDoc ({onClose}) {
               text: 'Sorry, there was an error uploading your documents',
               confirmButtonText: 'OK'
             });
+          })
+          .finally(() => {
+            setIsLoading(false); // Stop loading animation
+            onClose(); // Close the popup after download is complete or there was an error
           });
       }
 
@@ -96,6 +102,12 @@ function BisIsiUploadDoc ({onClose}) {
       <div>
         <button className="btn809" onClick={handleUpload}>UPLOAD</button>
       </div>
+
+      {isLoading && (
+        <div className="loading-overlay">
+          <ReactLoading type="spin" color="#fff" height={50} width={50} />
+        </div>
+      )}
     </div>
     );
 };

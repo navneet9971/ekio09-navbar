@@ -2,11 +2,13 @@ import React, {useState, useEffect} from "react";
 import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 import axiosInstance from "../../../interceptors/axios";
+import ReactLoading from "react-loading";
 
 function BISPerviousData ({ onClose }) {
  
   const [showPassword, setShowPassword] = useState(false);
   const [hasBISReg, setHasBISReg] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const autofillBisData = localStorage.getItem('bisdata');
 // console.log(localStorage.getItem('bisdata'))
     const history = useHistory();
@@ -75,6 +77,7 @@ function BISPerviousData ({ onClose }) {
   
   const handleSubmitBISauto = (event) => {
     event.preventDefault();
+    setIsLoading(true); // Start loading animation
 
       const updatedBISformData = {
         Types_of_company: bisformData.Types_of_company,
@@ -177,6 +180,7 @@ function BISPerviousData ({ onClose }) {
         }).then(() => {
           history.push('/navbar/review');
         })
+        setIsLoading(false); // Stop loading animation
         onClose(); // Close the popup after download is complete
 
         for (const [formName, formData] of Object.entries(data.data.forms)) {
@@ -196,6 +200,7 @@ function BISPerviousData ({ onClose }) {
           text: "Failed to submit form",
           icon: "error",
         });
+        setIsLoading(false); // Stop loading animation
       });
   };
 
@@ -215,6 +220,11 @@ function BISPerviousData ({ onClose }) {
     return (
 
         <div style={{ height: "500px", overflow: "scroll" }}>
+            {isLoading && (
+        <div className="loading-overlay">
+          <ReactLoading type="spin" color="#fff" height={50} width={50} />
+        </div>
+      )}
         <form onSubmit={handleSubmitBISauto}>
 
         <label className="st8012">

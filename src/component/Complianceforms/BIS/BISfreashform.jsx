@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 import axiosInstance from "../../../interceptors/axios";
+import ReactLoading from "react-loading";
 
 const BISFormComponent = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [hasBISReg, setHasBISReg] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);   
   const storedApplicationId = localStorage.getItem("applicationId");
   const history = useHistory();
 
@@ -71,6 +73,7 @@ const BISFormComponent = () => {
   //Handle BIS from Data here-----------------------------------------------------------------------
   const handleBISSubmit = (event) => {
     event.preventDefault();
+    setIsLoading(true); // Start loading animation
 
     // function to handle form submission
     axiosInstance
@@ -123,6 +126,7 @@ const BISFormComponent = () => {
             text: "Form submission failed. Please try again.",
             confirmButtonText: "OK",
           });
+          setIsLoading(false); // Stop loading animation
         }
       })
       .catch((error) => {
@@ -133,6 +137,7 @@ const BISFormComponent = () => {
           text: "Sorry, there was an error Submission your form",
           confirmButtonText: "OK",
         });
+        setIsLoading(false); // Stop loading animation
       });
   };
 
@@ -147,6 +152,11 @@ const BISFormComponent = () => {
 
   return (
     <div style={{ height: "500px", overflow: "scroll" }}>
+        {isLoading && (
+        <div className="loading-overlay">
+          <ReactLoading type="spin" color="#fff" height={50} width={50} />
+        </div>
+      )}
       <form onSubmit={handleBISSubmit}>
         <div className="compliance-container" style={{ display: "none" }}>
           <h2>Compliance Data</h2>

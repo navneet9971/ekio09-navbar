@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Popup from "../../popup/Popup";
+import { useHistory } from "react-router-dom";
 import "jspdf-autotable";
 import Swal from "sweetalert2";
 import axiosInstance from "../../../interceptors/axios";
@@ -11,6 +12,7 @@ function TECtableModification() {
   const [showPopup, setShowPopup] = useState(false);
   const [ editpopup, setEditpopup] = useState(false);
   const [isLoading, setIsLoading] = useState(false); 
+  const history = useHistory();
   const modificationTecData = localStorage.getItem("tecmodificationData");
 
   useEffect(() => {
@@ -105,7 +107,7 @@ const handleSubmittecauto = (event) => {
             'Form submitted successfully. Please head over to the "Track Application" Page to upload documents and review progress ',
           icon: "success",
         }).then(() => {
-        //   history.push('/navbar/review');
+          history.push('/navbar/review');
         setIsLoading(false); // Stop loading animation
         })
       })

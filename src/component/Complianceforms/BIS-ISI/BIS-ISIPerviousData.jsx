@@ -2,12 +2,14 @@ import React, {useState, useEffect} from "react";
 import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 import axiosInstance from "../../../interceptors/axios";
+import ReactLoading from "react-loading";
 
 function BISISIPerviousData ({ onClose }) {
 
   const autofillBisIsiData = localStorage.getItem('bisIsidata');
   const storedApplicationId = localStorage.getItem("applicationId");
 // console.log(localStorage.getItem('bisdata'))
+    const [isLoading, setIsLoading] = useState(false); 
     const history = useHistory();
 
     //BISISI PERVIOUS DATA FETCH HERE ITS CODE ------------------------------------------
@@ -58,6 +60,7 @@ function BISISIPerviousData ({ onClose }) {
   
   const handleSubmitBISauto = (event) => {
     event.preventDefault();
+    setIsLoading(true); // Start loading animation
 
       const updatedBisIsiPrevFormData = {
     Is_no: bisIsiPrevFormData.Is_no,
@@ -107,6 +110,7 @@ function BISISIPerviousData ({ onClose }) {
       .then((response) => {
         const data = response.data;
         console.log(data);
+        setIsLoading(false); // Stop loading animation
         Swal.fire({
           title: "Success",
           text:
@@ -115,6 +119,7 @@ function BISISIPerviousData ({ onClose }) {
         }).then(() => {
           history.push('/navbar/review');
         })
+       
         // onClose(); // Close the popup after download is complete
       })
       .catch((error) => {
@@ -124,6 +129,7 @@ function BISISIPerviousData ({ onClose }) {
           text: "Failed to submit form",
           icon: "error",
         });
+        setIsLoading(false); // Stop loading animation
       });
   };
 
@@ -582,6 +588,11 @@ function BISISIPerviousData ({ onClose }) {
           Submit
         </button>
         </form>
+        {isLoading && (
+        <div className="loading-overlay">
+          <ReactLoading type="spin" color="#fff" height={50} width={50} />
+        </div>
+      )}
       </div>
     )
 }
