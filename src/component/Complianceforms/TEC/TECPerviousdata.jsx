@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { useHistory } from "react-router-dom";
 import axiosInstance from "../../../interceptors/axios";
+import ReactLoading from "react-loading";
 
 function TECPerviousData({ onClose }) {
   const applicationId = localStorage.getItem("applicationId");
   const autofillTecData = localStorage.getItem("tecdata");  //this setitem show on Secondpage.jsx
+  const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
 
   // console.log(localStorage.getItem("tecdata"));
@@ -42,6 +44,7 @@ function TECPerviousData({ onClose }) {
 
   const handleSubmittecauto = (event) => {
     event.preventDefault();
+    setIsLoading(true); // Start loading animation
 
     const updatedTecformData = {
       Applicant_company_CIN: tecformData.Applicant_company_CIN,
@@ -94,6 +97,7 @@ function TECPerviousData({ onClose }) {
         }).then(() => {
           history.push('/navbar/review');
         })
+        setIsLoading(false); // Stop loading animation
         onClose(); // Close the popup after download is complete
 
         for (const [formName, formData] of Object.entries(data.data.forms)) {
@@ -113,6 +117,7 @@ function TECPerviousData({ onClose }) {
           text: "Failed to submit form",
           icon: "error",
         });
+        setIsLoading(false); // Stop loading animation
       });
   };
 
@@ -123,6 +128,11 @@ function TECPerviousData({ onClose }) {
   return (
     <div style={{ height: "500px", overflow: "scroll" }}>
       <form onSubmit={handleSubmittecauto}>
+      {isLoading && (
+        <div className="loading-overlay">
+          <ReactLoading type="spin" color="#fff" height={50} width={50} />
+        </div>
+      )}
         <h1 className="h802">Applicant</h1>
         <label className="st8012">
           Applicant company CIN

@@ -5,6 +5,7 @@ import axiosInstance from "../../../interceptors/axios";
 import "react-chatbot-kit/build/main.css";
 import Swal from "sweetalert2";
 import { ReactComponent as Sideimg } from "../../assets/from-images.svg";
+import ReactLoading from "react-loading";
 
 
 const Firstcompliance = () => {
@@ -13,6 +14,7 @@ const Firstcompliance = () => {
   const [product, setProduct] = useState(""); // state for product input
   const [selectedCountry, setSelectedCountry] = useState(''); // state for selected region
   const [productDropdown, setProductDropdown] = useState([]); // state for product dropdown
+  const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
 
   const options = [
@@ -124,6 +126,7 @@ const Firstcompliance = () => {
     localStorage.setItem("product", product);
     localStorage.setItem("region", selectedCountry);
 
+    setIsLoading(true); // Start loading animation
     // send the input data to the backend API using axios GET request
     axiosInstance
       .get(
@@ -145,16 +148,19 @@ const Firstcompliance = () => {
             text: " Please check your input and try again",
             confirmButtonText: "OK",
           });
+          setIsLoading(false); // Stop loading animation
         } else {
           console.log(response.data);
           console.log(category);
           // redirect the user to the second page with the compliance data
           history.push("/navbar/secondcompliance");
         }
+        setIsLoading(false); // Stop loading animation
       })
       .catch((error) => {
         console.error(error);
         alert("Something went wrong. Please try again later.");
+        setIsLoading(false); // Stop loading animation
       });
   };
 
@@ -225,6 +231,11 @@ const Firstcompliance = () => {
 
   return (
     <div className="bgchange">
+        {isLoading && (
+        <div className="loading-overlay">
+          <ReactLoading type="spin" color="#fff" height={50} width={50} />
+        </div>
+      )}
       <div className="first-container22">
         <div className="fist-title">
           <h3

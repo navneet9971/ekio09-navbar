@@ -12,14 +12,14 @@
 
 .dash-titlebg {
   /* background-color: #55B600; */
-  /* display: flex; */
-  /* justify-content: center; */
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  /* text-align: center; */
   font-size: 20px;
   /* font-weight: 600; */
-  padding: 10px;
+  padding: 1rem;
   /* color: #fff; */
-  margin: 2px 4px -8px;
+  margin: 0.1rem 0.4rem -1.2rem;
 }
 
 /* .bg-clientdash{

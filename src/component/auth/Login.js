@@ -5,6 +5,7 @@ import axiosInstance from "../../interceptors/axios";
 import Popup from "../popup/Popup";
 import Swal from "sweetalert2";
 import ForgetPassword from "./Forgetpassword";
+import ReactLoading from "react-loading";
 import loginimage from "../assets/login-page.png";
 import img1 from "../assets/login-page-icons/1.png";
 import img2 from "../assets/login-page-icons/2.png";
@@ -17,6 +18,7 @@ function Login() {
   const history = useHistory();
   const [linkPopup, setLinkPopup] = useState(false);
   const [userType, setUserType] = useState();
+  const [isLoading, setIsLoading] = useState(false);
   const initialFormData = Object.freeze({
     username: "",
     password: "",
@@ -66,6 +68,7 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsLoading(true); // Start loading animation
     console.log(formData);
 
     axiosInstance
@@ -102,6 +105,7 @@ function Login() {
         } else {
           console.log("Invalid user_type or handling other cases");
         }
+        setIsLoading(false); // Stop loading animation
       })
       .catch((error) => {
         console.error(error);
@@ -110,6 +114,7 @@ function Login() {
           title: "Please try again later",
           text: "Incorrect username or password. Please try again.",
         });
+        setIsLoading(false); // Stop loading animation
       });
   };
 
@@ -124,6 +129,11 @@ function Login() {
   return (
     <div className="auth-box">
       <div className="login">
+      {isLoading && (
+        <div className="loading-overlay">
+          <ReactLoading type="spin" color="#fff" height={50} width={50} />
+        </div>
+      )}
         <div className="form">
           <div className="top-sec">
             <img

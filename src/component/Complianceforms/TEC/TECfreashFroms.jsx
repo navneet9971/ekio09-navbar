@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2"; // Import Swal from sweetalert2 library
 import axiosInstance from "../../../interceptors/axios";
+import ReactLoading from "react-loading";
+
 
 const TECFormComponent = ({ onClose }) => {
-      
+
+  const [isLoading, setIsLoading] = useState(false);    
   const history = useHistory();
 
   const [tecformData, setTecformData] = useState({
@@ -38,6 +41,7 @@ const TECFormComponent = ({ onClose }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setIsLoading(true); // Start loading animation
     // Handle form submission here
 
     // Make the API POST request with the formData
@@ -78,6 +82,7 @@ const TECFormComponent = ({ onClose }) => {
           // Clean up the URL object
           URL.revokeObjectURL(fileUrl);
         }
+        setIsLoading(false); // Stop loading animation
         onClose(); // Close the popup after download is complete
       })
       .catch((error) => {
@@ -88,11 +93,17 @@ const TECFormComponent = ({ onClose }) => {
           text: "Failed to submit form",
           icon: "error",
         });
+        setIsLoading(false); // Stop loading animation
       });
   };
 
   return (
     <form onSubmit={handleSubmit}>
+       {isLoading && (
+        <div className="loading-overlay">
+          <ReactLoading type="spin" color="#fff" height={50} width={50} />
+        </div>
+      )}
       <label className="st8012">
         Indian OEM/Foreign Manufacture:
         <select
