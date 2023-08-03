@@ -100,7 +100,7 @@ const Secondpage = () => {
                   <td
                     className="clickable"
                     onClick={() =>
-                      handleClick(compliance.compliance.product_name, compliance.id)
+                      handleClick(compliance.compliance.product_name, compliance.compliance.id)
                     }
                   >
                     {compliance.compliance.product_name}
