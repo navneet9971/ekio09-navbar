@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import axiosInstance from "../../../interceptors/axios";
 import Swal from "sweetalert2";
+import ReactLoading from "react-loading";
+
 
 function TECLabTesting({ onClose }) {
+  const [isLoading, setIsLoading] = useState(false); 
   const idel = localStorage.getItem("ide");
 
   const [testingProductName, setTestingProductName] = useState("");
@@ -34,6 +37,7 @@ function TECLabTesting({ onClose }) {
   // LAB TESTING FROM DATA HANDLE HERE WITH APIS ------------------------------
   const handleSubmit = (event) => {
     event.preventDefault();
+    setIsLoading(true); // Start loading animation
 
     const formData = new FormData();
     formData.append("request_for", "lab_testing");
@@ -108,6 +112,7 @@ function TECLabTesting({ onClose }) {
             text: "Your request for testing has been successfully submitted",
             confirmButtonText: "OK",
           });
+          setIsLoading(false); // Stop loading animation
         } else {
           Swal.fire({
             icon: "error",
@@ -116,7 +121,7 @@ function TECLabTesting({ onClose }) {
             confirmButtonText: "OK",
           });
         }
-
+        setIsLoading(false); // Stop loading animation
         onClose();
       })
       .catch((error) => {
@@ -126,11 +131,17 @@ function TECLabTesting({ onClose }) {
           text: "Sorry, there was an error submitting your form",
           confirmButtonText: "OK",
         });
+        setIsLoading(false); // Stop loading animation
       })
   };
 
   return (
     <div style={{ height: "500px", overflow: "scroll" }}>
+         {isLoading && (
+        <div className="loading-overlay">
+          <ReactLoading type="spin" color="#fff" height={50} width={50} />
+        </div>
+      )}
       <h1 className="h801">Testing Information Required </h1>
       <form onSubmit={handleSubmit}>
         <label className="st8012">

@@ -3,12 +3,14 @@ import Popup from "../../popup/Popup";
 import "jspdf-autotable";
 import Swal from "sweetalert2";
 import axiosInstance from "../../../interceptors/axios";
+import ReactLoading from "react-loading";
 // import TECModfiEditBtnPage from "./TECModifiEditbtnPage";
 
 function TECtableModification() {
   const [tableData, setTableData] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const [ editpopup, setEditpopup] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); 
   const modificationTecData = localStorage.getItem("tecmodificationData");
 
   useEffect(() => {
@@ -75,6 +77,7 @@ function TECtableModification() {
   
 const handleSubmittecauto = (event) => {
     event.preventDefault();
+    setIsLoading(true); // Start loading animation
 
     const modificationTecformData = {
         Hardware_number: tecformData.Hardware_number,
@@ -103,6 +106,7 @@ const handleSubmittecauto = (event) => {
           icon: "success",
         }).then(() => {
         //   history.push('/navbar/review');
+        setIsLoading(false); // Stop loading animation
         })
       })
       .catch((error) => {
@@ -112,6 +116,7 @@ const handleSubmittecauto = (event) => {
           text: "Failed to submit form",
           icon: "error",
         });
+        setIsLoading(false); // Stop loading animation
       });
   };
 
@@ -135,18 +140,21 @@ useEffect(() => {
       });
   }, []);
 
+  const manufacturingDetailsUrl =
+  "https://eikomp-backend-media.s3.amazonaws.com/media/compliance/form/Manufacturing_Details.docx";
+
   const handleDownload = (event) => {
     event.preventDefault();
+    setIsLoading(true); // Start loading animation
 
-    const manufacturingDetailsUrl =
-      "https://eikomp-backend-media.s3.amazonaws.com/media/compliance/form/Manufacturing_Details.docx";
-
+   
     axiosInstance
       .get(manufacturingDetailsUrl, {
         responseType: "blob",
       })
       .then((response) => {
         const url = window.URL.createObjectURL(new Blob([response.data]));
+        console.log(url);
         const link = document.createElement("a");
         link.href = url;
         link.setAttribute("download", "Manufacturing_Details.docx");
@@ -160,6 +168,7 @@ useEffect(() => {
           text: "Your document has been downloaded successfully",
           confirmButtonText: "OK",
         });
+        setIsLoading(false); // stop loading animation
       })
       .catch((error) => {
         console.error("There was an error downloading the file:", error);
@@ -170,6 +179,7 @@ useEffect(() => {
           text: "Sorry, there was an error downloading your document",
           confirmButtonText: "OK",
         });
+        setIsLoading(false); // stop loading animation
       });
   };
 
@@ -177,6 +187,11 @@ useEffect(() => {
 
 return (
     <div className="tble-reviewbg">
+        {isLoading && (
+        <div className="loading-overlay">
+          <ReactLoading type="spin" color="#fff" height={50} width={50} />
+        </div>
+      )}
       <div className="table">
         <h5>Application Progress & Reports</h5>
 

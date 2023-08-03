@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import axiosInstance from "../../../interceptors/axios";
+import ReactLoading from "react-loading";
 
 function HandleUpload({ onClose }) {
   const [documentType, setDocumentType] = useState("");
   const [uploadedFiles, setUploadedFiles] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const storedComplianceId = localStorage.getItem("compliance_id");
   const storedApplicationId = localStorage.getItem("application_id");
@@ -19,16 +21,6 @@ function HandleUpload({ onClose }) {
     "Shareholding Pattern",
     "Board Resolution (If required)",
   ];
-
-  const formData = new FormData();
-
-  for (let i = 0; i < uploadedFiles.length; i++) {
-    formData.append("document", uploadedFiles[i]);
-  }
-  formData.append("application", storedApplicationId);
-  formData.append("compliance", storedComplianceId);
-  formData.append("document_type", documentType);
-  formData.append("status", "Submitted");
 
   const handleUploadSuccess = () => {
     Swal.fire({
@@ -50,6 +42,17 @@ function HandleUpload({ onClose }) {
   };
 
   const uploadDocuments = () => {
+    setIsLoading(true); // Start loading animation
+
+    const formData = new FormData();
+    for (let i = 0; i < uploadedFiles.length; i++) {
+      formData.append("document", uploadedFiles[i]);
+    }
+    formData.append("application", storedApplicationId);
+    formData.append("compliance", storedComplianceId);
+    formData.append("document_type", documentType);
+    formData.append("status", "Submitted");
+
     axiosInstance
       .post("application/document/", formData, {
         headers: {
@@ -58,16 +61,19 @@ function HandleUpload({ onClose }) {
       })
       .then((res) => {
         console.log(res);
+        setIsLoading(false); // Stop loading animation
         handleUploadSuccess();
       })
       .catch((error) => {
         console.error(error);
+        setIsLoading(false); // Stop loading animation
         handleUploadFailure();
       });
   };
 
   const handleFileChange = (e) => {
-    setUploadedFiles(e.target.files);
+    // Clear any previous files and add the new one
+    setUploadedFiles([e.target.files[0]]);
   };
 
   const handleDocumentTypeChange = (e) => {
@@ -77,6 +83,11 @@ function HandleUpload({ onClose }) {
   return (
     <div>
       <div>
+        {isLoading && (
+          <div className="loading-overlay">
+            <ReactLoading type="spin" color="#fff" height={50} width={50} />
+          </div>
+        )}
         <h3>Upload a File</h3>
         <input type="file" name="file" onChange={handleFileChange} />
       </div>
