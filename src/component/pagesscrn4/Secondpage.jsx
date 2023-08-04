@@ -31,7 +31,8 @@ function sendMail(complianceName) {
 
   emailjs.init("ZJd0FvtghYYOebHku"); // Replace "YOUR_PUBLIC_KEY" with your actual Public Key
 
-  emailjs.send("service_0senmcx", "template_4qkwrwj", templateParams).then(
+  emailjs.send("service_p4swe5p", "template_4qkwrwj", templateParams).then(
+   
     (response) => {
       console.log("Email sent successfully!", response);
       Swal.fire("Success!", "Submission was successful.", "success");
