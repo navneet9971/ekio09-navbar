@@ -64,15 +64,10 @@ function CortButton({ onClose }) {
     } else {
       Swal.fire("Error!", "Submission failed.", "error");
     }
-  
+    
     onClose();
     // Perform any other action with the data
   };
-  
-  
-  
-  
-  
   
 
   return (
