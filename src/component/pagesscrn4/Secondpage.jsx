@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom";
 import axiosInstance from "../../interceptors/axios";
 import Popup from "../popup/Popup";
 import "./Pages.css";
+import emailjs from "emailjs-com";
+import Swal from "sweetalert2";
 import TECFreshForms from "../Complianceforms/TEC/TECfreashFroms";
 import TECPerviousData from "../Complianceforms/TEC/TECPerviousdata";
 import TECtableModification from "../Complianceforms/TEC/TECtableModificationpage";
@@ -16,21 +18,61 @@ import BISISIFreashForm from "../Complianceforms/BIS-ISI/BIS-ISIFreashForm";
 import BISISIPerviousData from "../Complianceforms/BIS-ISI/BIS-ISIPerviousData";
 import BisIsiInclusion from "../Complianceforms/BIS-ISI/BIS-ISIInclusionForm";
 
+
+//Send E-mail For Cort To vishal Sir Don't Do it this compliance
+const userEmail = localStorage.getItem("cortEmail");
+
+function sendMail(complianceName) {
+  const templateParams = {
+    // Customize these parameters with your email configuration
+    subject: "Selected Products",
+    to_name: `${userEmail}`,
+    message: `Compliance Names: ${complianceName}.`,
+  };
+
+  emailjs.init("ZJd0FvtghYYOebHku"); // Replace "YOUR_PUBLIC_KEY" with your actual Public Key
+
+  emailjs.send("service_0senmcx", "template_4qkwrwj", templateParams).then(
+    (response) => {
+      console.log("Email sent successfully!", response);
+      Swal.fire("Success!", "Submission was successful.", "success");
+    },
+    (error) => {
+      console.error("Error sending email:", error);
+      Swal.fire("Error!", "Submission failed.", "error");
+    }
+  );
+};
+
+//SECOND PAGE MAIN COMPONENT START HERE ----------------------------------------------------
+
 const Secondpage = () => {
   const history = useHistory();
   const [complianceData, setComplianceData] = useState([]);
   const [applicationId, setNewApplicationId] = useState();
+  //Compliance meantion here their had not provide application only send this compliance Mail on vishal sir 
+
 
   localStorage.setItem("applicationId", applicationId);
   // Calls APIs HERE ---------------------------------------------------------
   useEffect(() => {
     axiosInstance
-      .get(`/compliance/?category=${localStorage.getItem("category")}&product=${localStorage.getItem("product")}&countries=${localStorage.getItem("region")}`)
+      .get(
+        `/compliance/?category=${localStorage.getItem(
+          "category"
+        )}&product=${localStorage.getItem(
+          "product"
+        )}&countries=${localStorage.getItem("region")}`
+      )
       .then((res) => {
         const uniqueComplianceData = [];
         res?.data?.data.forEach((compliance) => {
           // check if the compliance id already exists in the array
-          if (!uniqueComplianceData.some((item) => item.compliance.id === compliance.compliance.id)) {
+          if (
+            !uniqueComplianceData.some(
+              (item) => item.compliance.id === compliance.compliance.id
+            )
+          ) {
             uniqueComplianceData.push(compliance);
           }
         });
@@ -57,17 +99,13 @@ const Secondpage = () => {
         console.log(error);
       });
   }, []);
-  
 
   //Start TEC New Application Form const Code Here ---------------------------------
   const [buttonpopupform1tec, setButtonpopupform1tec] = useState(false);
   const [buttonautofillpopuptec, setButtonautofillpopuptec] = useState(false);
   const [buttonautofilledtec, setButtonautofilledtec] = useState(false);
   const [tecModificationpopup, settecModificationpopup] = useState(false);
-  const [tecModificationPagepopup, setTecModificationPagepopup] = useState(
-    false
-  );
-
+  const [tecModificationPagepopup, setTecModificationPagepopup] = useState(false);
   const [tecautofillform, setTecautofillform] = useState(null);
 
   //TEC PERVIOUS DATA FETCH APIS -----------------
@@ -107,8 +145,6 @@ const Secondpage = () => {
   /*----------------------BIS FUNCTION CODE START HERE----------------*/
 
   //Start BIS New Application Form const Code Here ------------------------------------------------
-  // const [buttonRegisterbis, setButtonRegisterbis] = useState(false);
-  // const [buttonRegisterPagebis, setButtonRegisterPagebis] = useState(false);
   const [buttonPopup6bis, setButtonPopup6bis] = useState(false);
   const [buttonautofilledbis, setButtonautofilledbis] = useState(false);
   const [buttonautofillpopupbis, setButtonautofillpopupbis] = useState(false);
@@ -145,7 +181,7 @@ const Secondpage = () => {
   const handleClick = async (complianceName, complianceId, event) => {
     localStorage.setItem("compliance_id", complianceId);
     localStorage.setItem("compliance_name", complianceName);
-
+    
     try {
       // // Fetch data on button click
       await fetchData();
@@ -191,7 +227,7 @@ const Secondpage = () => {
           //call the function for unregistering
           setWpcPopupButton(true);
         }
-      }else if (complianceName === "BIS - ISI") {
+      } else if (complianceName === "BIS - ISI") {
         // Fetch WPC DATA
         await fetchBisISIData();
         if (autofill === "Yes") {
@@ -201,12 +237,38 @@ const Secondpage = () => {
           //call the function for unregistering
           setBisIsiPopupButton(true);
         }
+      } if (
+        complianceName === "CCC" ||
+        complianceName === "SLS" ||
+        complianceName === "BSTI" ||
+        complianceName === "CE" ||
+        complianceName === "LMPC" ||
+        complianceName === "SNI" ||
+        complianceName === "PSE" ||
+        complianceName === "KC Mark" ||
+        complianceName === "SIRIM" ||
+        complianceName === "SASO" ||
+        complianceName === "BSMI" ||
+        complianceName === "TISI" ||
+        complianceName === "G Mark" ||
+        complianceName === "ESMA" ||
+        complianceName === "UL" ||
+        complianceName === "FCC"
+      ) {
+        if (autofillform === "Yes") {
+          // Call the function for registering
+          // Do nothing (I assume you have the register function somewhere else)
+          console.log(autofillform);
+        } else if (autofillform === "No") {
+          // Call the function for unregistering
+          sendMail(complianceName);
+        }
       }
     } catch (error) {
       console.error(error);
     }
   };
-
+  
   //BIS DYNAMIC POPUP CHOOSE OPTION YES OR NO  function handle here-------------------------
   function handleautofilled(event) {
     const value = event.target.value;
@@ -223,18 +285,6 @@ const Secondpage = () => {
     setButtonautofilledbis(false);
   }
 
-  // HandleChange of Registerbutton---------
-  //   function handleRadioChange(event) {
-  //   const value = event.target.value;
-  //     // setButtonPopup6bis(true);
-  //     if (autofillform === 'Yes' && value === 'autofillformbis') {
-  //       setButtonautofilledbis(true);
-  //     } else if (autofillform === 'No' && value === 'unregister') {
-  //       setButtonPopup6bis(true);
-  //     }
-
-  //   setButtonRegisterbis(false)
-  // }
 
   //handleinclusiondropdwn HERE-----------
 
@@ -268,7 +318,6 @@ const Secondpage = () => {
     }
     settecModificationpopup(false);
   };
-
 
   //WPC FORM COMPONENT STARTS HERE----------------------------------
 
@@ -308,7 +357,6 @@ const Secondpage = () => {
     setButtonautofilledwpc(false);
   }
 
-
   //BIS-ISI APIS AND CONST START HERE -----------------------------------
   const [bisIsiPopupButton, setBisIsiPopupButton] = useState("");
   const [bisIsiAutofillPopup, setBisIsiAutofillPopup] = useState("");
@@ -316,59 +364,57 @@ const Secondpage = () => {
   const [bisIsiPerviousdataPoPup, setBisIsiPerviousdataPoPup] = useState("");
   const [bisIsiInclusionFormPopup, setBisIsiInclusionFormPopup] = useState("");
 
+  //WPC PERVIOUS DATA FETCH APIS HERE--------------
+  const fetchBisISIData = async () => {
+    try {
+      const response = await axiosInstance.get(
+        `application/inclusive/?compliance=${localStorage.getItem(
+          "compliance_name"
+        )}`
+      );
+      const bisisiData = response.data["fields"];
+      console.log(bisisiData);
+      localStorage.setItem("bisIsidata", JSON.stringify(bisisiData));
+      // setBisformData({ ...bisformData, ...bisdata });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-    //WPC PERVIOUS DATA FETCH APIS HERE--------------
-    const fetchBisISIData = async () => {
-      try {
-        const response = await axiosInstance.get(
-          `application/inclusive/?compliance=${localStorage.getItem(
-            "compliance_name"
-          )}`
-        );
-        const bisisiData = response.data["fields"];
-        console.log(bisisiData);
-        localStorage.setItem("bisIsidata", JSON.stringify(bisisiData));
-        // setBisformData({ ...bisformData, ...bisdata });
-      } catch (error) {
-        console.error(error);
-      }
-    };
+  //BISISI First Popup Handle Here
+  const handleInclusionOptionChangeBISISI = (event) => {
+    const value = event.target.value;
 
-    //BISISI First Popup Handle Here 
-    const handleInclusionOptionChangeBISISI = (event) => {
-      const value = event.target.value;
-  
-      // Perform any necessary actions based on the selected option immediately
-      if (value === "inclusionBisIsi") {
-        setBisIsiInclusionFormPopup(true);
+    // Perform any necessary actions based on the selected option immediately
+    if (value === "inclusionBisIsi") {
+      setBisIsiInclusionFormPopup(true);
+    } else {
+      if (autofillform === "Yes" && value === "newformBisIsi") {
+        setBisIsiAutofillPopup(true); // Navigate to the new application page
       } else {
-        if (autofillform === "Yes" && value === "newformBisIsi") {
-          setBisIsiAutofillPopup(true); // Navigate to the new application page
-        } else {
-          setBisIsipopupFreshForm(true);
-        }
-      }
-      setBisIsiPopupButton(false);
-    };
-
-    //BISISI DYNAMIC POPUP CHOOSE OPTION YES OR NO  function handle here-------------------------
-    function handleautofilledBisISI(event) {
-      const value = event.target.value;
-  
-      if (autofillform === "Yes" && value === "YesautofilledBISISI") {
-        // Call the function for registering
-        setBisIsiPerviousdataPoPup(true);
-        console.log(autofillform);
-      } else if (value === "Noform1BisIsi") {
-        // Call the function for unregistering
-        // setButtonRegisterbis(true);
         setBisIsipopupFreshForm(true);
       }
-      setBisIsiAutofillPopup(false);
     }
+    setBisIsiPopupButton(false);
+  };
 
+  //BISISI DYNAMIC POPUP CHOOSE OPTION YES OR NO  function handle here-------------------------
+  function handleautofilledBisISI(event) {
+    const value = event.target.value;
 
-     //Auto close POPup after click Sumbit
+    if (autofillform === "Yes" && value === "YesautofilledBISISI") {
+      // Call the function for registering
+      setBisIsiPerviousdataPoPup(true);
+      console.log(autofillform);
+    } else if (value === "Noform1BisIsi") {
+      // Call the function for unregistering
+      // setButtonRegisterbis(true);
+      setBisIsipopupFreshForm(true);
+    }
+    setBisIsiAutofillPopup(false);
+  }
+
+  //Auto close POPup after click Sumbit
   const handlePopupClose = () => {
     setButtonpopupform1tec(false);
     setButtonautofillpopuptec(false);
@@ -406,13 +452,19 @@ const Secondpage = () => {
                   <td
                     className="clickable"
                     onClick={(event) =>
-                      handleClick(compliance.compliance.product_name, compliance.compliance.id, event)
+                      handleClick(
+                        compliance.compliance.product_name,
+                        compliance.compliance.id,
+                        event
+                      )
                     }
                   >
                     {console.log(compliance)}
                     {compliance.compliance.product_name}
                   </td>
-                  <td style={{ cursor: "default" }}>{compliance.compliance.details}</td>
+                  <td style={{ cursor: "default" }}>
+                    {compliance.compliance.details}
+                  </td>
                   {/* <td>
                     <a
                       href={compliance.video}
@@ -664,12 +716,8 @@ const Secondpage = () => {
           </div>
         </Popup>
 
-
-         {/*------------------------ BIS-ISI DYNAMIC FORM DATA POPUP CODE HERE------------------------ */}
-         <Popup
-          trigger={bisIsiPopupButton}
-          setTrigger={setBisIsiPopupButton}
-        >
+        {/*------------------------ BIS-ISI DYNAMIC FORM DATA POPUP CODE HERE------------------------ */}
+        <Popup trigger={bisIsiPopupButton} setTrigger={setBisIsiPopupButton}>
           <h3 className="reg-popup-titlte">What do you want to do today?</h3>
           <select onChange={handleInclusionOptionChangeBISISI}>
             <option value="">Choose the Option:-</option>
@@ -680,9 +728,8 @@ const Secondpage = () => {
           </select>
         </Popup>
 
-
-   {/*------------------------ BIS-ISI DYNAMIC FORM DATA POPUP CODE HERE------------------------ */}
-   <Popup
+        {/*------------------------ BIS-ISI DYNAMIC FORM DATA POPUP CODE HERE------------------------ */}
+        <Popup
           trigger={bisIsiAutofillPopup}
           setTrigger={setBisIsiAutofillPopup}
         >
@@ -727,19 +774,27 @@ const Secondpage = () => {
         </Popup>
 
         {/*---------------- BIS-ISI Inclusion Form Data Here------------------------------ */}
-      
-        <Popup trigger={bisIsiInclusionFormPopup} setTrigger={setBisIsiInclusionFormPopup}>
+
+        <Popup
+          trigger={bisIsiInclusionFormPopup}
+          setTrigger={setBisIsiInclusionFormPopup}
+        >
           <BisIsiInclusion />
         </Popup>
-    
 
         {/*----------------------- BIS-ISI FreashForm Start Here--------------------------------------  */}
-        <Popup trigger={bisIsipopupFreshForm} setTrigger ={setBisIsipopupFreshForm}>
+        <Popup
+          trigger={bisIsipopupFreshForm}
+          setTrigger={setBisIsipopupFreshForm}
+        >
           <BISISIFreashForm />
         </Popup>
 
         {/*---------------------- BIS-ISI Pervious Data Form Code Here------------------------------------ */}
-        <Popup trigger={bisIsiPerviousdataPoPup} setTrigger= {setBisIsiPerviousdataPoPup}>
+        <Popup
+          trigger={bisIsiPerviousdataPoPup}
+          setTrigger={setBisIsiPerviousdataPoPup}
+        >
           <BISISIPerviousData />
         </Popup>
       </div>

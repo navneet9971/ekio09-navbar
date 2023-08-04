@@ -15,13 +15,14 @@ function CortButton({ onClose }) {
       .get(
         `/compliance/?category=${localStorage.getItem(
           "category"
-        )}&product=${localStorage.getItem("product")}&region=${localStorage.getItem("region")}`
+        )}&product=${localStorage.getItem("product")}&countries=${localStorage.getItem("region")}`
       )
       .then((res) => {
         const uniqueComplianceData = res?.data?.data.reduce((acc, compliance) => {
           if (!acc.some((item) => item.id === compliance.id)) {
             acc.push(compliance);
             console.log(res.data)
+            console.log(compliance.id);
           }
           return acc;
         }, []);
@@ -64,7 +65,7 @@ function CortButton({ onClose }) {
     } else {
       Swal.fire("Error!", "Submission failed.", "error");
     }
-    
+
     onClose();
     // Perform any other action with the data
   };
@@ -80,21 +81,21 @@ function CortButton({ onClose }) {
               <input
                 type="checkbox"
                 value={compliance.id}
-                checked={selectedCompliance.includes(compliance.product_name)}
+                checked={selectedCompliance.includes(compliance.compliance.product_name)}
                 onChange={(e) => {
                   const isChecked = e.target.checked;
                   setSelectedCompliance((prevSelected) => {
                     if (isChecked) {
-                      return [...prevSelected, compliance.product_name];
+                      return [...prevSelected, compliance.compliance.product_name];
                     } else {
                       return prevSelected.filter(
-                        (product_name) => product_name !== compliance.product_name
+                        (product_name) => product_name !== compliance.compliance.product_name
                       );
                     }
                   });
                 }}
               />
-              {compliance.product_name}
+              {compliance.compliance.product_name}
             </label>
           </div>
         ))}
