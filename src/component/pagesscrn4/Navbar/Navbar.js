@@ -25,6 +25,8 @@ const Navbar = () => {
     setNotificationIcon(true);
   };
 
+
+  // use this function of the loading screen and also call false 
   function animation() {
     var tabsNewAnim = $("#navbarSupportedContent");
     var activeItemNewAnim = tabsNewAnim.find(".active ");
@@ -66,6 +68,7 @@ const Navbar = () => {
     animation();
   }, [pathname]);
 
+  
   function handleLogout() {
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
@@ -74,6 +77,7 @@ const Navbar = () => {
   }
 
   return (
+    <>
     <nav className="navbar navbar-expand-lg navbar-mainbg">
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className={`navbar-nav ml-auto ${open ? "active" : ""}`}>
@@ -129,6 +133,7 @@ const Navbar = () => {
         <NavbarNotification />
       </Popup>
     </nav>
+    </>
   );
 };
 

@@ -55,6 +55,9 @@ function TECmodification() {
           console.log(compliance_id);
           console.log(application_id);
 
+
+          const StorePerviousDataTesting = data["fields"]
+          localStorage.setItem("testingperviousData", JSON.stringify(StorePerviousDataTesting))
           console.log(data);
           // store local storage then show the values
           setUniqueid(data["uniqueid"]);

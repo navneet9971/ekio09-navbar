@@ -5,7 +5,7 @@ import ReactLoading from "react-loading";
 
 function TECRequstPerviousdatapage({ onClose }) {
   const applicationId = localStorage.getItem("applicationId");
-  const tecmodificationData = localStorage.getItem("tecmodificationData");
+  const tecmodificationData = localStorage.getItem("testingperviousData");
   const [isLoading, setIsLoading] = useState(false); 
 
   const [tecformData, setTecformData] = useState({

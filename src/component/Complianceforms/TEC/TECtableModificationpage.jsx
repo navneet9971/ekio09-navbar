@@ -49,7 +49,7 @@ function TECtableModification() {
         `application/compliance/${id}`
       );
       const tecmodificationData = response.data.data["fields"];
-    //   console.log(tecmodificationData);
+      // console.log(tecmodificationData);
     localStorage.setItem("tecmodificationData", JSON.stringify(tecmodificationData));
       console.log(id);
     } catch (error) {
@@ -75,7 +75,7 @@ function TECtableModification() {
     }
   }, [modificationTecData]);
 
-//   console.log(tecformData); //TecForm Data consolelog here and checkout
+  // console.log(modificationTecData)
   
 const handleSubmittecauto = (event) => {
     event.preventDefault();
