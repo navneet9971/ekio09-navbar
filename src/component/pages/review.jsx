@@ -4,6 +4,7 @@ import Popup from "../popup/Popup";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import axiosInstance from "../../interceptors/axios";
+import ReactLoading from "react-loading";
 
 function formatDate(dateString) {
   const date = new Date(dateString);
@@ -47,20 +48,24 @@ function BISTableReview() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
   const [showPopup, setShowPopup] = useState(false);
+  const [isLoading, setIsLoading] = useState(true); // State for loading spinner
   const [selectedStatus, setSelectedStatus] = useState("All");
   const history = useHistory();
   const idel = localStorage.getItem("ide");
 
   useEffect(() => {
+    setIsLoading(true); // Set loading to true before making the API call
+
     axiosInstance
       .get(`application/compliance/`)
       .then((response) => {
         const tableData = response.data.data;
         setTableData(tableData);
-        console.log(tableData);
+        setIsLoading(false); // Set loading to false after data is fetched
       })
       .catch((error) => {
         console.log(error);
+        setIsLoading(false); // Set loading to false if there's an error
       });
   }, [idel]);
 
@@ -390,6 +395,12 @@ function BISTableReview() {
           </table>
         </div>
       </div>
+      
+      {isLoading && (
+        <div className="loading-overlay">
+          <ReactLoading type="spin" color="#fff" height={50} width={50} />
+        </div>
+      )}
     </div>
   );
 }
