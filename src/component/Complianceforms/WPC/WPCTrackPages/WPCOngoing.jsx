@@ -8,9 +8,6 @@ import "jspdf-autotable";
 import ReactLoading from "react-loading";
 import { FcDocument } from "react-icons/fc";
 import { FiUpload, FiDownload } from "react-icons/fi";
-// import { ReactComponent as Wrong } from "../../../assets/trckpg-rb/wrong.svg";
-// import { ReactComponent as Right } from "../../../assets/trckpg-rb/right.svg";
-// import file6png from "../../../assets/pdficon/Red02.png";
 import pdflogo from "../../../assets/icons/eikomp_logo.png";
 import StatusBar from "../../../Statusbar";
 import Chatbot from "../../../Chatbot/Chatbot";
@@ -37,22 +34,6 @@ function WPCOngoing() {
 
   //POPUP BUTTONS OF STEPS
   const [buttonPopupreport, setButtonPopupreport] = useState(false);
-
-  //Notification Button Const Here all---------------
-  // const [buttonPopup11, setButtonPopup11] = useState(false);
-  // const [notifiData, setNotifiData] = useState([]);
-
-  // //Notification Date Sequnce
-  // function formatDate(dateString) {
-  //   const date = new Date(dateString);
-  //   const day = date
-  //     .getDate()
-  //     .toString()
-  //     .padStart(2, "0");
-  //   const month = (date.getMonth() + 1).toString().padStart(2, "0");
-  //   const year = date.getFullYear().toString();
-  //   return `${day}/${month}/${year}`;
-  // }
 
   //LAB TESTING FROM CONST HERE ---------------------------------------
   const [buttonPopup2, setButtonPopup2] = useState(false);
@@ -87,10 +68,6 @@ function WPCOngoing() {
           localStorage.setItem("wpcapplication_id", application_id);
           localStorage.setItem("wpcrequest_for", request_for);
 
-          //Notification DATA SET HERE ----------------------------------------------------
-          // const notificationData = data["notifications"];
-          // console.log(notificationData);
-          // setNotifiData(notificationData);
 
           axiosInstance
             .get(
@@ -280,6 +257,7 @@ function WPCOngoing() {
     setButtonPopup2(false);
   };
 
+  
   return (
     <div className="bgchangecompleted">
       <div className="ongoing-applications">
@@ -301,46 +279,6 @@ function WPCOngoing() {
             <WPCLabTesting onClose={handlePopupClose} />
           </Popup>
         </div>
-
-        {/*---------------Notification code Here------------------------*/}
-        {/* <Popup trigger={buttonPopup11} setTrigger={setButtonPopup11}>
-          <div>
-            <h3 className="notif">Notification</h3>
-            <table>
-              <thead>
-                <tr>
-                  <th>S.No</th>
-                  <th>Category</th>
-                  <th>Title</th>
-                  <th>External Link/Filepath</th>
-                  <th>Date</th>
-                </tr>
-              </thead>
-              <tbody>
-                {notifiData.map((data, index) => (
-                  <tr key={index}>
-                    <td style={{ cursor: "default" }}>{index + 1}</td>
-                    <td style={{ cursor: "default" }}>{data.category}</td>
-                    <td style={{ cursor: "default" }}>{data.title}</td>
-                    <td>
-                      <a
-                        href={data.file}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{ color: "#55B600", fontWeight: "bold" }}
-                      >
-                        Download Document
-                      </a>
-                    </td>
-                    <td style={{ cursor: "default" }}>
-                      {formatDate(data.date)}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </Popup> */}
 
         {/*------------------DOWNLOAD BUTTON CODE ----------------*/}
         <div className="header-btn1">
@@ -377,150 +315,6 @@ function WPCOngoing() {
         </div>
 
         <WPCSteps />
-
-        {/*---------------------- PDF DATA WRITE OR WRONG CODE HERE ------------------------------------------------ */}
-
-        {/* <h2 className="pdfstep-name"> Documents To Be Submitted</h2>
-        <div className="pdffilesup">
-          <div className="row1">
-            <div className="col doc-col">
-              {docStatus["Authorized Signatory Letter"] === "Submitted" ? (
-                <>
-                  {" "}
-                  <Right size={24} className="pdfico" />{" "}
-                </>
-              ) : (
-                <Wrong size={24} className="pdfico" />
-              )}
-              <div>
-                <img src={file6png} alt="" className="pdfico1" />
-              </div>
-              <h3 className="be">Authorized Signatory Letter</h3>
-            </div>
-
-            <div className="col doc-col">
-              {docStatus["MOU"] === "Submitted" ? (
-                <>
-                  {" "}
-                  <Right size={24} className="pdfico" />{" "}
-                </>
-              ) : (
-                <Wrong size={24} className="pdfico" />
-              )}
-              <div>
-                <img src={file6png} alt="" className="pdfico1" />
-              </div>
-              <h3 className="be">MOU</h3>
-            </div>
-
-            <div className="col doc-col">
-              {docStatus["AOA"] === "Submitted" ? (
-                <>
-                  {" "}
-                  <Right size={24} className="pdfico" />{" "}
-                </>
-              ) : (
-                <Wrong size={24} className="pdfico" />
-              )}
-              <div>
-                <img src={file6png} alt="" className="pdfico1" />
-              </div>
-              <h3 className="be">AOA</h3>
-            </div>
-
-            <div className="col doc-col">
-              {docStatus["OEM authorized to AIR"] === "Submitted" ? (
-                <>
-                  {" "}
-                  <Right size={24} className="pdfico" />{" "}
-                </>
-              ) : (
-                <Wrong size={24} className="pdfico" />
-              )}
-
-              <div>
-                <img src={file6png} alt="" className="pdfico1" />
-              </div>
-              <h3 className="be">OEM Authorized to AIR</h3>
-            </div>
-
-            <div className="col doc-col">
-              {docStatus["MOA"] === "Submitted" ? (
-                <>
-                  {" "}
-                  <Right size={24} className="pdfico" />{" "}
-                </>
-              ) : (
-                <Wrong size={24} className="pdfico" />
-              )}
-
-              <div>
-                <img src={file6png} alt="" className="pdfico1" />
-              </div>
-              <h3 className="be">MOA</h3>
-            </div>
-
-            <div className="col doc-col">
-              {docStatus["Certificate of Incorporation"] === "Submitted" ? (
-                <>
-                  {" "}
-                  <Right size={24} className="pdfico" />{" "}
-                </>
-              ) : (
-                <Wrong size={24} className="pdfico" />
-              )}
-              <div>
-                <img src={file6png} alt="" className="pdfico1" />
-              </div>
-              <h3 className="be">Certificate of Incorporation</h3>
-            </div>
-
-            <div className="col doc-col">
-              {docStatus["PAN Card of Applicant Company"] === "Submitted" ? (
-                <>
-                  {" "}
-                  <Right size={24} className="pdfico" />{" "}
-                </>
-              ) : (
-                <Wrong size={24} className="pdfico" />
-              )}
-              <div>
-                <img src={file6png} alt="" className="pdfico1" />
-              </div>
-              <h3 className="be">PAN Card of Applicant Company</h3>
-            </div>
-
-            <div className="col doc-col">
-              {docStatus["Shareholding Pattern"] === "Submitted" ? (
-                <>
-                  {" "}
-                  <Right size={24} className="pdfico" />{" "}
-                </>
-              ) : (
-                <Wrong size={24} className="pdfico" />
-              )}
-              <div>
-                <img src={file6png} alt="" className="pdfico1" />
-              </div>
-              <h3 className="be">Shareholding Pattern</h3>
-            </div>
-
-            <div className="col doc-col">
-              {docStatus["Board Resolution (If required)"] === "Submitted" ? (
-                <>
-                  {" "}
-                  <Right size={24} className="pdfico" />{" "}
-                </>
-              ) : (
-                <Wrong size={24} className="pdfico" />
-              )}
-              <div>
-                <img src={file6png} alt="" className="pdfico1" />
-              </div>
-              <h3 className="be">Board Resolution</h3>
-            </div>
-          </div>
-        </div> */}
 
         {/* POPUP OF LAST BUTTON OF DOWNLOAD REPORT FUNCTION AS WELL  */}
         <Message trigger={buttonPopupreport} setTrigger={setButtonPopupreport}>
