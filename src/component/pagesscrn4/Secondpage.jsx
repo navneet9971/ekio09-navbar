@@ -18,7 +18,6 @@ import BISISIFreashForm from "../Complianceforms/BIS-ISI/BIS-ISIFreashForm";
 import BISISIPerviousData from "../Complianceforms/BIS-ISI/BIS-ISIPerviousData";
 import BisIsiInclusion from "../Complianceforms/BIS-ISI/BIS-ISIInclusionForm";
 
-
 //Send E-mail For Cort To vishal Sir Don't Do it this compliance
 const userEmail = localStorage.getItem("cortEmail");
 
@@ -42,7 +41,7 @@ function sendMail(complianceName) {
       Swal.fire("Error!", "Submission failed.", "error");
     }
   );
-};
+}
 
 //SECOND PAGE MAIN COMPONENT START HERE ----------------------------------------------------
 
@@ -50,8 +49,7 @@ const Secondpage = () => {
   const history = useHistory();
   const [complianceData, setComplianceData] = useState([]);
   const [applicationId, setNewApplicationId] = useState();
-  //Compliance meantion here their had not provide application only send this compliance Mail on vishal sir 
-
+  //Compliance meantion here their had not provide application only send this compliance Mail on vishal sir
 
   localStorage.setItem("applicationId", applicationId);
   // Calls APIs HERE ---------------------------------------------------------
@@ -105,7 +103,9 @@ const Secondpage = () => {
   const [buttonautofillpopuptec, setButtonautofillpopuptec] = useState(false);
   const [buttonautofilledtec, setButtonautofilledtec] = useState(false);
   const [tecModificationpopup, settecModificationpopup] = useState(false);
-  const [tecModificationPagepopup, setTecModificationPagepopup] = useState(false);
+  const [tecModificationPagepopup, setTecModificationPagepopup] = useState(
+    false
+  );
   const [tecautofillform, setTecautofillform] = useState(null);
 
   //TEC PERVIOUS DATA FETCH APIS -----------------
@@ -181,7 +181,7 @@ const Secondpage = () => {
   const handleClick = async (complianceName, complianceId, event) => {
     localStorage.setItem("compliance_id", complianceId);
     localStorage.setItem("compliance_name", complianceName);
-    
+
     try {
       // // Fetch data on button click
       await fetchData();
@@ -237,7 +237,8 @@ const Secondpage = () => {
           //call the function for unregistering
           setBisIsiPopupButton(true);
         }
-      } if (
+      }
+      if (
         complianceName === "CCC" ||
         complianceName === "SLS" ||
         complianceName === "BSTI" ||
@@ -268,7 +269,7 @@ const Secondpage = () => {
       console.error(error);
     }
   };
-  
+
   //BIS DYNAMIC POPUP CHOOSE OPTION YES OR NO  function handle here-------------------------
   function handleautofilled(event) {
     const value = event.target.value;
@@ -284,7 +285,6 @@ const Secondpage = () => {
     }
     setButtonautofilledbis(false);
   }
-
 
   //handleinclusiondropdwn HERE-----------
 
