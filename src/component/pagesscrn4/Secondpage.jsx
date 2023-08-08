@@ -104,9 +104,7 @@ const Secondpage = () => {
   const [buttonautofillpopuptec, setButtonautofillpopuptec] = useState(false);
   const [buttonautofilledtec, setButtonautofilledtec] = useState(false);
   const [tecModificationpopup, settecModificationpopup] = useState(false);
-  const [tecModificationPagepopup, setTecModificationPagepopup] = useState(
-    false
-  );
+  const [tecModificationPagepopup, setTecModificationPagepopup] = useState(false);
   const [tecautofillform, setTecautofillform] = useState(null);
 
   //TEC PERVIOUS DATA FETCH APIS -----------------
