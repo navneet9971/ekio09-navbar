@@ -15,7 +15,6 @@ const Secondpage = () => {
   const [cotpopupbutton, setCotpopupbutton] = useState(false);
 
   // Calls APIs HERE ---------------------------------------------------------
-
   useEffect(() => {
     axiosInstance
       .get(
@@ -50,6 +49,7 @@ const Secondpage = () => {
   // navigate to compliance page based on compliance name
   const handleClick = (complianceName, complianceId) => {
     localStorage.setItem("compliance_id", complianceId);
+
     if (complianceName === "TEC") {
       history.push(`/navbar/TECcompliance`);
     } else if (complianceName === "WPC") {

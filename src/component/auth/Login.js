@@ -30,32 +30,32 @@ function Login() {
     {
       thumb: <img src={img1} alt="" />,
       title: "Know Your Compliance",
-      route: "/navbar/firstcompliance",
+      // route: "/navbar/firstcompliance",
     },
     {
       thumb: <img src={img2} alt="" />,
       title: "Application Progress and Tracking",
-      route: "/navbar/application",
+      // route: "/navbar/application",
     },
     {
       thumb: <img src={img3} alt="" />,
       title: "Analytics",
-      route: "/navbar/analytics",
+      // route: "/navbar/analytics",
     },
     {
       thumb: <img src={img4} alt="" />,
       title: "Lab Testing",
-      route: "/navbar/lab",
+      // route: "/navbar/lab",
     },
     {
       thumb: <img src={img5} alt="" />,
       title: "Advisory Services",
-      route: "/navbar/advisory",
+      // route: "/navbar/advisory",
     },
     {
       thumb: <img src={img6} alt="" />,
       title: "Logistic",
-      route: "/navbar/logistic",
+      // route: "/navbar/logistic",
     },
   ];
 

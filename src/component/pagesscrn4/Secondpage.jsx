@@ -21,6 +21,7 @@ import BisIsiInclusion from "../Complianceforms/BIS-ISI/BIS-ISIInclusionForm";
 //Send E-mail For Cort To vishal Sir Don't Do it this compliance
 const userEmail = localStorage.getItem("cortEmail");
 
+
 function sendMail(complianceName) {
   const templateParams = {
     // Customize these parameters with your email configuration
