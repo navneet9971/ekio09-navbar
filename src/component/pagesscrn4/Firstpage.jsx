@@ -116,8 +116,12 @@ const Firstpage = () => {
   };
 
   const handleGoClick = () => {
-    if (!selectedCategory && !product && !selectedCountry) {
-      alert("Please fill in at least one field!");
+    if (!product) { // Check if product name is empty
+      Swal.fire({
+        icon: "error",
+        title: "Please Enter Product Name",
+        confirmButtonText: "OK",
+      });
       return;
     }
     localStorage.setItem("category", selectedCategory);

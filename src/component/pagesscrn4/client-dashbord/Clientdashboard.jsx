@@ -14,7 +14,7 @@ import MainChatbot from "../../Chatbot/MainChatbot";
 import LabTestBtnDash from "../LabTestDash/LabTestBtnDash";
 
 const ClientDashboard = () => {
-  // const [firstName, setFirstName] = useState("");
+  const [firstName, setFirstName] = useState("");
   // const [lastName, setLastName] = useState("");
   const [labTestPop, setLabTestPop] = useState (false);
 
@@ -34,7 +34,7 @@ const ClientDashboard = () => {
         },
       })
       .then((res) => {
-        // setFirstName(res.data.first_name);
+        setFirstName(res.data.first_name);
         // setLastName(res.data.last_name);
         // Send the firstTime value in the PATCH request
         localStorage.setItem("cortEmail", res.data.email)  //USe for CortButton Page
@@ -83,17 +83,19 @@ const ClientDashboard = () => {
           <Mapbg className="name-bg" />
         </div>
         {/* <div className="upper-name">
-          Welcome, {firstName} {lastName}
+        
         </div> */}
         <div className="bg-clientdash">
-          <div className="dash-titlebg">Your Compliance Dashboard</div>
+          <div className="dash-titlebg">
+          {firstName.charAt(0).toUpperCase() + firstName.slice(1)}'s Compliance Dashboard
+          </div>
 
           <Row gutter={[0, 16]}>
   {WELCOME_OPTIONS.map((item, index) => (
     <Col xs={24} sm={15} md={6} key={index}>
       <Link to={item.route} className="option-box" onClick={handleLabTest}>
         {item.thumb}
-        <h4 style={{ color: "black", fontWeight: "100" }}>{item.title}</h4>
+        <h4 style={{ color: "black", fontWeight: "600" }}>{item.title}</h4>
       </Link>
     </Col>
   ))}
