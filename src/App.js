@@ -63,7 +63,7 @@ import Dashboard from "./component/Dashboard/Dashboard";
 import TECtableModification from "./component/Complianceforms/TEC/TECtableModificationpage";
 import ProfilePage from "./component/Profile Dashboard/ProfilePage";
 import LabTestTableData from "./component/pagesscrn4/LabTestDash/LabTestTable/LabTestTableData";
-
+import LabTestTableDataBIS from "./component/pagesscrn4/LabTestDash/LabTestTable/LabTestTableBis/LabTestTableBis";
 
 const App = () => {
   const router = (
@@ -204,6 +204,10 @@ const App = () => {
 
             <Route path="/navbar/labtest">
               <LabTestTableData/>
+            </Route>
+
+            <Route path="/navbar/labtestbis">
+              <LabTestTableDataBIS/>
             </Route>
 
             <Route path="/navbar/download">

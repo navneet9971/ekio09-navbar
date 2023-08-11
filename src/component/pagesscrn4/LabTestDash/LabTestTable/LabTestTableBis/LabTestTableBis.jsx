@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2"; // Import SweetAlert2 library
 
-function LabTestTableData() {
+function LabTestTableDataBIS() {
   const [filterValue, setFilterValue] = useState("All"); // State to store the selected filter value
 
   // Sample data for the table (you can replace this with your actual data)
   const tableData = [
-    { id: 1, RequestQuote: "Request Quote", compliance: "TEC", budget: "$1000", testingConsultant: "Consultant -Navneet Kumar" },
-    { id: 2, RequestQuote: "Request Quote", compliance: "TEC", budget: "$800", testingConsultant: "Consultant - Kritgya Kumar" },
-    { id: 3, RequestQuote: "Request Quote", compliance: "TEC", budget: "$1200", testingConsultant: "Mansi Testing Lab" },
+    { id: 1, RequestQuote: "Request Quote", compliance: "BIS", budget: "$1000", testingConsultant: "Consultant -Navneet Kumar" },
+    { id: 2, RequestQuote: "Request Quote", compliance: "BIS", budget: "$800", testingConsultant: "Consultant - Kritgya Kumar" },
+    { id: 3, RequestQuote: "Request Quote", compliance: "BIS", budget: "$1200", testingConsultant: "Mansi Testing Lab" },
     // Add more data as needed
   ];
 
@@ -85,4 +85,4 @@ function LabTestTableData() {
   );
 }
 
-export default LabTestTableData;
+export default LabTestTableDataBIS;

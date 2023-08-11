@@ -5,31 +5,40 @@ import { useHistory } from "react-router-dom";
 
 function LabTestBtnDash() {
     const history = useHistory ();
-  const [labTestData, setLabTestData] = useState({
-    Product_name: "",
-    Compliance: "",
-    Budget: "",
-    Time: "",
-    Testing: "",
-  });
-
-  const handleLabTestSumbit = () => {
-    history.push("/navbar/labtest")
-  };
-
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setLabTestData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
-  };
+    const [labTestData, setLabTestData] = useState({
+      Product_name: "",
+      Compliance: "",
+      Budget: "",
+      Time: "",
+      Testing: "",
+    });
+  
+    const handleLabTestSubmit = (event) => {
+      event.preventDefault(); // Prevent default form submission behavior
+    
+      const productName = labTestData.Product_name.toLowerCase(); // Convert to lowercase for case-insensitive comparison
+    
+      if (productName === "router" || productName === "iot gateway") {
+        history.push("/navbar/labtest");
+      } else if (productName === "footwear") {
+        history.push("/navbar/labtestbis");
+      }
+    };
+    
+  
+    const handleInputChange = (event) => {
+      const { name, value } = event.target;
+      setLabTestData((prevFormData) => ({
+        ...prevFormData,
+        [name]: value,
+      }));
+    };
 
   return (
     <div>
-      <h2 style={{ fontSize: "20px" }}>Lab Test</h2>
+      <h2 style={{ fontSize: "20px"}}>Final Partner Place</h2>
 
-      <form onSubmit={handleLabTestSumbit}>
+      <form onSubmit={handleLabTestSubmit}>
         <Row gutter={[24, 0]}>
           <Col xs={24} md={12}>
             <div className="column">
