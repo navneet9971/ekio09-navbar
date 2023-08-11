@@ -36,7 +36,7 @@ function LabTestBtnDash() {
 
   return (
     <div>
-      <h2 style={{ fontSize: "20px"}}>Final Partner Place</h2>
+      <h2 style={{ fontSize: "20px"}}>Find your partner</h2>
 
       <form onSubmit={handleLabTestSubmit}>
         <Row gutter={[24, 0]}>
