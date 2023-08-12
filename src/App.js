@@ -38,6 +38,10 @@ import BisIsiOnGoing from "./component/Complianceforms/BIS-ISI/BIS-ISITrackPages
 import BisIsiInclusion from "./component/Complianceforms/BIS-ISI/BIS-ISITrackPages/BIS-IsiInclusion";
 import BisIsiSimplfiyOnGoing from "./component/Complianceforms/BIS-ISI/BIS-ISISimplifyTrack/BIS-ISISimplifyOngoing";
 import BisIsiSimplfiyCompleted from "./component/Complianceforms/BIS-ISI/BIS-ISISimplifyTrack/BIS-ISISimplifyCompleted";
+
+import BEECompleted from "./component/Complianceforms/BEE/BEEtrackPages/BEECompleted";
+import BEEInclusion from "./component/Complianceforms/BEE/BEEtrackPages/BEEInclusion";
+import BEEonGoing from "./component/Complianceforms/BEE/BEEtrackPages/BeeOongoing";
 // -------------END Compliance Import ------------
 
 import Bookmarks from "./component/pages/account-pages/Bookmarks";
@@ -216,6 +220,19 @@ const App = () => {
 
             <Route path="/navbar/view">
               <View />
+            </Route>
+
+
+            <Route path="/navbar/Beeongoing/:id">
+              <BEEonGoing />
+            </Route>
+
+            <Route path="/navbar/Beecompleted/:id"> 
+              <BEECompleted /> 
+            </Route>
+
+            <Route path="/navbar/BeeInclusion/:id"> 
+              <BEEInclusion /> 
             </Route>
             {/* COMPLIANCE REVIEW PAGE CHANGE INTO SEPRATE PAGES BISTABLE, TECTabel, WPCTable  */}
 

@@ -17,10 +17,12 @@ import WPCPerviousData from "../Complianceforms/WPC/WPCPerviousDataform";
 import BISISIFreashForm from "../Complianceforms/BIS-ISI/BIS-ISIFreashForm";
 import BISISIPerviousData from "../Complianceforms/BIS-ISI/BIS-ISIPerviousData";
 import BisIsiInclusion from "../Complianceforms/BIS-ISI/BIS-ISIInclusionForm";
+import BEEFreashForm from "../Complianceforms/BEE/BEEfreashForm";
+import BeeInclusionForm from "../Complianceforms/BEE/BEEInclusion";
+import BEEPerviousData from "../Complianceforms/BEE/BEEPerviousData";
 
 //Send E-mail For Cort To vishal Sir Don't Do it this compliance
 const userEmail = localStorage.getItem("cortEmail");
-
 
 function sendMail(complianceName) {
   const templateParams = {
@@ -33,7 +35,6 @@ function sendMail(complianceName) {
   emailjs.init("ZJd0FvtghYYOebHku"); // Replace "YOUR_PUBLIC_KEY" with your actual Public Key
 
   emailjs.send("service_p4swe5p", "template_4qkwrwj", templateParams).then(
-   
     (response) => {
       console.log("Email sent successfully!", response);
       Swal.fire("Success!", "Submission was successful.", "success");
@@ -44,11 +45,6 @@ function sendMail(complianceName) {
     }
   );
 }
-
-//start here```
-//LOGIN _StartUp
-//Dropdown
-
 
 //SECOND PAGE MAIN COMPONENT START HERE ----------------------------------------------------
 
@@ -110,7 +106,9 @@ const Secondpage = () => {
   const [buttonautofillpopuptec, setButtonautofillpopuptec] = useState(false);
   const [buttonautofilledtec, setButtonautofilledtec] = useState(false);
   const [tecModificationpopup, settecModificationpopup] = useState(false);
-  const [tecModificationPagepopup, setTecModificationPagepopup] = useState(false);
+  const [tecModificationPagepopup, setTecModificationPagepopup] = useState(
+    false
+  );
   const [tecautofillform, setTecautofillform] = useState(null);
 
   //TEC PERVIOUS DATA FETCH APIS -----------------
@@ -242,6 +240,16 @@ const Secondpage = () => {
           //call the function for unregistering
           setBisIsiPopupButton(true);
         }
+      }else if (complianceName === "BEE") {
+        // Fetch BEE DATA
+        await fetchBEEData();
+        if (autofill === "Yes") {
+          //call the function for registering
+          setButtonBeeInclusionPopup(true);
+        } else if (autofill === "No") {
+          //call the function for unregistering
+          setButtonBeeInclusionPopup(true);
+        }
       }
       if (
         complianceName === "CCC" ||
@@ -259,7 +267,8 @@ const Secondpage = () => {
         complianceName === "G Mark" ||
         complianceName === "ESMA" ||
         complianceName === "UL" ||
-        complianceName === "FCC"
+        complianceName === "FCC" ||
+        complianceName === "FMCS"
       ) {
         if (autofillform === "Yes") {
           // Call the function for registering
@@ -369,7 +378,7 @@ const Secondpage = () => {
   const [bisIsiPerviousdataPoPup, setBisIsiPerviousdataPoPup] = useState("");
   const [bisIsiInclusionFormPopup, setBisIsiInclusionFormPopup] = useState("");
 
-  //WPC PERVIOUS DATA FETCH APIS HERE--------------
+  //BISISI PERVIOUS DATA FETCH APIS HERE--------------
   const fetchBisISIData = async () => {
     try {
       const response = await axiosInstance.get(
@@ -430,6 +439,67 @@ const Secondpage = () => {
     setWpcPopupButton(false);
     setBisIsiPerviousdataPoPup(false);
   };
+
+
+  //BEE All ComPONENt AND FUNCTION HERE -----------------
+  const [beepopupFreshForm, setBeepopupFreshForm] = useState("");
+  const [buttonBeeInclusionPopup, setButtonBeeInclusionPopup] = useState("");
+  const [beeInclusionFormPopup, setBeeInclusionFormPopup] = useState(""); 
+  const [buttonautofilledbee, setButtonautofilledbee] = useState("");
+  const [beePerviousdataPoPup, setBeePerviousdataPoPup] = useState("");
+
+  const fetchBEEData = async () => {
+    try {
+      const response = await axiosInstance.get(
+        `application/inclusive/?compliance=${localStorage.getItem(
+          "compliance_name"
+        )}`
+      );
+      const bisisiData = response.data["fields"];
+      console.log(bisisiData);
+      localStorage.setItem("beedata", JSON.stringify(bisisiData));
+      // setBisformData({ ...bisformData, ...bisdata });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
+  //BEE INCLUSION FORM FUNCTOON HERE
+
+  const handleBEEInclusionOptionChange = (event) => {
+    const value = event.target.value;
+
+    // Perform any necessary actions based on the selected option immediately
+    if (value === "beeinclusion") {
+      setBeeInclusionFormPopup(true);
+    } else {
+      if (autofillform === "Yes" && value === "beenewform") {
+        setButtonautofilledbee(true); // Navigate to the new application page
+      } else {
+        setBeepopupFreshForm(true);
+      }
+    }
+    setButtonBisInclusionPopup(false);
+  };
+
+
+    //BIS DYNAMIC POPUP CHOOSE OPTION YES OR NO  function handle here-------------------------
+    function handleautofilledBee(event) {
+      const value = event.target.value;
+  
+      if (autofillform === "Yes" && value === "YesautofilledBee") {
+        // Call the function for registering
+        setBeePerviousdataPoPup(true);
+        console.log(autofillform);
+      } else if (value === "Noform1Bee") {
+        // Call the function for unregistering
+        // setButtonRegisterbis(true);
+        setBeepopupFreshForm(true);
+      }
+      setButtonautofilledbis(false);
+    }
+
 
   return (
     <div className="table-bgsconpage">
@@ -802,6 +872,97 @@ const Secondpage = () => {
         >
           <BISISIPerviousData />
         </Popup>
+
+
+          {/* --------------BEE Inclusion POPUP CODE IS HERE----------------------------------  */}
+          <Popup
+          trigger={buttonBeeInclusionPopup}
+          setTrigger={setButtonBeeInclusionPopup}
+        >
+          <h3 className="reg-popup-titlte">What do you want to do today?</h3>
+          <select onChange={handleBEEInclusionOptionChange}>
+            <option value="">Choose the Option:-</option>
+            <option value="beeinclusion">
+              Registration of Model
+            </option>
+            <option value="beenewform">Start a new application</option>
+          </select>
+        </Popup>
+
+         {/*---------------- BEE Inclusion Form Data Here------------------------------ */}
+
+         <Popup
+          trigger={beeInclusionFormPopup}
+          setTrigger={setBeeInclusionFormPopup}
+        >
+          <BeeInclusionForm />
+        </Popup>
+
+
+        {/*------------------------ BEE DYNAMIC FORM DATA POPUP CODE HERE------------------------ */}
+        <Popup
+          trigger={buttonautofilledbee}
+          setTrigger={setButtonautofilledbee}
+        >
+          <h3 className="reg-popup-titlte">
+            We have got your company details saved with us. <br /> Do you want
+            to use the saved data and save time?
+          </h3>
+
+          <div className="checkbox-container">
+            <div className="bis-register">
+              <div>
+                <label className="pop-opt">
+                  <input
+                    className="bis-register"
+                    type="checkbox"
+                    value="YesautofilledBee"
+                    //checked={radioValue === 'Option 1'}
+                    onChange={handleautofilledBee}
+                    onClick={() => setButtonautofilledbis(false)}
+                  />
+                  YES
+                </label>
+              </div>
+            </div>
+
+            <div className="bis-register">
+              <div>
+                <label className="pop-opt">
+                  <input
+                    className="bis-register"
+                    type="checkbox"
+                    value="Noform1Bee"
+                    //checked={radioValue === 'Unregister'}
+                    onChange={handleautofilledBee}
+                    // onClick={() => setButtonRegisterbis(false)}
+                  />
+                  NO
+                </label>
+              </div>
+            </div>
+          </div>
+        </Popup>
+
+
+   {/*----------------------- BEE FreashForm Start Here--------------------------------------  */}
+   <Popup
+          trigger={beepopupFreshForm}
+          setTrigger={setBeepopupFreshForm}
+        >
+          <BEEFreashForm  />
+        </Popup>
+
+
+  {/*---------------------- BEE Pervious Data Form Code Here------------------------------------ */}
+  <Popup
+          trigger={beePerviousdataPoPup}
+          setTrigger={setBeePerviousdataPoPup}
+        >
+          <BEEPerviousData />
+        </Popup>
+
+
       </div>
     </div>
   );

@@ -126,7 +126,15 @@ function BISTableReview() {
       } else if (selectedStatus === "inclusion") {
         history.push(`/navbar/BisIsiInclusion/id=${id}`);
       }
-    } else {
+    }  else if (selectedItem.compliance_name === "BEE") {
+      if (selectedStatus === "ongoing") {
+        history.push(`/navbar/BeeOngoing/id=${id}`);
+      } else if (selectedStatus === "completed") {
+        history.push(`/navbar/Beecompleted/id=${id}`);
+      } else if (selectedStatus === "inclusion") {
+        history.push(`/navbar/BeeInclusion/id=${id}`);
+      }
+    }else {
       // Fallback for unknown cases
       console.log("Unknown compliance name or status:", selectedItem.compliance_name, selectedStatus);
     }
