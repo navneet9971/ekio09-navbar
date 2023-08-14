@@ -7,7 +7,7 @@ import jsPDF from "jspdf";
 import "jspdf-autotable";
 import ReactLoading from "react-loading";
 import { FcDocument } from "react-icons/fc";
-import {  FiDownload, FiUpload } from "react-icons/fi";
+import {  FiDownload } from "react-icons/fi";
 // import { ReactComponent as Wrong } from "../../../assets/trckpg-rb/wrong.svg";
 // import { ReactComponent as Right } from "../../../assets/trckpg-rb/right.svg";
 // import file6png from "../../../assets/pdficon/Red02.png";
@@ -16,7 +16,7 @@ import StatusBar from "../../../Statusbar";
 import BISChatbot from "../../../Chatbot/BISChatbot";
 import BEEInclusionSteps from "../BEEInclusionSteps";
 import BEErequsting from "../BEErequsting";
-import BEEUploaddoc from "../BEEUploaddoc";
+// import BEEUploaddoc from "../BEEUploaddoc";
 
 
 function BEEInclusion() {
@@ -25,10 +25,10 @@ function BEEInclusion() {
   const [complianceid, setComplianceid] = useState("");
   const idel = localStorage.getItem("ide");
   const [testingbtnkey, setTestingbtnkey] = useState("");
-  const [buttonPopup, setButtonPopup] = useState(false);
+  // const [buttonPopup, setButtonPopup] = useState(false);
   // const [buttonPopup1, setButtonPopup1] = useState(false);
   const [isLoading, setIsLoading] = useState(false); 
-  const totalResponses = 6;
+  const totalResponses = 4;
   const completedResponses = localStorage.getItem("stepstatus");
   const [docReport, setDocReport] = useState("");
   const [docType, setDocType] = useState("");
@@ -166,39 +166,30 @@ function BEEInclusion() {
       doc.text(`Application Number: ${uniqueid}`, 10, 60);
       doc.text(`Date: ${new Date().toLocaleDateString()}`, 10, 70);
       doc.text("Details of Documents:-", 10, 160);
+      //add despriction
 
       // Define the table columns and rows
       const columns = ["Step Name", "Start Date", "Status"];
       const rows = [
         [
-          "BIS Portal Registration",
+          "Sample Testing",
           beeDocStep["1"] && beeDocStep["1"][2].slice(0, 10),
           beeDocStep["1"] && beeDocStep["1"][0],
         ],
         [
-          "Sample Testing",
+          "Documentation",
           beeDocStep["2"] && beeDocStep["2"][2].slice(0, 10),
           beeDocStep["2"] && beeDocStep["2"][0],
         ],
         [
-          "Documentation",
+          "Filling Application",
           beeDocStep["3"] && beeDocStep["3"][2].slice(0, 10),
           beeDocStep["3"] && beeDocStep["3"][0],
         ],
         [
-          "Filling Application",
+          "Approval",
           beeDocStep["4"] && beeDocStep["4"][2].slice(0, 10),
           beeDocStep["4"] && beeDocStep["4"][0],
-        ],
-        [
-          "Approval",
-          beeDocStep["5"] && beeDocStep["5"][2].slice(0, 10),
-          beeDocStep["5"] && beeDocStep["5"][0],
-        ],
-        [
-          "Issuance of certificate",
-          beeDocStep["6"] && beeDocStep["6"][2].slice(0, 10),
-          beeDocStep["6"] && beeDocStep["6"][0],
         ],
       ];
 
@@ -212,15 +203,12 @@ function BEEInclusion() {
       //SECOND TABLE DATA
       const columns1 = ["Step Name", "Status"];
       const rows1 = [
-        ["Business License", docStatus["Business License"]],
-        ["ISO", docStatus["ISO"]],
-        ["Trademark Certificate", docStatus["Trademark Certificate"]],
-        ["AadharCard", docStatus["AadharCard"]],
-        ["PanCard", docStatus["PanCard"]],
-        ["GST", docStatus["GST"]],
-        ["Employee ID/Visiting Card", docStatus["Employee ID/Visiting Card"]],
-        ["MSME", docStatus["MSME"]],
-        ["Form 3 (AFFIDAVIT)", docStatus["Form 3 (AFFIDAVIT)"]],
+        ["List Of Retailers", docStatus["List Of Retailers"]],
+        ["Upload Company Documents", docStatus["Upload Company Documents"]],
+        ["Trade Mark and Company Registration certificate", docStatus["Trade Mark and Company Registration certificate"]],
+        ["Quality Management System Certificate (ISO 9001)", docStatus["Quality Management System Certificate (ISO 9001)"]],
+        ["Authorized Letter for Signatory", docStatus["Authorized Letter for Signatory"]],
+        ["ID Proof of Authorized Signatory", docStatus["ID Proof of Authorized Signatory"]],
       ];
 
       // Generate the table using jspdf-autotable
@@ -274,9 +262,9 @@ function BEEInclusion() {
         </div>
 
         {/*----------------UPLOAD BUTTON CODE ------------*/}
-        <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+        {/* <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
           <BEEUploaddoc  onClose={handlePopupClose} />
-        </Popup>
+        </Popup> */}
 
         {/*-----------LAB TESTING JSX CODE IS HERE----------*/}
 
@@ -331,10 +319,10 @@ function BEEInclusion() {
           >< FcDocument />
             Request Testing
           </button>
-          <button className="upload-btn" onClick={() => setButtonPopup(true)}>
+          {/* <button className="upload-btn" onClick={() => setButtonPopup(true)}>
           < FiUpload />
             Upload
-          </button>
+          </button> */}
           {/* <button className="download-btn" onClick={() => setButtonPopup1(true)}>
           <FiDownload />
             Download

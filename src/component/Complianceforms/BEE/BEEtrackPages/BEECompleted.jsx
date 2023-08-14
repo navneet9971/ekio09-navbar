@@ -27,11 +27,11 @@ function BEECompleted() {
   const [complianceid, setComplianceid] = useState("");
   const idel = localStorage.getItem('ide');
   const [isLoading, setIsLoading] = useState(false); 
-  const totalResponses = 6;
+  const totalResponses = 5;
   const completedResponses = localStorage.getItem('stepstatus');
   const [docReport, setDocReport] = useState("");
   const [docType, setDocType] = useState("");
-  const bisDocStep = JSON.parse(localStorage.getItem("bisdocStep"));
+  const beeDocStep = JSON.parse(localStorage.getItem("beedocStep"));
  
   
    //POPUP BUTTONS OF STEPS 
@@ -59,11 +59,11 @@ function BEECompleted() {
       axiosInstance.get(`application/compliance/${idel}/`)
       .then(response => {
         const data = response.data.data;
-        const compliance_id = data["compliance"];
-        const application_id = data["application"];
-        const request_for = data["request_for"];
-        console.log(compliance_id)
-        console.log(application_id)
+        const beecompliance_id = data["compliance"];
+        const beeapplication_id = data["application"];
+        const beerequest_for = data["request_for"];
+        console.log(beecompliance_id)
+        console.log(beeapplication_id)
   
         console.log(data)
         // store local storage then show the values 
@@ -80,7 +80,7 @@ function BEECompleted() {
 // setNotifiData(notificationData)
 
         //status APIs used 
-        axiosInstance.get(`application/status/?compliance=${compliance_id}&application=${application_id}&request_for=${request_for}`)
+        axiosInstance.get(`application/status/?compliance=${beecompliance_id}&application=${beeapplication_id}&request_for=${beerequest_for}`)
           .then(response => {
             const stepstatus = response.data.data;
             const newDocStep = {}; // create a new object that copies the existing state
@@ -99,7 +99,7 @@ function BEECompleted() {
             console.log(error);
           });
   
-        axiosInstance.get(`application/document/?compliance=${compliance_id}&application=${application_id}`)
+        axiosInstance.get(`application/document/?compliance=${beecompliance_id}&application=${beeapplication_id}`)
           .then(response => {
             const documentData = response.data.data;
             //console.log(response.data.key)
@@ -156,66 +156,80 @@ setDocType(docCertificate);
       setIsLoading(true); // Start loading animation
       // create a new instance of jsPDF
       const doc = new jsPDF();
-
-//load the image 
-const logoImg = new Image();
-logoImg.src = pdflogo;
-   
-//wait for the image to load 
-logoImg.onload = function () {
-         // Add the content to the PDF
-    doc.addImage(logoImg, 'PNG', 10, 4, 50, 30);
-  doc.text(`Compliance Type: ${complianceid}`, 10, 50);
-  doc.text(`Application Number: ${uniqueid}`, 10, 60);
-  doc.text(`Date: ${new Date().toLocaleDateString()}`, 10, 70);
-  doc.text('Details of Documents:-', 10, 160);
   
-
-   // Define the table columns and rows
-   const columns = ['Step Name', 'Start Date', 'Status'];
-   const rows = [['BIS Portal Registration', bisDocStep["1"] && bisDocStep["1"][2].slice(0,10), bisDocStep["1"] && bisDocStep["1"][0]],
-                ['Sample Testing', bisDocStep["2"] && bisDocStep["2"][2].slice(0,10), bisDocStep["2"] && bisDocStep["2"][0] ],
-                ['Documentation', bisDocStep["3"] && bisDocStep["3"][2].slice(0,10), bisDocStep["3"] && bisDocStep["3"][0]  ],
-                ['Filling Application', bisDocStep["4"] && bisDocStep["4"][2].slice(0,10), bisDocStep["4"] && bisDocStep["4"][0] ],
-                ['Approval', bisDocStep["5"] && bisDocStep["5"][2].slice(0,10), bisDocStep["5"] && bisDocStep["5"][0] ],
-                ['Issuance of certificate', bisDocStep["6"] && bisDocStep["6"][2].slice(0,10), bisDocStep["6"] && bisDocStep["6"][0]], 
-  ];
-
- 
-   // Generate the table using jspdf-autotable
-   doc.autoTable({
-     head: [columns],
-     body: rows,
-     startY: 75,
-   });
-
-
-   //SECOND TABLE DATA 
-   const columns1 =['Step Name', 'Status']
-   const rows1 = [
-    ["Business License", docStatus["Business License"]],
-    ["ISO", docStatus["ISO"]],
-    ["Trademark Certificate", docStatus["Trademark Certificate"]],
-    ["AadharCard", docStatus["AadharCard"]],
-    ["PanCard", docStatus["PanCard"]],
-    ["GST", docStatus["GST"]],
-    ["Employee ID/Visiting Card", docStatus["Employee ID/Visiting Card"]],
-    ["MSME", docStatus["MSME"]],
-    ["Form 3 (AFFIDAVIT)", docStatus["Form 3 (AFFIDAVIT)"]],
-  ];
-
+      //load the image
+      const logoImg = new Image();
+      logoImg.src = pdflogo;
   
-   // Generate the table using jspdf-autotable
-   doc.autoTable({
-    head: [columns1],
-    body: rows1,
-    startY: 170,
-  });
-  // Save the PDF
-  doc.save('Progress Tracker.pdf');
-  setIsLoading(false); // Stop loading animation
-}
-    }
+      //wait for the image to load
+      logoImg.onload = function() {
+        // Add the content to the PDF
+        doc.addImage(logoImg, "PNG", 10, 4, 50, 30);
+        doc.text(`Compliance Type: ${complianceid}`, 10, 50);
+        doc.text(`Application Number: ${uniqueid}`, 10, 60);
+        doc.text(`Date: ${new Date().toLocaleDateString()}`, 10, 70);
+        doc.text("Details of Documents:-", 10, 160);
+        //add despriction
+  
+        // Define the table columns and rows
+        const columns = ["Step Name", "Start Date", "Status"];
+        const rows = [
+          [
+            "Portal Registration",
+            beeDocStep["1"] && beeDocStep["1"][2].slice(0, 10),
+            beeDocStep["1"] && beeDocStep["1"][0],
+          ],
+          [
+            "Sample Testing",
+            beeDocStep["2"] && beeDocStep["2"][2].slice(0, 10),
+            beeDocStep["2"] && beeDocStep["2"][0],
+          ],
+          [
+            "Documentation",
+            beeDocStep["3"] && beeDocStep["3"][2].slice(0, 10),
+            beeDocStep["3"] && beeDocStep["3"][0],
+          ],
+          [
+            "Filling Application",
+            beeDocStep["4"] && beeDocStep["4"][2].slice(0, 10),
+            beeDocStep["4"] && beeDocStep["4"][0],
+          ],
+          [
+            "Approval",
+            beeDocStep["5"] && beeDocStep["5"][2].slice(0, 10),
+            beeDocStep["5"] && beeDocStep["5"][0],
+          ],
+        ];
+  
+        // Generate the table using jspdf-autotable
+        doc.autoTable({
+          head: [columns],
+          body: rows,
+          startY: 75,
+        });
+  
+        //SECOND TABLE DATA
+        const columns1 = ["Step Name", "Status"];
+        const rows1 = [
+          ["List Of Retailers", docStatus["List Of Retailers"]],
+          ["Upload Company Documents", docStatus["Upload Company Documents"]],
+          ["Trade Mark and Company Registration certificate", docStatus["Trade Mark and Company Registration certificate"]],
+          ["Quality Management System Certificate (ISO 9001)", docStatus["Quality Management System Certificate (ISO 9001)"]],
+          ["Authorized Letter for Signatory", docStatus["Authorized Letter for Signatory"]],
+          ["ID Proof of Authorized Signatory", docStatus["ID Proof of Authorized Signatory"]],
+        ];
+  
+        // Generate the table using jspdf-autotable
+        doc.autoTable({
+          head: [columns1],
+          body: rows1,
+          startY: 170,
+        });
+        // Save the PDF
+        doc.save("Progress Tracker.pdf");
+        setIsLoading(false); // Stop loading animation
+      };
+    };
     
   
 

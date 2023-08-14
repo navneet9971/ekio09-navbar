@@ -29,7 +29,7 @@ function BisIsiCompleted () {
     const completedResponses = localStorage.getItem("stepstatus");
     const [docReport, setDocReport] = useState("");
     const [docType, setDocType] = useState("");
-    const bisDocStep = JSON.parse(localStorage.getItem("bisdocStep"));
+    const bisIsiDocStep = JSON.parse(localStorage.getItem("bisIsidocStep"));
   
     //POPUP BUTTONS OF STEPS
     const [buttonPopupreport, setButtonPopupreport] = useState(false);
@@ -177,34 +177,34 @@ function BisIsiCompleted () {
       const columns = ["Step Name", "Start Date", "Status"];
       const rows = [
         [
-          "BIS Portal Registration",
-          bisDocStep["1"] && bisDocStep["1"][2].slice(0, 10),
-          bisDocStep["1"] && bisDocStep["1"][0],
+          "Documention",
+          bisIsiDocStep["1"] && bisIsiDocStep["1"][2].slice(0, 10),
+          bisIsiDocStep["1"] && bisIsiDocStep["1"][0],
         ],
         [
-          "Sample Testing",
-          bisDocStep["2"] && bisDocStep["2"][2].slice(0, 10),
-          bisDocStep["2"] && bisDocStep["2"][0],
+          "In-house Lab Setup",
+          bisIsiDocStep["2"] && bisIsiDocStep["2"][2].slice(0, 10),
+          bisIsiDocStep["2"] && bisIsiDocStep["2"][0],
         ],
         [
-          "Documentation",
-          bisDocStep["3"] && bisDocStep["3"][2].slice(0, 10),
-          bisDocStep["3"] && bisDocStep["3"][0],
+        "Submission of application",
+          bisIsiDocStep["3"] && bisIsiDocStep["3"][2].slice(0, 10),
+          bisIsiDocStep["3"] && bisIsiDocStep["3"][0],
         ],
         [
-          "Filling Application",
-          bisDocStep["4"] && bisDocStep["4"][2].slice(0, 10),
-          bisDocStep["4"] && bisDocStep["4"][0],
+          "Audit by BIS",
+          bisIsiDocStep["4"] && bisIsiDocStep["4"][2].slice(0, 10),
+          bisIsiDocStep["4"] && bisIsiDocStep["4"][0],
         ],
         [
-          "Approval",
-          bisDocStep["5"] && bisDocStep["5"][2].slice(0, 10),
-          bisDocStep["5"] && bisDocStep["5"][0],
+          "Testing for Sample",
+          bisIsiDocStep["5"] && bisIsiDocStep["5"][2].slice(0, 10),
+          bisIsiDocStep["5"] && bisIsiDocStep["5"][0],
         ],
         [
-          "Issuance of certificate",
-          bisDocStep["6"] && bisDocStep["6"][2].slice(0, 10),
-          bisDocStep["6"] && bisDocStep["6"][0],
+          "License granted",
+          bisIsiDocStep["6"] && bisIsiDocStep["6"][2].slice(0, 10),
+          bisIsiDocStep["6"] && bisIsiDocStep["6"][0],
         ],
       ];
 
@@ -218,15 +218,21 @@ function BisIsiCompleted () {
       //SECOND TABLE DATA
       const columns1 = ["Step Name", "Status"];
       const rows1 = [
-        ["Business License", docStatus["Business License"]],
-        ["ISO", docStatus["ISO"]],
-        ["Trademark Certificate", docStatus["Trademark Certificate"]],
-        ["AadharCard", docStatus["AadharCard"]],
-        ["PanCard", docStatus["PanCard"]],
+        ["Premises document", docStatus["Premises document"]],
         ["GST", docStatus["GST"]],
-        ["Employee ID/Visiting Card", docStatus["Employee ID/Visiting Card"]],
-        ["MSME", docStatus["MSME"]],
-        ["Form 3 (AFFIDAVIT)", docStatus["Form 3 (AFFIDAVIT)"]],
+        ["Trademark certificate (if registered)", docStatus["Trademark certificate (if registered)"]],
+        ["Partnership Deed MOA Copy", docStatus["Partnership Deed MOA Copy"]],
+        ["Director Aadhaar", docStatus["Director Aadhaar"]],
+        ["Factory Electricity Bill", docStatus["Factory Electricity Bill"]],
+        ["Test certificate copy of each raw material", docStatus["Test certificate copy of each raw material"]],
+        ["Process Flow Chart", docStatus["Process Flow Chart"]],
+        ["Production Process Description", docStatus["Production Process Description"]],
+        ["Location Plan", docStatus["Location Plan"]],
+        ["QCI Docs", docStatus["QCI Docs"]],
+        ["Calibration certificates copy", docStatus["Calibration certificates copy"]],
+        ["Manufacturing Machinery", docStatus["Manufacturing Machinery"]],
+        ["Raw Material", docStatus["Raw Material"]],
+        ["Testing Equipment", docStatus["Testing Equipment"]],
       ];
 
       // Generate the table using jspdf-autotable

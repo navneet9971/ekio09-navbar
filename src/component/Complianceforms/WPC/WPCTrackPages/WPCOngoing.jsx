@@ -30,7 +30,7 @@ function WPCOngoing() {
   const totalResponses = 5;
   const idel = localStorage.getItem("ide");
   const completedResponses = localStorage.getItem("stepstatus");
-  const storedDocStep = JSON.parse(localStorage.getItem("docStep"));
+  const wpcdocStep = JSON.parse(localStorage.getItem("wpcdocStep"));
 
   //POPUP BUTTONS OF STEPS
   const [buttonPopupreport, setButtonPopupreport] = useState(false);
@@ -125,6 +125,7 @@ function WPCOngoing() {
 
   //Download Button Code handleOptionClick
   const handleDownloadreport = () => {
+
     setIsLoading(true); // Start loading animation
     // create a new instance of jsPDF
     const doc = new jsPDF();
@@ -147,43 +148,28 @@ function WPCOngoing() {
       const rows = [
         [
           "Portal Registration",
-          storedDocStep["1"] && storedDocStep["1"][2].slice(0, 10),
-          storedDocStep["1"] && storedDocStep["1"][0],
+          wpcdocStep["1"] && wpcdocStep["1"][2].slice(0, 10),
+          wpcdocStep["1"] && wpcdocStep["1"][0],
         ],
         [
-          "Initiation of Testing",
-          storedDocStep["2"] && storedDocStep["2"][2].slice(0, 10),
-          storedDocStep["2"] && storedDocStep["2"][0],
+          "Sample Testing",
+          wpcdocStep["2"] && wpcdocStep["2"][2].slice(0, 10),
+          wpcdocStep["2"] && wpcdocStep["2"][0],
         ],
         [
-          "AIR registration",
-          storedDocStep["3"] && storedDocStep["3"][2].slice(0, 10),
-          storedDocStep["3"] && storedDocStep["3"][0],
+          "Documents Preparation",
+          wpcdocStep["3"] && wpcdocStep["3"][2].slice(0, 10),
+          wpcdocStep["3"] && wpcdocStep["3"][0],
         ],
         [
-          "Foreign OEM Registration",
-          storedDocStep["4"] && storedDocStep["4"][2].slice(0, 10),
-          storedDocStep["4"] && storedDocStep["4"][0],
+          "Application Submission",
+          wpcdocStep["4"] && wpcdocStep["4"][2].slice(0, 10),
+          wpcdocStep["4"] && wpcdocStep["4"][0],
         ],
         [
-          "BOM Submission ",
-          storedDocStep["5"] && storedDocStep["5"][2].slice(0, 10),
-          storedDocStep["5"] && storedDocStep["5"][0],
-        ],
-        [
-          "Application Payment",
-          storedDocStep["6"] && storedDocStep["6"][2].slice(0, 10),
-          storedDocStep["6"] && storedDocStep["6"][0],
-        ],
-        [
-          "Final Submission",
-          storedDocStep["7"] && storedDocStep["7"][2].slice(0, 10),
-          storedDocStep["7"] && storedDocStep["7"][0],
-        ],
-        [
-          "Issuance of certification",
-          storedDocStep["8"] && storedDocStep["8"][2].slice(0, 10),
-          storedDocStep["8"] && storedDocStep["8"][0],
+          "Issuance of Certificate",
+          wpcdocStep["5"] && wpcdocStep["5"][2].slice(0, 10),
+          wpcdocStep["5"] && wpcdocStep["5"][0],
         ],
       ];
 
@@ -198,26 +184,11 @@ function WPCOngoing() {
       const columns1 = ["Step Name", "Status"];
       const rows1 = [
         [
-          "Authorized Signatory Letter",
-          docStatus["Authorized Signatory Letter"],
+          "Authorized  Letter",
+          docStatus["Authorized Letter"],
         ],
-        ["MOU", docStatus["MOU"]],
-        ["AOA", docStatus["AOA"]],
-        ["OEM authorized to AIR", docStatus["OEM authorized to AIR"]],
-        ["MOA", docStatus["MOA"]],
-        [
-          "Certificate of Incorporation",
-          docStatus["Certificate of Incorporation"],
-        ],
-        [
-          "PAN Card of Applicant Company",
-          docStatus["PAN Card of Applicant Company"],
-        ],
-        ["Shareholding Pattern", docStatus["Shareholding Pattern"]],
-        [
-          "Board Resolution (If required)",
-          docStatus["Board Resolution (If required)"],
-        ],
+        ["Test Report", docStatus["Test Report"]],
+        ["Technical Specification", docStatus["Technical Specification"]],
       ];
 
       // Generate the table using jspdf-autotable

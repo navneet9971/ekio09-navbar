@@ -171,34 +171,29 @@ function BISInclusion() {
       const columns = ["Step Name", "Start Date", "Status"];
       const rows = [
         [
-          "BIS Portal Registration",
+          "Sample Testing",
           bisDocStep["1"] && bisDocStep["1"][2].slice(0, 10),
           bisDocStep["1"] && bisDocStep["1"][0],
         ],
         [
-          "Sample Testing",
+          "Documentation",
           bisDocStep["2"] && bisDocStep["2"][2].slice(0, 10),
           bisDocStep["2"] && bisDocStep["2"][0],
         ],
         [
-          "Documentation",
+          "Filling Application",
           bisDocStep["3"] && bisDocStep["3"][2].slice(0, 10),
           bisDocStep["3"] && bisDocStep["3"][0],
         ],
         [
-          "Filling Application",
+          "Approval",
           bisDocStep["4"] && bisDocStep["4"][2].slice(0, 10),
           bisDocStep["4"] && bisDocStep["4"][0],
         ],
         [
-          "Approval",
+          "Issuance of certificate",
           bisDocStep["5"] && bisDocStep["5"][2].slice(0, 10),
           bisDocStep["5"] && bisDocStep["5"][0],
-        ],
-        [
-          "Issuance of certificate",
-          bisDocStep["6"] && bisDocStep["6"][2].slice(0, 10),
-          bisDocStep["6"] && bisDocStep["6"][0],
         ],
       ];
 

@@ -29,7 +29,7 @@ function BisIsiSimplfiyOnGoing () {
     const completedResponses = localStorage.getItem("stepstatus");
     const [docReport, setDocReport] = useState("");
     const [docType, setDocType] = useState("");
-    const bisDocStep = JSON.parse(localStorage.getItem("bisdocStep"));
+    const bisIsiSimplifydocStep = JSON.parse(localStorage.getItem("bisIsiSimplifydocStep"));
   
     //POPUP BUTTONS OF STEPS
     const [buttonPopupreport, setButtonPopupreport] = useState(false);
@@ -177,33 +177,33 @@ function BisIsiSimplfiyOnGoing () {
       const rows = [
         [
           "BIS Portal Registration",
-          bisDocStep["1"] && bisDocStep["1"][2].slice(0, 10),
-          bisDocStep["1"] && bisDocStep["1"][0],
+          bisIsiSimplifydocStep["1"] && bisIsiSimplifydocStep["1"][2].slice(0, 10),
+          bisIsiSimplifydocStep["1"] && bisIsiSimplifydocStep["1"][0],
         ],
         [
           "Sample Testing",
-          bisDocStep["2"] && bisDocStep["2"][2].slice(0, 10),
-          bisDocStep["2"] && bisDocStep["2"][0],
+          bisIsiSimplifydocStep["2"] && bisIsiSimplifydocStep["2"][2].slice(0, 10),
+          bisIsiSimplifydocStep["2"] && bisIsiSimplifydocStep["2"][0],
         ],
         [
           "Documentation",
-          bisDocStep["3"] && bisDocStep["3"][2].slice(0, 10),
-          bisDocStep["3"] && bisDocStep["3"][0],
+          bisIsiSimplifydocStep["3"] && bisIsiSimplifydocStep["3"][2].slice(0, 10),
+          bisIsiSimplifydocStep["3"] && bisIsiSimplifydocStep["3"][0],
         ],
         [
           "Filling Application",
-          bisDocStep["4"] && bisDocStep["4"][2].slice(0, 10),
-          bisDocStep["4"] && bisDocStep["4"][0],
+          bisIsiSimplifydocStep["4"] && bisIsiSimplifydocStep["4"][2].slice(0, 10),
+          bisIsiSimplifydocStep["4"] && bisIsiSimplifydocStep["4"][0],
         ],
         [
           "Approval",
-          bisDocStep["5"] && bisDocStep["5"][2].slice(0, 10),
-          bisDocStep["5"] && bisDocStep["5"][0],
+          bisIsiSimplifydocStep["5"] && bisIsiSimplifydocStep["5"][2].slice(0, 10),
+          bisIsiSimplifydocStep["5"] && bisIsiSimplifydocStep["5"][0],
         ],
         [
           "Issuance of certificate",
-          bisDocStep["6"] && bisDocStep["6"][2].slice(0, 10),
-          bisDocStep["6"] && bisDocStep["6"][0],
+          bisIsiSimplifydocStep["6"] && bisIsiSimplifydocStep["6"][2].slice(0, 10),
+          bisIsiSimplifydocStep["6"] && bisIsiSimplifydocStep["6"][0],
         ],
       ];
 

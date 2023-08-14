@@ -154,91 +154,98 @@ function BisIsiOnGoing () {
 
         //Download Button Code handleOptionClick
 
-  const handleDownloadreport = () => {
-    setIsLoading(true); // Start loading animation
-    // create a new instance of jsPDF
-    const doc = new jsPDF();
+        const handleDownloadreport = () => {
 
-    //load the image
-    const logoImg = new Image();
-    logoImg.src = pdflogo;
-
-    //wait for the image to load
-    logoImg.onload = function() {
-      // Add the content to the PDF
-      doc.addImage(logoImg, "PNG", 10, 4, 50, 30);
-      doc.text(`Compliance Type: ${complianceid}`, 10, 50);
-      doc.text(`Application Number: ${uniqueid}`, 10, 60);
-      doc.text(`Date: ${new Date().toLocaleDateString()}`, 10, 70);
-      doc.text("Details of Documents:-", 10, 160);
-
-      // Define the table columns and rows
-      const columns = ["Step Name", "Start Date", "Status"];
-      const rows = [
-        [
-          "BIS Portal Registration",
-          bisDocStep["1"] && bisDocStep["1"][2].slice(0, 10),
-          bisDocStep["1"] && bisDocStep["1"][0],
-        ],
-        [
-          "Sample Testing",
-          bisDocStep["2"] && bisDocStep["2"][2].slice(0, 10),
-          bisDocStep["2"] && bisDocStep["2"][0],
-        ],
-        [
-          "Documentation",
-          bisDocStep["3"] && bisDocStep["3"][2].slice(0, 10),
-          bisDocStep["3"] && bisDocStep["3"][0],
-        ],
-        [
-          "Filling Application",
-          bisDocStep["4"] && bisDocStep["4"][2].slice(0, 10),
-          bisDocStep["4"] && bisDocStep["4"][0],
-        ],
-        [
-          "Approval",
-          bisDocStep["5"] && bisDocStep["5"][2].slice(0, 10),
-          bisDocStep["5"] && bisDocStep["5"][0],
-        ],
-        [
-          "Issuance of certificate",
-          bisDocStep["6"] && bisDocStep["6"][2].slice(0, 10),
-          bisDocStep["6"] && bisDocStep["6"][0],
-        ],
-      ];
-
-      // Generate the table using jspdf-autotable
-      doc.autoTable({
-        head: [columns],
-        body: rows,
-        startY: 75,
-      });
-
-      //SECOND TABLE DATA
-      const columns1 = ["Step Name", "Status"];
-      const rows1 = [
-        ["Business License", docStatus["Business License"]],
-        ["ISO", docStatus["ISO"]],
-        ["Trademark Certificate", docStatus["Trademark Certificate"]],
-        ["AadharCard", docStatus["AadharCard"]],
-        ["PanCard", docStatus["PanCard"]],
-        ["GST", docStatus["GST"]],
-        ["Employee ID/Visiting Card", docStatus["Employee ID/Visiting Card"]],
-        ["MSME", docStatus["MSME"]],
-        ["Form 3 (AFFIDAVIT)", docStatus["Form 3 (AFFIDAVIT)"]],
-      ];
-
-      // Generate the table using jspdf-autotable
-      doc.autoTable({
-        head: [columns1],
-        body: rows1,
-        startY: 170,
-      });
-      // Save the PDF
-      doc.save("Progress Tracker.pdf");
-      setIsLoading(false); // Stop loading animation
-    };
-  };
+          setIsLoading(true); // Start loading animation
+          // create a new instance of jsPDF
+          const doc = new jsPDF();
+      
+          //load the image
+          const logoImg = new Image();
+          logoImg.src = pdflogo;
+      
+          //wait for the image to load
+          logoImg.onload = function() {
+            // Add the content to the PDF
+            doc.addImage(logoImg, "PNG", 10, 4, 50, 30);
+            doc.text(`Compliance Type: ${complianceid}`, 10, 50);
+            doc.text(`Application Number: ${uniqueid}`, 10, 60);
+            doc.text(`Date: ${new Date().toLocaleDateString()}`, 10, 70);
+            doc.text("Details of Documents:-", 10, 160);
+      
+            // Define the table columns and rows
+            const columns = ["Step Name", "Start Date", "Status"];
+            const rows = [
+              [
+                "Documention",
+                bisDocStep["1"] && bisDocStep["1"][2].slice(0, 10),
+                bisDocStep["1"] && bisDocStep["1"][0],
+              ],
+              [
+                "In-house Lab Setup",
+                bisDocStep["2"] && bisDocStep["2"][2].slice(0, 10),
+                bisDocStep["2"] && bisDocStep["2"][0],
+              ],
+              [
+              "Submission of application",
+                bisDocStep["3"] && bisDocStep["3"][2].slice(0, 10),
+                bisDocStep["3"] && bisDocStep["3"][0],
+              ],
+              [
+                "Audit by BIS",
+                bisDocStep["4"] && bisDocStep["4"][2].slice(0, 10),
+                bisDocStep["4"] && bisDocStep["4"][0],
+              ],
+              [
+                "Testing for Sample",
+                bisDocStep["5"] && bisDocStep["5"][2].slice(0, 10),
+                bisDocStep["5"] && bisDocStep["5"][0],
+              ],
+              [
+                "License granted",
+                bisDocStep["6"] && bisDocStep["6"][2].slice(0, 10),
+                bisDocStep["6"] && bisDocStep["6"][0],
+              ],
+            ];
+      
+            // Generate the table using jspdf-autotable
+            doc.autoTable({
+              head: [columns],
+              body: rows,
+              startY: 75,
+            });
+      
+            //SECOND TABLE DATA
+            const columns1 = ["Step Name", "Status"];
+            const rows1 = [
+              ["Premises document", docStatus["Premises document"]],
+              ["GST", docStatus["GST"]],
+              ["Trademark certificate (if registered)", docStatus["Trademark certificate (if registered)"]],
+              ["Partnership Deed MOA Copy", docStatus["Partnership Deed MOA Copy"]],
+              ["Director Aadhaar", docStatus["Director Aadhaar"]],
+              ["Factory Electricity Bill", docStatus["Factory Electricity Bill"]],
+              ["Test certificate copy of each raw material", docStatus["Test certificate copy of each raw material"]],
+              ["Process Flow Chart", docStatus["Process Flow Chart"]],
+              ["Production Process Description", docStatus["Production Process Description"]],
+              ["Location Plan", docStatus["Location Plan"]],
+              ["QCI Docs", docStatus["QCI Docs"]],
+              ["Calibration certificates copy", docStatus["Calibration certificates copy"]],
+              ["Manufacturing Machinery", docStatus["Manufacturing Machinery"]],
+              ["Raw Material", docStatus["Raw Material"]],
+              ["Testing Equipment", docStatus["Testing Equipment"]],
+            ];
+      
+            // Generate the table using jspdf-autotable
+            doc.autoTable({
+              head: [columns1],
+              body: rows1,
+              startY: 170,
+            });
+            // Save the PDF
+            doc.save("Progress Tracker.pdf");
+            setIsLoading(false); // Stop loading animation
+          };
+        };
 
 
        //Auto close POPup after click Sumbit

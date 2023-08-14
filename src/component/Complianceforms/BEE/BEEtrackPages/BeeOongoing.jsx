@@ -28,7 +28,7 @@ function BEEonGoing() {
   const [buttonPopup, setButtonPopup] = useState(false);
   // const [buttonPopup1, setButtonPopup1] = useState(false);
   const [isLoading, setIsLoading] = useState(false); 
-  const totalResponses = 6;
+  const totalResponses = 5;
   const completedResponses = localStorage.getItem("stepstatus");
   const [docReport, setDocReport] = useState("");
   const [docType, setDocType] = useState("");
@@ -159,7 +159,7 @@ function BEEonGoing() {
       const columns = ["Step Name", "Start Date", "Status"];
       const rows = [
         [
-          "BIS Portal Registration",
+          "Portal Registration",
           beeDocStep["1"] && beeDocStep["1"][2].slice(0, 10),
           beeDocStep["1"] && beeDocStep["1"][0],
         ],
@@ -183,11 +183,6 @@ function BEEonGoing() {
           beeDocStep["5"] && beeDocStep["5"][2].slice(0, 10),
           beeDocStep["5"] && beeDocStep["5"][0],
         ],
-        [
-          "Issuance of certificate",
-          beeDocStep["6"] && beeDocStep["6"][2].slice(0, 10),
-          beeDocStep["6"] && beeDocStep["6"][0],
-        ],
       ];
 
       // Generate the table using jspdf-autotable
@@ -200,15 +195,12 @@ function BEEonGoing() {
       //SECOND TABLE DATA
       const columns1 = ["Step Name", "Status"];
       const rows1 = [
-        ["Business License", docStatus["Business License"]],
-        ["ISO", docStatus["ISO"]],
-        ["Trademark Certificate", docStatus["Trademark Certificate"]],
-        ["AadharCard", docStatus["AadharCard"]],
-        ["PanCard", docStatus["PanCard"]],
-        ["GST", docStatus["GST"]],
-        ["Employee ID/Visiting Card", docStatus["Employee ID/Visiting Card"]],
-        ["MSME", docStatus["MSME"]],
-        ["Form 3 (AFFIDAVIT)", docStatus["Form 3 (AFFIDAVIT)"]],
+        ["List Of Retailers", docStatus["List Of Retailers"]],
+        ["Upload Company Documents", docStatus["Upload Company Documents"]],
+        ["Trade Mark and Company Registration certificate", docStatus["Trade Mark and Company Registration certificate"]],
+        ["Quality Management System Certificate (ISO 9001)", docStatus["Quality Management System Certificate (ISO 9001)"]],
+        ["Authorized Letter for Signatory", docStatus["Authorized Letter for Signatory"]],
+        ["ID Proof of Authorized Signatory", docStatus["ID Proof of Authorized Signatory"]],
       ];
 
       // Generate the table using jspdf-autotable
