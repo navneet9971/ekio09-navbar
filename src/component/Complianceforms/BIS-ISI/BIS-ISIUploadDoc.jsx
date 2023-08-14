@@ -15,7 +15,7 @@ function BisIsiUploadDoc ({onClose}) {
     const options = [
         'Premises document',
         'GST',
-        'Trademark certificate (if registered) ',
+        'Trademark certificate (if registered)',
         'Partnership Deed MOA Copy',
         'MSME',
         'Director Aadhaar',

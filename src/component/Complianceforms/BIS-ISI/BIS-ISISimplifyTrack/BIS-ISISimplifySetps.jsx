@@ -17,7 +17,7 @@ function BISISISimplifySteps () {
 
 
     const [docStep, setdocStep] = useState({});
-    localStorage.setItem("bisdocStep", JSON.stringify(docStep));
+    localStorage.setItem("bisIsiSimplifydocStep", JSON.stringify(docStep));
 
     const [buttonPopup3, setButtonPopup3] = useState(false);
     const [buttonPopup4, setButtonPopup4] = useState(false);

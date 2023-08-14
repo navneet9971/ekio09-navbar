@@ -14,7 +14,7 @@ import axiosInstance from "../../../interceptors/axios";
 function BISISIInclusionSteps () {
 
     const [docStep, setdocStep] = useState({});
-    localStorage.setItem("bisdocStep", JSON.stringify(docStep));
+    localStorage.setItem("bisInclusiondocStep", JSON.stringify(docStep));
 
     const [buttonPopup3, setButtonPopup3] = useState(false);
     const [buttonPopup4, setButtonPopup4] = useState(false);
