@@ -428,18 +428,6 @@ const Secondpage = () => {
     setBisIsiAutofillPopup(false);
   }
 
-  //Auto close POPup after click Sumbit
-  const handlePopupClose = () => {
-    setButtonpopupform1tec(false);
-    setButtonautofillpopuptec(false);
-    setButtonautofillpopupbis(false);
-    // setButtonRegisterPagebis(false);
-    setButtonPopup6bis(false);
-    setWpcPopupButton(false);
-    setWpcPopupButton(false);
-    setBisIsiPerviousdataPoPup(false);
-  };
-
 
   //BEE All ComPONENt AND FUNCTION HERE -----------------
   const [beepopupFreshForm, setBeepopupFreshForm] = useState("");
@@ -480,7 +468,7 @@ const Secondpage = () => {
         setBeepopupFreshForm(true);
       }
     }
-    setButtonBisInclusionPopup(false);
+    setButtonBeeInclusionPopup(false);
   };
 
 
@@ -497,8 +485,24 @@ const Secondpage = () => {
         // setButtonRegisterbis(true);
         setBeepopupFreshForm(true);
       }
-      setButtonautofilledbis(false);
+      setButtonautofilledbee(false);
     }
+
+
+      //Auto close POPup after click Sumbit
+  const handlePopupClose = () => {
+    setButtonpopupform1tec(false);
+    setButtonautofillpopuptec(false);
+    setButtonautofillpopupbis(false);
+    // setButtonRegisterPagebis(false);
+    setButtonPopup6bis(false);
+    setWpcPopupButton(false);
+    setWpcPopupButton(false);
+    setBisIsiPerviousdataPoPup(false);
+    setBisIsiPopupButton(false);
+    setBisIsiAutofillPopup(false);
+  };
+
 
 
   return (

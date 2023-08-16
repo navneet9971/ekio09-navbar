@@ -1,37 +1,42 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 import axiosInstance from "../../../interceptors/axios";
 import ReactLoading from "react-loading";
 
 function BeeInclusionForm() {
+  const history = useHistory();
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const applicationId = localStorage.getItem("applicationId");
   const complianceId = localStorage.getItem("compliance_id");
 
-  const [formData, setFormData] = useState({
-    Username_BISPortal: "",
-    Password_BISPortal: "",
-    application: applicationId,
-    compliance: complianceId,
-    request_for: "certification",
-    status: "Inclusion",
-    file: null, // Initialize with null
-  });
+  const [Username_BEEPortal, setUsername_BEEPortal] = useState("");
+  const [Password_BEEPortal, setPassword_BEEPortal] = useState("");
+  const [document, setDocument] = useState([]);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
 
-    try {
-      const formPayload = new FormData();
-      for (const key in formData) {
-        formPayload.append(key, formData[key]);
-      }
+    const formdata = new FormData();
+    formdata.append("Username_BISPortal", Username_BEEPortal);
+    formdata.append("Password_BISPortal", Password_BEEPortal);
+    formdata.append("request_for", "certification");
+    formdata.append("status", "Inclusion");
+    formdata.append("application", applicationId);
+    formdata.append("compliance", complianceId);
 
+    if (document.length > 0) {
+      for (let i = 0; i < document.length; i++) {
+        formdata.append(`documents_${i}`, document[i]);
+      }
+    }
+
+    try {
       const response = await axiosInstance.post(
         "application/compliance/",
-        formPayload
+        formdata
       );
       const data = response.data;
       console.log(data);
@@ -40,7 +45,9 @@ function BeeInclusionForm() {
         text:
           "Form submitted successfully. Please head over to the 'Track Application' Page to review progress",
         icon: "success",
-      });
+      }).then(() => {
+        history.push('/navbar/review');
+      })
       setIsLoading(false);
     } catch (error) {
       console.error(error);
@@ -54,32 +61,21 @@ function BeeInclusionForm() {
   };
 
   const handleFileUpload = (event) => {
-    const file = event.target.files[0];
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      file: file,
-    }));
-  };
-
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
+    const filesArray = Array.from(event.target.files);
+    setDocument(filesArray);
   };
 
   return (
     <>
       <form className="bisreg" onSubmit={handleFormSubmit}>
-        <div className="bis-userid">
+      <div className="bis-userid">
           <label style={{ fontWeight: "100" }}>User ID:</label>
           <input
             type="text"
             id="user-id"
             name="Username_BISPortal"
-            value={formData.Username_BISPortal}
-            onChange={handleInputChange}
+            value={Username_BEEPortal}
+            onChange={(e) => setUsername_BEEPortal(e.target.value)}
             required
           />
         </div>
@@ -91,8 +87,8 @@ function BeeInclusionForm() {
               type={showPassword ? "text" : "password"}
               id="password"
               name="Password_BISPortal"
-              value={formData.Password_BISPortal}
-              onChange={handleInputChange}
+              value={Password_BEEPortal}
+              onChange={(e) => setPassword_BEEPortal(e.target.value)}
               required
             />
             <span
@@ -113,7 +109,7 @@ function BeeInclusionForm() {
             type="file"
             id="file-upload"
             name="file"
-            // accept=".pdf,.doc,.docx"
+            accept=".pdf,.doc,.docx"
             onChange={handleFileUpload}
             required
           />

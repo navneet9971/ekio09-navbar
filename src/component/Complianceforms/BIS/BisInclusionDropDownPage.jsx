@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 import axiosInstance from "../../../interceptors/axios";
 import ReactLoading from "react-loading";
@@ -8,7 +9,8 @@ function BisInclusionForm() {
   const [isLoading, setIsLoading] = useState(false);
   const applicationId = localStorage.getItem("applicationId");
   const complianceId = localStorage.getItem("compliance_id");
-
+  const history = useHistory();
+  
   const [rnumberformData, setRnumberformData] = useState({
     Username_BISPortal: "",
     Password_BISPortal: "",
@@ -40,7 +42,9 @@ function BisInclusionForm() {
         text:
           "Form submitted successfully. Please head over to the 'Track Application' Page to upload documents and review progress",
         icon: "success",
-      });
+      }).then(() => {
+        history.push('/navbar/review');
+      })
       setIsLoading(false); // Stop loading animation
     } catch (error) {
       console.error(error);
