@@ -204,7 +204,7 @@ logoImg.onload = function () {
     ["Form 3 (AFFIDAVIT)", docStatus["Form 3 (AFFIDAVIT)"]],
   ];
 
-  
+
    // Generate the table using jspdf-autotable
    doc.autoTable({
     head: [columns1],
