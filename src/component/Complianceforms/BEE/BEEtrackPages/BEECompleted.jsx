@@ -255,7 +255,7 @@ setDocType(docCertificate);
     return (
      <div className="bgchangecompleted">
       <div className="ongoing-applications">
-      <h1 className="ongo">BIS Completed Application:-</h1>
+      <h1 className="ongo">BEE Completed Application:-</h1>
       <div>
         <h1 className="type">Compliance Type: {complianceid} </h1>
         <h1 className="appli">Application Number:  {uniqueid}  </h1>

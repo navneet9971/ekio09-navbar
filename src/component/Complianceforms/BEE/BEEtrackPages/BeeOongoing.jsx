@@ -246,7 +246,7 @@ function BEEonGoing() {
   return (
     <div className="bgchangecompleted">
       <div className="ongoing-applications">
-        <h1 className="ongo">BIS Ongoing Application</h1>
+        <h1 className="ongo">BEE Ongoing Application</h1>
         <div className="ongoing-title">
           <h1 className="type">Compliance Type: {complianceid} </h1>
           <h1 className="appli">Application Number: {uniqueid} </h1>

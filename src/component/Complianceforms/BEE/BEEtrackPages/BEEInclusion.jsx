@@ -254,7 +254,7 @@ function BEEInclusion() {
   return (
     <div className="bgchangecompleted">
       <div className="ongoing-applications">
-        <h1 className="ongo">BIS Inclusion Application</h1>
+        <h1 className="ongo">BEE Inclusion Application</h1>
         <div className="ongoing-title">
           <h1 className="type">Compliance Type: {complianceid} </h1>
           <h1 className="appli">Application Number: {uniqueid} </h1>
