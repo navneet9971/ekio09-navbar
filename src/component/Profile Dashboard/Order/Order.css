@@ -1,6 +1,7 @@
 /* Order.css */
 .home-profile-container {
     position: relative;
+    overflow: hidden;
   }
   
   .order-header {

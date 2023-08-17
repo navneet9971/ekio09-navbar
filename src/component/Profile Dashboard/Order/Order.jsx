@@ -237,7 +237,7 @@ function Order() {
  return (
   <>
   <h1 style={{ fontSize: "20px"}}>Order</h1>
-    <div className="home-profile-container">
+    {/* <div className="home-profile-container"> */}
       {currentOrders.map((order, index) => (
         <div key={order.id} className="order-container">
           <div className="order-header">
@@ -296,7 +296,7 @@ function Order() {
           </Link>
         )}
       </div>
-    </div>
+    {/* </div> */}
     </>
   );
 }

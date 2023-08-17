@@ -10,17 +10,24 @@ import LabAnalytics from "./LabAnalytics/LabAnalytics";
 import LabNotification from "./LabNotification/LabNotification";
 import HomeProfilePreviousData from "./HomeProfile/HomeProfilePreviousData";
 import ManageClients from "./ManageClients/ManageClients";
+import KnowYourCompliance from "../pagesscrn4/Complianceinformation/Firstcompliance";
+import StartNewProject from "../pagesscrn4/Firstpage";
+import ApplicationTrack from "../pages/review";
 import Disposebtn from "./DesposeBtn/DisposeBtn";
+
+
 
 function ProfilePage() {
   const [activeContent, setActiveContent] = useState("Analytics");
   const [key, setKey] = useState(null);
   const [showProfileSubmenu, setShowProfileSubmenu] = useState(false);
+  const [showMangeSubmenu, setShowMangeSubmenu] = useState(false);
   const history = useHistory();
 
   const handleSidebarItemClick = (content) => {
     setActiveContent(content);
   };
+
 
   const handleUserClick = () => {
     setShowProfileSubmenu((prevState) => !prevState);
@@ -29,11 +36,21 @@ function ProfilePage() {
     // }
   };
   
+  const handleMangeClick = () => {
+    setShowMangeSubmenu((prevState) => !prevState);
+    // if (!showProfileSubmenu) {
+    //   setActiveContent(key === "Yes" ? "HomeProfilePreviousData" : "HomeProfile");
+    // }
+  };
 
   const handleProfileClick = () => {
     setActiveContent(key === "Yes" ? "HomeProfilePreviousData" : "HomeProfile");
     setShowProfileSubmenu(true);
   };
+
+  // const handleMangeSubmenuClick = () => {
+  //   setShowMangeSubmenu(true);
+  // };
 
   function handleLogout() {
     localStorage.removeItem("access_token");
@@ -107,12 +124,20 @@ function ProfilePage() {
           )}
 
 
-          <hr style={{ margin: "8px 0" }} />
+<hr style={{ margin: "8px 0" }} />
           <SidebarItem
             icon={<FaAngleRight />}
             text="Manage Clients"
-            onClick={() => handleSidebarItemClick("ManageClients")}
+            onClick={handleMangeClick}
           />
+          {showMangeSubmenu && (
+            <>
+              <SubmenuItem text="Know Your Compliance" onClick={() => handleSidebarItemClick("Know Your Compliance")} />
+              <SubmenuItem text="Start Your Project" onClick={() => handleSidebarItemClick("Start Your Project")} />
+              <SubmenuItem text="Application Progress and Report" onClick={() => handleSidebarItemClick("Application Progress and Report")} />
+              <SubmenuItem text="Labs and Logistics" onClick={() => handleSidebarItemClick("ManageClients")} />
+            </>
+          )}
         </div>
         {/* User Profile Header */}
         <div
@@ -160,11 +185,21 @@ function ProfilePage() {
           {activeContent === "HomeProfilePreviousData" && <HomeProfilePreviousData />}
           {activeContent === "HomeProfile" && <HomeProfile />}
           {activeContent === "ManageClients" && <ManageClients />}
+
+    
           {activeContent === "Analytics" && (
             <div className="home-profile-container">
-              <LabAnalytics /> : <Order />
+              <LabAnalytics />  <Order />
             </div>
           )}
+
+          <div className="home-profile-container">
+          {activeContent === "Know Your Compliance" && <KnowYourCompliance />}       
+          {activeContent === "Start Your Project" && <StartNewProject />}
+          {activeContent === "Application Progress and Report" && <ApplicationTrack />}
+          {activeContent === "Labs and Logistics" && <ManageClients />}
+          </div>
+      
         </div>
       </div>
     </>
