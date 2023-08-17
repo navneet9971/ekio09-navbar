@@ -24,86 +24,154 @@ function Order() {
             id: 1,
             clientName: "John Doe",
             date: "2023-07-06",
+            Product: "LG",
+            InvoiceValue : "22338",
+            ComplianceType: "TEC",
+            ClientName: "Hero"
           },
           {
             id: 2,
             clientName: "Jane Smith",
             date: "2023-07-07",
+            Product: "LG",
+            InvoiceValue : "22338",
+            ComplianceType: "TEC",
+            ClientName: "Hero"
           },
           {
             id: 3,
             clientName: "Jane Smith",
             date: "2023-07-07",
+            Product: "LG",
+            InvoiceValue : "22338",
+            ComplianceType: "TEC",
+            ClientName: "Hero"
           },
           {
             id: 4,
             clientName: "Jane Smith",
             date: "2023-07-07",
+            Product: "LG",
+            InvoiceValue : "22338",
+            ComplianceType: "TEC",
+            ClientName: "Hero"
           },
           {
             id: 5,
             clientName: "Jane Smith",
             date: "2023-07-07",
+            Product: "LG",
+            InvoiceValue : "22338",
+            ComplianceType: "TEC",
+            ClientName: "Hero"
           },
           {
             id: 6,
             clientName: "Jane Smith",
             date: "2023-07-07",
+            Product: "LG",
+            InvoiceValue : "22338",
+            ComplianceType: "TEC",
+            ClientName: "Hero"
           },
           {
             id: 7,
             clientName: "Jane Smith",
             date: "2023-07-07",
+            Product: "LG",
+            InvoiceValue : "22338",
+            ComplianceType: "TEC",
+            ClientName: "Hero"
           },
           {
             id: 8,
             clientName: "Jane Smith",
             date: "2023-07-07",
+            Product: "LG",
+            InvoiceValue : "22338",
+            ComplianceType: "TEC",
+            ClientName: "Hero"
           },
           {
             id: 9,
             clientName: "Jane Smith",
             date: "2023-07-07",
+            Product: "LG",
+            InvoiceValue : "22338",
+            ComplianceType: "TEC",
+            ClientName: "Hero"
           },
           {
             id: 10,
             clientName: "Jane Smith",
             date: "2023-07-07",
+            Product: "LG",
+            InvoiceValue : "22338",
+            ComplianceType: "TEC",
+            ClientName: "Hero"
           },
           {
             id: 11,
             clientName: "Jane Smith",
             date: "2023-07-07",
+            Product: "LG",
+            InvoiceValue : "22338",
+            ComplianceType: "TEC",
+            ClientName: "Hero"
           },
           {
             id: 12,
             clientName: "Jane Smith",
             date: "2023-07-07",
+            Product: "LG",
+            InvoiceValue : "22338",
+            ComplianceType: "TEC",
+            ClientName: "Hero"
           },
           {
             id: 13,
             clientName: "Jane Smith",
             date: "2023-07-07",
+            Product: "LG",
+            InvoiceValue : "22338",
+            ComplianceType: "TEC",
+            ClientName: "Hero"
           },
           {
             id: 14,
             clientName: "Jane Smith",
             date: "2023-07-07",
+            Product: "LG",
+            InvoiceValue : "22338",
+            ComplianceType: "TEC",
+            ClientName: "Hero"
           },
           {
             id: 15,
             clientName: "Jane Smith",
             date: "2023-07-07",
+            Product: "LG",
+            InvoiceValue : "22338",
+            ComplianceType: "TEC",
+            ClientName: "Hero"
           },
           {
             id: 16,
             clientName: "Jane Smith",
             date: "2023-07-07",
+            Product: "LG",
+            InvoiceValue : "22338",
+            ComplianceType: "TEC",
+            ClientName: "Hero"
           },
           {
             id: 17,
             clientName: "Jane Smith",
             date: "2023-07-07",
+            Product: "LG",
+            InvoiceValue : "22338",
+            ComplianceType: "TEC",
+            ClientName: "Hero"
           },
       // ... more example orders ...
     ];
@@ -167,8 +235,9 @@ function Order() {
   // Logic to calculate the total number of pages
   const totalPages = Math.ceil(orders.length / ordersPerPage);
  return (
+  <>
+  <h1 style={{ fontSize: "20px"}}>Order</h1>
     <div className="home-profile-container">
-        <h1 style={{ fontSize: "20px"}}>Order</h1>
       {currentOrders.map((order, index) => (
         <div key={order.id} className="order-container">
           <div className="order-header">
@@ -182,12 +251,22 @@ function Order() {
             </Link>
           </div>
           {expandedOrder === index && (
-            <div className="expanded-section">
-              <div className="order-details">
-                <div className="order-data">{`Date: ${order.date}`}</div>
-                <div className="order-data">{`Name: ${order.clientName}`}</div>
-              </div>
+          <div className="expanded-section">
+          <div className="order-details">
+            <div className="order-data-row">
+              <div className="order-data">{`Date: ${order.date}`}</div>
+              <div className="order-data">{`Name: ${order.clientName}`}</div>
             </div>
+            <div className="order-data-row">
+              <div className="order-data">{`Product: ${order.Product}`}</div>
+              <div className="order-data">{`Invoice Value: ${order.InvoiceValue}`}</div>
+            </div>
+            <div className="order-data-row">
+              <div className="order-data">{`Compliance Type: ${order.ComplianceType}`}</div>
+            </div>
+          </div>
+        </div>
+        
           )}
         </div>
       ))}
@@ -218,6 +297,7 @@ function Order() {
         )}
       </div>
     </div>
+    </>
   );
 }
 

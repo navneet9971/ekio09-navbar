@@ -13,12 +13,26 @@ import ManageClients from "./ManageClients/ManageClients";
 import Disposebtn from "./DesposeBtn/DisposeBtn";
 
 function ProfilePage() {
-  const [activeContent, setActiveContent] = useState("HomeProfile");
+  const [activeContent, setActiveContent] = useState("Analytics");
   const [key, setKey] = useState(null);
+  const [showProfileSubmenu, setShowProfileSubmenu] = useState(false);
   const history = useHistory();
 
   const handleSidebarItemClick = (content) => {
     setActiveContent(content);
+  };
+
+  const handleUserClick = () => {
+    setShowProfileSubmenu((prevState) => !prevState);
+    // if (!showProfileSubmenu) {
+    //   setActiveContent(key === "Yes" ? "HomeProfilePreviousData" : "HomeProfile");
+    // }
+  };
+  
+
+  const handleProfileClick = () => {
+    setActiveContent(key === "Yes" ? "HomeProfilePreviousData" : "HomeProfile");
+    setShowProfileSubmenu(true);
   };
 
   function handleLogout() {
@@ -55,13 +69,13 @@ function ProfilePage() {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    if (key === "Yes") {
-      setActiveContent("HomeProfilePreviousData");
-    } else {
-      setActiveContent("HomeProfile");
-    }
-  }, [key]);
+  // useEffect(() => {
+  //   if (key === "Yes") {
+  //     setActiveContent("HomeProfilePreviousData");
+  //   } else {
+  //     setActiveContent("HomeProfile");
+  //   }
+  // }, [key]);s
 
   return (
     <>
@@ -75,41 +89,31 @@ function ProfilePage() {
       </div>
       {/* Container */}
       <div style={{ display: "flex", marginTop: "20px" }}>
-        {/* Sidebar */}
         <div style={{ backgroundColor: "lightblue", width: "300px", height: "100%" }}>
-          {key === "Yes" ? (
-            <SidebarItem
-              icon={<FaAngleRight />}
-              text="Profile"
-              onClick={() => handleSidebarItemClick("HomeProfilePreviousData")}
-            />
-          ) : (
-            <SidebarItem
-              icon={<FaAngleRight />}
-              text="Profile"
-              onClick={() => handleSidebarItemClick("HomeProfile")}
-            />
+          <SidebarItem
+            icon={<FaAngleRight />}
+            text="Dashboard"
+            onClick={() => handleSidebarItemClick("Analytics")}
+          />
+
+ <hr style={{ margin: "8px 0" }} />
+          <SidebarItem
+            icon={<FaAngleRight />}
+            text="User"
+            onClick={handleUserClick}
+          />
+          {showProfileSubmenu  && (
+            <SubmenuItem text="Profile" onClick={handleProfileClick} />
           )}
+
+
           <hr style={{ margin: "8px 0" }} />
           <SidebarItem
             icon={<FaAngleRight />}
             text="Manage Clients"
             onClick={() => handleSidebarItemClick("ManageClients")}
           />
-          <hr style={{ margin: "8px 0" }} />
-          <SidebarItem
-            icon={<FaAngleRight />}
-            text="Analytics"
-            onClick={() => handleSidebarItemClick("Analytics")}
-          />
-          <hr style={{ margin: "8px 0" }} />
-          <SidebarItem
-            icon={<FaAngleRight />}
-            text="Orders"
-            onClick={() => handleSidebarItemClick("Order")}
-          />
         </div>
-
         {/* User Profile Header */}
         <div
           style={{
@@ -156,10 +160,9 @@ function ProfilePage() {
           {activeContent === "HomeProfilePreviousData" && <HomeProfilePreviousData />}
           {activeContent === "HomeProfile" && <HomeProfile />}
           {activeContent === "ManageClients" && <ManageClients />}
-          {activeContent === "Order" && <Order />}
           {activeContent === "Analytics" && (
             <div className="home-profile-container">
-              <LabAnalytics />
+              <LabAnalytics /> : <Order />
             </div>
           )}
         </div>
@@ -176,9 +179,15 @@ function SidebarItem({ icon, text, onClick }) {
     >
       <div style={{ marginRight: "10px" }}>{icon}</div>
       <div>{text}</div>
-      
     </div>
   );
 }
+
+const SubmenuItem = ({ text, onClick }) => (
+
+  <div style={{ paddingLeft: '20px', cursor: "pointer" }} onClick={onClick}>
+    {text}
+  </div>
+);
 
 export default ProfilePage;
