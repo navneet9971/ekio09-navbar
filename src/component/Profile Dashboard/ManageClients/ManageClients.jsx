@@ -63,7 +63,8 @@ const handlePopupClose = () => {
   setActionButton(false);
 }
   return (
-    <div className="home-profile-container">
+    // <div className="home-profile-container">
+    <>
       <h2 style={{margin: "0", fontSize: "20px"}}>Clients List</h2>
       <table ref={tableRef}>
         <thead>
@@ -132,7 +133,8 @@ const handlePopupClose = () => {
           </span>
         )}
       </div>
-    </div>
+      </>
+    // </div>
   );
 }
 

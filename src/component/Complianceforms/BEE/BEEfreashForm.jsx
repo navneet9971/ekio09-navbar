@@ -533,18 +533,18 @@ const BEEFreashForm  = () => {
         {/* ----------------Top Management code Here---------------------- */}
 
         <label className="st8012">
-            Select Contact Person or Top Mangement
-          <select
-            className="st804"
-            name="Company_category"
-            value={beeFormData.Choose_one}
-            onChange={handleChange}
-          >
-            <option value=""> Select Your Signing Person</option>
-            <option value="contactperson ">Authorized Person Detail</option>
-            <option value="Topmangement">Top Mangement Person</option>
-          </select>
-        </label>
+  Select Contact Person or Top Management
+  <select
+    className="st804"
+    name="Company_category"
+    // value={beeFormData.Choose_one}
+    onChange={handleChange}
+  >
+    <option value="">Select Your Signing Person</option>
+    <option value="contactperson">Authorized Person Detail</option>
+    <option value="Topmanagement">Top Management Person</option>
+  </select>
+</label>
 
         <div className="row">
           <div className="name-row">

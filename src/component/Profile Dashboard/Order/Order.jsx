@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./Order.css";
 import { Link } from 'react-router-dom';
 import { FiDownload } from "react-icons/fi";
+import { FcCollapse, FcExpand,FcNext, FcPrevious } from "react-icons/fc";
+// import { Col, Row } from "antd";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 
@@ -242,28 +244,34 @@ function Order() {
         <div key={order.id} className="order-container">
           <div className="order-header">
             <span className="order-title">Order {order.id}</span>
-            <span className="order-date">{order.date}</span>
+            {/* <span className="order-date">{order.date}</span> */}
             <Link
               className="toggle-button"
               onClick={() => handleToggleOrders(index)}
             >
-              {expandedOrder === index ? "-" : "+"}
+              {expandedOrder === index ? <FcCollapse /> : <FcExpand />}
             </Link>
           </div>
           {expandedOrder === index && (
           <div className="expanded-section">
           <div className="order-details">
+      
             <div className="order-data-row">
               <div className="order-data">{`Date: ${order.date}`}</div>
               <div className="order-data">{`Name: ${order.clientName}`}</div>
             </div>
+         
+           
             <div className="order-data-row">
               <div className="order-data">{`Product: ${order.Product}`}</div>
               <div className="order-data">{`Invoice Value: ${order.InvoiceValue}`}</div>
             </div>
+          
+           
             <div className="order-data-row">
               <div className="order-data">{`Compliance Type: ${order.ComplianceType}`}</div>
             </div>
+         
           </div>
         </div>
         
@@ -276,7 +284,7 @@ function Order() {
 </button>
         {currentPage > 1 && (
           <Link className="previous-button" onClick={handlePreviousPage}>
-            Previous
+            <FcPrevious />
           </Link>
         )}
         {Array.from({ length: totalPages }, (_, i) => i + 1).map(
@@ -292,7 +300,7 @@ function Order() {
         )}
         {currentPage < totalPages && (
           <Link className="next-button" onClick={handleNextPage}>
-            Next
+           <FcNext />
           </Link>
         )}
       </div>

@@ -239,10 +239,13 @@ th {
 } */
 
 .search-bar {
-  display: block;
-  position: absolute;
-  top: 107px;
-  right: 68px;
+  display: flex;
+  /* position: absolute; */
+  /* top: 107px; */
+  /* right: 68px; */
+  justify-content: flex-end;
+  margin-top: -2rem;
+  margin-bottom: 1rem;
 }
 
 
