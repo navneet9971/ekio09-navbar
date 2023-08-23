@@ -255,28 +255,28 @@ function Dashboard() {
 
       <div className="LabAnalytics_container-piechart">
         <div className="col-dash">
-          <h4 style={{ fontSize: "18px", textAlign: "center", fontWeight: 100 }}>Total Application TEC and BIS</h4>
+          <h4 style={{ fontSize: "18px", textAlign: "center", fontWeight: 100 }}>Total Project Dashboard</h4>
           <BarChart data={filteredBarChartData} />
         </div>
       </div>
 
       <div className="LabAnalytics_container-piechart">
         <div className="col-dash">
-          <h4 style={{ fontSize: "18px", textAlign: "center", fontWeight: 100 }}>Total On Going Vs Total Completed</h4>
+          <h4 style={{ fontSize: "18px", textAlign: "center", fontWeight: 100 }}>Total Project Dashboard</h4>
           <DoughnutChart data={filteredChartData} />
         </div>
       </div>
 
       <div className="LabAnalytics_container-piechart">
         <div className="col-dash">
-          <h4 style={{ fontSize: "18px", textAlign: "center", fontWeight: 100 }}>TEC On Going Vs TEC Completed Vs TEC Application</h4>
+          <h4 style={{ fontSize: "18px", textAlign: "center", fontWeight: 100 }}>TEC Dashboard</h4>
           <DoughnutChart data={filteredTecDash} />
         </div>
       </div>
 
       <div className="LabAnalytics_container-piechart">
         <div className="col-dash">
-          <h4 style={{ fontSize: "18px", textAlign: "center", fontWeight: 100 }}>BIS On Going Vs BIS Completed Vs BIS Application</h4>
+          <h4 style={{ fontSize: "18px", textAlign: "center", fontWeight: 100 }}>BIS Dashboard</h4>
           <DoughnutChart data={filteredBisDash} />
         </div>
       </div>

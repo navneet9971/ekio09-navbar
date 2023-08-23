@@ -109,7 +109,6 @@ function BeeInclusionForm() {
             type="file"
             id="file-upload"
             name="file"
-            accept=".pdf,.doc,.docx"
             onChange={handleFileUpload}
             required
           />

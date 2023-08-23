@@ -17,3 +17,9 @@ button.logout_btn {
     border: none;
     background-color: transparent;
 }
+
+.submenu{
+    gap: 10px;
+}
+
+  

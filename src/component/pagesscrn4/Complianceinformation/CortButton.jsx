@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 function CortButton({ onClose }) {
   const [complianceData, setComplianceData] = useState([]);
   const [selectedCompliance, setSelectedCompliance] = useState([]);
+  const [selectedCountries, setSelectedCountries] = useState([]);
 //   const user_id = localStorage.getItem("user_id");
    const userEmail = localStorage.getItem("cortEmail")
 
@@ -42,11 +43,12 @@ function CortButton({ onClose }) {
     if (isSuccess) {
       // Send email using emailjs
       const templateParams = {
-        // to_email: ["EikompRequestQuote@gmail.com"], // Update with the email addresses
         subject: "Selected Products",
         to_name: `${userEmail}`,
-        message: `Compliance Names: ${selectedCompliance.join(", ")}.`,
+        message: `Compliance Names: ${selectedCompliance.join(", ")},
+        Countries: ${selectedCountries.join(", ")}`, // Include selected countries here
       };
+      
   
       emailjs.init("zJR8dp8Ouz9a-jdDu"); // Replace "YOUR_PUBLIC_KEY" with your actual Public Key
   
@@ -77,25 +79,38 @@ function CortButton({ onClose }) {
       <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between" }}>
         {complianceData.map((compliance, index) => (
           <div key={index} style={{ width: "35%" }}>
-            <label style={{display: "flex", gap:"10px"}}>
-              <input
-                type="checkbox"
-                value={compliance.id}
-                checked={selectedCompliance.includes(compliance.compliance.product_name)}
-                onChange={(e) => {
-                  const isChecked = e.target.checked;
-                  setSelectedCompliance((prevSelected) => {
-                    if (isChecked) {
-                      return [...prevSelected, compliance.compliance.product_name];
-                    } else {
-                      return prevSelected.filter(
-                        (product_name) => product_name !== compliance.compliance.product_name
-                      );
-                    }
-                  });
-                }}
-              />
-              {compliance.compliance.product_name}
+            <label style={{display: "flex", gap:".5rem", marginTop: ".7rem", fontSize: "15px"}}>
+            <input
+  type="checkbox"
+  value={compliance.id}
+  checked={selectedCompliance.includes(compliance.compliance.product_name)}
+  onChange={(e) => {
+    const isChecked = e.target.checked;
+    setSelectedCompliance((prevSelected) => {
+      if (isChecked) {
+        return [...prevSelected, compliance.compliance.product_name];
+      } else {
+        return prevSelected.filter(
+          (product_name) => product_name !== compliance.compliance.product_name
+        );
+      }
+    });
+
+    // Update selected countries based on the checkbox state
+    setSelectedCountries((prevSelectedCountries) => {
+      if (isChecked) {
+        return [...prevSelectedCountries, compliance.compliance.countries];
+      } else {
+        return prevSelectedCountries.filter(
+          (country) => country !== compliance.compliance.countries
+        );
+      }
+    });
+  }}
+/>
+
+              {compliance.compliance.product_name} ||
+              ({compliance.compliance.countries})
             </label>
           </div>
         ))}

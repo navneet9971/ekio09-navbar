@@ -7,11 +7,12 @@ import axiosInstance from "../../../interceptors/axios";
 import Notification from "../../Notification/Notification";
 import Popup from "../../popup/Popup";
 import CortButton from "./CortButton";
+import EmailSender from "../TestProductsendmail";
 
 const Secondpage = () => {
   const history = useHistory();
   const [complianceData, setComplianceData] = useState([]);
-  const [notifiButton, setNotifiButton] = useState("");
+  const [notifiButton, setNotifiButton] = useState(false);
   const [cotpopupbutton, setCotpopupbutton] = useState(false);
 
   // Calls APIs HERE ---------------------------------------------------------
@@ -40,12 +41,6 @@ const Secondpage = () => {
       });
   }, []);
 
-  // open compliance video in new window
-  // const handleVideoClick = (e, videoUrl) => {
-  //   e.preventDefault();
-  //   window.open(videoUrl, "Compliance Video", "width=800,height=600");
-  // };
-
   // navigate to compliance page based on compliance name
   const handleClick = (complianceName, complianceId) => {
     localStorage.setItem("compliance_id", complianceId);
@@ -72,26 +67,35 @@ const Secondpage = () => {
     setNotifiButton(true);
   };
 
-  //After click sumbit button popup is disable 
+  // After click submit button popup is disabled 
   const handlePopupClose = () => { 
-    // setButtonPopup(false);
     setCotpopupbutton(false);
-    // setButtonPopup1(false);
-   }
+  }
+
+  // const handleTestingMail = () => { 
+  //   sendMail(); // Call the sendMail function
+  // }
 
   return (
     <div className="table-bgsconpage">
+      <div style={{
+        display: "flex",
+        justifyContent: "flex-end",
+        marginRight: "15rem",
+        marginTop: "1rem",
+      }}>
+      <EmailSender />
+      </div>
+
       <div className="table">
-        <h1 style={{fontWeight: "100", padding: "0px 50px", fontSize: "26px"}}>List of Compliance</h1>
+        <h1 style={{ fontWeight: "100", padding: "0px 50px", fontSize: "26px" }}>List of Compliance</h1>
         <div className="table-wrapper">
           <table className="Review">
             <thead>
               <tr>
                 <th style={{ cursor: "default" }}>Compliance Name</th>
                 <th style={{ cursor: "default" }}>Description</th>
-                {/* <th style={{ cursor: "default" }}>Video</th> */}
                 <th style={{ cursor: "default" }}>Notification</th>
-                {/* Added notification column */}
               </tr>
             </thead>
             <tbody>
@@ -106,26 +110,7 @@ const Secondpage = () => {
                     {compliance.compliance.product_name}
                   </td>
                   <td style={{ cursor: "default" }}>{compliance.compliance.details}</td>
-                  {/* <td>
-                    
-                    <a
-                      href={compliance.video}
-                      onClick={(e) => handleVideoClick(e, compliance.video)}
-                    >
-                      <div className="video-banner">
-                        <div className="play-button">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                          >
-                            <path d="M8 5v14l11-7z" />
-                          </svg>
-                        </div>
-                      </div>
-                    </a>
-                  </td> */}
                   <td>
-                    {/* display animated bell icon */}
                     <span
                       className="clickable animated-bell"
                       onClick={(e) => handleNotificationClick(notifiButton)}
@@ -148,15 +133,17 @@ const Secondpage = () => {
         <Notification />
       </Popup>
 
+      {/* <button className="revbtn1" onClick={handleTestingMail}>
+        Request simple testing
+      </button> */}
 
       <button className="revbtn1" onClick={() => setCotpopupbutton(true)}>
-      Request Quote
-        </button>
+        Request Quote
+      </button>
 
-  <Popup trigger={cotpopupbutton} setTrigger={setCotpopupbutton}>
-  <CortButton  onClose={handlePopupClose}/>
-  </Popup>
-
+      <Popup trigger={cotpopupbutton} setTrigger={setCotpopupbutton}>
+        <CortButton onClose={handlePopupClose} />
+      </Popup>
     </div>
   );
 };

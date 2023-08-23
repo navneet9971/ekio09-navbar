@@ -20,6 +20,7 @@ import BisIsiInclusion from "../Complianceforms/BIS-ISI/BIS-ISIInclusionForm";
 import BEEFreashForm from "../Complianceforms/BEE/BEEfreashForm";
 import BeeInclusionForm from "../Complianceforms/BEE/BEEInclusion";
 import BEEPerviousData from "../Complianceforms/BEE/BEEPerviousData";
+import EmailSender from "./TestProductsendmail";
 
 //Send E-mail For Cort To vishal Sir Don't Do it this compliance
 const userEmail = localStorage.getItem("cortEmail");
@@ -508,12 +509,17 @@ const Secondpage = () => {
   return (
     <div className="table-bgsconpage">
       <div className="table">
-        <h1 style={{ display: "none" }}>Application Number: {applicationId}</h1>
+        <h1 style={{ display: "none" }}>Application Number: {applicationId}
+        </h1>
+        <div style={{display: "flex", justifyContent: "flex-end", marginRight: "2rem"}}>
+        <EmailSender />
+        </div>
         <h1
           style={{ fontWeight: "100", padding: "0px 50px", fontSize: "26px" }}
         >
           List of Compliance
         </h1>
+       
         <div className="table-wrapper">
           <table className="Review">
             <thead>
