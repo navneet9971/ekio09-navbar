@@ -1,90 +1,127 @@
-/* Order.css */
-.home-profile-container {
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .order-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .order-title {
-    text-align: left;
-    font-size: 14px;
-  }
+/* Default styles for all screen sizes */
 
-  .order-title:active{
-    background-color: #355EB5;
-    ;
+.home-profile-container {
+  position: relative;
+  overflow: hidden;
+  transform: translateY(4.1rem);
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order-title {
+  text-align: left;
+  font-size: 14px;
+}
+
+.order-title:active {
+  background-color: #355eb5;
+}
+
+.order-date {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 14px;
+}
+
+.toggle-button {
+  text-align: right;
+  font-size: 18px;
+}
+
+.expanded-section {
+  background-color: #dce7ff;
+  padding: 4px;
+  margin-top: 0px;
+  font-size: 14px;
+}
+
+.order-container {
+  background-color: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 1rem;
+}
+
+.order-details {
+  margin-top: 10px;
+}
+
+.pagination {
+  display: flex;
+  gap: 11px;
+  justify-content: flex-end;
+  cursor: pointer;
+}
+
+.page {
+  color: blue;
+  text-decoration: none;
+  margin-right: 5px;
+}
+
+.number {
+  text-decoration: underline;
+}
+
+.order-reot {
+  margin-right: auto;
+  width: 120px;
+  height: 25px;
+  font-size: 12px;
+  background-color: #55b700;
+  border-radius: 7px;
+  border: none;
+  cursor: pointer;
+}
+
+.order-reot:hover {
+  background-color: #a5f75d;
+}
+
+/* Responsive Styles */
+
+@media (max-width: 768px) {
+  /* Adjust styles for screens up to 768px wide */
+  .order-title {
+    font-size: 12px;
   }
 
   .order-date {
-   display: flex;
-   justify-content: flex-end;
+    font-size: 12px;
+  }
+
+  .toggle-button {
+    font-size: 16px;
+  }
+
+  .expanded-section {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 576px) {
+  /* Adjust styles for screens up to 576px wide */
+  .order-title {
+    font-size: 10px;
+  }
+
+  .order-date {
+    font-size: 10px;
+  }
+
+  .toggle-button {
     font-size: 14px;
   }
-  
-  .toggle-button {
-    text-align: right;
-    font-size: 18px;
-  }
-  
-  .expanded-section {
-    background-color:#DCE7FF;
-    padding: 4px;
-   margin-top: 0px;
-   font-size: 14px;
-  }
 
-  .order-container {
-    background-color: white;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 1rem;
+  .expanded-section {
+    font-size: 10px;
   }
-  
-  .order-details {
-    margin-top: 10px;
-  }
-  
-  /* .order-data {
-    color: white;
-  } */
 
   .pagination {
-    display: flex;
-    gap: 11px;
-    justify-content: flex-end;
-    cursor: pointer;
+    justify-content: center;
+  }
 }
-  
-.page {
-    /* Styles for regular page links */
-    color: blue;
-    text-decoration: none;
-    margin-right: 5px;
-  }
-  
-  .number {
-    /* Styles for active page link */
-    text-decoration: underline;
-  }
-
-  .order-reot{
-   margin-right: auto;
-   width: 120px;
-   height: 25px;
-   font-size: 12px;
-   background-color: #55b700;
-   border-radius: 7px;
-   border: none;
-   cursor: pointer;
-  }
-
-  .order-reot:hover{
-    background-color: #a5f75d;
-  }
-  
-  

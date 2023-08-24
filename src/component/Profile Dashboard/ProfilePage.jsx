@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { FaAngleRight, FaPowerOff } from "react-icons/fa";
-import { AiFillCaretDown,AiFillCaretUp } from "react-icons/ai";
+import { FaPowerOff, FaUserAlt, FaUserCog } from "react-icons/fa";
+import { RxDashboard } from 'react-icons/rx';
 import axiosInstance from "../../interceptors/axios";
 import eikomplogo from "../assets/icons/eikomp_logo.png";
 import "./ProfilePage.css";
@@ -41,7 +41,6 @@ function ProfilePage() {
     setShowProfileSubmenu(true);
   };
 
-
   function handleLogout() {
     localStorage.removeItem("access_token");
     localStorage.removeItem("refresh_token");
@@ -74,54 +73,72 @@ function ProfilePage() {
   }, []);
 
   return (
-    <>
-      {/* <div style={{ marginRight: "10px", width: "200px" }}>
-        <img src={eikomplogo} alt="" style={{ marginLeft: "91px", width: "53%" }} />
-      </div> */}
-      <div style={{ display: "flex", marginTop: "20px" }}>
+    <div className="profile-page">
+      {/* Sidebar */}
+      <div className="sidebar">
+        <SidebarItem
+          text="Dashboard"
+          onClick={() => handleSidebarItemClick("Analytics")}
+          icon={<RxDashboard />}
+        />
+        <hr className="sidebar-hr" />
+        <SidebarItem
+          onClick={handleUserClick}
+          text="User"
+          icon={<FaUserAlt />}
+        />
+        {showProfileSubmenu && (
+          <SubmenuItem text="Profile" onClick={handleProfileClick} />
+        )}
+        <hr className="sidebar-hr" />
+        <SidebarItem
+          text="Manage Clients"
+          onClick={handleManageClick}
+          icon={<FaUserCog />}
+        />
+        {showMangeSubmenu && (
+          <>
+            <SubmenuItem
+              text="Know Your Compliance"
+              onClick={() => handleSidebarItemClick("Know Your Compliance")}
+            />
+            <SubmenuItem
+              text="Start Your Project"
+              onClick={() => handleSidebarItemClick("Start Your Project")}
+            />
+            <SubmenuItem
+              text="Application Progress and Report"
+              onClick={() =>
+                handleSidebarItemClick("Application Progress and Report")
+              }
+            />
+            <SubmenuItem
+              text="Labs and Logistics"
+              onClick={() => handleSidebarItemClick("Labs and Logistics")}
+            />
+          </>
+        )}
+      </div>
 
-        {/* Sidebar */}
-        <div style={{ backgroundColor: "#355EB5", width: "300px", height: "85.6vh", marginTop: "5rem" }}>
-  <SidebarItem
-    text="Dashboard"
-    onClick={() => handleSidebarItemClick("Analytics")}
-    icon={<FaAngleRight />}
-  />
-  <hr style={{ margin: "8px 0" }} />
-  <SidebarItem
-    onClick={handleUserClick}
-    text="User"
-    icon={showProfileSubmenu ? <AiFillCaretDown /> : <AiFillCaretUp />}
-  />
-  {showProfileSubmenu && <SubmenuItem text="Profile" onClick={handleProfileClick} />}
-  <hr style={{ margin: "8px 0" }} />
-  <SidebarItem
-    text="Manage Clients"
-    onClick={handleManageClick}
-    icon={showMangeSubmenu ? <AiFillCaretDown /> : <AiFillCaretUp />}
-  />
-  {showMangeSubmenu && (
-    <>
-      <SubmenuItem text="Know Your Compliance" onClick={() => handleSidebarItemClick("Know Your Compliance")} />
-      <SubmenuItem text="Start Your Project" onClick={() => handleSidebarItemClick("Start Your Project")} />
-      <SubmenuItem text="Application Progress and Report" onClick={() => handleSidebarItemClick("Application Progress and Report")} />
-      <SubmenuItem text="Labs and Logistics" onClick={() => handleSidebarItemClick("Labs and Logistics")} />
-    </>
-  )}
-</div>
-
-
+      {/* Main Content */}
+      <div className="main-content">
+        {/* Navbar */}
+        <div className="lab-navbar">
+          <img src={eikomplogo} alt="" className="lab-logo" />
+          <div className="lab-navbar-actions">
+            <Disposebtn />
+            <LabNotification />
+            <button className="lab-logout_btn" onClick={handleLogout}>
+              <FaPowerOff />
+            </button>
+          </div>
+        </div>
 
         {/* User Profile Header */}
-        <div style={{ }}>
-          <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "20px", gap: "40px" }}>
-          <img src={eikomplogo} alt="" style={{  width: "4.5rem" }} />
-            <div><Disposebtn /></div>
-            <div style={{ marginRight: "10px" }}><LabNotification /></div>
-            <div><button className="logout_btn" onClick={handleLogout}><span className="span-logout--btn"><FaPowerOff /></span></button></div>
-          </div>
-
-          {activeContent === "HomeProfilePreviousData" && <HomeProfilePreviousData />}
+        <div className="user-profile-header">
+          {activeContent === "HomeProfilePreviousData" && (
+            <HomeProfilePreviousData />
+          )}
           {activeContent === "HomeProfile" && <HomeProfile />}
 
           {activeContent === "Analytics" && (
@@ -133,24 +150,25 @@ function ProfilePage() {
           <div className="home-profile-container">
             {activeContent === "Know Your Compliance" && <KnowYourCompliance />}
             {activeContent === "Start Your Project" && <StartNewProject />}
-            {activeContent === "Application Progress and Report" && <ApplicationTrack />}
+            {activeContent === "Application Progress and Report" && (
+              <ApplicationTrack />
+            )}
             {activeContent === "Labs and Logistics" && <ManageClients />}
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
 function SidebarItem({ icon, text, onClick }) {
   return (
-    <div style={{ display: "flex", alignItems: "center", cursor: "pointer" }} onClick={onClick}>
-      <div style={{ marginRight: "10px" }}>{icon}</div>
-      <div>{text}</div>
+    <div className="sidebar-item" onClick={onClick}>
+      <div className="sidebar-item-icon">{icon}</div>
+      <div className="sidebar-item-text">{text}</div>
     </div>
   );
 }
-
 
 const SubmenuItem = ({ text, onClick }) => {
   const [clicked, setClicked] = useState(false);
@@ -160,30 +178,12 @@ const SubmenuItem = ({ text, onClick }) => {
     onClick();
 
     // Toggle the clicked state
-    setClicked(!clicked)
+    setClicked(!clicked);
   };
 
   return (
-    <div
-      className="submenu-item"
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        paddingLeft: '20px',
-        cursor: 'pointer',
-        marginTop: '.5rem'
-      }}
-      onClick={handleClick}
-    >
-      <div
-        style={{
-          width: '10px',
-          height: '10px',
-          borderRadius: '50%',
-          background: clicked ? 'green' : 'transparent',
-          marginRight: '10px'
-        }}
-      />
+    <div className="submenu-item" onClick={handleClick}>
+      <div className={`submenu-item-dot ${clicked ? "clicked" : ""}`} />
       {text}
     </div>
   );

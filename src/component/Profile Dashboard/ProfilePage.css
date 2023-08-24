@@ -1,25 +1,100 @@
-span.span-logout--btn {
-    position: initial;
-    font-size: 27px;
-    color: #55b700;
-    transition: all 0.3s ease 0s;
-    cursor: pointer;
-    border: none;
+/* ProfilePage.css */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #F2F2F2;
 }
 
-button.logout_btn {
-    position: initial;
-    margin-right: 1rem;
-    font-size: 27px;
-    color: #55b700;
-    transition: all 0.3s ease 0s;
-    cursor: pointer;
-    border: none;
-    background-color: transparent;
-}
-
-.submenu{
-    gap: 10px;
+.profile-page {
+    display: flex;
+    width: 100%;
 }
 
   
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    background-color: #355EB5;
+    width: 300px;
+    height: 35.3rem;
+    transform: translateY(67px); /* Move the sidebar down by 20 pixels */
+    padding: 20px;
+    border-radius: 0px 30px 30px 0px;
+}
+  
+  .sidebar-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-top: 8px;
+  }
+  
+  .sidebar-item-icon {
+    margin-right: 10px;
+  }
+  
+  .sidebar-hr {
+    margin: 8px 0;
+  }
+  
+  .sidebar-item-text {
+    color: white;
+  }
+  
+  .submenu-item {
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+  }
+  
+  .submenu-item-dot {
+    width: 10px;
+    height: 10px;
+  }
+
+
+  .lab-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F2F2F2; /* Change this to your desired background color */
+    padding: 10px 20px; /* Adjust padding as needed */
+    width: 100%; /* Set the width to 100% to make it full-width */
+    position: fixed; /* Fix the navbar at the top */
+    top: 0; /* Position it at the top of the screen */
+    left: 0; /* Align it to the left */
+    z-index: 1000; /* Set a high z-index to ensure it's above other elements */
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2); /* Add a black shadow to the bottom side */
+}
+
+  
+  .lab-logo {
+    max-width: 100px; /* Adjust the logo's max-width as needed */
+  }
+  
+  .lab-navbar-actions {
+    display: flex;
+    align-items: center;
+  }
+  
+
+.lab-logo {
+  width: 4.5rem;
+}
+
+.lab-navbar-actions {
+  display: flex;
+  gap: 20px; /* Adjust the gap between elements as needed */
+}
+
+.lab-logout_btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #55b700;
+}
+  
+
