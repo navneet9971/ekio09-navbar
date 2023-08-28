@@ -5,7 +5,6 @@ import { RxDashboard } from 'react-icons/rx';
 import axiosInstance from "../../interceptors/axios";
 import eikomplogo from "../assets/icons/eikomp_logo.png";
 import "./ProfilePage.css";
-
 import HomeProfile from "./HomeProfile/HomeProfile";
 import Order from "./Order/Order";
 import LabAnalytics from "./LabAnalytics/LabAnalytics";

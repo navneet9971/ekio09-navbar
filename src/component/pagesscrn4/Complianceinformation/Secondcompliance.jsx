@@ -8,6 +8,7 @@ import Notification from "../../Notification/Notification";
 import Popup from "../../popup/Popup";
 import CortButton from "./CortButton";
 import EmailSender from "../TestProductsendmail";
+import KnYCompTableDownload from "./knowYoucomplinceTableDownload/knYComTableDownload";
 
 const Secondpage = () => {
   const history = useHistory();
@@ -40,6 +41,7 @@ const Secondpage = () => {
         alert("Something went wrong.");
       });
   }, []);
+
 
   // navigate to compliance page based on compliance name
   const handleClick = (complianceName, complianceId) => {
@@ -76,6 +78,21 @@ const Secondpage = () => {
   //   sendMail(); // Call the sendMail function
   // }
 
+  const dataArray = [];
+  console.log(dataArray);
+  // Make sure to use map on complianceData, and check if complianceData exists before accessing it
+  complianceData.map((compliance) => {
+    dataArray.push({
+      ProductNameStore: compliance.product?.name,
+      complianceNameStore: compliance.compliance?.product_name,
+      ApplicationEndDate: compliance.compliance?.tentative_time,
+      StoreDetails: compliance.compliance?.details,
+    });
+    return null; // React expects a return value for map, but we don't need it here
+  });
+  localStorage.setItem('TableData', JSON.stringify(dataArray));
+
+
   return (
     <div className="table-bgsconpage">
       <div style={{
@@ -83,8 +100,10 @@ const Secondpage = () => {
         justifyContent: "flex-end",
         marginRight: "15rem",
         marginTop: "1rem",
+        gap: "3rem",
       }}>
       <EmailSender />
+      <KnYCompTableDownload />
       </div>
 
       <div className="table">
@@ -108,6 +127,10 @@ const Secondpage = () => {
                     }
                   >
                     {compliance.compliance.product_name}
+
+                    {/* this localStorage is store and use for knYComTableDownload Page  */}
+                  
+   
                   </td>
                   <td style={{ cursor: "default" }}>{compliance.compliance.details}</td>
                   <td>
