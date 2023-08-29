@@ -91,7 +91,7 @@ function KnYCompTableDownload() {
         }}
         onClick={handleDownload}
       >
-        Download PDF
+        Download Compliance Plan
       </button>
       {isLoading && (
         <div className="loading-overlay">
