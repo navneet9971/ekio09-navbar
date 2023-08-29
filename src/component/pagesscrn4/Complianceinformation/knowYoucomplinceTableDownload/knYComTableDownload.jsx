@@ -6,99 +6,75 @@ import pdflogo from "../../../assets/icons/eikomp_logo.png";
 
 function KnYCompTableDownload() {
   const [isLoading, setIsLoading] = useState(false);
-  const [tableData, setTableData] = useState(null);
+  const [tableData, setTableData] = useState([]);
+  const ProductName = localStorage.getItem("ProductNameStore");
 
   useEffect(() => {
-    // Retrieve the data from localStorage
+    // Fetch table data from local storage when the component mounts
     const storedData = JSON.parse(localStorage.getItem("TableData"));
-
     if (storedData) {
-      // Assuming that storedData is an array of objects with the following structure:
-      // { ProductNameStore, complianceNameStore, ApplicationEndDate, StoreDetails }
-      // You can set the data to the state here if needed.
       setTableData(storedData);
-    } else {
-      // Handle the case where the data is not found in localStorage
-      console.log("Data not found in localStorage");
     }
+
+    // Set up a timer to refresh data every 5 seconds (for example)
+    const refreshInterval = setInterval(() => {
+      const storedData = JSON.parse(localStorage.getItem("TableData"));
+      if (storedData) {
+        setTableData(storedData);
+        // console.log(storedData);
+      }
+    }, 1000); // Refresh every 1 second
+
+    // Clean up the interval when the component unmounts
+    return () => clearInterval(refreshInterval);
   }, []);
 
   const handleDownload = () => {
     setIsLoading(true);
-  
-    if (!tableData) {
-      setIsLoading(false);
-      alert("TableData is not available.");
-      return;
-    }
-  
-    const doc = new jsPDF();
-    const logoImg = new Image();
-    logoImg.src = pdflogo;
-  
-    logoImg.onload = function () {
-      doc.addImage(logoImg, "PNG", 10, 4, 50, 30);
-      doc.text(`Product Name: ${tableData[0].ProductNameStore}`, 10, 50);
-      doc.text(`Date: ${new Date().toLocaleDateString()}`, 10, 70);
-  
-      const columns = ["Compliance Name", "Description", "End Date"];
-      const rows = tableData.map((item) => [
-        item.complianceNameStore,
-        item.StoreDetails,
-        item.ApplicationEndDate,
-      ]);
-  
-      // Define column styles for alignment and styling
-      const columnStyles = {
-        0: { cellWidth: 40,  align: "left", fillColor: "#f2f2f2" },   // Compliance Name
-        1: { cellWidth: 80,  align: "left", fillColor: "#f2f2f2" },   // Description (Wider)
-        2: { cellWidth: 30,  align: "center", fillColor: "#f2f2f2" }, // End Date
-      };
-  
-      // Define row styles for alternating row colors
-      const rowStyles = {
-        0: { rowWidth: 60, fillColor: "#fff" }, // Even rows
-        1: { rowWidth: 60, fillColor: "#f2f2f2" }, // Odd rows
-      };
-  
-      // Reduce font size to fit content within cells
-      const fontSize = 10;
-  
-      doc.autoTable({
-        head: [columns],
-        body: rows,
-        startY: 75,
-        columnStyles: columnStyles,
-        alternateRowStyles: rowStyles,
-        fontSize: fontSize,
-      });
-  
-      // Check if the table content exceeds the page width
-      const pageWidth = doc.internal.pageSize.getWidth();
-      const tableWidth = doc.tableWidth;
-      if (tableWidth > pageWidth) {
-        // Add a new page and continue the table on the next page
-        doc.addPage();
-        doc.autoTable({
-          head: [columns],
-          body: rows,
-          startY: 20, // Start the new table on the next page
-          columnStyles: columnStyles,
-          alternateRowStyles: rowStyles,
-          fontSize: fontSize,
-        });
-      }
-  
-      doc.save("Download Compliance Plan");
-      setIsLoading(false);
-    };
-  
-    logoImg.onerror = function () {
-      setIsLoading(false);
-      alert("Error loading the logo image.");
-    };
-  };
 
+    // Create a promise to load the image
+    const loadImage = new Promise((resolve, reject) => {
+      const logoImg = new Image();
+      logoImg.src = pdflogo;
+
+      logoImg.onload = () => resolve(logoImg);
+      logoImg.onerror = (error) => reject(error);
+    });
+
+    loadImage
+      .then((logoImg) => {
+        const doc = new jsPDF("landscape");
+
+        const headers = ["Compliance Name", "Description", "End Date"];
+
+        const rows = tableData.map((data) => [
+          data.complianceNameStore,
+          data.StoreDetails,
+          data.ApplicationEndDate,
+          localStorage.setItem("ProductNameStore", data.ProductNameStore),
+        ]);
+
+        const columnWidth = [45, 100, 30];
+        const rowHeight = 10;
+        doc.text(`Product Name: ${ProductName}`, 10, 45); // Provide x and y coordinates
+        doc.addImage(logoImg, "PNG", 10, 4, 50, 30); // Add the image to the PDF
+        doc.autoTable({
+          head: [headers],
+          body: rows,
+          columnWidth: columnWidth,
+          rowHeight: rowHeight,
+          startY: 50, // Adjust the starting y-position to avoid overlapping with the image
+          styles: { cellPadding: 3, valign: "middle", halign: "center" },
+        });
+
+        doc.save("Download_Compliance_Plan.pdf");
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error loading image:", error);
+        setIsLoading(false);
+      });
+  };
 
   return (
     <>
@@ -115,7 +91,7 @@ function KnYCompTableDownload() {
         }}
         onClick={handleDownload}
       >
-       Download Compliance Plan
+        Download PDF
       </button>
       {isLoading && (
         <div className="loading-overlay">
