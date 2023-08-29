@@ -7,7 +7,7 @@ import pdflogo from "../../../assets/icons/eikomp_logo.png";
 function KnYCompTableDownload() {
   const [isLoading, setIsLoading] = useState(false);
   const [tableData, setTableData] = useState([]);
-  const ProductName = localStorage.getItem("ProductNameStore");
+  // const ProductNameStore = localStorage.getItem("ProductNameStore");
 
   useEffect(() => {
     // Fetch table data from local storage when the component mounts
@@ -45,18 +45,20 @@ function KnYCompTableDownload() {
       .then((logoImg) => {
         const doc = new jsPDF("landscape");
 
-        const headers = ["Compliance Name", "Description", "End Date"];
+        const headers = ["Compliance Name", "Description", "Estimated Date"];
 
         const rows = tableData.map((data) => [
           data.complianceNameStore,
           data.StoreDetails,
           data.ApplicationEndDate,
-          localStorage.setItem("ProductNameStore", data.ProductNameStore),
+          // data.ProductNameStore,
+          // console.log(data.ProductNameStore)
         ]);
 
         const columnWidth = [45, 100, 30];
         const rowHeight = 10;
-        doc.text(`Product Name: ${ProductName}`, 10, 45); // Provide x and y coordinates
+        doc.text(`Product Name: ${tableData[0].ProductNameStore}`, 10, 45);
+        console.log(tableData[0].ProductNameStore);
         doc.addImage(logoImg, "PNG", 10, 4, 50, 30); // Add the image to the PDF
         doc.autoTable({
           head: [headers],
