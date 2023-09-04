@@ -256,8 +256,7 @@ const Firstpage = () => {
               transform: "translate(14px, 60px)",
             }}
           >
-            You need to fill at least 1 data point to see the list of
-            compliance.
+           Product Field is mandatory.
           </h4>
         </div>
 

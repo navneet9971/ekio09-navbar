@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import axiosInstance from "../../interceptors/axios";
 import Popup from "../popup/Popup";
 import "./Pages.css";
+import ReactLoading from "react-loading";
 import emailjs from "emailjs-com";
 import Swal from "sweetalert2";
 import TECFreshForms from "../Complianceforms/TEC/TECfreashFroms";
@@ -53,6 +54,7 @@ const Secondpage = () => {
   const history = useHistory();
   const [complianceData, setComplianceData] = useState([]);
   const [applicationId, setNewApplicationId] = useState();
+  const [isLoading, setIsLoading] = useState(false);
   //Compliance meantion here their had not provide application only send this compliance Mail on vishal sir
 
   localStorage.setItem("applicationId", applicationId);
@@ -185,6 +187,7 @@ const Secondpage = () => {
   const handleClick = async (complianceName, complianceId, event) => {
     localStorage.setItem("compliance_id", complianceId);
     localStorage.setItem("compliance_name", complianceName);
+    setIsLoading(true);
 
     try {
       // // Fetch data on button click
@@ -198,6 +201,7 @@ const Secondpage = () => {
       );
       const autofill = response.data["key"];
       setAutofillform(autofill);
+     
 
       if (complianceName === "TEC") {
         if (tecautofillform === "Yes") {
@@ -271,17 +275,43 @@ const Secondpage = () => {
         complianceName === "FCC" ||
         complianceName === "FMCS"
       ) {
+          // Use a promise and a timer to simulate the operation
+          const operationPromise = new Promise((resolve) => {
+            setTimeout(() => {
+              resolve(); // Simulate a successful operation
+            }, 5000); // Simulate an operation that takes 15 seconds
+          });
+  
+          await operationPromise;
+
+
         if (autofillform === "Yes") {
           // Call the function for registering
           // Do nothing (I assume you have the register function somewhere else)
           console.log(autofillform);
+          setIsLoading(false); // Turn off the loader when the operation is done
         } else if (autofillform === "No") {
           // Call the function for unregistering
-          sendMail(complianceName);
+          sendMail(complianceName).then(() => {
+            setIsLoading(false); // Turn off the loader when the operation is done
+          });
         }
       }
+        // If sendMail resolves, it means the email was sent successfully
+    Swal.fire({
+      icon: 'success',
+      title: 'Success',
+      text: 'Email sent successfully!',
+    });
     } catch (error) {
       console.error(error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'An error occurred while processing the operation.',
+      });
+    }finally {
+      setIsLoading(false);
     }
   };
 
@@ -508,6 +538,13 @@ const Secondpage = () => {
 
   return (
     <div className="table-bgsconpage">
+
+{isLoading && (
+        <div className="loading-overlay">
+          <ReactLoading type="spin" color="#fff" height={50} width={50} />
+        </div>
+      )}
+
       <div className="table">
         <h1 style={{ display: "none" }}>Application Number: {applicationId}
         </h1>

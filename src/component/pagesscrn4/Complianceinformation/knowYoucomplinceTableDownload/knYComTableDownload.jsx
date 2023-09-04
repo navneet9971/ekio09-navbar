@@ -52,7 +52,7 @@ function KnYCompTableDownload() {
           data.StoreDetails,
           data.ApplicationEndDate,
           // data.ProductNameStore,
-          // console.log(data.ProductNameStore)
+          // console.log(data.ProductNameStore)s
         ]);
 
         const columnWidth = [45, 100, 30];
