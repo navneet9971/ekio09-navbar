@@ -187,7 +187,6 @@ const Secondpage = () => {
   const handleClick = async (complianceName, complianceId, event) => {
     localStorage.setItem("compliance_id", complianceId);
     localStorage.setItem("compliance_name", complianceName);
-    setIsLoading(true);
 
     try {
       // // Fetch data on button click
@@ -256,6 +255,8 @@ const Secondpage = () => {
           setButtonBeeInclusionPopup(true);
         }
       }
+
+      setIsLoading(true);
       if (
         complianceName === "CCC" ||
         complianceName === "SLS" ||
@@ -275,16 +276,15 @@ const Secondpage = () => {
         complianceName === "FCC" ||
         complianceName === "FMCS"
       ) {
-          // Use a promise and a timer to simulate the operation
-          const operationPromise = new Promise((resolve) => {
-            setTimeout(() => {
-              resolve(); // Simulate a successful operation
-            }, 5000); // Simulate an operation that takes 15 seconds
-          });
+        // Use a promise and a timer to simulate the operation
+        const operationPromise = new Promise((resolve) => {
+          setTimeout(() => {
+            resolve(); // Simulate a successful operation
+          }, 5000); // Simulate an operation that takes 15 seconds
+        });
   
-          await operationPromise;
-
-
+        await operationPromise;
+  
         if (autofillform === "Yes") {
           // Call the function for registering
           // Do nothing (I assume you have the register function somewhere else)
@@ -293,16 +293,16 @@ const Secondpage = () => {
         } else if (autofillform === "No") {
           // Call the function for unregistering
           sendMail(complianceName).then(() => {
-            setIsLoading(false); // Turn off the loader when the operation is done
+            setIsLoading(false); // Turn off the loader when the email operation is done
+            // Show success message when email is sent successfully
+            Swal.fire({
+              icon: 'success',
+              title: 'Success',
+              text: 'Email sent successfully!',
+            });
           });
         }
       }
-        // If sendMail resolves, it means the email was sent successfully
-    Swal.fire({
-      icon: 'success',
-      title: 'Success',
-      text: 'Email sent successfully!',
-    });
     } catch (error) {
       console.error(error);
       Swal.fire({
@@ -310,7 +310,7 @@ const Secondpage = () => {
         title: 'Error',
         text: 'An error occurred while processing the operation.',
       });
-    }finally {
+    } finally {
       setIsLoading(false);
     }
   };

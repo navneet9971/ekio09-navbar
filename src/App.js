@@ -3,6 +3,7 @@ import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Login from "./component/auth/Login";
 import ErrorPage from "./component/errorPage";
+import NewPassword from "./component/auth/NewPassword";
 import View from "./component/pages/View";
 //import Add from "./component/pages/Add";
 import Review from "./component/pages/review";
@@ -78,6 +79,10 @@ const App = () => {
         </Route>
         <Route path="/signup">
           <SignUP />
+        </Route>
+
+        <Route path="/newpassword">
+          <NewPassword />
         </Route>
 
            {/* // Lab TEsting Redirect code here */}
