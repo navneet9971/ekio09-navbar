@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from "react-router-dom";
 import axiosInstance from "../../interceptors/axios";
 import Swal from "sweetalert2";
+import "./NewPassword.css"; // Import your CSS file for styling
 
 function NewPassword() {
   const [formData, setFormData] = useState({
     token: "",
-    password: "",
+    password1: "", // Updated name to match the input field
+    password2: "", // Updated name to match the input field
   });
   const history = useHistory();
 
@@ -38,44 +40,35 @@ function NewPassword() {
   };
 
   return (
-    <div className="New-password"
-    style={{
-      display: "grid",
-      justifyContent: "center",
-      alignItems: "center",
-      height: "100vh", // Set a specific height for the container
-    }}
-    >
-      <h2>Change Password</h2>
+    <div className="NewPassword-container">
+      <h2>Reset Password</h2>
       <form onSubmit={handleSubmit}>
         <div className="input-box">
-          <label htmlFor="token">Token</label>
+          <label htmlFor="password1">New Password</label>
           <input
-            type="text"
-            className="form-control"
-            id="token"
-            name="token"
-            placeholder="Enter your token"
-            value={formData.token}
+            type="password"
+            id="password1"
+            name="password1"
+            placeholder="Enter your new password"
+            value={formData.password1}
             onChange={handleInputChange}
             required
           />
         </div>
         <div className="input-box">
-          <label htmlFor="password">New Password</label>
+          <label htmlFor="password2">Confirm Password</label>
           <input
             type="password"
-            className="form-control"
-            id="password"
-            name="password"
-            placeholder="Enter your new password"
-            value={formData.password}
+            id="password2"
+            name="password2"
+            placeholder="Confirm your new password"
+            value={formData.password2}
             onChange={handleInputChange}
             required
           />
         </div>
         <button type="submit" className="button1">
-          Change Password
+          Submit
         </button>
       </form>
     </div>
