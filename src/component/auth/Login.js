@@ -20,7 +20,7 @@ function Login() {
   const [userType, setUserType] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const initialFormData = Object.freeze({
-    email: "",
+    username: "",
     password: "",
   });
   const [formData, updateFormData] = useState(initialFormData);
@@ -72,7 +72,7 @@ function Login() {
 
     axiosInstance
       .post(`login`, {
-        email: formData.email,
+        username: formData.username,
         password: formData.password,
       })
       .then(async (res) => {
@@ -157,8 +157,8 @@ function Login() {
           </div>
           <div className="input-box">
             <input
-              name="email"
-              placeholder="Username"
+              name="username"
+              placeholder="username"
               onChange={handleChange}
             />
           </div>
