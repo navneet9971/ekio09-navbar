@@ -96,3 +96,53 @@ function NewPassword() {
 }
 
 export default NewPassword;
+
+
+
+
+//Country Dropdown full code with api bu comment use another day another page 
+
+// import React, { useState, useEffect } from "react";
+// import axios from "axios";
+
+// function CountryDropdown() {
+//   const [countries, setCountries] = useState([]);
+//   const [selectedCountry, setSelectedCountry] = useState("");
+
+//   useEffect(() => {
+//     // Fetch the list of countries from the API
+//     axios.get("https://restcountries.com/v3.1/all")
+//       .then((response) => {
+//         // Extract country names from the response
+//         const countryNames = response.data.map((country) => country.name.common);
+//         // Set the country names in the state
+//         setCountries(countryNames);
+//       })
+//       .catch((error) => {
+//         console.error("Error fetching countries:", error);
+//       });
+//   }, []);
+
+//   const handleSelectChange = (event) => {
+//     const selectedCountry = event.target.value;
+//     setSelectedCountry(selectedCountry);
+//   };
+
+//   return (
+//     <div>
+//       <h1>Country Dropdown</h1>
+//       <select onChange={handleSelectChange} value={selectedCountry}>
+//         <option value="">Select a country</option>
+//         {countries.map((country, index) => (
+//           <option key={index} value={country}>
+//             {country}
+//           </option>
+//         ))}
+//       </select>
+//       {selectedCountry && <p>You selected: {selectedCountry}</p>}
+//     </div>
+//   );
+// }
+
+// export default CountryDropdown;
+

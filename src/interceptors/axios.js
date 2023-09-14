@@ -36,9 +36,10 @@ axiosInstance.interceptors.response.use(
 
         try {
           const rs = await axiosInstance.post("refresh", {
-			
             refresh: localStorage.getItem("refresh_token"),
           });
+          
+          console.log(rs)
 
           const { access_token } = rs.data.access;
           localStorage.setItem("access_token", access_token);

@@ -20,7 +20,7 @@ function Login() {
   const [userType, setUserType] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const initialFormData = Object.freeze({
-    username: "",
+    email: "",
     password: "",
   });
   const [formData, updateFormData] = useState(initialFormData);
@@ -69,11 +69,10 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true); // Start loading animation
-    console.log(formData);
 
     axiosInstance
       .post(`login`, {
-        username: formData.username,
+        email: formData.email,
         password: formData.password,
       })
       .then(async (res) => {
@@ -84,6 +83,7 @@ function Login() {
         const user_type = res.data.profile.user_type;
         setUserType(user_type);
         console.log(userType);
+        console.log(res.data);
 
         if (res.data.profile.first_time === true) {
           axiosInstance
@@ -92,7 +92,7 @@ function Login() {
               console.log(patchRes);
             })
             .catch((patchError) => {
-              console.error(patchError);
+              // console.error(patchError);
             });
         }
 
@@ -157,7 +157,7 @@ function Login() {
           </div>
           <div className="input-box">
             <input
-              name="username"
+              name="email"
               placeholder="Username"
               onChange={handleChange}
             />
