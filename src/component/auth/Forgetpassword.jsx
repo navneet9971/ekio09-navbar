@@ -23,7 +23,6 @@ function ForgetPassword() {
       .then((res) => {
         // Check the success status directly from the response
         const success = res.status === 200; // Modify this condition based on the actual success status returned by the API
-
         // Open file browser popup if registration is successful
         if (success) {
           Swal.fire({
@@ -33,10 +32,10 @@ function ForgetPassword() {
             confirmButtonText: "OK",
           }).then(() => {
             setIsLoading(false); // Set isLoading to false after user interaction with SweetAlert2
-            history.push("/"); // Navigate to the homepage
+            history.push("/"); // Navigate to the forget password page 
           });
         }
-      })
+      })  
       .catch((error) => {
         if (error.response && error.response.status === 400) {
           Swal.fire({
