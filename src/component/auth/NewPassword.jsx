@@ -1,38 +1,26 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import axiosInstance from "../../interceptors/axios";
 import Swal from "sweetalert2";
 import "./NewPassword.css"; // Import your CSS file for styling
 
-// Define your URL parameter keys as constants
-const TOKEN_PARAM = "https://eikompapp.com/NewPassword/confirm/?token=3e73fd103514f4a1526fbf19";
-
 function NewPassword() {
   const [formData, setFormData] = useState({
-    token: "", // Initialize token as an empty string
+    token: "",
     password1: "",
     password2: "",
-    // Add additional parameters here
-    param1: "",
-    param2: "",
   });
-  const [showPassword1, setShowPassword1] = useState(false); // State to control password visibility for password1
-  const [showPassword2, setShowPassword2] = useState(false); // State to control password visibility for password2
+  const [showPassword1, setShowPassword1] = useState(false);
+  const [showPassword2, setShowPassword2] = useState(false);
   const history = useHistory();
   const location = useLocation();
 
-  // Function to extract the token value from the URL
-  const extractTokenFromURL = useMemo(() => {
-    const searchParams = new URLSearchParams(location.search);
-    const tokenValue = searchParams.get(TOKEN_PARAM);
-    return tokenValue || "";
-  }, [location.search]);
-
   useEffect(() => {
     // Extract the token value from the URL and set it in the formData state
-    const tokenValue = extractTokenFromURL;
+    const searchParams = new URLSearchParams(location.search);
+    const tokenValue = searchParams.get("token");
     setFormData((prevFormData) => ({ ...prevFormData, token: tokenValue }));
-  }, [location.search, extractTokenFromURL]);
+  }, [location.search]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -51,14 +39,7 @@ function NewPassword() {
     event.preventDefault();
 
     try {
-      // Add the additional parameters to the formData object
-      const updatedFormData = {
-        ...formData,
-        param1: "value1", // Replace with the actual value you want to send
-        param2: "value2", // Replace with the actual value you want to send
-      };
-
-      const response = await axiosInstance.post("password-reset/confirm/", updatedFormData);
+      const response = await axiosInstance.post("password-reset/confirm/", formData);
 
       console.log("API Response:", response);
 
@@ -68,7 +49,6 @@ function NewPassword() {
     } catch (error) {
       console.error("API Error:", error);
 
-      // Handle specific errors and show relevant error messages to the user
       if (error.response && error.response.data) {
         const errorMessage = error.response.data.message || "An error occurred while changing the password.";
         Swal.fire("Error", errorMessage, "error");
@@ -94,7 +74,6 @@ function NewPassword() {
               onChange={handleInputChange}
               required
             />
-            {/* Password visibility toggle icon */}
             <span className="password-toggle-icon" onClick={handlePasswordToggle1}>
               {showPassword1 ? (
                 <span role="img" aria-label="Hide Password">🙈</span>
@@ -116,7 +95,6 @@ function NewPassword() {
               onChange={handleInputChange}
               required
             />
-            {/* Password visibility toggle icon */}
             <span className="password-toggle-icon" onClick={handlePasswordToggle2}>
               {showPassword2 ? (
                 <span role="img" aria-label="Hide Password">🙈</span>
