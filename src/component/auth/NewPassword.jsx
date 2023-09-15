@@ -1,32 +1,64 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect, useMemo } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 import axiosInstance from "../../interceptors/axios";
 import Swal from "sweetalert2";
 import "./NewPassword.css"; // Import your CSS file for styling
 
+// Define your URL parameter keys as constants
+const TOKEN_PARAM = "https://eikompapp.com/NewPassword/confirm/?token=3e73fd103514f4a1526fbf19";
+
 function NewPassword() {
   const [formData, setFormData] = useState({
-    token: "",
+    token: "", // Initialize token as an empty string
     password1: "",
     password2: "",
+    // Add additional parameters here
+    param1: "",
+    param2: "",
   });
-  const [showPassword, setShowPassword] = useState(false); // State to control password visibility
+  const [showPassword1, setShowPassword1] = useState(false); // State to control password visibility for password1
+  const [showPassword2, setShowPassword2] = useState(false); // State to control password visibility for password2
   const history = useHistory();
+  const location = useLocation();
+
+  // Function to extract the token value from the URL
+  const extractTokenFromURL = useMemo(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const tokenValue = searchParams.get(TOKEN_PARAM);
+    return tokenValue || "";
+  }, [location.search]);
+
+  useEffect(() => {
+    // Extract the token value from the URL and set it in the formData state
+    const tokenValue = extractTokenFromURL;
+    setFormData((prevFormData) => ({ ...prevFormData, token: tokenValue }));
+  }, [location.search, extractTokenFromURL]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
-  const handlePasswordToggle = () => {
-    setShowPassword(!showPassword);
+  const handlePasswordToggle1 = () => {
+    setShowPassword1(!showPassword1);
+  };
+
+  const handlePasswordToggle2 = () => {
+    setShowPassword2(!showPassword2);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const response = await axiosInstance.post("password-reset/confirm/", formData);
+      // Add the additional parameters to the formData object
+      const updatedFormData = {
+        ...formData,
+        param1: "value1", // Replace with the actual value you want to send
+        param2: "value2", // Replace with the actual value you want to send
+      };
+
+      const response = await axiosInstance.post("password-reset/confirm/", updatedFormData);
 
       console.log("API Response:", response);
 
@@ -35,7 +67,14 @@ function NewPassword() {
       history.push("/");
     } catch (error) {
       console.error("API Error:", error);
-      Swal.fire("Error", "An error occurred while changing the password.", "error");
+
+      // Handle specific errors and show relevant error messages to the user
+      if (error.response && error.response.data) {
+        const errorMessage = error.response.data.message || "An error occurred while changing the password.";
+        Swal.fire("Error", errorMessage, "error");
+      } else {
+        Swal.fire("Error", "An error occurred while changing the password.", "error");
+      }
     }
   };
 
@@ -47,7 +86,7 @@ function NewPassword() {
           <label htmlFor="password1">New Password</label>
           <div className="password-input">
             <input
-              type={showPassword ? "text" : "password"}
+              type={showPassword1 ? "text" : "password"}
               id="password1"
               name="password1"
               placeholder="Enter your new password"
@@ -56,8 +95,8 @@ function NewPassword() {
               required
             />
             {/* Password visibility toggle icon */}
-            <span className="password-toggle-icon" onClick={handlePasswordToggle}>
-              {showPassword ? (
+            <span className="password-toggle-icon" onClick={handlePasswordToggle1}>
+              {showPassword1 ? (
                 <span role="img" aria-label="Hide Password">🙈</span>
               ) : (
                 <span role="img" aria-label="Show Password">👁️</span>
@@ -69,7 +108,7 @@ function NewPassword() {
           <label htmlFor="password2">Confirm Password</label>
           <div className="password-input">
             <input
-              type={showPassword ? "text" : "password"}
+              type={showPassword2 ? "text" : "password"}
               id="password2"
               name="password2"
               placeholder="Confirm your new password"
@@ -78,8 +117,8 @@ function NewPassword() {
               required
             />
             {/* Password visibility toggle icon */}
-            <span className="password-toggle-icon" onClick={handlePasswordToggle}>
-              {showPassword ? (
+            <span className="password-toggle-icon" onClick={handlePasswordToggle2}>
+              {showPassword2 ? (
                 <span role="img" aria-label="Hide Password">🙈</span>
               ) : (
                 <span role="img" aria-label="Show Password">👁️</span>
@@ -96,53 +135,3 @@ function NewPassword() {
 }
 
 export default NewPassword;
-
-
-
-
-//Country Dropdown full code with api bu comment use another day another page 
-
-// import React, { useState, useEffect } from "react";
-// import axios from "axios";
-
-// function CountryDropdown() {
-//   const [countries, setCountries] = useState([]);
-//   const [selectedCountry, setSelectedCountry] = useState("");
-
-//   useEffect(() => {
-//     // Fetch the list of countries from the API
-//     axios.get("https://restcountries.com/v3.1/all")
-//       .then((response) => {
-//         // Extract country names from the response
-//         const countryNames = response.data.map((country) => country.name.common);
-//         // Set the country names in the state
-//         setCountries(countryNames);
-//       })
-//       .catch((error) => {
-//         console.error("Error fetching countries:", error);
-//       });
-//   }, []);
-
-//   const handleSelectChange = (event) => {
-//     const selectedCountry = event.target.value;
-//     setSelectedCountry(selectedCountry);
-//   };
-
-//   return (
-//     <div>
-//       <h1>Country Dropdown</h1>
-//       <select onChange={handleSelectChange} value={selectedCountry}>
-//         <option value="">Select a country</option>
-//         {countries.map((country, index) => (
-//           <option key={index} value={country}>
-//             {country}
-//           </option>
-//         ))}
-//       </select>
-//       {selectedCountry && <p>You selected: {selectedCountry}</p>}
-//     </div>
-//   );
-// }
-
-// export default CountryDropdown;
-
