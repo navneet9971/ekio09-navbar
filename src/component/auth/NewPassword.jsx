@@ -19,6 +19,7 @@ function NewPassword() {
     // Extract the token value from the URL and set it in the formData state
     const searchParams = new URLSearchParams(location.search);
     const tokenValue = searchParams.get("token");
+    console.log(tokenValue);
     setFormData((prevFormData) => ({ ...prevFormData, token: tokenValue }));
   }, [location.search]);
 
