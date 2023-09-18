@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axiosInstance from "../../../interceptors/axios";
 import ReactLoading from "react-loading";
@@ -11,7 +11,7 @@ function BEEPerviousData ({ onClose }) {
   const [isLoading, setIsLoading] = useState(false);
   const autofillBeeData = localStorage.getItem('beedata');
 // console.log(localStorage.getItem('bisdata'))
-    const history = useHistory();
+    const navigate = useNavigate();
 
     //BEE PERVIOUS DATA FETCH HERE ITS CODE ------------------------------------------
     const [beeformData, setBeeformData] = useState({
@@ -147,7 +147,7 @@ function BEEPerviousData ({ onClose }) {
             'Form submitted successfully. Please head over to the "Track Application" Page to upload documents and review progress ',
           icon: "success",
         }).then(() => {
-          history.push('/navbar/review');
+          navigate('/navbar/review');
         })
         setIsLoading(false); // Stop loading animation
         onClose(); // Close the popup after download is complete

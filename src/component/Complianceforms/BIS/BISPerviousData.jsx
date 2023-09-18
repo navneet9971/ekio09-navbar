@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axiosInstance from "../../../interceptors/axios";
 import ReactLoading from "react-loading";
@@ -11,7 +11,7 @@ function BISPerviousData ({ onClose }) {
   const [isLoading, setIsLoading] = useState(false);
   const autofillBisData = localStorage.getItem('bisdata');
 // console.log(localStorage.getItem('bisdata'))
-    const history = useHistory();
+    const navigate = useNavigate();
 
     //BIS PERVIOUS DATA FETCH HERE ITS CODE ------------------------------------------
   const [bisformData, setBisformData] = useState({
@@ -178,7 +178,7 @@ function BISPerviousData ({ onClose }) {
             'Form submitted successfully. Please head over to the "Track Application" Page to upload documents and review progress ',
           icon: "success",
         }).then(() => {
-          history.push('/navbar/review');
+          navigate('/navbar/review');
         })
         setIsLoading(false); // Stop loading animation
         onClose(); // Close the popup after download is complete

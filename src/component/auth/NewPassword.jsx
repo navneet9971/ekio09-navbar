@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axiosInstance from "../../interceptors/axios";
 import Swal from "sweetalert2";
 import "./NewPassword.css"; // Import your CSS file for styling
@@ -12,7 +12,7 @@ function NewPassword() {
   });
   const [showPassword1, setShowPassword1] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
@@ -46,7 +46,7 @@ function NewPassword() {
 
       Swal.fire("Password changed!", "Your password has been updated.", "success");
 
-      history.push("/");
+      navigate("/");
     } catch (error) {
       console.error("API Error:", error);
 

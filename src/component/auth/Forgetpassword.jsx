@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+// import { useNavigate } from "react-router-dom/cjs/react-router-dom.min";
+import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../interceptors/axios";
 import Swal from "sweetalert2";
 import ReactLoading from "react-loading";
 
 function ForgetPassword() {
   const [forgetemail, setForgetemail] = useState("");
-  const history = useHistory();
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
   const handleforgetemail = (e) => {
@@ -32,7 +33,7 @@ function ForgetPassword() {
             confirmButtonText: "OK",
           }).then(() => {
             setIsLoading(false); // Set isLoading to false after user interaction with SweetAlert2
-            history.push("/"); // Navigate to the forget password page 
+            navigate("/"); // Navigate to the forget password page 
           });
         }
       })  

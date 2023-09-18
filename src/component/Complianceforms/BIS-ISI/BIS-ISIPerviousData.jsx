@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axiosInstance from "../../../interceptors/axios";
 import ReactLoading from "react-loading";
@@ -10,7 +10,7 @@ function BISISIPerviousData ({ onClose }) {
   const storedApplicationId = localStorage.getItem("applicationId");
 // console.log(localStorage.getItem('bisdata'))
     const [isLoading, setIsLoading] = useState(false); 
-    const history = useHistory();
+    const navigate = useNavigate();
 
     //BISISI PERVIOUS DATA FETCH HERE ITS CODE ------------------------------------------
     const [bisIsiPrevFormData, setBisIsiPrevFormData] = useState({
@@ -117,7 +117,7 @@ function BISISIPerviousData ({ onClose }) {
             'Form submitted successfully. Please head over to the "Track Application" Page to upload documents and review progress ',
           icon: "success",
         }).then(() => {
-          history.push('/navbar/review');
+          navigate('/navbar/review');
         })
        
         // onClose(); // Close the popup after download is complete

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2"; // Import Swal from sweetalert2 library
 import axiosInstance from "../../../interceptors/axios";
 import ReactLoading from "react-loading";
 
 const WPCFormComponent = ({ onClose }) => {
   const [isLoading, setIsLoading] = useState(false);  
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const [wpcformData, setWPCformData] = useState({
     Registration_type: "",
@@ -80,7 +80,7 @@ const WPCFormComponent = ({ onClose }) => {
             'Form submitted successfully. Please head over to the "Track Application" Page to upload documents and review progress ',
           icon: "success",
         }).then(() => {
-          history.push('/navbar/review');
+          navigate('/navbar/review');
         });
 
         // // Loop through each form in the "forms" field

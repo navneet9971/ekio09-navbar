@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "../Pages.css";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useNavigate } from "react-router-dom";
 // import bgimage from "../../assets/pages-bgimages/background.svg";
 import axiosInstance from "../../../interceptors/axios";
 
 function BIScompliance() {
   const [middleData, setMiddleData] = useState("");
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axiosInstance
@@ -20,7 +20,7 @@ function BIScompliance() {
   }, []);
 
   const handleButtonClick = () => {
-    history.push("/navbar/secondpage"); // Replace '/new-application' with your desired URL
+    navigate("/navbar/secondpage"); // Replace '/new-application' with your desired URL
   };
 
   return (

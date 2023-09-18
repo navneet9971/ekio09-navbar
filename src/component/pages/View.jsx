@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Popup from "../popup/Popup";
 import "./Table.css";
 
@@ -20,7 +20,7 @@ function View() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filterDate, setFilterDate] = useState("");
   const [showPopup, setShowPopup] = useState(false);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleActionChange = (index, event) => {
     const newData = [...data];
@@ -28,7 +28,7 @@ function View() {
     setData(newData);
 
     if (event.target.value === "edit") {
-      history.push(`/navbar/edit/${data[index].id}`);
+      navigate(`/navbar/edit/${data[index].id}`);
     }
   };
 

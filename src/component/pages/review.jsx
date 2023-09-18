@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Popup from "../popup/Popup";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
@@ -50,7 +50,7 @@ function BISTableReview() {
   const [showPopup, setShowPopup] = useState(false);
   const [isLoading, setIsLoading] = useState(true); // State for loading spinner
   const [selectedStatus, setSelectedStatus] = useState("All");
-  const history = useHistory();
+  const navigate = useNavigate();
   const idel = localStorage.getItem("ide");
 
   useEffect(() => {
@@ -89,50 +89,50 @@ function BISTableReview() {
   
     if (selectedItem.compliance_name === "BIS") {
       if (selectedStatus === "ongoing") {
-        history.push(`/navbar/BISoongoing/id=${id}`);
+        navigate(`/navbar/BISoongoing/id=${id}`);
       } else if (selectedStatus === "completed") {
-        history.push(`/navbar/BIScompleted/id=${id}`);
+        navigate(`/navbar/BIScompleted/id=${id}`);
       } else if (selectedStatus === "inclusion") {
-        history.push(`/navbar/BISinclusion/id=${id}`);
+        navigate(`/navbar/BISinclusion/id=${id}`);
       }
     } else if (selectedItem.compliance_name === "TEC") {
       if (selectedStatus === "ongoing") {
-        history.push(`/navbar/TECongoing/id=${id}`);
+        navigate(`/navbar/TECongoing/id=${id}`);
       } else if (selectedStatus === "completed") {
-        history.push(`/navbar/TECcompleted/id=${id}`);
+        navigate(`/navbar/TECcompleted/id=${id}`);
       } else if (selectedStatus === "modification") {
-        history.push(`/navbar/TECmodification/id=${id}`);
+        navigate(`/navbar/TECmodification/id=${id}`);
       }
     } else if (selectedItem.compliance_name === "WPC") {
       if (selectedStatus === "ongoing") {
-        history.push(`/navbar/WPCongoing/id=${id}`);
+        navigate(`/navbar/WPCongoing/id=${id}`);
       } else if (selectedStatus === "completed") {
-        history.push(`/navbar/WPCcompleted/id=${id}`);
+        navigate(`/navbar/WPCcompleted/id=${id}`);
       }
     } else if (selectedItem.compliance_name === "BIS - ISI") {
       if (selectedStatus.includes("simplify")) {
         // Check if selectedStatus contains "simplify" (case-insensitive check)
         if (selectedStatus.includes("ongoing")) {
           // Redirect to another page when selectedStatus contains "ongoing" and "simplify"
-          history.push(`/navbar/BisIsiSimplifyOngoing/id=${id}`);
+          navigate(`/navbar/BisIsiSimplifyOngoing/id=${id}`);
         } else if (selectedStatus.includes("completed")) {
           // Redirect to another page when selectedStatus contains "completed" and "simplify"
-          history.push(`/navbar/BisIsiSimplifyCompleted/id=${id}`);
+          navigate(`/navbar/BisIsiSimplifyCompleted/id=${id}`);
         }
       } else if (selectedStatus === "ongoing") {
-        history.push(`/navbar/BisIsiOngoing/id=${id}`);
+        navigate(`/navbar/BisIsiOngoing/id=${id}`);
       } else if (selectedStatus === "completed") {
-        history.push(`/navbar/BisIsicompleted/id=${id}`);
+        navigate(`/navbar/BisIsicompleted/id=${id}`);
       } else if (selectedStatus === "inclusion") {
-        history.push(`/navbar/BisIsiInclusion/id=${id}`);
+        navigate(`/navbar/BisIsiInclusion/id=${id}`);
       }
     }  else if (selectedItem.compliance_name === "BEE") {
       if (selectedStatus === "ongoing") {
-        history.push(`/navbar/BeeOngoing/id=${id}`);
+        navigate(`/navbar/BeeOngoing/id=${id}`);
       } else if (selectedStatus === "completed") {
-        history.push(`/navbar/Beecompleted/id=${id}`);
+        navigate(`/navbar/Beecompleted/id=${id}`);
       } else if (selectedStatus === "inclusion") {
-        history.push(`/navbar/BeeInclusion/id=${id}`);
+        navigate(`/navbar/BeeInclusion/id=${id}`);
       }
     }else {
       // Fallback for unknown cases

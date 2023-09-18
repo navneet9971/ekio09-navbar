@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axiosInstance from "../../../interceptors/axios";
 import ReactLoading from "react-loading";
@@ -9,7 +9,7 @@ const BISFormComponent = () => {
   const [hasBISReg, setHasBISReg] = useState(false);
   const [isLoading, setIsLoading] = useState(false);   
   const storedApplicationId = localStorage.getItem("applicationId");
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const [bisFormData, setBisFormData] = useState({
     Types_of_company: "",
@@ -116,7 +116,7 @@ const BISFormComponent = () => {
               'Form submitted successfully. Please head over to the "Track Application" Page to upload documents and review progress ',
             confirmButtonText: "OK",
           }).then(() => {
-            history.push('/navbar/review');
+            navigate('/navbar/review');
           })
           //    setButtonPopup6bis(false);
         } else {
