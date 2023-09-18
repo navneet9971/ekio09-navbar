@@ -48,7 +48,7 @@ function NewPassword() {
        console.log(formData);
       Swal.fire("Password changed!", "Your password has been updated.", "success");
 
-      history.push("/NewPassword/");
+      history.push("/");
     } catch (error) {
       console.error("API Error:", error);
 

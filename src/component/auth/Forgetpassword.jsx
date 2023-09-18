@@ -32,7 +32,7 @@ function ForgetPassword() {
             confirmButtonText: "OK",
           }).then(() => {
             setIsLoading(false); // Set isLoading to false after user interaction with SweetAlert2
-            history.push("/"); // Navigate to the forget password page 
+            history.push("/NewPassword/"); // Navigate to the forget password page 
           });
         }
       })  
