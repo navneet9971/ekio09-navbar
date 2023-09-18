@@ -81,7 +81,7 @@ const App = () => {
           <SignUP />
         </Route>
 
-        <Route path="/NewPassword/">
+        <Route path="/NewPassword/:token">
           <NewPassword />
         </Route>
 
