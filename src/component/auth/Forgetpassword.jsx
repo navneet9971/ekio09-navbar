@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import axiosInstance from "../../interceptors/axios";
+import axios from "axios";
 import Swal from "sweetalert2";
 import ReactLoading from "react-loading";
 
@@ -14,8 +14,8 @@ function ForgetPassword() {
     const formData = new FormData();
     formData.append("email", forgetemail);
 
-    axiosInstance
-      .post("password-reset/", formData, {
+    axios
+      .post("https://backend.eikompapp.com/forgot_password/", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import axiosInstance from "../../interceptors/axios";
+import axios from "axios";
 import Swal from "sweetalert2";
 import "./NewPassword.css"; // Import your CSS file for styling
 
 function NewPassword() {
   const [formData, setFormData] = useState({
-    token: "",
-    password1: "",
-    password2: "",
+    // token: "",
+    password: "",
+    confirmPassword: "",
   });
   const [showPassword1, setShowPassword1] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
+  const [token, setToken] = useState("");
   const history = useHistory();
   const location = useLocation();
 
@@ -20,6 +21,7 @@ function NewPassword() {
     const searchParams = new URLSearchParams(location.search);
     const tokenValue = searchParams.get("token");
     console.log(tokenValue);
+    setToken(tokenValue)
     setFormData((prevFormData) => ({ ...prevFormData, token: tokenValue }));
   }, [location.search]);
 
@@ -40,10 +42,10 @@ function NewPassword() {
     event.preventDefault();
 
     try {
-      const response = await axiosInstance.post("password-reset/confirm/", formData);
+      const response = await axios.post(`https://backend.eikompapp.com/NewPassword/${token} `, formData);
 
       console.log("API Response:", response);
-
+       console.log(formData);
       Swal.fire("Password changed!", "Your password has been updated.", "success");
 
       history.push("/");
