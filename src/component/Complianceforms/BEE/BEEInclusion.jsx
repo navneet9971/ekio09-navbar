@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axiosInstance from "../../../interceptors/axios";
 import ReactLoading from "react-loading";
 
 function BeeInclusionForm() {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const applicationId = localStorage.getItem("applicationId");
@@ -46,7 +46,7 @@ function BeeInclusionForm() {
           "Form submitted successfully. Please head over to the 'Track Application' Page to review progress",
         icon: "success",
       }).then(() => {
-        history.push('/navbar/review');
+        navigate('/navbar/review');
       })
       setIsLoading(false);
     } catch (error) {

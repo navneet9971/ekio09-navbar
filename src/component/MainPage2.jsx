@@ -2,12 +2,12 @@ import React, {useState ,useEffect} from "react";
 import "../component/pagesscrn4/client-dashbord/Clientdashboard.css";
 import axiosInstance from "../interceptors/axios";
 
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const MainPage2 = () => {
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axiosInstance
@@ -25,7 +25,7 @@ const MainPage2 = () => {
   }, []); // run only once on mount
 
   const handleSkip = () => {
-    history.push("/navbar/firstpage");
+    navigate("/navbar/firstpage");
   };
 
   return (

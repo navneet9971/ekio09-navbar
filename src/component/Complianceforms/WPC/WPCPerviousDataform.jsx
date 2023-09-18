@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../../interceptors/axios";
 import ReactLoading from "react-loading";
 
@@ -8,7 +8,7 @@ function WPCPerviousData({ onClose }) {
   const applicationId = localStorage.getItem("applicationId");
   const autofillWpcData = localStorage.getItem("wpcdata"); // this setItem show on Secondpage.jsx
   const [isLoading, setIsLoading] = useState(false);  
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const [wpcformData, setWpcformData] = useState({
     Registration_type: "",
@@ -131,7 +131,7 @@ function WPCPerviousData({ onClose }) {
             'Form submitted successfully. Please head over to the "Track Application" Page to upload documents and review progress ',
           icon: "success",
         }).then(() => {
-          history.push('/navbar/review');
+          navigate('/navbar/review');
         })
         onClose(); // Close the popup after download is complete
         setIsLoading(false); // Stop loading animation

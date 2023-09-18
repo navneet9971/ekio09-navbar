@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Navbar.css";
-import { NavLink, useHistory, useLocation } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { FaBars, FaPowerOff } from "react-icons/fa";
 import $ from "jquery";
 import axiosInstance from 'axios';
@@ -13,7 +13,7 @@ import Popup from "../../popup/Popup";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [notificationIcon, setNotificationIcon] = useState(false);
-  const history = useHistory(); // initialize useHistory hook
+  const navigate = useNavigate(); // initialize useNavigate hook
   const { pathname } = useLocation();
 
   const handleToggle = () => {
@@ -73,7 +73,7 @@ const Navbar = () => {
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
     axiosInstance.defaults.headers['Authorization'] = null;
-    history.push('/');
+    navigate('/');
   }
 
   return (

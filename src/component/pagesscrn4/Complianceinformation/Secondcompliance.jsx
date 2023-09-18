@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell } from "@fortawesome/free-solid-svg-icons";
 import "../Pages.css";
@@ -11,7 +11,7 @@ import EmailSender from "../TestProductsendmail";
 import KnYCompTableDownload from "./knowYoucomplinceTableDownload/knYComTableDownload";
 
 const Secondpage = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [complianceData, setComplianceData] = useState([]);
   const [notifiButton, setNotifiButton] = useState(false);
   const [cotpopupbutton, setCotpopupbutton] = useState(false);
@@ -48,17 +48,17 @@ const Secondpage = () => {
     localStorage.setItem("compliance_id", complianceId);
 
     if (complianceName === "TEC") {
-      history.push(`/navbar/TECcompliance`);
+      navigate(`/navbar/TECcompliance`);
     } else if (complianceName === "WPC") {
-      history.push(`/navbar/WPCcompliance`);
+      navigate(`/navbar/WPCcompliance`);
     } else if (complianceName === "BIS") {
-      history.push(`/navbar/BIScompliance`);
+      navigate(`/navbar/BIScompliance`);
     } else if (complianceName === "EPR") {
-      history.push(`/navbar/EPRcompliance`);
+      navigate(`/navbar/EPRcompliance`);
     } else if (complianceName === "BIS - ISI") {
-      history.push(`/navbar/BIS-ISIcompliance`);
+      navigate(`/navbar/BIS-ISIcompliance`);
     } else if (complianceName === "BEE") {
-      history.push(`/navbar/BEEcompliance`);
+      navigate(`/navbar/BEEcompliance`);
     }  else  {
       // handle other compliance names
     }

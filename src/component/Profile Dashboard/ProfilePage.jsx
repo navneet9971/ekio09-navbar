@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FaPowerOff, FaUserAlt, FaUserCog } from "react-icons/fa";
 import { RxDashboard } from 'react-icons/rx';
 import axiosInstance from "../../interceptors/axios";
@@ -21,7 +21,7 @@ function ProfilePage() {
   const [key, setKey] = useState(null);
   const [showProfileSubmenu, setShowProfileSubmenu] = useState(false);
   const [showMangeSubmenu, setShowMangeSubmenu] = useState(false);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleSidebarItemClick = (content) => {
     setActiveContent(content);
@@ -44,7 +44,7 @@ function ProfilePage() {
     localStorage.removeItem("access_token");
     localStorage.removeItem("refresh_token");
     axiosInstance.defaults.headers["Authorization"] = null;
-    history.push("/");
+    navigate("/");
   }
 
   useEffect(() => {

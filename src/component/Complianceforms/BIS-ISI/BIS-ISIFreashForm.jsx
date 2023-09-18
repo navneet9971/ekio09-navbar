@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axiosInstance from "../../../interceptors/axios";
 import ReactLoading from "react-loading";
@@ -7,7 +7,7 @@ import ReactLoading from "react-loading";
 const BISISIFreashForm = () => {
   const storedApplicationId = localStorage.getItem("applicationId");
   const [isLoading, setIsLoading] = useState(false);   
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const [bisIsiFormData, setBisIsiFormData] = useState({
     Is_no: "",
@@ -72,7 +72,7 @@ const BISISIFreashForm = () => {
               'Form submitted successfully. Please head over to the "Track Application" Page to upload documents and review progress ',
             confirmButtonText: "OK",
           }).then(() => {
-            history.push("/navbar/review");
+            navigate("/navbar/review");
             setIsLoading(false); // Stop loading animation
           });
         } else {

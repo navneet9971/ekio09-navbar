@@ -1,5 +1,5 @@
 import React, { useState, useEffect  } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Pages.css";
 import axiosInstance from "../../interceptors/axios";
 import "react-chatbot-kit/build/main.css";
@@ -14,7 +14,7 @@ const Firstpage = () => {
   const [selectedCountry, setSelectedCountry] = useState('');// state for selected region
   const [productDropdown, setProductDropdown] = useState([]); // state for product dropdown
   const [isLoading, setIsLoading] = useState(false);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const options = [
     'India',
@@ -154,7 +154,7 @@ const Firstpage = () => {
         } else {
           console.log(response.data);
           // redirect the user to the second page with the compliance data
-          history.push("/navbar/secondpage");
+          navigate("/navbar/secondpage");
         }
         setIsLoading(false); // Stop loading animation
       })

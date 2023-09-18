@@ -1,10 +1,10 @@
 import { Row, Col } from "antd";
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 function LabTestBtnDash() {
-    const history = useHistory ();
+    const navigate = useNavigate();
     const [labTestData, setLabTestData] = useState({
       Product_name: "",
       Compliance: "",
@@ -19,9 +19,9 @@ function LabTestBtnDash() {
       const productName = labTestData.Product_name.toLowerCase(); // Convert to lowercase for case-insensitive comparison
     
       if (productName === "router" || productName === "iot gateway") {
-        history.push("/navbar/labtest");
+        navigate("/navbar/labtest");
       } else if (productName === "footwear") {
-        history.push("/navbar/labtestbis");
+        navigate("/navbar/labtestbis");
       }
     };
     

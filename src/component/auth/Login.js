@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../assets/css/global.css";
 import axiosInstance from "../../interceptors/axios";
 import Popup from "../popup/Popup";
@@ -15,7 +15,7 @@ import img5 from "../assets/login-page-icons/5.png";
 import img6 from "../assets/login-page-icons/6.png";
 
 function Login() {
-  const history = useHistory();
+  const navigate= useNavigate();
   const [linkPopup, setLinkPopup] = useState(false);
   const [userType, setUserType] = useState();
   const [isLoading, setIsLoading] = useState(false);
@@ -97,11 +97,11 @@ function Login() {
         }
 
         if (user_type === "corporate") {
-          history.push("/navbar/clientdashboard");
+          navigate("/navbar/clientdashboard");
         } else if (user_type === "lab") {
-          history.push("/navbar/profile");
+          navigate("/navbar/profile");
         }else if (user_type === "individual_consultant") {
-          history.push("/navbar/profile");
+          navigate("/navbar/profile");
         } else {
           console.log("Invalid user_type or handling other cases");
         }
@@ -119,7 +119,7 @@ function Login() {
   };
 
   const signUpButton = () => {
-    history.push("/signup");
+    navigate("/signup");
   };
 
   const togglePasswordVisibility = () => {
@@ -226,7 +226,7 @@ function Login() {
               alignItems: "center",
               marginBottom: "18px",
             }}
-            onClick={() => history.push(item.route)}
+            onClick={() => navigate(item.route)}
           >
             {item.thumb}
             <p style={{ marginLeft: "15px" }}>{item.title}</p>

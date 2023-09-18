@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Col, Row } from "antd";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../assets/css/global.css";
 import Swal from "sweetalert2";
 
 function SignUp() {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const initialFormData = {
     username: "",
@@ -94,7 +94,7 @@ function SignUp() {
             text: "Your registration was successful!",
             confirmButtonText: "OK",
           }).then(() => {
-            history.push("/"); // Redirect to the homepage after clicking "OK"
+            navigate("/"); // Redirect to the homepage after clicking "OK"
           });
         }
       })

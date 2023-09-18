@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Transaction() {
   const [daata, setData] = useState([
@@ -12,7 +12,7 @@ function Transaction() {
 
   const [filterDate, setFilterDate] = useState("");
   const [filterType, setFilterType] = useState("");
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleActionChange = (index, event) => {
     const newData = [...daata];
@@ -20,7 +20,7 @@ function Transaction() {
     setData(newData);
 
     if (event.target.value === "edit") {
-      history.push(`/navbar/edit/${daata[index].id}`);
+      navigate(`/navbar/edit/${daata[index].id}`);
     }
   };
 

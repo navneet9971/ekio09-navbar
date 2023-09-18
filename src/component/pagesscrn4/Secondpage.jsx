@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../interceptors/axios";
 import Popup from "../popup/Popup";
 import "./Pages.css";
@@ -51,7 +51,7 @@ function sendMail(complianceName) {
 //SECOND PAGE MAIN COMPONENT START HERE ----------------------------------------------------
 
 const Secondpage = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [complianceData, setComplianceData] = useState([]);
   const [applicationId, setNewApplicationId] = useState();
   const [isLoading, setIsLoading] = useState(false);
@@ -77,7 +77,7 @@ const Secondpage = () => {
               (item) => item.compliance.id === compliance.compliance.id
             )
           ) {
-            uniqueComplianceData.push(compliance);
+            uniqueComplianceData(compliance);
           }
         });
         setComplianceData(uniqueComplianceData);
@@ -353,7 +353,7 @@ const Secondpage = () => {
   const handleModificationTecOptionChange = (event) => {
     // Perform any necessary actions based on the selected option immediately
     if (event.target.value === "modification") {
-      history.push("/navbar/TECModification"); // Redirect to the new application page
+      navigate("/navbar/TECModification"); // Redirect to the new application page
     } else {
       if (tecautofillform === "Yes" && event.target.value === "tecnewform") {
         setButtonautofilledtec(true); // Navigate to the new application page
