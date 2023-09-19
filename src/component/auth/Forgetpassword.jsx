@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+// import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import axios from "axios";
 import Swal from "sweetalert2";
 import ReactLoading from "react-loading";
 
-function ForgetPassword() {
+function ForgetPassword({ onClose }) {
   const [forgetemail, setForgetemail] = useState("");
-  const history = useHistory();
+  // const history = useHistory();
   const [isLoading, setIsLoading] = useState(false);
 
   const handleforgetemail = (e) => {
@@ -32,7 +32,7 @@ function ForgetPassword() {
             confirmButtonText: "OK",
           }).then(() => {
             setIsLoading(false); // Set isLoading to false after user interaction with SweetAlert2
-            history.push("/NewPassword/"); // Navigate to the forget password page 
+            onClose(); // Close the popup after download is complete
           });
         }
       })  
@@ -49,6 +49,7 @@ function ForgetPassword() {
       });
 
     setIsLoading(true); // Set isLoading to true to display the loading spinner
+
   };
 
   return (
@@ -63,7 +64,13 @@ function ForgetPassword() {
       <label className="forget-email">
         Enter your email:
         <input
-          className="forgetinput"
+          style={{
+            margin: "18px",
+            padding: "6px 15px",
+            fontSize: "16px",
+            border: "1px solid #0e0e0e",
+            borderRadius: "4px",
+          }}
           type="text"
           onChange={(event) => setForgetemail(event.target.value)}
         />

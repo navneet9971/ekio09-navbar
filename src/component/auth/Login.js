@@ -126,6 +126,12 @@ function Login() {
     setShowPassword(!showPassword);
   };
 
+
+  const handlePopupClose = () => {
+    setLinkPopup(false);
+  };
+
+
   return (
     <div className="auth-box">
       <div className="login">
@@ -191,7 +197,7 @@ function Login() {
             Forgot Password?
           </span>
           <Popup trigger={linkPopup} setTrigger={setLinkPopup}>
-            <ForgetPassword />
+            <ForgetPassword onClose={handlePopupClose} />
           </Popup>
 
           <button className="button1" onClick={handleSubmit}>
