@@ -1,28 +1,31 @@
 import React, { useState, useEffect } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory, useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 import "./NewPassword.css"; // Import your CSS file for styling
 
 function NewPassword() {
   const [formData, setFormData] = useState({
-    // token: "",
     password: "",
     confirmPassword: "",
   });
   const [showPassword1, setShowPassword1] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
-  const [token, setToken] = useState("");
   const history = useHistory();
   const location = useLocation();
+  const { token: routeToken } = useParams();
+  const [savedToken, setSavedToken] = useState("");
+  console.log(routeToken);
+  console.log(savedToken);
 
   useEffect(() => {
     // Extract the token value from the URL and set it in the formData state
     const searchParams = new URLSearchParams(location.search);
     const tokenValue = searchParams.get("token");
-    console.log(tokenValue);
-    setToken(tokenValue)
-    setFormData((prevFormData) => ({ ...prevFormData, token: tokenValue }));
+    setSavedToken(tokenValue);
+
+    console.log("Token from URL:", tokenValue);
+
   }, [location.search]);
 
   const handleInputChange = (event) => {
@@ -42,11 +45,14 @@ function NewPassword() {
     event.preventDefault();
 
     try {
-      const response = await axios.post(`https://backend.eikompapp.com/NewPassword/${token} `, formData);
+      // Use the savedToken from the useEffect for the Axios POST request URL
+      const response = await axios.post(`https://backend.eikompapp.com/NewPassword/${savedToken}`, formData);
 
       console.log("API Response:", response);
-       console.log(formData);
       Swal.fire("Password changed!", "Your password has been updated.", "success");
+
+      // Move this inside the try block since it depends on the success of the API call
+      localStorage.setItem("sendToken", savedToken);
 
       history.push("/");
     } catch (error) {
@@ -66,14 +72,14 @@ function NewPassword() {
       <h2>Reset Password</h2>
       <form onSubmit={handleSubmit}>
         <div className="input-box-password">
-          <label htmlFor="password1">New Password</label>
+          <label htmlFor="password">New Password</label>
           <div className="password-input">
             <input
               type={showPassword1 ? "text" : "password"}
-              id="password1"
-              name="password1"
+              id="confirmPassword"
+              name="password"
               placeholder="Enter your new password"
-              value={formData.password1}
+              value={formData.password}
               onChange={handleInputChange}
               required
             />
@@ -87,14 +93,14 @@ function NewPassword() {
           </div>
         </div>
         <div className="input-box-password">
-          <label htmlFor="password2">Confirm Password</label>
+          <label htmlFor="confirmPassword">Confirm Password</label>
           <div className="password-input">
             <input
               type={showPassword2 ? "text" : "password"}
-              id="password2"
-              name="password2"
+              id="confirmPassword"
+              name="confirmPassword"
               placeholder="Confirm your new password"
-              value={formData.password2}
+              value={formData.confirmPassword}
               onChange={handleInputChange}
               required
             />

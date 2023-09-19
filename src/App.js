@@ -71,6 +71,8 @@ import LabTestTableData from "./component/pagesscrn4/LabTestDash/LabTestTable/La
 import LabTestTableDataBIS from "./component/pagesscrn4/LabTestDash/LabTestTable/LabTestTableBis/LabTestTableBis";
 
 const App = () => {
+
+ 
   const router = (
     <BrowserRouter>
       <Switch>
@@ -81,7 +83,7 @@ const App = () => {
           <SignUP />
         </Route>
 
-        <Route path="/NewPassword/">
+        <Route path="/NewPassword/:token?">
           <NewPassword />
         </Route>
 
