@@ -98,7 +98,7 @@ function NewPassword() {
   return (
     <div className="NewPassword-container">
       <h2>Reset Password</h2>
-      <form onSubmit={handleSubmit}>
+      <form className= "forgot-password-form" onSubmit={handleSubmit}>
         <div className="input-box-password">
           <h4 style={{ color: "red", fontWeight: "100" }}>
             A strong 8-character password should contain letters, numbers, and special characters
