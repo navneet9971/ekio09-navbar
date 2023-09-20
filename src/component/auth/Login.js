@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "../assets/css/global.css";
 import axiosInstance from "../../interceptors/axios";
+// import axios from "axios";
 import Popup from "../popup/Popup";
 import Swal from "sweetalert2";
 import ForgetPassword from "./Forgetpassword";
@@ -14,13 +15,14 @@ import img4 from "../assets/login-page-icons/4.png";
 import img5 from "../assets/login-page-icons/5.png";
 import img6 from "../assets/login-page-icons/6.png";
 
+
 function Login() {
   const history = useHistory();
   const [linkPopup, setLinkPopup] = useState(false);
   const [userType, setUserType] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const initialFormData = Object.freeze({
-    username: "",
+    email: "",
     password: "",
   });
   const [formData, updateFormData] = useState(initialFormData);
@@ -63,16 +65,18 @@ function Login() {
     updateFormData({
       ...formData,
       [e.target.name]: e.target.value.trim(),
+      
     });
   };
 
+  console.log(formData);
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true); // Start loading animation
 
     axiosInstance
-      .post(`login`, {
-        username: formData.username,
+      .post(`login-new`, {
+        email: formData.email,
         password: formData.password,
       })
       .then(async (res) => {
@@ -83,7 +87,7 @@ function Login() {
         const user_type = res.data.profile.user_type;
         setUserType(user_type);
         console.log(userType);
-        console.log(res.data);
+        console.log(res.data.refresh);
 
         if (res.data.profile.first_time === true) {
           axiosInstance
@@ -163,8 +167,8 @@ function Login() {
           </div>
           <div className="input-box">
             <input
-              name="username"
-              placeholder="username"
+              name="email"
+              placeholder="Email/Username"
               onChange={handleChange}
             />
           </div>
