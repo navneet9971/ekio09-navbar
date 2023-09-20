@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "../assets/css/global.css";
-import axiosInstance from "../../interceptors/axios";
-// import axios from "axios";
+// import axiosInstance from "../../interceptors/axios";
+import axios from "axios";
 import Popup from "../popup/Popup";
 import Swal from "sweetalert2";
 import ForgetPassword from "./Forgetpassword";
@@ -74,8 +74,8 @@ function Login() {
     e.preventDefault();
     setIsLoading(true); // Start loading animation
 
-    axiosInstance
-      .post(`login-new`, {
+    axios
+      .post(`https://backend.eikompapp.com/login-new`, {
         email: formData.email,
         password: formData.password,
       })
@@ -90,8 +90,8 @@ function Login() {
         console.log(res.data.refresh);
 
         if (res.data.profile.first_time === true) {
-          axiosInstance
-            .patch(`user/${res.data.profile.id}/`, { first_time: false })
+          axios
+            .patch(`https://backend.eikompapp.com/user/${res.data.profile.id}/`, { first_time: false })
             .then((patchRes) => {
               console.log(patchRes);
             })
