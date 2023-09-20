@@ -41,7 +41,7 @@ axiosInstance.interceptors.response.use(
             refresh: localStorage.getItem("refresh_token"),
           });
 
-          const { access_token } = response.data.access; // Use response.data directly
+          const { access_token } = response.data; // Use response.data directly
 
           localStorage.setItem("access_token", access_token);
           axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${access_token}`;
