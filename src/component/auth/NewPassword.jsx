@@ -53,7 +53,7 @@ function NewPassword() {
     event.preventDefault();
 
     // Password validation regex
-    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/;
 
     if (!passwordRegex.test(formData.password)) {
       Swal.fire(

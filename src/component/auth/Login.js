@@ -115,8 +115,8 @@ function Login() {
         console.error(error);
         Swal.fire({
           icon: "error",
-          title: "Please try again later",
-          text: "Incorrect username or password. Please try again.",
+          title: "Invaild username or password.",
+          text: "",
         });
         setIsLoading(false); // Stop loading animation
       });

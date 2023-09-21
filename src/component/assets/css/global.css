@@ -588,7 +588,7 @@ select {
 /*------ Forget Password POPUP CSS-----------*/
 h3.email-popup {
   text-align: center;
-  margin: 28px;
+  margin: 1rem;
   font-size: 30px;
 }
 

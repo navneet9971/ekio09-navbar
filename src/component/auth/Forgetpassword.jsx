@@ -37,7 +37,7 @@ function ForgetPassword({ onClose }) {
         }
       })  
       .catch((error) => {
-        if (error.response && error.response.status === 400) {
+        if (error.response && error.response.status === 404 ) {
           Swal.fire({
             icon: "error",
             title: "Email Not Registered",
@@ -61,11 +61,10 @@ function ForgetPassword({ onClose }) {
       )}
 
       <h3 className="email-popup">ENTER YOUR EMAIL ID</h3>
-      <label className="forget-email">
-        Enter your email:
+      
         <input
           style={{
-            margin: "18px",
+            margin: ".4rem",
             padding: "6px 15px",
             fontSize: "16px",
             border: "1px solid #0e0e0e",
@@ -74,7 +73,7 @@ function ForgetPassword({ onClose }) {
           type="text"
           onChange={(event) => setForgetemail(event.target.value)}
         />
-      </label>
+ 
       <button className="forgetbtn" onClick={handleforgetemail}>
         Send
       </button>
