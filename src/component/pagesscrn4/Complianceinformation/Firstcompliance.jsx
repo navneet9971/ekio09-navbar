@@ -250,7 +250,7 @@ const Firstcompliance = () => {
             }}
             className="firstpage-title"
           >
-            Please enter the following details to Start a new application:
+            To know which compliances are applicable on your product, please enter the details below.
           </h3>
           <h4
             style={{
@@ -260,7 +260,7 @@ const Firstcompliance = () => {
               transform: "translate(14px, 60px)",
             }}
           >
-           Product Field is mandatory.
+           It is mandatory to enter the product.
           </h4>
         </div>
 
