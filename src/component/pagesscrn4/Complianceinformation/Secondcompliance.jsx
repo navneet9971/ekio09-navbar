@@ -7,7 +7,7 @@ import axiosInstance from "../../../interceptors/axios";
 import Notification from "../../Notification/Notification";
 import Popup from "../../popup/Popup";
 import CortButton from "./CortButton";
-import EmailSender from "../TestProductsendmail";
+// import EmailSender from "../TestProductsendmail";
 import KnYCompTableDownload from "./knowYoucomplinceTableDownload/knYComTableDownload";
 
 const Secondpage = () => {
@@ -102,7 +102,7 @@ const Secondpage = () => {
         marginTop: "1rem",
         gap: "3rem",
       }}>
-      <EmailSender />
+{/*       <EmailSender /> */}
       <KnYCompTableDownload />
       </div>
 
