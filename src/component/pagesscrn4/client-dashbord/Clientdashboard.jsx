@@ -2,7 +2,7 @@ import React, {  useEffect,useState } from "react";
 import { Row, Col } from "antd";
 import { Link } from "react-router-dom";
 import Popup from "../../popup/Popup";
-import Thumb1png from "../../assets/images/2.png";
+// import Thumb1png from "../../assets/images/2.png";
 import Thumb2png from "../../assets/images/4.png";
 // import Thumb3png from "../../assets/images/use.png";
 import Thumb4png from "../../assets/images/lab.png";
@@ -12,12 +12,15 @@ import axiosInstance from "../../../interceptors/axios";
 import Onboarding from "../../Onboarding/Onboarding";
 import MainChatbot from "../../Chatbot/MainChatbot";
 import LabTestBtnDash from "../LabTestDash/LabTestBtnDash";
+import Know from "../../assets/login-page-icons/1.png";
+import NavbarNotification from "../../Notification/NavbarNotification";
 
 const ClientDashboard = () => {
   const [firstName, setFirstName] = useState("");
   // const [lastName, setLastName] = useState("");
   const [labTestPop, setLabTestPop] = useState (false);
-
+  const [notificationIcon, setNotificationIcon] = useState(false);
+  
   //Lab Test Icon Click Handle 
   const handleLabTest = () => {
     setLabTestPop(true); 
@@ -48,9 +51,9 @@ const ClientDashboard = () => {
 
   const WELCOME_OPTIONS = [
     {
-      thumb: <img src={Thumb1png} alt= "" className="first" />,
-      title: "Start New Project",
-      route: "/navbar/firstpage",
+      thumb: <img src={Know} alt= "" className="first" />,
+      title: "Know Your Compliance",
+      route: "/navbar/firstcompliance",
     },
     {
       thumb: <img src={Thumb2png} alt ="" className="second" />,
@@ -69,11 +72,10 @@ const ClientDashboard = () => {
     },
     {
       thumb: <img src={Thumb4png} alt="" className="four" />,
-      title: "Lab Testing",
+      title: "Book Product Testing",
       onclick : handleLabTest,
       route :"#"
     }, 
-    
   ];
 
   return (
@@ -104,7 +106,7 @@ const ClientDashboard = () => {
       <img
         src={Thumb4png}
         alt=""
-        className="four"
+        className="four"                                       
         style={{ width: "63px", cursor: "not-allowed" }}
       />
       <h4 style={{ color: "black", fontWeight: "100" }}>Lab Testing (Coming Soon)</h4>
@@ -121,7 +123,12 @@ const ClientDashboard = () => {
       </div>
       <Onboarding />
       <MainChatbot />
+      
+      <Popup trigger={notificationIcon} setTrigger={setNotificationIcon}>
+        <NavbarNotification />
+      </Popup>
     </div>
+    
   );
 };
 

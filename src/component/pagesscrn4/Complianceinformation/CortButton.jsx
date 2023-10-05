@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import emailjs from "emailjs-com";
 import axiosInstance from "../../../interceptors/axios";
 import Swal from "sweetalert2";
 
@@ -7,10 +6,8 @@ function CortButton({ onClose }) {
   const [complianceData, setComplianceData] = useState([]);
   const [selectedCompliance, setSelectedCompliance] = useState([]);
   const [selectedCountries, setSelectedCountries] = useState([]);
-//   const user_id = localStorage.getItem("user_id");
-   const userEmail = localStorage.getItem("cortEmail")
+  const userEmail = localStorage.getItem("emailUse");
 
-   console.log(userEmail);
   useEffect(() => {
     axiosInstance
       .get(
@@ -22,7 +19,7 @@ function CortButton({ onClose }) {
         const uniqueComplianceData = res?.data?.data.reduce((acc, compliance) => {
           if (!acc.some((item) => item.id === compliance.id)) {
             acc.push(compliance);
-            console.log(res.data)
+            console.log(res.data);
             console.log(compliance.id);
           }
           return acc;
@@ -37,80 +34,96 @@ function CortButton({ onClose }) {
   }, []);
 
   const handleSubmit = async () => {
-    // Simulating success or failure
-    const isSuccess = true; // Change this based on your logic
-  
-    if (isSuccess) {
-      // Send email using emailjs
-      const templateParams = {
-        subject: "Selected Products",
-        to_name: `${userEmail}`,
-        message: `Compliance Names: ${selectedCompliance.join(", ")},
-        Countries: ${selectedCountries.join(", ")}`, // Include selected countries here
+    try {
+      const requestData = {
+        email: userEmail,
+        comp: selectedCompliance,
+        country: selectedCountries,
       };
-      
   
-      emailjs.init("zJR8dp8Ouz9a-jdDu"); // Replace "YOUR_PUBLIC_KEY" with your actual Public Key
+      // Debugging console.log statements
+      console.log("requestData:", requestData);
   
-      try {
-        const response = await emailjs.send(
-          "service_xk0xuzm",
-          "template_n73azeg",
-          templateParams
-        );
-        console.log("Email sent successfully!", response);
-        Swal.fire("Success!", "Submission was successful.", "success");
-      } catch (error) {
-        console.error("Error sending email:", error);
-        Swal.fire("Error!", "Submission failed.", "error");
-      }
-    } else {
+      const response = await axiosInstance.post("/compliance/request-quote", requestData, {
+        headers: {
+          "Content-Type": "application/json", // Set the content type to JSON
+        },
+      });
+  
+      console.log(response);
+  
+      Swal.fire("Success!", "Submission was successful.", "success");
+    } catch (error) {
+      console.error("Error calling API:", error);
       Swal.fire("Error!", "Submission failed.", "error");
     }
-
+  
     onClose();
-    // Perform any other action with the data
   };
+  
+  
+  
   
 
   return (
     <>
-     <h3>Choose which compliances do you want to know the rates for:</h3>
-      <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between" }}>
+      <h3>Choose which compliances do you want to know the rates for:</h3>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-between",
+        }}
+      >
         {complianceData.map((compliance, index) => (
           <div key={index} style={{ width: "35%" }}>
-            <label style={{display: "flex", gap:".5rem", marginTop: ".7rem", fontSize: "15px"}}>
-            <input
-  type="checkbox"
-  value={compliance.id}
-  checked={selectedCompliance.includes(compliance.compliance.product_name)}
-  onChange={(e) => {
-    const isChecked = e.target.checked;
-    setSelectedCompliance((prevSelected) => {
-      if (isChecked) {
-        return [...prevSelected, compliance.compliance.product_name];
-      } else {
-        return prevSelected.filter(
-          (product_name) => product_name !== compliance.compliance.product_name
-        );
-      }
-    });
+            <label
+              style={{
+                display: "flex",
+                gap: ".5rem",
+                marginTop: ".7rem",
+                fontSize: "15px",
+              }}
+            >
+              <input
+                type="checkbox"
+                value={compliance.id}
+                checked={selectedCompliance.includes(
+                  compliance.compliance.product_name
+                )}
+                onChange={(e) => {
+                  const isChecked = e.target.checked;
+                  setSelectedCompliance((prevSelected) => {
+                    if (isChecked) {
+                      return [
+                        ...prevSelected,
+                        compliance.compliance.product_name,
+                      ];
+                    } else {
+                      return prevSelected.filter(
+                        (product_name) =>
+                          product_name !== compliance.compliance.product_name
+                      );
+                    }
+                  });
 
-    // Update selected countries based on the checkbox state
-    setSelectedCountries((prevSelectedCountries) => {
-      if (isChecked) {
-        return [...prevSelectedCountries, compliance.compliance.countries];
-      } else {
-        return prevSelectedCountries.filter(
-          (country) => country !== compliance.compliance.countries
-        );
-      }
-    });
-  }}
-/>
+                  setSelectedCountries((prevSelectedCountries) => {
+                    if (isChecked) {
+                      return [
+                        ...prevSelectedCountries,
+                        compliance.compliance.countries,
+                      ];
+                    } else {
+                      return prevSelectedCountries.filter(
+                        (country) => country !== compliance.compliance.countries
+                      );
+                    }
+                  });
+                }}
+              />
 
-              {compliance.compliance.product_name} ||
-              ({compliance.compliance.countries})
+              {compliance.compliance.product_name} || (
+              {compliance.compliance.countries})
             </label>
           </div>
         ))}

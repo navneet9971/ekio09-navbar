@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBell } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faBell } from "@fortawesome/free-solid-svg-icons";
 import "../Pages.css";
 import axiosInstance from "../../../interceptors/axios";
-import Notification from "../../Notification/Notification";
+// import Notification from "../../Notification/Notification";
 import Popup from "../../popup/Popup";
 import CortButton from "./CortButton";
-import EmailSender from "../TestProductsendmail";
+// import EmailSender from "../TestProductsendmail";
 import KnYCompTableDownload from "./knowYoucomplinceTableDownload/knYComTableDownload";
 
 const Secondpage = () => {
   const history = useHistory();
   const [complianceData, setComplianceData] = useState([]);
-  const [notifiButton, setNotifiButton] = useState(false);
+  // const [notifiButton, setNotifiButton] = useState(false);
   const [cotpopupbutton, setCotpopupbutton] = useState(false);
 
   // Calls APIs HERE ---------------------------------------------------------
@@ -64,10 +64,10 @@ const Secondpage = () => {
     }
   };
 
-  const handleNotificationClick = (notification) => {
-    // Implement the desired behavior when the notification is clicked
-    setNotifiButton(true);
-  };
+  // const handleNotificationClick = (notification) => {
+  //   // Implement the desired behavior when the notification is clicked
+  //   setNotifiButton(true);
+  // };
 
   // After click submit button popup is disabled 
   const handlePopupClose = () => { 
@@ -102,7 +102,7 @@ const Secondpage = () => {
         marginTop: "1rem",
         gap: "3rem",
       }}>
-      <EmailSender />
+      {/* <EmailSender /> */}
       <KnYCompTableDownload />
       </div>
 
@@ -114,7 +114,7 @@ const Secondpage = () => {
               <tr>
                 <th style={{ cursor: "default" }}>Compliance Name</th>
                 <th style={{ cursor: "default" }}>Description</th>
-                <th style={{ cursor: "default" }}>Notification</th>
+                {/* <th style={{ cursor: "default" }}>Notification</th> */}
               </tr>
             </thead>
             <tbody>
@@ -133,7 +133,7 @@ const Secondpage = () => {
    
                   </td>
                   <td style={{ cursor: "default" }}>{compliance.compliance.details}</td>
-                  <td>
+                  {/* <td>
                     <span
                       className="clickable animated-bell"
                       onClick={(e) => handleNotificationClick(notifiButton)}
@@ -145,16 +145,16 @@ const Secondpage = () => {
                         className="animated-bell shake"
                       />
                     </span>
-                  </td>
+                  </td> */}
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
       </div>
-      <Popup trigger={notifiButton} setTrigger={setNotifiButton}>
+      {/* <Popup trigger={notifiButton} setTrigger={setNotifiButton}>
         <Notification />
-      </Popup>
+      </Popup> */}
 
       {/* <button className="revbtn1" onClick={handleTestingMail}>
         Request simple testing

@@ -84,6 +84,7 @@ function Login() {
         localStorage.setItem("refresh_token", res.data.refresh);
         localStorage.setItem("user_id", res.data.profile.id);
         localStorage.setItem("first_time", res.data.profile.first_time);
+        localStorage.setItem("emailUse", res.data.profile.email);
         const user_type = res.data.profile.user_type;
         setUserType(user_type);
         console.log(userType);

@@ -6,7 +6,7 @@ import $ from "jquery";
 import axiosInstance from 'axios';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell } from "@fortawesome/free-solid-svg-icons";
-import know from "../../assets/login-page-icons/1.png";
+// import know from "../../assets/login-page-icons/1.png";
 import NavbarNotification from "../../Notification/NavbarNotification";
 import Popup from "../../popup/Popup";
 
@@ -105,17 +105,17 @@ const Navbar = () => {
             </NavLink>
           </li>
 
-          <li className={pathname === "/navbar/firstcompliance" ? "active nav-item" : "nav-item"}>
+          {/* <li className={pathname === "/navbar/firstcompliance" ? "active nav-item" : "nav-item"}>
             <NavLink className="nav-link" to="/navbar/firstcompliance">
               <img src={know} alt="" style={{ width: "35px" }} />
               <h3 style={{ fontSize: "12px", fontWeight: "100" }}>Know Your Compliance</h3>
             </NavLink>
-          </li>
+          </li> */}
 
           <li>
             <NavLink className="nav-link" to="" onClick={handleIconClick} style={{ textDecoration: "none" }}>
-              <FontAwesomeIcon icon={faBell} size="2x" style={{ color: "green"}} className="animated-bell" />
-              <h3 style={{ fontSize: "12px", fontWeight: "100" }}>Notification</h3>
+              <FontAwesomeIcon icon={faBell} size="2x" style={{ color: "green", marginLeft: "22rem"}} className="animated-bell" />
+              <h3 style={{ fontSize: "12px", fontWeight: "100", marginLeft: "21.5rem" }}>Notification</h3>
             </NavLink>
           </li>
         </ul>

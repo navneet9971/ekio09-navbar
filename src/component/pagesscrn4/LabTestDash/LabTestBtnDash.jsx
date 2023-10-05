@@ -93,7 +93,7 @@ function LabTestBtnDash() {
           </Col>
         </Row>
 
-        <Row gutter={[24, 0]}>
+        {/* <Row gutter={[24, 0]}>
           <Col xs={24} md={12}>
             <div className="column">
               <label className="HomeProfile-label">Testing / Consultant</label>
@@ -106,7 +106,7 @@ function LabTestBtnDash() {
               />
             </div>
           </Col>
-        </Row>
+        </Row> */}
 
         <button
           style={{
