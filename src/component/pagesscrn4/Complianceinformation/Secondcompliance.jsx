@@ -102,7 +102,7 @@ const Secondpage = () => {
         marginTop: "1rem",
         gap: "3rem",
       }}>
-      {/* <EmailSender /> */}
+      <EmailSender />
       <KnYCompTableDownload />
       </div>
 
