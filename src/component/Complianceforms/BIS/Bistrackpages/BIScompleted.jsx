@@ -466,7 +466,7 @@ logoImg.onload = function () {
           Compliance Name
         </th>
         <th className="header" style={{ cursor: "default" }}>
-          Request For
+          Brand
         </th>
         <th className="header" style={{ cursor: "default" }}>
           Certificate Expiry
@@ -481,7 +481,7 @@ logoImg.onload = function () {
             <td className="clickable1">{tableData.uniqueid}</td>
             <td style={{ cursor: "default" }}>{tableData.application_name}</td>
             <td style={{ cursor: "default" }}>{tableData.compliance_name}</td>
-            <td style={{ cursor: "default" }}>{tableData.request_for}</td>
+            <td style={{ cursor: "default" }}>{tableData.fields?.Brand_trademark}</td>
             <td style={{ cursor: "default" }}>{tableData.certificate_expiry}</td>
           </tr>
        
