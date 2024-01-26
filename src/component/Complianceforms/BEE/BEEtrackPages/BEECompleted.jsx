@@ -450,7 +450,7 @@ setDocType(docCertificate);
     </div>
   )}  */}
 
-   <BISChatbot /> 
+   {/* <BISChatbot />  */}
         </div>
 
         {isLoading && (

@@ -122,7 +122,7 @@ const ClientDashboard = () => {
 
       </div>
       <Onboarding />
-      <MainChatbot />
+      {/* <MainChatbot /> */}
       
       <Popup trigger={notificationIcon} setTrigger={setNotificationIcon}>
         <NavbarNotification />

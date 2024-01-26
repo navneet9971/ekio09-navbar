@@ -501,7 +501,7 @@ function BEEonGoing() {
           </button>
         </div>
 
-        <BISChatbot />
+        {/* <BISChatbot /> */}
       </div>
 
       {isLoading && (

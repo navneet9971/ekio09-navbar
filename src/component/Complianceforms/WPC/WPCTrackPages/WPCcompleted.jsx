@@ -543,7 +543,7 @@ function WPCcompleted() {
           </button>
         </div>
 
-        <Chatbot />
+        {/* <Chatbot /> */}
       </div>
 
       {isLoading && (

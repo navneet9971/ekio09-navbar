@@ -532,7 +532,7 @@ function TECOngoing() {
           </button>
         </div>
 
-        <Chatbot />
+        {/* <Chatbot /> */}
       </div>
 
       {isLoading && (

@@ -113,7 +113,7 @@ const App = () => {
         </Route> 
         
         <Route path="/navbar/clientdashboard">
-          <ClientDashboard />
+          <ClientDashboard/>
         </Route>
 
         <Route path="/navbar/secondpage">

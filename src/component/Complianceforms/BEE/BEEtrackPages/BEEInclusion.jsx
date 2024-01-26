@@ -548,7 +548,7 @@ function BEEInclusion() {
           </button>
         </div>
 
-        <BISChatbot />
+        {/* <BISChatbot /> */}
       </div>
       {isLoading && (
         <div className="loading-overlay">

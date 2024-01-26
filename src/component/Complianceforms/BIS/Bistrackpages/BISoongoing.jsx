@@ -514,7 +514,7 @@ function BISoongoing() {
           </button>
         </div>
 
-        <BISChatbot />
+        {/* <BISChatbot /> */}
       </div>
 
       {isLoading && (

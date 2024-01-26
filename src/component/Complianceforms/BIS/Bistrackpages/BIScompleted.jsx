@@ -22,6 +22,8 @@ import BISSteps from "../BISSteps";
 
 function Completed() {
   const [docStatus, setDocStatus] = useState({});
+  const [tableData, setTableData] = useState([]);
+
   //const [startDate, setStartDate] = useState('');
   const [uniqueid, setUniqueid] = useState("");
   const [complianceid, setComplianceid] = useState("");
@@ -59,6 +61,8 @@ function Completed() {
       axiosInstance.get(`application/compliance/${idel}/`)
       .then(response => {
         const data = response.data.data;
+        console.log(data.uniqueid,data.application_name);
+        setTableData(data);
         const compliance_id = data["compliance"];
         const application_id = data["application"];
         const request_for = data["request_for"];
@@ -236,6 +240,8 @@ logoImg.onload = function () {
        newWindow.focus();
       }
     };
+
+    const myArray = Object.values(tableData);
 
    
     return (
@@ -436,7 +442,7 @@ logoImg.onload = function () {
     </div>
   )}  */}
 
-   <BISChatbot /> 
+   {/* <BISChatbot />  */}
         </div>
 
         {isLoading && (
@@ -444,6 +450,49 @@ logoImg.onload = function () {
           <ReactLoading type="spin" color="#fff" height={50} width={50} />
         </div>
       )}
+
+<div className="table-wrapper">
+  <table className="Review">
+    <thead>
+      <tr>
+       
+        <th className="header" style={{ cursor: "default" }}>
+          unique_id
+        </th>
+        <th className="header" style={{ cursor: "default" }}>
+          Application Name
+        </th>
+        <th className="header" style={{ cursor: "default" }}>
+          Compliance Name
+        </th>
+        <th className="header" style={{ cursor: "default" }}>
+          Request For
+        </th>
+        <th className="header" style={{ cursor: "default" }}>
+          Certificate Expiry
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      
+          <tr>
+            
+            <td className="clickable1">{tableData.uniqueid}</td>
+            <td style={{ cursor: "default" }}>{tableData.application_name}</td>
+            <td style={{ cursor: "default" }}>{tableData.compliance_name}</td>
+            <td style={{ cursor: "default" }}>{tableData.request_for}</td>
+            <td style={{ cursor: "default" }}>{tableData.certificate_expiry}</td>
+          </tr>
+       
+    </tbody>
+  </table>
+</div>
+
+
+
+
+
        </div>
   
   

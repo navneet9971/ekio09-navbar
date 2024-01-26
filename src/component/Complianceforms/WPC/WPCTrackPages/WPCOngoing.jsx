@@ -337,7 +337,7 @@ function WPCOngoing() {
           </button>
         </div>
 
-        <Chatbot />
+        {/* <Chatbot /> */}
       </div>
 
       {isLoading && (

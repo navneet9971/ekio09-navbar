@@ -21,6 +21,9 @@ import TECSteps from "../TECSteps";
 
 function TECmodification() {
   const [docStatus, setDocStatus] = useState({});
+
+  const [tableData, setTableData] = useState([]);
+
   const [uniqueid, setUniqueid] = useState("");
   const [complianceid, setComplianceid] = useState("");
 //   const [testingbtnkey, setTestingbtnkey] = useState("");
@@ -49,6 +52,7 @@ function TECmodification() {
         .get(`application/compliance/${idel}/`)
         .then((response) => {
           const data = response.data.data;
+          setTableData(data);
           const compliance_id = data["compliance"];
           const application_id = data["application"];
           const request_for = data["request_for"];
@@ -84,6 +88,8 @@ function TECmodification() {
             )
             .then((response) => {
               const documentData = response.data.data;
+              
+             
               //console.log(response.data.key)
 
               //store button APIS data here button name download report and download certificate
@@ -265,6 +271,39 @@ function TECmodification() {
     // setButtonPopup1(false);
     setButtonPopup2(false);
   };
+  console.log(tableData);
+  // const handletableDownload = () => {
+  //   const doc = new jsPDF("landscape");
+  //   const headers = [
+  //    "Unique Id",
+  //    "Company Name",
+  //    "Product Name",
+  //    "Brand",
+  //    "Certification Valid till"
+  //   ];
+  //   const rows = tableData.map((data, index) => [
+  //     index + 1,
+  //     data.unique_id,
+  //     data.Factory_name,
+  //     data.application_name,
+  //     data.fields["Serial_number"],
+  //     data.fields["Associate_models"],
+      
+  //     data.certificate_expiry,
+  //   ]);
+  //   const columnWidth = [3, 25, 25, 30, 25, 40, 25, 35, 20, 35];
+  //   const rowHeight = 6;
+
+  //   doc.autoTable({
+  //     head: [headers],
+  //     body: rows,
+  //     columnWidth: columnWidth,
+  //     rowHeight: rowHeight,
+  //     styles: { cellPadding: 2, valign: "middle", halign: "center" },
+  //   });
+
+  //   doc.save("Track Application History.pdf");
+  // };
 
   return (
     <div className="bgchangecompleted">
@@ -557,13 +596,57 @@ function TECmodification() {
           </button>
         </div>
 
-        <Chatbot />
+        {/* <Chatbot /> */}
       </div>
       {isLoading && (
         <div className="loading-overlay">
           <ReactLoading type="spin" color="#fff" height={50} width={50} />
         </div>
       )}
+
+      
+      {/* bottom table */}
+
+      <div className="table-wrapper">
+  <table className="Review">
+    <thead>
+      <tr>
+        <th className="header" style={{ cursor: "default" }}>
+          Index
+        </th>
+        <th className="header" style={{ cursor: "default" }}>
+          unique_id
+        </th>
+        <th className="header" style={{ cursor: "default" }}>
+          Company Name
+        </th>
+        <th className="header" style={{ cursor: "default" }}>
+          Product Name
+        </th>
+        <th className="header" style={{ cursor: "default" }}>
+          Brand
+        </th>
+        <th className="header" style={{ cursor: "default" }}>
+          Certification Valid Till
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {tableData.map((data, index) => (
+        <tr key={data.id}>
+          <td style={{ cursor: "default" }}>{index + 1}</td>
+          <td className="clickable1">{data.unique_id}</td>
+          <td className="clickable2">{data.company_name}</td>
+          <td style={{ cursor: "default" }}>{data.product_name}</td>
+          <td style={{ cursor: "default" }}>{data.brand}</td>
+          <td style={{ cursor: "default" }}>{data.certification_valid_till}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
     </div>
   );
 }
