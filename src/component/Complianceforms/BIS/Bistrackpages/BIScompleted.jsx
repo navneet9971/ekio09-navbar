@@ -472,7 +472,7 @@ logoImg.onload = function () {
           Registration Number
         </th>
         <th className="header" style={{ cursor: "default" }}>
-         Date Of Grant Of Registration
+         Date
         </th>
        
         <th className="header" style={{ cursor: "default" }}>
