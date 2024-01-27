@@ -457,19 +457,30 @@ logoImg.onload = function () {
       <tr>
        
         <th className="header" style={{ cursor: "default" }}>
-          unique_id
+          Model Number
         </th>
         <th className="header" style={{ cursor: "default" }}>
-          Application Name
+         Name Of Manufacuture
         </th>
         <th className="header" style={{ cursor: "default" }}>
-          Compliance Name
+          Product Name
         </th>
         <th className="header" style={{ cursor: "default" }}>
           Brand
         </th>
         <th className="header" style={{ cursor: "default" }}>
-          Certificate Expiry
+          Registration Number
+        </th>
+        <th className="header" style={{ cursor: "default" }}>
+         Date Of Grant Of Registration
+        </th>
+       
+        <th className="header" style={{ cursor: "default" }}>
+          Compliance Name
+        </th>
+        
+        <th className="header" style={{ cursor: "default" }}>
+          Date of Expiry
         </th>
       </tr>
     </thead>
@@ -479,15 +490,55 @@ logoImg.onload = function () {
           <tr>
             
             <td className="clickable1">{tableData.uniqueid}</td>
+            <td className="clickable1">{tableData.fields?.Factory_name}</td>
             <td style={{ cursor: "default" }}>{tableData.application_name}</td>
-            <td style={{ cursor: "default" }}>{tableData.compliance_name}</td>
             <td style={{ cursor: "default" }}>{tableData.fields?.Brand_trademark}</td>
+            <td className="clickable1">{tableData.unique_number}</td>
+            <td className="clickable1">{tableData.startdate}</td>
+            <td style={{ cursor: "default" }}>{tableData.compliance_name}</td>
             <td style={{ cursor: "default" }}>{tableData.certificate_expiry}</td>
           </tr>
        
     </tbody>
   </table>
 </div>
+<br/>
+<br/>
+{/* <div className="table-wrapper">
+  <table className="Review">
+    <thead>
+      <tr>
+       
+        <th className="header" style={{ cursor: "default" }}>
+          Registration Number
+        </th>
+        <th className="header" style={{ cursor: "default" }}>
+         Date Of Grant Of Registration
+        </th>
+       
+        <th className="header" style={{ cursor: "default" }}>
+          Compliance Name
+        </th>
+        
+        <th className="header" style={{ cursor: "default" }}>
+          Date of Expiry
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      
+          <tr>
+            
+            <td className="clickable1">{tableData.unique_number}</td>
+            <td className="clickable1">{tableData.startdate}</td>
+            <td style={{ cursor: "default" }}>{tableData.compliance_name}</td>
+            <td style={{ cursor: "default" }}>{tableData.certificate_expiry}</td>
+          </tr>
+       
+    </tbody>
+  </table>
+</div> */}
 
 
 
