@@ -69,6 +69,7 @@ import TECtableModification from "./component/Complianceforms/TEC/TECtableModifi
 import ProfilePage from "./component/Profile Dashboard/ProfilePage";
 import LabTestTableData from "./component/pagesscrn4/LabTestDash/LabTestTable/LabTestTableData";
 import LabTestTableDataBIS from "./component/pagesscrn4/LabTestDash/LabTestTable/LabTestTableBis/LabTestTableBis";
+import RenewalTable from "./component/Complianceforms/BIS/RenewalTable/RenewalTable";
 
 const App = () => {
 
@@ -118,6 +119,10 @@ const App = () => {
 
         <Route path="/navbar/secondpage">
           <Secondpage />
+        </Route>
+
+        <Route path="/navbar/bis/renewal">
+          <RenewalTable />
         </Route>
 
 

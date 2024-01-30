@@ -16,6 +16,7 @@ import pdflogo from "../../../assets/icons/eikomp_logo.png"
 import StatusBar from "../../../Statusbar";
 import BISChatbot from "../../../Chatbot/BISChatbot";
 import BISSteps from "../BISSteps";
+import RenewalTable from "../RenewalTable/RenewalTable";
 
 
 
@@ -451,57 +452,9 @@ logoImg.onload = function () {
         </div>
       )}
 
-<div className="table-wrapper">
-  <table className="Review">
-    <thead>
-      <tr>
-       
-        <th className="header" style={{ cursor: "default" }}>
-          Model Number
-        </th>
-        <th className="header" style={{ cursor: "default" }}>
-         Name Of Manufacuture
-        </th>
-        <th className="header" style={{ cursor: "default" }}>
-          Product Name
-        </th>
-        <th className="header" style={{ cursor: "default" }}>
-          Brand
-        </th>
-        <th className="header" style={{ cursor: "default" }}>
-          Registration Number
-        </th>
-        <th className="header" style={{ cursor: "default" }}>
-         Date
-        </th>
-       
-        <th className="header" style={{ cursor: "default" }}>
-          Compliance Name
-        </th>
-        
-        <th className="header" style={{ cursor: "default" }}>
-          Date of Expiry
-        </th>
-      </tr>
-    </thead>
 
-    <tbody>
-      
-          <tr>
-            
-            <td className="clickable1">{tableData.uniqueid}</td>
-            <td className="clickable1">{tableData.fields?.Factory_name}</td>
-            <td style={{ cursor: "default" }}>{tableData.application_name}</td>
-            <td style={{ cursor: "default" }}>{tableData.fields?.Brand_trademark}</td>
-            <td className="clickable1">{tableData.unique_number}</td>
-            <td className="clickable1">{tableData.startdate}</td>
-            <td style={{ cursor: "default" }}>{tableData.compliance_name}</td>
-            <td style={{ cursor: "default" }}>{tableData.certificate_expiry}</td>
-          </tr>
-       
-    </tbody>
-  </table>
-</div>
+{/* renewalTable component */}
+          <RenewalTable/>
 <br/>
 <br/>
 {/* <div className="table-wrapper">

@@ -207,12 +207,17 @@ function BISTableReview() {
     placeholderText = "Search Project Code";
   }
 
+  const handleClickRenewal = () =>{
+    history.push("/navbar/bis/renewal");
+  };
+
   return (
     <div className="tble-reviewbg">
       <div className="table">
         <h5>Application Progress & Reports</h5>
 
         <div className="search-bar">
+          <button className="revbtn" onClick={handleClickRenewal}>Renewal Information</button>
           <i className="fas fa-search"></i>
           <select
             className="search-drop"
